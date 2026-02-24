@@ -1,4 +1,4 @@
-export default async function handler(req, res) {
+module.exports = async function handler(req, res) {
     // CORS headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
@@ -214,7 +214,7 @@ Based on their travel dates, generate:
             return res.status(500).json({ success: false, error: data.error.message || 'Gemini API error' });
         }
 
-        if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
+        if (data.candidates && data.candidates[0] && data.candidates[0].content && data.candidates[0].content.parts && data.candidates[0].content.parts[0] && data.candidates[0].content.parts[0].text) {
             return res.status(200).json({ success: true, plan: data.candidates[0].content.parts[0].text });
         }
 
@@ -223,4 +223,4 @@ Based on their travel dates, generate:
     } catch (err) {
         return res.status(500).json({ success: false, error: err.message || 'Server error' });
     }
-}
+};
