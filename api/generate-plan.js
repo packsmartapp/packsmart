@@ -196,7 +196,7 @@ Based on their travel dates, generate:
     // CALL GEMINI API
     // =============================================
     try {
-        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${API_KEY}`;
+        const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-001:generateContent?key=${API_KEY}`;
 
         const response = await fetch(url, {
             method: 'POST',
