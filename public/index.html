@@ -928,6 +928,7 @@
         <div class="results-actions">
             <button class="btn-outline" onclick="window.print()">Print</button>
             <button class="btn-outline" onclick="copyPlan()">Copy</button>
+            <button class="btn-solid" style="background:#25D366;border-color:#25D366;" onclick="shareWhatsApp()">Share on WhatsApp</button>
             <button class="btn-solid" onclick="newPlan()">Plan Another Trip</button>
         </div>
     </div>
@@ -1099,6 +1100,13 @@ function mdToHtml(md) {
         .replace(/(<li[^>]*>.*?<\/li>)/gs,'<ul>$1</ul>').replace(/<\/ul>\s*<ul>/g,'');
 }
 function copyPlan() { navigator.clipboard.writeText(document.getElementById('resBody').innerText).then(() => alert('Plan copied!')); }
+function shareWhatsApp() {
+    const dest = document.getElementById('resDest').textContent;
+    const planText = document.getElementById('resBody').innerText;
+    const truncated = planText.substring(0, 2000);
+    const msg = `*PackSmart Travel Plan: ${dest}*\n\n${truncated}${planText.length > 2000 ? '\n\n... [Full plan at packsmartapp.com]' : ''}\n\n---\nGenerate your own free travel plan at packsmartapp.com`;
+    window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
+}
 function newPlan() { document.getElementById('results').style.display='none'; document.getElementById('plan').scrollIntoView({behavior:'smooth'}); }
 
 const today = new Date().toISOString().split('T')[0];
