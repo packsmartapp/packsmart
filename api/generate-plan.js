@@ -127,6 +127,43 @@ Split into two categories:
 - If kids are in the group, mark family-friendly activities
 - For road trips: include great stops along the route, scenic viewpoints, roadside attractions
 
+### Hotel & Accommodation Recommendations
+Provide recommendations in THREE tiers based on the destination, tailored to the traveler's group size and trip type:
+
+**🏷️ Budget (Hostels, Guesthouses, Budget Hotels)**
+- Recommend 2-3 specific well-known budget options (real names, real neighborhoods)
+- Include approximate price per night in the TRAVELER'S HOME CURRENCY
+- Mention what makes each a good pick (location, reviews, amenities, cleanliness)
+- For families with kids, skip party hostels — recommend family-friendly budget guesthouses instead
+
+**🏨 Mid-Range (3-4 Star Hotels, Boutique Stays)**
+- Recommend 2-3 specific mid-range options (real names, real neighborhoods)
+- Include approximate price per night in the TRAVELER'S HOME CURRENCY
+- Highlight standout features (great breakfast, pool, walkable to attractions, good Wi-Fi)
+- If business trip, prioritize hotels with business centers and meeting rooms
+
+**🏰 Luxury (5-Star Hotels, Resorts, Premium Properties)**
+- Recommend 2-3 specific luxury options (real names, real neighborhoods)
+- Include approximate price per night in the TRAVELER'S HOME CURRENCY
+- Mention signature experiences (rooftop dining, spa, private beach, butler service)
+
+**General Accommodation Tips for the Destination:**
+- Best neighborhoods/areas to stay (and which areas to avoid)
+- Best booking platforms for this destination (Booking.com, Agoda, Hostelworld, direct booking, etc.)
+- Whether Airbnb is legal/common in this destination
+- Peak season vs off-season pricing differences
+- Any local accommodation types worth trying (ryokan in Japan, riad in Morocco, houseboat in Kerala, etc.)
+
+IMPORTANT RULES FOR HOTEL RECOMMENDATIONS:
+- ALWAYS use real, well-known hotel/hostel names that actually exist in the destination
+- ALWAYS include the neighborhood or area name so travelers can find them
+- ALWAYS show prices in the traveler's home currency
+- Adjust recommendations based on the trip type (business = business hotels, leisure = location-focused, honeymoon = romantic properties)
+- If kids are in the group, mention family-friendly amenities (kids club, connecting rooms, pool, babysitting)
+- For road trips with multiple stops, recommend accommodation at each major stop
+- If the destination is a cruise, mention pre/post cruise hotel options near the port
+- Never make up hotel names — if unsure, say "search for well-reviewed [type] hotels in [area]" instead
+
 ### Travel Day Guide
 Adapt this ENTIRELY based on travel mode:
 - **For flights:** Check-in time, what to carry, airport tips, layover advice
@@ -171,7 +208,8 @@ Based on their travel dates, generate:
 10. If the trip type is "business", adjust formality of clothing and add business etiquette
 11. Never make up information — if unsure about something, say "verify this before traveling"
 12. Include affiliate-friendly product categories naturally (luggage, sunscreen, adapters, insurance, eSIMs) without being salesy
-13. For road trips, if a route is provided, give advice specific to that route`;
+13. For road trips, if a route is provided, give advice specific to that route
+14. ALWAYS include Hotel & Accommodation Recommendations with all three tiers (Budget, Mid-Range, Luxury) — this is a key part of the travel plan that users expect`;
 
     // =============================================
     // USER PROMPT
@@ -204,7 +242,7 @@ Based on their travel dates, generate:
             body: JSON.stringify({
                 system_instruction: { parts: [{ text: systemPrompt }] },
                 contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
-                generationConfig: { temperature: 0.7, maxOutputTokens: 4096 }
+                generationConfig: { temperature: 0.7, maxOutputTokens: 8192 }
             })
         });
 
