@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About PackSmart — AI-Powered Travel Preparation</title>
+    <meta name="description" content="Learn about PackSmart, the AI travel assistant that helps you prepare for any trip with personalized packing lists, visa info, safety alerts, and more.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --action: #00C9A7;
+            --action-hover: #00B396;
+            --accent: #E94560;
+            --bg: #FDF0F2;
+            --bg-card: #F8F9FA;
+            --bg-white: #FFFFFF;
+            --border: #E9ECEF;
+            --teal-tint: #F0FAF7;
+            --rose-tint: #FDF0F2;
+            --text: #212529;
+            --text-secondary: #6C757D;
+            --font-body: 'Plus Jakarta Sans', sans-serif;
+            --font-display: 'Instrument Serif', serif;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 16px rgba(0,0,0,0.05);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.07);
+        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.8; }
+
+        /* NAV */
+        .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; display: flex; align-items: center; justify-content: space-between; padding: 1rem 2rem; background: rgba(255,255,255,0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); }
+        .nav-brand { font-family: var(--font-body); font-weight: 800; font-size: 1.3rem; color: var(--text); text-decoration: none; }
+        .nav-brand em { color: var(--action); font-style: normal; }
+        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
+        .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
+        .nav-links a:hover { color: var(--action); }
+        .nav-links a.active { color: var(--action); font-weight: 600; }
+        .nav-cta-btn { background: var(--action); color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 8px; }
+        .nav-cta-btn:hover { background: var(--action-hover); }
+
+        /* HERO */
+        .about-hero { padding: 8rem 2rem 4rem; text-align: center; max-width: 800px; margin: 0 auto; }
+        .about-hero .tag { display: inline-block; background: var(--teal-tint); color: var(--action); font-size: 0.75rem; font-weight: 700; padding: 0.3rem 0.8rem; border-radius: 20px; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; }
+        .about-hero h1 { font-family: var(--font-display); font-size: 3rem; line-height: 1.15; margin-bottom: 1rem; }
+        .about-hero h1 em { color: var(--action); }
+        .about-hero p { font-size: 1.1rem; color: var(--text-secondary); max-width: 600px; margin: 0 auto; }
+
+        /* SECTIONS */
+        .section { max-width: 800px; margin: 0 auto; padding: 2rem 2rem 3rem; }
+        .section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 1rem; }
+        .section h2 em { color: var(--action); font-style: italic; }
+        .section p { font-size: 1.02rem; color: var(--text-secondary); margin-bottom: 1.2rem; }
+
+        /* FEATURES GRID */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin: 2rem 0; }
+        .feature-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: 14px; padding: 1.8rem; transition: transform 0.2s, box-shadow 0.2s; }
+        .feature-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+        .feature-card .icon { font-size: 2rem; margin-bottom: 0.8rem; }
+        .feature-card h3 { font-size: 1.05rem; font-weight: 700; margin-bottom: 0.4rem; }
+        .feature-card p { font-size: 0.9rem; color: var(--text-secondary); margin: 0; line-height: 1.6; }
+
+        /* STATS */
+        .stats-row { display: flex; justify-content: center; gap: 3rem; margin: 2.5rem 0; flex-wrap: wrap; }
+        .stat { text-align: center; }
+        .stat .number { font-family: var(--font-display); font-size: 2.5rem; color: var(--action); display: block; }
+        .stat .label { font-size: 0.85rem; color: var(--text-secondary); font-weight: 500; }
+
+        /* CTA */
+        .cta-section { background: linear-gradient(135deg, var(--action), var(--action-hover)); border-radius: 18px; padding: 3rem 2rem; text-align: center; max-width: 700px; margin: 2rem auto 3rem; color: #fff; }
+        .cta-section h2 { font-family: var(--font-display); font-size: 2rem; margin-bottom: 0.5rem; color: #fff; }
+        .cta-section p { opacity: 0.95; margin-bottom: 1.2rem; }
+        .cta-section a { display: inline-block; background: #fff; color: var(--action); font-weight: 700; padding: 0.8rem 2rem; border-radius: 10px; text-decoration: none; transition: transform 0.2s; }
+        .cta-section a:hover { transform: scale(1.05); }
+
+        /* FOOTER */
+        .footer { background: var(--bg-white); border-top: 1px solid var(--border); padding: 3rem 2rem; text-align: center; }
+        .footer-inner { max-width: 900px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 2rem; text-align: left; margin-bottom: 2rem; }
+        .footer-logo { font-weight: 800; font-size: 1.2rem; margin-bottom: 0.5rem; }
+        .footer-logo em { color: var(--action); font-style: normal; }
+        .footer-col { display: flex; flex-direction: column; gap: 0.4rem; }
+        .footer-col h4 { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); margin-bottom: 0.3rem; }
+        .footer-col a { text-decoration: none; color: var(--text); font-size: 0.9rem; transition: color 0.2s; }
+        .footer-col a:hover { color: var(--action); }
+        .footer-brand-col p { font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5; }
+        .footer-bottom { border-top: 1px solid var(--border); padding-top: 1.5rem; text-align: center; }
+        .footer-bottom p { font-size: 0.8rem; color: var(--text-secondary); }
+
+        /* MOBILE */
+        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
+        .mobile-menu-btn span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
+        @media (max-width: 768px) {
+            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; padding: 1rem; border-bottom: 1px solid var(--border); }
+            .nav-links.open { display: flex; }
+            .mobile-menu-btn { display: flex; }
+            .about-hero h1 { font-size: 2.2rem; }
+            .features-grid { grid-template-columns: 1fr; }
+            .stats-row { gap: 1.5rem; }
+            .footer-inner { grid-template-columns: 1fr 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+    <a href="/" class="nav-brand">Pack<em>Smart</em></a>
+    <div class="nav-links" id="navLinks">
+        <a href="/#how">How It Works</a>
+        <a href="/#features">Features</a>
+        <a href="/about.html" class="active">About</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/#plan" class="nav-cta-btn">Plan My Trip</a>
+    </div>
+    <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<!-- HERO -->
+<section class="about-hero">
+    <span class="tag">About Us</span>
+    <h1>Travel prep, <em>simplified</em></h1>
+    <p>PackSmart uses AI to generate personalized travel preparation plans in seconds — packing lists, visa info, local tips, safety alerts, and budget breakdowns for any destination on earth.</p>
+</section>
+
+<!-- MISSION -->
+<section class="section">
+    <h2>Why we <em>built this</em></h2>
+    <p>We've all been there — frantically Googling "do I need a visa for Thailand" at midnight, forgetting chargers, or showing up to a monsoon with flip-flops. Travel preparation shouldn't be stressful, scattered across 20 browser tabs, or something you skip entirely.</p>
+    <p>PackSmart was built to solve that. Tell us where you're going, when, how you're getting there, and what you plan to do. Our AI analyzes your trip details and generates a complete preparation plan, personalized to your specific journey. No sign-ups, no downloads, no fluff.</p>
+</section>
+
+<!-- WHAT WE DO -->
+<section class="section">
+    <h2>What <em>PackSmart</em> does</h2>
+    <div class="features-grid">
+        <div class="feature-card">
+            <div class="icon">🎒</div>
+            <h3>Smart Packing Lists</h3>
+            <p>AI-generated packing lists based on your destination's weather, activities, trip length, and travel mode.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🛂</div>
+            <h3>Visa & Documents</h3>
+            <p>Instant visa requirements, document checklists, and entry rules based on your nationality and destination.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🛡️</div>
+            <h3>Safety Alerts</h3>
+            <p>Real-time safety information, scam warnings, health advisories, and emergency contacts for your destination.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">💰</div>
+            <h3>Budget Breakdown</h3>
+            <p>Estimated daily costs for food, transport, accommodation, and activities at your destination.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🗺️</div>
+            <h3>Local Tips</h3>
+            <p>Cultural customs, tipping etiquette, local transport hacks, and must-know phrases.</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">✈️</div>
+            <h3>5 Travel Modes</h3>
+            <p>Tailored plans for flights, road trips, trains, buses, and cruises — each with mode-specific advice.</p>
+        </div>
+    </div>
+</section>
+
+<!-- STATS -->
+<section class="section" style="text-align: center;">
+    <h2>Built for <em>real travelers</em></h2>
+    <div class="stats-row">
+        <div class="stat">
+            <span class="number">195+</span>
+            <span class="label">Countries covered</span>
+        </div>
+        <div class="stat">
+            <span class="number">5</span>
+            <span class="label">Travel modes</span>
+        </div>
+        <div class="stat">
+            <span class="number">30s</span>
+            <span class="label">Average plan time</span>
+        </div>
+        <div class="stat">
+            <span class="number">Free</span>
+            <span class="label">To get started</span>
+        </div>
+    </div>
+</section>
+
+<!-- CTA -->
+<section class="section">
+    <div class="cta-section">
+        <h2>Ready to plan your next trip?</h2>
+        <p>No sign-up required. Just tell us where you're going.</p>
+        <a href="/#plan">Plan My Trip →</a>
+    </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand-col">
+            <div class="footer-logo">Pack<em>Smart</em></div>
+            <p>AI-powered travel preparation. Get personalized packing lists, visa info, and local tips for any destination in the world.</p>
+        </div>
+        <div class="footer-col">
+            <h4>Product</h4>
+            <a href="/#how">How It Works</a>
+            <a href="/#features">Features</a>
+            <a href="/#plan">Plan a Trip</a>
+        </div>
+        <div class="footer-col">
+            <h4>Company</h4>
+            <a href="/about.html">About</a>
+            <a href="/blog.html">Blog</a>
+            <a href="/contact.html">Contact</a>
+        </div>
+        <div class="footer-col">
+            <h4>Legal</h4>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <p>&copy; 2026 PackSmart. All rights reserved.</p>
+    </div>
+</footer>
+
+<script>
+document.getElementById('menuBtn').addEventListener('click', () => {
+    document.getElementById('navLinks').classList.toggle('open');
+});
+</script>
+</body>
+</html>
