@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shared Trip Plan — PackSmart</title>
+    <meta name="description" content="View this shared travel plan from PackSmart — AI-powered travel preparation.">
+    <!-- Google Analytics 4 -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-0C4Z7VVGPE"></script>
+    <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());gtag('config','G-0C4Z7VVGPE');</script>
+    <!-- Schema -->
+    <script type="application/ld+json">
+    {"@context":"https://schema.org","@type":"WebPage","name":"Shared Trip Plan","url":"https://packsmartapp.com/share.html","description":"View a shared travel plan from PackSmart.","publisher":{"@type":"Organization","name":"PackSmart","url":"https://packsmartapp.com"}}
+    </script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root{--primary:#00C9A7;--primary-dark:#00a88a;--accent:#E94560;--bg:#0a0a1a;--surface:#12122a;--text:#e0e0e0;--text-muted:#8888aa;--border:#1e1e3a}
+        *{margin:0;padding:0;box-sizing:border-box}
+        body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7}
+        .header{background:rgba(10,10,26,.95);backdrop-filter:blur(10px);border-bottom:1px solid var(--border);padding:1rem 2rem;display:flex;justify-content:space-between;align-items:center}
+        .logo{font-size:1.4rem;font-weight:800;color:#fff;text-decoration:none}
+        .logo span{color:var(--primary)}
+        .header-cta{background:var(--primary);color:#000;padding:.5rem 1.2rem;border-radius:8px;text-decoration:none;font-weight:600;font-size:.9rem;transition:background .2s}
+        .header-cta:hover{background:var(--primary-dark)}
+        .container{max-width:900px;margin:0 auto;padding:2rem 1.5rem}
+        .trip-header{background:linear-gradient(135deg,var(--surface) 0%,#1a1a3e 100%);border:1px solid var(--border);border-radius:16px;padding:2rem;margin-bottom:2rem;text-align:center}
+        .trip-header h1{font-size:1.8rem;font-weight:800;margin-bottom:.5rem}
+        .trip-header .dest{color:var(--primary)}
+        .shared-badge{display:inline-block;background:rgba(0,201,167,.12);color:var(--primary);padding:.3rem .8rem;border-radius:12px;font-size:.8rem;font-weight:600;margin-bottom:1rem}
+        .trip-meta{display:flex;justify-content:center;gap:1rem;flex-wrap:wrap;margin-top:1rem}
+        .trip-meta-item{background:rgba(0,201,167,.08);border:1px solid rgba(0,201,167,.18);padding:.35rem .9rem;border-radius:20px;font-size:.82rem;color:var(--primary)}
+        .plan-content{background:var(--surface);border:1px solid var(--border);border-radius:16px;padding:2rem;line-height:1.85}
+        .plan-content h1,.plan-content h2,.plan-content h3{color:var(--primary);margin-top:1.5rem;margin-bottom:.5rem}
+        .plan-content h2{font-size:1.35rem;border-bottom:1px solid var(--border);padding-bottom:.3rem}
+        .plan-content h3{font-size:1.1rem;color:#fff}
+        .plan-content strong{color:#fff}
+        .plan-content ul,.plan-content ol{padding-left:1.5rem}
+        .plan-content li{margin-bottom:.25rem}
+        .plan-content p{margin-bottom:.7rem}
+        .actions{display:flex;gap:.8rem;justify-content:center;margin-top:2rem;flex-wrap:wrap}
+        .btn{padding:.65rem 1.3rem;border-radius:10px;font-weight:600;font-size:.88rem;border:none;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;gap:.4rem;transition:all .2s}
+        .btn-primary{background:var(--primary);color:#000}
+        .btn-primary:hover{background:var(--primary-dark)}
+        .btn-outline{background:transparent;color:var(--primary);border:1px solid var(--primary)}
+        .btn-outline:hover{background:rgba(0,201,167,.08)}
+        .loading,.error-state{text-align:center;padding:4rem 2rem}
+        .spinner{width:40px;height:40px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite;margin:0 auto 1rem}
+        @keyframes spin{to{transform:rotate(360deg)}}
+        .error-state h2{color:var(--accent);margin-bottom:.5rem}
+        .footer{text-align:center;padding:2rem;color:var(--text-muted);font-size:.85rem;margin-top:3rem;border-top:1px solid var(--border)}
+        .footer a{color:var(--primary);text-decoration:none}
+        @media(max-width:600px){.container{padding:1rem}.trip-header{padding:1.5rem}.trip-header h1{font-size:1.3rem}.plan-content{padding:1.2rem}.actions{flex-direction:column}.btn{justify-content:center}}
+        @media print{.header,.actions,.footer,.shared-badge{display:none!important}.plan-content{border:none;padding:0}}
+    </style>
+</head>
+<body>
+    <header class="header">
+        <a href="/" class="logo">Pack<span>Smart</span></a>
+        <a href="/#plan" class="header-cta">✨ Plan My Trip</a>
+    </header>
+
+    <div class="container">
+        <!-- Loading -->
+        <div id="loading" class="loading">
+            <div class="spinner"></div>
+            <p>Loading shared trip plan…</p>
+        </div>
+
+        <!-- Error -->
+        <div id="error" class="error-state" style="display:none">
+            <h2>Plan Not Found</h2>
+            <p>This shared plan may have expired or the link is incorrect.</p>
+            <p style="margin-top:.5rem;color:var(--text-muted);font-size:.9rem">Shared plans are available while the server is warm. For a permanent copy, use the Copy or Print buttons.</p>
+            <a href="/" class="btn btn-primary" style="margin-top:1.5rem;display:inline-flex">Create Your Own Plan — Free</a>
+        </div>
+
+        <!-- Plan View -->
+        <div id="plan-view" style="display:none">
+            <div class="trip-header">
+                <div class="shared-badge">📤 Shared via PackSmart</div>
+                <h1>Trip to <span class="dest" id="trip-dest">…</span></h1>
+                <div class="trip-meta" id="trip-meta"></div>
+            </div>
+
+            <div class="plan-content" id="plan-content"></div>
+
+            <div class="actions">
+                <button class="btn btn-outline" onclick="copyPlan()">📋 Copy</button>
+                <button class="btn btn-outline" onclick="window.print()">🖨 Print</button>
+                <a href="/#plan" class="btn btn-primary">✨ Create Your Own Plan</a>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <p>Powered by <a href="/">PackSmart</a> — AI Travel Preparation</p>
+        <p style="margin-top:.3rem">Get your own personalized travel plan in 30 seconds, free.</p>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+    (async function(){
+        const params = new URLSearchParams(location.search);
+        const id = params.get('id');
+        if(!id){ showError(); return; }
+
+        try{
+            const r = await fetch('/api/share-plan?id='+id);
+            const d = await r.json();
+            if(!d.success){ showError(); return; }
+
+            hide('loading'); show('plan-view');
+
+            const info = d.tripInfo||{};
+            const dest = info.destination||'Adventure';
+            document.getElementById('trip-dest').textContent = dest;
+            document.title = 'Trip to '+dest+' — PackSmart';
+
+            const meta = document.getElementById('trip-meta');
+            const icons = {flight:'✈️',car:'🚗',bus:'🚌',train:'🚆',boat:'🚢'};
+            if(info.startDate&&info.endDate) meta.innerHTML += tag(info.startDate+' → '+info.endDate, '📅');
+            if(info.travelMode) meta.innerHTML += tag(info.travelMode, icons[info.travelMode]||'✈️');
+            if(info.adults) meta.innerHTML += tag(info.adults+' adult'+(info.adults>1?'s':'')+(info.kids>0?' + '+info.kids+' kid'+(info.kids>1?'s':''):''), '👤');
+
+            document.getElementById('plan-content').innerHTML = marked.parse(d.plan);
+        }catch(e){ showError(); }
+    })();
+
+    function tag(t,icon){ return '<span class="trip-meta-item">'+(icon?icon+' ':'')+t+'</span>'; }
+    function hide(id){ document.getElementById(id).style.display='none'; }
+    function show(id){ document.getElementById(id).style.display='block'; }
+    function showError(){ hide('loading'); show('error'); }
+    function copyPlan(){
+        navigator.clipboard.writeText(document.getElementById('plan-content').innerText).then(()=>{
+            event.target.textContent='✅ Copied!';
+            setTimeout(()=>{ event.target.textContent='📋 Copy'; },2000);
+        });
+    }
+    </script>
+</body>
+</html>
