@@ -1,408 +1,248 @@
 // =====================================================================
 //  PackSmart Phase 1 — Save | Share | Calendar | Trip History
-//  Add to index.html:  <script src="packsmart-phase1.js"></script>
-//  Place AFTER the marked.js script and BEFORE </body>
+//  FIXED: Works with actual index.html (#resBody, mdToHtml)
 // =====================================================================
 
-// ---- Global state ----
-window._currentPlan = null;
-window._currentTripInfo = null;
+(function () {
+  'use strict';
 
-// ==========================
-//  1. TRIP HISTORY (localStorage)
-// ==========================
-function psGetTrips() {
-    try { return JSON.parse(localStorage.getItem('ps_trips') || '[]'); }
-    catch { return []; }
-}
+  // ── Storage key ──
+  const STORAGE_KEY = 'ps_trips';
 
-function psSaveTrip(info, plan) {
-    const trips = psGetTrips();
-    const trip = {
-        id: Date.now().toString(36) + Math.random().toString(36).substr(2, 5),
-        destination: info.destination || 'Unknown',
-        startDate: info.startDate || '',
-        endDate: info.endDate || '',
-        travelMode: info.travelMode || 'flight',
-        adults: info.adults || 2,
-        kids: info.kids || 0,
-        tripType: info.tripType || '',
-        budget: info.budget || '',
-        currency: info.currency || 'USD',
-        plan: plan,
-        savedAt: new Date().toISOString()
+  // ── Grab form values helper ──
+  function getTripInfo() {
+    const dest = (document.getElementById('destination') || {}).value || '';
+    const start = (document.getElementById('startDate') || {}).value || '';
+    const end = (document.getElementById('endDate') || {}).value || '';
+    const mode = (document.getElementById('travelMode') || {}).value || 'flight';
+    const adults = (document.getElementById('adults') || {}).value || '2';
+    const kids = (document.getElementById('kids') || {}).value || '0';
+    const budget = (document.getElementById('budget') || {}).value || 'mid-range';
+    // Trip type checkboxes
+    var tripTypes = [];
+    document.querySelectorAll('input[name="tripType"]:checked, input[type="checkbox"]:checked').forEach(function(cb) {
+      if (cb.value && cb.value !== 'on') tripTypes.push(cb.value);
+    });
+    return { destination: dest, startDate: start, endDate: end, travelMode: mode, adults: adults, kids: kids, budget: budget, tripType: tripTypes.join(', ') || 'General' };
+  }
+
+  // ── Toast notification ──
+  function showToast(msg) {
+    var t = document.getElementById('ps-toast');
+    if (!t) {
+      t = document.createElement('div');
+      t.id = 'ps-toast';
+      t.style.cssText = 'position:fixed;bottom:30px;left:50%;transform:translateX(-50%);background:#00C9A7;color:#fff;padding:12px 28px;border-radius:30px;font-weight:600;font-size:15px;z-index:99999;opacity:0;transition:opacity .3s;box-shadow:0 4px 20px rgba(0,201,167,.4);pointer-events:none;';
+      document.body.appendChild(t);
+    }
+    t.textContent = msg;
+    t.style.opacity = '1';
+    setTimeout(function() { t.style.opacity = '0'; }, 2500);
+  }
+
+  // ── Save trip to localStorage ──
+  function saveTrip() {
+    var resBody = document.getElementById('resBody');
+    if (!resBody || !resBody.innerHTML.trim()) { showToast('Generate a plan first!'); return; }
+    var info = getTripInfo();
+    if (!info.destination) { showToast('No destination found'); return; }
+    var trips = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    var trip = {
+      id: Date.now().toString(36),
+      destination: info.destination,
+      startDate: info.startDate,
+      endDate: info.endDate,
+      travelMode: info.travelMode,
+      adults: info.adults,
+      kids: info.kids,
+      budget: info.budget,
+      tripType: info.tripType,
+      planHtml: resBody.innerHTML,
+      savedAt: new Date().toISOString()
     };
     trips.unshift(trip);
     if (trips.length > 25) trips.pop();
-    localStorage.setItem('ps_trips', JSON.stringify(trips));
-    return trip;
-}
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(trips));
+    showToast('Trip saved!');
+    renderHistory();
+  }
 
-function psDeleteTrip(id) {
-    const trips = psGetTrips().filter(t => t.id !== id);
-    localStorage.setItem('ps_trips', JSON.stringify(trips));
-    psRenderHistory();
-}
+  // ── Calendar export (.ics) ──
+  function exportCalendar() {
+    var info = getTripInfo();
+    if (!info.destination || !info.startDate) { showToast('Need destination & dates'); return; }
+    var fmtDate = function(d) { return d.replace(/-/g, ''); };
+    var start = fmtDate(info.startDate);
+    var endDt = new Date(info.endDate || info.startDate);
+    endDt.setDate(endDt.getDate() + 1);
+    var endStr = endDt.toISOString().slice(0, 10).replace(/-/g, '');
 
-function psLoadTrip(id) {
-    const trip = psGetTrips().find(t => t.id === id);
-    if (!trip) return;
-
-    // Show plan in result area (same as after generation)
-    const result = document.getElementById('result');
-    const output = document.getElementById('plan-output');
-    if (result && output) {
-        output.innerHTML = marked.parse(trip.plan);
-        result.style.display = 'block';
-
-        window._currentPlan = trip.plan;
-        window._currentTripInfo = trip;
-
-        psShowActions();
-        result.scrollIntoView({ behavior: 'smooth' });
-    }
-}
-
-// ==========================
-//  2. RENDER TRIP HISTORY UI
-// ==========================
-function psRenderHistory() {
-    const el = document.getElementById('ps-history');
-    if (!el) return;
-
-    const trips = psGetTrips();
-    if (!trips.length) { el.style.display = 'none'; return; }
-
-    el.style.display = 'block';
-    const icons = { flight:'✈️', car:'🚗', bus:'🚌', train:'🚆', boat:'🚢' };
-
-    let html = '';
-    trips.forEach(t => {
-        const d = new Date(t.savedAt);
-        const ds = d.toLocaleDateString('en-US', { month:'short', day:'numeric', year:'numeric' });
-        html += `
-        <div class="ps-hcard" onclick="psLoadTrip('${t.id}')">
-            <span class="ps-hcard-icon">${icons[t.travelMode]||'✈️'}</span>
-            <div class="ps-hcard-info">
-                <div class="ps-hcard-dest">${t.destination}</div>
-                <div class="ps-hcard-dates">${t.startDate}${t.startDate && t.endDate ? ' → ' : ''}${t.endDate}</div>
-            </div>
-            <div class="ps-hcard-right">
-                <span class="ps-hcard-saved">${ds}</span>
-                <button class="ps-hcard-del" onclick="event.stopPropagation();psDeleteTrip('${t.id}')" title="Delete">✕</button>
-            </div>
-        </div>`;
-    });
-
-    el.querySelector('.ps-hlist').innerHTML = html;
-}
-
-// ==========================
-//  3. CALENDAR EXPORT (.ics)
-// ==========================
-function psCalendarExport(info) {
-    if (!info.startDate) {
-        psToast('Add travel dates first to export a calendar event.');
-        return;
-    }
-
-    const dest = info.destination || 'Trip';
-    const fmtDate = s => {
-        const d = new Date(s);
-        return isNaN(d.getTime()) ? s.replace(/-/g,'') : d.toISOString().split('T')[0].replace(/-/g,'');
-    };
-    const dtStart = fmtDate(info.startDate);
-    // ICS DTEND is exclusive → add 1 day
-    const endD = new Date(info.endDate || info.startDate);
-    endD.setDate(endD.getDate() + 1);
-    const dtEnd = endD.toISOString().split('T')[0].replace(/-/g,'');
-    const now = new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z';
-    const uid = Date.now() + '@packsmartapp.com';
-
-    const ics = [
-        'BEGIN:VCALENDAR',
-        'VERSION:2.0',
-        'PRODID:-//PackSmart//Trip//EN',
-        'CALSCALE:GREGORIAN',
-        'METHOD:PUBLISH',
-        'BEGIN:VEVENT',
-        'UID:' + uid,
-        'DTSTAMP:' + now,
-        'DTSTART;VALUE=DATE:' + dtStart,
-        'DTEND;VALUE=DATE:' + dtEnd,
-        'SUMMARY:🧳 Trip to ' + dest + ' — PackSmart',
-        'DESCRIPTION:Your PackSmart travel plan for ' + dest + '.\\nVisit packsmartapp.com to view the full plan.',
-        'LOCATION:' + dest,
-        'STATUS:CONFIRMED',
-        // Reminder 3 days before
-        'BEGIN:VALARM',
-        'TRIGGER:-P3D',
-        'ACTION:DISPLAY',
-        'DESCRIPTION:3 days until your trip to ' + dest + '! Time to pack.',
-        'END:VALARM',
-        // Reminder 1 day before
-        'BEGIN:VALARM',
-        'TRIGGER:-P1D',
-        'ACTION:DISPLAY',
-        'DESCRIPTION:Tomorrow you leave for ' + dest + '! Final check.',
-        'END:VALARM',
-        'END:VEVENT',
-        'END:VCALENDAR'
+    var ics = [
+      'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//PackSmart//EN',
+      'BEGIN:VEVENT',
+      'DTSTART;VALUE=DATE:' + start,
+      'DTEND;VALUE=DATE:' + endStr,
+      'SUMMARY:PackSmart Trip — ' + info.destination,
+      'DESCRIPTION:Travel mode: ' + info.travelMode + '\\nAdults: ' + info.adults + '\\nBudget: ' + info.budget,
+      'BEGIN:VALARM', 'TRIGGER:-P3D', 'ACTION:DISPLAY', 'DESCRIPTION:3 days until your trip to ' + info.destination + '!', 'END:VALARM',
+      'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'DESCRIPTION:Tomorrow you leave for ' + info.destination + '!', 'END:VALARM',
+      'END:VEVENT', 'END:VCALENDAR'
     ].join('\r\n');
 
-    const blob = new Blob([ics], { type:'text/calendar;charset=utf-8' });
-    const a = document.createElement('a');
+    var blob = new Blob([ics], { type: 'text/calendar' });
+    var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
-    a.download = 'PackSmart-' + dest.replace(/[^a-zA-Z0-9]/g,'-') + '.ics';
-    document.body.appendChild(a);
+    a.download = 'PackSmart-' + info.destination.replace(/[^a-zA-Z0-9]/g, '-') + '.ics';
     a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(a.href);
+    showToast('Calendar file downloaded!');
+  }
 
-    psToast('Calendar file downloaded! Open it to add to Google/Apple Calendar.');
-}
-
-// ==========================
-//  4. SHARE LINK
-// ==========================
-async function psSharePlan(plan, info) {
-    const btn = document.getElementById('ps-btn-share');
-    if (btn) { btn.textContent = '⏳ Creating…'; btn.disabled = true; }
-
-    try {
-        const r = await fetch('/api/share-plan', {
-            method: 'POST',
-            headers: { 'Content-Type':'application/json' },
-            body: JSON.stringify({ plan, tripInfo: info })
+  // ── Share link ──
+  function shareLink() {
+    var resBody = document.getElementById('resBody');
+    if (!resBody || !resBody.innerHTML.trim()) { showToast('Generate a plan first!'); return; }
+    var info = getTripInfo();
+    showToast('Creating share link...');
+    fetch('/api/share-plan', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ plan: resBody.innerHTML, tripInfo: info })
+    }).then(function(resp) { return resp.json(); })
+    .then(function(data) {
+      if (data.shareUrl) {
+        navigator.clipboard.writeText(data.shareUrl).then(function() {
+          showToast('Link copied to clipboard!');
         });
-        const d = await r.json();
+      } else {
+        showToast('Share failed — try again');
+      }
+    }).catch(function() {
+      showToast('Share failed — try again');
+    });
+  }
 
-        if (d.success && d.shareUrl) {
-            await navigator.clipboard.writeText(d.shareUrl);
-            if (btn) { btn.textContent = '✅ Link Copied!'; setTimeout(()=>{ btn.textContent='🔗 Share Link'; btn.disabled=false; }, 3000); }
-            psToast('Share link copied to clipboard!');
-        } else {
-            throw new Error(d.error || 'Failed');
-        }
-    } catch(e) {
-        if (btn) { btn.textContent = '🔗 Share Link'; btn.disabled = false; }
-        // Fallback: share via WhatsApp with plan text
-        psToast('Could not create link. Use WhatsApp share or Copy instead.');
+  // ── Action buttons (injected after plan renders) ──
+  function injectButtons() {
+    if (document.getElementById('ps-actions')) return;
+    var resBody = document.getElementById('resBody');
+    if (!resBody || !resBody.innerHTML.trim()) return;
+
+    var bar = document.createElement('div');
+    bar.id = 'ps-actions';
+    bar.style.cssText = 'display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 10px 0;';
+    bar.innerHTML = '<button onclick="window._psSave()" style="background:#00C9A7;color:#fff;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(0,201,167,.3);">' +
+      '<span style="font-size:18px;">💾</span> Save Trip</button>' +
+      '<button onclick="window._psShare()" style="background:#E94560;color:#fff;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(233,69,96,.3);">' +
+      '<span style="font-size:18px;">🔗</span> Share Link</button>' +
+      '<button onclick="window._psCal()" style="background:#1a1a2e;color:#fff;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(0,0,0,.2);">' +
+      '<span style="font-size:18px;">📅</span> Add to Calendar</button>';
+
+    resBody.parentNode.insertBefore(bar, resBody);
+  }
+
+  // ── Trip History section ──
+  function renderHistory() {
+    var trips = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    var section = document.getElementById('ps-history');
+
+    if (trips.length === 0) {
+      if (section) section.remove();
+      return;
     }
-}
 
-// ==========================
-//  TOAST
-// ==========================
-function psToast(msg) {
-    let t = document.getElementById('ps-toast');
-    if (!t) {
-        t = document.createElement('div');
-        t.id = 'ps-toast';
-        document.body.appendChild(t);
+    if (!section) {
+      section = document.createElement('section');
+      section.id = 'ps-history';
+      section.style.cssText = 'max-width:900px;margin:40px auto;padding:0 20px;';
+      var footer = document.querySelector('footer');
+      if (footer) footer.parentNode.insertBefore(section, footer);
+      else document.body.appendChild(section);
     }
-    t.textContent = msg;
-    t.className = 'ps-toast ps-toast-show';
-    setTimeout(() => { t.className = 'ps-toast'; }, 3500);
-}
 
-// ==========================
-//  READ CURRENT FORM VALUES
-// ==========================
-function psGetFormInfo() {
-    // Try reading from the actual form inputs on the page
-    const q = s => document.querySelector(s);
-    const val = s => { const el = q(s); return el ? el.value : ''; };
+    var modeIcons = { flight: '✈️', car: '🚗', bus: '🚌', train: '🚆', boat: '🚢' };
+    var cardsHtml = '';
+    for (var i = 0; i < trips.length; i++) {
+      var t = trips[i];
+      cardsHtml += '<div class="ps-trip-card" data-idx="' + i + '" style="background:#fff;border-radius:16px;padding:20px;cursor:pointer;box-shadow:0 2px 12px rgba(0,0,0,.08);border:2px solid transparent;transition:border-color .2s,transform .15s;">' +
+        '<div style="display:flex;justify-content:space-between;align-items:start;">' +
+        '<div><div style="font-size:20px;font-weight:700;color:#0f0f23;margin-bottom:4px;">' +
+        (modeIcons[t.travelMode] || '✈️') + ' ' + t.destination + '</div>' +
+        '<div style="font-size:13px;color:#666;">' + (t.startDate || '') + (t.endDate ? ' → ' + t.endDate : '') + '</div></div>' +
+        '<button onclick="event.stopPropagation();window._psDelete(' + i + ')" style="background:none;border:none;cursor:pointer;font-size:18px;color:#ccc;padding:0;" title="Delete">✕</button>' +
+        '</div><div style="margin-top:8px;font-size:12px;color:#999;">Saved ' + new Date(t.savedAt).toLocaleDateString() + '</div></div>';
+    }
 
-    // Get selected trip types
-    let tripTypes = [];
-    document.querySelectorAll('input[name="tripType"]:checked, input[type="checkbox"][value]').forEach(cb => {
-        if (cb.checked && ['Beach','Cultural','Adventure','Food','Nature','Nightlife','Business','Romantic','Family','Solo'].includes(cb.value)) {
-            tripTypes.push(cb.value);
+    section.innerHTML = '<h2 style="font-size:28px;margin-bottom:20px;color:#0f0f23;"><span style="margin-right:8px;">🧳</span> My Trips</h2>' +
+      '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">' + cardsHtml + '</div>';
+
+    // Click to load saved plan
+    var cards = section.querySelectorAll('.ps-trip-card');
+    for (var j = 0; j < cards.length; j++) {
+      cards[j].addEventListener('click', function () {
+        var idx = parseInt(this.getAttribute('data-idx'));
+        var trip = trips[idx];
+        if (!trip) return;
+        var resBody = document.getElementById('resBody');
+        if (resBody) {
+          resBody.innerHTML = trip.planHtml;
+          var resultSection = resBody.closest('section') || resBody.parentElement;
+          if (resultSection) resultSection.style.display = '';
+          resBody.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          var old = document.getElementById('ps-actions');
+          if (old) old.remove();
+          injectButtons();
+          showToast('Loaded: ' + trip.destination);
         }
+      });
+    }
+  }
+
+  // ── Delete a saved trip ──
+  function deleteTrip(idx) {
+    var trips = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+    if (idx >= 0 && idx < trips.length) {
+      var name = trips[idx].destination;
+      trips.splice(idx, 1);
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(trips));
+      showToast('Deleted: ' + name);
+      renderHistory();
+    }
+  }
+
+  // ── Watch for plan generation (MutationObserver on #resBody) ──
+  function watchForPlan() {
+    var resBody = document.getElementById('resBody');
+    if (!resBody) {
+      setTimeout(watchForPlan, 500);
+      return;
+    }
+
+    var observer = new MutationObserver(function () {
+      if (resBody.innerHTML.trim().length > 100) {
+        var old = document.getElementById('ps-actions');
+        if (old) old.remove();
+        setTimeout(injectButtons, 300);
+      }
     });
 
-    return {
-        destination: val('#destination, [name="destination"]') || window._currentTripInfo?.destination || '',
-        startDate: val('#startDate, [name="startDate"]') || window._currentTripInfo?.startDate || '',
-        endDate: val('#endDate, [name="endDate"]') || window._currentTripInfo?.endDate || '',
-        travelMode: val('#travelMode, [name="travelMode"]') || window._currentTripInfo?.travelMode || 'flight',
-        adults: parseInt(val('#adults, [name="adults"]')) || window._currentTripInfo?.adults || 2,
-        kids: parseInt(val('#kids, [name="kids"]')) || window._currentTripInfo?.kids || 0,
-        tripType: tripTypes.join(', ') || window._currentTripInfo?.tripType || '',
-        budget: val('#budget, [name="budget"]') || window._currentTripInfo?.budget || '',
-        currency: val('#currency, [name="currency"]') || window._currentTripInfo?.currency || 'USD'
-    };
-}
+    observer.observe(resBody, { childList: true, subtree: true, characterData: true });
+  }
 
-// ==========================
-//  ACTION BUTTONS (injected after plan renders)
-// ==========================
-function psShowActions() {
-    if (document.getElementById('ps-actions')) {
-        document.getElementById('ps-actions').style.display = 'flex';
-        return;
-    }
+  // ── Expose functions globally ──
+  window._psSave = saveTrip;
+  window._psShare = shareLink;
+  window._psCal = exportCalendar;
+  window._psDelete = deleteTrip;
 
-    const result = document.getElementById('result');
-    const output = document.getElementById('plan-output');
-    if (!result || !output) return;
+  // ── Init on DOM ready ──
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', function () {
+      renderHistory();
+      watchForPlan();
+    });
+  } else {
+    renderHistory();
+    watchForPlan();
+  }
 
-    const div = document.createElement('div');
-    div.id = 'ps-actions';
-    div.className = 'ps-actions';
-    div.innerHTML = `
-        <button class="ps-btn ps-btn-save" onclick="psHandleSave()">💾 Save Trip</button>
-        <button class="ps-btn ps-btn-share-link" id="ps-btn-share" onclick="psHandleShare()">🔗 Share Link</button>
-        <button class="ps-btn ps-btn-cal" onclick="psHandleCal()">📅 Add to Calendar</button>
-    `;
-
-    // Insert before plan-output (so buttons appear above the plan text, alongside existing Print/Copy/WhatsApp)
-    output.parentNode.insertBefore(div, output);
-}
-
-// ---- Button handlers ----
-function psHandleSave() {
-    if (!window._currentPlan) { psToast('No plan to save.'); return; }
-    psSaveTrip(psGetFormInfo(), window._currentPlan);
-
-    const btn = document.querySelector('.ps-btn-save');
-    if (btn) {
-        btn.textContent = '✅ Saved!';
-        btn.classList.add('ps-btn-done');
-        setTimeout(() => { btn.textContent = '💾 Save Trip'; btn.classList.remove('ps-btn-done'); }, 2500);
-    }
-    psRenderHistory();
-    psToast('Trip saved! Find it in "My Trips" below.');
-}
-
-function psHandleShare() {
-    if (!window._currentPlan) { psToast('No plan to share.'); return; }
-    psSharePlan(window._currentPlan, psGetFormInfo());
-}
-
-function psHandleCal() {
-    const info = psGetFormInfo();
-    if (!info.startDate) { psToast('Enter travel dates first.'); return; }
-    psCalendarExport(info);
-}
-
-// ==========================
-//  INTERCEPT FETCH TO CAPTURE PLAN
-// ==========================
-(function() {
-    const _fetch = window.fetch;
-    window.fetch = async function(...args) {
-        const res = await _fetch.apply(this, args);
-        const url = typeof args[0] === 'string' ? args[0] : args[0]?.url || '';
-
-        if (url.includes('/api/generate-plan')) {
-            const clone = res.clone();
-            try {
-                const d = await clone.json();
-                if (d.success && d.plan) {
-                    window._currentPlan = d.plan;
-                    window._currentTripInfo = psGetFormInfo();
-                    // Show action buttons once plan renders (small delay for marked.parse)
-                    setTimeout(psShowActions, 300);
-                }
-            } catch(e) {}
-        }
-        return res;
-    };
 })();
-
-// ==========================
-//  INJECT STYLES + HISTORY SECTION
-// ==========================
-document.addEventListener('DOMContentLoaded', () => {
-
-    // ---- Inject CSS ----
-    const style = document.createElement('style');
-    style.textContent = `
-        /* Action buttons row */
-        .ps-actions {
-            display: flex; gap: .6rem; flex-wrap: wrap; justify-content: center;
-            margin: 1rem 0 1.5rem; padding: 0;
-        }
-        .ps-btn {
-            background: transparent; color: #00C9A7; border: 1px solid #00C9A7;
-            padding: .6rem 1.1rem; border-radius: 8px; font-weight: 600;
-            font-size: .85rem; cursor: pointer; display: inline-flex;
-            align-items: center; gap: .35rem; transition: all .2s;
-            font-family: inherit;
-        }
-        .ps-btn:hover { background: rgba(0,201,167,.1); }
-        .ps-btn-save {
-            background: linear-gradient(135deg,#00C9A7,#00a88a);
-            color: #000; border: none;
-        }
-        .ps-btn-save:hover { background: linear-gradient(135deg,#00a88a,#008f72); }
-        .ps-btn-done { background: #1a1a2e!important; color: #00C9A7!important; border: 1px solid #00C9A7!important; }
-
-        /* Toast */
-        .ps-toast {
-            position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
-            background: #00C9A7; color: #000; padding: .75rem 1.4rem; border-radius: 10px;
-            font-weight: 600; font-size: .88rem; z-index: 9999; opacity: 0;
-            transition: opacity .3s; pointer-events: none;
-            box-shadow: 0 4px 20px rgba(0,201,167,.3);
-        }
-        .ps-toast-show { opacity: 1; }
-
-        /* Trip history section */
-        #ps-history {
-            max-width: 700px; margin: 2rem auto; padding: 0 1.5rem;
-        }
-        .ps-htitle {
-            text-align: center; font-size: 1.4rem; font-weight: 800;
-            margin-bottom: .3rem; color: #fff;
-        }
-        .ps-htitle span { color: #00C9A7; }
-        .ps-hsub {
-            text-align: center; color: #8888aa; font-size: .85rem;
-            margin-bottom: 1.2rem;
-        }
-        .ps-hcard {
-            display: flex; align-items: center; gap: .9rem;
-            background: #12122a; border: 1px solid #1e1e3a;
-            border-radius: 12px; padding: .9rem 1.1rem;
-            margin-bottom: .6rem; cursor: pointer; transition: all .2s;
-        }
-        .ps-hcard:hover { border-color: #00C9A7; background: #1a1a3e; transform: translateY(-1px); }
-        .ps-hcard-icon { font-size: 1.4rem; flex-shrink: 0; }
-        .ps-hcard-info { flex: 1; min-width: 0; }
-        .ps-hcard-dest { font-weight: 700; color: #fff; font-size: .95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-        .ps-hcard-dates { font-size: .78rem; color: #8888aa; margin-top: .1rem; }
-        .ps-hcard-right { text-align: right; flex-shrink: 0; }
-        .ps-hcard-saved { font-size: .73rem; color: #8888aa; display: block; }
-        .ps-hcard-del {
-            background: transparent; border: none; color: #E94560;
-            font-size: 1.1rem; cursor: pointer; padding: .15rem .4rem;
-            opacity: 0; transition: opacity .2s; line-height: 1;
-        }
-        .ps-hcard:hover .ps-hcard-del { opacity: 1; }
-
-        @media(max-width:600px) {
-            .ps-actions { gap: .5rem; }
-            .ps-btn { font-size: .8rem; padding: .55rem .8rem; flex: 1 1 auto; justify-content: center; }
-        }
-    `;
-    document.head.appendChild(style);
-
-    // ---- Inject "My Trips" section before footer ----
-    const section = document.createElement('section');
-    section.id = 'ps-history';
-    section.style.display = 'none';
-    section.innerHTML = `
-        <h2 class="ps-htitle"><span>My</span> Trips</h2>
-        <p class="ps-hsub">Your saved plans — stored on this device</p>
-        <div class="ps-hlist"></div>
-    `;
-
-    const footer = document.querySelector('footer');
-    if (footer) footer.parentNode.insertBefore(section, footer);
-    else document.body.appendChild(section);
-
-    psRenderHistory();
-});
