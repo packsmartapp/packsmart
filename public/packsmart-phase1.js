@@ -1,28 +1,27 @@
 // =====================================================================
 //  PackSmart Phase 1 — Save | Share | Calendar | Trip History
-//  FIXED: Works with actual index.html (#resBody, mdToHtml)
+//  FIXED V2: Polling approach — works even when results section is hidden
 // =====================================================================
 
 (function () {
   'use strict';
 
-  // ── Storage key ──
-  const STORAGE_KEY = 'ps_trips';
+  var STORAGE_KEY = 'ps_trips';
 
   // ── Grab form values helper ──
   function getTripInfo() {
-    const dest = (document.getElementById('destination') || {}).value || '';
-    const start = (document.getElementById('startDate') || {}).value || '';
-    const end = (document.getElementById('endDate') || {}).value || '';
-    const mode = (document.getElementById('travelMode') || {}).value || 'flight';
-    const adults = (document.getElementById('adults') || {}).value || '2';
-    const kids = (document.getElementById('kids') || {}).value || '0';
-    const budget = (document.getElementById('budget') || {}).value || 'mid-range';
-    // Trip type checkboxes
+    var dest = (document.getElementById('destination') || {}).value || '';
+    var start = (document.getElementById('startDate') || {}).value || '';
+    var end = (document.getElementById('endDate') || {}).value || '';
+    var mode = (document.getElementById('travelMode') || {}).value || 'flight';
+    var adults = (document.getElementById('adults') || {}).value || '2';
+    var kids = (document.getElementById('kids') || {}).value || '0';
+    var budget = (document.getElementById('budget') || {}).value || 'mid-range';
     var tripTypes = [];
-    document.querySelectorAll('input[name="tripType"]:checked, input[type="checkbox"]:checked').forEach(function(cb) {
-      if (cb.value && cb.value !== 'on') tripTypes.push(cb.value);
-    });
+    var checks = document.querySelectorAll('input[name="tripType"]:checked, input[type="checkbox"]:checked');
+    for (var i = 0; i < checks.length; i++) {
+      if (checks[i].value && checks[i].value !== 'on') tripTypes.push(checks[i].value);
+    }
     return { destination: dest, startDate: start, endDate: end, travelMode: mode, adults: adults, kids: kids, budget: budget, tripType: tripTypes.join(', ') || 'General' };
   }
 
@@ -76,7 +75,6 @@
     var endDt = new Date(info.endDate || info.startDate);
     endDt.setDate(endDt.getDate() + 1);
     var endStr = endDt.toISOString().slice(0, 10).replace(/-/g, '');
-
     var ics = [
       'BEGIN:VCALENDAR', 'VERSION:2.0', 'PRODID:-//PackSmart//EN',
       'BEGIN:VEVENT',
@@ -88,7 +86,6 @@
       'BEGIN:VALARM', 'TRIGGER:-P1D', 'ACTION:DISPLAY', 'DESCRIPTION:Tomorrow you leave for ' + info.destination + '!', 'END:VALARM',
       'END:VEVENT', 'END:VCALENDAR'
     ].join('\r\n');
-
     var blob = new Blob([ics], { type: 'text/calendar' });
     var a = document.createElement('a');
     a.href = URL.createObjectURL(blob);
@@ -121,21 +118,36 @@
     });
   }
 
-  // ── Action buttons (injected after plan renders) ──
+  // ── Action buttons (injected above plan) ──
   function injectButtons() {
-    if (document.getElementById('ps-actions')) return;
+    var old = document.getElementById('ps-actions');
+    if (old) old.remove();
+
     var resBody = document.getElementById('resBody');
     if (!resBody || !resBody.innerHTML.trim()) return;
 
     var bar = document.createElement('div');
     bar.id = 'ps-actions';
-    bar.style.cssText = 'display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 10px 0;';
-    bar.innerHTML = '<button onclick="window._psSave()" style="background:#00C9A7;color:#fff;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(0,201,167,.3);">' +
-      '<span style="font-size:18px;">💾</span> Save Trip</button>' +
-      '<button onclick="window._psShare()" style="background:#E94560;color:#fff;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(233,69,96,.3);">' +
-      '<span style="font-size:18px;">🔗</span> Share Link</button>' +
-      '<button onclick="window._psCal()" style="background:#1a1a2e;color:#fff;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(0,0,0,.2);">' +
-      '<span style="font-size:18px;">📅</span> Add to Calendar</button>';
+    bar.style.cssText = 'display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 10px 0;justify-content:center;';
+
+    var saveBtn = document.createElement('button');
+    saveBtn.innerHTML = '<span style="font-size:18px;">&#x1F4BE;</span> Save Trip';
+    saveBtn.style.cssText = 'background:#00C9A7;color:#fff;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(0,201,167,.3);';
+    saveBtn.addEventListener('click', saveTrip);
+
+    var shareBtn = document.createElement('button');
+    shareBtn.innerHTML = '<span style="font-size:18px;">&#x1F517;</span> Share Link';
+    shareBtn.style.cssText = 'background:#E94560;color:#fff;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(233,69,96,.3);';
+    shareBtn.addEventListener('click', shareLink);
+
+    var calBtn = document.createElement('button');
+    calBtn.innerHTML = '<span style="font-size:18px;">&#x1F4C5;</span> Add to Calendar';
+    calBtn.style.cssText = 'background:#1a1a2e;color:#fff;border:none;padding:10px 20px;border-radius:25px;cursor:pointer;font-weight:600;font-size:14px;display:flex;align-items:center;gap:6px;box-shadow:0 2px 10px rgba(0,0,0,.2);';
+    calBtn.addEventListener('click', exportCalendar);
+
+    bar.appendChild(saveBtn);
+    bar.appendChild(shareBtn);
+    bar.appendChild(calBtn);
 
     resBody.parentNode.insertBefore(bar, resBody);
   }
@@ -167,32 +179,41 @@
         '<div style="display:flex;justify-content:space-between;align-items:start;">' +
         '<div><div style="font-size:20px;font-weight:700;color:#0f0f23;margin-bottom:4px;">' +
         (modeIcons[t.travelMode] || '✈️') + ' ' + t.destination + '</div>' +
-        '<div style="font-size:13px;color:#666;">' + (t.startDate || '') + (t.endDate ? ' → ' + t.endDate : '') + '</div></div>' +
-        '<button onclick="event.stopPropagation();window._psDelete(' + i + ')" style="background:none;border:none;cursor:pointer;font-size:18px;color:#ccc;padding:0;" title="Delete">✕</button>' +
+        '<div style="font-size:13px;color:#666;">' + (t.startDate || '') + (t.endDate ? ' &rarr; ' + t.endDate : '') + '</div></div>' +
+        '<button class="ps-delete-btn" data-delidx="' + i + '" style="background:none;border:none;cursor:pointer;font-size:18px;color:#ccc;padding:0;" title="Delete">&#10005;</button>' +
         '</div><div style="margin-top:8px;font-size:12px;color:#999;">Saved ' + new Date(t.savedAt).toLocaleDateString() + '</div></div>';
     }
 
-    section.innerHTML = '<h2 style="font-size:28px;margin-bottom:20px;color:#0f0f23;"><span style="margin-right:8px;">🧳</span> My Trips</h2>' +
+    section.innerHTML = '<h2 style="font-size:28px;margin-bottom:20px;color:#0f0f23;"><span style="margin-right:8px;">&#x1F9F3;</span> My Trips</h2>' +
       '<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:16px;">' + cardsHtml + '</div>';
 
-    // Click to load saved plan
+    // Attach click handlers for trip cards
     var cards = section.querySelectorAll('.ps-trip-card');
     for (var j = 0; j < cards.length; j++) {
       cards[j].addEventListener('click', function () {
         var idx = parseInt(this.getAttribute('data-idx'));
-        var trip = trips[idx];
+        var savedTrips = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+        var trip = savedTrips[idx];
         if (!trip) return;
         var resBody = document.getElementById('resBody');
-        if (resBody) {
+        var resultsSection = document.getElementById('results');
+        if (resBody && resultsSection) {
           resBody.innerHTML = trip.planHtml;
-          var resultSection = resBody.closest('section') || resBody.parentElement;
-          if (resultSection) resultSection.style.display = '';
-          resBody.scrollIntoView({ behavior: 'smooth', block: 'start' });
-          var old = document.getElementById('ps-actions');
-          if (old) old.remove();
+          resultsSection.style.display = 'block';
+          resultsSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
           injectButtons();
           showToast('Loaded: ' + trip.destination);
         }
+      });
+    }
+
+    // Attach delete handlers
+    var delBtns = section.querySelectorAll('.ps-delete-btn');
+    for (var k = 0; k < delBtns.length; k++) {
+      delBtns[k].addEventListener('click', function (e) {
+        e.stopPropagation();
+        var idx = parseInt(this.getAttribute('data-delidx'));
+        deleteTrip(idx);
       });
     }
   }
@@ -209,40 +230,32 @@
     }
   }
 
-  // ── Watch for plan generation (MutationObserver on #resBody) ──
-  function watchForPlan() {
-    var resBody = document.getElementById('resBody');
-    if (!resBody) {
-      setTimeout(watchForPlan, 500);
-      return;
-    }
+  // ── POLLING: Check every 500ms if #resBody has new content ──
+  var _lastContent = '';
 
-    var observer = new MutationObserver(function () {
-      if (resBody.innerHTML.trim().length > 100) {
-        var old = document.getElementById('ps-actions');
-        if (old) old.remove();
-        setTimeout(injectButtons, 300);
+  function startPolling() {
+    setInterval(function () {
+      var resBody = document.getElementById('resBody');
+      if (!resBody) return;
+      var content = resBody.innerHTML.trim();
+      if (content.length > 100 && content !== _lastContent) {
+        _lastContent = content;
+        // Wait for results section to become visible (line 1117 sets display:block)
+        setTimeout(injectButtons, 600);
       }
-    });
-
-    observer.observe(resBody, { childList: true, subtree: true, characterData: true });
+    }, 500);
   }
 
-  // ── Expose functions globally ──
-  window._psSave = saveTrip;
-  window._psShare = shareLink;
-  window._psCal = exportCalendar;
-  window._psDelete = deleteTrip;
-
   // ── Init on DOM ready ──
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', function () {
-      renderHistory();
-      watchForPlan();
-    });
-  } else {
+  function init() {
     renderHistory();
-    watchForPlan();
+    startPolling();
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', init);
+  } else {
+    init();
   }
 
 })();
