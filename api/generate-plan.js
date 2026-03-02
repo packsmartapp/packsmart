@@ -1,5 +1,4 @@
 export default async function handler(req, res) {
-    // CORS headers
     res.setHeader('Access-Control-Allow-Origin', '*');
     res.setHeader('Access-Control-Allow-Methods', 'POST, OPTIONS');
     res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -27,20 +26,10 @@ export default async function handler(req, res) {
     const currency = input.currency || 'USD';
     const specialReqs = input.specialRequirements || 'None';
 
-    const modeLabels = {
-        flight: 'Flight',
-        car: 'Car / Road Trip',
-        bus: 'Bus',
-        train: 'Train',
-        boat: 'Boat / Cruise'
-    };
+    const modeLabels = { flight: 'Flight', car: 'Car / Road Trip', bus: 'Bus', train: 'Train', boat: 'Boat / Cruise' };
     const modeLabel = modeLabels[travelMode] || 'Flight';
-
     const kidsInfo = kids > 0 ? `${kids}${kidsAges ? ` (Ages: ${kidsAges})` : ''}` : '0';
 
-    // =============================================
-    // SYSTEM PROMPT
-    // =============================================
     const systemPrompt = `You are PackSmart's AI Travel Assistant — a world-class travel preparation expert who has visited every country and knows the practical details that most travel guides skip.
 
 Your job is to generate a COMPLETE, PERSONALIZED travel preparation package based on the user's trip details. You are not a generic chatbot — you give specific, actionable advice tailored to their exact destination, dates, group, travel mode, and travel style.
@@ -127,42 +116,28 @@ Split into two categories:
 - If kids are in the group, mark family-friendly activities
 - For road trips: include great stops along the route, scenic viewpoints, roadside attractions
 
-### Hotel & Accommodation Recommendations
-Provide recommendations in THREE tiers based on the destination, tailored to the traveler's group size and trip type:
+### Day-by-Day Itinerary
+Based on the travel dates provided, create a suggested day-by-day plan:
+- **Day 1**: Arrival day — settling in, nearby exploration, jet lag recovery tips
+- **Day 2 to Day N-1**: Full activity days with morning, afternoon, and evening suggestions
+- **Last Day**: Departure prep, last-minute shopping, checkout tips
+- For each day, include:
+  - 🌅 **Morning**: activity/meal suggestion with specific location name
+  - ☀️ **Afternoon**: activity/meal suggestion with specific location name
+  - 🌙 **Evening**: activity/dinner suggestion with specific location name
+  - 💡 **Tip**: one practical tip for that day
+- Keep it realistic — don't overschedule. Include rest time.
+- If the trip is longer than 10 days, group similar days (e.g., "Days 5-7: Beach & Relaxation")
+- Adapt to trip type (adventure = more active, romantic = more intimate, family = kid-friendly pacing)
 
-**🏷️ Budget (Hostels, Guesthouses, Budget Hotels)**
-- Recommend 2-3 specific well-known budget options (real names, real neighborhoods)
-- Include approximate price per night in the TRAVELER'S HOME CURRENCY
-- Mention what makes each a good pick (location, reviews, amenities, cleanliness)
-- For families with kids, skip party hostels — recommend family-friendly budget guesthouses instead
-
-**🏨 Mid-Range (3-4 Star Hotels, Boutique Stays)**
-- Recommend 2-3 specific mid-range options (real names, real neighborhoods)
-- Include approximate price per night in the TRAVELER'S HOME CURRENCY
-- Highlight standout features (great breakfast, pool, walkable to attractions, good Wi-Fi)
-- If business trip, prioritize hotels with business centers and meeting rooms
-
-**🏰 Luxury (5-Star Hotels, Resorts, Premium Properties)**
-- Recommend 2-3 specific luxury options (real names, real neighborhoods)
-- Include approximate price per night in the TRAVELER'S HOME CURRENCY
-- Mention signature experiences (rooftop dining, spa, private beach, butler service)
-
-**General Accommodation Tips for the Destination:**
-- Best neighborhoods/areas to stay (and which areas to avoid)
-- Best booking platforms for this destination (Booking.com, Agoda, Hostelworld, direct booking, etc.)
-- Whether Airbnb is legal/common in this destination
-- Peak season vs off-season pricing differences
-- Any local accommodation types worth trying (ryokan in Japan, riad in Morocco, houseboat in Kerala, etc.)
-
-IMPORTANT RULES FOR HOTEL RECOMMENDATIONS:
-- ALWAYS use real, well-known hotel/hostel names that actually exist in the destination
-- ALWAYS include the neighborhood or area name so travelers can find them
-- ALWAYS show prices in the traveler's home currency
-- Adjust recommendations based on the trip type (business = business hotels, leisure = location-focused, honeymoon = romantic properties)
-- If kids are in the group, mention family-friendly amenities (kids club, connecting rooms, pool, babysitting)
-- For road trips with multiple stops, recommend accommodation at each major stop
-- If the destination is a cruise, mention pre/post cruise hotel options near the port
-- Never make up hotel names — if unsure, say "search for well-reviewed [type] hotels in [area]" instead
+### Hotel Recommendations
+Provide 3 tiers of accommodation:
+- **Budget** — 1-2 specific real hotel/hostel names with neighborhood, approximate price per night in traveler's currency
+- **Mid-Range** — 1-2 specific real hotel names with neighborhood, approximate price per night
+- **Luxury** — 1-2 specific real hotel/resort names with neighborhood, approximate price per night
+- For each: mention neighborhood advantages, nearby transport, walkability
+- Include booking platform tips (which platform often has best prices for that destination)
+- Mention accommodation types popular in the destination (ryokans in Japan, riads in Morocco, etc.)
 
 ### Travel Day Guide
 Adapt this ENTIRELY based on travel mode:
@@ -209,11 +184,8 @@ Based on their travel dates, generate:
 11. Never make up information — if unsure about something, say "verify this before traveling"
 12. Include affiliate-friendly product categories naturally (luggage, sunscreen, adapters, insurance, eSIMs) without being salesy
 13. For road trips, if a route is provided, give advice specific to that route
-14. ALWAYS include Hotel & Accommodation Recommendations with all three tiers (Budget, Mid-Range, Luxury) — this is a key part of the travel plan that users expect`;
+14. For the Day-by-Day Itinerary, be realistic about timing and distances between attractions`;
 
-    // =============================================
-    // USER PROMPT
-    // =============================================
     let userPrompt = `Please generate a complete travel preparation package for my upcoming trip:
 
 **Destination:** ${destination}
@@ -230,9 +202,6 @@ Based on their travel dates, generate:
 **My Home Currency:** ${currency} (show all prices and exchange rates relative to this)
 **Special Requirements:** ${specialReqs}`;
 
-    // =============================================
-    // CALL GEMINI API
-    // =============================================
     try {
         const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${API_KEY}`;
 
@@ -242,7 +211,7 @@ Based on their travel dates, generate:
             body: JSON.stringify({
                 system_instruction: { parts: [{ text: systemPrompt }] },
                 contents: [{ role: 'user', parts: [{ text: userPrompt }] }],
-                generationConfig: { temperature: 0.7, maxOutputTokens: 8192 }
+                generationConfig: { temperature: 0.7, maxOutputTokens: 12000 }
             })
         });
 
@@ -257,7 +226,6 @@ Based on their travel dates, generate:
         }
 
         return res.status(500).json({ success: false, error: 'Failed to generate plan. Please try again.' });
-
     } catch (err) {
         return res.status(500).json({ success: false, error: err.message || 'Server error' });
     }
