@@ -89,4 +89,10 @@
 <url><loc>https://packsmartapp.com/blog/family-travel-tips-with-kids.html</loc><lastmod>2026-03-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 <url><loc>https://packsmartapp.com/blog/bali-travel-packing-guide-from-india.html</loc><lastmod>2026-03-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
 <url><loc>https://packsmartapp.com/blog/thailand-travel-packing-guide-from-india.html</loc><lastmod>2026-03-03</lastmod><changefreq>monthly</changefreq><priority>0.8</priority></url>
+<url>
+    <loc>https://packsmartapp.com/share.html</loc>
+    <lastmod>2026-03-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
 </urlset>
