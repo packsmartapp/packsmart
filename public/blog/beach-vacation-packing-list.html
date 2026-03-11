@@ -310,7 +310,23 @@
                 padding: 1rem;
             }
         }
-    </style>
+    
+    /* Social Sharing */
+    .share-bar { display: flex; align-items: center; gap: 10px; margin: 30px 0; padding: 20px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; flex-wrap: wrap; }
+    .share-bar span { font-weight: 600; color: #333; font-size: 0.95rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; color: #fff; transition: opacity 0.2s; }
+    .share-btn:hover { opacity: 0.85; color: #fff; text-decoration: none; }
+    .share-btn.whatsapp { background: #25D366; }
+    .share-btn.twitter { background: #1DA1F2; }
+    .share-btn.facebook { background: #1877F2; }
+    .share-btn.linkedin { background: #0A66C2; }
+    .share-btn.copy-link { background: #6C757D; cursor: pointer; border: none; font-family: inherit; }
+
+</style>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "What are the essentials for a beach vacation packing list?", "acceptedAnswer": {"@type": "Answer", "text": "The essentials include swimwear (at least 2 sets), reef-safe sunscreen (SPF 50+), a wide-brim sun hat, polarized sunglasses, a beach towel or quick-dry towel, flip-flops and water shoes, a waterproof phone pouch, aloe vera gel for sunburn, a light cover-up or sarong, and a reusable water bottle. Don't forget a good book!"}}, {"@type": "Question", "name": "How do I pack light for a beach vacation?", "acceptedAnswer": {"@type": "Answer", "text": "Choose a capsule wardrobe in 2-3 coordinating colors. Bring versatile pieces that work for both beach and dinner — a sarong doubles as a cover-up, beach wrap, and picnic blanket. Wear your heaviest shoes on the plane. Roll clothes instead of folding. Use packing cubes. Most beach destinations have laundry services, so pack for 3-4 days even for longer trips."}}, {"@type": "Question", "name": "Should I bring my own snorkel gear on vacation?", "acceptedAnswer": {"@type": "Answer", "text": "Bring your own mask and snorkel if you snorkel regularly — rental gear is often scratched or ill-fitting, and a good seal on your mask matters. Fins are bulky, so rent those at your destination. If you're a first-timer, rent everything first to see if you enjoy it before investing. Your own gear is also more hygienic."}}, {"@type": "Question", "name": "What beach vacation items should I buy at the destination instead?", "acceptedAnswer": {"@type": "Answer", "text": "Buy cheap flip-flops, beach mats, inflatable floats, large bottles of sunscreen (cheaper abroad in many beach destinations), beach toys for kids, and souvenir sarongs/cover-ups at the destination. These items are bulky, heavy, or cheap locally. Save your luggage space for clothes, electronics, and toiletries you're particular about."}}]}
+</script>
 </head>
 <body>
     <div class="nav">
@@ -484,7 +500,27 @@
             </tbody>
         </table>
 
-        <div class="cta-box">
+        
+<div class="faq-section" style="margin:50px 0 30px;padding:30px 0;border-top:2px solid #f0f0f0;">
+<h2 style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">What are the essentials for a beach vacation packing list?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">The essentials include swimwear (at least 2 sets), reef-safe sunscreen (SPF 50+), a wide-brim sun hat, polarized sunglasses, a beach towel or quick-dry towel, flip-flops and water shoes, a waterproof phone pouch, aloe vera gel for sunburn, a light cover-up or sarong, and a reusable water bottle. Don't forget a good book!</div>
+</details>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">How do I pack light for a beach vacation?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Choose a capsule wardrobe in 2-3 coordinating colors. Bring versatile pieces that work for both beach and dinner — a sarong doubles as a cover-up, beach wrap, and picnic blanket. Wear your heaviest shoes on the plane. Roll clothes instead of folding. Use packing cubes. Most beach destinations have laundry services, so pack for 3-4 days even for longer trips.</div>
+</details>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">Should I bring my own snorkel gear on vacation?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Bring your own mask and snorkel if you snorkel regularly — rental gear is often scratched or ill-fitting, and a good seal on your mask matters. Fins are bulky, so rent those at your destination. If you're a first-timer, rent everything first to see if you enjoy it before investing. Your own gear is also more hygienic.</div>
+</details>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">What beach vacation items should I buy at the destination instead?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Buy cheap flip-flops, beach mats, inflatable floats, large bottles of sunscreen (cheaper abroad in many beach destinations), beach toys for kids, and souvenir sarongs/cover-ups at the destination. These items are bulky, heavy, or cheap locally. Save your luggage space for clothes, electronics, and toiletries you're particular about.</div>
+</details>
+</div>
+<div class="cta-box">
             <h3>Ready to Pack Smart?</h3>
             <p>Use PackSmart to create your personalized beach vacation packing list with AI recommendations for your destination.</p>
             <a href="/#plan">Start Your Packing List</a>
@@ -521,7 +557,18 @@
         </div>
     </div>
 
-    <footer>
+    
+<div class="newsletter-cta" style="background:linear-gradient(135deg,#0f0f23,#1a1a3e);color:#fff;padding:40px;border-radius:16px;text-align:center;margin:50px 0 30px;">
+    <h3 style="font-size:1.4rem;margin-bottom:8px;">Never Miss a Travel Guide</h3>
+    <p style="color:#ccc;margin-bottom:20px;font-size:0.95rem;">Get the latest packing lists, destination guides, and travel tips delivered to your inbox.</p>
+    <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:480px;margin:0 auto;">
+        <input type="email" placeholder="Your email address" style="flex:1;min-width:200px;padding:12px 16px;border-radius:30px;border:none;font-size:0.95rem;font-family:inherit;">
+        <a href="https://www.packsmartapp.com/contact.html" style="display:inline-block;background:#00C9A7;color:#fff;padding:12px 28px;border-radius:30px;text-decoration:none;font-weight:600;white-space:nowrap;">Subscribe Free</a>
+    </div>
+    <p style="color:#777;font-size:0.75rem;margin-top:12px;">No spam. Unsubscribe anytime.</p>
+</div>
+
+<footer>
         <p>&copy; 2026 PackSmart. All rights reserved. | <a href="https://www.packsmartapp.com" style="color: white; text-decoration: none;">Home</a> | <a href="https://www.packsmartapp.com/blog" style="color: white; text-decoration: none;">Blog</a></p>
     </footer>
 </body>

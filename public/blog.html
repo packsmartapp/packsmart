@@ -77,6 +77,11 @@
             .mobile-menu-btn { display: flex; }
             .page-header h1 { font-size: 2.2rem; }
         }
+    
+        .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; margin-bottom: 2rem; }
+        .filter-btn { padding: 8px 18px; border-radius: 20px; border: 1.5px solid var(--border); background: var(--bg-white); color: var(--text-secondary); font-size: 0.85rem; font-weight: 500; cursor: pointer; transition: all 0.2s; font-family: var(--font-body); }
+        .filter-btn:hover, .filter-btn.active { background: var(--action); color: #fff; border-color: var(--action); }
+    
     </style>
 <script type="application/ld+json">
 {
@@ -116,7 +121,16 @@
         <p>Travel tips, packing guides, and destination prep to help you travel smarter.</p>
     </div>
 
-    <div class="blog-grid">
+    
+    <div class="filter-bar" id="filterBar">
+        <button class="filter-btn active" data-filter="all">All Guides</button>
+        <button class="filter-btn" data-filter="Destination Guide">Destinations</button>
+        <button class="filter-btn" data-filter="Packing Guide">Packing</button>
+        <button class="filter-btn" data-filter="Travel Guide">Travel Tips</button>
+        <button class="filter-btn" data-filter="other">More</button>
+    </div>
+
+    <div class="blog-grid" id="blogGrid">
 
         <!-- DESTINATION GUIDES -->
 
@@ -304,6 +318,17 @@
 
     </div>
 
+    
+    <div class="newsletter-cta" style="background:linear-gradient(135deg,#0f0f23,#1a1a3e);color:#fff;padding:40px;border-radius:16px;text-align:center;margin:40px 0 20px;">
+        <h3 style="font-size:1.4rem;margin-bottom:8px;">Get New Guides in Your Inbox</h3>
+        <p style="color:#ccc;margin-bottom:20px;font-size:0.95rem;">We publish 2-3 new travel guides every week. Subscribe to never miss one.</p>
+        <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:480px;margin:0 auto;">
+            <input type="email" placeholder="Your email address" style="flex:1;min-width:200px;padding:12px 16px;border-radius:30px;border:none;font-size:0.95rem;font-family:inherit;">
+            <a href="https://www.packsmartapp.com/contact.html" style="display:inline-block;background:#00C9A7;color:#fff;padding:12px 28px;border-radius:30px;text-decoration:none;font-weight:600;white-space:nowrap;">Subscribe Free</a>
+        </div>
+        <p style="color:#777;font-size:0.75rem;margin-top:12px;">No spam. Unsubscribe anytime.</p>
+    </div>
+
     <p class="coming-soon">More guides coming soon &mdash; destination packing lists, travel hacks, and more.</p>
 </div>
 
@@ -317,5 +342,28 @@ document.getElementById('menuBtn').addEventListener('click', function() {
     document.getElementById('navLinks').classList.toggle('open');
 });
 </script>
+
+<script>
+document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+        document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        const filter = this.dataset.filter;
+        const cards = document.querySelectorAll('.blog-card');
+        cards.forEach(card => {
+            const tag = card.querySelector('.tag')?.textContent.trim() || '';
+            if (filter === 'all') {
+                card.style.display = '';
+            } else if (filter === 'other') {
+                const mainTags = ['Destination Guide', 'Packing Guide', 'Travel Guide'];
+                card.style.display = mainTags.includes(tag) ? 'none' : '';
+            } else {
+                card.style.display = tag === filter ? '' : 'none';
+            }
+        });
+    });
+});
+</script>
+
 </body>
 </html>

@@ -448,7 +448,23 @@
                 grid-template-columns: 1fr;
             }
         }
-    </style>
+    
+    /* Social Sharing */
+    .share-bar { display: flex; align-items: center; gap: 10px; margin: 30px 0; padding: 20px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; flex-wrap: wrap; }
+    .share-bar span { font-weight: 600; color: #333; font-size: 0.95rem; }
+    .share-btn { display: inline-flex; align-items: center; gap: 6px; padding: 8px 16px; border-radius: 8px; text-decoration: none; font-size: 0.85rem; font-weight: 600; color: #fff; transition: opacity 0.2s; }
+    .share-btn:hover { opacity: 0.85; color: #fff; text-decoration: none; }
+    .share-btn.whatsapp { background: #25D366; }
+    .share-btn.twitter { background: #1DA1F2; }
+    .share-btn.facebook { background: #1877F2; }
+    .share-btn.linkedin { background: #0A66C2; }
+    .share-btn.copy-link { background: #6C757D; cursor: pointer; border: none; font-family: inherit; }
+
+</style>
+
+<script type="application/ld+json">
+{"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Do Indians need a visa for Japan?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, Indians need a tourist visa for Japan. Apply at the Japanese Embassy or Consulate in India with your passport, itinerary, hotel bookings, bank statements (showing sufficient funds), and a letter of employment. Processing takes 5-7 working days. Japan does not offer visa on arrival or e-visa for Indian passport holders."}}, {"@type": "Question", "name": "What should I pack for Japan from India?", "acceptedAnswer": {"@type": "Answer", "text": "Pack layers — Japan has four distinct seasons. Bring comfortable walking shoes (you'll walk 15,000+ steps daily), a compact umbrella, a small towel (public restrooms may not have paper towels), a pocket Wi-Fi or SIM card, IC card for trains, and modest clothing for shrines. In winter (December-March), bring a warm coat, thermals, and gloves."}}, {"@type": "Question", "name": "What is the best time to visit Japan from India?", "acceptedAnswer": {"@type": "Answer", "text": "Spring (March-May) for cherry blossoms and autumn (October-November) for fall foliage are the most popular times. Summer (June-August) is hot and humid with a rainy season in June-July. Winter (December-February) is great for skiing and hot springs. Cherry blossom season in late March to mid-April is the most iconic time to visit."}}, {"@type": "Question", "name": "How much does a Japan trip cost from India?", "acceptedAnswer": {"@type": "Answer", "text": "A 7-day Japan trip costs approximately ₹80,000-1,20,000 per person on a budget, ₹1,20,000-2,00,000 mid-range, and ₹2,00,000+ luxury. Return flights from India cost ₹30,000-55,000. Japan is expensive but a 7-day JR Pass (¥50,000/₹28,000) saves hugely on bullet trains. Budget meals cost ₹400-700, and capsule hotels start at ₹2,000/night."}}]}
+</script>
 </head>
 <body>
     <!-- Navigation -->
@@ -742,7 +758,27 @@
         </table>
 
         <!-- CTA Box -->
-        <div class="cta-box">
+        
+<div class="faq-section" style="margin:50px 0 30px;padding:30px 0;border-top:2px solid #f0f0f0;">
+<h2 style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">Do Indians need a visa for Japan?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Yes, Indians need a tourist visa for Japan. Apply at the Japanese Embassy or Consulate in India with your passport, itinerary, hotel bookings, bank statements (showing sufficient funds), and a letter of employment. Processing takes 5-7 working days. Japan does not offer visa on arrival or e-visa for Indian passport holders.</div>
+</details>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">What should I pack for Japan from India?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Pack layers — Japan has four distinct seasons. Bring comfortable walking shoes (you'll walk 15,000+ steps daily), a compact umbrella, a small towel (public restrooms may not have paper towels), a pocket Wi-Fi or SIM card, IC card for trains, and modest clothing for shrines. In winter (December-March), bring a warm coat, thermals, and gloves.</div>
+</details>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">What is the best time to visit Japan from India?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Spring (March-May) for cherry blossoms and autumn (October-November) for fall foliage are the most popular times. Summer (June-August) is hot and humid with a rainy season in June-July. Winter (December-February) is great for skiing and hot springs. Cherry blossom season in late March to mid-April is the most iconic time to visit.</div>
+</details>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">How much does a Japan trip cost from India?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">A 7-day Japan trip costs approximately ₹80,000-1,20,000 per person on a budget, ₹1,20,000-2,00,000 mid-range, and ₹2,00,000+ luxury. Return flights from India cost ₹30,000-55,000. Japan is expensive but a 7-day JR Pass (¥50,000/₹28,000) saves hugely on bullet trains. Budget meals cost ₹400-700, and capsule hotels start at ₹2,000/night.</div>
+</details>
+</div>
+<div class="cta-box">
             <h3>Ready to Plan Your Japan Adventure?</h3>
             <p>Use PackSmart to organize your packing list, budget, and travel timeline all in one place.</p>
             <a href="/#plan">Start Planning Now &#x2192;</a>
@@ -777,7 +813,18 @@
     </section>
 
     <!-- Footer -->
-    <footer>
+    
+<div class="newsletter-cta" style="background:linear-gradient(135deg,#0f0f23,#1a1a3e);color:#fff;padding:40px;border-radius:16px;text-align:center;margin:50px 0 30px;">
+    <h3 style="font-size:1.4rem;margin-bottom:8px;">Never Miss a Travel Guide</h3>
+    <p style="color:#ccc;margin-bottom:20px;font-size:0.95rem;">Get the latest packing lists, destination guides, and travel tips delivered to your inbox.</p>
+    <div style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:480px;margin:0 auto;">
+        <input type="email" placeholder="Your email address" style="flex:1;min-width:200px;padding:12px 16px;border-radius:30px;border:none;font-size:0.95rem;font-family:inherit;">
+        <a href="https://www.packsmartapp.com/contact.html" style="display:inline-block;background:#00C9A7;color:#fff;padding:12px 28px;border-radius:30px;text-decoration:none;font-weight:600;white-space:nowrap;">Subscribe Free</a>
+    </div>
+    <p style="color:#777;font-size:0.75rem;margin-top:12px;">No spam. Unsubscribe anytime.</p>
+</div>
+
+<footer>
         <p>&copy; 2026 PackSmart. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
         <p style="margin-top: 1rem; opacity: 0.8;">Made for Indian travelers, by Indian travelers.</p>
     </footer>
