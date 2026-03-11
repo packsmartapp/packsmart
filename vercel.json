@@ -1,13 +1,5 @@
 {
   "version": 2,
-  "redirects": [
-    {
-      "source": "/:path(.*)",
-      "has": [{ "type": "host", "value": "www.packsmartapp.com" }],
-      "destination": "https://packsmartapp.com/:path",
-      "permanent": true
-    }
-  ],
   "headers": [
     {
       "source": "/(.*)",
