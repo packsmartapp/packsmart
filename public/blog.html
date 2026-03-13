@@ -129,6 +129,7 @@
         <button class="filter-btn" data-filter="Destination Guide">Destinations</button>
         <button class="filter-btn" data-filter="Packing Guide">Packing</button>
         <button class="filter-btn" data-filter="Travel Guide">Travel Tips</button>
+        <button class="filter-btn" data-filter="summer">Summer</button>
         <button class="filter-btn" data-filter="other">More</button>
     </div>
 
@@ -136,7 +137,7 @@
 
         <!-- SUMMER 2026 SPECIAL -->
 
-        <a href="/blog/summer-vacation-packing-list.html" class="blog-card">
+        <a href="/blog/summer-vacation-packing-list.html" class="blog-card" data-summer="true">
             <span class="tag">Packing Guide</span>
             <h2>Summer Vacation Packing List 2026: The Ultimate Checklist</h2>
             <p>The complete summer packing guide &mdash; hot weather clothing, sun protection, swimwear, electronics, and beach vs city summer tips.</p>
@@ -144,7 +145,7 @@
             <br><span class="read-more">Read more &rarr;</span>
         </a>
 
-        <a href="/blog/best-summer-travel-destinations-india-2026.html" class="blog-card">
+        <a href="/blog/best-summer-travel-destinations-india-2026.html" class="blog-card" data-summer="true">
             <span class="tag">Destination Guide</span>
             <h2>10 Best Summer Travel Destinations from India 2026: Beat the Heat</h2>
             <p>Escape the heat &mdash; Ladakh, Switzerland, Iceland, Bali, New Zealand, and more. Flight costs, visa info, and what to pack for each.</p>
@@ -152,7 +153,7 @@
             <br><span class="read-more">Read more &rarr;</span>
         </a>
 
-        <a href="/blog/family-summer-vacation-packing-list.html" class="blog-card">
+        <a href="/blog/family-summer-vacation-packing-list.html" class="blog-card" data-summer="true">
             <span class="tag">Family Travel</span>
             <h2>Family Summer Vacation Packing List 2026: Complete Guide for Kids &amp; Parents</h2>
             <p>Age-specific packing for babies, kids, and teens &mdash; entertainment, snacks, sun protection, medicines, and everything families need.</p>
@@ -160,7 +161,7 @@
             <br><span class="read-more">Read more &rarr;</span>
         </a>
 
-        <a href="/blog/weekend-trip-packing-list.html" class="blog-card">
+        <a href="/blog/weekend-trip-packing-list.html" class="blog-card" data-summer="true">
             <span class="tag">Packing Guide</span>
             <h2>Weekend Trip Packing List: What to Pack for 2-3 Days</h2>
             <p>Ultra-light packing for short trips &mdash; what fits in a weekender bag, city break vs nature getaway vs beach weekend.</p>
@@ -424,6 +425,8 @@ document.querySelectorAll('.filter-btn').forEach(btn => {
             const tag = card.querySelector('.tag')?.textContent.trim() || '';
             if (filter === 'all') {
                 card.style.display = '';
+            } else if (filter === 'summer') {
+                card.style.display = card.dataset.summer === 'true' ? '' : 'none';
             } else if (filter === 'other') {
                 const mainTags = ['Destination Guide', 'Packing Guide', 'Travel Guide'];
                 card.style.display = mainTags.includes(tag) ? 'none' : '';
