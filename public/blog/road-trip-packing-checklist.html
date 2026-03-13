@@ -580,15 +580,13 @@
 <div class="newsletter-cta" style="background:linear-gradient(135deg,#0f0f23,#1a1a3e);color:#fff;padding:40px;border-radius:16px;text-align:center;margin:50px 0 30px;">
     <h3 style="font-size:1.4rem;margin-bottom:8px;">Never Miss a Travel Guide</h3>
     <p style="color:#ccc;margin-bottom:20px;font-size:0.95rem;">Get the latest packing lists, destination guides, and travel tips delivered to your inbox.</p>
-    <form action="https://formsubmit.co/hello@packsmartapp.com" method="POST" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:480px;margin:0 auto;">
-        <input type="hidden" name="_subject" value="New PackSmart Newsletter Subscriber!">
-        <input type="hidden" name="_captcha" value="false">
-        <input type="hidden" name="_template" value="box">
-        <input type="hidden" name="_next" value="https://www.packsmartapp.com/blog.html?subscribed=true">
-        <input type="email" name="email" placeholder="Your email address" required style="flex:1;min-width:200px;padding:12px 16px;border-radius:30px;border:none;font-size:0.95rem;font-family:inherit;">
-        <button type="submit" style="display:inline-block;background:#00C9A7;color:#fff;padding:12px 28px;border-radius:30px;border:none;font-size:0.95rem;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;">Subscribe Free</button>
+    <form id="nlForm" onsubmit="return nlSub(event)" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:480px;margin:0 auto;">
+        <input type="email" id="nlEmail" placeholder="Your email address" required style="flex:1;min-width:200px;padding:12px 16px;border-radius:30px;border:none;font-size:0.95rem;font-family:inherit;">
+        <button type="submit" id="nlBtn" style="display:inline-block;background:#00C9A7;color:#fff;padding:12px 28px;border-radius:30px;border:none;font-size:0.95rem;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;">Subscribe Free</button>
     </form>
-    <p style="color:#777;font-size:0.75rem;margin-top:12px;">No spam. Unsubscribe anytime.</p>
+    <p id="nlMsg" style="color:#00C9A7;font-size:0.85rem;margin-top:12px;display:none;"></p>
+    <p id="nlNote" style="color:#777;font-size:0.75rem;margin-top:12px;">No spam. Unsubscribe anytime.</p>
+    <script>function nlSub(e){e.preventDefault();var b=document.getElementById('nlBtn'),m=document.getElementById('nlMsg'),em=document.getElementById('nlEmail');b.textContent='Subscribing...';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value})}).then(r=>r.json()).then(d=>{if(d.success){m.style.display='block';m.style.color='#00C9A7';m.textContent='You\'re subscribed! We\'ll send you our latest guides.';em.value='';document.getElementById('nlNote').style.display='none';}else{m.style.display='block';m.style.color='#E94560';m.textContent=d.error||'Something went wrong. Please try again.';}b.textContent='Subscribe Free';b.disabled=false;}).catch(()=>{m.style.display='block';m.style.color='#E94560';m.textContent='Something went wrong. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});return false;}</script>
 </div>
 
 <footer class="footer">
