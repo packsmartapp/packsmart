@@ -1285,6 +1285,7 @@ async function handleSubmit(e) {
 function mdToHtml(md) {
     return md.replace(/^### (.*$)/gm,'<h4>$1</h4>').replace(/^## (.*$)/gm,'<h3>$1</h3>').replace(/^# (.*$)/gm,'<h3>$1</h3>')
         .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>')
+        .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,'<a href="$2" target="_blank" rel="nofollow noopener sponsored" style="color:var(--action);font-weight:600;">$1</a>')
         .replace(/^☐ (.*)$/gm,'<li style="list-style:none;">☐ $1</li>')
         .replace(/^[-*] (.*)$/gm,'<li>$1</li>').replace(/^\d+\. (.*)$/gm,'<li>$1</li>')
         .replace(/\n\n/g,'</p><p>').replace(/\n/g,'<br>')
