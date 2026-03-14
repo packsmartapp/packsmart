@@ -222,7 +222,45 @@ Based on their travel dates, generate:
         }
 
         if (data.candidates?.[0]?.content?.parts?.[0]?.text) {
-            return res.status(200).json({ success: true, plan: data.candidates[0].content.parts[0].text });
+            let plan = data.candidates[0].content.parts[0].text;
+
+            // Append affiliate recommendations section
+            const affiliateSection = `
+
+---
+
+### 🛒 Recommended Travel Essentials
+
+*Hand-picked tools and services to make your trip smoother:*
+
+**📱 Stay Connected — Get an eSIM**
+Skip expensive roaming. Get instant data in 200+ countries.
+[👉 Get Your eSIM from Airalo](https://www.airalo.com/?ref=packsmart) — from $4.50/GB
+
+**🛡️ Travel Insurance — Stay Protected**
+Medical emergencies abroad can cost thousands. Get covered from $1.50/day.
+[👉 Get SafetyWing Insurance](https://safetywing.com/?referenceID=packsmart) — Covers 180+ countries
+
+**🏨 Book Your Stay**
+Compare prices across 100+ booking sites to find the best deal.
+[👉 Find Hotels on Booking.com](https://www.booking.com/?aid=packsmart) — Free cancellation on most rooms
+
+**🎯 Book Activities & Tours**
+Skip the line tickets, guided tours, and unique local experiences.
+[👉 Browse Activities on GetYourGuide](https://www.getyourguide.com/?partner_id=packsmart) — Best price guaranteed
+
+**✈️ Compare Flight Prices**
+Find the cheapest flights with fare alerts and flexible date search.
+[👉 Search Flights on Skyscanner](https://www.skyscanner.com/?associateID=packsmart)
+
+**🔐 Stay Safe on Public WiFi**
+Protect your data on hotel WiFi, cafes, and airports.
+[👉 Get NordVPN](https://nordvpn.com/?ref=packsmart) — 68% off 2-year plan
+
+*Prices and availability may vary. Some links are affiliate links — we may earn a small commission at no extra cost to you. This helps keep PackSmart free!*`;
+
+            plan += affiliateSection;
+            return res.status(200).json({ success: true, plan });
         }
 
         return res.status(500).json({ success: false, error: 'Failed to generate plan. Please try again.' });
