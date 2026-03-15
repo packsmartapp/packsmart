@@ -247,7 +247,7 @@ Compare prices across 100+ booking sites to find the best deal.
 
 **🎯 Book Activities & Tours**
 Skip the line tickets, guided tours, and unique local experiences.
-[👉 Browse Activities on GetYourGuide](https://www.getyourguide.com/?partner_id=packsmart) — Best price guaranteed
+[👉 Browse Activities on GetYourGuide](https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn) — Best price guaranteed
 
 **✈️ Compare Flight Prices**
 Find the cheapest flights with fare alerts and flexible date search.
