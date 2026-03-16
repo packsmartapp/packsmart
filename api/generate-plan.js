@@ -239,7 +239,7 @@ Skip expensive roaming. Get instant data in 200+ countries.
 
 **🛡️ Travel Insurance — Stay Protected**
 Medical emergencies abroad can cost thousands. Get covered from $1.50/day.
-[👉 Get SafetyWing Insurance](https://safetywing.com/?referenceID=packsmart) — Covers 180+ countries
+[👉 Get SafetyWing Insurance](https://safetywing.com/?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador) — Covers 180+ countries
 
 **🏨 Book Your Stay**
 Compare prices across 100+ booking sites to find the best deal.
