@@ -255,7 +255,6 @@ Find the cheapest flights with fare alerts and flexible date search.
 
 **🔐 Stay Safe on Public WiFi**
 Protect your data on hotel WiFi, cafes, and airports.
-[👉 Get NordVPN](https://nordvpn.com/?ref=packsmart) — 68% off 2-year plan
 
 *Prices and availability may vary. Some links are affiliate links — we may earn a small commission at no extra cost to you. This helps keep PackSmart free!*`;
 
