@@ -235,7 +235,7 @@ Based on their travel dates, generate:
 
 **📱 Stay Connected — Get an eSIM**
 Skip expensive roaming. Get instant data in 200+ countries.
-[👉 Get Your eSIM from Airalo](https://www.airalo.com/?ref=packsmart) — from $4.50/GB
+[👉 Get Saily eSIM](https://tp.media/r?marker=711400&trs=508747&p=8979&u=https%3A%2F%2Fsaily.com&campaign_id=629) — eSIM data in 200+ countries
 
 **🛡️ Travel Insurance — Stay Protected**
 Medical emergencies abroad can cost thousands. Get covered from $1.50/day.
@@ -243,7 +243,7 @@ Medical emergencies abroad can cost thousands. Get covered from $1.50/day.
 
 **🏨 Book Your Stay**
 Compare prices across 100+ booking sites to find the best deal.
-[👉 Find Hotels on Booking.com](https://www.booking.com/?aid=packsmart) — Free cancellation on most rooms
+[👉 Get Agoda](https://tp.media/r?marker=711400&trs=508747&p=2854&u=https%3A%2F%2Fagoda.com&campaign_id=104) — Free cancellation on most rooms
 
 **🎯 Book Activities & Tours**
 Skip the line tickets, guided tours, and unique local experiences.
