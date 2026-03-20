@@ -634,7 +634,21 @@
         .results-body li { margin-bottom: 0.25rem; }
         .results-body strong { color: var(--text); }
 
-        .results-actions { display: flex; gap: 0.8rem; margin-top: 2rem; justify-content: center; }
+        .results-save-nudge {
+            text-align: center;
+            margin-top: 2rem;
+            padding: 0.7rem 1.2rem;
+            background: var(--teal-tint);
+            border-radius: var(--radius-md);
+            border: 1px solid rgba(0,201,167,0.15);
+        }
+        .results-save-nudge p {
+            font-size: 0.82rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            margin: 0;
+        }
+        .results-actions { display: flex; gap: 0.8rem; margin-top: 1rem; justify-content: center; }
         .btn-outline {
             padding: 11px 22px; border: 1.5px solid var(--border);
             background: var(--bg-white); color: var(--text);
@@ -1016,6 +1030,9 @@ function nlSubTop(e){
             <h2>PackSmart: <em id="resDest"></em></h2>
         </div>
         <div class="results-body" id="resBody"></div>
+        <div class="results-save-nudge">
+            <p>Save your itinerary before you go — it won't be available once you leave this page.</p>
+        </div>
         <div class="results-actions">
             <button class="btn-outline" onclick="window.print()">Print</button>
             <button class="btn-outline" onclick="copyPlan()">Copy</button>
