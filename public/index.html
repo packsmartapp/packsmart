@@ -1360,38 +1360,11 @@ document.querySelectorAll('.mode-btn').forEach(btn => btn.addEventListener('clic
     document.getElementById('routeField').style.display = mode !== 'flight' ? 'block' : 'none';
 }));
 
-// ===== FREE PLAN USAGE TRACKING =====
-function getPlanUsage() {
-    try {
-        const data = JSON.parse(localStorage.getItem('ps_usage') || '{}');
-        const now = new Date();
-        const monthKey = now.getFullYear() + '-' + (now.getMonth() + 1);
-        if (data.month !== monthKey) return { month: monthKey, count: 0 };
-        return data;
-    } catch { return { month: '', count: 0 }; }
-}
-function incrementPlanUsage() {
-    const usage = getPlanUsage();
-    usage.count++;
-    const now = new Date();
-    usage.month = now.getFullYear() + '-' + (now.getMonth() + 1);
-    localStorage.setItem('ps_usage', JSON.stringify(usage));
-}
-const FREE_PLAN_LIMIT = 3;
-
 // ===== FORM SUBMIT =====
 async function handleSubmit(e) {
     e.preventDefault();
     const btn = document.getElementById('submitBtn'), spinner = document.getElementById('spinner'),
           btnText = document.getElementById('btnText'), err = document.getElementById('formError');
-
-    // Check free plan usage limit
-    const usage = getPlanUsage();
-    if (usage.count >= FREE_PLAN_LIMIT) {
-        err.innerHTML = '🚀 You\'ve used all 3 free plans this month! <a href="/pricing.html" style="color:var(--action);font-weight:700;text-decoration:underline;">Upgrade to Pro</a> for unlimited plans, PDF exports, detailed itineraries & more.';
-        err.style.display = 'block';
-        return false;
-    }
 
     const tripTypes = Array.from(document.querySelectorAll('.trip-btn.active')).map(b => b.dataset.v).join(', ');
     const travelMode = document.querySelector('.mode-btn.active')?.dataset.v || 'flight';
@@ -1415,8 +1388,6 @@ async function handleSubmit(e) {
         const res = await fetch('/api/generate-plan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
         const json = await res.json();
         if (json.success) {
-            incrementPlanUsage();
-            const remaining = FREE_PLAN_LIMIT - getPlanUsage().count;
             document.getElementById('resDest').textContent = data.destination;
             document.getElementById('resBody').innerHTML = mdToHtml(json.plan);
             // Make checkboxes interactive
@@ -1427,9 +1398,6 @@ async function handleSubmit(e) {
                     li.classList.toggle('checked', cb.checked);
                 });
             });
-            if (remaining <= 1 && remaining >= 0) {
-                document.getElementById('resBody').innerHTML += '<div style="margin-top:2rem;padding:1.2rem;background:var(--teal-tint);border:1px solid rgba(0,201,167,0.2);border-radius:12px;text-align:center;"><strong>📊 ' + (remaining === 0 ? 'That was your last free plan this month!' : remaining + ' free plan remaining this month.') + '</strong> <a href="/pricing.html" style="color:var(--action);font-weight:700;">Upgrade to Pro →</a></div>';
-            }
             document.getElementById('results').style.display = 'block';
             document.getElementById('results').scrollIntoView({ behavior: 'smooth' });
         } else throw new Error(json.error || 'Something went wrong.');
