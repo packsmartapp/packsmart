@@ -19,16 +19,9 @@
   })();
 </script>
 <script async src="https://emrld.ltd/NTA4NzQ3.js?t=508747"></script>
-<!-- Travelpayouts White Label Widget -->
-<script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
-  (function () {
-        var script = document.createElement("script");
-        script.async = 1;
-        script.type = "module";
-        script.src = "https://tpwdg.com/wl_web/main.js?wl_id=15248";
-        document.head.appendChild(script);
-      })();
-</script>
+<!-- Travelpayouts White Label Widget - tickets div must be in head per TP docs -->
+<div id="tpwl-tickets"></div>
+<script type="module" src="https://tpwdg.com/wl_web/main.js?wl_id=15248"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Find Flights & Hotels — PackSmart</title>
@@ -339,9 +332,8 @@
     </div>
 </section>
 
-<!-- SEARCH RESULTS -->
-<section class="results-section">
-    <div id="tpwl-tickets"></div>
+<!-- SEARCH RESULTS - tpwl-tickets is in head per Travelpayouts docs, results render here -->
+<section class="results-section" id="results-area">
 </section>
 
 <!-- TRUST BADGES -->

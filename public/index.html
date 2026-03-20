@@ -1,6 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<!-- Redirect flight search results to flights.html -->
+<script>
+  if (window.location.search.includes('flightSearch')) {
+    window.location.replace('/flights.html' + window.location.search);
+  }
+</script>
 <!-- Google Analytics 4 -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0C4Z7VVGPE"></script>
 <script>
