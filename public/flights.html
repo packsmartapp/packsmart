@@ -68,40 +68,83 @@
         html { scroll-behavior: smooth; background: var(--bg); }
         body { font-family: var(--font-body); color: var(--text); line-height: 1.6; }
 
-        /* NAV */
+        /* NAV — matches index.html */
         .nav {
-            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
-            display: flex; align-items: center; justify-content: space-between;
-            padding: 0.8rem 2rem;
-            background: rgba(255,255,255,0.85); backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 0 3rem;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav.scrolled {
+            background: rgba(253,240,242,0.88);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             border-bottom: 1px solid var(--border);
         }
         .nav-brand {
-            font-family: var(--font-display); font-size: 1.5rem;
-            text-decoration: none; color: var(--text);
+            font-family: var(--font-body);
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: var(--text);
+            text-decoration: none;
+            letter-spacing: -0.3px;
         }
-        .nav-brand em { color: var(--action); font-style: italic; }
-        .nav-links { display: flex; align-items: center; gap: 1.5rem; }
+        .nav-brand em { font-style: normal; color: var(--action); }
+        .nav-links { display: flex; align-items: center; gap: 2.5rem; }
         .nav-links a {
-            text-decoration: none; color: var(--text-secondary);
-            font-size: 0.88rem; font-weight: 500; transition: color 0.2s;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.2s;
+            position: relative;
         }
         .nav-links a:hover { color: var(--action); }
-        .nav-links a.active { color: var(--action); font-weight: 600; }
-        .nav-cta-btn {
-            background: var(--action) !important; color: #fff !important;
-            padding: 0.5rem 1.2rem !important; border-radius: 50px !important;
-            font-weight: 600 !important;
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0; right: 0;
+            height: 1.5px;
+            background: var(--action);
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .nav-cta-btn:hover { background: var(--action-hover) !important; }
+        .nav-links a:hover::after { transform: scaleX(1); }
+        .nav-links a.active { color: var(--action); font-weight: 600; }
+        .nav-links a.active::after { transform: scaleX(1); }
+        .nav-cta-btn {
+            font-size: 0.85rem !important;
+            font-weight: 600 !important;
+            color: #fff !important;
+            background: var(--action);
+            padding: 9px 22px;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .nav-cta-btn::after { display: none !important; }
+        .nav-cta-btn:hover {
+            background: var(--action-hover) !important;
+            transform: translateY(-1px);
+            box-shadow: 0 0 40px rgba(0,201,167,0.15);
+        }
         .mobile-menu-btn {
-            display: none; background: none; border: none; cursor: pointer;
-            flex-direction: column; gap: 5px; padding: 5px;
+            display: none;
+            background: none; border: none; cursor: pointer;
+            width: 32px; height: 32px; position: relative;
         }
         .mobile-menu-btn span {
-            display: block; width: 24px; height: 2px; background: var(--text);
-            border-radius: 2px; transition: 0.3s;
+            position: absolute; left: 4px; width: 24px; height: 1.5px;
+            background: var(--text); border-radius: 2px; transition: 0.3s;
         }
+        .mobile-menu-btn span:nth-child(1) { top: 10px; }
+        .mobile-menu-btn span:nth-child(2) { top: 16px; }
+        .mobile-menu-btn span:nth-child(3) { top: 22px; }
 
         /* HERO */
         .hero {
@@ -310,14 +353,17 @@
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
+            .nav { padding: 0 1.5rem; }
             .nav-links { display: none; }
             .nav-links.open {
                 display: flex; flex-direction: column;
-                position: absolute; top: 100%; left: 0; right: 0;
-                background: #fff; padding: 1rem 2rem;
-                border-bottom: 1px solid var(--border);
+                position: absolute; top: 72px; left: 0; right: 0;
+                background: rgba(253,240,242,0.98);
+                backdrop-filter: blur(20px);
+                padding: 1.5rem 2rem 2rem;
+                border-bottom: 1px solid var(--border); gap: 1rem;
             }
-            .mobile-menu-btn { display: flex; }
+            .mobile-menu-btn { display: block; }
             .hero { padding: 7rem 1.5rem 3rem; }
             .search-section { padding: 0 1rem 2rem; }
             .search-card { padding: 1rem; }
@@ -326,7 +372,7 @@
         /* BreadcrumbList Schema */
         .breadcrumb {
             max-width: 1200px;
-            margin: 5.5rem auto 0;
+            margin: 5rem auto 0;
             padding: 0.5rem 2rem;
             font-size: 0.8rem;
             color: var(--text-secondary);
@@ -442,9 +488,15 @@
 </footer>
 
 <script>
-document.getElementById('menuBtn').addEventListener('click', function() {
-    document.getElementById('navLinks').classList.toggle('open');
-});
+// Nav scroll effect — matches index.html
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+
+// Mobile menu
+document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+
+// When showing flight results, hide hero/search and add top padding
 if (window.location.search.includes('flightSearch')) {
     document.body.classList.add('showing-results');
 }
