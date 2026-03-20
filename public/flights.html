@@ -146,6 +146,19 @@
             padding: 0 2rem 3rem;
         }
 
+        /* When showing results (flightSearch in URL), adjust layout */
+        body.showing-results .hero,
+        body.showing-results .search-section,
+        body.showing-results .breadcrumb,
+        body.showing-results .trust-section,
+        body.showing-results .how-section,
+        body.showing-results .cta-section {
+            display: none;
+        }
+        body.showing-results {
+            padding-top: 60px;
+        }
+
         /* TRUST BADGES */
         .trust-section {
             max-width: 900px;
@@ -387,6 +400,10 @@
 document.getElementById('menuBtn').addEventListener('click', function() {
     document.getElementById('navLinks').classList.toggle('open');
 });
+// When showing flight results, hide hero/search and add top padding
+if (window.location.search.includes('flightSearch')) {
+    document.body.classList.add('showing-results');
+}
 </script>
 
 </body>
