@@ -123,6 +123,30 @@
             margin: 0 auto 2rem;
         }
 
+        /* LANGUAGE NUDGE */
+        .lang-nudge {
+            position: absolute;
+            top: -2.2rem;
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+        }
+        .lang-nudge-text {
+            font-size: 0.78rem;
+            color: var(--action);
+            font-weight: 500;
+            white-space: nowrap;
+            margin-bottom: -0.2rem;
+        }
+        @media (max-width: 768px) {
+            .lang-nudge {
+                top: -2rem;
+                right: 0.5rem;
+            }
+            .lang-nudge-text { font-size: 0.7rem; }
+        }
+
         /* SEARCH SECTION */
         .search-section {
             max-width: 1200px;
@@ -353,7 +377,10 @@
 
 <!-- SEARCH WIDGET -->
 <section class="search-section">
-    <div class="search-card">
+    <div class="search-card" style="position:relative;">
+        <div class="lang-nudge">
+            <span class="lang-nudge-text">Change your language & currency here</span>
+        </div>
         <div id="tpwl-search"></div>
     </div>
 </section>
@@ -418,7 +445,6 @@
 document.getElementById('menuBtn').addEventListener('click', function() {
     document.getElementById('navLinks').classList.toggle('open');
 });
-// When showing flight results, hide hero/search and add top padding
 if (window.location.search.includes('flightSearch')) {
     document.body.classList.add('showing-results');
 }
