@@ -241,20 +241,13 @@ Skip expensive roaming. Get instant data in 200+ countries.
 Medical emergencies abroad can cost thousands. Get covered from $1.50/day.
 [👉 Get SafetyWing Insurance](https://safetywing.com/?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador) — Covers 180+ countries
 
-**🏨 Book Your Stay**
-Compare prices across 100+ booking sites to find the best deal.
-[👉 Get Agoda](https://tp.media/r?marker=711400&trs=508747&p=2854&u=https%3A%2F%2Fagoda.com&campaign_id=104) — Free cancellation on most rooms
-
 **🎯 Book Activities & Tours**
 Skip the line tickets, guided tours, and unique local experiences.
 [👉 Browse Activities on GetYourGuide](https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn) — Best price guaranteed
 
-**✈️ Compare Flight Prices**
-Find the cheapest flights with fare alerts and flexible date search.
-[👉 Search Flights on Skyscanner](https://www.skyscanner.com/?associateID=packsmart)
-
-**🔐 Stay Safe on Public WiFi**
-Protect your data on hotel WiFi, cafes, and airports.
+**✈️ Search Flights & Hotels**
+Compare prices across hundreds of airlines and hotels worldwide.
+[👉 Search on PackSmart](https://www.packsmartapp.com/flights.html) — Results from 100+ providers
 
 *Prices and availability may vary. Some links are affiliate links — we may earn a small commission at no extra cost to you. This helps keep PackSmart free!*`;
 
