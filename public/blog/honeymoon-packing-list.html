@@ -308,12 +308,76 @@
         .cta-box a:hover {
             opacity: 0.9;
         }
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 2rem;
-            text-align: center;
-            margin-top: 3rem;
+        .footer {
+            padding: 60px 2rem 40px;
+            background: rgba(248,249,250,0.75);
+            border-top: 1px solid #eee;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+        .footer-brand-col .footer-logo {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: #333;
+            margin-bottom: 0.8rem;
+        }
+        .footer-brand-col .footer-logo em {
+            font-style: normal;
+            color: #00C9A7;
+        }
+        .footer-brand-col p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.6;
+            max-width: 280px;
+        }
+        .footer-col h4 {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #666;
+            margin-bottom: 1.2rem;
+        }
+        .footer-col a {
+            display: block;
+            font-size: 0.88rem;
+            color: #999;
+            text-decoration: none;
+            margin-bottom: 0.7rem;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: #00C9A7;
+        }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 3rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-bottom span {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        @media (max-width: 768px) {
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
         }
         .related-posts {
             max-width: 800px;
@@ -756,9 +820,21 @@
     <script>function nlSub(e){e.preventDefault();var b=document.getElementById('nlBtn'),m=document.getElementById('nlMsg'),em=document.getElementById('nlEmail');b.textContent='Subscribing...';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value})}).then(r=>r.json()).then(d=>{if(d.success){m.style.display='block';m.style.color='#00C9A7';m.textContent='You\'re subscribed! We\'ll send you our latest guides.';em.value='';document.getElementById('nlNote').style.display='none';}else{m.style.display='block';m.style.color='#E94560';m.textContent=d.error||'Something went wrong. Please try again.';}b.textContent='Subscribe Free';b.disabled=false;}).catch(()=>{m.style.display='block';m.style.color='#E94560';m.textContent='Something went wrong. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});return false;}</script>
 </div>
 
-<footer>
-        <p>&copy; 2026 PackSmart. All rights reserved. | <a href="https://www.packsmartapp.com" style="color: white; text-decoration: none;">Home</a> | <a href="https://www.packsmartapp.com/blog" style="color: white; text-decoration: none;">Blog</a></p>
-    </footer>
+<footer class="footer">
+    <div class="footer-inner">
+        <div class="footer-brand-col">
+            <div class="footer-logo">Pack<em>Smart</em></div>
+            <p>AI-powered travel preparation. Get personalized packing lists, visa info, and local tips for any destination in the world.</p>
+        </div>
+        <div class="footer-col"><h4>Product</h4><a href="/#how">How It Works</a><a href="/#features">Features</a><a href="/#plan">Plan a Trip</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="/about.html">About</a><a href="/flights.html">Flights &amp; Hotels</a><a href="/blog.html">Blog</a><a href="/pricing.html">Pricing</a><a href="/contact.html">Contact</a></div>
+        <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div>
+    </div>
+    <div class="footer-bottom">
+        <span>&copy; 2026 PackSmart. All rights reserved.</span>
+        <span>Made with AI, for travelers.</span>
+    </div>
+</footer>
 <script>
 const nav = document.getElementById('nav');
 window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
