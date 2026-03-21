@@ -1119,10 +1119,10 @@ function nlSubTop(e){
                     </div>
                     <div class="field"><label>Your Currency</label>
                         <select id="currency">
-                            <option value="USD">USD — US Dollar</option>
+                            <option value="USD" selected>USD — US Dollar</option>
                             <option value="EUR">EUR — Euro</option>
                             <option value="GBP">GBP — British Pound</option>
-                            <option value="INR" selected>INR — Indian Rupee</option>
+                            <option value="INR">INR — Indian Rupee</option>
                             <option value="AUD">AUD — Australian Dollar</option>
                             <option value="CAD">CAD — Canadian Dollar</option>
                             <option value="JPY">JPY — Japanese Yen</option>
@@ -1275,6 +1275,39 @@ function nlSubHome(e){
     }).catch(()=>{m.style.display='block';m.style.color='var(--accent)';m.textContent='Network error. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});
     return false;
 }
+</script>
+
+<script>
+// ===== AUTO-DETECT CURRENCY FROM TIMEZONE =====
+(function() {
+    try {
+        var tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '';
+        var map = {
+            'America/New_York':'USD','America/Chicago':'USD','America/Denver':'USD',
+            'America/Los_Angeles':'USD','America/Phoenix':'USD','America/Anchorage':'USD',
+            'Pacific/Honolulu':'USD','America/Toronto':'CAD','America/Vancouver':'CAD',
+            'America/Edmonton':'CAD','America/Winnipeg':'CAD','America/Halifax':'CAD',
+            'Europe/London':'GBP','Europe/Paris':'EUR','Europe/Berlin':'EUR',
+            'Europe/Rome':'EUR','Europe/Madrid':'EUR','Europe/Amsterdam':'EUR',
+            'Europe/Brussels':'EUR','Europe/Vienna':'EUR','Europe/Dublin':'EUR',
+            'Europe/Lisbon':'EUR','Europe/Helsinki':'EUR','Europe/Athens':'EUR',
+            'Australia/Sydney':'AUD','Australia/Melbourne':'AUD','Australia/Brisbane':'AUD',
+            'Australia/Perth':'AUD','Australia/Adelaide':'AUD',
+            'Asia/Kolkata':'INR','Asia/Calcutta':'INR',
+            'Asia/Tokyo':'JPY','Asia/Singapore':'SGD','Asia/Dubai':'AED',
+            'Europe/Zurich':'CHF','Asia/Shanghai':'CNY','Asia/Hong_Kong':'CNY',
+            'America/Sao_Paulo':'BRL','Africa/Johannesburg':'ZAR',
+            'America/Mexico_City':'MXN','Asia/Bangkok':'THB','Asia/Seoul':'KRW'
+        };
+        var currency = map[tz] || 'USD';
+        var sel = document.getElementById('currency');
+        if (sel) {
+            for (var i = 0; i < sel.options.length; i++) {
+                sel.options[i].selected = (sel.options[i].value === currency);
+            }
+        }
+    } catch(e) {}
+})();
 </script>
 
 <!-- FOOTER -->
