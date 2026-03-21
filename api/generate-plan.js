@@ -245,6 +245,10 @@ Medical emergencies abroad can cost thousands. Get covered from $1.50/day.
 Skip the line tickets, guided tours, and unique local experiences.
 [👉 Browse Activities on GetYourGuide](https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn) — Best price guaranteed
 
+**🎟️ Tours, Tickets & Activities in Asia**
+Book discounted attraction tickets, day trips, and experiences across Southeast Asia.
+[👉 Browse on Klook](https://affiliate.klook.com/redirect?aid=116473&aff_adid=1241039&k_site=https%3A%2F%2Fwww.klook.com) — Up to 50% off activities
+
 **🚐 Airport Transfers — Skip the Taxi Queue**
 Pre-book reliable airport pickups in 350+ destinations worldwide.
 [👉 Book on Welcome Pickups](https://tp.media/r?marker=711400&trs=508747&p=8919&u=https%3A%2F%2Fwelcomepickups.com&campaign_id=627) — Trusted drivers, fixed prices
