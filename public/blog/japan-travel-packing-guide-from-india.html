@@ -129,13 +129,78 @@
 
         /* Navigation */
         .nav {
-            background: white;
-            border-bottom: 1px solid var(--border);
-            padding: 1rem 0;
-            position: sticky;
-            top: 0;
+            position: fixed;
+            top: 0; left: 0; right: 0;
             z-index: 100;
+            padding: 0 3rem;
+            height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: transparent;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        .nav.scrolled {
+            background: rgba(253,240,242,0.88);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border-bottom: 1px solid #eee;
+        }
+        .nav-brand {
+            font-family: 'DM Sans', sans-serif;
+            font-weight: 800;
+            font-size: 1.2rem;
+            color: #333;
+            text-decoration: none;
+            letter-spacing: -0.3px;
+        }
+        .nav-brand em { font-style: normal; color: #00C9A7; }
+        .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+        .nav-links a {
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.2s;
+            position: relative;
+        }
+        .nav-links a:hover { color: #00C9A7; }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px; left: 0; right: 0;
+            height: 1.5px;
+            background: #00C9A7;
+            transform: scaleX(0);
+            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .nav-links a:hover::after { transform: scaleX(1); }
+        .nav-cta-btn {
+            font-size: 0.85rem !important;
+            font-weight: 600 !important;
+            color: #fff !important;
+            background: #00C9A7;
+            padding: 9px 22px;
+            border-radius: 50px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+        }
+        .nav-cta-btn::after { display: none !important; }
+        .nav-cta-btn:hover {
+            background: #00b396 !important;
+            transform: translateY(-1px);
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none; border: none; cursor: pointer;
+            width: 32px; height: 32px; position: relative;
+        }
+        .mobile-menu-btn span {
+            position: absolute; left: 4px; width: 24px; height: 1.5px;
+            background: #333; border-radius: 2px; transition: 0.3s;
+        }
+        .mobile-menu-btn span:nth-child(1) { top: 10px; }
+        .mobile-menu-btn span:nth-child(2) { top: 16px; }
+        .mobile-menu-btn span:nth-child(3) { top: 22px; }
 
         .nav-container {
             max-width: 900px;
@@ -173,9 +238,9 @@
         .hero-blog {
             background: linear-gradient(135deg, var(--primary), #009d7f);
             color: white;
-            padding: 4rem 2rem;
+            padding: 140px 2rem;
             text-align: center;
-        }
+        margin-top: 72px; }
 
         .hero-blog h1 {
             font-size: 2.5rem;
@@ -474,6 +539,23 @@
     .share-btn.linkedin { background: #0A66C2; }
     .share-btn.copy-link { background: #6C757D; cursor: pointer; border: none; font-family: inherit; }
 
+
+    @media (max-width: 600px) {
+        .nav { padding: 0 1.5rem; }
+        .nav-links { display: none; }
+        .nav-links.open {
+            display: flex;
+            flex-direction: column;
+            position: fixed;
+            top: 72px; left: 0; right: 0;
+            background: rgba(255,255,255,0.98);
+            backdrop-filter: blur(20px);
+            padding: 2rem;
+            gap: 1.5rem;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+        }
+        .mobile-menu-btn { display: block; }
+    }
 </style>
 
 <script type="application/ld+json">
@@ -482,17 +564,22 @@
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="nav">
-        <div class="nav-container">
-            <a href="/" class="nav-logo">PackSmart</a>
-            <ul class="nav-links">
-                <li><a href="/">Home</a></li>
-                <li><a href="../flights.html">Flights & Hotels</a></li>
-                <li><a href="/blog">Blog</a></li>
-                <li><a href="/#plan">Plan Trip</a></li>
-            </ul>
-        </div>
-    </nav>
+    <nav class="nav" id="nav">
+    <a href="/" class="nav-brand">Pack<em>Smart</em></a>
+    <div class="nav-links" id="navLinks">
+        <a href="/#how">How It Works</a>
+        <a href="/#features">Features</a>
+        <a href="/about.html">About</a>
+        <a href="/flights.html">Flights & Hotels</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
+        <a href="/#plan" class="nav-cta-btn">Plan My Trip</a>
+    </div>
+    <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
 
     <!-- Hero Section -->
     <div class="hero-blog">
@@ -898,5 +985,13 @@
         <p>&copy; 2026 PackSmart. All rights reserved. | <a href="/privacy">Privacy Policy</a> | <a href="/terms">Terms of Service</a></p>
         <p style="margin-top: 1rem; opacity: 0.8;">Made for Indian travelers, by Indian travelers.</p>
     </footer>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+const menuBtn = document.getElementById('menuBtn');
+menuBtn.addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+</script>
+
 </body>
 </html>
