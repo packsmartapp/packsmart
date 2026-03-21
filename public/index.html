@@ -92,6 +92,9 @@
             position: relative;
         }
 
+        /* Hide empty Travelpayouts Drive history widget */
+        #ps-history { display: none !important; }
+
         /* ===== ANIMATED GRADIENT MESH BACKGROUND ===== */
         .mesh-bg {
             position: fixed;
@@ -800,7 +803,7 @@
 
         /* ===== FOOTER ===== */
         .footer {
-            padding: 60px 2rem 40px;
+            padding: 50px 2rem 40px;
             background: rgba(248,249,250,0.75);
             border-top: 1px solid var(--border);
             backdrop-filter: blur(1px);
@@ -1245,7 +1248,7 @@ function nlSubTop(e){
 </section>
 
 <!-- NEWSLETTER SIGNUP -->
-<section class="reveal" style="position:relative;z-index:1;padding:40px 2rem 50px;">
+<section class="reveal" style="position:relative;z-index:1;padding:30px 2rem 0;">
     <div style="max-width:600px;margin:0 auto;text-align:center;">
         <div style="background:linear-gradient(135deg, #FFF0F3, #FFE0E6, #FFF5F7);border:1px solid rgba(233,69,96,0.15);border-radius:24px;padding:3rem 2.5rem;position:relative;overflow:hidden;">
             <div style="position:absolute;top:-1px;left:80px;right:80px;height:3px;background:linear-gradient(90deg,var(--accent),var(--action),var(--accent));border-radius:0 0 4px 4px;"></div>
