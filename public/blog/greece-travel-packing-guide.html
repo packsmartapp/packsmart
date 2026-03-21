@@ -332,37 +332,11 @@
             font-weight: 600;
         }
         .budget-breakdown tr:hover { background: #e8f5f2; }
-        .share-row {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin: 30px 0;
-            padding: 20px;
-            background: #f5f5f5;
-            border-radius: 8px;
-            font-weight: 500;
-        }
-        .share-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            color: white;
-            text-decoration: none;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        .share-btn.whatsapp { background: #25D366; }
-        .share-btn.whatsapp:hover { background: #1FAA51; transform: scale(1.1); }
-        .share-btn.twitter { background: #1DA1F2; }
-        .share-btn.twitter:hover { background: #1a91da; transform: scale(1.1); }
-        .share-btn.facebook { background: #1877F2; }
-        .share-btn.facebook:hover { background: #0a66c2; transform: scale(1.1); }
-        .share-btn.email { background: #666; }
-        .share-btn.email:hover { background: #444; transform: scale(1.1); }
-        .share-btn svg { width: 18px; height: 18px; }
+    .share-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0; }
+    .share-row span { font-size: 0.85rem; color: #999; font-weight: 500; }
+    .share-btn { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 8px; border: 1px solid #E9ECEF; background: #fff; text-decoration: none; color: #555; transition: all 0.2s; }
+    .share-btn:hover { border-color: #ccc; color: #333; background: #f8f9fa; }
+    .share-btn.copy-link { width: auto; padding: 0 12px; gap: 4px; font-size: 0.8rem; font-weight: 500; cursor: pointer; font-family: inherit; }
         .tip-box {
             background: #fff3cd;
             border-left: 4px solid #ffc107;
