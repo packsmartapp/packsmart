@@ -31,25 +31,26 @@
     <link rel="canonical" href="https://www.packsmartapp.com/blog/first-time-flying.html">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
-    <style>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
         :root {
-            --action: #00C9A7;
-            --action-hover: #00B396;
-            --bg: #FDF0F2;
-            --bg-card: #F8F9FA;
-            --bg-white: #FFFFFF;
-            --border: #E9ECEF;
-            --teal-tint: #F0FAF7;
-            --text: #212529;
-            --text-secondary: #6C757D;
-            --font-body: 'Plus Jakarta Sans', sans-serif;
-            --font-display: 'Instrument Serif', serif;
+            --primary: #00C9A7;
+            --accent: #E94560;
+            --dark: #0f0f23;
+            --light-gray: #f5f5f5;
+            --text: #333;
         }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: var(--font-body); background: var(--bg); color: var(--text); line-height: 1.7; }
-
-        /* NAV */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'DM Sans', sans-serif;
+            line-height: 1.6;
+            color: var(--text);
+            background: #fff;
+        }
         .nav {
             position: fixed;
             top: 0; left: 0; right: 0;
@@ -123,78 +124,274 @@
         .mobile-menu-btn span:nth-child(1) { top: 10px; }
         .mobile-menu-btn span:nth-child(2) { top: 16px; }
         .mobile-menu-btn span:nth-child(3) { top: 22px; }
-        .nav-brand { font-family: var(--font-body); font-weight: 800; font-size: 1.3rem; color: var(--text); text-decoration: none; }
-        .nav-brand em { color: var(--action); font-style: normal; }
-        .nav-links { display: flex; gap: 1.5rem; align-items: center; }
-        .nav-links a { text-decoration: none; color: var(--text-secondary); font-size: 0.9rem; font-weight: 500; transition: color 0.2s; }
-        .nav-links a:hover { color: var(--action); }
-        .nav-cta-btn { background: var(--action); color: #fff !important; padding: 0.5rem 1.2rem; border-radius: 8px; }
-        .nav-cta-btn:hover { background: var(--action-hover); }
-
-        /* ARTICLE */
-        .article-wrapper { max-width: 780px; margin: 0 auto; padding: 140px 1.5rem 4rem; margin-top: 0; }
-        .article-meta { margin-bottom: 2rem; }
-        .article-meta .tag { display: inline-block; background: var(--teal-tint); color: var(--action); font-size: 0.8rem; font-weight: 600; padding: 0.3rem 0.8rem; border-radius: 20px; margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.5px; }
-        .article-meta h1 { font-family: var(--font-display); font-size: 2.8rem; line-height: 1.15; margin-bottom: 1rem; color: var(--text); }
-        .article-meta .subtitle { font-size: 1.15rem; color: var(--text-secondary); line-height: 1.6; }
-        .article-meta .byline { margin-top: 1.5rem; font-size: 0.85rem; color: var(--text-secondary); padding-top: 1rem; border-top: 1px solid var(--border); }
-
-        .article-body h2 { font-size: 1.6rem; margin: 2.5rem 0 1rem; color: var(--text); }
-        .article-body h3 { font-size: 1.25rem; margin: 2rem 0 0.8rem; color: var(--text); }
-        .article-body p { margin-bottom: 1.2rem; font-size: 1.05rem; }
-        .article-body ul, .article-body ol { margin: 0 0 1.5rem 1.5rem; }
-        .article-body li { margin-bottom: 0.5rem; font-size: 1.05rem; }
-        .article-body strong { color: var(--text); }
-
-        .tip-box { background: var(--teal-tint); border-left: 4px solid var(--action); padding: 1.2rem 1.5rem; border-radius: 0 10px 10px 0; margin: 1.5rem 0; }
-        .tip-box strong { color: var(--action); }
-
-        .warning-box { background: #FFF3F4; border-left: 4px solid #E94560; padding: 1.2rem 1.5rem; border-radius: 0 10px 10px 0; margin: 1.5rem 0; }
-        .warning-box strong { color: #E94560; }
-
-        .checklist { list-style: none; margin-left: 0; padding: 0; }
-        .checklist li { padding: 0.5rem 0; padding-left: 1.8rem; position: relative; border-bottom: 1px solid var(--border); }
-        .checklist li:before { content: "\2610"; position: absolute; left: 0; color: var(--action); font-size: 1.2rem; }
-
-        /* CTA BOX */
-        .cta-box { background: linear-gradient(135deg, var(--action), var(--action-hover)); padding: 2.5rem; border-radius: 16px; text-align: center; margin: 3rem 0; }
-        .cta-box h3 { color: #fff; font-size: 1.5rem; margin-bottom: 0.5rem; }
-        .cta-box p { color: rgba(255,255,255,0.9); margin-bottom: 1.5rem; font-size: 1.05rem; }
-        .cta-box a { display: inline-block; background: #fff; color: var(--action); font-weight: 700; padding: 0.8rem 2rem; border-radius: 10px; text-decoration: none; font-size: 1rem; transition: transform 0.2s, box-shadow 0.2s; }
-        .cta-box a:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.15); }
-
-        /* TOC */
-        .toc { background: var(--bg-white); border: 1px solid var(--border); border-radius: 12px; padding: 1.5rem 2rem; margin: 2rem 0; }
-        .toc h4 { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-secondary); margin-bottom: 0.8rem; }
-        .toc ol { margin: 0; padding-left: 1.2rem; }
-        .toc li { margin-bottom: 0.4rem; }
-        .toc a { color: var(--action); text-decoration: none; font-size: 0.95rem; }
-        .toc a:hover { text-decoration: underline; }
-
-        /* FOOTER */
-        .footer { background: var(--bg-white); border-top: 1px solid var(--border); padding: 2rem; text-align: center; margin-top: 3rem; }
-        .footer a { color: var(--action); text-decoration: none; }
-        .footer p { color: var(--text-secondary); font-size: 0.85rem; }
-
-        /* MOBILE */
-        .mobile-menu-btn { display: none; background: none; border: none; cursor: pointer; flex-direction: column; gap: 5px; }
-        .mobile-menu-btn span { display: block; width: 22px; height: 2px; background: var(--text); border-radius: 2px; }
-        @media (max-width: 768px) {
-            .nav-links { display: none; position: absolute; top: 100%; left: 0; right: 0; background: #fff; flex-direction: column; padding: 1rem; border-bottom: 1px solid var(--border); }
-            .nav-links.open { display: flex; }
-            .mobile-menu-btn { display: flex; }
-            .article-meta h1 { font-size: 2rem; }
-            .article-wrapper { padding: 5rem 1rem 3rem; }
+        .hero-blog {
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
+            color: white;
+            padding: 140px 2rem;
+            text-align: center;
+        margin-top: 72px; }
+        .hero-blog h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            line-height: 1.2;
         }
-    
-    .related-posts { margin: 60px 0 40px; padding: 40px 0; border-top: 2px solid #f0f0f0; }
-    .related-posts h3 { font-size: 1.4rem; margin-bottom: 20px; color: #0f0f23; }
-    .related-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 16px; }
-    .related-card { display: flex; flex-direction: column; padding: 20px; border: 1px solid #e9ecef; border-radius: 12px; text-decoration: none; color: inherit; transition: all 0.2s; background: #f8f9fa; }
-    .related-card:hover { border-color: #00C9A7; box-shadow: 0 4px 12px rgba(0,201,167,0.12); transform: translateY(-2px); }
-    .related-card h4 { font-size: 1rem; color: #0f0f23; margin: 8px 0; line-height: 1.4; flex: 1; }
-    .related-tag { display: inline-block; background: #e0f5f0; color: #00a88a; padding: 2px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 600; width: fit-content; }
-    .related-arrow { color: #00C9A7; font-weight: 600; font-size: 0.9rem; }
+        .hero-blog .meta {
+            font-size: 0.9rem;
+            opacity: 0.95;
+            margin-bottom: 0.5rem;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+        .content h2 {
+            color: var(--dark);
+            font-size: 1.8rem;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
+        }
+        .content h3 {
+            color: var(--dark);
+            font-size: 1.2rem;
+            margin-top: 1.5rem;
+            margin-bottom: 0.7rem;
+        }
+        .content p {
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        .content ul {
+            margin-left: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .content li {
+            margin-bottom: 0.6rem;
+        }
+        .tip-box {
+            background: #f0fef9;
+            border-left: 4px solid var(--primary);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        .tip-box strong {
+            color: var(--primary);
+        }
+        .warning-box {
+            background: #fff5f5;
+            border-left: 4px solid var(--accent);
+            padding: 1.5rem;
+            margin: 1.5rem 0;
+            border-radius: 4px;
+        }
+        .warning-box strong {
+            color: var(--accent);
+        }
+        .checklist-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: white;
+            border: 1px solid #ddd;
+        }
+        .checklist-table th {
+            background: var(--primary);
+            color: white;
+            padding: 1rem;
+            text-align: left;
+            font-weight: 600;
+        }
+        .checklist-table td {
+            padding: 0.8rem 1rem;
+            border-bottom: 1px solid #eee;
+        }
+        .checklist-table tr:hover {
+            background: var(--light-gray);
+        }
+        .weather-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 1.5rem 0;
+        }
+        .weather-card {
+            background: var(--light-gray);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-top: 3px solid var(--primary);
+        }
+        .weather-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
+        }
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #00a080 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .cta-box a {
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+        .cta-box a:hover {
+            opacity: 0.9;
+        }
+        .footer {
+            padding: 60px 2rem 40px;
+            background: rgba(248,249,250,0.75);
+            border-top: 1px solid #eee;
+        }
+        .footer-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
+        }
+        .footer-brand-col .footer-logo {
+            font-weight: 800;
+            font-size: 1.15rem;
+            color: #333;
+            margin-bottom: 0.8rem;
+        }
+        .footer-brand-col .footer-logo em {
+            font-style: normal;
+            color: #00C9A7;
+        }
+        .footer-brand-col p {
+            font-size: 0.85rem;
+            color: #666;
+            line-height: 1.6;
+            max-width: 280px;
+        }
+        .footer-col h4 {
+            font-size: 0.78rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            color: #666;
+            margin-bottom: 1.2rem;
+        }
+        .footer-col a {
+            display: block;
+            font-size: 0.88rem;
+            color: #999;
+            text-decoration: none;
+            margin-bottom: 0.7rem;
+            transition: color 0.2s;
+        }
+        .footer-col a:hover {
+            color: #00C9A7;
+        }
+        .footer-bottom {
+            max-width: 1100px;
+            margin: 3rem auto 0;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .footer-bottom span {
+            font-size: 0.8rem;
+            color: #999;
+        }
+        @media (max-width: 768px) {
+            .footer-inner {
+                grid-template-columns: 1fr 1fr;
+                gap: 2rem;
+            }
+            .footer-bottom {
+                flex-direction: column;
+                gap: 0.5rem;
+                text-align: center;
+            }
+        }
+        .related-posts {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        .related-posts h3 {
+            color: var(--dark);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .related-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .related-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .related-card-body {
+            padding: 1.5rem;
+        }
+        .related-card h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .related-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .related-card a:hover {
+            text-decoration: underline;
+        }
+        .related-tag {
+            display: inline-block;
+            background: var(--light-gray);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+        .related-arrow {
+            color: var(--accent);
+            margin-left: 0.5rem;
+        }
+        @media (max-width: 768px) {
+            .hero-blog h1 {
+                font-size: 1.8rem;
+            }
+            .content {
+                padding: 2rem 1rem;
+            }
+            .content h2 {
+                font-size: 1.5rem;
+            }
+            .nav {
+                padding: 1rem;
+            }
+        }
 
     /* Social Sharing */
     .share-bar { display: flex; align-items: center; gap: 10px; margin: 30px 0; padding: 20px 0; border-top: 1px solid #eee; border-bottom: 1px solid #eee; flex-wrap: wrap; }
@@ -221,6 +418,21 @@
         }
         .mobile-menu-btn { display: block; }
     }
+
+    /* Checklist styles */
+    .checklist { list-style: none; padding-left: 0; margin-bottom: 1.5rem; }
+    .checklist li { position: relative; padding: 0.6rem 0 0.6rem 2.2rem; border-bottom: 1px solid #f0f0f0; font-size: 0.98rem; }
+    .checklist li::before { content: ""; position: absolute; left: 0; top: 50%; transform: translateY(-50%); width: 18px; height: 18px; border: 2px solid #00C9A7; border-radius: 4px; background: #fff; }
+    /* TOC styles */
+    .toc { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 12px; padding: 1.5rem 2rem; margin-bottom: 2rem; }
+    .toc-title { font-weight: 700; font-size: 1rem; margin-bottom: 0.8rem; color: #0f0f23; }
+    .toc ol { padding-left: 1.2rem; }
+    .toc li { margin-bottom: 0.4rem; font-size: 0.92rem; }
+    .toc a { color: #00C9A7; text-decoration: none; font-weight: 500; }
+    .toc a:hover { text-decoration: underline; }
+    /* Category card */
+    .category-card { background: #f8f9fa; border: 1px solid #e9ecef; border-radius: 14px; padding: 1.8rem; margin-bottom: 1.5rem; }
+    .category-card h3 { margin-top: 0; font-size: 1.15rem; }
 </style>
 <script type="application/ld+json">
 {"@context":"https://schema.org","@type":"Article","headline":"First Time Flying Tips","url":"https://www.packsmartapp.com/blog/first-time-flying.html","description":"Complete guide for first-time flyers.","datePublished":"2026-02-24","author":{"@type":"Organization","name":"PackSmart"},"publisher":{"@type":"Organization","name":"PackSmart","url":"https://www.packsmartapp.com"}}
@@ -253,8 +465,7 @@
 </script>
 </head>
 <body>
-
-<nav class="nav" id="nav">
+    <nav class="nav" id="nav">
     <a href="/" class="nav-brand">Pack<em>Smart</em></a>
     <div class="nav-links" id="navLinks">
         <a href="/flights.html">Flights & Hotels</a>
@@ -268,23 +479,22 @@
     </button>
 </nav>
 
-<article class="article-wrapper">
-    <div class="article-meta">
-        <span class="tag">Travel Guide</span>
+    <div class="hero-blog">
         <h1>First Time Flying? Everything You Need to Know</h1>
-        <div class="share-row">
-    <span>Share this guide &#x2728;</span>
-    <a class="share-btn whatsapp" href="https://wa.me/?text=First%20Time%20Flying%3F%20Everything%20You%20Need%20to%20Know%20%282026%20Guide%29%20https%3A//www.packsmartapp.com/blog/first-time-flying" target="_blank" rel="noopener" title="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
-    <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=First%20Time%20Flying%3F%20Everything%20You%20Need%20to%20Know%20%282026%20Guide%29&url=https%3A//www.packsmartapp.com/blog/first-time-flying" target="_blank" rel="noopener" title="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-    <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.packsmartapp.com/blog/first-time-flying" target="_blank" rel="noopener" title="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
-    <a class="share-btn linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//www.packsmartapp.com/blog/first-time-flying" target="_blank" rel="noopener" title="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
-    <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/first-time-flying').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
-</div>
-<p class="subtitle">A complete step-by-step guide for first-time flyers — from booking your ticket to collecting your bags. No jargon, no stress, just everything you need to feel confident at 30,000 feet.</p>
-        <p class="byline">By the PackSmart Team &middot; February 25, 2026 &middot; 12 min read</p>
+        <div class="meta">2026</div>
+        <div class="meta">Travel Guide</div>
     </div>
 
-    <div class="toc">
+    <div class="content">
+<div class="share-row">
+    <span>Share this guide &#x2728;</span>
+    <a class="share-btn whatsapp" href="https://wa.me/?text=First%20Time%20Flying%3F%20Everything%20You%20Need%20to%20Know%20%282026%20Guide%29%20https%3A//www.packsmartapp.com/blog/first-time-flying.html" target="_blank" rel="noopener" title="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+    <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=First%20Time%20Flying%3F%20Everything%20You%20Need%20to%20Know%20%282026%20Guide%29&url=https%3A//www.packsmartapp.com/blog/first-time-flying.html" target="_blank" rel="noopener" title="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.packsmartapp.com/blog/first-time-flying.html" target="_blank" rel="noopener" title="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+    <a class="share-btn linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//www.packsmartapp.com/blog/first-time-flying.html" target="_blank" rel="noopener" title="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+    <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/first-time-flying.html').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
+</div>
+<div class="toc">
         <h4>In This Guide</h4>
         <ol>
             <li><a href="#before">Before You Go: Booking & Documents</a></li>
@@ -566,57 +776,233 @@
                 <strong style="font-size:0.9rem;">Saily eSIM</strong>
                 <div style="font-size:0.78rem;color:#6C757D;">eSIM data in 200+ countries</div>
             </div>
-        </a>
-        <a href="https://safetywing.com/?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-            <span style="font-size:1.5rem;">🛡️</span>
-            <div>
-                <strong style="font-size:0.9rem;">SafetyWing Insurance</strong>
-                <div style="font-size:0.78rem;color:#6C757D;">Travel medical from $1.50/day</div>
-            </div>
-        </a>
-        
-        <a href="https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-            <span style="font-size:1.5rem;">🎯</span>
-            <div>
-                <strong style="font-size:0.9rem;">GetYourGuide</strong>
-                <div style="font-size:0.78rem;color:#6C757D;">Skip-the-line tours & activities</div>
-            </div>
-        </a>
-        <a href="https://tp.media/r?marker=711400&trs=508747&p=8919&u=https%3A%2F%2Fwelcomepickups.com&campaign_id=627" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-            <span style="font-size:1.5rem;">🚐</span>
-            <div>
-                <strong style="font-size:0.9rem;">Welcome Pickups</strong>
-                <div style="font-size:0.78rem;color:#6C757D;">Airport transfers in 350+ cities</div>
-            </div>
-        </a>
+<p>Flying for the first time is a milestone — exciting, a little nerve-wracking, and full of questions. <em>What happens at security? Can I bring my water bottle? What's that weird noise during takeoff?</em></p>
+
+        <p>Whether you're heading to your first vacation, a study abroad program, or a business trip, this guide walks you through every single step so there are zero surprises. By the end, you'll feel like a seasoned traveler before you've even left the ground.</p>
+
+        <h2 id="before">1. Before You Go: Booking & Documents</h2>
+
+        <h3>Booking Your Ticket</h3>
+        <ul>
+            <li><strong>Book directly with the airline</strong> whenever possible — it's easier to change or cancel, and you'll get better customer support if something goes wrong.</li>
+            <li><strong>Double-check your name</strong> on the ticket. It must match your passport or government ID exactly. Even a small typo can cause problems at check-in.</li>
+            <li><strong>Direct vs. connecting flights:</strong> For your first flight, a direct (non-stop) flight is much less stressful. You skip the hassle of changing planes and navigating a second airport.</li>
+            <li><strong>Seat selection tip:</strong> Window seat for the views and something to lean on. Aisle seat for legroom and easy bathroom access. Middle seat... avoid if you can.</li>
+        </ul>
+
+        <h3>Documents You Need</h3>
+        <ul>
+            <li><strong>Domestic flights:</strong> Government-issued photo ID (driver's license, Aadhaar card, or passport)</li>
+            <li><strong>International flights:</strong> Valid passport (check expiry — many countries require 6 months validity), visa if required, and travel insurance documents</li>
+            <li><strong>Boarding pass:</strong> Check in online 24-48 hours before your flight. Save your boarding pass on your phone or print it.</li>
+            <li><strong>Pro tip:</strong> Take photos of all your documents and email them to yourself as backup.</li>
+        </ul>
+
+        <div class="tip-box">
+            <strong>PackSmart Tip:</strong> Not sure about visa requirements, travel adapters, or what to pack for your destination? <a href="/#plan" style="color:var(--action);font-weight:600;">Generate a free travel plan</a> and get everything in 30 seconds.
         </div>
 
-    <div style="text-align:center;margin-top:16px;">
-        <a href="/pricing.html" style="color:#00C9A7;font-weight:600;font-size:0.85rem;text-decoration:none;">✨ Want ad-free plans? Try PackSmart Pro →</a>
+        <h2 id="packing">2. What to Pack (Carry-On vs Checked)</h2>
+
+        <p>Understanding luggage rules before your first flight saves a lot of stress at the airport. Here's the breakdown:</p>
+
+        <h3>Checked Luggage (Goes Under the Plane)</h3>
+        <ul>
+            <li>Typically one bag up to 15-23 kg (varies by airline — check before you pack)</li>
+            <li>No size restrictions on liquids</li>
+            <li>Cannot be accessed during the flight</li>
+            <li>May cost extra on budget airlines (book baggage when you buy the ticket — it's cheaper than at the airport)</li>
+        </ul>
+
+        <h3>Carry-On Bag (Goes in Overhead Bin)</h3>
+        <ul>
+            <li>Usually one bag, max 7-10 kg</li>
+            <li><strong>Liquids rule:</strong> All liquids must be in containers of 100ml or less, packed in a single clear zip-lock bag (approximately 1 litre)</li>
+            <li>Laptops and tablets must be easily accessible (you'll need to remove them at security)</li>
+            <li>No sharp objects (scissors, pocket knives) — these go in checked luggage</li>
+        </ul>
+
+        <h3>Personal Item (Goes Under Seat in Front of You)</h3>
+        <ul>
+            <li>A small backpack, purse, or laptop bag</li>
+            <li>Keep essentials here: phone, wallet, passport, earphones, snacks, charger</li>
+        </ul>
+
+        <div class="warning-box">
+            <strong>Important:</strong> Power banks must always go in your carry-on, never in checked luggage. Most airlines have a limit of 20,000-27,000 mAh. Check your airline's specific rules.
+        </div>
+
+        <h3>What to Wear</h3>
+        <p>Comfort is king. Wear layers (planes can be cold), slip-on shoes (faster through security), and avoid excessive metal jewellery (it triggers the scanner). Compression socks are a great idea for flights longer than 4 hours.</p>
+
+        <h2 id="airport">3. At the Airport: Step-by-Step</h2>
+
+        <h3>When to Arrive</h3>
+        <ul>
+            <li><strong>Domestic flights:</strong> 1.5 to 2 hours before departure</li>
+            <li><strong>International flights:</strong> 2.5 to 3 hours before departure</li>
+        </ul>
+        <p>This sounds like a lot, but check-in queues, security lines, and finding your gate all take time — especially in busy airports.</p>
+
+        <h3>Step 1: Check-In & Bag Drop</h3>
+        <p>If you checked in online (recommended), head straight to the <strong>bag drop counter</strong> to hand over your checked luggage. If not, join the check-in queue for your airline. You'll show your ID/passport and receive a boarding pass. Your checked bags will be tagged with your destination — keep the luggage receipt they give you.</p>
+
+        <h3>Step 2: Security Screening</h3>
+        <p>This is the part that intimidates most first-timers, but it's straightforward once you know what to expect:</p>
+        <ol>
+            <li>Have your boarding pass and ID ready</li>
+            <li>Place your bag on the conveyor belt for X-ray scanning</li>
+            <li>Remove laptops, tablets, and your clear liquids bag — place them in separate trays</li>
+            <li>Remove belts, jackets, and watches if asked</li>
+            <li>Walk through the metal detector or body scanner</li>
+            <li>Collect your belongings on the other side</li>
+        </ol>
+        <p>Stay calm, follow instructions, and don't worry about holding up the line — everyone was a first-timer once.</p>
+
+        <h3>Step 3: Find Your Gate</h3>
+        <p>After security, you're in the departure area. Check the <strong>departure screens</strong> for your flight number — it will show your gate number and boarding time. Gates can change, so keep checking. Head to your gate and relax — grab a coffee, browse duty-free, or charge your devices.</p>
+
+        <div class="tip-box">
+            <strong>Pro Tip:</strong> Download your airline's app before the trip. It shows real-time gate changes, delays, and boarding updates right on your phone.
+        </div>
+
+        <h2 id="boarding">4. Boarding the Plane</h2>
+
+        <p>Boarding usually starts 30-45 minutes before departure. Here's what happens:</p>
+        <ol>
+            <li><strong>Listen for your boarding group</strong> — it's printed on your boarding pass (Group 1, Zone A, etc.). Airlines board in sections, not all at once.</li>
+            <li><strong>Queue up when your group is called</strong> — have your boarding pass and ID ready to scan.</li>
+            <li><strong>Walk down the jet bridge</strong> (the tunnel connecting the airport to the plane) and enter the aircraft.</li>
+            <li><strong>Find your seat</strong> — numbers are on the overhead bins (Row 23, Seat B means row 23, middle column).</li>
+            <li><strong>Stow your carry-on</strong> in the overhead bin directly above your seat. Personal item goes under the seat in front of you.</li>
+            <li><strong>Sit down, buckle up</strong>, and switch your phone to airplane mode.</li>
+        </ol>
+
+        <p>The cabin crew will demonstrate safety procedures before takeoff. Even if others aren't paying attention, watch it — it's genuinely useful to know where emergency exits and life jackets are.</p>
+
+        <h2 id="during">5. During the Flight</h2>
+
+        <h3>Takeoff</h3>
+        <p>The plane will taxi (drive slowly) to the runway, which can take 5-20 minutes. Then the engines rev up, you accelerate, and you'll feel the plane lift off. The climb lasts about 10-15 minutes, during which you may feel pressure in your ears. Chewing gum, yawning, or swallowing helps equalize the pressure.</p>
+
+        <h3>What's Normal</h3>
+        <ul>
+            <li><strong>Turbulence:</strong> Bumpy air is completely normal and not dangerous. Think of it like driving on a bumpy road. Keep your seatbelt fastened when seated.</li>
+            <li><strong>Strange sounds:</strong> Thumps (landing gear retracting), whirring (flaps adjusting), and dings (crew signals) are all normal.</li>
+            <li><strong>Cold cabin:</strong> Planes are often cool — bring a jacket or ask the crew for a blanket.</li>
+            <li><strong>Dry air:</strong> Airplane cabins are very dry. Drink plenty of water, bring lip balm and moisturizer.</li>
+        </ul>
+
+        <h3>In-Flight Services</h3>
+        <p>On most flights, cabin crew will offer drinks and snacks (free on full-service airlines, paid on budget carriers). Longer flights include meal service. Most planes have entertainment screens or free Wi-Fi — check your airline's app for content you can stream. If your flight doesn't have entertainment, download shows, podcasts, or music beforehand.</p>
+
+        <h3>Bathroom</h3>
+        <p>Wait for the seatbelt sign to turn off, then walk to the lavatory (usually at the front and back of the cabin). The door says "Vacant" when free and "Occupied" when in use. The lock is a sliding bolt on the inside.</p>
+
+        <h2 id="landing">6. Landing & Arrival</h2>
+
+        <p>About 30 minutes before landing, the pilot will announce the descent. You'll feel the plane gradually lose altitude and your ears may pop again (same tricks — chew, yawn, swallow). The landing itself feels like a firm bump followed by the engines roaring in reverse to slow down.</p>
+
+        <h3>After Landing</h3>
+        <ol>
+            <li><strong>Stay seated</strong> until the seatbelt sign turns off and the plane comes to a complete stop</li>
+            <li><strong>Don't rush</strong> — the plane empties front to back. Wait for the rows ahead of you.</li>
+            <li><strong>Collect your carry-on</strong> from the overhead bin and your personal item</li>
+            <li><strong>Follow signs</strong> to immigration (international) or baggage claim (domestic)</li>
+            <li><strong>Immigration:</strong> Have your passport, visa, and any declaration forms ready. Answer questions honestly and briefly.</li>
+            <li><strong>Baggage claim:</strong> Find your carousel number on the screens, wait for your bag. Verify the luggage tag before leaving.</li>
+            <li><strong>Customs:</strong> Walk through the green channel if you have nothing to declare, red if you do.</li>
+            <li><strong>Exit:</strong> You'll find taxis, ride-hailing apps (Uber/Ola), buses, and metro connections outside.</li>
+        </ol>
+
+        <h2 id="nervous">7. Tips for Nervous Flyers</h2>
+
+        <p>Flight anxiety is incredibly common — you're not alone, and there's nothing to be embarrassed about. Flying is statistically the safest form of long-distance travel, but knowing that doesn't always calm the nerves. Here's what actually helps:</p>
+
+        <ul>
+            <li><strong>Choose a seat over the wings</strong> — this is the most stable part of the plane and you'll feel less turbulence.</li>
+            <li><strong>Avoid caffeine before flying</strong> — it increases anxiety and makes you more jittery.</li>
+            <li><strong>Download distractions</strong> — podcasts, movies, music, games. Keeping your mind busy is the most effective anxiety reducer.</li>
+            <li><strong>Tell the cabin crew</strong> — they deal with nervous flyers daily and can check in on you, explain sounds, and offer reassurance.</li>
+            <li><strong>Practice deep breathing</strong> — breathe in for 4 counts, hold for 4, out for 6. Repeat during takeoff and any turbulence.</li>
+            <li><strong>Watch cockpit videos on YouTube</strong> before your flight — seeing how calm pilots are during routine flights is surprisingly reassuring.</li>
+            <li><strong>Avoid window seats if heights bother you</strong> — an aisle seat keeps the view abstract and gives you more space.</li>
+        </ul>
+
+        <div class="tip-box">
+            <strong>Remember:</strong> Thousands of flights take off and land safely every single day. The strange sounds, bumps, and movements are all normal parts of flying. You've got this.
+        </div>
+
+        <h2 id="mistakes">8. Common First-Time Flyer Mistakes</h2>
+
+        <p>Learn from others so you don't have to learn the hard way:</p>
+
+        <ul>
+            <li><strong>Arriving too late</strong> — Underestimating how long check-in and security take. Stick to the 2-3 hour rule.</li>
+            <li><strong>Packing liquids wrong</strong> — Full-size shampoo in your carry-on will be confiscated. Use 100ml travel bottles.</li>
+            <li><strong>Not checking baggage allowance</strong> — Budget airlines charge heavily for excess weight. Weigh your bags at home.</li>
+            <li><strong>Not charging devices</strong> — A dead phone means no boarding pass, no entertainment, no maps at your destination.</li>
+            <li><strong>Exchanging currency at the airport</strong> — Airport exchange rates are terrible. Use ATMs or exchange before your trip.</li>
+            <li><strong>Ignoring the boarding group</strong> — If you board late, overhead bin space may be gone and you'll have to check your carry-on.</li>
+            <li><strong>Not downloading offline maps</strong> — Airport Wi-Fi is unreliable. Download Google Maps offline for your destination city.</li>
+            <li><strong>Forgetting about power banks in checked bags</strong> — They'll be removed and you may get flagged. Always carry them on.</li>
+        </ul>
+
+        <h2 id="checklist">9. Your First Flight Checklist</h2>
+
+        <p>Save this checklist or <a href="/#plan" style="color:var(--action);font-weight:600;">generate a complete smart travel plan</a> personalized to your specific trip.</p>
+
+        <h3>3 Days Before</h3>
+        <ul class="checklist">
+            <li>Check in online and save/print your boarding pass</li>
+            <li>Confirm your seat assignment</li>
+            <li>Check baggage allowance for your airline</li>
+            <li>Download airline app, offline maps, and entertainment</li>
+            <li>Arrange transportation to the airport</li>
+            <li>Check visa and passport validity</li>
+        </ul>
+
+        <h3>Night Before</h3>
+        <ul class="checklist">
+            <li>Pack your bags (checked + carry-on + personal item)</li>
+            <li>Put liquids in 100ml bottles in a clear zip bag</li>
+            <li>Charge all devices and power bank</li>
+            <li>Set alarm with buffer time for traffic</li>
+            <li>Place passport, ID, and boarding pass in an easy-access pocket</li>
+            <li>Photo all documents and email to yourself</li>
+        </ul>
+
+        <h3>Day Of</h3>
+        <ul class="checklist">
+            <li>Arrive 2 hours early (domestic) or 3 hours (international)</li>
+            <li>Check in / drop off checked bags</li>
+            <li>Go through security (laptop out, liquids out, belt off)</li>
+            <li>Find your gate and check for changes on departure screens</li>
+            <li>Board when your group is called</li>
+            <li>Phone on airplane mode, seatbelt on, enjoy the flight</li>
+        </ul>
+
+<div class="share-row">
+    <span>Share this guide &#x2728;</span>
+    <a class="share-btn whatsapp" href="https://wa.me/?text=First%20Time%20Flying%3F%20Everything%20You%20Need%20to%20Know%20%282026%20Guide%29%20https%3A//www.packsmartapp.com/blog/first-time-flying.html" target="_blank" rel="noopener" title="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+    <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=First%20Time%20Flying%3F%20Everything%20You%20Need%20to%20Know%20%282026%20Guide%29&url=https%3A//www.packsmartapp.com/blog/first-time-flying.html" target="_blank" rel="noopener" title="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.packsmartapp.com/blog/first-time-flying.html" target="_blank" rel="noopener" title="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+    <a class="share-btn linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//www.packsmartapp.com/blog/first-time-flying.html" target="_blank" rel="noopener" title="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+    <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/first-time-flying.html').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
+</div>
     </div>
-</div>
 
-<!-- SAFETYWING INSURANCE WIDGET -->
-<div style="background:linear-gradient(135deg,#F0FAF7 0%,#E8F8F5 100%);border-radius:16px;padding:24px;margin:30px 0;text-align:center;border:1px solid #C8E6DC;">
-    <h3 style="font-size:1.2rem;margin:0 0 6px;color:#212529;">🛡️ Get Travel Insurance in 2 Minutes</h3>
-    <p style="color:#6C757D;font-size:0.85rem;margin:0 0 16px;">Trusted by 1M+ travelers. Coverage starts from $1.50/day.</p>
-    <div class="safetywing-price-widget" data-safetywingaffiliateid="26492686" data-scale="1.0"></div>
-    <script type="text/javascript" src="https://storage.googleapis.com/safetywing-static/widget/safetywing-price-widget.js"></script>
-</div>
 
-<div class="newsletter-cta" style="background:linear-gradient(135deg,#0f0f23,#1a1a3e);color:#fff;padding:40px;border-radius:16px;text-align:center;margin:50px 0 30px;">
-    <h3 style="font-size:1.4rem;margin-bottom:8px;">Never Miss a Travel Guide</h3>
-    <p style="color:#ccc;margin-bottom:20px;font-size:0.95rem;">Get the latest packing lists, destination guides, and travel tips delivered to your inbox.</p>
-    <form id="nlForm" onsubmit="return nlSub(event)" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:480px;margin:0 auto;">
-        <input type="email" id="nlEmail" placeholder="Your email address" required style="flex:1;min-width:200px;padding:12px 16px;border-radius:30px;border:none;font-size:0.95rem;font-family:inherit;">
-        <button type="submit" id="nlBtn" style="display:inline-block;background:#00C9A7;color:#fff;padding:12px 28px;border-radius:30px;border:none;font-size:0.95rem;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;">Subscribe Free</button>
-    </form>
-    <p id="nlMsg" style="color:#00C9A7;font-size:0.85rem;margin-top:12px;display:none;"></p>
-    <p id="nlNote" style="color:#777;font-size:0.75rem;margin-top:12px;">No spam. Unsubscribe anytime.</p>
-    <script>function nlSub(e){e.preventDefault();var b=document.getElementById('nlBtn'),m=document.getElementById('nlMsg'),em=document.getElementById('nlEmail');b.textContent='Subscribing...';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value})}).then(r=>r.json()).then(d=>{if(d.success){m.style.display='block';m.style.color='#00C9A7';m.textContent='You\'re subscribed! We\'ll send you our latest guides.';em.value='';document.getElementById('nlNote').style.display='none';}else{m.style.display='block';m.style.color='#E94560';m.textContent=d.error||'Something went wrong. Please try again.';}b.textContent='Subscribe Free';b.disabled=false;}).catch(()=>{m.style.display='block';m.style.color='#E94560';m.textContent='Something went wrong. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});return false;}</script>
-</div>
 
-<footer class="footer">
+<div class="cta-box">
+            <h3>Get Your Complete Travel Plan in 30 Seconds</h3>
+            <p>Packing list, visa info, local customs, safety tips, and smart reminders — all personalized to your exact trip.</p>
+            <a href="/#plan">Generate Free Plan</a>
+        </div>
+
+
+
+    <footer class="footer">
     <div class="footer-inner">
         <div class="footer-brand-col">
             <div class="footer-logo">Pack<em>Smart</em></div>
@@ -633,15 +1019,13 @@
 </footer>
 
 <script>
-document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+        nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+    document.querySelector('.mobile-menu-btn')?.addEventListener('click', () => {
+        document.querySelector('.nav-links').classList.toggle('open');
+    });
 </script>
-<script>
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
-const menuBtn = document.getElementById('menuBtn');
-menuBtn.addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
-document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
-</script>
-
 </body>
 </html>
