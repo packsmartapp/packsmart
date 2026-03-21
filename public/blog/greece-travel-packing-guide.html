@@ -617,23 +617,24 @@
     </style>
 </head>
 <body>
-    <nav class="nav">
-        <a href="https://www.packsmartapp.com" class="nav-brand">Pack<em>Smart</em></a>
-        <div class="nav-links">
-            <a href="https://www.packsmartapp.com">Home</a>
-            <a href="https://www.packsmartapp.com/blog">Blog</a>
-            <a href="https://www.packsmartapp.com" class="nav-cta-btn">Download App</a>
-        </div>
-        <button class="mobile-menu-btn">
-            <span></span>
-            <span></span>
-            <span></span>
-        </button>
-    </nav>
+    <nav class="nav" id="nav">
+    <a href="/" class="nav-brand">Pack<em>Smart</em></a>
+    <div class="nav-links" id="navLinks">
+        <a href="/flights.html">Flights & Hotels</a>
+        <a href="/#how">How It Works</a>
+        <a href="/#features">Features</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/#plan" class="nav-cta-btn">Plan My Trip</a>
+    </div>
+    <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
 
     <div class="hero-blog">
         <h1>Greece Travel & Packing Guide 2026: Islands, Mainland & More</h1>
-        <div class="meta">🌍 Comprehensive Guide for US, UK, Australian & Canadian Travelers</div>
+        <div class="meta">March 21, 2026 · 18 min read</div>
+        <div class="meta">Destination Guide</div>
     </div>
 
     <div class="content">
@@ -642,6 +643,8 @@
     <a class="share-btn whatsapp" href="https://wa.me/?text=Greece%20Travel%20%26%20Packing%20Guide%202026%3A%20Islands%2C%20Mainland%20%26%20More%20https%3A//www.packsmartapp.com/blog/greece-travel-packing-guide" target="_blank" rel="noopener" title="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
     <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Greece%20Travel%20%26%20Packing%20Guide%202026%3A%20Islands%2C%20Mainland%20%26%20More&url=https%3A//www.packsmartapp.com/blog/greece-travel-packing-guide" target="_blank" rel="noopener" title="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
     <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.packsmartapp.com/blog/greece-travel-packing-guide" target="_blank" rel="noopener" title="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+    <a class="share-btn linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//www.packsmartapp.com/blog/greece-travel-packing-guide" target="_blank" rel="noopener" title="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+    <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/greece-travel-packing-guide').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
 
         <div class="table-of-contents">
@@ -1133,139 +1136,136 @@
         </ul>
 
         <div class="cta-box">
-            <h3>Ready for Your Greece Adventure?</h3>
-            <p>Download PackSmart to create a customized packing list based on your specific Greece itinerary, activities, and travel dates.</p>
-            <a href="https://www.packsmartapp.com">Download PackSmart Now</a>
+            <h3>Ready to Pack for Greece?</h3>
+            <p>Use PackSmart to create a personalized packing list tailored to your Greek island-hopping itinerary, travel dates, and weather conditions.</p>
+            <a href="https://www.packsmartapp.com/#plan">Start Your Greece Packing List</a>
         </div>
 
-        <div class="faq-section" style="margin:50px 0 30px;padding:30px 0;border-top:2px solid #f0f0f0;">
-            <h2 id="faq" style="border-bottom: 3px solid #00C9A7; padding-bottom: 10px; font-size: 1.8rem; margin-bottom: 30px;">Frequently Asked Questions</h2>
+<h2 style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">What do I need to pack for Greece island hopping?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Pack lightweight summer clothing, swimwear, sun protection (SPF 50+), comfortable walking shoes, a reusable water bottle, and quick-dry items for ferry rides. Bring a small daypack for island exploring and consider packing layers for cooler evenings. Compression cubes help maximize luggage space on ferries.</div>
+</details>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">Do US/UK/Australian/Canadian citizens need a visa for Greece?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">No visa is required for stays up to 90 days within a 180-day period for citizens of the US, UK, Australia, and Canada. A valid passport (with 6 months validity) is required. Starting 2025, an ETIAS (European Travel Information and Authorization System) will be required—it costs €7 (approximately $7.50 USD) and is valid for 3 years.</div>
+</details>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">When is the best time to visit Greece?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">April-May and September-October offer ideal weather and fewer crowds. June-August are peak summer season with hot temperatures (85-95°F) and high prices. May and September offer the best balance of weather, amenities, and manageable crowds. For island hopping, May and September are perfect with good weather and full ferry schedules.</div>
+</details>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">How much does island hopping in Greece cost?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Budget travelers can manage $40-60/day. Mid-range travelers should plan for $80-150/day. Luxury travelers should budget $300-700/day. Ferry passes between islands range from $15-50 per journey. A 7-day trip costs approximately $1,000-1,200 USD (excluding international flights) for mid-range travelers including accommodation, food, ferries, and activities.</div>
+</details>
 
-            <div style="margin-bottom: 25px;">
-                <h3 style="color: #0f0f23; font-size: 1.15rem; margin-bottom: 10px;">What do I need to pack for Greece island hopping?</h3>
-                <p>Pack lightweight summer clothing, swimwear, sun protection (SPF 50+), comfortable walking shoes, a reusable water bottle, and quick-dry items for ferry rides. Bring a small daypack for island exploring and consider packing layers for cooler evenings. Compression cubes help maximize luggage space on ferries.</p>
-            </div>
-
-            <div style="margin-bottom: 25px;">
-                <h3 style="color: #0f0f23; font-size: 1.15rem; margin-bottom: 10px;">Do US/UK/Australian/Canadian citizens need a visa for Greece?</h3>
-                <p>No visa is required for stays up to 90 days within a 180-day period for citizens of the US, UK, Australia, and Canada. A valid passport (with 6 months validity) is required. Starting 2025, an ETIAS (European Travel Information and Authorization System) will be required—it costs €7 (approximately $7.50 USD) and is valid for 3 years.</p>
-            </div>
-
-            <div style="margin-bottom: 25px;">
-                <h3 style="color: #0f0f23; font-size: 1.15rem; margin-bottom: 10px;">When is the best time to visit Greece?</h3>
-                <p>April-May and September-October offer ideal weather and fewer crowds. June-August are peak summer season with hot temperatures (85-95°F) and high prices. May and September offer the best balance of weather, amenities, and manageable crowds. For island hopping, May and September are perfect with good weather and full ferry schedules.</p>
-            </div>
-
-            <div style="margin-bottom: 25px;">
-                <h3 style="color: #0f0f23; font-size: 1.15rem; margin-bottom: 10px;">How much does island hopping in Greece cost?</h3>
-                <p>Budget travelers can manage $40-60/day. Mid-range travelers should plan for $80-150/day. Luxury travelers should budget $300-700/day. Ferry passes between islands range from $15-50 per journey. A 7-day trip costs approximately $1,000-1,200 USD (excluding international flights) for mid-range travelers including accommodation, food, ferries, and activities.</p>
-            </div>
-        </div>
-
-        <div style="background: #f5f5f5; border-radius: 8px; padding: 25px; margin: 30px 0;">
+        <div class="related-posts">
             <h3>Related Packing Guides</h3>
-            <ul style="list-style: none; margin: 0; padding: 0;">
-                <li style="margin: 12px 0;"><a href="https://www.packsmartapp.com/blog/italy-travel-packing-guide.html" style="color: #00C9A7; text-decoration: none; font-weight: 500;">📍 Italy Travel Packing Guide</a> - Essential packing tips for Rome, Florence, Venice & the Amalfi Coast</li>
-                <li style="margin: 12px 0;"><a href="https://www.packsmartapp.com/blog/beach-vacation-packing-list.html" style="color: #00C9A7; text-decoration: none; font-weight: 500;">🏖️ Beach Vacation Packing List</a> - Complete guide for tropical and Mediterranean beach trips</li>
-                <li style="margin: 12px 0;"><a href="https://www.packsmartapp.com/blog/europe-travel-packing-list.html" style="color: #00C9A7; text-decoration: none; font-weight: 500;">✈️ Europe Travel Packing List</a> - Comprehensive guide for multi-country European adventures</li>
-            </ul>
-        </div>
-
-        <h3 style="font-size:1.3rem;margin-bottom:4px;color:#212529;">🛒 Travel Essentials for Your Trip</h3>
-        <p style="font-size: 0.95rem; color: #666; margin-bottom: 25px;">Make your Greece adventure seamless with these trusted travel partners:</p>
-        <div class="travel-essentials-grid">
-            <div class="travel-essentials-item">
-                <h4>Saily – International SIM Card</h4>
-                <p>Stay connected in Greece with affordable data plans. No contracts, instant activation. Works in 200+ countries.</p>
-                <a href="https://tp.media/r?marker=711400&trs=508747&p=8979&u=https%3A%2F%2Fsaily.com&campaign_id=629" target="_blank" rel="nofollow noopener sponsored">Learn More →</a>
-            </div>
-            <div class="travel-essentials-item">
-                <h4>SafetyWing – Travel Insurance</h4>
-                <p>Affordable travel medical insurance starting at $45 for 4 weeks. No coverage gaps, instant claims processing.</p>
-                <a href="https://safetywing.com/?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador" target="_blank" rel="nofollow noopener sponsored">Learn More →</a>
-            </div>
-            <div class="travel-essentials-item">
-                <h4>GetYourGuide – Tours & Activities</h4>
-                <p>Book Santorini sunset tours, Athens walking tours, and Greek island activities. Free cancellation up to 24 hours.</p>
-                <a href="https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn" target="_blank" rel="nofollow noopener sponsored">Learn More →</a>
-            </div>
-            <div class="travel-essentials-item">
-                <h4>Welcome Pickups – Airport Transfers</h4>
-                <p>Skip the stress of Greek airport taxis. Pre-booked, English-speaking drivers at Athens airport. Flat rates, no surprises.</p>
-                <a href="https://tp.media/r?marker=711400&trs=508747&p=8919&u=https%3A%2F%2Fwelcomepickups.com&campaign_id=627" target="_blank" rel="nofollow noopener sponsored">Learn More →</a>
+            <div class="related-grid">
+                <div class="related-card">
+                    <div class="related-card-body">
+                        <h4>Italy Travel & Packing Guide 2026</h4>
+                        <p>Essential packing tips for Rome, Florence, Venice, and the Amalfi Coast with cultural etiquette and budget breakdown.</p>
+                        <a href="https://www.packsmartapp.com/blog/italy-travel-packing-guide.html">Read More <span class="related-arrow">→</span></a>
+                        <div class="related-tag">Destination Guide</div>
+                    </div>
+                </div>
+                <div class="related-card">
+                    <div class="related-card-body">
+                        <h4>Beach Vacation Packing List</h4>
+                        <p>Complete guide for tropical and Mediterranean beach trips with sun protection and swimwear essentials.</p>
+                        <a href="https://www.packsmartapp.com/blog/beach-vacation-packing-list.html">Read More <span class="related-arrow">→</span></a>
+                        <div class="related-tag">Packing Guide</div>
+                    </div>
+                </div>
+                <div class="related-card">
+                    <div class="related-card-body">
+                        <h4>Europe Travel Packing List 2026</h4>
+                        <p>Comprehensive guide for multi-country European adventures with tips for train travel and various climates.</p>
+                        <a href="https://www.packsmartapp.com/blog/europe-travel-packing-list.html">Read More <span class="related-arrow">→</span></a>
+                        <div class="related-tag">Destination Guide</div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="newsletter-cta">
-            <h3>Join the PackSmart Community</h3>
-            <p>Get exclusive packing tips, travel guides, and insider secrets delivered to your inbox monthly.</p>
-            <form class="newsletter-form">
-                <input type="email" placeholder="Your email address" required>
-                <button type="submit">Subscribe</button>
-            </form>
+<!-- TRAVEL ESSENTIALS - AFFILIATE LINKS -->
+<div style="background:linear-gradient(135deg,#F0FAF7,#E8FFF9);border:2px solid rgba(0,201,167,0.2);border-radius:16px;padding:28px;margin:40px 0;">
+    <h3 style="font-size:1.3rem;margin-bottom:4px;color:#212529;">🛒 Travel Essentials for Your Greece Trip</h3>
+    <p style="color:#6C757D;font-size:0.88rem;margin-bottom:18px;">Hand-picked tools our readers love. Affiliate links — we may earn a commission at no extra cost.</p>
+
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;">
+        <a href="https://tp.media/r?marker=711400&trs=508747&p=8979&u=https%3A%2F%2Fsaily.com&campaign_id=629" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <span style="font-size:1.5rem;">📱</span>
+            <div>
+                <strong style="font-size:0.9rem;">Saily eSIM</strong>
+                <div style="font-size:0.78rem;color:#6C757D;">eSIM data in 200+ countries</div>
+            </div>
+        </a>
+        <a href="https://safetywing.com/?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <span style="font-size:1.5rem;">🛡️</span>
+            <div>
+                <strong style="font-size:0.9rem;">SafetyWing Insurance</strong>
+                <div style="font-size:0.78rem;color:#6C757D;">Travel medical from $1.50/day</div>
+            </div>
+        </a>
+
+        <a href="https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <span style="font-size:1.5rem;">🎯</span>
+            <div>
+                <strong style="font-size:0.9rem;">GetYourGuide</strong>
+                <div style="font-size:0.78rem;color:#6C757D;">Skip-the-line tours & activities</div>
+            </div>
+        </a>
+        <a href="https://tp.media/r?marker=711400&trs=508747&p=8919&u=https%3A%2F%2Fwelcomepickups.com&campaign_id=627" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <span style="font-size:1.5rem;">🚐</span>
+            <div>
+                <strong style="font-size:0.9rem;">Welcome Pickups</strong>
+                <div style="font-size:0.78rem;color:#6C757D;">Airport transfers in 350+ cities</div>
+            </div>
+        </a>
         </div>
 
-        <div class="share-row">
-    <span>Share this guide ✨</span>
-    <a class="share-btn whatsapp" href="https://wa.me/?text=Greece%20Travel%20%26%20Packing%20Guide%202026%3A%20Islands%2C%20Mainland%20%26%20More%20https%3A//www.packsmartapp.com/blog/greece-travel-packing-guide" target="_blank" rel="noopener" title="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
-    <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Greece%20Travel%20%26%20Packing%20Guide%202026%3A%20Islands%2C%20Mainland%20%26%20More&url=https%3A//www.packsmartapp.com/blog/greece-travel-packing-guide" target="_blank" rel="noopener" title="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
-    <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.packsmartapp.com/blog/greece-travel-packing-guide" target="_blank" rel="noopener" title="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+    <div style="text-align:center;margin-top:16px;">
+        <a href="/pricing.html" style="color:#00C9A7;font-weight:600;font-size:0.85rem;text-decoration:none;">✨ Want ad-free plans? Try PackSmart Pro →</a>
+    </div>
 </div>
+
+        <div class="newsletter-cta" style="background:linear-gradient(135deg,#0f0f23,#1a1a3e);color:#fff;padding:40px;border-radius:16px;text-align:center;margin:50px 0 30px;">
+            <h3 style="font-size:1.4rem;margin-bottom:8px;">Never Miss a Travel Guide</h3>
+            <p style="color:#ccc;margin-bottom:20px;font-size:0.95rem;">Get the latest packing lists, destination guides, and travel tips delivered to your inbox.</p>
+            <form id="nlForm" onsubmit="return nlSub(event)" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:480px;margin:0 auto;">
+                <input type="email" id="nlEmail" placeholder="Your email address" required style="flex:1;min-width:200px;padding:12px 16px;border-radius:30px;border:none;font-size:0.95rem;font-family:inherit;">
+                <button type="submit" id="nlBtn" style="display:inline-block;background:#00C9A7;color:#fff;padding:12px 28px;border-radius:30px;border:none;font-size:0.95rem;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;">Subscribe Free</button>
+            </form>
+            <p id="nlMsg" style="color:#00C9A7;font-size:0.85rem;margin-top:12px;display:none;"></p>
+            <p id="nlNote" style="color:#777;font-size:0.75rem;margin-top:12px;">No spam. Unsubscribe anytime.</p>
+            <script>function nlSub(e){e.preventDefault();var b=document.getElementById('nlBtn'),m=document.getElementById('nlMsg'),em=document.getElementById('nlEmail');b.textContent='Subscribing...';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value})}).then(r=>r.json()).then(d=>{if(d.success){m.style.display='block';m.style.color='#00C9A7';m.textContent='You\'re subscribed! We\'ll send you our latest guides.';em.value='';document.getElementById('nlNote').style.display='none';}else{m.style.display='block';m.style.color='#E94560';m.textContent=d.error||'Something went wrong. Please try again.';}b.textContent='Subscribe Free';b.disabled=false;}).catch(()=>{m.style.display='block';m.style.color='#E94560';m.textContent='Something went wrong. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});return false;}</script>
+        </div>
     </div>
 
     <footer class="footer">
         <div class="footer-inner">
             <div class="footer-brand-col">
                 <div class="footer-logo">Pack<em>Smart</em></div>
-                <p>Your personal AI packing assistant for every journey. Travel smarter, pack better.</p>
+                <p>Smart travel preparation. Get personalized packing lists, visa info, and local tips for any destination in the world.</p>
             </div>
-            <div class="footer-col">
-                <h4>Product</h4>
-                <a href="https://www.packsmartapp.com">Home</a>
-                <a href="https://www.packsmartapp.com">Download App</a>
-                <a href="https://www.packsmartapp.com">Features</a>
-                <a href="https://www.packsmartapp.com">Pricing</a>
-            </div>
-            <div class="footer-col">
-                <h4>Resources</h4>
-                <a href="https://www.packsmartapp.com/blog">Blog</a>
-                <a href="https://www.packsmartapp.com">Packing Tips</a>
-                <a href="https://www.packsmartapp.com">Travel Guides</a>
-                <a href="https://www.packsmartapp.com">FAQ</a>
-            </div>
-            <div class="footer-col">
-                <h4>Company</h4>
-                <a href="https://www.packsmartapp.com">About Us</a>
-                <a href="https://www.packsmartapp.com">Contact</a>
-                <a href="https://www.packsmartapp.com">Privacy Policy</a>
-                <a href="https://www.packsmartapp.com">Terms of Service</a>
-            </div>
+            <div class="footer-col"><h4>Product</h4><a href="/#how">How It Works</a><a href="/#features">Features</a><a href="/#plan">Plan a Trip</a></div>
+            <div class="footer-col"><h4>Company</h4><a href="/about.html">About</a><a href="/flights.html">Flights & Hotels</a><a href="/blog.html">Blog</a><a href="/pricing.html">Pricing</a><a href="/contact.html">Contact</a></div>
+            <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div>
         </div>
         <div class="footer-bottom">
             <span>&copy; 2026 PackSmart. All rights reserved.</span>
-            <span>Made with ❤️ for travelers worldwide</span>
+            <span>Made for travelers.</span>
         </div>
     </footer>
 
     <script>
-        window.addEventListener('scroll', function() {
-            const nav = document.querySelector('.nav');
-            if (window.scrollY > 100) {
-                nav.classList.add('scrolled');
-            } else {
-                nav.classList.remove('scrolled');
-            }
-        });
-
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function (e) {
-                e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-                }
-            });
-        });
-    </script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+const menuBtn = document.getElementById('menuBtn');
+menuBtn.addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+</script>
 </body>
 </html>
