@@ -116,8 +116,6 @@
             transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .nav-links a:hover::after { transform: scaleX(1); }
-        .nav-links a.active { color: var(--action); font-weight: 600; }
-        .nav-links a.active::after { transform: scaleX(1); }
         .nav-cta-btn {
             font-size: 0.85rem !important;
             font-weight: 600 !important;
@@ -400,12 +398,13 @@
 <nav class="nav" id="nav">
     <a href="/" class="nav-brand">Pack<em>Smart</em></a>
     <div class="nav-links" id="navLinks">
-        <a href="/">Home</a>
-        <a href="flights.html" class="active">Flights & Hotels</a>
-        <a href="blog.html">Blog</a>
-        <a href="pricing.html">Pricing</a>
-        <a href="about.html">About</a>
-        <a href="contact.html">Contact</a>
+        <a href="/#how">How It Works</a>
+        <a href="/#features">Features</a>
+        <a href="/about.html">About</a>
+        <a href="/flights.html">Flights & Hotels</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/pricing.html">Pricing</a>
+        <a href="/contact.html">Contact</a>
         <a href="/#plan" class="nav-cta-btn">Plan My Trip</a>
     </div>
     <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
