@@ -935,14 +935,14 @@
             Effortless Travel Preparation
             <span class="pill-tag">Free</span>
         </div>
-        <h1>Pack smart.<br><span class="serif-italic">Travel ready.</span></h1>
-        <p class="hero-sub">Tell us where you're headed and get a personalized packing list, visa briefing, local customs guide, and smart reminders — all in 30 seconds.</p>
+        <h1>Plan. Pack. Book.<br><span class="serif-italic">Travel ready.</span></h1>
+        <p class="hero-sub">Tell us where you're headed — get a personalized itinerary, packing list, visa briefing, and local tips. Then book flights, hotels, and tours, all in one place.</p>
         <div class="hero-features-strip">
-            <a href="/flights.html" class="hero-feature-link">✈️ Flights & Hotels</a>
+            <span class="hero-feature-item">📋 Smart Itinerary</span>
             <span class="hero-feature-dot"></span>
             <span class="hero-feature-item">🎒 Packing Lists</span>
             <span class="hero-feature-dot"></span>
-            <span class="hero-feature-item">🚐 Airport Transfers</span>
+            <a href="/flights.html" class="hero-feature-link">✈️ Flights & Hotels</a>
             <span class="hero-feature-dot"></span>
             <span class="hero-feature-item">🎯 Tours & Activities</span>
         </div>
@@ -960,46 +960,19 @@
             </div>
             <div class="hero-proof-item">
                 <div class="val"><em>30</em>s</div>
-                <div class="lbl">Generation Time</div>
-            </div>
-            <div class="hero-proof-item">
-                <div class="val"><em>7</em></div>
-                <div class="lbl">Plan Sections</div>
+                <div class="lbl">Plan Generation</div>
             </div>
             <div class="hero-proof-item">
                 <div class="val"><em>Free</em></div>
                 <div class="lbl">Always</div>
             </div>
+            <div class="hero-proof-item">
+                <div class="val"><em>100+</em></div>
+                <div class="lbl">Airlines Compared</div>
+            </div>
         </div>
     </div>
 </section>
-
-<!-- NEWSLETTER SIGNUP TOP -->
-<section class="reveal" style="position:relative;z-index:1;padding:40px 2rem 30px;">
-    <div style="max-width:680px;margin:0 auto;text-align:center;background:var(--bg-white);border:1px solid var(--border);border-radius:20px;padding:2.5rem 2rem;box-shadow:var(--shadow-md);">
-        <h2 style="font-family:var(--font-display);font-size:1.6rem;color:var(--text);margin-bottom:0.4rem;">Get <em style="font-style:italic;color:var(--action);">free travel tips</em> in your inbox</h2>
-        <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:1.2rem;">Packing hacks, destination guides & deals — join 500+ smart travelers.</p>
-        <form id="nlFormTop" onsubmit="return nlSubTop(event)" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:460px;margin:0 auto;">
-            <input type="email" id="nlEmailTop" placeholder="Your email address" required style="flex:1;min-width:200px;padding:12px 16px;border:1.5px solid var(--border);border-radius:50px;font-family:var(--font-body);font-size:0.9rem;background:var(--bg-card);outline:none;transition:border-color 0.2s;" onfocus="this.style.borderColor='var(--action)'" onblur="this.style.borderColor='var(--border)'">
-            <button type="submit" id="nlBtnTop" style="padding:12px 28px;background:var(--action);color:#fff;border:none;border-radius:50px;font-family:var(--font-body);font-size:0.9rem;font-weight:600;cursor:pointer;transition:all 0.2s;white-space:nowrap;">Subscribe Free</button>
-        </form>
-        <p id="nlMsgTop" style="display:none;margin-top:10px;font-size:0.88rem;font-weight:600;"></p>
-        <p style="color:var(--text-tertiary);font-size:0.72rem;margin-top:10px;">No spam, ever. Unsubscribe anytime.</p>
-    </div>
-</section>
-<script>
-function nlSubTop(e){
-    e.preventDefault();
-    var b=document.getElementById('nlBtnTop'),m=document.getElementById('nlMsgTop'),em=document.getElementById('nlEmailTop');
-    b.textContent='Subscribing...';b.disabled=true;
-    fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value})})
-    .then(r=>r.json()).then(d=>{
-        if(d.success){m.style.display='block';m.style.color='var(--action)';m.textContent="You're subscribed! Check your inbox for a welcome email.";em.value='';b.textContent='Subscribed!';b.style.background='#28a745';}
-        else{m.style.display='block';m.style.color='var(--accent)';m.textContent=d.error||'Something went wrong.';b.textContent='Subscribe Free';b.disabled=false;}
-    }).catch(()=>{m.style.display='block';m.style.color='var(--accent)';m.textContent='Network error. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});
-    return false;
-}
-</script>
 
 <!-- HOW IT WORKS -->
 <section class="section section-cloud" id="how">
@@ -1032,7 +1005,7 @@ function nlSubTop(e){
     <div class="container">
         <div class="section-label reveal">What You Get</div>
         <div class="section-title reveal">Everything in <em style="font-family:var(--font-display);font-style:italic;">one</em> plan</div>
-        <div class="section-desc reveal">Every plan includes seven comprehensive sections, personalized to your destination, dates, and travel style. Plus, search flights & hotels directly.</div>
+        <div class="section-desc reveal">Every plan includes seven comprehensive sections, personalized to your destination, dates, and travel style.</div>
         <div class="bento-grid">
             <div class="bento-card bento-wide reveal reveal-delay-1">
                 <div class="bento-icon"><svg viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M12 12v3"/><path d="M3 12h18"/></svg></div>
@@ -1069,10 +1042,37 @@ function nlSubTop(e){
                 <h3>Budget Tips</h3>
                 <p>Daily cost estimates, money-saving hacks, and haggling customs specific to your destination.</p>
             </div>
-            <div class="bento-card bento-wide reveal reveal-delay-2" style="background:linear-gradient(135deg,var(--teal-tint),#E8F8F5);border-color:rgba(0,201,167,0.2);">
-                <div class="bento-icon"><svg viewBox="0 0 24 24"><path d="M17.8 19.2L16 11l3.5-3.5C21 6 21.5 4 21 3c-1-.5-3 0-4.5 1.5L13 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.4-.1.9.3 1.1L11 12l-2 3H6l-1 1 3 2 2 3 1-1v-3l3-2 3.8 7.3c.2.4.7.5 1.1.3l.5-.3c.4-.2.5-.6.4-1.1z"/></svg></div>
-                <h3>Flights & Hotels</h3>
-                <p>Search and compare prices across 100+ airlines and 2M+ hotels worldwide — right from PackSmart. <a href="/flights.html" style="color:var(--action);font-weight:600;">Search now →</a></p>
+        </div>
+    </div>
+</section>
+
+<!-- BOOK YOUR TRIP -->
+<section class="section reveal" style="position:relative;z-index:1;padding:50px 2rem;" id="book">
+    <div class="container">
+        <div class="section-label reveal" style="display:inline-block;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--action);background:var(--teal-tint);padding:6px 16px;border-radius:20px;margin-bottom:1rem;text-align:center;width:100%;">Book Your Trip</div>
+        <div style="font-family:var(--font-display);font-size:2.5rem;text-align:center;margin-bottom:0.5rem;">Plan it here, <em style="font-style:italic;color:var(--action);">book</em> it here</div>
+        <div style="text-align:center;color:var(--text-secondary);font-size:1rem;max-width:550px;margin:0 auto 2.5rem;">Compare prices, find deals, and book directly — all without leaving PackSmart.</div>
+        <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.5rem;max-width:1000px;margin:0 auto;">
+            <a href="/flights.html" class="reveal reveal-delay-1" style="background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;text-align:center;text-decoration:none;color:var(--text);transition:transform 0.2s,box-shadow 0.2s;display:block;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+                <div style="font-size:2.5rem;margin-bottom:1rem;">✈️</div>
+                <span style="display:inline-block;background:var(--teal-tint);color:var(--action);font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:1rem;">Live</span>
+                <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Flights</h3>
+                <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1rem;">Compare prices across 100+ airlines worldwide. Find the best fares for your dates.</p>
+                <span style="color:var(--action);font-weight:600;font-size:0.85rem;">Search flights &rarr;</span>
+            </a>
+            <a href="/flights.html#hotels" class="reveal reveal-delay-2" style="background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;text-align:center;text-decoration:none;color:var(--text);transition:transform 0.2s,box-shadow 0.2s;display:block;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='var(--shadow-md)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+                <div style="font-size:2.5rem;margin-bottom:1rem;">🏨</div>
+                <span style="display:inline-block;background:var(--teal-tint);color:var(--action);font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:1rem;">Live</span>
+                <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Hotels</h3>
+                <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1rem;">1.4 million+ places to stay worldwide — hotels, hostels, apartments, and more.</p>
+                <span style="color:var(--action);font-weight:600;font-size:0.85rem;">Search hotels &rarr;</span>
+            </a>
+            <div class="reveal reveal-delay-3" style="background:var(--bg-white);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2rem;text-align:center;opacity:0.7;">
+                <div style="font-size:2.5rem;margin-bottom:1rem;">🏖️</div>
+                <span style="display:inline-block;background:#FFF3CD;color:#856404;font-size:0.7rem;font-weight:700;padding:3px 10px;border-radius:20px;text-transform:uppercase;letter-spacing:0.5px;margin-bottom:1rem;">Coming Soon</span>
+                <h3 style="font-size:1.1rem;margin-bottom:0.5rem;">Holiday Packages</h3>
+                <p style="font-size:0.88rem;color:var(--text-secondary);line-height:1.6;margin-bottom:1rem;">Bundled flight + hotel + activities deals. The easiest way to book your entire trip.</p>
+                <span style="color:var(--text-tertiary);font-weight:600;font-size:0.85rem;">Coming soon</span>
             </div>
         </div>
     </div>
