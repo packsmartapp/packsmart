@@ -208,6 +208,11 @@
             margin: 0 auto;
             padding: 0 2rem 3rem;
         }
+        @media (max-width: 768px) {
+            .results-section {
+                padding: 0 0.5rem 2rem;
+            }
+        }
 
         /* DISCLAIMER */
         .disclaimer {
@@ -222,17 +227,40 @@
         .disclaimer a { color: var(--action); text-decoration: none; }
         .disclaimer a:hover { text-decoration: underline; }
 
-        /* When showing results (flightSearch in URL), adjust layout */
-        body.showing-results .hero,
-        body.showing-results .search-section,
+        /* When showing results (flightSearch in URL), keep search visible, hide decorative sections */
+        body.showing-results .hero {
+            padding: 6rem 2rem 1.5rem;
+        }
+        body.showing-results .hero h1 {
+            font-size: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 0.5rem;
+        }
+        body.showing-results .hero p {
+            display: none;
+        }
         body.showing-results .breadcrumb,
         body.showing-results .trust-section,
         body.showing-results .how-section,
         body.showing-results .cta-section {
             display: none;
         }
-        body.showing-results {
-            padding-top: 60px;
+        body.showing-results .disclaimer {
+            margin-bottom: 0;
+        }
+        body.showing-results .results-section {
+            min-height: 60vh;
+        }
+        /* Ensure TP widget sticky header doesn't overlap our nav */
+        body.showing-results .nav {
+            z-index: 200;
+        }
+        @media (max-width: 768px) {
+            body.showing-results .hero {
+                padding: 5.5rem 1rem 1rem;
+            }
+            body.showing-results .hero h1 {
+                font-size: 1.3rem;
+            }
         }
 
         /* TRUST BADGES */
