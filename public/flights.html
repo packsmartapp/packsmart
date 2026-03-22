@@ -227,6 +227,82 @@
         .disclaimer a { color: var(--action); text-decoration: none; }
         .disclaimer a:hover { text-decoration: underline; }
 
+        /* HOTEL SEARCH CTA */
+        .hotel-cta {
+            max-width: 900px;
+            margin: 1.5rem auto 2rem;
+            padding: 0 2rem;
+        }
+        .hotel-cta-card {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            background: linear-gradient(135deg, #F0F4FF 0%, #F0FAF7 100%);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-xl);
+            padding: 2rem 2.5rem;
+            transition: box-shadow 0.3s;
+        }
+        .hotel-cta-card:hover {
+            box-shadow: var(--shadow-md);
+        }
+        .hotel-cta-icon {
+            font-size: 2.2rem;
+            flex-shrink: 0;
+        }
+        .hotel-cta-text {
+            flex: 1;
+        }
+        .hotel-cta-text h3 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            margin-bottom: 0.3rem;
+        }
+        .hotel-cta-text h3 em { color: var(--action); }
+        .hotel-cta-text p {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+            margin: 0;
+        }
+        .hotel-cta-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background: var(--action);
+            color: #fff;
+            padding: 0.75rem 1.8rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            flex-shrink: 0;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .hotel-cta-btn:hover {
+            background: var(--action-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 20px rgba(0,201,167,0.2);
+        }
+        .hotel-cta-btn svg {
+            width: 16px;
+            height: 16px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        @media (max-width: 768px) {
+            .hotel-cta { padding: 0 1rem; }
+            .hotel-cta-card {
+                flex-direction: column;
+                text-align: center;
+                padding: 1.5rem;
+                gap: 1rem;
+            }
+        }
+
         /* When showing results (flightSearch in URL), keep search visible, hide decorative sections */
         body.showing-results .hero {
             padding: 6rem 2rem 1.5rem;
@@ -464,6 +540,20 @@
 <!-- SEARCH RESULTS -->
 <section class="results-section" id="results-area">
     <div id="tpwl-tickets"></div>
+</section>
+
+<!-- HOTEL SEARCH CTA -->
+<section class="hotel-cta">
+    <div class="hotel-cta-card">
+        <div class="hotel-cta-icon">&#127976;</div>
+        <div class="hotel-cta-text">
+            <h3>Looking for <em>Hotels?</em></h3>
+            <p>Compare accommodation from 2M+ properties on Booking.com — hotels, hostels, apartments, and more.</p>
+        </div>
+        <a href="https://tp.media/r?marker=711400&trs=508747&p=2074&u=https%3A%2F%2Fwww.booking.com" target="_blank" rel="nofollow noopener sponsored" class="hotel-cta-btn">
+            Search Hotels <svg viewBox="0 0 24 24"><path d="M7 17L17 7M17 7H7M17 7v10"/></svg>
+        </a>
+    </div>
 </section>
 
 <!-- TRUST BADGES -->
