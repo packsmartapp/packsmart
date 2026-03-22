@@ -74,9 +74,12 @@
         .page-header { text-align: center; margin-bottom: 3rem; }
         .page-header h1 { font-family: var(--font-display); font-size: 3rem; margin-bottom: 0.5rem; }
         .page-header p { color: var(--text-secondary); font-size: 1.1rem; }
-        .blog-grid { display: grid; gap: 1.5rem; }
-        .blog-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: 14px; padding: 2rem; text-decoration: none; color: var(--text); transition: transform 0.2s, box-shadow 0.2s; display: block; }
+        .blog-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+        @media (max-width: 768px) { .blog-grid { grid-template-columns: 1fr; } }
+        .blog-card { background: var(--bg-white); border: 1px solid var(--border); border-radius: 14px; text-decoration: none; color: var(--text); transition: transform 0.2s, box-shadow 0.2s; display: block; overflow: hidden; }
         .blog-card:hover { transform: translateY(-3px); box-shadow: 0 12px 30px rgba(0,0,0,0.08); }
+        .blog-card-img { width: 100%; height: 200px; object-fit: cover; display: block; }
+        .blog-card-body { padding: 1.5rem 2rem 2rem; }
         .blog-card .tag { display: inline-block; background: var(--teal-tint); color: var(--action); font-size: 0.75rem; font-weight: 600; padding: 0.25rem 0.7rem; border-radius: 20px; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.5px; }
         .blog-card h2 { font-size: 1.5rem; margin-bottom: 0.5rem; line-height: 1.3; }
         .blog-card p { color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 0.8rem; }
@@ -164,337 +167,457 @@
         <!-- NEW ARTICLES — MARCH 22, 2026 -->
 
         <a href="/blog/portugal-travel-packing-guide.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Portugal Travel &amp; Packing Guide 2026: Complete Checklist</h2>
-            <p>Complete Portugal guide &mdash; Lisbon, Porto, Algarve, Madeira, Sintra. Visa info, seasonal packing, pastéis de nata, wine regions, and budget breakdown.</p>
-            <span class="meta">March 22, 2026 &middot; 15 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1585208798174-6cedd86e019a?w=800&h=400&fit=crop&auto=format&q=75" alt="Portugal Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Portugal Travel &amp; Packing Guide 2026: Complete Checklist</h2>
+                <p>Complete Portugal guide &mdash; Lisbon, Porto, Algarve, Madeira, Sintra. Visa info, seasonal packing, pastéis de nata, wine regions, and budget breakdown.</p>
+                <span class="meta">March 22, 2026 &middot; 15 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/spain-travel-packing-guide.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Spain Travel &amp; Packing Guide 2026: Complete Checklist</h2>
-            <p>Complete Spain guide &mdash; Barcelona, Madrid, Seville, San Sebastián, Mallorca. Tapas culture, AVE trains, siesta schedules, and seasonal packing tips.</p>
-            <span class="meta">March 22, 2026 &middot; 15 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&h=400&fit=crop&auto=format&q=75" alt="Spain Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Spain Travel &amp; Packing Guide 2026: Complete Checklist</h2>
+                <p>Complete Spain guide &mdash; Barcelona, Madrid, Seville, San Sebastián, Mallorca. Tapas culture, AVE trains, siesta schedules, and seasonal packing tips.</p>
+                <span class="meta">March 22, 2026 &middot; 15 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/mexico-travel-packing-guide.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Mexico Travel &amp; Packing Guide 2026: Complete Checklist</h2>
-            <p>Complete Mexico guide &mdash; Mexico City, Cancún, Oaxaca, Puerto Vallarta, San Miguel de Allende. Street food safety, FMM cards, and budget breakdown.</p>
-            <span class="meta">March 22, 2026 &middot; 15 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1518638150340-f706e86654de?w=800&h=400&fit=crop&auto=format&q=75" alt="Mexico Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Mexico Travel &amp; Packing Guide 2026: Complete Checklist</h2>
+                <p>Complete Mexico guide &mdash; Mexico City, Cancún, Oaxaca, Puerto Vallarta, San Miguel de Allende. Street food safety, FMM cards, and budget breakdown.</p>
+                <span class="meta">March 22, 2026 &middot; 15 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/female-solo-travel-guide.html" class="blog-card">
-            <span class="tag">Travel Guide</span>
-            <h2>Female Solo Travel Guide 2026: Safety Tips &amp; Best Destinations</h2>
-            <p>Essential guide for women traveling alone &mdash; safety tips, best destinations (Japan, Portugal, Iceland, New Zealand), packing essentials, and solo dining confidence.</p>
-            <span class="meta">March 22, 2026 &middot; 14 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=800&h=400&fit=crop&auto=format&q=75" alt="Female Solo Travel Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Travel Guide</span>
+                <h2>Female Solo Travel Guide 2026: Safety Tips &amp; Best Destinations</h2>
+                <p>Essential guide for women traveling alone &mdash; safety tips, best destinations (Japan, Portugal, Iceland, New Zealand), packing essentials, and solo dining confidence.</p>
+                <span class="meta">March 22, 2026 &middot; 14 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/travel-insurance-guide.html" class="blog-card">
-            <span class="tag">Travel Guide</span>
-            <h2>Travel Insurance Guide 2026: What You Need &amp; How to Choose</h2>
-            <p>Everything you need to know about travel insurance &mdash; types of coverage, cost breakdown, how to file claims, and common mistakes to avoid.</p>
-            <span class="meta">March 22, 2026 &middot; 12 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&h=400&fit=crop&auto=format&q=75" alt="Travel Insurance Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Travel Guide</span>
+                <h2>Travel Insurance Guide 2026: What You Need &amp; How to Choose</h2>
+                <p>Everything you need to know about travel insurance &mdash; types of coverage, cost breakdown, how to file claims, and common mistakes to avoid.</p>
+                <span class="meta">March 22, 2026 &middot; 12 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <!-- FIFA WORLD CUP 2026 — TIME-SENSITIVE -->
 
         <a href="/blog/fifa-world-cup-2026-travel-packing-guide.html" class="blog-card" data-summer="true">
-            <span class="tag">Event Guide</span>
-            <h2>FIFA World Cup 2026 Travel &amp; Packing Guide: USA, Mexico &amp; Canada</h2>
-            <p>Complete fan guide &mdash; 16 host cities, stadium rules, clear bag policy, ticket strategy, multi-city transport, weather prep, and what to pack for June&ndash;July 2026.</p>
-            <span class="meta">March 21, 2026 &middot; 20 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=800&h=400&fit=crop&auto=format&q=75" alt="FIFA World Cup 2026 Travel Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Event Guide</span>
+                <h2>FIFA World Cup 2026 Travel &amp; Packing Guide: USA, Mexico &amp; Canada</h2>
+                <p>Complete fan guide &mdash; 16 host cities, stadium rules, clear bag policy, ticket strategy, multi-city transport, weather prep, and what to pack for June&ndash;July 2026.</p>
+                <span class="meta">March 21, 2026 &middot; 20 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <!-- SUMMER 2026 SPECIAL -->
 
         <a href="/blog/summer-vacation-packing-list.html" class="blog-card" data-summer="true">
-            <span class="tag">Packing Guide</span>
-            <h2>Summer Vacation Packing List 2026: The Ultimate Checklist</h2>
-            <p>The complete summer packing guide &mdash; hot weather clothing, sun protection, swimwear, electronics, and beach vs city summer tips.</p>
-            <span class="meta">March 13, 2026 &middot; 14 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=400&fit=crop&auto=format&q=75" alt="Summer Vacation Packing List" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Packing Guide</span>
+                <h2>Summer Vacation Packing List 2026: The Ultimate Checklist</h2>
+                <p>The complete summer packing guide &mdash; hot weather clothing, sun protection, swimwear, electronics, and beach vs city summer tips.</p>
+                <span class="meta">March 13, 2026 &middot; 14 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/best-summer-travel-destinations-india-2026.html" class="blog-card" data-summer="true">
-            <span class="tag">Destination Guide</span>
-            <h2>10 Best Summer Travel Destinations from India 2026: Beat the Heat</h2>
-            <p>Escape the heat &mdash; Ladakh, Switzerland, Iceland, Bali, New Zealand, and more. Flight costs, visa info, and what to pack for each.</p>
-            <span class="meta">March 13, 2026 &middot; 16 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&h=400&fit=crop&auto=format&q=75" alt="Best Summer Travel Destinations from India" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>10 Best Summer Travel Destinations from India 2026: Beat the Heat</h2>
+                <p>Escape the heat &mdash; Ladakh, Switzerland, Iceland, Bali, New Zealand, and more. Flight costs, visa info, and what to pack for each.</p>
+                <span class="meta">March 13, 2026 &middot; 16 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/family-summer-vacation-packing-list.html" class="blog-card" data-summer="true">
-            <span class="tag">Family Travel</span>
-            <h2>Family Summer Vacation Packing List 2026: Complete Guide for Kids &amp; Parents</h2>
-            <p>Age-specific packing for babies, kids, and teens &mdash; entertainment, snacks, sun protection, medicines, and everything families need.</p>
-            <span class="meta">March 13, 2026 &middot; 13 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=800&h=400&fit=crop&auto=format&q=75" alt="Family Summer Vacation Packing List" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Family Travel</span>
+                <h2>Family Summer Vacation Packing List 2026: Complete Guide for Kids &amp; Parents</h2>
+                <p>Age-specific packing for babies, kids, and teens &mdash; entertainment, snacks, sun protection, medicines, and everything families need.</p>
+                <span class="meta">March 13, 2026 &middot; 13 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/weekend-trip-packing-list.html" class="blog-card" data-summer="true">
-            <span class="tag">Packing Guide</span>
-            <h2>Weekend Trip Packing List: What to Pack for 2-3 Days</h2>
-            <p>Ultra-light packing for short trips &mdash; what fits in a weekender bag, city break vs nature getaway vs beach weekend.</p>
-            <span class="meta">March 13, 2026 &middot; 10 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800&h=400&fit=crop&auto=format&q=75" alt="Weekend Trip Packing List" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Packing Guide</span>
+                <h2>Weekend Trip Packing List: What to Pack for 2-3 Days</h2>
+                <p>Ultra-light packing for short trips &mdash; what fits in a weekender bag, city break vs nature getaway vs beach weekend.</p>
+                <span class="meta">March 13, 2026 &middot; 10 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <!-- TIER 1 DESTINATION GUIDES (2026) -->
 
         <a href="/blog/italy-travel-packing-guide.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Italy Travel &amp; Packing Guide 2026: Complete Checklist</h2>
-            <p>Rome, Florence, Venice, Milan &amp; the Amalfi Coast &mdash; what to pack, visa info, budget tips, cultural etiquette, and 2026 Winter Olympics guide.</p>
-            <span class="meta">March 21, 2026 &middot; 18 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1523906834658-6e24ef2386f9?w=800&h=400&fit=crop&auto=format&q=75" alt="Italy Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Italy Travel &amp; Packing Guide 2026: Complete Checklist</h2>
+                <p>Rome, Florence, Venice, Milan &amp; the Amalfi Coast &mdash; what to pack, visa info, budget tips, cultural etiquette, and 2026 Winter Olympics guide.</p>
+                <span class="meta">March 21, 2026 &middot; 18 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/greece-travel-packing-guide.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Greece Travel &amp; Packing Guide 2026: Islands, Mainland &amp; More</h2>
-            <p>Santorini, Mykonos, Crete, Athens &mdash; island hopping logistics, what to pack, ferry tips, budget breakdown, and cultural etiquette.</p>
-            <span class="meta">March 21, 2026 &middot; 18 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1533105079780-92b9be482077?w=800&h=400&fit=crop&auto=format&q=75" alt="Greece Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Greece Travel &amp; Packing Guide 2026: Islands, Mainland &amp; More</h2>
+                <p>Santorini, Mykonos, Crete, Athens &mdash; island hopping logistics, what to pack, ferry tips, budget breakdown, and cultural etiquette.</p>
+                <span class="meta">March 21, 2026 &middot; 18 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/costa-rica-packing-list.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Costa Rica Packing List 2026: Rainforest, Beach &amp; Adventure Essentials</h2>
-            <p>Arenal, Manuel Antonio, Monteverde &mdash; what to pack for zip-lining, rainforest hikes, wildlife viewing, and Caribbean beaches.</p>
-            <span class="meta">March 21, 2026 &middot; 18 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1519999482648-25049ddd37b1?w=800&h=400&fit=crop&auto=format&q=75" alt="Costa Rica Packing List" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Costa Rica Packing List 2026: Rainforest, Beach &amp; Adventure Essentials</h2>
+                <p>Arenal, Manuel Antonio, Monteverde &mdash; what to pack for zip-lining, rainforest hikes, wildlife viewing, and Caribbean beaches.</p>
+                <span class="meta">March 21, 2026 &middot; 18 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/japan-travel-packing-guide.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Japan Travel &amp; Packing Guide 2026: Tokyo, Kyoto, Osaka &amp; Beyond</h2>
-            <p>JR Pass, cherry blossoms, cultural etiquette, seasonal packing, ryokans &mdash; everything Western travelers need for Japan.</p>
-            <span class="meta">March 21, 2026 &middot; 18 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&h=400&fit=crop&auto=format&q=75" alt="Japan Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Japan Travel &amp; Packing Guide 2026: Tokyo, Kyoto, Osaka &amp; Beyond</h2>
+                <p>JR Pass, cherry blossoms, cultural etiquette, seasonal packing, ryokans &mdash; everything Western travelers need for Japan.</p>
+                <span class="meta">March 21, 2026 &middot; 18 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <!-- DESTINATION GUIDES -->
 
         <a href="/blog/japan-travel-packing-guide-from-india.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Japan Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
-            <p>Complete Japan packing list for Indians &mdash; visa application, what to pack for Tokyo, Kyoto, Osaka, JR Pass, weather by season, and cultural etiquette.</p>
-            <span class="meta">March 11, 2026 &middot; 16 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&h=400&fit=crop&auto=format&q=75" alt="Japan Travel & Packing Guide for Indians" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Japan Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
+                <p>Complete Japan packing list for Indians &mdash; visa application, what to pack for Tokyo, Kyoto, Osaka, JR Pass, weather by season, and cultural etiquette.</p>
+                <span class="meta">March 11, 2026 &middot; 16 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/sri-lanka-travel-packing-guide-from-india.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Sri Lanka Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
-            <p>Complete Sri Lanka packing list for Indians &mdash; ETA visa, temple dress codes, hill country gear, weather by month, budget tips, and customs rules.</p>
-            <span class="meta">March 11, 2026 &middot; 15 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1586613835259-702b94809e34?w=800&h=400&fit=crop&auto=format&q=75" alt="Sri Lanka Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Sri Lanka Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
+                <p>Complete Sri Lanka packing list for Indians &mdash; ETA visa, temple dress codes, hill country gear, weather by month, budget tips, and customs rules.</p>
+                <span class="meta">March 11, 2026 &middot; 15 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/malaysia-travel-packing-guide-from-india.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Malaysia Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
-            <p>Complete Malaysia packing list for Indians &mdash; eNTRI visa-free entry, KL, Penang, Langkawi, mosque dress codes, and budget breakdown.</p>
-            <span class="meta">March 11, 2026 &middot; 14 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1508062878650-88b52897f298?w=800&h=400&fit=crop&auto=format&q=75" alt="Malaysia Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Malaysia Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
+                <p>Complete Malaysia packing list for Indians &mdash; eNTRI visa-free entry, KL, Penang, Langkawi, mosque dress codes, and budget breakdown.</p>
+                <span class="meta">March 11, 2026 &middot; 14 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/nepal-travel-packing-guide-from-india.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Nepal Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
-            <p>Complete Nepal packing list for Indians &mdash; no visa needed, trekking gear, Kathmandu, Pokhara, altitude sickness tips, and budget breakdown.</p>
-            <span class="meta">March 11, 2026 &middot; 15 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800&h=400&fit=crop&auto=format&q=75" alt="Nepal Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Nepal Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
+                <p>Complete Nepal packing list for Indians &mdash; no visa needed, trekking gear, Kathmandu, Pokhara, altitude sickness tips, and budget breakdown.</p>
+                <span class="meta">March 11, 2026 &middot; 15 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/dubai-travel-packing-guide-from-india.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Dubai Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
-            <p>Complete Dubai packing list for Indians &mdash; visa process, desert safari gear, mall dress codes, cultural etiquette, and budget breakdown.</p>
-            <span class="meta">March 4, 2026 &middot; 15 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1512453979798-5ea266f8880c?w=800&h=400&fit=crop&auto=format&q=75" alt="Dubai Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Dubai Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
+                <p>Complete Dubai packing list for Indians &mdash; visa process, desert safari gear, mall dress codes, cultural etiquette, and budget breakdown.</p>
+                <span class="meta">March 4, 2026 &middot; 15 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/singapore-travel-packing-guide-from-india.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Singapore Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
-            <p>Complete Singapore packing list for Indians &mdash; visa, MRT tips, strict local laws, hawker centre food, Little India, and budget breakdown.</p>
-            <span class="meta">March 4, 2026 &middot; 14 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1525625293386-3f8f99389edd?w=800&h=400&fit=crop&auto=format&q=75" alt="Singapore Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Singapore Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
+                <p>Complete Singapore packing list for Indians &mdash; visa, MRT tips, strict local laws, hawker centre food, Little India, and budget breakdown.</p>
+                <span class="meta">March 4, 2026 &middot; 14 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/maldives-travel-packing-guide-from-india.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Maldives Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
-            <p>Complete Maldives packing list for Indians &mdash; free visa on arrival, resort vs guesthouse, snorkeling gear, island dress codes, and budget tips.</p>
-            <span class="meta">March 4, 2026 &middot; 13 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=800&h=400&fit=crop&auto=format&q=75" alt="Maldives Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Maldives Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
+                <p>Complete Maldives packing list for Indians &mdash; free visa on arrival, resort vs guesthouse, snorkeling gear, island dress codes, and budget tips.</p>
+                <span class="meta">March 4, 2026 &middot; 13 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/vietnam-travel-packing-guide-from-india.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Vietnam Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
-            <p>Complete Vietnam packing list for Indians &mdash; e-visa, street food survival kit, Ha Long Bay, weather by region, and the cheapest trip in Southeast Asia.</p>
-            <span class="meta">March 4, 2026 &middot; 15 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1557750255-c76072a7aad1?w=800&h=400&fit=crop&auto=format&q=75" alt="Vietnam Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Vietnam Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
+                <p>Complete Vietnam packing list for Indians &mdash; e-visa, street food survival kit, Ha Long Bay, weather by region, and the cheapest trip in Southeast Asia.</p>
+                <span class="meta">March 4, 2026 &middot; 15 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/bali-travel-packing-guide-from-india.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Bali Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
-            <p>Complete Bali packing list for Indians &mdash; visa on arrival, temple dress codes, weather by month, budget breakdown, and what to buy there instead.</p>
-            <span class="meta">March 3, 2026 &middot; 14 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=800&h=400&fit=crop&auto=format&q=75" alt="Bali Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Bali Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
+                <p>Complete Bali packing list for Indians &mdash; visa on arrival, temple dress codes, weather by month, budget breakdown, and what to buy there instead.</p>
+                <span class="meta">March 3, 2026 &middot; 14 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/thailand-travel-packing-guide-from-india.html" class="blog-card">
-            <span class="tag">Destination Guide</span>
-            <h2>Thailand Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
-            <p>Everything Indians need for Thailand &mdash; visa-free entry, packing by destination, cultural etiquette, budget tips, and essential apps.</p>
-            <span class="meta">March 3, 2026 &middot; 15 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1528181304800-259b08848526?w=800&h=400&fit=crop&auto=format&q=75" alt="Thailand Travel & Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Destination Guide</span>
+                <h2>Thailand Travel &amp; Packing Guide 2026: Complete Checklist for Indian Travelers</h2>
+                <p>Everything Indians need for Thailand &mdash; visa-free entry, packing by destination, cultural etiquette, budget tips, and essential apps.</p>
+                <span class="meta">March 3, 2026 &middot; 15 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <!-- TRAVEL PREPARATION -->
 
         <a href="/blog/international-travel-checklist.html" class="blog-card">
-            <span class="tag">Travel Preparation</span>
-            <h2>International Travel Checklist 2026: Documents &amp; Preparation Guide</h2>
-            <p>The ultimate checklist covering passports, visas, insurance, health documents, and everything you need before flying abroad.</p>
-            <span class="meta">March 3, 2026 &middot; 12 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=800&h=400&fit=crop&auto=format&q=75" alt="International Travel Checklist" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Travel Preparation</span>
+                <h2>International Travel Checklist 2026: Documents &amp; Preparation Guide</h2>
+                <p>The ultimate checklist covering passports, visas, insurance, health documents, and everything you need before flying abroad.</p>
+                <span class="meta">March 3, 2026 &middot; 12 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/family-travel-tips-with-kids.html" class="blog-card">
-            <span class="tag">Family Travel</span>
-            <h2>Family Travel Tips 2026: The Complete Guide to Traveling with Kids</h2>
-            <p>Practical tips for traveling with babies, toddlers, and older kids &mdash; flights, road trips, packing, food, and keeping everyone happy.</p>
-            <span class="meta">March 3, 2026 &middot; 14 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1502086223501-7ea6ecd79368?w=800&h=400&fit=crop&auto=format&q=75" alt="Family Travel Tips" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Family Travel</span>
+                <h2>Family Travel Tips 2026: The Complete Guide to Traveling with Kids</h2>
+                <p>Practical tips for traveling with babies, toddlers, and older kids &mdash; flights, road trips, packing, food, and keeping everyone happy.</p>
+                <span class="meta">March 3, 2026 &middot; 14 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <!-- PACKING GUIDES -->
 
         <a href="/blog/winter-travel-packing-list.html" class="blog-card">
-            <span class="tag">Packing Guide</span>
-            <h2>Winter Travel Packing List 2026: Cold Weather Essentials</h2>
-            <p>The complete cold-weather packing guide &mdash; layering strategy, thermal wear, boots, accessories, electronics tips, and destination-specific adaptations.</p>
-            <span class="meta">March 12, 2026 &middot; 13 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1457269449834-928af64c684d?w=800&h=400&fit=crop&auto=format&q=75" alt="Winter Travel Packing List" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Packing Guide</span>
+                <h2>Winter Travel Packing List 2026: Cold Weather Essentials</h2>
+                <p>The complete cold-weather packing guide &mdash; layering strategy, thermal wear, boots, accessories, electronics tips, and destination-specific adaptations.</p>
+                <span class="meta">March 12, 2026 &middot; 13 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/honeymoon-packing-list.html" class="blog-card">
-            <span class="tag">Packing Guide</span>
-            <h2>Honeymoon Packing List 2026: The Complete Guide for Couples</h2>
-            <p>Everything couples need to pack for the perfect honeymoon &mdash; romantic essentials, matching outfits, documents for newlyweds, and destination-specific tips.</p>
-            <span class="meta">March 12, 2026 &middot; 12 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1439130490301-25e322d88054?w=800&h=400&fit=crop&auto=format&q=75" alt="Honeymoon Packing List" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Packing Guide</span>
+                <h2>Honeymoon Packing List 2026: The Complete Guide for Couples</h2>
+                <p>Everything couples need to pack for the perfect honeymoon &mdash; romantic essentials, matching outfits, documents for newlyweds, and destination-specific tips.</p>
+                <span class="meta">March 12, 2026 &middot; 12 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/minimalist-packing-guide.html" class="blog-card">
-            <span class="tag">Packing Guide</span>
-            <h2>Minimalist Packing Guide: How to Travel with Just a Backpack</h2>
-            <p>Master one-bag travel &mdash; capsule wardrobes, packing cubes, multi-use items, and strategies to travel light without sacrificing comfort.</p>
-            <span class="meta">March 12, 2026 &middot; 11 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=400&fit=crop&auto=format&q=75" alt="Minimalist Packing Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Packing Guide</span>
+                <h2>Minimalist Packing Guide: How to Travel with Just a Backpack</h2>
+                <p>Master one-bag travel &mdash; capsule wardrobes, packing cubes, multi-use items, and strategies to travel light without sacrificing comfort.</p>
+                <span class="meta">March 12, 2026 &middot; 11 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/travel-toiletries-checklist.html" class="blog-card">
-            <span class="tag">Travel Preparation</span>
-            <h2>Travel Toiletries Checklist 2026: TSA-Approved Essentials</h2>
-            <p>The complete toiletries guide &mdash; TSA liquid rules, solid alternatives, men's vs women's lists, skincare, and what to buy at your destination.</p>
-            <span class="meta">March 12, 2026 &middot; 10 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1556228578-0d85b1a4d571?w=800&h=400&fit=crop&auto=format&q=75" alt="Travel Toiletries Checklist" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Travel Preparation</span>
+                <h2>Travel Toiletries Checklist 2026: TSA-Approved Essentials</h2>
+                <p>The complete toiletries guide &mdash; TSA liquid rules, solid alternatives, men's vs women's lists, skincare, and what to buy at your destination.</p>
+                <span class="meta">March 12, 2026 &middot; 10 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/beach-vacation-packing-list.html" class="blog-card">
-            <span class="tag">Packing Guide</span>
-            <h2>Beach Vacation Packing List 2026: The Complete Checklist</h2>
-            <p>The ultimate beach vacation packing list &mdash; swimwear, sun protection, beach gear, electronics, and expert tips for packing light and smart.</p>
-            <span class="meta">March 11, 2026 &middot; 12 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&h=400&fit=crop&auto=format&q=75" alt="Beach Vacation Packing List" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Packing Guide</span>
+                <h2>Beach Vacation Packing List 2026: The Complete Checklist</h2>
+                <p>The ultimate beach vacation packing list &mdash; swimwear, sun protection, beach gear, electronics, and expert tips for packing light and smart.</p>
+                <span class="meta">March 11, 2026 &middot; 12 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/europe-travel-packing-list.html" class="blog-card">
-            <span class="tag">Packing Guide</span>
-            <h2>Europe Travel Packing List 2026: What to Pack for Any Season</h2>
-            <p>The complete Europe packing list &mdash; clothing by season, footwear for cobblestones, documents, electronics, city-specific tips, and carry-on strategy.</p>
-            <span class="meta">March 11, 2026 &middot; 14 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1491557345352-5929e343eb89?w=800&h=400&fit=crop&auto=format&q=75" alt="Europe Travel Packing List" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Packing Guide</span>
+                <h2>Europe Travel Packing List 2026: What to Pack for Any Season</h2>
+                <p>The complete Europe packing list &mdash; clothing by season, footwear for cobblestones, documents, electronics, city-specific tips, and carry-on strategy.</p>
+                <span class="meta">March 11, 2026 &middot; 14 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <!-- GENERAL GUIDES -->
 
         <a href="/budget-travel-destinations-2026.html" class="blog-card">
-            <span class="tag">Budget Travel</span>
-            <h2>15 Best Budget Travel Destinations in 2026</h2>
-            <p>From Vietnam to Albania to Bolivia &mdash; 15 affordable destinations where your money goes furthest, with daily budgets, visa info, and practical tips.</p>
-            <span class="meta">March 1, 2026 &middot; 12 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=800&h=400&fit=crop&auto=format&q=75" alt="Budget Travel Destinations" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Budget Travel</span>
+                <h2>15 Best Budget Travel Destinations in 2026</h2>
+                <p>From Vietnam to Albania to Bolivia &mdash; 15 affordable destinations where your money goes furthest, with daily budgets, visa info, and practical tips.</p>
+                <span class="meta">March 1, 2026 &middot; 12 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/carry-on-packing-list.html" class="blog-card">
-            <span class="tag">Packing Guide</span>
-            <h2>Carry-On Only Packing List: How to Travel Light</h2>
-            <p>The complete carry-on packing list for trips up to 2 weeks &mdash; capsule wardrobe, toiletries, tech, packing techniques, and airline size limits.</p>
-            <span class="meta">March 1, 2026 &middot; 10 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1553062407-98eeb64c6a62?w=800&h=400&fit=crop&auto=format&q=75" alt="Carry-On Packing List" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Packing Guide</span>
+                <h2>Carry-On Only Packing List: How to Travel Light</h2>
+                <p>The complete carry-on packing list for trips up to 2 weeks &mdash; capsule wardrobe, toiletries, tech, packing techniques, and airline size limits.</p>
+                <span class="meta">March 1, 2026 &middot; 10 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/visa-free-countries-indian-passport.html" class="blog-card">
-            <span class="tag">Visa Guide</span>
-            <h2>Visa-Free Countries for Indian Passport Holders in 2026 (Complete List)</h2>
-            <p>60+ countries Indians can visit without a visa &mdash; complete list with stay duration, entry rules, budget tips, and bonus third-country visa hacks.</p>
-            <span class="meta">February 25, 2026 &middot; 15 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1524492412937-b28074a5d7da?w=800&h=400&fit=crop&auto=format&q=75" alt="Visa-Free Countries" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Visa Guide</span>
+                <h2>Visa-Free Countries for Indian Passport Holders in 2026 (Complete List)</h2>
+                <p>60+ countries Indians can visit without a visa &mdash; complete list with stay duration, entry rules, budget tips, and bonus third-country visa hacks.</p>
+                <span class="meta">February 25, 2026 &middot; 15 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/train-travel-tips-beginners.html" class="blog-card">
-            <span class="tag">Travel Guide</span>
-            <h2>Train Travel Tips: The Complete Guide for Beginners</h2>
-            <p>Everything you need to know for your first train journey &mdash; booking, seat selection, packing, station navigation, overnight trains, and mistakes to avoid.</p>
-            <span class="meta">February 25, 2026 &middot; 13 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1474487548417-781cb71495f3?w=800&h=400&fit=crop&auto=format&q=75" alt="Train Travel Tips" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Travel Guide</span>
+                <h2>Train Travel Tips: The Complete Guide for Beginners</h2>
+                <p>Everything you need to know for your first train journey &mdash; booking, seat selection, packing, station navigation, overnight trains, and mistakes to avoid.</p>
+                <span class="meta">February 25, 2026 &middot; 13 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/road-trip-packing-checklist.html" class="blog-card">
-            <span class="tag">Packing Guide</span>
-            <h2>The Ultimate Road Trip Packing Checklist (2026)</h2>
-            <p>The only road trip packing list you'll ever need &mdash; car essentials, safety gear, comfort items, snacks, tech, plus tips for families and winter driving.</p>
-            <span class="meta">February 25, 2026 &middot; 14 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1449824913935-59a10b8d2000?w=800&h=400&fit=crop&auto=format&q=75" alt="Road Trip Packing Checklist" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Packing Guide</span>
+                <h2>The Ultimate Road Trip Packing Checklist (2026)</h2>
+                <p>The only road trip packing list you'll ever need &mdash; car essentials, safety gear, comfort items, snacks, tech, plus tips for families and winter driving.</p>
+                <span class="meta">February 25, 2026 &middot; 14 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/first-time-flying.html" class="blog-card">
-            <span class="tag">Travel Guide</span>
-            <h2>First Time Flying? Everything You Need to Know</h2>
-            <p>A complete step-by-step guide for first-time flyers &mdash; from booking your ticket to collecting your bags. No jargon, no stress.</p>
-            <span class="meta">February 25, 2026 &middot; 12 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1436491865332-7a61a109db05?w=800&h=400&fit=crop&auto=format&q=75" alt="First Time Flying Guide" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Travel Guide</span>
+                <h2>First Time Flying? Everything You Need to Know</h2>
+                <p>A complete step-by-step guide for first-time flyers &mdash; from booking your ticket to collecting your bags. No jargon, no stress.</p>
+                <span class="meta">February 25, 2026 &middot; 12 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/solo-travel-tips-beginners.html" class="blog-card">
-            <span class="tag">Solo Travel</span>
-            <h2>Solo Travel Tips: The Ultimate Guide for First-Time Solo Travellers</h2>
-            <p>Everything you need to know to plan your first solo trip &mdash; overcoming fears, best destinations, safety tips, meeting people, and packing smart.</p>
-            <span class="meta">February 26, 2026 &middot; 14 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1530789253388-582c481c54b0?w=800&h=400&fit=crop&auto=format&q=75" alt="Solo Travel Tips" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Solo Travel</span>
+                <h2>Solo Travel Tips: The Ultimate Guide for First-Time Solo Travellers</h2>
+                <p>Everything you need to know to plan your first solo trip &mdash; overcoming fears, best destinations, safety tips, meeting people, and packing smart.</p>
+                <span class="meta">February 26, 2026 &middot; 14 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
         <a href="/blog/ship-cruise-travel-tips.html" class="blog-card">
-            <span class="tag">Cruise Guide</span>
-            <h2>Ship &amp; Cruise Travel Tips: Complete Guide for First-Time Cruisers</h2>
-            <p>Everything about cruise and ferry travel &mdash; booking tips, cabin selection, what to pack, seasickness, shore excursions, and onboard life hacks.</p>
-            <span class="meta">February 26, 2026 &middot; 13 min read</span>
-            <br><span class="read-more">Read more &rarr;</span>
+            <img class="blog-card-img" src="https://images.unsplash.com/photo-1548574505-5e239809ee19?w=800&h=400&fit=crop&auto=format&q=75" alt="Cruise Travel Tips" loading="lazy">
+            <div class="blog-card-body">
+                <span class="tag">Cruise Guide</span>
+                <h2>Ship &amp; Cruise Travel Tips: Complete Guide for First-Time Cruisers</h2>
+                <p>Everything about cruise and ferry travel &mdash; booking tips, cabin selection, what to pack, seasickness, shore excursions, and onboard life hacks.</p>
+                <span class="meta">February 26, 2026 &middot; 13 min read</span>
+                <br><span class="read-more">Read more &rarr;</span>
+            </div>
         </a>
 
     </div>
