@@ -40,13 +40,22 @@
     <script type="application/ld+json">{"@context":"https://schema.org","@type":"Article","headline":"15 Best Budget Travel Destinations in 2026","author":{"@type":"Organization","name":"PackSmart"},"publisher":{"@type":"Organization","name":"PackSmart","url":"https://www.packsmartapp.com"},"datePublished":"2026-03-01","dateModified":"2026-03-01","mainEntityOfPage":"https://www.packsmartapp.com/budget-travel-destinations-2026.html"}</script>
 </head>
 <body>
-<nav class="nav"><a href="/" class="nav-brand">Pack<em>Smart</em></a><div class="nav-links" id="navLinks"><a href="/#how">How It Works</a><a href="/#features">Features</a><a href="/about.html">About</a><a href="flights.html">Flights & Hotels</a>
-        <a href="/blog.html">Blog</a><a href="/pricing.html">Pricing</a>
-        <a href="/contact.html">Contact</a><a href="/#plan" class="nav-cta-btn">Plan My Trip</a></div><button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button></nav>
+<nav class="nav" id="nav">
+    <a href="/" class="nav-brand">Pack<em>Smart</em></a>
+    <div class="nav-links" id="navLinks">
+        <a href="/flights.html">Flights & Hotels</a>
+        <a href="/#how">How It Works</a>
+        <a href="/#features">Features</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/#plan" class="nav-cta-btn">Plan My Trip</a>
+    </div>
+    <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
 
 <article class="article-wrapper">
-    <div class="breadcrumb"><a href="/">Home</a> &rarr; <a href="flights.html">Flights & Hotels</a>
-        <a href="/blog.html">Blog</a> &rarr; Budget Travel Destinations</div>
+    <div class="breadcrumb"><a href="/">Home</a> &rarr; <a href="/blog.html">Blog</a> &rarr; Budget Travel Destinations</div>
     <div class="article-header">
         <span class="article-tag">Budget Travel</span>
         <h1>15 Best Budget Travel Destinations in 2026</h1>
@@ -320,6 +329,12 @@
     </div>
 </footer>
 
-<script>document.getElementById('menuBtn').addEventListener('click',()=>{document.getElementById('navLinks').classList.toggle('open')});</script>
+<script>
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+const menuBtn = document.getElementById('menuBtn');
+menuBtn.addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
+</script>
 </body>
 </html>
