@@ -123,7 +123,7 @@
         .mobile-menu-btn span:nth-child(3) { top: 22px; }
         .hero-blog {
             height: 600px;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -165,10 +165,12 @@
             padding: 0 20px;
         }
         article.content > h2 {
+            color: var(--dark);
             font-size: 1.8rem;
-            font-weight: 700;
-            margin: 50px 0 25px 0;
-            color: #000;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            border-left: 4px solid var(--primary);
+            padding-left: 1rem;
         }
         article.content > h3 {
             font-size: 1.4rem;
@@ -222,7 +224,7 @@
             background: #f0faf8;
         }
         .warning-box { border-left-color: #E94560; background: #fff5f5; }
-        .info-box { border-left-color: #667eea; background: #f5f7ff; }
+        .info-box { border-left-color: #00C9A7; background: #f0fef9; }
         .checklist-table, .weather-grid {
             margin: 30px 0;
             border-collapse: collapse;
@@ -234,7 +236,8 @@
             overflow: hidden;
         }
         .checklist-table th {
-            background: #f5f5f5;
+            background: var(--primary);
+            color: white;
             padding: 15px;
             text-align: left;
             font-weight: 700;
@@ -251,16 +254,16 @@
             gap: 20px;
         }
         .weather-card {
-            border: 1px solid #ddd;
-            padding: 20px;
+            background: var(--light-gray);
+            padding: 1.5rem;
             border-radius: 8px;
-            text-align: center;
-            background: #f9f9f9;
+            border-top: 3px solid var(--primary);
         }
         .weather-card h4 {
+            color: var(--primary);
+            margin-bottom: 0.5rem;
             font-size: 1rem;
             font-weight: 700;
-            margin-bottom: 10px;
         }
         .weather-card .temp {
             font-size: 1.6rem;
@@ -282,7 +285,7 @@
         }
         .travel-card h4 { margin: 15px 0 10px 0; font-size: 1.1rem; }
         .fifa-callout {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #00a080 100%);
             color: #fff;
             padding: 30px;
             border-radius: 8px;
@@ -293,7 +296,7 @@
         .fifa-callout a { color: #fff; text-decoration: underline; font-weight: 700; }
         .safetyWing-widget { margin: 40px 0; padding: 20px; border-radius: 8px; background: #f8f9fa; text-align: center; }
         .newsletter-section {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(135deg, var(--primary) 0%, #00a080 100%);
             color: #fff;
             padding: 40px;
             border-radius: 8px;
@@ -321,30 +324,45 @@
         }
         .newsletter-section button:hover { background: #00b396; }
         .footer {
-            background: #0f0f23;
-            color: #fff;
-            padding: 60px 30px 20px;
+            padding: 60px 2rem 40px;
+            background: rgba(248,249,250,0.75);
+            border-top: 1px solid #eee;
         }
         .footer-inner {
-            max-width: 1000px;
-            margin: 0 auto 40px;
+            max-width: 1100px;
+            margin: 0 auto;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 3rem;
         }
-        .footer-col h4 { margin-bottom: 15px; font-size: 0.95rem; font-weight: 700; }
-        .footer-col a { display: block; margin: 8px 0; color: #aaa; text-decoration: none; font-size: 0.9rem; transition: 0.2s; }
+        .footer-brand-col {
+            display: flex;
+            flex-direction: column;
+        }
+        .footer-brand-col p {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        .footer-col h4 { margin-bottom: 15px; font-size: 0.95rem; font-weight: 700; color: #333; }
+        .footer-col a { display: block; margin: 8px 0; color: #666; text-decoration: none; font-size: 0.9rem; transition: 0.2s; }
         .footer-col a:hover { color: #00C9A7; }
-        .footer-logo { font-size: 1.3rem; font-weight: 800; margin-bottom: 15px; }
+        .footer-logo { font-size: 1.3rem; font-weight: 800; margin-bottom: 15px; color: #333; }
         .footer-logo em { color: #00C9A7; font-style: normal; }
         .footer-bottom {
-            max-width: 1000px;
+            max-width: 1100px;
             margin: 0 auto;
             padding-top: 30px;
-            border-top: 1px solid #333;
+            border-top: 1px solid #eee;
             text-align: center;
             font-size: 0.85rem;
             color: #888;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+        }
+        .footer-bottom span {
+            display: flex;
         }
         @media (max-width: 768px) {
             .nav { padding: 0 1.5rem; }
@@ -845,22 +863,20 @@
         </div>
         <div class="footer-col"><h4>Product</h4><a href="/#how">How It Works</a><a href="/#features">Features</a><a href="/#plan">Plan a Trip</a></div>
         <div class="footer-col"><h4>Company</h4><a href="/about.html">About</a><a href="/flights.html">Flights &amp; Hotels</a><a href="/blog.html">Blog</a><a href="/pricing.html">Pricing</a><a href="/contact.html">Contact</a></div>
-        <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a></div>
+        <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/affiliate-disclosure.html">Affiliate Disclosure</a></div>
     </div>
     <div class="footer-bottom">
-        <p>&copy; 2026 PackSmart. All rights reserved. | Made for Indian travelers.</p>
+        <span>&copy; 2026 PackSmart. All rights reserved.</span>
+        <span>Made for travelers.</span>
     </div>
 </footer>
 
 <script>
-window.addEventListener('scroll', function() {
-    const nav = document.querySelector('.nav');
-    if (window.scrollY > 50) {
-        nav.classList.add('scrolled');
-    } else {
-        nav.classList.remove('scrolled');
-    }
-});
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
+const menuBtn = document.getElementById('menuBtn');
+menuBtn.addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
+document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
 </script>
 
 </body>
