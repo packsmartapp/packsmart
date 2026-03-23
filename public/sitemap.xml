@@ -56,6 +56,12 @@
     <changefreq>yearly</changefreq>
     <priority>0.4</priority>
   </url>
+  <url>
+    <loc>https://www.packsmartapp.com/affiliate-disclosure.html</loc>
+    <lastmod>2026-03-14</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.3</priority>
+  </url>
   <!-- Root Blog Posts -->
   <url>
     <loc>https://www.packsmartapp.com/budget-travel-destinations-2026.html</loc>
@@ -238,6 +244,68 @@
   <url>
     <loc>https://www.packsmartapp.com/blog/weekend-trip-packing-list.html</loc>
     <lastmod>2026-03-14</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Destination Guides (International) -->
+  <url>
+    <loc>https://www.packsmartapp.com/blog/greece-travel-packing-guide.html</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.packsmartapp.com/blog/italy-travel-packing-guide.html</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.packsmartapp.com/blog/spain-travel-packing-guide.html</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.packsmartapp.com/blog/portugal-travel-packing-guide.html</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.packsmartapp.com/blog/mexico-travel-packing-guide.html</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.packsmartapp.com/blog/costa-rica-packing-list.html</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.packsmartapp.com/blog/japan-travel-packing-guide.html</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <!-- Specialty Guides -->
+  <url>
+    <loc>https://www.packsmartapp.com/blog/female-solo-travel-guide.html</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.packsmartapp.com/blog/travel-insurance-guide.html</loc>
+    <lastmod>2026-03-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.packsmartapp.com/blog/fifa-world-cup-2026-travel-packing-guide.html</loc>
+    <lastmod>2026-03-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
