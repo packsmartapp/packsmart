@@ -364,6 +364,92 @@
         .footer-bottom span {
             display: flex;
         }
+        .cta-box {
+            background: linear-gradient(135deg, var(--primary) 0%, #00a080 100%);
+            color: white;
+            padding: 2rem;
+            border-radius: 8px;
+            text-align: center;
+            margin: 3rem 0;
+        }
+        .cta-box h3 {
+            color: white;
+            margin-bottom: 1rem;
+        }
+        .cta-box a {
+            background: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            text-decoration: none;
+            border-radius: 4px;
+            display: inline-block;
+            font-weight: 600;
+            transition: opacity 0.3s;
+        }
+        .cta-box a:hover {
+            opacity: 0.9;
+        }
+        .related-posts {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        .related-posts h3 {
+            color: var(--dark);
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+        .related-card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            transition: box-shadow 0.3s;
+        }
+        .related-card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        .related-card-body {
+            padding: 1.5rem;
+        }
+        .related-card h4 {
+            color: var(--dark);
+            margin-bottom: 0.5rem;
+            font-size: 1.1rem;
+        }
+        .related-card a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+        }
+        .related-card a:hover {
+            text-decoration: underline;
+        }
+        .related-tag {
+            display: inline-block;
+            background: var(--light-gray);
+            color: var(--dark);
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-top: 1rem;
+        }
+        .related-arrow {
+            color: var(--accent);
+            margin-left: 0.5rem;
+        }
+        .share-row { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; padding: 12px 0; }
+        .share-row span { font-size: 0.85rem; color: #999; font-weight: 500; }
+        .share-btn { display: inline-flex; align-items: center; justify-content: center; width: 38px; height: 38px; border-radius: 8px; border: 1px solid #E9ECEF; background: #fff; text-decoration: none; color: #555; transition: all 0.2s; }
+        .share-btn:hover { border-color: #ccc; color: #333; background: #f8f9fa; }
+        .share-btn.copy-link { width: auto; padding: 0 12px; gap: 4px; font-size: 0.8rem; font-weight: 500; cursor: pointer; font-family: inherit; }
+        .faq-section { margin: 50px 0 30px; padding: 30px 0; border-top: 2px solid #f0f0f0; }
         @media (max-width: 768px) {
             .nav { padding: 0 1.5rem; }
             .nav-links { display: none; }
@@ -373,12 +459,28 @@
             article.content { margin: 30px auto; }
             .newsletter-section form { flex-direction: column; }
         }
+        @media (max-width: 600px) {
+            .nav { padding: 0 1.5rem; }
+            .nav-links { display: none; }
+            .nav-links.open {
+                display: flex;
+                flex-direction: column;
+                position: fixed;
+                top: 72px; left: 0; right: 0;
+                background: rgba(255,255,255,0.98);
+                backdrop-filter: blur(20px);
+                padding: 2rem;
+                gap: 1.5rem;
+                box-shadow: 0 10px 40px rgba(0,0,0,0.08);
+            }
+            .mobile-menu-btn { display: block; }
+        }
 </style>
 </head>
 <body>
-<nav class="nav">
+<nav class="nav" id="nav">
     <a href="/" class="nav-brand">Pack<em>Smart</em></a>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
         <a href="/flights.html">Flights</a>
         <a href="/blog.html">Blog</a>
         <a href="/#how">How It Works</a>
@@ -386,7 +488,7 @@
         <a href="/contact.html">Contact</a>
         <a href="/download.html" class="nav-cta-btn">Download App</a>
     </div>
-    <button class="mobile-menu-btn"><span></span><span></span><span></span></button>
+    <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
 <div class="hero-blog">
@@ -397,13 +499,15 @@
 
 <article class="content">
 
-<div class="share-bar">
-    <span>Share this guide:</span>
-    <a class="share-btn whatsapp" href="https://wa.me/?text=Canada%20Travel%20%26amp%3B%20Packing%20Guide%202026%3A%20Complete%20Checklist%20for%20Indian%20Travelers%20https%3A//www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html" target="_blank" rel="noopener">WhatsApp</a>
-    <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Canada%20Travel%20%26amp%3B%20Packing%20Guide%202026%3A%20Complete%20Checklist%20for%20Indian%20Travelers&url=https%3A//www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html" target="_blank" rel="noopener">Twitter</a>
-    <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html" target="_blank" rel="noopener">Facebook</a>
-    <a class="share-btn linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html" target="_blank" rel="noopener">LinkedIn</a>
-    <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html').then(()=>this.textContent='Copied!')">Copy Link</button>
+<p style="font-size:0.82rem;color:#999;margin-bottom:0.5rem;padding-bottom:0.8rem;border-bottom:1px solid #eee;">This article contains affiliate links. If you make a purchase through these links, we may earn a small commission at no extra cost to you. <a href="/affiliate-disclosure.html" style="color:#00C9A7;">Learn more</a></p>
+
+        <div class="share-row">
+    <span>Share this guide ✨</span>
+    <a class="share-btn whatsapp" href="https://wa.me/?text=Canada%20Travel%20%26%20Packing%20Guide%202026%3A%20Complete%20Checklist%20https%3A//www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html" target="_blank" rel="noopener" title="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+    <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Canada%20Travel%20%26%20Packing%20Guide%202026%3A%20Complete%20Checklist&url=https%3A//www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html" target="_blank" rel="noopener" title="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html" target="_blank" rel="noopener" title="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+    <a class="share-btn linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html" target="_blank" rel="noopener" title="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+    <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
 
 <p>Canada is calling Indian travelers in 2026, and with the <strong>FIFA World Cup 2026 co-hosted in Canada, USA, and Mexico this June-July</strong>, it's the perfect year to explore the Great White North. From world-class skiing in Banff to Niagara Falls' thundering waters, from the cosmopolitan energy of Toronto to the natural beauty of Vancouver, Canada offers unforgettable experiences. Plus, Canada is home to one of the world's largest Indian diaspora, especially in cities like Brampton, Toronto, and Surrey, BC &mdash; meaning authentic Indian food, Khalsa Day parades, and a welcoming cultural environment.</p>
@@ -733,125 +837,138 @@
     </div>
 </div>
 
-<h2>❓ Frequently Asked Questions</h2>
-
-<h3>Do Indians need a visa for Canada?</h3>
-<p>Yes. Indian citizens cannot use eTA (Electronic Travel Authorization). You need a Canadian Temporary Resident Visa (TRV) applied online via IRCC. Cost: CAD $100 (~₹6,200) for visa + CAD $85 (~₹5,300) for biometrics. Processing: 2-8 weeks. Required: valid passport (6+ months), bank statements, ITR, employment letter, travel itinerary.</p>
-
-<h3>What should I pack for Canada from India?</h3>
-<p>It depends entirely on season. <strong>Summer (Jun-Sep):</strong> Light clothes, rain jacket, comfortable shoes. <strong>Winter (Oct-Mar):</strong> Insulated winter coat, thermal layers, winter boots, gloves, toque, scarf. Extreme cold (-30°C to -40°C) requires serious gear. Always bring: Type A/B power adapters (110V), power bank, sunscreen, medications. Winter packing is non-negotiable—survival depends on proper clothing.</p>
-
-<h3>What's the best time to visit Canada from India?</h3>
-<p>June-September for general tourism and 2026 FIFA World Cup (Vancouver, BC Place Stadium). October for stunning fall foliage. December-March for skiing but extreme cold. Summer offers longest daylight (18-20 hours), perfect weather, and all attractions open. Winter requires cold tolerance; many outdoor activities become risky.</p>
-
-<h3>How much does a Canada trip cost from India?</h3>
-<p>10-day trip budget: ₹1,50,000-3,50,000. Flights: ₹45,000-95,000 return. Hotels: ₹4,000-10,000/night. Food: ₹1,500-4,000/day. Activities: ₹2,000-7,000/day. Shoulder seasons (May, Sep-Oct) offer better rates. Saving tips: Travel with a group, stay in Airbnbs with kitchens, visit free attractions (national parks day-use, walking tours, CN Tower night views).</p>
-
-<div class="info-box">
-    <strong>🇮🇳 India-Specific Resources:</strong> Check <a href="/blog/visa-free-countries-indian-passport.html">visa-free countries for Indian passport</a> if planning extended travel. For comprehensive insurance coverage, see <a href="/blog/travel-insurance-guide.html">PackSmart travel insurance guide</a>. Comparing flights? Use our <a href="/flights.html">flight price comparison</a> for best deals.
+<div class="faq-section" style="margin:50px 0 30px;padding:30px 0;border-top:2px solid #f0f0f0;">
+<h2 style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">Do Indians need a visa for Canada?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Yes. Indian citizens cannot use eTA (Electronic Travel Authorization). You need a Canadian Temporary Resident Visa (TRV) applied online via IRCC. Cost: CAD $100 (~₹6,200) for visa + CAD $85 (~₹5,300) for biometrics. Processing: 2-8 weeks. Required: valid passport (6+ months), bank statements, ITR, employment letter, travel itinerary.</div>
+</details>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">What should I pack for Canada from India?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">It depends entirely on season. Summer (Jun-Sep): Light clothes, rain jacket, comfortable shoes. Winter (Oct-Mar): Insulated winter coat, thermal layers, winter boots, gloves, toque, scarf. Extreme cold (-30°C to -40°C) requires serious gear. Always bring: Type A/B power adapters (110V), power bank, sunscreen, medications. Winter packing is non-negotiable—survival depends on proper clothing.</div>
+</details>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">What's the best time to visit Canada from India?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">June-September for general tourism and 2026 FIFA World Cup (Vancouver, BC Place Stadium). October for stunning fall foliage. December-March for skiing but extreme cold. Summer offers longest daylight (18-20 hours), perfect weather, and all attractions open. Winter requires cold tolerance; many outdoor activities become risky.</div>
+</details>
+<details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
+  <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">How much does a Canada trip cost from India?</summary>
+  <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">10-day trip budget: ₹1,50,000-3,50,000. Flights: ₹45,000-95,000 return. Hotels: ₹4,000-10,000/night. Food: ₹1,500-4,000/day. Activities: ₹2,000-7,000/day. Shoulder seasons (May, Sep-Oct) offer better rates. Saving tips: Travel with a group, stay in Airbnbs with kitchens, visit free attractions (national parks day-use, walking tours, CN Tower night views).</div>
+</details>
 </div>
 
-<h2>📊 Travel Essentials Grid</h2>
-
-<div class="travel-grid">
-    <div class="travel-card">
-        <h4>Visa</h4>
-        <p>TRV via IRCC. CAD $185 total. 2-8 weeks processing.</p>
-    </div>
-    <div class="travel-card">
-        <h4>Best Time</h4>
-        <p>Jun-Sep (Summer). FIFA 2026 Jun-Jul in Vancouver.</p>
-    </div>
-    <div class="travel-card">
-        <h4>Winter Gear</h4>
-        <p>Insulated coat, boots, gloves, toque. Non-negotiable for Oct-Mar.</p>
-    </div>
-    <div class="travel-card">
-        <h4>Budget (10 days)</h4>
-        <p>₹1,50,000-3,50,000 depending on season/style.</p>
-    </div>
-    <div class="travel-card">
-        <h4>Power Adapter</h4>
-        <p>Type A/B plugs (USA standard). 110V, not 220V.</p>
-    </div>
-    <div class="travel-card">
-        <h4>SIM/Data</h4>
-        <p>Bell, Rogers, Telus, or Yesim eSIM. Excellent 5G coverage.</p>
-    </div>
-    <div class="travel-card">
-        <h4>Indian Community</h4>
-        <p>Largest in Toronto/Brampton, Vancouver, Calgary, Montreal.</p>
-    </div>
-    <div class="travel-card">
-        <h4>Tipping Culture</h4>
-        <p>15-20% in restaurants, taxis, hotels. Mandatory in Canada.</p>
-    </div>
+<div class="share-row">
+    <span>Share this guide ✨</span>
+    <a class="share-btn whatsapp" href="https://wa.me/?text=Canada%20Travel%20%26%20Packing%20Guide%202026%3A%20Complete%20Checklist%20https%3A//www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html" target="_blank" rel="noopener" title="WhatsApp"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></a>
+    <a class="share-btn twitter" href="https://twitter.com/intent/tweet?text=Canada%20Travel%20%26%20Packing%20Guide%202026%3A%20Complete%20Checklist&url=https%3A//www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html" target="_blank" rel="noopener" title="X"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+    <a class="share-btn facebook" href="https://www.facebook.com/sharer/sharer.php?u=https%3A//www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html" target="_blank" rel="noopener" title="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+    <a class="share-btn linkedin" href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A//www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html" target="_blank" rel="noopener" title="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+    <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/canada-travel-packing-guide-from-india.html').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
 
-<div class="safetyWing-widget">
-    <h3>Travel Insurance with SafetyWing</h3>
-    <p>Protect your Canada adventure. SafetyWing offers affordable coverage for international travelers, including medical emergencies, trip cancellation, and baggage loss.</p>
-    <p><a href="https://safetywing.com/?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador" target="_blank" rel="noopener"><strong>Get SafetyWing Coverage →</strong></a></p>
-</div>
+<div class="cta-box">
+            <h3>Ready to Pack for Canada?</h3>
+            <p>Use PackSmart to create a personalized packing list tailored to your Canada destinations, travel dates, and weather conditions.</p>            <a href="https://www.packsmartapp.com/#plan">Start Your Canada Packing List</a>
+        </div>
 
-<h2>Affiliate & Partner Links</h2>
+<!-- TRAVEL ESSENTIALS - AFFILIATE LINKS -->
+<div style="background:linear-gradient(135deg,#F0FAF7,#E8FFF9);border:2px solid rgba(0,201,167,0.2);border-radius:16px;padding:28px;margin:40px 0;">
+    <h3 style="font-size:1.3rem;margin-bottom:4px;color:#212529;">Travel Essentials for Your Canada Trip</h3>
+    <p style="color:#6C757D;font-size:0.88rem;margin-bottom:18px;">Hand-picked tools our readers love. Affiliate links — we may earn a commission at no extra cost.</p>
 
-<div class="travel-grid">
-    <div class="travel-card">
-        <h4>GetYourGuide Tours</h4>
-        <p>Book Niagara Falls tours, Banff hikes, city experiences.</p>
-        <p><a href="https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn" target="_blank" rel="noopener"><strong>Explore Tours →</strong></a></p>
-    </div>
-    <div class="travel-card">
-        <h4>Klook Activities</h4>
-        <p>Toronto CN Tower, Vancouver attractions, activity bundles.</p>
-        <p><a href="https://affiliate.klook.com/redirect?aid=116473&aff_adid=1241039&k_site=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fcity%2Ftoronto-things-to-do%2F" target="_blank" rel="noopener"><strong>Book Activities →</strong></a></p>
-    </div>
-    <div class="travel-card">
-        <h4>Welcome Pickups</h4>
-        <p>Reliable airport transfers in Toronto, Vancouver, Montreal.</p>
-        <p><a href="https://tpx.li/qYFLwgZ8" target="_blank" rel="noopener"><strong>Book Transfer →</strong></a></p>
-    </div>
-    <div class="travel-card">
-        <h4>Yesim eSIM</h4>
-        <p>International eSIM plans. Activate before arriving in Canada.</p>
-        <p><a href="https://tp.media/r?marker=711400&trs=508747&p=8310&u=https%3A%2F%2Fyesim.app" target="_blank" rel="noopener"><strong>Get eSIM Plan →</strong></a></p>
+    <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;">
+        <a href="https://tp.media/r?marker=711400&trs=508747&p=8310&u=https%3A%2F%2Fyesim.app" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <span style="font-size:1.5rem;">📱</span>
+            <div>
+                <strong style="font-size:0.9rem;">Yesim eSIM</strong>
+                <div style="font-size:0.78rem;color:#6C757D;">eSIM data in 150+ countries</div>
+            </div>
+        </a>
+        <a href="https://safetywing.com/?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <span style="font-size:1.5rem;">🛡️</span>
+            <div>
+                <strong style="font-size:0.9rem;">SafetyWing Insurance</strong>
+                <div style="font-size:0.78rem;color:#6C757D;">Travel medical from $1.50/day</div>
+            </div>
+        </a>
+
+        <a href="https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <span style="font-size:1.5rem;">🎯</span>
+            <div>
+                <strong style="font-size:0.9rem;">GetYourGuide</strong>
+                <div style="font-size:0.78rem;color:#6C757D;">Skip-the-line tours & activities</div>
+            </div>
+        </a>
+        <a href="https://affiliate.klook.com/redirect?aid=116473&aff_adid=1241039&k_site=https%3A%2F%2Fwww.klook.com%2Fen-US%2Fcity%2Ftoronto-things-to-do%2F" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <span style="font-size:1.5rem;">🎟️</span>
+            <div>
+                <strong style="font-size:0.9rem;">Klook</strong>
+                <div style="font-size:0.78rem;color:#6C757D;">Tours, tickets & Toronto activities</div>
+            </div>
+        </a>
+        <a href="https://tpx.li/qYFLwgZ8" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
+            <span style="font-size:1.5rem;">🚐</span>
+            <div>
+                <strong style="font-size:0.9rem;">Welcome Pickups</strong>
+                <div style="font-size:0.78rem;color:#6C757D;">Airport transfers in 350+ cities</div>
+            </div>
+        </a>
+        </div>
+
+    <div style="text-align:center;margin-top:16px;">
+        <a href="/pricing.html" style="color:#00C9A7;font-weight:600;font-size:0.85rem;text-decoration:none;">Want ad-free plans? Try PackSmart Pro →</a>
     </div>
 </div>
 
-<div class="newsletter-section">
-    <h3>Get Canada Travel Tips in Your Inbox</h3>
-    <p>Subscribe to PackSmart's newsletter for destination guides, packing hacks, and exclusive deals.</p>
-    <form onsubmit="alert('Thank you for subscribing!'); return false;">
-        <input type="email" placeholder="Enter your email" required>
-        <button type="submit">Subscribe</button>
+<!-- SAFETYWING INSURANCE WIDGET -->
+<div style="background:linear-gradient(135deg,#F0FAF7 0%,#E8F8F5 100%);border-radius:16px;padding:24px;margin:30px 0;text-align:center;border:1px solid #C8E6DC;">
+    <h3 style="font-size:1.2rem;margin:0 0 6px;color:#212529;">🛡️ Get Travel Insurance in 2 Minutes</h3>
+    <p style="color:#6C757D;font-size:0.85rem;margin:0 0 16px;">Trusted by 1M+ travelers. Coverage starts from $1.50/day.</p>
+    <div class="safetywing-price-widget" data-safetywingaffiliateid="26492686" data-scale="1.0"></div>
+    <script type="text/javascript" src="https://storage.googleapis.com/safetywing-static/widget/safetywing-price-widget.js"></script>
+</div>
+
+<div class="newsletter-cta" style="background:linear-gradient(135deg,#0f0f23,#1a1a3e);color:#fff;padding:40px;border-radius:16px;text-align:center;margin:50px 0 30px;">
+    <h3 style="font-size:1.4rem;margin-bottom:8px;">Never Miss a Travel Guide</h3>
+    <p style="color:#ccc;margin-bottom:20px;font-size:0.95rem;">Get the latest packing lists, destination guides, and travel tips delivered to your inbox.</p>
+    <form id="nlForm" onsubmit="return nlSub(event)" style="display:flex;justify-content:center;gap:10px;flex-wrap:wrap;max-width:480px;margin:0 auto;">
+        <input type="email" id="nlEmail" placeholder="Your email address" required style="flex:1;min-width:200px;padding:12px 16px;border-radius:30px;border:none;font-size:0.95rem;font-family:inherit;">
+        <button type="submit" id="nlBtn" style="display:inline-block;background:#00C9A7;color:#fff;padding:12px 28px;border-radius:30px;border:none;font-size:0.95rem;font-weight:600;cursor:pointer;white-space:nowrap;font-family:inherit;">Subscribe Free</button>
     </form>
+    <p id="nlMsg" style="color:#00C9A7;font-size:0.85rem;margin-top:12px;display:none;"></p>
+    <p id="nlNote" style="color:#777;font-size:0.75rem;margin-top:12px;">No spam. Unsubscribe anytime.</p>
+    <script>function nlSub(e){e.preventDefault();var b=document.getElementById('nlBtn'),m=document.getElementById('nlMsg'),em=document.getElementById('nlEmail');b.textContent='Subscribing...';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value})}).then(r=>r.json()).then(d=>{if(d.success){m.style.display='block';m.style.color='#00C9A7';m.textContent='You\'re subscribed! We\'ll send you our latest guides.';em.value='';document.getElementById('nlNote').style.display='none';}else{m.style.display='block';m.style.color='#E94560';m.textContent=d.error||'Something went wrong. Please try again.';}b.textContent='Subscribe Free';b.disabled=false;}).catch(()=>{m.style.display='block';m.style.color='#E94560';m.textContent='Something went wrong. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});return false;}</script>
 </div>
 
-<h2>Related Posts You Might Enjoy</h2>
-
-<div class="travel-grid">
-    <div class="travel-card">
-        <h4>USA Travel &amp; Packing Guide 2026</h4>
-        <p>Complete guide to the United States for Indians. Visa, weather, budget, must-see attractions.</p>
-        <p><a href="/blog/usa-travel-packing-guide-from-india.html"><strong>Read Guide →</strong></a></p>
+<div class="related-posts">
+        <h3>Related Packing Guides</h3>
+        <div class="related-grid">
+            <div class="related-card">
+                <div class="related-card-body">
+                    <h4>USA Travel Packing Guide 2026</h4>
+                    <p>Complete guide to packing for the United States with tips for various regions and climates.</p>
+                    <a href="https://www.packsmartapp.com/blog/usa-travel-packing-guide-from-india.html">Read More <span class="related-arrow">→</span></a>
+                    <div class="related-tag">Destination Guide</div>
+                </div>
+            </div>
+            <div class="related-card">
+                <div class="related-card-body">
+                    <h4>FIFA World Cup 2026 Travel Guide</h4>
+                    <p>Comprehensive travel tips for attending FIFA World Cup 2026 in Canada, USA, and Mexico.</p>
+                    <a href="https://www.packsmartapp.com/blog/fifa-world-cup-2026-travel-packing-guide.html">Read More <span class="related-arrow">→</span></a>
+                    <div class="related-tag">Destination Guide</div>
+                </div>
+            </div>
+            <div class="related-card">
+                <div class="related-card-body">
+                    <h4>Australia Travel Packing Guide 2026</h4>
+                    <p>Complete Australia packing list, visa requirements, weather, and budget for Indians.</p>
+                    <a href="https://www.packsmartapp.com/blog/australia-travel-packing-guide-from-india.html">Read More <span class="related-arrow">→</span></a>
+                    <div class="related-tag">Destination Guide</div>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="travel-card">
-        <h4>FIFA World Cup 2026 Travel Guide</h4>
-        <p>Comprehensive travel tips for attending FIFA World Cup 2026 in Canada, USA, and Mexico.</p>
-        <p><a href="/blog/fifa-world-cup-2026-travel-packing-guide.html"><strong>Read Guide →</strong></a></p>
-    </div>
-    <div class="travel-card">
-        <h4>Australia Travel &amp; Packing Guide 2026</h4>
-        <p>Complete Australia packing list, visa requirements, weather, and budget for Indians.</p>
-        <p><a href="/blog/australia-travel-packing-guide-from-india.html"><strong>Read Guide →</strong></a></p>
-    </div>
-    <div class="travel-card">
-        <h4>Travel Insurance Guide</h4>
-        <p>Comprehensive insurance coverage for international travel. Compare plans and save.</p>
-        <p><a href="/blog/travel-insurance-guide.html"><strong>Read Guide →</strong></a></p>
-    </div>
-</div>
 
 </article>
 
@@ -859,10 +976,10 @@
     <div class="footer-inner">
         <div class="footer-brand-col">
             <div class="footer-logo">Pack<em>Smart</em></div>
-            <p style="color: #888; font-size: 0.9rem; max-width: 200px;">Smart packing starts with PackSmart. Travel lighter, travel smarter.</p>
+            <p>Effortless travel preparation. Get personalized packing lists, visa info, and local tips for any destination in the world.</p>
         </div>
         <div class="footer-col"><h4>Product</h4><a href="/#how">How It Works</a><a href="/#features">Features</a><a href="/#plan">Plan a Trip</a></div>
-        <div class="footer-col"><h4>Company</h4><a href="/about.html">About</a><a href="/flights.html">Flights &amp; Hotels</a><a href="/blog.html">Blog</a><a href="/pricing.html">Pricing</a><a href="/contact.html">Contact</a></div>
+        <div class="footer-col"><h4>Company</h4><a href="/about.html">About</a><a href="/flights.html">Flights & Hotels</a><a href="/blog.html">Blog</a><a href="/pricing.html">Pricing</a><a href="/contact.html">Contact</a></div>
         <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/affiliate-disclosure.html">Affiliate Disclosure</a></div>
     </div>
     <div class="footer-bottom">
