@@ -35,14 +35,15 @@ Every new blog article MUST follow this guide exactly. When in doubt, copy from 
 8. Article body (h2 sections)
 9. CTA box ("Ready to Pack for [Country]?")
 10. `</div>` close content
-11. SafetyWing insurance widget
-12. Car rental section (Localrent OR DiscoverCars)
-13. Related Packing Guides
-14. Newsletter CTA
-15. Share row (bottom)
-16. FAQ section (details/summary)
-17. Footer
-18. Nav scroll + mobile menu script
+11. Bounce luggage storage CTA (destination articles only)
+12. SafetyWing insurance widget
+13. Car rental section (Localrent OR DiscoverCars)
+14. Related Packing Guides
+15. Newsletter CTA
+16. Share row (bottom)
+17. FAQ section (details/summary)
+18. Footer
+19. Nav scroll + mobile menu script
 
 ---
 
@@ -286,6 +287,16 @@ Every new blog article MUST follow this guide exactly. When in doubt, copy from 
 </div>
 ```
 
+### Bounce Luggage Storage CTA Box (destination articles only, placed before SafetyWing)
+```html
+<!-- BOUNCE LUGGAGE STORAGE -->
+<div style="background:linear-gradient(135deg,#F0FAF7 0%,#E8F8F5 100%);border-radius:16px;padding:24px;margin:30px 0;text-align:center;border:1px solid #C8E6DC;">
+    <h3 style="font-size:1.2rem;margin:0 0 6px;color:#212529;">🧳 Store Your Luggage Safely</h3>
+    <p style="color:#6C757D;font-size:0.85rem;margin:0 0 16px;">14,000+ trusted locations in 4,000+ cities. Rated 4.9/5 by travelers worldwide.</p>
+    <a href="https://go.bounce.com/PACKSMART30293092457" target="_blank" rel="noopener noreferrer sponsored" style="display:inline-block;background:#00C9A7;color:#fff;padding:14px 32px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:background 0.2s;">Find Luggage Storage with Bounce &rarr;</a>
+</div>
+```
+
 ### SafetyWing Insurance Widget (center-aligned, placed after closing content div)
 ```html
 <!-- SAFETYWING INSURANCE WIDGET -->
@@ -415,6 +426,13 @@ document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click
 ### Welcome Pickups
 - `https://www.welcomepickups.com/?utm_source=affiliate&utm_medium=packsmart`
 
+### Bounce Luggage Storage
+- Affiliate link: `https://go.bounce.com/PACKSMART30293092457`
+- Commission: 10% per booking
+- Payouts: Monthly via Stripe, no minimum
+- Coverage: 14,000+ locations in 4,000+ cities worldwide
+- Placement: Grid card in ALL articles + standalone CTA box in destination articles
+
 ### DiscoverCars (for countries without Localrent)
 - `https://www.discovercars.com/[country-slug]?a_aid=packsmart`
 
@@ -459,6 +477,7 @@ Before publishing, verify:
 - [ ] Share row (top): icon-based with WhatsApp, X, Facebook, LinkedIn, Copy Link
 - [ ] All h2s have `border-left: 4px solid var(--primary)`
 - [ ] CTA box present
+- [ ] Bounce luggage storage: CTA box before SafetyWing (destination articles) + card in grid (all articles)
 - [ ] SafetyWing widget: center-aligned, gradient bg, CTA button + interactive widget
 - [ ] Car rental: Localrent widget (check country code) OR DiscoverCars link
 - [ ] Related Guides: 3 cards, div-based with `related-card-body`, descriptions, tags
