@@ -122,42 +122,23 @@
         .mobile-menu-btn span:nth-child(2) { top: 16px; }
         .mobile-menu-btn span:nth-child(3) { top: 22px; }
         .hero-blog {
-            height: 600px;
             background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            color: #fff;
-            margin-top: 72px;
-            background-image: url('https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1200&h=600&fit=crop&auto=format&q=75');
             background-size: cover;
             background-position: center;
-            position: relative;
-        }
-        .hero-blog::before { content: ''; position: absolute; inset: 0; background: rgba(0,0,0,0.5); }
-        .hero-blog > * { position: relative; z-index: 2; }
-        .hero-blog .tag {
-            font-size: 0.85rem;
-            font-weight: 600;
-            background: #00C9A7;
-            color: #fff;
-            padding: 6px 16px;
-            border-radius: 50px;
-            margin-bottom: 20px;
-            display: inline-block;
+            color: white;
+            padding: 140px 2rem;
+            text-align: center;
+            margin-top: 72px;
         }
         .hero-blog h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            margin: 0 auto 20px;
-            max-width: 1000px;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
             line-height: 1.2;
         }
         .hero-blog .meta {
-            font-size: 1rem;
+            font-size: 0.9rem;
             opacity: 0.95;
+            margin-bottom: 0.5rem;
         }
         article.content {
             max-width: 800px;
@@ -440,8 +421,7 @@
             .nav { padding: 0 1.5rem; }
             .nav-links { display: none; }
             .mobile-menu-btn { display: block; }
-            .hero-blog { height: 400px; }
-            .hero-blog h1 { font-size: 2rem; }
+            .hero-blog h1 { font-size: 1.8rem; }
             article.content { margin: 30px auto; }
             .newsletter-section form { flex-direction: column; }
         }
@@ -467,20 +447,20 @@
 <nav class="nav" id="nav">
     <a href="/" class="nav-brand">Pack<em>Smart</em></a>
     <div class="nav-links" id="navLinks">
-        <a href="/flights.html">Flights</a>
-        <a href="/blog.html">Blog</a>
+        <a href="/flights.html">Flights & Hotels</a>
         <a href="/#how">How It Works</a>
-        <a href="/pricing.html">Pricing</a>
-        <a href="/contact.html">Contact</a>
-        <a href="/download.html" class="nav-cta-btn">Download App</a>
+        <a href="/#features">Features</a>
+        <a href="/blog.html">Blog</a>
+        <a href="/#plan" class="nav-cta-btn">Plan My Trip</a>
     </div>
     <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu"><span></span><span></span><span></span></button>
 </nav>
 
-<div class="hero-blog">
-    <span class="tag">Destination Guide</span>
+<div class="hero-blog" style="background: linear-gradient(rgba(15,15,35,0.7), rgba(26,26,62,0.7)), url('https://images.unsplash.com/photo-1517935706615-2717063c2225?w=1200&h=600&fit=crop&auto=format&q=75'); background-size: cover; background-position: center;">
     <h1>Canada Travel &amp; Packing Guide 2026: Complete Travel Checklist</h1>
-    <p class="meta">March 23, 2026 &middot; 17 min read</p>
+    <div class="meta">March 23, 2026 &middot; 17 min read</div>
+    <div class="meta">Destination Guide</div>
+    <div class="meta">Last updated: March 2026</div>
 </div>
 
 <article class="content">
