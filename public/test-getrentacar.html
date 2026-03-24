@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GetRentacar Widget Test</title>
+    <style>
+        body { font-family: Arial, sans-serif; max-width: 800px; margin: 40px auto; padding: 20px; }
+        .widget-container { margin: 30px 0; padding: 20px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea; }
+        h2 { color: #333; }
+        h3 { color: #666; margin-top: 30px; }
+    </style>
+</head>
+<body>
+    <h2>GetRentacar Widget Test</h2>
+
+    <h3>Test 1: Original embed code</h3>
+    <div class="widget-container">
+        <script src="https://tp.media/content?campaign_id=222&promo_id=8813&shmarker=711400&trs=508747" charset="utf-8"></script>
+    </div>
+
+    <h3>Test 2: With locale=en and powered_by</h3>
+    <div class="widget-container">
+        <script src="https://tp.media/content?campaign_id=222&promo_id=8813&shmarker=711400&trs=508747&locale=en&powered_by=true" charset="utf-8"></script>
+    </div>
+
+    <h3>Test 3: tpwdg.com version (like Localrent format)</h3>
+    <div class="widget-container">
+        <script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&powered_by=true&lang=en&width=100&background=transparent&logo=false&header=true&border=false&footer=false&campaign_id=222&promo_id=8813" charset="utf-8"></script>
+    </div>
+
+</body>
+</html>
