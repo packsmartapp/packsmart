@@ -857,7 +857,7 @@
             <p>Use PackSmart to create a personalized packing list tailored to your Canada destinations, travel dates, and weather conditions.</p>            <a href="https://www.packsmartapp.com/#plan">Start Your Canada Packing List</a>
         </div>
 
-    </div>
+    </article>
 
     <div class="related-posts">
         <h3>Related Packing Guides</h3>
@@ -938,14 +938,6 @@
     </div>
 </div>
 
-<!-- SafetyWing Widget -->
-    <div style="margin: 40px 0; padding: 35px 30px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
-        <h3 style="margin: 0 0 14px 0; color: #0f0f23; font-size: 1.3rem;">Get Travel Insurance from SafetyWing</h3>
-        <p style="margin: 0 0 24px 0; color: #666; font-size: 0.95rem;">Canadian healthcare is expensive for visitors — a hospital visit can cost CAD $3,000+. Travel insurance is essential for Indian travelers. SafetyWing offers affordable comprehensive coverage.</p>
-        <div class="safetywing-price-widget" data-safetywingaffiliateid="26492686" data-scale="1.0"></div>
-        <script async src="https://widget.safetywing.com/out/widget.js"></script>
-    </div>
-
 <div class="newsletter-cta" style="background:linear-gradient(135deg,#0f0f23,#1a1a3e);color:#fff;padding:40px;border-radius:16px;text-align:center;margin:50px 0 30px;">
     <h3 style="font-size:1.4rem;margin-bottom:8px;">Never Miss a Travel Guide</h3>
     <p style="color:#ccc;margin-bottom:20px;font-size:0.95rem;">Get the latest packing lists, destination guides, and travel tips delivered to your inbox.</p>
@@ -957,8 +949,6 @@
     <p id="nlNote" style="color:#777;font-size:0.75rem;margin-top:12px;">No spam. Unsubscribe anytime.</p>
     <script>function nlSub(e){e.preventDefault();var b=document.getElementById('nlBtn'),m=document.getElementById('nlMsg'),em=document.getElementById('nlEmail');b.textContent='Subscribing...';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value})}).then(r=>r.json()).then(d=>{if(d.success){m.style.display='block';m.style.color='#00C9A7';m.textContent='You\'re subscribed! We\'ll send you our latest guides.';em.value='';document.getElementById('nlNote').style.display='none';}else{m.style.display='block';m.style.color='#E94560';m.textContent=d.error||'Something went wrong. Please try again.';}b.textContent='Subscribe Free';b.disabled=false;}).catch(()=>{m.style.display='block';m.style.color='#E94560';m.textContent='Something went wrong. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});return false;}</script>
 </div>
-
-</article>
 
 <footer class="footer">
     <div class="footer-inner">
