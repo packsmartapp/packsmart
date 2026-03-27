@@ -1316,6 +1316,8 @@
     <a href="/#plan">Start Planning Now</a>
 </div>
 
+</div>
+
 <!-- Localrent Car Rental Widget -->
     <div style="max-width: 800px; margin: 40px auto; padding: 35px 30px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
         <h3 style="margin: 0 0 14px 0; color: #0f0f23; font-size: 1.3rem;">Rent a Car for FIFA World Cup 2026</h3>
@@ -1438,8 +1440,6 @@
     <p id="nlNote" style="color:#777;font-size:0.75rem;margin-top:12px;">No spam. Unsubscribe anytime.</p>
     <script>function nlSub(e){e.preventDefault();var b=document.getElementById('nlBtn'),m=document.getElementById('nlMsg'),em=document.getElementById('nlEmail');b.textContent='Subscribing...';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value})}).then(r=>r.json()).then(d=>{if(d.success){m.style.display='block';m.style.color='#00C9A7';m.textContent='You\'re subscribed! We\'ll send you our latest guides.';em.value='';document.getElementById('nlNote').style.display='none';}else{m.style.display='block';m.style.color='#E94560';m.textContent=d.error||'Something went wrong. Please try again.';}b.textContent='Subscribe Free';b.disabled=false;}).catch(()=>{m.style.display='block';m.style.color='#E94560';m.textContent='Something went wrong. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});return false;}</script>
 </div>
-
-    </div>
 
     <footer class="footer">
         <div class="footer-inner">

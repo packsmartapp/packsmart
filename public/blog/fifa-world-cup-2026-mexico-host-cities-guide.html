@@ -1263,6 +1263,7 @@ Day 10: Depart or extend
     <p>Use PackSmart's travel planning tool to organize your packing list, budget, itinerary, and everything you need for your World Cup journey. Download the app for expense tracking and offline access to your plans.</p>
     <a href="/#plan">Start Planning Now</a>
 </div>
+    </div>
 
 <!-- Localrent Car Rental Widget -->
 <div style="max-width: 800px; margin: 40px auto; padding: 35px 30px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
@@ -1385,8 +1386,6 @@ Day 10: Depart or extend
     <p id="nlMsg" style="color:#00C9A7;font-size:0.85rem;margin-top:12px;display:none;"></p>
     <p id="nlNote" style="color:#777;font-size:0.75rem;margin-top:12px;">No spam. Unsubscribe anytime.</p>
     <script>function nlSub(e){e.preventDefault();var b=document.getElementById('nlBtn'),m=document.getElementById('nlMsg'),em=document.getElementById('nlEmail');b.textContent='Subscribing...';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value})}).then(r=>r.json()).then(d=>{if(d.success){m.style.display='block';m.style.color='#00C9A7';m.textContent='You\'re subscribed! We\'ll send you our latest guides.';em.value='';document.getElementById('nlNote').style.display='none';}else{m.style.display='block';m.style.color='#E94560';m.textContent=d.error||'Something went wrong. Please try again.';}b.textContent='Subscribe Free';b.disabled=false;}).catch(()=>{m.style.display='block';m.style.color='#E94560';m.textContent='Something went wrong. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});return false;}</script>
-</div>
-
 </div>
 
 <footer class="footer">
