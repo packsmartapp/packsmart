@@ -295,6 +295,8 @@
         }
         @media (max-width: 768px) {
             .hotel-cta { padding: 0 1rem; }
+            .trip-desktop { display: none !important; }
+            .trip-mobile { display: inline-block !important; }
             .hotel-cta-card {
                 flex-direction: column;
                 text-align: center;
@@ -550,9 +552,12 @@
             <h3 style="margin:0;font-size:1.2rem;color:#0f0f23;">Looking for <em style="color:#00C9A7;font-style:normal;">Hotels?</em></h3>
         </div>
         <p style="margin:0 0 4px 0;color:#666;font-size:0.92rem;text-align:center;">Search and compare hotel deals from Trip.com — great prices worldwide.</p>
-        <div style="width:100%;max-width:900px;overflow:hidden;border-radius:8px;">
+        <!-- Desktop: Search Box widget -->
+        <div class="trip-desktop" style="width:100%;max-width:900px;overflow:hidden;border-radius:8px;">
             <iframe src="https://www.trip.com/partners/ad/S14608967?Allianceid=8011242&SID=303108282&trip_sub1=searchbox-hotels" style="width:100%;height:200px;border:none;" frameborder="0" scrolling="no" id="S14608967"></iframe>
         </div>
+        <!-- Mobile: Simple CTA button -->
+        <a class="trip-mobile" href="https://www.trip.com/t/Urto0xNB4U2" target="_blank" rel="nofollow noopener sponsored" style="display:none;background:#00C9A7;color:#fff;padding:14px 32px;border-radius:50px;text-decoration:none;font-weight:600;font-size:0.95rem;transition:background 0.2s;">Search Hotels on Trip.com &rarr;</a>
     </div>
 </section>
 
