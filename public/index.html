@@ -782,7 +782,7 @@
             font-weight: 500;
             margin: 0;
         }
-        .results-actions { display: flex; gap: 0.8rem; margin-top: 1rem; justify-content: center; }
+        .results-actions { display: flex; flex-wrap: wrap; gap: 0.8rem; margin-top: 1rem; justify-content: center; }
         .btn-outline {
             padding: 11px 22px; border: 1.5px solid var(--border);
             background: var(--bg-white); color: var(--text);
@@ -865,16 +865,22 @@
             .result-card-header { padding: 0.8rem 1rem; }
             .result-card.open .result-card-body { padding: 0.8rem 1rem 1rem; }
             .result-card-title { font-size: 1.05rem; }
-            .results-actions { flex-direction: column; align-items: center; }
+            .results-actions { flex-direction: column; align-items: stretch; }
+            .results-actions button { justify-content: center; }
         }
 
         @media print {
-            .nav, .hero, .section, .form-section, footer, .results-actions { display: none !important; }
-            .results-section { display: block !important; padding: 0; }
+            body * { visibility: hidden; }
+            .results-section, .results-section * { visibility: visible; }
+            .results-section { display: block !important; position: absolute; left: 0; top: 0; width: 100%; padding: 0; }
+            .results-wrap { padding: 0; }
             .results-body { border: none; box-shadow: none; padding: 0; }
-            .result-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; }
-            .result-card-body { max-height: none !important; padding: 1rem 1.4rem !important; }
-            .result-card-chevron { display: none; }
+            .result-card { box-shadow: none; border: 1px solid #ddd; break-inside: avoid; margin-bottom: 8px; }
+            .result-card-body { max-height: none !important; overflow: visible !important; padding: 1rem 1.4rem !important; display: block !important; }
+            .result-card-chevron { display: none !important; }
+            .result-card-header { cursor: default; }
+            .results-actions, .results-save-nudge { display: none !important; visibility: hidden !important; }
+            .mesh-bg, .nav, .hero, .form-section, .blog-feature, footer, .hotel-cta { display: none !important; }
         }
     </style>
 <script type="application/ld+json">
@@ -1195,7 +1201,8 @@
             <p>Save your itinerary before you go — it won't be available once you leave this page.</p>
         </div>
         <div class="results-actions">
-            <button class="btn-outline" onclick="window.print()">Print</button>
+            <button class="btn-outline" onclick="downloadPlan()">Download</button>
+            <button class="btn-outline" onclick="printPlan()">Print</button>
             <button class="btn-outline" onclick="copyPlan()">Copy</button>
             <button class="btn-solid" style="background:#25D366;border-color:#25D366;" onclick="shareWhatsApp()">Share on WhatsApp</button>
             <button class="btn-solid" onclick="newPlan()">Plan Another Trip</button>
@@ -1473,6 +1480,8 @@ async function handleSubmit(e) {
         if (json.success) {
             document.getElementById('resDest').textContent = data.destination;
             document.getElementById('resBody').innerHTML = mdToHtml(json.plan);
+            // Save plan to localStorage for persistence
+            try { localStorage.setItem('ps_plan', JSON.stringify({ dest: data.destination, html: document.getElementById('resBody').innerHTML, ts: Date.now() })); } catch(e) {}
             // Make checkboxes interactive
             document.querySelectorAll('.checklist-item').forEach(function(li) {
                 var cb = li.querySelector('input[type="checkbox"]');
@@ -1569,7 +1578,18 @@ function mdToHtml(md) {
     });
     return out;
 }
-function copyPlan() { navigator.clipboard.writeText(document.getElementById('resBody').innerText).then(() => alert('Plan copied!')); }
+function copyPlan() {
+    navigator.clipboard.writeText(document.getElementById('resBody').innerText)
+        .then(() => alert('Plan copied to clipboard!'))
+        .catch(() => {
+            // Fallback for mobile / older browsers
+            var ta = document.createElement('textarea');
+            ta.value = document.getElementById('resBody').innerText;
+            document.body.appendChild(ta); ta.select();
+            document.execCommand('copy'); document.body.removeChild(ta);
+            alert('Plan copied to clipboard!');
+        });
+}
 function shareWhatsApp() {
     const dest = document.getElementById('resDest').textContent;
     const planText = document.getElementById('resBody').innerText;
@@ -1577,12 +1597,77 @@ function shareWhatsApp() {
     const msg = `*PackSmart Travel Plan: ${dest}*\n\n${truncated}${planText.length > 2000 ? '\n\n... [Full plan at packsmartapp.com]' : ''}\n\n---\nGenerate your own free travel plan at packsmartapp.com`;
     window.open('https://wa.me/?text=' + encodeURIComponent(msg), '_blank');
 }
-function newPlan() { document.getElementById('results').style.display='none'; document.getElementById('plan').scrollIntoView({behavior:'smooth'}); }
+function printPlan() {
+    // Expand all accordion cards before printing, restore after
+    var cards = document.querySelectorAll('.result-card');
+    var wasClosed = [];
+    cards.forEach(function(c) {
+        if (!c.classList.contains('open')) { c.classList.add('open'); wasClosed.push(c); }
+    });
+    setTimeout(function() {
+        window.print();
+        // Restore closed state after print dialog
+        setTimeout(function() { wasClosed.forEach(function(c) { c.classList.remove('open'); }); }, 500);
+    }, 100);
+}
+function downloadPlan() {
+    var dest = document.getElementById('resDest').textContent;
+    var body = document.getElementById('resBody').innerHTML;
+    var html = '<!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">' +
+        '<title>PackSmart Plan — ' + dest + '</title>' +
+        '<style>*{margin:0;padding:0;box-sizing:border-box}body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;color:#1a1a2e;padding:2rem;max-width:800px;margin:0 auto;background:#f8fafb}' +
+        'h2{text-align:center;margin-bottom:2rem;color:#0f0f23}' +
+        '.result-card{background:#fff;border:1px solid #e8ecf1;border-radius:12px;margin-bottom:12px;overflow:hidden}' +
+        '.result-card-header{padding:1rem 1.4rem;background:#f0faf7;border-bottom:1px solid #e8ecf1;cursor:default}' +
+        '.result-card-title{font-size:1.1rem;color:#0f0f23;margin:0}' +
+        '.result-card-chevron{display:none}' +
+        '.result-card-body{padding:1rem 1.4rem}' +
+        'h4{font-size:1rem;margin:1.2rem 0 0.5rem;color:#0f0f23}h4:first-child{margin-top:0}' +
+        'p{font-size:0.92rem;line-height:1.7;margin-bottom:0.5rem;color:#555}' +
+        'ul{list-style:none;padding:0;margin:0 0 0.5rem}li{font-size:0.92rem;line-height:1.7;padding:4px 0;color:#555}' +
+        'input[type=checkbox]{margin-right:8px;accent-color:#00C9A7}' +
+        'a{color:#00C9A7;font-weight:600;text-decoration:none}a:hover{text-decoration:underline}' +
+        'strong{color:#1a1a2e}' +
+        '.footer{text-align:center;margin-top:2rem;padding-top:1rem;border-top:1px solid #e8ecf1;font-size:0.82rem;color:#999}' +
+        '</style></head><body>' +
+        '<h2>PackSmart: ' + dest + '</h2>' +
+        body +
+        '<div class="footer">Generated by PackSmart — packsmartapp.com</div>' +
+        '</body></html>';
+    var blob = new Blob([html], { type: 'text/html' });
+    var a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = 'PackSmart-' + dest.replace(/[^a-zA-Z0-9]/g, '-') + '.html';
+    a.click();
+    URL.revokeObjectURL(a.href);
+}
+function newPlan() {
+    document.getElementById('results').style.display='none';
+    try { localStorage.removeItem('ps_plan'); } catch(e) {}
+    document.getElementById('plan').scrollIntoView({behavior:'smooth'});
+}
 
 const today = new Date().toISOString().split('T')[0];
 document.getElementById('startDate').min = today;
 document.getElementById('endDate').min = today;
 document.getElementById('startDate').addEventListener('change', e => document.getElementById('endDate').min = e.target.value);
+
+// Restore last plan from localStorage (persists across refresh)
+try {
+    var saved = JSON.parse(localStorage.getItem('ps_plan'));
+    if (saved && saved.html && (Date.now() - saved.ts < 86400000)) { // expires after 24h
+        document.getElementById('resDest').textContent = saved.dest;
+        document.getElementById('resBody').innerHTML = saved.html;
+        document.querySelectorAll('.checklist-item').forEach(function(li) {
+            var cb = li.querySelector('input[type="checkbox"]');
+            li.addEventListener('click', function(e) {
+                if (e.target !== cb) { cb.checked = !cb.checked; }
+                li.classList.toggle('checked', cb.checked);
+            });
+        });
+        document.getElementById('results').style.display = 'block';
+    }
+} catch(e) {}
 </script>
 <script src="packsmart-phase1.js" defer></script>
 <script src="packsmart-widgets.js" defer></script>
