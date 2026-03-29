@@ -253,9 +253,9 @@ Skip the line tickets, guided tours, and unique local experiences.
 Book discounted attraction tickets, day trips, and experiences across Southeast Asia.
 [👉 Browse on Klook](https://affiliate.klook.com/redirect?aid=116473&aff_adid=1241039&k_site=https%3A%2F%2Fwww.klook.com) — Up to 50% off activities
 
-**🎡 Tours & Attractions on Trip.com**
-Discover tours, attractions, and experiences at your destination.
-[👉 Explore on Trip.com](https://www.trip.com/t/81fEhI475U2) — Book activities worldwide
+**🎡 Tours & Activities on GetYourGuide**
+Book walking tours, day trips, museum tickets, and unique experiences at your destination.
+[👉 Browse on GetYourGuide](https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn) — Best price guaranteed
 
 **🚐 Airport Transfers — Skip the Taxi Queue**
 Pre-book reliable airport pickups in 350+ destinations worldwide.
