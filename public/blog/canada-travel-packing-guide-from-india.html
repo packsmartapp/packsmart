@@ -409,10 +409,12 @@
         @media (max-width: 768px) {
             .nav { padding: 0 1.5rem; }
             .nav-links { display: none; }
-            .mobile-menu-btn { display: block; }
+            .mobile-menu-btn { display: flex; }
             .hero-blog h1 { font-size: 1.8rem; }
             article.content { margin: 30px auto; }
             .newsletter-section form { flex-direction: column; }
+            .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; }
+            .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; }
         }
         @media (max-width: 600px) {
             .nav { padding: 0 1.5rem; }
@@ -428,7 +430,7 @@
                 gap: 1.5rem;
                 box-shadow: 0 10px 40px rgba(0,0,0,0.08);
             }
-            .mobile-menu-btn { display: block; }
+            .mobile-menu-btn { display: flex; }
         }
 </style>
 <!-- GetYourGuide Widget -->
