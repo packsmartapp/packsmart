@@ -275,7 +275,7 @@ document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click
 </div>
 ```
 
-Known country codes: Thailand=9, Bali=251, UAE=14, Greece=18, Italy=13, Spain=35, Portugal=17, Mexico=25, Malaysia=2, Sri Lanka=132, Costa Rica=173, Australia=1, USA=check, Canada=check.
+Known country codes: Thailand=9, Bali=251, UAE=14, Greece=18, Italy=13, Spain=35, Portugal=17, Mexico=25, Malaysia=2, Sri Lanka=132, Costa Rica=173, Australia=1, Germany=29, France=12, Switzerland=59, South Korea=3, Vietnam=11, USA=N/A (404), Canada=N/A.
 
 ---
 
