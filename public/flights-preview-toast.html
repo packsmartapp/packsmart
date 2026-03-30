@@ -9,6 +9,8 @@
   gtag("js", new Date());
   gtag("config", "G-0C4Z7VVGPE");
 </script>
+<!-- Travelpayouts White Label Widget - tickets div must be in head per TP docs -->
+<div id="tpwl-tickets"></div>
 <script type="module" src="https://tpwdg.com/wl_web/main.js?wl_id=15248"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -56,81 +58,40 @@
         html { scroll-behavior: smooth; background: var(--bg); }
         body { font-family: var(--font-body); color: var(--text); line-height: 1.6; }
 
-        /* NAV — matches index.html */
+        /* NAV */
         .nav {
-            position: fixed;
-            top: 0; left: 0; right: 0;
-            z-index: 100;
-            padding: 0 3rem;
-            height: 72px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: transparent;
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .nav.scrolled {
-            background: rgba(253,240,242,0.88);
-            backdrop-filter: blur(20px) saturate(180%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 0.8rem 2rem;
+            background: rgba(255,255,255,0.85); backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--border);
         }
         .nav-brand {
-            font-family: var(--font-body);
-            font-weight: 800;
-            font-size: 1.2rem;
-            color: var(--text);
-            text-decoration: none;
-            letter-spacing: -0.3px;
+            font-family: var(--font-display); font-size: 1.5rem;
+            text-decoration: none; color: var(--text);
         }
-        .nav-brand em { font-style: normal; color: var(--action); }
-        .nav-links { display: flex; align-items: center; gap: 2.5rem; }
+        .nav-brand em { color: var(--action); font-style: italic; }
+        .nav-links { display: flex; align-items: center; gap: 1.5rem; }
         .nav-links a {
-            font-size: 0.875rem;
-            font-weight: 500;
-            color: var(--text-secondary);
-            text-decoration: none;
-            transition: color 0.2s;
-            position: relative;
+            text-decoration: none; color: var(--text-secondary);
+            font-size: 0.88rem; font-weight: 500; transition: color 0.2s;
         }
         .nav-links a:hover { color: var(--action); }
-        .nav-links a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px; left: 0; right: 0;
-            height: 1.5px;
-            background: var(--action);
-            transform: scaleX(0);
-            transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .nav-links a:hover::after { transform: scaleX(1); }
+        .nav-links a.active { color: var(--action); font-weight: 600; }
         .nav-cta-btn {
-            font-size: 0.85rem !important;
+            background: var(--action) !important; color: #fff !important;
+            padding: 0.5rem 1.2rem !important; border-radius: 50px !important;
             font-weight: 600 !important;
-            color: #fff !important;
-            background: var(--action);
-            padding: 9px 22px;
-            border-radius: 50px;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
         }
-        .nav-cta-btn::after { display: none !important; }
-        .nav-cta-btn:hover {
-            background: var(--action-hover) !important;
-            transform: translateY(-1px);
-            box-shadow: 0 0 40px rgba(0,201,167,0.15);
-        }
+        .nav-cta-btn:hover { background: var(--action-hover) !important; }
         .mobile-menu-btn {
-            display: none;
-            background: none; border: none; cursor: pointer;
-            width: 32px; height: 32px; position: relative;
+            display: none; background: none; border: none; cursor: pointer;
+            flex-direction: column; gap: 5px; padding: 5px;
         }
         .mobile-menu-btn span {
-            position: absolute; left: 4px; width: 24px; height: 1.5px;
-            background: var(--text); border-radius: 2px; transition: 0.3s;
+            display: block; width: 24px; height: 2px; background: var(--text);
+            border-radius: 2px; transition: 0.3s;
         }
-        .mobile-menu-btn span:nth-child(1) { top: 10px; }
-        .mobile-menu-btn span:nth-child(2) { top: 16px; }
-        .mobile-menu-btn span:nth-child(3) { top: 22px; }
 
         /* HERO */
         .hero {
@@ -152,28 +113,73 @@
             margin: 0 auto 2rem;
         }
 
-        /* LANGUAGE NUDGE */
-        .lang-nudge {
-            position: absolute;
-            top: -2.2rem;
-            right: 1rem;
+        /* LANGUAGE TOAST */
+        .lang-toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 9999;
+            background: var(--bg-white);
+            border-radius: var(--radius-md);
+            box-shadow: 0 8px 30px rgba(0,0,0,0.12);
+            border: 1px solid var(--border);
+            padding: 1rem 1.2rem;
             display: flex;
-            flex-direction: column;
-            align-items: flex-end;
+            align-items: flex-start;
+            gap: 0.7rem;
+            max-width: 300px;
+            transform: translateY(120%);
+            opacity: 0;
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.4s ease;
         }
-        .lang-nudge-text {
+        .lang-toast.visible {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        .lang-toast-icon {
+            font-size: 1.4rem;
+            line-height: 1;
+            flex-shrink: 0;
+        }
+        .lang-toast-content {
+            flex: 1;
+        }
+        .lang-toast-title {
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: var(--text);
+            margin-bottom: 0.2rem;
+        }
+        .lang-toast-text {
             font-size: 0.78rem;
+            color: var(--text-secondary);
+            line-height: 1.4;
+        }
+        .lang-toast-text strong {
             color: var(--action);
-            font-weight: 500;
-            white-space: nowrap;
-            margin-bottom: -0.2rem;
+            font-weight: 600;
+        }
+        .lang-toast-close {
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-size: 1.1rem;
+            line-height: 1;
+            padding: 0;
+            flex-shrink: 0;
+            transition: color 0.2s;
+        }
+        .lang-toast-close:hover {
+            color: var(--text);
         }
         @media (max-width: 768px) {
-            .lang-nudge {
-                top: -2rem;
-                right: 0.5rem;
+            .lang-toast {
+                right: 1rem;
+                left: 1rem;
+                bottom: 1rem;
+                max-width: none;
             }
-            .lang-nudge-text { font-size: 0.7rem; }
         }
 
         /* SEARCH SECTION */
@@ -198,11 +204,6 @@
             margin: 0 auto;
             padding: 0 2rem 3rem;
         }
-        @media (max-width: 768px) {
-            .results-section {
-                padding: 0 0.5rem 2rem;
-            }
-        }
 
         /* DISCLAIMER */
         .disclaimer {
@@ -217,119 +218,17 @@
         .disclaimer a { color: var(--action); text-decoration: none; }
         .disclaimer a:hover { text-decoration: underline; }
 
-        /* HOTEL SEARCH CTA */
-        .hotel-cta {
-            max-width: 1200px;
-            margin: 0 auto 2rem;
-            padding: 0 2rem;
-        }
-        .hotel-cta-card {
-            display: flex;
-            align-items: center;
-            gap: 1.5rem;
-            background: var(--bg-white);
-            border: 1px solid var(--border);
-            border-radius: var(--radius-xl);
-            box-shadow: var(--shadow-lg);
-            padding: 2rem 2.5rem;
-            transition: box-shadow 0.3s;
-        }
-        .hotel-cta-card:hover {
-            box-shadow: var(--shadow-md);
-        }
-        .hotel-cta-icon {
-            font-size: 2.2rem;
-            flex-shrink: 0;
-        }
-        .hotel-cta-text {
-            flex: 1;
-        }
-        .hotel-cta-text h3 {
-            font-family: var(--font-display);
-            font-size: 1.3rem;
-            margin-bottom: 0.3rem;
-        }
-        .hotel-cta-text h3 em { color: var(--action); }
-        .hotel-cta-text p {
-            font-size: 0.9rem;
-            color: var(--text-secondary);
-            margin: 0;
-        }
-        .hotel-cta-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            background: var(--action);
-            color: #fff;
-            padding: 0.75rem 1.8rem;
-            border-radius: 50px;
-            text-decoration: none;
-            font-weight: 600;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            flex-shrink: 0;
-            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .hotel-cta-btn:hover {
-            background: var(--action-hover);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 20px rgba(0,201,167,0.2);
-        }
-        .hotel-cta-btn svg {
-            width: 16px;
-            height: 16px;
-            fill: none;
-            stroke: currentColor;
-            stroke-width: 2;
-            stroke-linecap: round;
-            stroke-linejoin: round;
-        }
-        @media (max-width: 768px) {
-            .hotel-cta { padding: 0 1rem; }
-            .trip-desktop { display: none !important; }
-            .trip-mobile { display: block !important; margin: 0 auto; }
-            .hotel-cta-card {
-                flex-direction: column;
-                text-align: center;
-                padding: 1.5rem;
-                gap: 1rem;
-            }
-        }
-
-        /* When showing results (flightSearch in URL), keep search visible, hide decorative sections */
-        body.showing-results .hero {
-            padding: 6rem 2rem 1.5rem;
-        }
-        body.showing-results .hero h1 {
-            font-size: clamp(1.5rem, 3vw, 2rem);
-            margin-bottom: 0.5rem;
-        }
-        body.showing-results .hero p {
-            display: none;
-        }
+        /* When showing results (flightSearch in URL), adjust layout */
+        body.showing-results .hero,
+        body.showing-results .search-section,
         body.showing-results .breadcrumb,
         body.showing-results .trust-section,
         body.showing-results .how-section,
         body.showing-results .cta-section {
             display: none;
         }
-        body.showing-results .disclaimer {
-            margin-bottom: 0;
-        }
-        body.showing-results .results-section {
-            min-height: 60vh;
-        }
-        /* Ensure TP widget sticky header doesn't overlap our nav */
-        body.showing-results .nav {
-            z-index: 200;
-        }
-        @media (max-width: 768px) {
-            body.showing-results .hero {
-                padding: 5.5rem 1rem 1rem;
-            }
-            body.showing-results .hero h1 {
-                font-size: 1.3rem;
-            }
+        body.showing-results {
+            padding-top: 60px;
         }
 
         /* TRUST BADGES */
@@ -435,31 +334,25 @@
         .cta-btn:hover { background: var(--action-hover); }
 
         /* FOOTER */
-        .footer { padding: 60px 2rem 40px; background: rgba(248,249,250,0.75); border-top: 1px solid #eee; }
-        .footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-        .footer-brand-col .footer-logo { font-weight: 800; font-size: 1.15rem; color: #333; margin-bottom: 0.8rem; }
-        .footer-brand-col .footer-logo em { font-style: normal; color: #00C9A7; }
-        .footer-brand-col p { font-size: 0.85rem; color: #666; line-height: 1.6; max-width: 280px; }
-        .footer-col h4 { font-size: 0.78rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #666; margin-bottom: 1.2rem; }
-        .footer-col a { display: block; font-size: 0.88rem; color: #999; text-decoration: none; margin-bottom: 0.7rem; transition: color 0.2s; }
-        .footer-col a:hover { color: #00C9A7; }
-        .footer-bottom { max-width: 1100px; margin: 3rem auto 0; padding-top: 1.5rem; border-top: 1px solid #eee; display: flex; justify-content: space-between; align-items: center; }
-        .footer-bottom span { font-size: 0.8rem; color: #999; }
-        @media (max-width: 768px) { .footer-inner { grid-template-columns: 1fr 1fr; gap: 2rem; } .footer-bottom { flex-direction: column; gap: 0.5rem; text-align: center; } }
+        .footer {
+            background: #0f0f23;
+            color: rgba(255,255,255,0.7);
+            padding: 2rem;
+            text-align: center;
+            font-size: 0.85rem;
+        }
+        .footer a { color: var(--action); text-decoration: none; }
 
         /* RESPONSIVE */
         @media (max-width: 768px) {
-            .nav { padding: 0 1.5rem; }
             .nav-links { display: none; }
             .nav-links.open {
                 display: flex; flex-direction: column;
-                position: absolute; top: 72px; left: 0; right: 0;
-                background: rgba(253,240,242,0.98);
-                backdrop-filter: blur(20px);
-                padding: 1.5rem 2rem 2rem;
-                border-bottom: 1px solid var(--border); gap: 1rem;
+                position: absolute; top: 100%; left: 0; right: 0;
+                background: #fff; padding: 1rem 2rem;
+                border-bottom: 1px solid var(--border);
             }
-            .mobile-menu-btn { display: block; }
+            .mobile-menu-btn { display: flex; }
             .hero { padding: 7rem 1.5rem 3rem; }
             .search-section { padding: 0 1rem 2rem; }
             .search-card { padding: 1rem; }
@@ -468,7 +361,7 @@
         /* BreadcrumbList Schema */
         .breadcrumb {
             max-width: 1200px;
-            margin: 5rem auto 0;
+            margin: 5.5rem auto 0;
             padding: 0.5rem 2rem;
             font-size: 0.8rem;
             color: var(--text-secondary);
@@ -493,10 +386,12 @@
 <nav class="nav" id="nav">
     <a href="/" class="nav-brand">Pack<em>Smart</em></a>
     <div class="nav-links" id="navLinks">
-        <a href="/flights.html">Flights & Hotels</a>
-        <a href="/#how">How It Works</a>
-        <a href="/#features">Features</a>
-        <a href="/blog.html">Blog</a>
+        <a href="/">Home</a>
+        <a href="flights.html" class="active">Flights & Hotels</a>
+        <a href="blog.html">Blog</a>
+        <a href="pricing.html">Pricing</a>
+        <a href="about.html">About</a>
+        <a href="contact.html">Contact</a>
         <a href="/#plan" class="nav-cta-btn">Plan My Trip</a>
     </div>
     <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
@@ -517,10 +412,7 @@
 
 <!-- SEARCH WIDGET -->
 <section class="search-section">
-    <div class="search-card" style="position:relative;">
-        <div class="lang-nudge">
-            <span class="lang-nudge-text">Change your language & currency here</span>
-        </div>
+    <div class="search-card">
         <div id="tpwl-search"></div>
     </div>
 </section>
@@ -530,28 +422,8 @@
     PackSmart is not a travel agency or booking platform. Flights and hotels are provided by third-party partners. When you select a result, you'll be redirected to the provider's site to complete your booking. Prices may change and are subject to the provider's terms. PackSmart may earn a commission at no extra cost to you. <a href="terms.html">Full terms</a>.
 </div>
 
-<!-- SEARCH RESULTS -->
+<!-- SEARCH RESULTS - tpwl-tickets is in head per Travelpayouts docs, results render here -->
 <section class="results-section" id="results-area">
-    <div id="tpwl-tickets"></div>
-</section>
-
-<!-- HOTEL SEARCH CTA — Trip.com -->
-<section class="hotel-cta">
-    <div class="hotel-cta-card" style="flex-direction:column;align-items:center;gap:12px;padding:2rem;">
-        <div style="display:flex;align-items:center;gap:10px;">
-            <span style="font-size:1.6rem;">&#127976;</span>
-            <h3 style="margin:0;font-size:1.2rem;color:#0f0f23;">Looking for <em style="color:#00C9A7;font-style:normal;">Hotels?</em></h3>
-        </div>
-        <p style="margin:0 0 4px 0;color:#666;font-size:0.92rem;text-align:center;">Search and compare hotel deals from Trip.com — great prices worldwide.</p>
-        <!-- Desktop: 900x200 Search Box widget -->
-        <div class="trip-desktop" style="width:100%;overflow:hidden;border-radius:8px;">
-            <iframe src="https://www.trip.com/partners/ad/S14633845?Allianceid=8011242&SID=303108282&trip_sub1=searchbox-hotels" style="width:100%;height:200px;border:none;" frameborder="0" scrolling="no" id="S14633845"></iframe>
-        </div>
-        <!-- Mobile: 320x320 Search Box widget -->
-        <div class="trip-mobile" style="display:none;width:100%;max-width:320px;overflow:hidden;border-radius:8px;">
-            <iframe src="https://www.trip.com/partners/ad/S14608967?Allianceid=8011242&SID=303108282&trip_sub1=searchbox-hotels" style="width:320px;height:320px;border:none;" frameborder="0" scrolling="no"></iframe>
-        </div>
-    </div>
 </section>
 
 <!-- TRUST BADGES -->
@@ -598,34 +470,47 @@
 
 <!-- FOOTER -->
 <footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand-col">
-            <div class="footer-logo">Pack<em>Smart</em></div>
-            <p>Effortless travel preparation. Get personalized packing lists, visa info, and local tips for any destination in the world.</p>
-        </div>
-        <div class="footer-col"><h4>Product</h4><a href="/#how">How It Works</a><a href="/#features">Features</a><a href="/#plan">Plan a Trip</a></div>
-        <div class="footer-col"><h4>Company</h4><a href="/about.html">About</a><a href="/flights.html">Flights & Hotels</a><a href="/blog.html">Blog</a><a href="/pricing.html">Pricing</a><a href="/contact.html">Contact</a></div>
-        <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/affiliate-disclosure.html">Affiliate Disclosure</a></div>
-    </div>
-    <div class="footer-bottom">
-        <span>&copy; 2026 PackSmart. All rights reserved.</span>
-        <span>Made for travelers.</span>
-    </div>
+    <p>&copy; 2026 PackSmart. All rights reserved. | <a href="privacy-policy.html">Privacy</a> | <a href="terms.html">Terms</a></p>
 </footer>
 
+<!-- LANGUAGE TOAST -->
+<div class="lang-toast" id="langToast">
+    <span class="lang-toast-icon">🌐</span>
+    <div class="lang-toast-content">
+        <div class="lang-toast-title">Not in your language?</div>
+        <div class="lang-toast-text">Change <strong>language & currency</strong> from the top-right of the search box.</div>
+    </div>
+    <button class="lang-toast-close" id="langToastClose" aria-label="Dismiss">&times;</button>
+</div>
+
 <script>
-// Nav scroll effect — matches index.html
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
-
-// Mobile menu
-document.getElementById('menuBtn').addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
-document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
-
+document.getElementById('menuBtn').addEventListener('click', function() {
+    document.getElementById('navLinks').classList.toggle('open');
+});
 // When showing flight results, hide hero/search and add top padding
 if (window.location.search.includes('flightSearch')) {
     document.body.classList.add('showing-results');
 }
+
+// Language toast — show after 2s, auto-dismiss after 8s
+(function() {
+    var toast = document.getElementById('langToast');
+    var closeBtn = document.getElementById('langToastClose');
+    if (window.location.search.includes('flightSearch')) return; // don't show on results page
+
+    var showTimer = setTimeout(function() {
+        toast.classList.add('visible');
+    }, 2000);
+
+    var hideTimer = setTimeout(function() {
+        toast.classList.remove('visible');
+    }, 10000); // 2s delay + 8s visible
+
+    closeBtn.addEventListener('click', function() {
+        clearTimeout(hideTimer);
+        toast.classList.remove('visible');
+    });
+})();
 </script>
 
 </body>
