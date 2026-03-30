@@ -462,7 +462,7 @@
   ]
 }
 </script>
-<style>.safetywing-price-widget{display:block!important;margin:0 auto;max-width:100%;overflow:hidden;} @media(max-width:500px){.safetywing-price-widget{transform:scale(0.85);transform-origin:center top;margin-bottom:-40px;}}</style>
+<style>html,body{overflow-x:hidden;max-width:100vw;} .safetywing-price-widget{max-width:100%;}</style>
 </head>
 <body>
     <nav class="nav" id="nav">
@@ -998,5 +998,6 @@
         document.querySelector('.nav-links').classList.toggle('open');
     });
 </script>
+<script>if(document.querySelector(".safetywing-price-widget")){const swObs=new MutationObserver(()=>{const sw=document.querySelector(".safetywing-price-widget");if(sw&&sw.style.display){sw.style.setProperty("display","block","important");sw.style.setProperty("margin","0 auto","important");sw.style.setProperty("transform-origin","center top","important");swObs.disconnect();}});swObs.observe(document.querySelector(".safetywing-price-widget"),{attributes:true,attributeFilter:["style"]});}</script>
 </body>
 </html>
