@@ -253,7 +253,7 @@ document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click
 | Partner | URL | Commission |
 |---|---|---|
 | GetYourGuide | `https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn` | 16% |
-| Yesim eSIM | `https://tp.media/r?marker=711400&trs=508747&p=8310&u=https%3A%2F%2Fyesim.app` | 18% |
+| Yesim eSIM | `https://yesim.app` (direct link — TP program p=8310 is BROKEN, redirects to Airalo. Do NOT use the old TP tracking URL) | — |
 | SafetyWing | `https://safetywing.com/?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador` | 10% |
 | Welcome Pickups | `https://tpx.li/qYFLwgZ8` | 8-9% |
 | Localrent | TP widget (country-specific `country=` param) | 7.5-12% |
