@@ -156,6 +156,7 @@
         <button class="filter-btn" data-filter="Destination Guide">Destinations</button>
         <button class="filter-btn" data-filter="Packing Guide">Packing</button>
         <button class="filter-btn" data-filter="Travel Guide">Travel Tips</button>
+        <button class="filter-btn" data-filter="Itinerary Guide">Itineraries</button>
         <button class="filter-btn" data-filter="Event Guide">FIFA 2026</button>
         <button class="filter-btn" data-filter="summer">Summer</button>
         <button class="filter-btn" data-filter="other">More</button>
@@ -931,7 +932,7 @@ document.getElementById('menuBtn').addEventListener('click', function() {
 
             let passFilter = true;
             if (activeFilter === 'summer') passFilter = card.dataset.summer === 'true';
-            else if (activeFilter === 'other') passFilter = !['Destination Guide','Packing Guide','Travel Guide'].includes(tag);
+            else if (activeFilter === 'other') passFilter = !['Destination Guide','Packing Guide','Travel Guide','Itinerary Guide'].includes(tag);
             else if (activeFilter !== 'all') passFilter = tag === activeFilter;
 
             const passSearch = !query || searchText.includes(query);
