@@ -1201,57 +1201,283 @@
 </section>
 
 
-<!-- FEATURED BLOG POSTS -->
+<!-- FEATURED BLOG POSTS — TABBED CATEGORY VIEW -->
+<style>
+    .guides-tab-row { display: flex; gap: 0.5rem; justify-content: center; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .guides-tab-btn { padding: 8px 20px; border-radius: 50px; border: 1.5px solid var(--border); background: var(--bg-white); color: var(--text-secondary); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: var(--font-body); }
+    .guides-tab-btn:hover { border-color: var(--action); color: var(--action); }
+    .guides-tab-btn.active { background: var(--action); color: #fff; border-color: var(--action); }
+    .guides-tab-btn.fifa-active { background: var(--accent); color: #fff; border-color: var(--accent); }
+    .guides-tab-panel { display: none; }
+    .guides-tab-panel.active { display: block; }
+    .guides-card-row { display: flex; gap: 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; scrollbar-width: thin; scrollbar-color: #ddd transparent; }
+    .guides-card-row::-webkit-scrollbar { height: 6px; }
+    .guides-card-row::-webkit-scrollbar-thumb { background: #ddd; border-radius: 3px; }
+    .guide-card { flex: 0 0 260px; scroll-snap-align: start; background: var(--bg-white); border: 1px solid var(--border); border-radius: 14px; text-decoration: none; color: var(--text); display: flex; flex-direction: column; overflow: hidden; transition: transform 0.2s, box-shadow 0.2s; }
+    .guide-card:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    .guide-card img { width: 100%; height: 150px; object-fit: cover; display: block; }
+    .guide-card-body { padding: 0.9rem 1.1rem 1.1rem; display: flex; flex-direction: column; flex: 1; }
+    .guide-card .gc-tag { display: inline-block; width: fit-content; background: var(--teal-tint); color: var(--action); font-size: 0.65rem; font-weight: 700; padding: 3px 8px; border-radius: 20px; margin-bottom: 6px; text-transform: uppercase; letter-spacing: 0.5px; }
+    .guide-card h3 { font-size: 0.95rem; line-height: 1.3; margin-bottom: 5px; font-weight: 600; }
+    .guide-card .gc-desc { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.45; margin-bottom: 8px; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+    .guide-card .gc-link { color: var(--action); font-weight: 600; font-size: 0.8rem; }
+    .guide-card.fifa-card { border-top: 3px solid var(--accent); }
+    .guide-card.fifa-card .gc-tag { background: #FFF0F3; color: var(--accent); }
+    .guide-card.fifa-card .gc-link { color: var(--accent); }
+    .guides-view-all { text-align: center; margin-top: 1.2rem; }
+    .guides-view-all a { color: var(--action); font-weight: 600; font-size: 0.88rem; text-decoration: none; }
+    .guides-view-all a:hover { text-decoration: underline; }
+    @media (max-width: 600px) { .guide-card { flex: 0 0 240px; } .guides-tab-btn { font-size: 0.78rem; padding: 7px 14px; } }
+</style>
 <section class="blog-feature reveal" id="guides" style="position:relative;z-index:1;padding:50px 2rem;">
     <div style="max-width:1100px;margin:0 auto;">
-        <div style="text-align:center;margin-bottom:3rem;">
+        <div style="text-align:center;margin-bottom:1.8rem;">
             <div class="section-label" style="display:inline-block;font-size:0.75rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--action);background:var(--teal-tint);padding:6px 16px;border-radius:20px;margin-bottom:1rem;">Travel Guides</div>
-            <h2 style="font-family:var(--font-display);font-size:2.5rem;color:var(--text);margin-bottom:0.5rem;">Popular <em style="font-style:italic;">Destination Guides</em></h2>
-            <p style="color:var(--text-secondary);font-size:1rem;max-width:550px;margin:0 auto;">Expert packing lists and travel tips for the most popular destinations from India</p>
+            <h2 style="font-family:var(--font-display);font-size:2.5rem;color:var(--text);margin-bottom:0.5rem;">Explore Our <em style="font-style:italic;">Travel Guides</em></h2>
+            <p style="color:var(--text-secondary);font-size:1rem;max-width:550px;margin:0 auto;">Expert packing lists, day-by-day itineraries, and travel tips for the most popular destinations</p>
         </div>
-        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:1.5rem;">
-            <a href="/blog/japan-travel-packing-guide-from-india.html" style="background:var(--bg-white);border:1px solid var(--border);border-radius:16px;padding:2rem;text-decoration:none;color:var(--text);transition:transform 0.2s,box-shadow 0.2s;display:block;">
-                <span style="display:inline-block;background:var(--teal-tint);color:var(--action);font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px;">Destination Guide</span>
-                <h3 style="font-size:1.25rem;margin-bottom:8px;line-height:1.3;">Japan Travel &amp; Packing Guide 2026: For Indian Travellers</h3>
-                <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:8px;">Visa from India, JR Pass, what to pack for Tokyo, Kyoto, Osaka — complete checklist for Indian travellers.</p>
-                <span style="color:var(--action);font-weight:600;font-size:0.85rem;">Read guide &rarr;</span>
-            </a>
-            <a href="/blog/bali-travel-packing-guide-from-india.html" style="background:var(--bg-white);border:1px solid var(--border);border-radius:16px;padding:2rem;text-decoration:none;color:var(--text);transition:transform 0.2s,box-shadow 0.2s;display:block;">
-                <span style="display:inline-block;background:var(--teal-tint);color:var(--action);font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px;">Destination Guide</span>
-                <h3 style="font-size:1.25rem;margin-bottom:8px;line-height:1.3;">Bali Travel &amp; Packing Guide 2026</h3>
-                <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:8px;">Visa on arrival, temple dress codes, weather by month, and budget breakdown.</p>
-                <span style="color:var(--action);font-weight:600;font-size:0.85rem;">Read guide &rarr;</span>
-            </a>
-            <a href="/blog/thailand-travel-packing-guide-from-india.html" style="background:var(--bg-white);border:1px solid var(--border);border-radius:16px;padding:2rem;text-decoration:none;color:var(--text);transition:transform 0.2s,box-shadow 0.2s;display:block;">
-                <span style="display:inline-block;background:var(--teal-tint);color:var(--action);font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px;">Destination Guide</span>
-                <h3 style="font-size:1.25rem;margin-bottom:8px;line-height:1.3;">Thailand Travel &amp; Packing Guide 2026</h3>
-                <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:8px;">Visa-free entry, packing by destination, cultural etiquette, and budget tips.</p>
-                <span style="color:var(--action);font-weight:600;font-size:0.85rem;">Read guide &rarr;</span>
-            </a>
-            <a href="/blog/dubai-travel-packing-guide-from-india.html" style="background:var(--bg-white);border:1px solid var(--border);border-radius:16px;padding:2rem;text-decoration:none;color:var(--text);transition:transform 0.2s,box-shadow 0.2s;display:block;">
-                <span style="display:inline-block;background:var(--teal-tint);color:var(--action);font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px;">Destination Guide</span>
-                <h3 style="font-size:1.25rem;margin-bottom:8px;line-height:1.3;">Dubai Travel &amp; Packing Guide 2026</h3>
-                <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:8px;">Visa process, desert safari gear, mall dress codes, and cultural etiquette.</p>
-                <span style="color:var(--action);font-weight:600;font-size:0.85rem;">Read guide &rarr;</span>
-            </a>
-            <a href="/blog/europe-travel-packing-list.html" style="background:var(--bg-white);border:1px solid var(--border);border-radius:16px;padding:2rem;text-decoration:none;color:var(--text);transition:transform 0.2s,box-shadow 0.2s;display:block;">
-                <span style="display:inline-block;background:var(--teal-tint);color:var(--action);font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px;">Packing Guide</span>
-                <h3 style="font-size:1.25rem;margin-bottom:8px;line-height:1.3;">Europe Travel Packing List 2026</h3>
-                <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:8px;">What to pack for any season — clothing, footwear for cobblestones, and carry-on strategy.</p>
-                <span style="color:var(--action);font-weight:600;font-size:0.85rem;">Read guide &rarr;</span>
-            </a>
-            <a href="/blog/beach-vacation-packing-list.html" style="background:var(--bg-white);border:1px solid var(--border);border-radius:16px;padding:2rem;text-decoration:none;color:var(--text);transition:transform 0.2s,box-shadow 0.2s;display:block;">
-                <span style="display:inline-block;background:var(--teal-tint);color:var(--action);font-size:0.72rem;font-weight:700;padding:4px 10px;border-radius:20px;margin-bottom:12px;text-transform:uppercase;letter-spacing:0.5px;">Packing Guide</span>
-                <h3 style="font-size:1.25rem;margin-bottom:8px;line-height:1.3;">Beach Vacation Packing List 2026</h3>
-                <p style="color:var(--text-secondary);font-size:0.9rem;margin-bottom:8px;">Swimwear, sun protection, beach gear, electronics, and tips for packing light.</p>
-                <span style="color:var(--action);font-weight:600;font-size:0.85rem;">Read guide &rarr;</span>
-            </a>
+
+        <!-- Tabs -->
+        <div class="guides-tab-row">
+            <button class="guides-tab-btn active" data-guidetab="destinations">Destinations</button>
+            <button class="guides-tab-btn" data-guidetab="itineraries">Itineraries</button>
+            <button class="guides-tab-btn" data-guidetab="fifa">FIFA 2026</button>
+            <button class="guides-tab-btn" data-guidetab="tips">Travel Tips</button>
         </div>
-        <div style="text-align:center;margin-top:2.5rem;">
-            <a href="/blog.html" style="display:inline-block;padding:12px 32px;border:2px solid var(--action);color:var(--action);border-radius:50px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:all 0.2s;">View All 24+ Guides &rarr;</a>
+
+        <!-- DESTINATIONS -->
+        <div class="guides-tab-panel active" id="guidetab-destinations">
+            <div class="guides-card-row">
+                <a href="/blog/japan-travel-packing-guide-from-india.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&h=340&fit=crop&auto=format&q=75" alt="Japan — cherry blossoms and Mount Fuji" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Destination Guide</span>
+                        <h3>Japan Travel &amp; Packing Guide 2026</h3>
+                        <p class="gc-desc">Visa from India, JR Pass, what to pack for Tokyo, Kyoto, Osaka — complete checklist.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/bali-travel-packing-guide-from-india.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&h=340&fit=crop&auto=format&q=75" alt="Bali — Tegallalang rice terraces" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Destination Guide</span>
+                        <h3>Bali Travel &amp; Packing Guide 2026</h3>
+                        <p class="gc-desc">Visa on arrival, temple dress codes, weather by month, and budget breakdown.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/thailand-travel-packing-guide-from-india.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1528181304800-259b08848526?w=600&h=340&fit=crop&auto=format&q=75" alt="Thailand — golden temples" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Destination Guide</span>
+                        <h3>Thailand Travel &amp; Packing Guide 2026</h3>
+                        <p class="gc-desc">Visa-free entry, packing by destination, cultural etiquette, and budget tips.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/dubai-travel-packing-guide-from-india.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1518684079-3c830dcef090?w=600&h=340&fit=crop&auto=format&q=75" alt="Dubai — Burj Khalifa skyline" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Destination Guide</span>
+                        <h3>Dubai Travel &amp; Packing Guide 2026</h3>
+                        <p class="gc-desc">Visa process, desert safari gear, mall dress codes, and cultural etiquette.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/switzerland-travel-packing-guide.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?w=600&h=340&fit=crop&auto=format&q=75" alt="Switzerland — Alpine mountains" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Destination Guide</span>
+                        <h3>Switzerland Travel &amp; Packing Guide 2026</h3>
+                        <p class="gc-desc">Zurich, Lucerne, Interlaken, Zermatt. Alpine packing and Swiss Travel Pass.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/france-travel-packing-guide.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?w=600&h=340&fit=crop&auto=format&q=75" alt="France — Eiffel Tower at sunset" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Destination Guide</span>
+                        <h3>France Travel &amp; Packing Guide 2026</h3>
+                        <p class="gc-desc">Paris, Nice, Lyon, Marseille. TGV trains, dining etiquette, and seasonal packing.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+            </div>
+            <div class="guides-view-all"><a href="/blog.html">View all 20+ destination guides &rarr;</a></div>
+        </div>
+
+        <!-- ITINERARIES -->
+        <div class="guides-tab-panel" id="guidetab-itineraries">
+            <div class="guides-card-row">
+                <a href="/blog/vietnam-10-day-itinerary-mid-range.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1528127269322-539801943592?w=600&h=340&fit=crop&auto=format&q=75" alt="Vietnam — Ha Long Bay" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Itinerary</span>
+                        <h3>Vietnam 10 Days: Hanoi to HCMC</h3>
+                        <p class="gc-desc">Under $1,200 — Ha Long Bay cruises, Hoi An lanterns &amp; street food.</p>
+                        <span class="gc-link">Read itinerary &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/spain-10-day-itinerary-mid-range.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1509840841025-9088ba78a826?w=600&h=340&fit=crop&auto=format&q=75" alt="Spain — Barcelona" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Itinerary</span>
+                        <h3>Spain 10 Days: Barcelona to Granada</h3>
+                        <p class="gc-desc">Under $2,500 — Gaudi, Madrid art, flamenco &amp; the Alhambra.</p>
+                        <span class="gc-link">Read itinerary &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/italy-7-day-itinerary-mid-range.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?w=600&h=340&fit=crop&auto=format&q=75" alt="Italy — Rome Colosseum" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Itinerary</span>
+                        <h3>Italy 7 Days: Rome, Florence &amp; Venice</h3>
+                        <p class="gc-desc">Under $2,000 — ancient wonders, Renaissance art &amp; canals.</p>
+                        <span class="gc-link">Read itinerary &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/mexico-7-day-itinerary-mid-range.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1518638150340-f706e86654de?w=600&h=340&fit=crop&auto=format&q=75" alt="Mexico — pyramids" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Itinerary</span>
+                        <h3>Mexico 7 Days: CDMX, Oaxaca &amp; Tulum</h3>
+                        <p class="gc-desc">Under $1,800 — pyramids, mole &amp; mezcal, Caribbean cenotes.</p>
+                        <span class="gc-link">Read itinerary &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/bali-10-day-itinerary-mid-range.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&h=340&fit=crop&auto=format&q=75" alt="Bali — rice terraces" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Itinerary</span>
+                        <h3>Bali 10 Days: Ubud, Uluwatu &amp; Nusa Penida</h3>
+                        <p class="gc-desc">Under $1,500 — rice terraces, cliff temples &amp; pristine beaches.</p>
+                        <span class="gc-link">Read itinerary &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/thailand-7-day-itinerary-mid-range.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1508009603885-50cf7c579365?w=600&h=340&fit=crop&auto=format&q=75" alt="Thailand — Bangkok temples" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Itinerary</span>
+                        <h3>Thailand 7 Days: Bangkok, Chiang Mai &amp; Islands</h3>
+                        <p class="gc-desc">Under $1,500 — temples, night markets &amp; island hopping.</p>
+                        <span class="gc-link">Read itinerary &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/japan-7-day-itinerary-budget.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&h=340&fit=crop&auto=format&q=75" alt="Japan — cherry blossoms" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Itinerary</span>
+                        <h3>Japan 7 Days: Tokyo to Osaka (Budget)</h3>
+                        <p class="gc-desc">Under $1,200 — temples, ramen alleys &amp; Osaka street food.</p>
+                        <span class="gc-link">Read itinerary &rarr;</span>
+                    </div>
+                </a>
+            </div>
+            <div class="guides-view-all"><a href="/blog.html">View all 7 itineraries &rarr;</a></div>
+        </div>
+
+        <!-- FIFA 2026 -->
+        <div class="guides-tab-panel" id="guidetab-fifa">
+            <div class="guides-card-row">
+                <a href="/blog/fifa-world-cup-2026-travel-packing-guide.html" class="guide-card fifa-card">
+                    <img src="https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=600&h=340&fit=crop&auto=format&q=75" alt="FIFA World Cup stadium" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Event Guide</span>
+                        <h3>FIFA 2026 Travel &amp; Packing Guide</h3>
+                        <p class="gc-desc">16 host cities, stadium rules, clear bag policy &amp; multi-city transport.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/fifa-world-cup-2026-budget-travel-guide.html" class="guide-card fifa-card">
+                    <img src="https://images.unsplash.com/photo-1431324155629-1a6deb1dec8d?w=600&h=340&fit=crop&auto=format&q=75" alt="FIFA fans celebrating" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Event Guide</span>
+                        <h3>FIFA 2026 Budget Travel Guide</h3>
+                        <p class="gc-desc">Cheap tickets, budget flights, hostel hacks &amp; free fan experiences.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/fifa-world-cup-2026-usa-host-cities-guide.html" class="guide-card fifa-card">
+                    <img src="https://images.unsplash.com/photo-1534430480872-3498386e7856?w=600&h=340&fit=crop&auto=format&q=75" alt="USA host city skyline" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Event Guide</span>
+                        <h3>FIFA 2026: USA Host Cities</h3>
+                        <p class="gc-desc">NYC, LA, Miami, Dallas — stadium access, transport &amp; where to stay.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/fifa-world-cup-2026-mexico-host-cities-guide.html" class="guide-card fifa-card">
+                    <img src="https://images.unsplash.com/photo-1518659526054-190340b32735?w=600&h=340&fit=crop&auto=format&q=75" alt="Mexico host city" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Event Guide</span>
+                        <h3>FIFA 2026: Mexico Host Cities</h3>
+                        <p class="gc-desc">CDMX, Guadalajara, Monterrey — stadium tips, safety &amp; food.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+            </div>
+            <div class="guides-view-all"><a href="/blog.html">View all FIFA 2026 guides &rarr;</a></div>
+        </div>
+
+        <!-- TRAVEL TIPS -->
+        <div class="guides-tab-panel" id="guidetab-tips">
+            <div class="guides-card-row">
+                <a href="/blog/female-solo-travel-guide.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1501555088652-021faa106b9b?w=600&h=340&fit=crop&auto=format&q=75" alt="Female solo traveler with backpack" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Travel Guide</span>
+                        <h3>Female Solo Travel Guide 2026</h3>
+                        <p class="gc-desc">Safety tips, best destinations, packing essentials &amp; solo dining confidence.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/travel-insurance-guide.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=600&h=340&fit=crop&auto=format&q=75" alt="Travel insurance planning" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Travel Guide</span>
+                        <h3>Travel Insurance Guide 2026</h3>
+                        <p class="gc-desc">Types of coverage, cost breakdown, how to file claims &amp; common mistakes.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/europe-travel-packing-list.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1491557345352-5929e343eb89?w=600&h=340&fit=crop&auto=format&q=75" alt="Europe scenic cityscape" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Packing Guide</span>
+                        <h3>Europe Travel Packing List 2026</h3>
+                        <p class="gc-desc">What to pack for any season — clothing, cobblestone footwear &amp; carry-on strategy.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+                <a href="/blog/beach-vacation-packing-list.html" class="guide-card">
+                    <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=600&h=340&fit=crop&auto=format&q=75" alt="Tropical beach with turquoise water" loading="lazy">
+                    <div class="guide-card-body">
+                        <span class="gc-tag">Packing Guide</span>
+                        <h3>Beach Vacation Packing List 2026</h3>
+                        <p class="gc-desc">Swimwear, sun protection, beach gear &amp; tips for packing light.</p>
+                        <span class="gc-link">Read guide &rarr;</span>
+                    </div>
+                </a>
+            </div>
+            <div class="guides-view-all"><a href="/blog.html">View all travel tips &rarr;</a></div>
+        </div>
+
+        <div style="text-align:center;margin-top:1.2rem;">
+            <a href="/blog.html" style="display:inline-block;padding:12px 32px;border:2px solid var(--action);color:var(--action);border-radius:50px;text-decoration:none;font-weight:600;font-size:0.9rem;transition:all 0.2s;">Browse All 50+ Guides &rarr;</a>
         </div>
     </div>
 </section>
+<script>
+document.querySelectorAll('.guides-tab-btn').forEach(function(btn){
+    btn.addEventListener('click',function(){
+        document.querySelectorAll('.guides-tab-btn').forEach(function(b){b.classList.remove('active');b.classList.remove('fifa-active');});
+        document.querySelectorAll('.guides-tab-panel').forEach(function(p){p.classList.remove('active');});
+        var tab=this.getAttribute('data-guidetab');
+        if(tab==='fifa'){this.classList.add('fifa-active');}else{this.classList.add('active');}
+        document.getElementById('guidetab-'+tab).classList.add('active');
+    });
+});
+</script>
 
 <!-- NEWSLETTER SIGNUP -->
 <section class="reveal" style="position:relative;z-index:1;padding:30px 2rem 40px;">
