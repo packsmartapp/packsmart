@@ -1503,7 +1503,7 @@ function nlSubHome(e){
     b.textContent='Subscribing...';b.disabled=true;
     fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value})})
     .then(r=>r.json()).then(d=>{
-        if(d.success){m.style.display='block';m.style.color='var(--action)';m.textContent="You're subscribed! Check your inbox for a welcome email.";em.value='';b.textContent='Subscribed!';b.style.background='#28a745';}
+        if(d.success){gtag('event','newsletter_signup',{event_category:'conversion',source:'homepage'});m.style.display='block';m.style.color='var(--action)';m.textContent="You're subscribed! Check your inbox for a welcome email.";em.value='';b.textContent='Subscribed!';b.style.background='#28a745';}
         else{m.style.display='block';m.style.color='var(--accent)';m.textContent=d.error||'Something went wrong.';b.textContent='Subscribe Free';b.disabled=false;}
     }).catch(()=>{m.style.display='block';m.style.color='var(--accent)';m.textContent='Network error. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});
     return false;
@@ -1562,6 +1562,35 @@ function nlSubHome(e){
     </div>
 </footer>
 
+<script>
+// ===== GA4 AFFILIATE CLICK TRACKING =====
+document.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (!a || !a.href) return;
+    var affiliates = {
+        'getyourguide.com': 'GetYourGuide',
+        'yesim.tpx.li': 'Yesim_eSIM',
+        'safetywing.com': 'SafetyWing',
+        'tpx.li': 'Travelpayouts',
+        'klook.com': 'Klook',
+        'trip.com': 'Trip.com',
+        'go.bounce.com': 'Bounce',
+        'tpwdg.com': 'Localrent',
+        'emrld.ltd': 'Travelpayouts'
+    };
+    for (var domain in affiliates) {
+        if (a.href.indexOf(domain) !== -1) {
+            gtag('event', 'affiliate_click', {
+                event_category: 'monetization',
+                affiliate_partner: affiliates[domain],
+                link_url: a.href,
+                page_path: window.location.pathname
+            });
+            break;
+        }
+    }
+});
+</script>
 <script>
 // ===== INTERACTIVE PARTICLE MESH =====
 (function() {
@@ -1694,6 +1723,7 @@ async function handleSubmit(e) {
         const res = await fetch('/api/generate-plan', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(data) });
         const json = await res.json();
         if (json.success) {
+            gtag('event', 'generate_plan', { event_category: 'engagement', destination: data.destination, trip_type: data.tripType, budget: data.budget });
             document.getElementById('resDest').textContent = data.destination;
             document.getElementById('resBody').innerHTML = mdToHtml(json.plan);
             // Save plan to localStorage for persistence

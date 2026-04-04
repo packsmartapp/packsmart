@@ -948,5 +948,33 @@
     });
 </script>
 <script>if(document.querySelector(".safetywing-price-widget")){const swObs=new MutationObserver(()=>{const sw=document.querySelector(".safetywing-price-widget");if(sw&&sw.style.display){sw.style.setProperty("display","block","important");sw.style.setProperty("margin","0 auto","important");sw.style.setProperty("transform-origin","center top","important");swObs.disconnect();}});swObs.observe(document.querySelector(".safetywing-price-widget"),{attributes:true,attributeFilter:["style"]});}</script>
+<script>
+document.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (!a || !a.href) return;
+    var affiliates = {
+        'getyourguide.com': 'GetYourGuide',
+        'yesim.tpx.li': 'Yesim_eSIM',
+        'safetywing.com': 'SafetyWing',
+        'tpx.li': 'Travelpayouts',
+        'klook.com': 'Klook',
+        'trip.com': 'Trip.com',
+        'go.bounce.com': 'Bounce',
+        'tpwdg.com': 'Localrent',
+        'emrld.ltd': 'Travelpayouts'
+    };
+    for (var domain in affiliates) {
+        if (a.href.indexOf(domain) !== -1) {
+            gtag('event', 'affiliate_click', {
+                event_category: 'monetization',
+                affiliate_partner: affiliates[domain],
+                link_url: a.href,
+                page_path: window.location.pathname
+            });
+            break;
+        }
+    }
+});
+</script>
 </body>
 </html>

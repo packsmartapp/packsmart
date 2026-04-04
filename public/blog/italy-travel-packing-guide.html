@@ -1154,7 +1154,7 @@
     </form>
     <p id="nlMsg" style="color:#00C9A7;font-size:0.85rem;margin-top:12px;display:none;"></p>
     <p id="nlNote" style="color:#777;font-size:0.75rem;margin-top:12px;">No spam. Unsubscribe anytime.</p>
-    <script>function nlSub(e){e.preventDefault();var b=document.getElementById('nlBtn'),m=document.getElementById('nlMsg'),em=document.getElementById('nlEmail');b.textContent='Subscribing...';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value})}).then(r=>r.json()).then(d=>{if(d.success){m.style.display='block';m.style.color='#00C9A7';m.textContent='You\'re subscribed! We\'ll send you our latest guides.';em.value='';document.getElementById('nlNote').style.display='none';}else{m.style.display='block';m.style.color='#E94560';m.textContent=d.error||'Something went wrong. Please try again.';}b.textContent='Subscribe Free';b.disabled=false;}).catch(()=>{m.style.display='block';m.style.color='#E94560';m.textContent='Something went wrong. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});return false;}</script>
+    <script>function nlSub(e){e.preventDefault();var b=document.getElementById('nlBtn'),m=document.getElementById('nlMsg'),em=document.getElementById('nlEmail');b.textContent='Subscribing...';b.disabled=true;fetch('/api/subscribe',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:em.value})}).then(r=>r.json()).then(d=>{if(d.success){gtag('event','newsletter_signup',{event_category:'conversion',source:'blog'});m.style.display='block';m.style.color='#00C9A7';m.textContent='You\'re subscribed! We\'ll send you our latest guides.';em.value='';document.getElementById('nlNote').style.display='none';}else{m.style.display='block';m.style.color='#E94560';m.textContent=d.error||'Something went wrong. Please try again.';}b.textContent='Subscribe Free';b.disabled=false;}).catch(()=>{m.style.display='block';m.style.color='#E94560';m.textContent='Something went wrong. Please try again.';b.textContent='Subscribe Free';b.disabled=false;});return false;}</script>
 </div>
 
 <footer class="footer">
@@ -1182,5 +1182,33 @@ if(document.querySelector('.safetywing-price-widget')){const swObs=new MutationO
 </script>
 
 <script>setInterval(function(){var e=document.querySelector("a[href*=poweredby]");if(e){e.style.setProperty("display","none","important");e.parentElement.style.setProperty("display","none","important");}},500);</script>
+<script>
+document.addEventListener('click', function(e) {
+    var a = e.target.closest('a');
+    if (!a || !a.href) return;
+    var affiliates = {
+        'getyourguide.com': 'GetYourGuide',
+        'yesim.tpx.li': 'Yesim_eSIM',
+        'safetywing.com': 'SafetyWing',
+        'tpx.li': 'Travelpayouts',
+        'klook.com': 'Klook',
+        'trip.com': 'Trip.com',
+        'go.bounce.com': 'Bounce',
+        'tpwdg.com': 'Localrent',
+        'emrld.ltd': 'Travelpayouts'
+    };
+    for (var domain in affiliates) {
+        if (a.href.indexOf(domain) !== -1) {
+            gtag('event', 'affiliate_click', {
+                event_category: 'monetization',
+                affiliate_partner: affiliates[domain],
+                link_url: a.href,
+                page_path: window.location.pathname
+            });
+            break;
+        }
+    }
+});
+</script>
 </body>
 </html>
