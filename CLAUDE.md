@@ -78,7 +78,7 @@ font-family: 'DM Sans', sans-serif;
 
 ### Hero
 ```css
-.hero-blog { background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%); background-size: cover; background-position: center; color: white; padding: 140px 2rem; text-align: center; margin-top: 72px; }
+.hero-blog { background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%); background-size: cover; background-position: center; color: white; padding: 180px 2rem; text-align: center; }
 ```
 
 ### Content Area
