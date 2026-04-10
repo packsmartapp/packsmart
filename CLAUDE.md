@@ -72,8 +72,12 @@ font-family: 'DM Sans', sans-serif;
 ```css
 .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem; height: 72px; display: flex; align-items: center; justify-content: space-between; background: transparent; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
 .nav.scrolled { background: rgba(253,240,242,0.88); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid #eee; }
-.nav-brand { font-family: 'DM Sans', sans-serif; font-weight: 800; font-size: 1.2rem; color: #333; text-decoration: none; letter-spacing: -0.3px; }
+.nav-brand { font-family: 'DM Sans', sans-serif; font-weight: 800; font-size: 1.2rem; color: #fff; text-decoration: none; letter-spacing: -0.3px; }
 .nav-brand em { font-style: normal; color: #00C9A7; }
+.nav.scrolled .nav-brand { color: #333; }
+.nav.scrolled .nav-brand em { color: #00C9A7; }
+.nav.scrolled .nav-links a { color: #666; }
+.nav.scrolled .mobile-menu-btn span { background: #333; }
 ```
 
 ### Hero
