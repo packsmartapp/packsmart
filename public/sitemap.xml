@@ -37,12 +37,6 @@
     <changefreq>weekly</changefreq>
     <priority>0.9</priority>
   </url>
-  <url>
-    <loc>https://www.packsmartapp.com/share</loc>
-    <lastmod>2026-03-14</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.5</priority>
-  </url>
   <!-- Legal Pages -->
   <url>
     <loc>https://www.packsmartapp.com/privacy-policy</loc>
