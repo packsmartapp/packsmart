@@ -6,9 +6,8 @@
     </style>
   </defs>
 
-  <!-- Luggage tag icon -->
+  <!-- Luggage tag icon (white on transparent) -->
   <g transform="translate(8, 14)">
-    <!-- Tag body with cut corner (top-left) -->
     <path d="M 15 0
              L 48 0
              Q 52 0 52 4
@@ -18,20 +17,17 @@
              Q 0 52 0 48
              L 0 15
              Z"
-          fill="#00C9A7"/>
-    <!-- Diagonal cut corner shape (subtle darker detail) -->
-    <path d="M 0 15 L 15 0 L 15 15 Z" fill="#00A68C"/>
-    <!-- Reinforcement ring (the hole on a real tag) -->
+          fill="#ffffff"/>
+    <path d="M 0 15 L 15 0 L 15 15 Z" fill="#cccccc"/>
     <circle cx="11" cy="11" r="3.5" fill="#0f0f23"/>
-    <circle cx="11" cy="11" r="1.5" fill="#00C9A7"/>
-    <!-- Checkmark -->
+    <circle cx="11" cy="11" r="1.5" fill="#ffffff"/>
     <path d="M 15 30 L 23 38 L 40 21"
-          stroke="white" stroke-width="5" fill="none"
+          stroke="#00C9A7" stroke-width="5" fill="none"
           stroke-linecap="round" stroke-linejoin="round"/>
   </g>
 
-  <!-- Wordmark -->
+  <!-- Wordmark (white) -->
   <text x="78" y="56" class="wordmark">
-    <tspan fill="#0f0f23">Pack</tspan><tspan fill="#00C9A7">Smart</tspan>
+    <tspan fill="#ffffff">Pack</tspan><tspan fill="#00C9A7">Smart</tspan>
   </text>
 </svg>

@@ -1,0 +1,14 @@
+# macOS
+.DS_Store
+
+# Private working material (not for deploy)
+pinterest-pins/
+mockups-export/
+PackSmart-Competitive-Analysis-*.md
+PackSmart-Growth-Audit-*.docx
+PackSmart-Growth-Strategy-*.md
+PackSmart-SEO-Audit-*.md
+affiliate-reconsideration-emails.md
+detailed_recommendations.txt
+summary_table.txt
+homepage-mockup.html

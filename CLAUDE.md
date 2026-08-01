@@ -261,7 +261,7 @@ document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click
 | SafetyWing | `https://safetywing.com/?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador` | 10% |
 | Welcome Pickups | `https://tpx.li/qYFLwgZ8` | 8-9% |
 | Localrent | TP widget (country-specific `country=` param) | 7.5-12% |
-| Klook | `https://affiliate.klook.com/redirect?aid=116473&aff_adid=1241039&k_site=...` (city-specific) | 2-5% |
+| Klook | Direct deep link + `?aid=116473` (e.g. `https://www.klook.com/en-US/city/tokyo-things-to-do/?aid=116473`). OLD `affiliate.klook.com/redirect` format is DEPRECATED — drops deep links and was observed redirecting to spam (Aug 2026). | 2-5% |
 | 12Go | Widget with `agent=15357692` (SE Asia articles only) | ~5% |
 | Tiqets | Country-specific TP short links (EU/Dubai only) | 3.5-8% |
 

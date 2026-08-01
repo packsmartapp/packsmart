@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="512" height="512">
+  <!-- Background rounded square -->
+  <rect width="512" height="512" rx="96" fill="#0f0f23"/>
+
+  <!-- Luggage tag centered -->
+  <g transform="translate(120, 120)">
+    <!-- Tag body -->
+    <path d="M 78 0
+             L 240 0
+             Q 272 0 272 32
+             L 272 240
+             Q 272 272 240 272
+             L 32 272
+             Q 0 272 0 240
+             L 0 78
+             Z"
+          fill="#00C9A7"/>
+    <!-- Cut corner detail -->
+    <path d="M 0 78 L 78 0 L 78 78 Z" fill="#00A68C"/>
+    <!-- Tag hole (reinforcement ring) -->
+    <circle cx="58" cy="58" r="17" fill="#0f0f23"/>
+    <circle cx="58" cy="58" r="7" fill="#00C9A7"/>
+    <!-- Checkmark -->
+    <path d="M 78 158 L 120 200 L 210 110"
+          stroke="white" stroke-width="26" fill="none"
+          stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+</svg>
