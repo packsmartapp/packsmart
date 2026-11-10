@@ -189,7 +189,7 @@ CTA box bg is **green gradient**, button is **red accent**. NOT dark navy.
 12. Related posts grid
 13. Travel Essentials affiliate grid
 14. SafetyWing widget (all destination articles — it drives most SafetyWing sales)
-15. Newsletter CTA
+15. (No newsletter CTA — removed Nov 2026; owner decision)
 16. Footer
 17. Nav scroll + mobile menu JS
 
