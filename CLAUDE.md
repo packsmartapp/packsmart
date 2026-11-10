@@ -1,5 +1,7 @@
 # PackSmart Blog Article Template — Style Reference
 
+> **Start of every session:** read `PROJECT_CONTEXT.md` in this folder (private, gitignored) for account IDs, deploy workflow, decisions made, and open to-dos. If it's missing, ask the owner.
+
 **Benchmark article:** `public/blog/portugal-travel-packing-guide.html`
 
 Use this document as the canonical style reference for ALL new blog articles. Every article must match this template exactly in structure, colors, fonts, nav, footer, and section ordering.
@@ -27,7 +29,7 @@ font-family: 'DM Sans', sans-serif;
 
 1. `<meta charset="UTF-8">`
 2. `<meta name="viewport">`
-3. `<title>` — format: `{Country} Travel & Packing Guide 2026: Complete Checklist for Indian Travelers | PackSmart Blog`
+3. `<title>` — format: `{Country} Travel & Packing Guide 2026: Complete Checklist | PackSmart Blog` (global audience; use "from India" titles only for the India-segment guides)
 4. `<meta name="description">` — 160 chars max
 5. `<meta name="keywords">`
 6. `<link rel="canonical">`
@@ -186,7 +188,7 @@ CTA box bg is **green gradient**, button is **red accent**. NOT dark navy.
 11. Localrent widget (if applicable for that country)
 12. Related posts grid
 13. Travel Essentials affiliate grid
-14. SafetyWing widget (on India-targeted articles)
+14. SafetyWing widget (all destination articles — it drives most SafetyWing sales)
 15. Newsletter CTA
 16. Footer
 17. Nav scroll + mobile menu JS
@@ -264,6 +266,7 @@ document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click
 | Klook | Direct deep link + `?aid=116473` (e.g. `https://www.klook.com/en-US/city/tokyo-things-to-do/?aid=116473`). OLD `affiliate.klook.com/redirect` format is DEPRECATED — drops deep links and was observed redirecting to spam (Aug 2026). | 2-5% |
 | 12Go | Widget with `agent=15357692` (SE Asia articles only) | ~5% |
 | Tiqets | Country-specific TP short links (EU/Dubai only) | 3.5-8% |
+| Trip.com | Search-box widget `S14633845` with `Allianceid=8011242&SID=303108282` (index.html, flights.html) | — |
 
 **Priority order for placement:** GetYourGuide > Yesim > SafetyWing > Welcome Pickups > Localrent > Others
 
@@ -294,10 +297,11 @@ Known country codes: Thailand=9, Bali=251, UAE=14, Greece=18, Italy=13, Spain=35
 
 ## Git Workflow
 
-- Fresh clone at `/sessions/amazing-wonderful-mayer/packsmart-fresh/`
-- All commits: `git -c user.name="Ari" -c user.email="swarnali.rc@gmail.com"`
-- Remote: `https://github.com/packsmartapp/packsmart.git` (use token from git config)
-- Vercel auto-deploys from main branch
+- Local repo on owner's Mac: `/Users/swarnaliroychowdhury/packsmart`
+- All commits: `git -c user.name="Ari" -c user.email="aricheck@gmail.com"`
+- Remote: `https://github.com/packsmartapp/packsmart.git`
+- **Do not run git in the mounted sandbox folder** (leaves undeletable lock files) — edit files, then give the owner commit/push commands to run locally
+- Vercel (team packsmartapps-projects) auto-deploys from main branch
 - Always verify Unsplash images (HTTP 200) before committing
 - Always add new articles to `public/blog.html` listing page
 
