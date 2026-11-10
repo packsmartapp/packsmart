@@ -1104,7 +1104,6 @@
     .guides-tab-btn { padding: 8px 20px; border-radius: 50px; border: 1.5px solid var(--border); background: var(--bg-white); color: var(--text-secondary); font-size: 0.85rem; font-weight: 600; cursor: pointer; transition: all 0.2s; font-family: var(--font-body); }
     .guides-tab-btn:hover { border-color: var(--action); color: var(--action); }
     .guides-tab-btn.active { background: var(--action); color: #fff; border-color: var(--action); }
-    .guides-tab-btn.fifa-active { background: var(--accent); color: #fff; border-color: var(--accent); }
     .guides-tab-panel { display: none; }
     .guides-tab-panel.active { display: block; }
     .guides-card-row { display: flex; gap: 1.25rem; overflow-x: auto; scroll-snap-type: x mandatory; -webkit-overflow-scrolling: touch; padding-bottom: 8px; scrollbar-width: thin; scrollbar-color: #ddd transparent; }
@@ -1118,9 +1117,6 @@
     .guide-card h3 { font-size: 0.95rem; line-height: 1.3; margin-bottom: 5px; font-weight: 600; }
     .guide-card .gc-desc { color: var(--text-secondary); font-size: 0.8rem; line-height: 1.45; margin-bottom: 8px; flex: 1; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
     .guide-card .gc-link { color: var(--action); font-weight: 600; font-size: 0.8rem; }
-    .guide-card.fifa-card { border-top: 3px solid var(--accent); }
-    .guide-card.fifa-card .gc-tag { background: #FFF0F3; color: var(--accent); }
-    .guide-card.fifa-card .gc-link { color: var(--accent); }
     .guides-view-all { text-align: center; margin-top: 1.2rem; }
     .guides-view-all a { color: var(--action); font-weight: 600; font-size: 0.88rem; text-decoration: none; }
     .guides-view-all a:hover { text-decoration: underline; }
@@ -1368,10 +1364,10 @@
 <script>
 document.querySelectorAll('.guides-tab-btn').forEach(function(btn){
     btn.addEventListener('click',function(){
-        document.querySelectorAll('.guides-tab-btn').forEach(function(b){b.classList.remove('active');b.classList.remove('fifa-active');});
+        document.querySelectorAll('.guides-tab-btn').forEach(function(b){b.classList.remove('active');});
         document.querySelectorAll('.guides-tab-panel').forEach(function(p){p.classList.remove('active');});
         var tab=this.getAttribute('data-guidetab');
-        if(tab==='fifa'){this.classList.add('fifa-active');}else{this.classList.add('active');}
+        this.classList.add('active');
         document.getElementById('guidetab-'+tab).classList.add('active');
     });
 });

@@ -5,7 +5,12 @@
   "redirects": [
     {
       "source": "/",
-      "has": [{ "type": "query", "key": "flightSearch" }],
+      "has": [
+        {
+          "type": "query",
+          "key": "flightSearch"
+        }
+      ],
       "destination": "/flights.html?flightSearch=:flightSearch",
       "permanent": false
     },
@@ -18,54 +23,140 @@
       "source": "/carry-on-packing-list",
       "destination": "/blog/carry-on-packing-list",
       "permanent": true
+    },
+    {
+      "source": "/blog/fifa-world-cup-2026-travel-packing-guide",
+      "destination": "/blog/usa-travel-packing-guide-from-india",
+      "permanent": true
+    },
+    {
+      "source": "/blog/fifa-world-cup-2026-travel-packing-guide.html",
+      "destination": "/blog/usa-travel-packing-guide-from-india",
+      "permanent": true
+    },
+    {
+      "source": "/blog/fifa-world-cup-2026-usa-host-cities-guide",
+      "destination": "/blog/usa-travel-packing-guide-from-india",
+      "permanent": true
+    },
+    {
+      "source": "/blog/fifa-world-cup-2026-usa-host-cities-guide.html",
+      "destination": "/blog/usa-travel-packing-guide-from-india",
+      "permanent": true
+    },
+    {
+      "source": "/blog/fifa-world-cup-2026-mexico-host-cities-guide",
+      "destination": "/blog/mexico-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/fifa-world-cup-2026-mexico-host-cities-guide.html",
+      "destination": "/blog/mexico-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/fifa-world-cup-2026-budget-travel-guide",
+      "destination": "/blog/budget-travel-destinations-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/fifa-world-cup-2026-budget-travel-guide.html",
+      "destination": "/blog/budget-travel-destinations-2026",
+      "permanent": true
+    },
+    {
+      "source": "/blog/fifa-world-cup-2026-match-day-guide",
+      "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/fifa-world-cup-2026-match-day-guide.html",
+      "destination": "/blog",
+      "permanent": true
     }
   ],
   "headers": [
     {
       "source": "/(.*)",
       "headers": [
-        { "key": "X-Content-Type-Options", "value": "nosniff" },
-        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
-        { "key": "X-XSS-Protection", "value": "1; mode=block" },
-        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
-        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+        {
+          "key": "X-Content-Type-Options",
+          "value": "nosniff"
+        },
+        {
+          "key": "X-Frame-Options",
+          "value": "SAMEORIGIN"
+        },
+        {
+          "key": "X-XSS-Protection",
+          "value": "1; mode=block"
+        },
+        {
+          "key": "Referrer-Policy",
+          "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "Permissions-Policy",
+          "value": "camera=(), microphone=(), geolocation=()"
+        }
       ]
     },
     {
       "source": "/(.*)\\.(js|css)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=2592000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=2592000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*)\\.(png|jpg|jpeg|gif|webp|svg|ico)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*)\\.(woff|woff2|ttf|eot)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=31536000, immutable"
+        }
       ]
     },
     {
       "source": "/(.*)\\.(html)",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=3600, s-maxage=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=3600, s-maxage=86400"
+        }
       ]
     },
     {
       "source": "/sitemap.xml",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" },
-        { "key": "Content-Type", "value": "application/xml" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        },
+        {
+          "key": "Content-Type",
+          "value": "application/xml"
+        }
       ]
     },
     {
       "source": "/robots.txt",
       "headers": [
-        { "key": "Cache-Control", "value": "public, max-age=86400" }
+        {
+          "key": "Cache-Control",
+          "value": "public, max-age=86400"
+        }
       ]
     }
   ]
