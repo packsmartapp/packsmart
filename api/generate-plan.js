@@ -225,6 +225,8 @@ Based on their travel dates, generate:
             let plan = data.candidates[0].content.parts[0].text;
 
             // Append affiliate recommendations section
+            const isAsia = /\b(thailand|vietnam|japan|tokyo|osaka|kyoto|bali|indonesia|singapore|malaysia|kuala lumpur|korea|seoul|china|beijing|shanghai|hong kong|macau|taiwan|taipei|philippines|manila|cebu|cambodia|laos|myanmar|sri lanka|nepal|maldives|bangkok|phuket|chiang mai|hanoi|ho chi minh|saigon|da nang|krabi|langkawi|penang)\b/i.test(destination);
+            const klookBlock = isAsia ? `**🎟️ Tours, Tickets & Activities in Asia**\nBook discounted attraction tickets, day trips, and experiences across Southeast Asia.\n[👉 Browse on Klook](https://www.klook.com/en-US/?aid=116473) — Up to 50% off activities\n\n` : '';
             const affiliateSection = `
 
 ---
@@ -249,15 +251,7 @@ Compare hotel deals from Trip.com — great rates on hotels, hostels, and apartm
 Skip the line tickets, guided tours, and unique local experiences.
 [👉 Browse Activities on GetYourGuide](https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn) — Best price guaranteed
 
-**🎟️ Tours, Tickets & Activities in Asia**
-Book discounted attraction tickets, day trips, and experiences across Southeast Asia.
-[👉 Browse on Klook](https://affiliate.klook.com/redirect?aid=116473&aff_adid=1241039&k_site=https%3A%2F%2Fwww.klook.com) — Up to 50% off activities
-
-**🎡 Tours & Activities on GetYourGuide**
-Book walking tours, day trips, museum tickets, and unique experiences at your destination.
-[👉 Browse on GetYourGuide](https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn) — Best price guaranteed
-
-**🚐 Airport Transfers — Skip the Taxi Queue**
+${klookBlock}**🚐 Airport Transfers — Skip the Taxi Queue**
 Pre-book reliable airport pickups in 350+ destinations worldwide.
 [👉 Book on Welcome Pickups](https://tp.media/r?marker=711400&trs=508747&p=8919&u=https%3A%2F%2Fwelcomepickups.com&campaign_id=627) — Trusted drivers, fixed prices
 

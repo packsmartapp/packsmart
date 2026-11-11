@@ -1,3 +1,5 @@
+> **OUTDATED - do not use for new work.** This guide predates the Nov 2026 affiliate changes (old Klook link format, Yesim notes, Bounce card in every article). Use CLAUDE.md as the source of truth.
+
 # PackSmart Blog Article Style Guide
 
 **Benchmark article:** `portugal-travel-packing-guide.html`
