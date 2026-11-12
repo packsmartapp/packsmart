@@ -849,7 +849,7 @@
 </ul>
 
 <!-- Localrent Car Rental Widget -->
-<div data-ps-placement="localrent-germany" style="max-width: 800px; margin: 40px auto; padding: 35px 30px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
+<div data-ps-placement="localrent-germany" style="max-width: 800px; margin: 40px auto; padding: 35px 30px 22px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
     <style>.ps-trip-img { display: block; width: 100%; height: auto; border-radius: 10px; } @media (max-width: 600px) { [data-ps-placement="localrent-germany"] .ps-trip-img { margin: 0 -28px; width: calc(100% + 56px); max-width: none; border-radius: 0; } }</style>
     <h3 style="margin: 0 0 16px 0; color: #0f0f23; font-size: 1.3rem;">Rent a Car in Germany: Go Where Trains and Buses Don't</h3>
     <picture>
@@ -858,8 +858,20 @@
     </picture>
     <p style="margin: 6px 0 18px 0; color: #999; font-size: 0.75rem; text-align: right;">Illustrative image</p>
     <p style="margin: 0 0 10px 0; color: #444; font-size: 0.95rem; line-height: 1.7;">Alpine lakes, Black Forest villages and Romantic Road towns sit far from any station. With your own car you stop when the view says stop, and the luggage rides with you.</p>
-    <p style="margin: 0 0 20px 0; color: #666; font-size: 0.95rem;">Compare local car rental deals, from compact cars to SUVs — no hidden fees, free cancellation. In Berlin or Munich, trains are cheaper and easier.</p>
-    <script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&powered_by=false&country=29&lang=en&width=100&background=transparent&logo=false&header=false&gearbox=true&cars=false&border=false&footer=false&campaign_id=87&promo_id=4322" charset="utf-8"></script>
+    <p style="margin: 0 0 12px 0; color: #666; font-size: 0.95rem;">Live prices from local rental companies appear below, cheapest first. For a family trip, click through and filter by SUV or estate. No hidden fees, free cancellation. In Berlin or Munich, trains are cheaper and easier.</p>
+    <script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&powered_by=false&country=29&lang=en&width=100&background=transparent&logo=false&header=false&gearbox=true&cars=true&border=false&footer=false&campaign_id=87&promo_id=4322" charset="utf-8"></script>
+    <script>
+    (function(){
+      var box=document.querySelector('[data-ps-placement="localrent-germany"]'); if(!box) return;
+      var tries=0, t=setInterval(function(){
+        var h=[].slice.call(box.querySelectorAll('*')).filter(function(e){return e.shadowRoot;})[0];
+        if(h){ clearInterval(t); var s=document.createElement('style');
+          s.textContent='[class*="py-30px"]{padding:0 !important;}[class*="py-20px"]{padding-top:8px !important;padding-bottom:0 !important;}[class*="min-h-430px"]{min-height:0 !important;padding-top:46px !important;}[class*="h-180px"]{height:120px !important;}[class*="h-180px"] img{max-height:112px !important;}[class*="mt-22px"]{margin-top:12px !important;}';
+          h.shadowRoot.appendChild(s); }
+        else if(++tries>60){ clearInterval(t); }
+      },250);
+    })();
+    </script>
 </div>
 
 <h3>Walking & Cycling</h3>
