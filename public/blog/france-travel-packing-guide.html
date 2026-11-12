@@ -919,10 +919,10 @@
 
 <h2 id="apps">Essential Apps for France Travel</h2>
 
-<div style="background: linear-gradient(135deg, #f0fef9 0%, #e0f7f0 100%); border: 1px solid #00C9A7; border-radius: 8px; padding: 20px; margin: 24px 0;">
-    <p style="margin:0 0 10px 0; font-weight:600; color:#0f0f23;">📱 Stay connected from the moment you land</p>
-    <p style="margin:0 0 14px 0; color:#333; font-size:0.95rem;">Skip the airport SIM counter queues. Yesim eSIM activates instantly on your phone — unlimited data plans from $10, works the second you land.</p>
-    <a href="https://yesim.tpx.li/cCWg3rkx" target="_blank" rel="noopener" style="display:inline-block; background:#E94560; color:white; padding:10px 22px; border-radius:6px; text-decoration:none; font-weight:600; font-size:0.95rem;">Get Yesim eSIM →</a>
+<div data-ps-placement="airalo-apps" style="max-width:800px;margin:24px auto;padding:22px 24px;background:#f0faf7;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:12px;">
+    <strong style="display:block;font-size:1.05rem;color:#0f0f23;margin-bottom:4px;">Get data the moment you land</strong>
+    <p style="margin:0 0 16px 0;font-size:0.9rem;color:#555;line-height:1.5;">Skip the airport SIM counter. Search France below and install an Airalo eSIM before you fly.</p>
+    <script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&locale=en&powered_by=false&color_button=%23f2685f&color_focused=%23f2685f&secondary=%23FFFFFF&dark=%2311100f&light=%23FFFFFF&special=%23C4C4C4&border_radius=21&plain=false&no_labels=true&promo_id=8588&campaign_id=541" charset="utf-8"></script>
 </div>
 
 <h3>Navigation & Transportation</h3>
@@ -952,7 +952,7 @@
 <h3>Communication & Utilities</h3>
 <ul>
 <li><strong>WhatsApp:</strong> Free messaging over WiFi. Most Europeans use instead of SMS</li>
-<li><strong>Yesim eSIM:</strong> Local data without SIM card switching ($3-8 for several GB)</li>
+<li><strong>eSIM (Airalo):</strong> Local data without SIM card switching; compare plans in the widget above</li>
 <li><strong>Orange or SFR prepaid:</strong> French telecom SIM cards; good rates for local calls and data</li>
 </ul>
 
@@ -1242,6 +1242,10 @@ document.addEventListener('click', function(e) {
     },{threshold:0.5});
     io.observe(el);
   });
+  var seen={};
+  function eng(el){var id=el&&el.getAttribute('data-ps-placement');if(!id||seen[id])return;seen[id]=1;gtag('event','affiliate_interact',{event_category:'monetization',placement:id,page_path:window.location.pathname});}
+  document.addEventListener('pointerdown',function(e){eng(e.target.closest&&e.target.closest('[data-ps-placement]'));},true);
+  window.addEventListener('blur',function(){setTimeout(function(){var a=document.activeElement;if(a&&a.tagName==='IFRAME')eng(a.closest('[data-ps-placement]'));},0);});
 })();
 </script>
 </body>
