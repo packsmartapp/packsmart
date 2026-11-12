@@ -652,7 +652,14 @@
         <p style="margin: 0 0 24px 0; color: #666; font-size: 0.95rem;">Compare car rental deals from local companies.</p>
         <script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&powered_by=false&country=132&lang=en&width=100&background=transparent&logo=false&header=true&gearbox=true&cars=false&border=false&footer=false&campaign_id=87&promo_id=4322" charset="utf-8"></script>
     </div>
-    <div class="related-posts">
+    <div data-ps-placement="kiwitaxi-sri-lanka" style="max-width: 800px; margin: 40px auto; padding: 35px 30px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
+    <h3 style="margin: 0 0 14px 0; color: #0f0f23; font-size: 1.3rem;">Book a Private Transfer in Sri Lanka</h3>
+    <p style="margin: 0 0 10px 0; color: #666; font-size: 0.95rem; line-height: 1.7;">Pre-book a driver for the airport run or a long ride, for example Colombo to Galle, Kandy or Ella, and see the price before you confirm.</p>
+    <p style="margin: 0 0 20px 0; color: #666; font-size: 0.95rem; line-height: 1.7;"><strong>Tip:</strong> Colombo airport is about 45 minutes from the city, so a booked driver is the easiest option after a late arrival or with heavy luggage.</p>
+    <script async src="https://tpwdg.com/content?currency=USD&trs=508747&shmarker=711400&language=en&theme=1&powered_by=false&campaign_id=1&promo_id=1486" charset="utf-8"></script>
+</div>
+
+<div class="related-posts">
         <h3>Related Packing Guides</h3>
         <div class="related-grid">
             <div class="related-card">
@@ -812,6 +819,26 @@ document.addEventListener('click', function(e) {
         }
     }
 });
+</script>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window)||typeof gtag!=='function')return;
+  document.querySelectorAll('[data-ps-placement]').forEach(function(el){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          gtag('event','affiliate_view',{event_category:'monetization',placement:el.getAttribute('data-ps-placement'),page_path:window.location.pathname});
+          io.disconnect();
+        }
+      });
+    },{threshold:0.5});
+    io.observe(el);
+  });
+  var seen={};
+  function eng(el){var id=el&&el.getAttribute('data-ps-placement');if(!id||seen[id])return;seen[id]=1;gtag('event','affiliate_interact',{event_category:'monetization',placement:id,page_path:window.location.pathname});}
+  document.addEventListener('pointerdown',function(e){eng(e.target.closest&&e.target.closest('[data-ps-placement]'));},true);
+  window.addEventListener('blur',function(){setTimeout(function(){var a=document.activeElement;if(a&&a.tagName==='IFRAME')eng(a.closest('[data-ps-placement]'));},0);});
+})();
 </script>
 </body>
 </html>
