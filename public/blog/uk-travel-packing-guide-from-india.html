@@ -1486,5 +1486,25 @@ document.addEventListener('click', function(e) {
     }
 });
 </script>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window)||typeof gtag!=='function')return;
+  document.querySelectorAll('[data-ps-placement]').forEach(function(el){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          gtag('event','affiliate_view',{event_category:'monetization',placement:el.getAttribute('data-ps-placement'),page_path:window.location.pathname});
+          io.disconnect();
+        }
+      });
+    },{threshold:0.5});
+    io.observe(el);
+  });
+  var seen={};
+  function eng(el){var id=el&&el.getAttribute('data-ps-placement');if(!id||seen[id])return;seen[id]=1;gtag('event','affiliate_interact',{event_category:'monetization',placement:id,page_path:window.location.pathname});}
+  document.addEventListener('pointerdown',function(e){eng(e.target.closest&&e.target.closest('[data-ps-placement]'));},true);
+  window.addEventListener('blur',function(){setTimeout(function(){var a=document.activeElement;if(a&&a.tagName==='IFRAME')eng(a.closest('[data-ps-placement]'));},0);});
+})();
+</script>
 </body>
 </html>
