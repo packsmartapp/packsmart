@@ -626,8 +626,6 @@
 <li><strong>Language:</strong> English less common in Paris than tourist expect. Learn basic phrases: "Bonjour," "S'il vous plaît," "Merci"</li>
 </ul>
 
-<p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">🎫 <a href="https://www.getyourguide.com/paris-l16/?partner_id=D7IXONS&cmp=share_to_earn" target="_blank" rel="noopener" style="color:#00C9A7;text-decoration:underline;font-weight:600;">Book Paris tours and experiences on GetYourGuide</a> — skip-the-line tickets, day trips, and food tours, many with free cancellation.</p>
-
 <!-- Tiqets Attraction Widget — Paris -->
 <div data-ps-placement="tiqets-paris" style="max-width: 800px; margin: 40px auto; padding: 26px 25px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
     <style>.ps-tq-row{display:flex;gap:24px;align-items:flex-start;}.ps-tq-txt{flex:1;min-width:0;}.ps-tq-txt h3{margin:0 0 8px 0;color:#0f0f23;font-size:1.2rem;}.ps-tq-txt p{margin:0 0 10px 0;color:#555;font-size:0.92rem;line-height:1.6;}.ps-tq-txt ul{margin:0;padding-left:18px;color:#555;font-size:0.9rem;line-height:1.6;}.ps-tq-wid{flex:0 0 330px;min-width:0;}@media(max-width:700px){.ps-tq-row{flex-direction:column;gap:14px;}.ps-tq-wid{flex:none;width:100%;}}</style>
@@ -707,6 +705,59 @@
 <li><strong>Wine region:</strong> Excellent local wines. Comfortable shoes for vineyard tastings and tours</li>
 <li><strong>Budget-friendly:</strong> Loire Valley is cheaper than Paris or Provence. Good value for food and wine</li>
 </ul>
+
+<div class="ps-gyg" data-ps-placement="gyg-france">
+<style>
+.ps-gyg{margin:28px 0;font-family:"DM Sans",sans-serif}
+.ps-gyg-h{display:block;text-align:center;font-size:1.05rem;font-weight:700;color:#0f0f23;margin:0 0 4px}
+.ps-gyg-s{text-align:center;font-size:.85rem;color:#3f7f70;margin:0 0 14px}
+.ps-gyg-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 16px}
+.ps-gyg-pills button{font:inherit;font-size:.85rem;font-weight:600;color:#0f0f23;background:#fff;border:1px solid #cdeee5;border-radius:999px;padding:7px 15px;cursor:pointer}
+.ps-gyg-pills button[aria-pressed="true"]{background:#e8faf6;border-color:#00c9a7}
+.ps-gyg-w{min-height:495px;margin-bottom:-30px}
+@media(max-width:600px){.ps-gyg-pills{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.ps-gyg-pills::-webkit-scrollbar{display:none}.ps-gyg-pills button{flex:0 0 auto}.ps-gyg-w{min-height:772px;margin-bottom:0}}
+</style>
+<strong class="ps-gyg-h">Things to do in France</strong>
+<p class="ps-gyg-s ps-gyg-blurb">Versailles, Montmartre and the Marais.</p>
+<div class="ps-gyg-pills" role="group" aria-label="Choose a French place"></div>
+<div class="ps-gyg-w"><div class="ps-gyg-slot" data-gyg-href="https://widget.getyourguide.com/default/activities.frame" data-gyg-locale-code="en-US" data-gyg-number-of-items="3" data-gyg-partner-id="D7IXONS"></div></div>
+<script>
+(function(){
+var root=document.currentScript.parentNode;
+var cities=[
+['Paris','407616,512414,508441','Versailles, Montmartre and the Marais.'],
+['Nice','566959,3833,1007398','The Old Town, Monaco and the Riviera.'],
+['Lyon','1355756,127998,603099','River views, hidden passages and Lyon\u2019s food scene.'],
+['Bordeaux','259382,60562,542089','The Old Town by bike, Saint-\u00c9milion wine and the Dune du Pilat.'],
+['Marseille','747138,434521,525846','Calanques coves, boat trips and local food.'],
+['Loire Valley','13987,116431,102401','Ch\u00e2teaux, gardens and wine country.'],
+['Normandy','118750,44309,62058','Mont-Saint-Michel, the D-Day beaches and Monet\u2019s Giverny.']];
+var pills=root.querySelector('.ps-gyg-pills'),slot=root.querySelector('.ps-gyg-slot'),blurb=root.querySelector('.ps-gyg-blurb');
+var phone=window.matchMedia('(max-width:600px)'),cur=0,started=false;
+cities.forEach(function(c,i){
+var b=document.createElement('button');b.type='button';b.textContent=c[0];b.setAttribute('aria-pressed',i===0?'true':'false');
+b.addEventListener('click',function(){pick(i,true)});pills.appendChild(b);});
+function render(){
+var c=cities[cur],ids=c[1].split(',');
+slot.setAttribute('data-gyg-widget','activities');
+slot.setAttribute('data-gyg-number-of-items',phone.matches?'2':'3');
+slot.setAttribute('data-gyg-tour-ids',(phone.matches?ids.slice(0,2):ids).join(','));
+slot.setAttribute('data-gyg-cmp','packsmart-france-'+c[0].toLowerCase().replace(/\s+/g,'-'));
+var t=0;(function go(){if(window.GYG&&window.GYG.refresh){window.GYG.refresh()}else if(t++<50){setTimeout(go,200)}})();}
+function label(){blurb.textContent=cities[cur][2]}
+label();
+function pick(i,user){
+cur=i;label();
+Array.prototype.forEach.call(pills.children,function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
+if(started)render();
+if(user&&window.gtag){gtag('event','gyg_city_select',{placement:'gyg-france',city:cities[i][0]})}}
+function start(){if(started)return;started=true;render();var n=0;(function watch(){if(slot.querySelector('iframe'))return;if(++n>15){root.style.display='none';return}setTimeout(watch,1000)})()}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();start()}},{rootMargin:'400px 0px'});io.observe(root)}else{start()}
+if(phone.addEventListener){phone.addEventListener('change',function(){if(started)render()})}
+})();
+</script>
+</div>
+
 
 <h2 id="cultural-etiquette">Cultural Etiquette & Dress Codes</h2>
 
