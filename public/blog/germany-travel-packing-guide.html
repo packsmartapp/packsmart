@@ -695,17 +695,13 @@
 .ps-gyg-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 16px}
 .ps-gyg-pills button{font:inherit;font-size:.85rem;font-weight:600;color:#0f0f23;background:#fff;border:1px solid #cdeee5;border-radius:999px;padding:7px 15px;cursor:pointer}
 .ps-gyg-pills button[aria-pressed="true"]{background:#e8faf6;border-color:#00c9a7}
-.ps-gyg-w{min-height:495px}
-.ps-gyg-trust{position:relative;z-index:1;display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:2px 20px;margin:-30px 0 0;padding:0 8px;font-size:.82rem}
-.ps-gyg-tick{color:#3f7f70;font-weight:500}
-.ps-gyg-tick::before{content:"✓";margin-right:5px;font-weight:700}
-@media(max-width:600px){.ps-gyg-trust{margin-top:8px}.ps-gyg-pills{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.ps-gyg-pills::-webkit-scrollbar{display:none}.ps-gyg-pills button{flex:0 0 auto}.ps-gyg-w{min-height:772px}}
+.ps-gyg-w{min-height:495px;margin-bottom:-30px}
+@media(max-width:600px){.ps-gyg-pills{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.ps-gyg-pills::-webkit-scrollbar{display:none}.ps-gyg-pills button{flex:0 0 auto}.ps-gyg-w{min-height:772px;margin-bottom:0}}
 </style>
 <strong class="ps-gyg-h">Things to do in Germany</strong>
 <p class="ps-gyg-s ps-gyg-blurb">Castles, beer halls and Alpine day trips.</p>
 <div class="ps-gyg-pills" role="group" aria-label="Choose a German city"></div>
 <div class="ps-gyg-w"><div class="ps-gyg-slot" data-gyg-href="https://widget.getyourguide.com/default/activities.frame" data-gyg-locale-code="en-US" data-gyg-number-of-items="3" data-gyg-partner-id="D7IXONS"></div></div>
-<div class="ps-gyg-trust"><span class="ps-gyg-tick">Free cancellation</span><span class="ps-gyg-tick">Reserve now, pay later</span></div>
 <script>
 (function(){
 var root=document.currentScript.parentNode;
@@ -742,6 +738,7 @@ if(phone.addEventListener){phone.addEventListener('change',function(){if(started
 })();
 </script>
 </div>
+
 
 
 <h2 id="cultural-etiquette">Cultural Etiquette & Dress Codes</h2>
