@@ -8,25 +8,16 @@
 <style>
 body{margin:0;font-family:"DM Sans",sans-serif;color:#0f0f23;background:#fff;line-height:1.6}
 .col{max-width:800px;margin:0 auto;padding:0 20px}
-.bar{position:sticky;top:0;background:#f6fdfb;border-bottom:1px solid #cdeee5;padding:10px 20px;display:flex;gap:10px;align-items:center;justify-content:center;font-size:.85rem;z-index:5}
-.bar button{font:inherit;font-weight:600;border:1px solid #cdeee5;background:#fff;border-radius:8px;padding:6px 14px;cursor:pointer}
+.bar{position:sticky;top:0;background:#f6fdfb;border-bottom:1px solid #cdeee5;padding:10px 20px;display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;font-size:.85rem;z-index:5}
+.bar button,.bar a{font:inherit;font-weight:600;color:#0f0f23;text-decoration:none;border:1px solid #cdeee5;background:#fff;border-radius:8px;padding:6px 14px;cursor:pointer}
 .bar button.on{background:#e8faf6;border-color:#00c9a7}
 .ph{display:none;justify-content:center;padding:20px 0}
 .ph iframe{width:390px;height:844px;border:8px solid #222;border-radius:28px}
 body.phone .desk{display:none}body.phone .ph{display:flex}
 .fill{color:#6b7f7a;font-size:.92rem}
-.bare .bar,.bare .fill{display:none}
-</style>
-<script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="D7IXONS"></script>
-</head><body>
-<div class="bar"><span>Preview only (not indexed):</span><button id="d" class="on">Desktop</button><button id="p">Phone 390px</button></div>
-<div class="desk"><div class="col">
-<p class="fill">Text above, as on the Germany guide. Scroll down a little, the tours load as the block nears the screen.</p>
-<p class="fill">Munich: Alpine day trips, Neuschwanstein, beer halls, Sunday closures. Pack layers for the mountains and comfortable shoes for cobblestones.</p>
-<p class="fill">Munich: Alpine day trips, Neuschwanstein, beer halls, Sunday closures. Pack layers for the mountains and comfortable shoes for cobblestones.</p>
-<p class="fill">Munich: Alpine day trips, Neuschwanstein, beer halls, Sunday closures. Pack layers for the mountains and comfortable shoes for cobblestones.</p>
-<div class="ps-gyg" data-ps-placement="gyg-germany">
-<style>
+.opt{margin:46px 0 -14px;padding:8px 12px;background:#0f0f23;color:#fff;border-radius:8px;font-size:.82rem;font-weight:700;display:inline-block}
+.optnote{font-size:.8rem;color:#6b7f7a;margin:8px 0 0}
+.bare .bar,.bare .fill,.bare .opt,.bare .optnote{display:none}
 .ps-gyg{margin:28px 0;font-family:"DM Sans",sans-serif}
 .ps-gyg-h{display:block;text-align:center;font-size:1.05rem;font-weight:700;color:#0f0f23;margin:0 0 4px}
 .ps-gyg-s{text-align:center;font-size:.85rem;color:#3f7f70;margin:0 0 14px}
@@ -34,48 +25,53 @@ body.phone .desk{display:none}body.phone .ph{display:flex}
 .ps-gyg-pills button{font:inherit;font-size:.85rem;font-weight:600;color:#0f0f23;background:#fff;border:1px solid #cdeee5;border-radius:999px;padding:7px 15px;cursor:pointer}
 .ps-gyg-pills button[aria-pressed="true"]{background:#e8faf6;border-color:#00c9a7}
 .ps-gyg-sel{display:none;width:100%;font:inherit;font-size:1rem;font-weight:600;color:#0f0f23;background:#fff;border:1px solid #cdeee5;border-radius:10px;padding:11px 12px;margin:0 0 16px;box-sizing:border-box}
+.ps-gyg-tiles{display:flex;gap:8px;overflow-x:auto;scroll-snap-type:x proximity;padding:2px 2px 8px;margin:0 0 12px;justify-content:center;-webkit-overflow-scrolling:touch}
+.ps-gyg-tile{flex:0 0 96px;height:104px;border-radius:12px;border:2px solid transparent;position:relative;overflow:hidden;cursor:pointer;color:#fff;font:inherit;padding:0;scroll-snap-align:start}
+.ps-gyg-tile .e{position:absolute;top:14px;left:0;right:0;font-size:1.9rem;text-align:center;line-height:1.2}
+.ps-gyg-tile .n{position:absolute;bottom:0;left:0;right:0;padding:18px 4px 7px;background:linear-gradient(transparent,rgba(0,0,0,.55));text-align:center;font-weight:700;font-size:.82rem}
+.ps-gyg-tile[aria-pressed="true"]{border-color:#00c9a7;box-shadow:0 0 0 2px #e8faf6}
 .ps-gyg-w{min-height:470px}
 .ps-gyg-n{text-align:center;font-size:.78rem;color:#6b7f7a;margin:10px 0 0}
+@media(max-width:760px){.ps-gyg-tiles{justify-content:flex-start}}
 @media(max-width:600px){.ps-gyg-pills{display:none}.ps-gyg-sel{display:block}.ps-gyg-w{min-height:772px}}
 </style>
+<script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="D7IXONS"></script>
+</head><body>
+<div class="bar"><span>Private preview, not indexed:</span><button id="d" class="on">Desktop</button><button id="p">Phone 390px</button><a href="#a">A</a><a href="#b">B</a><a href="#c">C</a></div>
+<div class="desk"><div class="col">
+<p class="fill">Three ways to show GetYourGuide on the Germany guide. Scroll down slowly, each block loads its tours as it nears the screen. On a phone, the layouts switch automatically (or use the Phone 390px button above).</p>
+
+<span class="opt" id="a">A. Popular tours, no picker (my pick)</span>
+<div class="ps-gyg" data-mode="curated" data-ps-placement="gyg-germany">
+<strong class="ps-gyg-h">Popular tours in Germany</strong>
+<p class="ps-gyg-s">Traveller favourites from Munich, Berlin and Hamburg.</p>
+<div class="ps-gyg-w"><div class="ps-gyg-slot" data-gyg-href="https://widget.getyourguide.com/default/activities.frame" data-gyg-locale-code="en-US" data-gyg-number-of-items="3" data-gyg-partner-id="D7IXONS"></div></div>
+<p class="ps-gyg-n">Cancellation terms vary by tour.</p>
+</div>
+<p class="optnote">No extra tap: three well-reviewed tours straight away. Placed at the end of the city section. Hamburg's cruise has German live commentary (English audio app included), so I would swap it for another pick if you prefer.</p>
+
+<span class="opt" id="b">B. City photo tiles</span>
+<div class="ps-gyg" data-mode="tiles" data-ps-placement="gyg-germany">
 <strong class="ps-gyg-h">Things to do in Germany</strong>
-<p class="ps-gyg-s">Pick a city, then book on GetYourGuide.</p>
+<p class="ps-gyg-s">Pick a city to see popular tours.</p>
+<div class="ps-gyg-tiles" role="group" aria-label="Choose a German city"></div>
+<div class="ps-gyg-w"><div class="ps-gyg-slot" data-gyg-href="https://widget.getyourguide.com/default/activities.frame" data-gyg-locale-code="en-US" data-gyg-number-of-items="3" data-gyg-partner-id="D7IXONS"></div></div>
+<p class="ps-gyg-n">Cancellation terms vary by tour.</p>
+</div>
+<p class="optnote">The coloured tiles are placeholders. Real city photos would replace them (7 small images). On phones the row scrolls sideways.</p>
+
+<span class="opt" id="c">C. City pills (what you saw before)</span>
+<div class="ps-gyg" data-mode="pills" data-ps-placement="gyg-germany">
+<strong class="ps-gyg-h">Things to do in Germany</strong>
+<p class="ps-gyg-s">Pick a city to see popular tours.</p>
 <div class="ps-gyg-pills" role="group" aria-label="Choose a German city"></div>
 <select class="ps-gyg-sel" aria-label="Choose a German city"></select>
 <div class="ps-gyg-w"><div class="ps-gyg-slot" data-gyg-href="https://widget.getyourguide.com/default/activities.frame" data-gyg-locale-code="en-US" data-gyg-number-of-items="3" data-gyg-partner-id="D7IXONS"></div></div>
 <p class="ps-gyg-n">Cancellation terms vary by tour.</p>
-<script>
-(function(){
-var root=document.currentScript.parentNode;
-var cities=[['Munich','Munich Neuschwanstein day trip'],['Berlin','Berlin city walking tour'],['Hamburg','Hamburg harbour tour'],['Cologne','Cologne cathedral tour'],['Frankfurt','Frankfurt old town walking tour'],['Dresden','Dresden old town tour'],['Heidelberg','Heidelberg castle and old town tour']];
-var pills=root.querySelector('.ps-gyg-pills'),sel=root.querySelector('.ps-gyg-sel'),slot=root.querySelector('.ps-gyg-slot');
-var phone=window.matchMedia('(max-width:600px)'),cur=0,started=false;
-cities.forEach(function(c,i){
-var b=document.createElement('button');b.type='button';b.textContent=c[0];b.setAttribute('aria-pressed',i===0?'true':'false');
-b.addEventListener('click',function(){pick(i,true)});pills.appendChild(b);
-var o=document.createElement('option');o.value=i;o.textContent=c[0];sel.appendChild(o);});
-sel.addEventListener('change',function(){pick(+sel.value,true)});
-function render(){
-var c=cities[cur];
-slot.setAttribute('data-gyg-widget','activities');
-slot.setAttribute('data-gyg-number-of-items',phone.matches?'2':'3');
-slot.setAttribute('data-gyg-q',c[1]);
-slot.setAttribute('data-gyg-cmp','packsmart-germany-'+c[0].toLowerCase());
-var tries=0;(function go(){if(window.GYG&&window.GYG.refresh){window.GYG.refresh()}else if(tries++<50){setTimeout(go,200)}})();}
-function pick(i,user){
-cur=i;
-Array.prototype.forEach.call(pills.children,function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
-sel.value=i;
-if(started)render();
-if(user&&window.gtag){gtag('event','gyg_city_select',{placement:'gyg-germany',city:cities[i][0]})}}
-function start(){if(started)return;started=true;render()}
-if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();start()}},{rootMargin:'400px 0px'});io.observe(root)}else{start()}
-if(phone.addEventListener){phone.addEventListener('change',function(){if(started)render()})}
-})();
-</script>
 </div>
+<p class="optnote">Pills on desktop, dropdown on phones.</p>
 
-<p class="fill"><b>Hamburg</b> Northern Germany's port city: canals, fresh seafood, St. Pauli, maritime culture.</p>
+<p class="fill" style="margin-top:40px"><b>Hamburg</b> Northern Germany's port city: canals, fresh seafood, St. Pauli, maritime culture.</p>
 <p class="fill">Cooler and windier than other major cities year-round. Layer up even in summer.</p>
 </div></div>
 <div class="ph"><iframe id="f" title="Phone preview"></iframe></div>
@@ -85,6 +81,43 @@ var q=location.search.indexOf('bare')>-1;if(q){document.documentElement.classNam
 var d=document.getElementById('d'),p=document.getElementById('p'),f=document.getElementById('f');
 p.onclick=function(){document.body.className='phone';p.className='on';d.className='';if(!f.src)f.src=location.pathname+'?bare'};
 d.onclick=function(){document.body.className='';d.className='on';p.className=''};
+var cities=[['Munich','Munich Neuschwanstein day trip','🏰','linear-gradient(135deg,#2f6f8f,#6fb3a8)'],['Berlin','Berlin city walking tour','🏛️','linear-gradient(135deg,#6b4f9a,#c58bb5)'],['Hamburg','Hamburg harbour tour','⚓','linear-gradient(135deg,#1f5a7a,#4aa0c8)'],['Cologne','Cologne cathedral tour','⛪','linear-gradient(135deg,#8a4b3a,#d49a6a)'],['Frankfurt','Frankfurt old town walking tour','🏙️','linear-gradient(135deg,#2d4a63,#7a8fb0)'],['Dresden','Dresden old town tour','🎭','linear-gradient(135deg,#7a5a2e,#d4b46a)'],['Heidelberg','Heidelberg castle and old town tour','🌉','linear-gradient(135deg,#3f7a4a,#9ac47a)']];
+var phone=window.matchMedia('(max-width:600px)');
+function ready(fn){var t=0;(function go(){if(window.GYG&&window.GYG.refresh){fn()}else if(t++<50){setTimeout(go,200)}})()}
+function init(root){
+var mode=root.getAttribute('data-mode'),slot=root.querySelector('.ps-gyg-slot'),cur=0,started=false;
+var pills=root.querySelector('.ps-gyg-pills'),tiles=root.querySelector('.ps-gyg-tiles'),sel=root.querySelector('.ps-gyg-sel');
+function render(){
+slot.setAttribute('data-gyg-widget','activities');
+if(mode==='curated'){
+slot.setAttribute('data-gyg-number-of-items',phone.matches?'2':'3');
+slot.setAttribute('data-gyg-tour-ids',phone.matches?'1753,533':'1753,533,394977');
+slot.setAttribute('data-gyg-cmp','packsmart-germany-popular');
+}else{
+var c=cities[cur];
+slot.setAttribute('data-gyg-number-of-items',phone.matches?'2':'3');
+slot.setAttribute('data-gyg-q',c[1]);
+slot.setAttribute('data-gyg-cmp','packsmart-germany-'+c[0].toLowerCase());
+}
+ready(function(){window.GYG.refresh()});}
+function mark(){
+if(pills)Array.prototype.forEach.call(pills.children,function(b,j){b.setAttribute('aria-pressed',j===cur?'true':'false')});
+if(tiles)Array.prototype.forEach.call(tiles.children,function(b,j){b.setAttribute('aria-pressed',j===cur?'true':'false')});
+if(sel)sel.value=cur;}
+function pick(i,user){cur=i;mark();if(started)render();if(user&&window.gtag){gtag('event','gyg_city_select',{placement:'gyg-germany',city:cities[i][0],layout:mode})}}
+if(mode!=='curated'){
+cities.forEach(function(c,i){
+if(pills){var b=document.createElement('button');b.type='button';b.textContent=c[0];b.addEventListener('click',function(){pick(i,true)});pills.appendChild(b);}
+if(tiles){var t=document.createElement('button');t.type='button';t.className='ps-gyg-tile';t.style.background=c[3];t.innerHTML='<span class="e">'+c[2]+'</span><span class="n">'+c[0]+'</span>';t.addEventListener('click',function(){pick(i,true)});tiles.appendChild(t);}
+if(sel){var o=document.createElement('option');o.value=i;o.textContent=c[0];sel.appendChild(o);}
+});
+if(sel)sel.addEventListener('change',function(){pick(+sel.value,true)});
+mark();}
+function start(){if(started)return;started=true;render()}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();start()}},{rootMargin:'400px 0px'});io.observe(root)}else{start()}
+if(phone.addEventListener){phone.addEventListener('change',function(){if(started)render()})}
+}
+Array.prototype.forEach.call(document.querySelectorAll('.ps-gyg'),init);
 })();
 </script>
 </body></html>
