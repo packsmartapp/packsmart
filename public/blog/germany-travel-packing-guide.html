@@ -692,23 +692,39 @@
 .ps-gyg{margin:28px 0;font-family:"DM Sans",sans-serif}
 .ps-gyg-h{display:block;text-align:center;font-size:1.05rem;font-weight:700;color:#0f0f23;margin:0 0 4px}
 .ps-gyg-s{text-align:center;font-size:.85rem;color:#3f7f70;margin:0 0 14px}
+.ps-gyg-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 16px}
+.ps-gyg-pills button{font:inherit;font-size:.85rem;font-weight:600;color:#0f0f23;background:#fff;border:1px solid #cdeee5;border-radius:999px;padding:7px 15px;cursor:pointer}
+.ps-gyg-pills button[aria-pressed="true"]{background:#e8faf6;border-color:#00c9a7}
 .ps-gyg-w{min-height:495px}
 .ps-gyg-n{text-align:center;font-size:.78rem;color:#6b7f7a;margin:10px 0 0}
-@media(max-width:600px){.ps-gyg-w{min-height:772px}}
+@media(max-width:600px){.ps-gyg-pills{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.ps-gyg-pills::-webkit-scrollbar{display:none}.ps-gyg-pills button{flex:0 0 auto}.ps-gyg-w{min-height:772px}}
 </style>
-<strong class="ps-gyg-h">Popular tours in Germany</strong>
-<p class="ps-gyg-s">Traveller favourites from Munich, Berlin and Hamburg.</p>
+<strong class="ps-gyg-h">Things to do in Germany</strong>
+<p class="ps-gyg-s">Pick a city to see popular tours.</p>
+<div class="ps-gyg-pills" role="group" aria-label="Choose a German city"></div>
 <div class="ps-gyg-w"><div class="ps-gyg-slot" data-gyg-href="https://widget.getyourguide.com/default/activities.frame" data-gyg-locale-code="en-US" data-gyg-number-of-items="3" data-gyg-partner-id="D7IXONS"></div></div>
 <p class="ps-gyg-n">Cancellation terms vary by tour.</p>
 <script>
 (function(){
-var root=document.currentScript.parentNode,slot=root.querySelector('.ps-gyg-slot'),phone=window.matchMedia('(max-width:600px)'),started=false;
+var root=document.currentScript.parentNode;
+var cities=[['Munich','1753,21127,24230'],['Berlin','533,280242,26520'],['Hamburg','394977,88604,858634'],['Cologne','412451,311618,44244'],['Frankfurt','687248,34066,7157'],['Dresden','38416,52380,1368913'],['Heidelberg','7661,411040,7371']];
+var pills=root.querySelector('.ps-gyg-pills'),slot=root.querySelector('.ps-gyg-slot');
+var phone=window.matchMedia('(max-width:600px)'),cur=0,started=false;
+cities.forEach(function(c,i){
+var b=document.createElement('button');b.type='button';b.textContent=c[0];b.setAttribute('aria-pressed',i===0?'true':'false');
+b.addEventListener('click',function(){pick(i,true)});pills.appendChild(b);});
 function render(){
+var c=cities[cur],ids=c[1].split(',');
 slot.setAttribute('data-gyg-widget','activities');
 slot.setAttribute('data-gyg-number-of-items',phone.matches?'2':'3');
-slot.setAttribute('data-gyg-tour-ids',phone.matches?'1753,533':'1753,533,394977');
-slot.setAttribute('data-gyg-cmp','packsmart-germany-popular');
+slot.setAttribute('data-gyg-tour-ids',(phone.matches?ids.slice(0,2):ids).join(','));
+slot.setAttribute('data-gyg-cmp','packsmart-germany-'+c[0].toLowerCase());
 var t=0;(function go(){if(window.GYG&&window.GYG.refresh){window.GYG.refresh()}else if(t++<50){setTimeout(go,200)}})();}
+function pick(i,user){
+cur=i;
+Array.prototype.forEach.call(pills.children,function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
+if(started)render();
+if(user&&window.gtag){gtag('event','gyg_city_select',{placement:'gyg-germany',city:cities[i][0]})}}
 function start(){if(started)return;started=true;render();setTimeout(function(){if(!slot.querySelector('iframe')){root.style.display='none'}},15000)}
 if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();start()}},{rootMargin:'400px 0px'});io.observe(root)}else{start()}
 if(phone.addEventListener){phone.addEventListener('change',function(){if(started)render()})}
