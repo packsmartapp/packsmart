@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow">
+<title>GYG block preview (private)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+body{margin:0;font-family:"DM Sans",sans-serif;color:#0f0f23;background:#fff;line-height:1.6}
+.col{max-width:800px;margin:0 auto;padding:0 20px}
+.bar{position:sticky;top:0;background:#f6fdfb;border-bottom:1px solid #cdeee5;padding:10px 20px;display:flex;gap:10px;align-items:center;justify-content:center;font-size:.85rem;z-index:5}
+.bar button{font:inherit;font-weight:600;border:1px solid #cdeee5;background:#fff;border-radius:8px;padding:6px 14px;cursor:pointer}
+.bar button.on{background:#e8faf6;border-color:#00c9a7}
+.ph{display:none;justify-content:center;padding:20px 0}
+.ph iframe{width:390px;height:844px;border:8px solid #222;border-radius:28px}
+body.phone .desk{display:none}body.phone .ph{display:flex}
+.fill{color:#6b7f7a;font-size:.92rem}
+.bare .bar,.bare .fill{display:none}
+</style>
+<script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="D7IXONS"></script>
+</head><body>
+<div class="bar"><span>Preview only (not indexed):</span><button id="d" class="on">Desktop</button><button id="p">Phone 390px</button></div>
+<div class="desk"><div class="col">
+<p class="fill">Text above, as on the Germany guide. Scroll down a little, the tours load as the block nears the screen.</p>
+<p class="fill">Munich: Alpine day trips, Neuschwanstein, beer halls, Sunday closures. Pack layers for the mountains and comfortable shoes for cobblestones.</p>
+<p class="fill">Munich: Alpine day trips, Neuschwanstein, beer halls, Sunday closures. Pack layers for the mountains and comfortable shoes for cobblestones.</p>
+<p class="fill">Munich: Alpine day trips, Neuschwanstein, beer halls, Sunday closures. Pack layers for the mountains and comfortable shoes for cobblestones.</p>
+<div class="ps-gyg" data-ps-placement="gyg-germany">
+<style>
+.ps-gyg{margin:28px 0;font-family:"DM Sans",sans-serif}
+.ps-gyg-h{display:block;text-align:center;font-size:1.05rem;font-weight:700;color:#0f0f23;margin:0 0 4px}
+.ps-gyg-s{text-align:center;font-size:.85rem;color:#3f7f70;margin:0 0 14px}
+.ps-gyg-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 16px}
+.ps-gyg-pills button{font:inherit;font-size:.85rem;font-weight:600;color:#0f0f23;background:#fff;border:1px solid #cdeee5;border-radius:999px;padding:7px 15px;cursor:pointer}
+.ps-gyg-pills button[aria-pressed="true"]{background:#e8faf6;border-color:#00c9a7}
+.ps-gyg-sel{display:none;width:100%;font:inherit;font-size:1rem;font-weight:600;color:#0f0f23;background:#fff;border:1px solid #cdeee5;border-radius:10px;padding:11px 12px;margin:0 0 16px;box-sizing:border-box}
+.ps-gyg-w{min-height:470px}
+.ps-gyg-n{text-align:center;font-size:.78rem;color:#6b7f7a;margin:10px 0 0}
+@media(max-width:600px){.ps-gyg-pills{display:none}.ps-gyg-sel{display:block}.ps-gyg-w{min-height:772px}}
+</style>
+<strong class="ps-gyg-h">Things to do in Germany</strong>
+<p class="ps-gyg-s">Pick a city, then book on GetYourGuide.</p>
+<div class="ps-gyg-pills" role="group" aria-label="Choose a German city"></div>
+<select class="ps-gyg-sel" aria-label="Choose a German city"></select>
+<div class="ps-gyg-w"><div class="ps-gyg-slot" data-gyg-href="https://widget.getyourguide.com/default/activities.frame" data-gyg-locale-code="en-US" data-gyg-number-of-items="3" data-gyg-partner-id="D7IXONS"></div></div>
+<p class="ps-gyg-n">Cancellation terms vary by tour.</p>
+<script>
+(function(){
+var root=document.currentScript.parentNode;
+var cities=[['Munich','Munich Neuschwanstein day trip'],['Berlin','Berlin city walking tour'],['Hamburg','Hamburg harbour tour'],['Cologne','Cologne cathedral tour'],['Frankfurt','Frankfurt old town walking tour'],['Dresden','Dresden old town tour'],['Heidelberg','Heidelberg castle and old town tour']];
+var pills=root.querySelector('.ps-gyg-pills'),sel=root.querySelector('.ps-gyg-sel'),slot=root.querySelector('.ps-gyg-slot');
+var phone=window.matchMedia('(max-width:600px)'),cur=0,started=false;
+cities.forEach(function(c,i){
+var b=document.createElement('button');b.type='button';b.textContent=c[0];b.setAttribute('aria-pressed',i===0?'true':'false');
+b.addEventListener('click',function(){pick(i,true)});pills.appendChild(b);
+var o=document.createElement('option');o.value=i;o.textContent=c[0];sel.appendChild(o);});
+sel.addEventListener('change',function(){pick(+sel.value,true)});
+function render(){
+var c=cities[cur];
+slot.setAttribute('data-gyg-widget','activities');
+slot.setAttribute('data-gyg-number-of-items',phone.matches?'2':'3');
+slot.setAttribute('data-gyg-q',c[1]);
+slot.setAttribute('data-gyg-cmp','packsmart-germany-'+c[0].toLowerCase());
+var tries=0;(function go(){if(window.GYG&&window.GYG.refresh){window.GYG.refresh()}else if(tries++<50){setTimeout(go,200)}})();}
+function pick(i,user){
+cur=i;
+Array.prototype.forEach.call(pills.children,function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
+sel.value=i;
+if(started)render();
+if(user&&window.gtag){gtag('event','gyg_city_select',{placement:'gyg-germany',city:cities[i][0]})}}
+function start(){if(started)return;started=true;render()}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();start()}},{rootMargin:'400px 0px'});io.observe(root)}else{start()}
+if(phone.addEventListener){phone.addEventListener('change',function(){if(started)render()})}
+})();
+</script>
+</div>
+
+<p class="fill"><b>Hamburg</b> Northern Germany's port city: canals, fresh seafood, St. Pauli, maritime culture.</p>
+<p class="fill">Cooler and windier than other major cities year-round. Layer up even in summer.</p>
+</div></div>
+<div class="ph"><iframe id="f" title="Phone preview"></iframe></div>
+<script>
+(function(){
+var q=location.search.indexOf('bare')>-1;if(q){document.documentElement.className='bare'}
+var d=document.getElementById('d'),p=document.getElementById('p'),f=document.getElementById('f');
+p.onclick=function(){document.body.className='phone';p.className='on';d.className='';if(!f.src)f.src=location.pathname+'?bare'};
+d.onclick=function(){document.body.className='';d.className='on';p.className=''};
+})();
+</script>
+</body></html>
