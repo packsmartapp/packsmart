@@ -663,8 +663,6 @@
     <li><strong>Sumo wrestling:</strong> If attending, avoid red, white, or black formal wear (bad luck). Neutral business casual is appropriate.</li>
     <li><strong>Hot springs (onsen):</strong> If staying in Tokyo or nearby, pack swimsuit (optional, many locals swim naked). Bring plastic bag for wet items.</li>
 </ul>
-<p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">🎫 <a href="https://www.getyourguide.com/tokyo-l193/?partner_id=D7IXONS&cmp=share_to_earn" target="_blank" rel="noopener" style="color:#00C9A7;text-decoration:underline;font-weight:600;">Book Tokyo tours and experiences on GetYourGuide</a> — skip-the-line tickets, day trips, and food tours, many with free cancellation.</p>
-
 <h3>Kyoto (Traditional Culture, Temple Exploration)</h3>
 <p>Kyoto's 1,600+ temples require respectful dress. The city demands more conservative clothing than Tokyo. Comfortable shoes for constant uphill temple walking are essential.</p>
 <ul>
@@ -675,8 +673,6 @@
     <li><strong>Geisha experience:</strong> If attending geisha performances, smart casual or business casual dress (no denim, no athletic wear).</li>
     <li><strong>Arashiyama bamboo forest:</strong> Popular in early morning. Wear layers (cool mornings) and good hiking shoes (terrain can be slippery).</li>
 </ul>
-<p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">⛩️ <a href="https://www.getyourguide.com/kyoto-l96681/?partner_id=D7IXONS&cmp=share_to_earn" target="_blank" rel="noopener" style="color:#00C9A7;text-decoration:underline;font-weight:600;">Book Kyoto temple tours & geisha experiences on GetYourGuide</a> — most Kyoto tours sell out 3-4 days in advance, especially in cherry blossom season.</p>
-
 <h3>Osaka (Food Lover's Paradise, Casual Vibes)</h3>
 <p>Osaka is more casual than Kyoto, more approachable than Tokyo. Street food culture dominates. Casual clothing works for most activities.</p>
 <ul>
@@ -705,6 +701,58 @@
     <li><strong>Outdoor soaking:</strong> Bring swimsuit if planning outdoor onsen. Some resorts require swimwear; others don't.</li>
     <li><strong>Weather protection:</strong> Light rain jacket (sudden mountain showers), small umbrella, waterproof bag for electronics.</li>
 </ul>
+
+<div class="ps-gyg" data-ps-placement="gyg-japan">
+<style>
+.ps-gyg{margin:28px 0;font-family:"DM Sans",sans-serif}
+.ps-gyg-h{display:block;text-align:center;font-size:1.05rem;font-weight:700;color:#0f0f23;margin:0 0 4px}
+.ps-gyg-s{text-align:center;font-size:.85rem;color:#3f7f70;margin:0 0 14px}
+.ps-gyg-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 16px}
+.ps-gyg-pills button{font:inherit;font-size:.85rem;font-weight:600;color:#0f0f23;background:#fff;border:1px solid #cdeee5;border-radius:999px;padding:7px 15px;cursor:pointer}
+.ps-gyg-pills button[aria-pressed="true"]{background:#e8faf6;border-color:#00c9a7}
+.ps-gyg-w{min-height:495px;margin-bottom:-30px}
+@media(max-width:600px){.ps-gyg-pills{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.ps-gyg-pills::-webkit-scrollbar{display:none}.ps-gyg-pills button{flex:0 0 auto}.ps-gyg-w{min-height:772px;margin-bottom:0}}
+</style>
+<strong class="ps-gyg-h">Things to do in Japan</strong>
+<p class="ps-gyg-s ps-gyg-blurb">Temples, food walks and the night skyline.</p>
+<div class="ps-gyg-pills" role="group" aria-label="Choose a place in Japan"></div>
+<div class="ps-gyg-w"><div class="ps-gyg-slot" data-gyg-href="https://widget.getyourguide.com/default/activities.frame" data-gyg-locale-code="en-US" data-gyg-number-of-items="3" data-gyg-partner-id="D7IXONS"></div></div>
+<script>
+(function(){
+var root=document.currentScript.parentNode;
+var cities=[
+['Tokyo','695420,654876,1325373','Temples, food walks and the night skyline.'],
+['Kyoto','543724,659135,551173','Fushimi Inari, Gion at night and a tea ceremony.'],
+['Osaka','315237,1038691,1323946','Street food, the castle and a Dotonbori cruise.'],
+['Nara','744498,851858,899680','Free-roaming deer and easy day trips from Kyoto or Osaka.'],
+['Hiroshima','177477,614054,1056373','Peace Memorial Park and Miyajima\u2019s floating torii.'],
+['Mt Fuji','792363,668266,1226194','Lake Kawaguchi, Oishi Park and Hakone.']];
+var pills=root.querySelector('.ps-gyg-pills'),slot=root.querySelector('.ps-gyg-slot'),blurb=root.querySelector('.ps-gyg-blurb');
+var phone=window.matchMedia('(max-width:600px)'),cur=0,started=false;
+cities.forEach(function(c,i){
+var b=document.createElement('button');b.type='button';b.textContent=c[0];b.setAttribute('aria-pressed',i===0?'true':'false');
+b.addEventListener('click',function(){pick(i,true)});pills.appendChild(b);});
+function render(){
+var c=cities[cur],ids=c[1].split(',');
+slot.setAttribute('data-gyg-widget','activities');
+slot.setAttribute('data-gyg-number-of-items',phone.matches?'2':'3');
+slot.setAttribute('data-gyg-tour-ids',(phone.matches?ids.slice(0,2):ids).join(','));
+slot.setAttribute('data-gyg-cmp','packsmart-japan-'+c[0].toLowerCase().replace(/\s+/g,'-'));
+var t=0;(function go(){if(window.GYG&&window.GYG.refresh){window.GYG.refresh()}else if(t++<50){setTimeout(go,200)}})();}
+function label(){blurb.textContent=cities[cur][2]}
+label();
+function pick(i,user){
+cur=i;label();
+Array.prototype.forEach.call(pills.children,function(b,j){b.setAttribute('aria-pressed',j===i?'true':'false')});
+if(started)render();
+if(user&&window.gtag){gtag('event','gyg_city_select',{placement:'gyg-japan',city:cities[i][0]})}}
+function start(){if(started)return;started=true;render();var n=0;(function watch(){if(slot.querySelector('iframe'))return;if(++n>15){root.style.display='none';return}setTimeout(watch,1000)})()}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();start()}},{rootMargin:'400px 0px'});io.observe(root)}else{start()}
+if(phone.addEventListener){phone.addEventListener('change',function(){if(started)render()})}
+})();
+</script>
+</div>
+
 
 <h2 id="cultural-etiquette">Cultural Etiquette & Customs</h2>
 <p>Understanding and respecting Japanese customs transforms tourism into genuine cultural exchange. These practices are deeply important to Japanese people and affect your experience.</p>
