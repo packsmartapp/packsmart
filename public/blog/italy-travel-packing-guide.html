@@ -874,7 +874,13 @@ if(now>=Date.parse(ph[i][0]+Z)&&now<=Date.parse(ph[i][1]+E)){chip.textContent=ph
 <!-- Localrent Car Rental Widget (feed) -->
 <div data-ps-placement="localrent-italy" style="max-width: 800px; margin: 40px auto; padding: 35px 30px 22px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
     <h3 style="margin: 0 0 16px 0; color: #0f0f23; font-size: 1.3rem;">Rent a Car in Italy: Go Where Trains Don&rsquo;t</h3>
-    <p style="margin: 0 0 10px 0; color: #444; font-size: 0.95rem; line-height: 1.7;">Tuscan hill towns, Chianti vineyards and the Dolomites sit far from any station. With your own car you stop when the view says stop, and the luggage rides with you.</p>
+    <style>.ps-trip-img { display: block; width: 100%; height: auto; border-radius: 10px; } @media (max-width: 600px) { [data-ps-placement="localrent-italy"] .ps-trip-img { margin: 0 -28px; width: calc(100% + 56px); max-width: none; border-radius: 0; } }</style>
+    <picture>
+        <source type="image/webp" srcset="/images/car-trip-italy-680.webp 680w, /images/car-trip-italy.webp 1360w" sizes="(max-width: 800px) 95vw, 676px">
+        <img class="ps-trip-img" src="/images/car-trip-italy.jpg" width="1360" height="768" loading="lazy" decoding="async" alt="A family on a road trip in Italy: a roomy car interior, a packed boot, a seaside village stop and a car parked at an Amalfi Coast viewpoint">
+    </picture>
+    <p style="margin: 6px 0 18px 0; color: #999; font-size: 0.75rem; text-align: right;">Illustrative image</p>
+    <p style="margin: 0 0 10px 0; color: #444; font-size: 0.95rem; line-height: 1.7;">Tuscan hill towns, Chianti vineyards, the Amalfi Coast and the Dolomites sit far from any station. With your own car you stop when the view says stop, and the luggage rides with you.</p>
     <p style="margin: 0 0 12px 0; color: #666; font-size: 0.95rem;">Live prices from local rental companies appear below, cheapest first. Skip the car in Rome, Florence and Venice: their historic centres are limited-traffic zones, so trains and your own feet work better.</p>
     <script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&powered_by=false&country=13&lang=en&width=100&background=transparent&logo=false&header=false&gearbox=true&cars=true&border=false&footer=false&campaign_id=87&promo_id=4322" charset="utf-8"></script>
     <script>
