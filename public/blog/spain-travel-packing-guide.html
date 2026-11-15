@@ -910,31 +910,27 @@
 <li><strong>Toll roads:</strong> Some highways have tolls (€8-30 depending on distance). Usually automated; rental companies add charge to credit card</li>
 </ul>
 
-<!-- Localrent Car Rental Widget (feed) -->
-<div data-ps-placement="localrent-spain" style="max-width: 800px; margin: 40px auto; padding: 35px 30px 22px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
-    <h3 style="margin: 0 0 16px 0; color: #0f0f23; font-size: 1.3rem;">Rent a Car in Spain: Go Where Trains Don&rsquo;t</h3>
-    <style>.ps-trip-img { display: block; width: 100%; height: auto; border-radius: 10px; } @media (max-width: 600px) { [data-ps-placement="localrent-spain"] .ps-trip-img { margin: 0 -28px; width: calc(100% + 56px); max-width: none; border-radius: 0; } }</style>
+<!-- DiscoverCars Car Rental Widget -->
+<div data-ps-placement="discovercars-spain" style="max-width: 800px; margin: 40px auto; padding: 35px 30px 22px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
+    <style>.ps-trip-img { display: block; width: 100%; height: auto; border-radius: 10px; } @media (max-width: 600px) { [data-ps-placement="discovercars-spain"] .ps-trip-img { margin: 0 -28px; width: calc(100% + 56px); max-width: none; border-radius: 0; } }</style>
+<h3 style="margin: 0 0 16px 0; color: #0f0f23; font-size: 1.3rem;">Rent a Car in Spain: Go Where Trains Don&rsquo;t</h3>
     <picture>
         <source type="image/webp" srcset="/images/car-trip-spain-680.webp 680w, /images/car-trip-spain.webp 1360w" sizes="(max-width: 800px) 95vw, 676px">
         <img class="ps-trip-img" src="/images/car-trip-spain.jpg" width="1360" height="768" loading="lazy" decoding="async" alt="A family on a road trip in Andalusia: a roomy car interior, a packed boot, a white-village stop and a car parked at a Pueblos Blancos viewpoint">
     </picture>
     <p style="margin: 6px 0 18px 0; color: #999; font-size: 0.75rem; text-align: right;">Illustrative image</p>
+    <style>.ps-dc-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 14px 0;}.ps-dc-lab{font-size:0.85rem;font-weight:600;color:#0f0f23;margin-right:2px;}.ps-dc-chip{font:inherit;font-size:0.86rem;line-height:1.2;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 12px;cursor:pointer;transition:border-color .15s,box-shadow .15s,background .15s;}.ps-dc-chip:hover,.ps-dc-chip:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25);outline:none;}.ps-dc-chip.on{background:#00C9A7;border-color:#00C9A7;color:#fff;font-weight:600;}.ps-dc-mount{min-height:362px;}</style>
     <p style="margin: 0 0 10px 0; color: #444; font-size: 0.95rem; line-height: 1.7;">Andalusia&rsquo;s white villages, Costa Brava coves and Mallorca&rsquo;s back roads are far easier with your own car. You stop when the view says stop, and the luggage rides with you.</p>
-    <p style="margin: 0 0 12px 0; color: #666; font-size: 0.95rem;">Live prices from local rental companies appear below, cheapest first. Skip the car in Madrid and Barcelona: city-centre parking costs extra and low-emission zones apply, so metro and trains work better.</p>
-    <script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&powered_by=false&country=35&lang=en&width=100&background=transparent&logo=false&header=false&gearbox=true&cars=true&border=false&footer=false&campaign_id=87&promo_id=4322" charset="utf-8"></script>
-    <script>
-    (function(){
-      var box=document.querySelector('[data-ps-placement="localrent-spain"]'); if(!box) return;
-      var tries=0, t=setInterval(function(){
-        var h=[].slice.call(box.querySelectorAll('*')).filter(function(e){return e.shadowRoot;})[0];
-        if(h){ clearInterval(t); var s=document.createElement('style');
-          s.textContent='[class*="py-30px"]{padding:0 !important;}[class*="py-20px"]{padding-top:8px !important;padding-bottom:0 !important;}[class*="min-h-430px"]{min-height:0 !important;padding-top:46px !important;}[class*="h-180px"]{height:120px !important;}[class*="h-180px"] img{max-height:112px !important;}[class*="mt-22px"]{margin-top:12px !important;}';
-          h.shadowRoot.appendChild(s); }
-        else if(++tries>60){ clearInterval(t); }
-      },250);
-    })();
-    </script>
-
+    <p style="margin: 0 0 16px 0; color: #666; font-size: 0.95rem; line-height: 1.7;">Choose your pick-up point, then compare prices below. Skip the car in Madrid and Barcelona: city-centre parking costs extra and low-emission zones apply, so metro and trains work better.</p>
+    <div class="ps-dc-chips" role="group" aria-label="Choose a pick-up location">
+        <span class="ps-dc-lab">Pick up at</span>
+        <button type="button" class="ps-dc-chip on" data-country="spain" data-city="malaga" data-place="agp" aria-pressed="true">Málaga (AGP)</button>
+        <button type="button" class="ps-dc-chip" data-country="spain" data-city="barcelona" data-place="bcn" aria-pressed="false">Barcelona (BCN)</button>
+        <button type="button" class="ps-dc-chip" data-country="spain" data-city="madrid" data-place="mad" aria-pressed="false">Madrid (MAD)</button>
+        <button type="button" class="ps-dc-chip" data-country="spain" data-city="seville" data-place="svq" aria-pressed="false">Seville (SVQ)</button>
+    </div>
+    <div class="ps-dc-mount"><script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&country=spain&city=malaga&place=agp&locale=en&powered_by=false&bg_color=%23f0f8f5&font_color=%23333333&button_color=%2300C9A7&button_font_color=%23ffffff&button_text=Search&rounded_corners=true&benefits=false&dc_powered_by=false&supplier_logos=false&top_logo=false&logo_style=dark&top_color=%23007ac2&campaign_id=117&promo_id=3873" charset="utf-8"></script></div>
+    <script>(function(){var box=document.querySelector('[data-ps-placement="discovercars-spain"]');if(!box)return;var mount=box.querySelector('.ps-dc-mount'),chips=box.querySelectorAll('.ps-dc-chip');var BASE='https://tpwdg.com/content?trs=508747&shmarker=711400&country=',TAIL='&locale=en&powered_by=false&bg_color=%23f0f8f5&font_color=%23333333&button_color=%2300C9A7&button_font_color=%23ffffff&button_text=Search&rounded_corners=true&benefits=false&dc_powered_by=false&supplier_logos=false&top_logo=false&logo_style=dark&top_color=%23007ac2&campaign_id=117&promo_id=3873';function load(co,c,pl){[].forEach.call(document.querySelectorAll('[id^="powered_by_3873"]'),function(e){e.remove();});mount.innerHTML='';var s=document.createElement('script');s.async=true;s.charset='utf-8';s.src=BASE+co+'&city='+c+(pl?'&place='+pl:'')+TAIL;mount.appendChild(s);}[].forEach.call(chips,function(b){b.addEventListener('click',function(){if(b.classList.contains('on'))return;[].forEach.call(chips,function(o){o.classList.remove('on');o.setAttribute('aria-pressed','false');});b.classList.add('on');b.setAttribute('aria-pressed','true');load(b.dataset.country,b.dataset.city,b.dataset.place);if(typeof gtag==='function'){gtag('event','affiliate_option_select',{event_category:'monetization',placement:'discovercars-spain',option:b.dataset.city,page_path:window.location.pathname});}});});})();</script>
 </div>
 
 <div data-ps-placement="airalo-spain" style="max-width:800px;margin:24px auto;padding:22px 24px;background:#f0faf7;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:12px;">

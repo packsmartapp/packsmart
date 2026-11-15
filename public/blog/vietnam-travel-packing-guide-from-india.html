@@ -624,11 +624,12 @@
 </div>
 
 
-<!-- Localrent Car Rental Widget -->
-<div style="max-width: 800px; margin: 40px auto; padding: 35px 30px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
+<!-- Car Rental — Vietnam (DiscoverCars not available) -->
+<div data-ps-placement="economybookings-vietnam" style="max-width: 800px; margin: 40px auto; padding: 35px 30px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
     <h3 style="margin: 0 0 14px 0; color: #0f0f23; font-size: 1.3rem;">Rent a Car in Vietnam</h3>
-    <p style="margin: 0 0 24px 0; color: #666; font-size: 0.95rem;">Compare car rental deals from local companies.</p>
-    <script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&powered_by=false&country=11&lang=en&width=100&background=transparent&logo=false&header=true&gearbox=true&cars=false&border=false&footer=false&campaign_id=87&promo_id=4322" charset="utf-8"></script>
+    <p style="margin: 0 0 10px 0; color: #666; font-size: 0.95rem; line-height: 1.7;">Domestic flights, trains and Grab cover most routes, so a self-drive car is rarely worth it in the cities. Vietnam drives on the right, with heavy motorbike traffic; many visitors hire a car with a driver for longer journeys.</p>
+    <p style="margin: 0 0 20px 0; color: #666; font-size: 0.95rem; line-height: 1.7;"><strong>Tip:</strong> Check the rental company's licence rules before you book, because they differ from country to country.</p>
+    <script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&locale=en&powered_by=false&border_radius=8&plain=false&show_logo=true&color_background=%23ffffff&color_button=%230f0f23&color_text=%23000000&color_input_text=%23000000&color_button_text=%23ffffff&promo_id=4480&campaign_id=10" charset="utf-8"></script>
 </div>
 
 <!-- TRAVEL ESSENTIALS - AFFILIATE LINKS -->
@@ -751,6 +752,26 @@ document.addEventListener('click', function(e) {
         }
     }
 });
+</script>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window)||typeof gtag!=='function')return;
+  document.querySelectorAll('[data-ps-placement]').forEach(function(el){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          gtag('event','affiliate_view',{event_category:'monetization',placement:el.getAttribute('data-ps-placement'),page_path:window.location.pathname});
+          io.disconnect();
+        }
+      });
+    },{threshold:0.5});
+    io.observe(el);
+  });
+  var seen={};
+  function eng(el){var id=el&&el.getAttribute('data-ps-placement');if(!id||seen[id])return;seen[id]=1;gtag('event','affiliate_interact',{event_category:'monetization',placement:id,page_path:window.location.pathname});}
+  document.addEventListener('pointerdown',function(e){eng(e.target.closest&&e.target.closest('[data-ps-placement]'));},true);
+  window.addEventListener('blur',function(){setTimeout(function(){var a=document.activeElement;if(a&&a.tagName==='IFRAME')eng(a.closest('[data-ps-placement]'));},0);});
+})();
 </script>
 </body>
 </html>

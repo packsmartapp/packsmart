@@ -641,15 +641,24 @@
 </div>
 
 
-<!-- Localrent Car Rental Widget -->
-    <div style="max-width: 800px; margin: 40px auto; padding: 35px 30px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
-        <h3 style="margin: 0 0 14px 0; color: #0f0f23; font-size: 1.3rem;">Rent a Car in Australia</h3>
-        <p style="margin: 0 0 24px 0; color: #666; font-size: 0.95rem;">Compare car rental deals from local companies.</p>
-        <script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&powered_by=false&country=1&lang=en&width=100&background=transparent&logo=false&header=true&gearbox=true&cars=false&border=false&footer=false&campaign_id=87&promo_id=4322" charset="utf-8"></script>
+<!-- DiscoverCars Car Rental Widget -->
+<div data-ps-placement="discovercars-australia" style="max-width: 800px; margin: 40px auto; padding: 35px 30px 22px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
+<h3 style="margin: 0 0 14px 0; color: #0f0f23; font-size: 1.3rem;">Rent a Car in Australia</h3>
+    <style>.ps-dc-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 14px 0;}.ps-dc-lab{font-size:0.85rem;font-weight:600;color:#0f0f23;margin-right:2px;}.ps-dc-chip{font:inherit;font-size:0.86rem;line-height:1.2;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 12px;cursor:pointer;transition:border-color .15s,box-shadow .15s,background .15s;}.ps-dc-chip:hover,.ps-dc-chip:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25);outline:none;}.ps-dc-chip.on{background:#00C9A7;border-color:#00C9A7;color:#fff;font-weight:600;}.ps-dc-mount{min-height:362px;}</style>
+    <p style="margin: 0 0 10px 0; color: #444; font-size: 0.95rem; line-height: 1.7;">Trains and rideshares cover Sydney and Melbourne, but a car makes the Great Ocean Road, the Gold Coast hinterland and Queensland's coast far easier. Australia drives on the left, like India.</p>
+    <p style="margin: 0 0 16px 0; color: #666; font-size: 0.95rem; line-height: 1.7;">Choose your pick-up point, then compare prices below. Carry your Indian driving licence plus an International Driving Permit, and check the rental company's rules before you book.</p>
+    <div class="ps-dc-chips" role="group" aria-label="Choose a pick-up location">
+        <span class="ps-dc-lab">Pick up at</span>
+        <button type="button" class="ps-dc-chip on" data-country="australia" data-city="sydney" data-place="syd" aria-pressed="true">Sydney (SYD)</button>
+        <button type="button" class="ps-dc-chip" data-country="australia" data-city="melbourne" data-place="mel" aria-pressed="false">Melbourne (MEL)</button>
+        <button type="button" class="ps-dc-chip" data-country="australia" data-city="brisbane" data-place="bne" aria-pressed="false">Brisbane (BNE)</button>
+        <button type="button" class="ps-dc-chip" data-country="australia" data-city="cairns" data-place="cns" aria-pressed="false">Cairns (CNS)</button>
     </div>
+    <div class="ps-dc-mount"><script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&country=australia&city=sydney&place=syd&locale=en&powered_by=false&bg_color=%23f0f8f5&font_color=%23333333&button_color=%2300C9A7&button_font_color=%23ffffff&button_text=Search&rounded_corners=true&benefits=false&dc_powered_by=false&supplier_logos=false&top_logo=false&logo_style=dark&top_color=%23007ac2&campaign_id=117&promo_id=3873" charset="utf-8"></script></div>
+    <script>(function(){var box=document.querySelector('[data-ps-placement="discovercars-australia"]');if(!box)return;var mount=box.querySelector('.ps-dc-mount'),chips=box.querySelectorAll('.ps-dc-chip');var BASE='https://tpwdg.com/content?trs=508747&shmarker=711400&country=',TAIL='&locale=en&powered_by=false&bg_color=%23f0f8f5&font_color=%23333333&button_color=%2300C9A7&button_font_color=%23ffffff&button_text=Search&rounded_corners=true&benefits=false&dc_powered_by=false&supplier_logos=false&top_logo=false&logo_style=dark&top_color=%23007ac2&campaign_id=117&promo_id=3873';function load(co,c,pl){[].forEach.call(document.querySelectorAll('[id^="powered_by_3873"]'),function(e){e.remove();});mount.innerHTML='';var s=document.createElement('script');s.async=true;s.charset='utf-8';s.src=BASE+co+'&city='+c+(pl?'&place='+pl:'')+TAIL;mount.appendChild(s);}[].forEach.call(chips,function(b){b.addEventListener('click',function(){if(b.classList.contains('on'))return;[].forEach.call(chips,function(o){o.classList.remove('on');o.setAttribute('aria-pressed','false');});b.classList.add('on');b.setAttribute('aria-pressed','true');load(b.dataset.country,b.dataset.city,b.dataset.place);if(typeof gtag==='function'){gtag('event','affiliate_option_select',{event_category:'monetization',placement:'discovercars-australia',option:b.dataset.city,page_path:window.location.pathname});}});});})();</script>
+</div>
 
-
-    <div class="related-posts">
+<div class="related-posts">
         <h3>Related Packing Guides</h3>
         <div class="related-grid">
             <div class="related-card">
@@ -815,6 +824,26 @@ document.addEventListener('click', function(e) {
         }
     }
 });
+</script>
+<script>
+(function(){
+  if(!('IntersectionObserver' in window)||typeof gtag!=='function')return;
+  document.querySelectorAll('[data-ps-placement]').forEach(function(el){
+    var io=new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){
+          gtag('event','affiliate_view',{event_category:'monetization',placement:el.getAttribute('data-ps-placement'),page_path:window.location.pathname});
+          io.disconnect();
+        }
+      });
+    },{threshold:0.5});
+    io.observe(el);
+  });
+  var seen={};
+  function eng(el){var id=el&&el.getAttribute('data-ps-placement');if(!id||seen[id])return;seen[id]=1;gtag('event','affiliate_interact',{event_category:'monetization',placement:id,page_path:window.location.pathname});}
+  document.addEventListener('pointerdown',function(e){eng(e.target.closest&&e.target.closest('[data-ps-placement]'));},true);
+  window.addEventListener('blur',function(){setTimeout(function(){var a=document.activeElement;if(a&&a.tagName==='IFRAME')eng(a.closest('[data-ps-placement]'));},0);});
+})();
 </script>
 </body>
 </html>
