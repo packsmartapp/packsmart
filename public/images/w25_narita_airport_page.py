@@ -252,36 +252,39 @@ PRINT_CSS = """<style>
 </style>"""
 
 DIAGRAM = """<figure class="ps-fig" id="at-a-glance">
-<svg id="nrtDiagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 590" role="img" aria-labelledby="nrtT nrtD" font-family="Arial, Helvetica, sans-serif">
+<svg id="nrtDiagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 704" role="img" aria-labelledby="nrtT nrtD" font-family="Arial, Helvetica, sans-serif">
 <title id="nrtT">Narita Airport at a glance</title>
 <desc id="nrtD">Three terminals stacked top to bottom. Terminal 1 has its own train station. Terminals 2 and 3 share one station, under Terminal 2. A free shuttle bus links the terminals, and Terminals 2 and 3 are also joined by a walkway.</desc>
-<rect x="0" y="0" width="480" height="590" fill="#ffffff"/>
+<rect x="0" y="0" width="480" height="704" fill="#ffffff"/>
+<text x="240" y="38" font-size="26" font-weight="700" text-anchor="middle" fill="#0f0f23">Narita Airport at a glance</text>
+<text x="240" y="64" font-size="17" text-anchor="middle" fill="#555555">3 terminals, 2 train stations</text>
+<g transform="translate(0,82)">
 <rect x="20" y="10" width="440" height="140" rx="14" fill="#F1FBF9" stroke="#00C9A7" stroke-width="3"/>
 <text x="38" y="46" font-size="28" font-weight="700" fill="#0f0f23">Terminal 1</text>
 <text x="38" y="80" font-size="21" fill="#0f0f23">North Wing: SkyTeam airlines</text>
 <text x="38" y="106" font-size="21" fill="#0f0f23">South Wing: Star Alliance, incl. ANA</text>
-<text x="38" y="132" font-size="21" font-weight="700" fill="#0b7a67">Train: Narita Airport Station</text>
+<text x="38" y="134" font-size="21" font-weight="700" fill="#0b7a67">Train: Narita Airport Station</text>
 <line x1="60" y1="150" x2="60" y2="220" stroke="#E94560" stroke-width="4"/>
 <polygon points="50,210 60,224 70,210" fill="#E94560"/>
 <polygon points="50,160 60,146 70,160" fill="#E94560"/>
 <text x="88" y="192" font-size="21" fill="#0f0f23">Free shuttle bus: about 10 min</text>
-<rect x="20" y="224" width="440" height="112" rx="14" fill="#F1FBF9" stroke="#00C9A7" stroke-width="3"/>
+<rect x="20" y="224" width="440" height="116" rx="14" fill="#F1FBF9" stroke="#00C9A7" stroke-width="3"/>
 <text x="38" y="260" font-size="28" font-weight="700" fill="#0f0f23">Terminal 2</text>
 <text x="38" y="294" font-size="21" fill="#0f0f23">oneworld airlines and others</text>
-<text x="38" y="320" font-size="21" font-weight="700" fill="#0b7a67">Train: Airport Terminal 2·3 Station</text>
-<line x1="60" y1="336" x2="60" y2="428" stroke="#E94560" stroke-width="4"/>
-<polygon points="50,346 60,332 70,346" fill="#E94560"/>
-<polygon points="50,418 60,432 70,418" fill="#E94560"/>
-<text x="88" y="378" font-size="21" fill="#0f0f23">Walk about 15 min</text>
-<text x="88" y="404" font-size="21" fill="#0f0f23">or shuttle about 3 min</text>
-<rect x="20" y="432" width="440" height="122" rx="14" fill="#FFF5F7" stroke="#E94560" stroke-width="3"/>
-<text x="38" y="468" font-size="28" font-weight="700" fill="#0f0f23">Terminal 3</text>
-<text x="38" y="502" font-size="21" fill="#0f0f23">Low-cost airlines</text>
-<text x="38" y="528" font-size="21" font-weight="700" fill="#b0243d">No station of its own:</text>
-<text x="38" y="550" font-size="21" font-weight="700" fill="#b0243d">use the Terminal 2·3 station</text>
-<text x="240" y="578" font-size="15" text-anchor="middle" fill="#777777">Simplified diagram, not to scale. packsmartapp.com</text>
+<text x="38" y="322" font-size="21" font-weight="700" fill="#0b7a67">Train: Airport Terminal 2\u00b73 Station</text>
+<line x1="60" y1="340" x2="60" y2="436" stroke="#E94560" stroke-width="4"/>
+<polygon points="50,350 60,336 70,350" fill="#E94560"/>
+<polygon points="50,426 60,440 70,426" fill="#E94560"/>
+<text x="88" y="382" font-size="21" fill="#0f0f23">Walk about 15 min</text>
+<text x="88" y="408" font-size="21" fill="#0f0f23">or shuttle about 3 min</text>
+<rect x="20" y="440" width="440" height="140" rx="14" fill="#FFF5F7" stroke="#E94560" stroke-width="3"/>
+<text x="38" y="476" font-size="28" font-weight="700" fill="#0f0f23">Terminal 3</text>
+<text x="38" y="510" font-size="21" fill="#0f0f23">Low-cost airlines</text>
+<text x="38" y="538" font-size="21" font-weight="700" fill="#b0243d">No station of its own:</text>
+<text x="38" y="564" font-size="21" font-weight="700" fill="#b0243d">use the Terminal 2\u00b73 station</text>
+</g>
+<text x="240" y="692" font-size="14" text-anchor="middle" fill="#777777">Simplified, not to scale. packsmartapp.com</text>
 </svg>
-<figcaption>Narita at a glance: a simple diagram, not to scale.</figcaption>
 <button type="button" class="ps-btn2" id="nrtDl">Download the diagram (PNG)</button>
 </figure>
 <script>
@@ -293,7 +296,7 @@ DIAGRAM = """<figure class="ps-fig" id="at-a-glance">
       var xml=new XMLSerializer().serializeToString(svg);
       var img=new Image();
       img.onload=function(){
-        var c=document.createElement('canvas'); c.width=960; c.height=1180;
+        var c=document.createElement('canvas'); c.width=960; c.height=1408;
         var x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(img,0,0,c.width,c.height);
         c.toBlob(function(bl){
           var a=document.createElement('a'); a.href=URL.createObjectURL(bl); a.download='narita-airport-at-a-glance.png';
