@@ -603,6 +603,17 @@ TO_TOKYO = """<h2 id="to-tokyo">Getting to Tokyo</h2>
 <p>If you would rather have a driver waiting for you after a long flight, you can book a fixed-price private transfer in advance:</p>
 """ + pickups
 
+
+SAVE_BOX = """<div class="ps-about" id="save-offline">
+<h3 style="margin:0 0 6px;">Save the finder on your phone (works without internet)</h3>
+<p>Open the Narita Pocket Guide once while you have signal, then add it to your home screen. At the airport it opens like an app, even with no connection.</p>
+<p><a class="ps-btn2" href="/narita-pocket" style="display:inline-block;text-decoration:none;">Open the Pocket Guide</a></p>
+<ul>
+<li><strong>iPhone:</strong> open it in Safari, tap the Share button, then "Add to Home Screen".</li>
+<li><strong>Android:</strong> open it in Chrome, tap the menu (three dots), then "Add to Home screen" or "Install app".</li>
+</ul>
+</div>"""
+
 FACILITIES = """<h2 id="facilities">Facilities by terminal</h2>
 <p>This table follows Narita Airport's own facility pages, checked on 16 November 2026. Floor labels use the airport's wording. "Passport-control area" appears to mean the departure side, beyond the outbound passport check. A dash means the airport's list does not show one.</p>
 <div class="ps-scroll">
@@ -681,6 +692,7 @@ BODY = "\n\n".join([
     TO_TOKYO,
     LUGGAGE,
     FINDER,
+    SAVE_BOX,
     FACILITIES,
     HELP,
     LEAVING,
@@ -774,6 +786,196 @@ old = open(OUT, encoding="utf-8").read() if os.path.isfile(OUT) else None
 if old != page:
     open(OUT, "w", encoding="utf-8").write(page)
     changed.append("narita-airport-guide.html (%s bytes)" % len(page.encode("utf-8")))
+
+
+# ---- Narita Pocket Guide: standalone page + service worker + manifest (works offline once visited)
+POCKET_PATH = "/narita-pocket"
+POCKET_SVG = re.search(r'<svg id="nrtDiagram".*?</svg>', DIAGRAM, re.S).group(0).replace('id="nrtDiagram"', 'id="pkDiagram"').replace('id="nrtT"', 'id="pkT"').replace('id="nrtD"', 'id="pkD"').replace('aria-labelledby="nrtT nrtD"', 'aria-labelledby="pkT pkD"')
+POCKET_CSS = """
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:19px;line-height:1.55;color:#0f0f23;background:#f6f8f8;padding-bottom:env(safe-area-inset-bottom)}
+.top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:3px solid #00C9A7;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.top strong{font-size:1.15rem}
+.top span.by{color:#666;font-size:0.9rem}
+.status{font-size:0.9rem;font-weight:700;border-radius:20px;padding:4px 12px;background:#E9ECEF;color:#333}
+.status.saved{background:#D9F7EF;color:#0b6b59}
+.status.off{background:#FFE9C9;color:#7a4a00}
+main{max-width:640px;margin:0 auto;padding:14px 14px 40px}
+.lead{margin:6px 2px 14px;color:#444}
+.card{background:#fff;border:2px solid #00C9A7;border-radius:14px;padding:18px 18px;margin:16px 0}
+.card h2{margin:0 0 8px;font-size:1.3rem}
+.card ul,.card ol{margin:0 0 6px 1.2rem;padding:0}
+.card li{margin:0 0 8px}
+.ps-finder{background:#fff;border:2px solid #00C9A7;border-radius:14px;padding:18px;margin:16px 0}
+.ps-finder h2{margin:0 0 6px;font-size:1.4rem}
+.ps-step-h{font-weight:700;font-size:1.1rem;margin:14px 0 6px}
+.ps-chips{display:flex;flex-wrap:wrap;gap:10px}
+.ps-chip{font:inherit;font-size:1.1rem;font-weight:600;min-height:56px;padding:10px 16px;border-radius:12px;border:2px solid #E1E5E8;background:#fff;color:#0f0f23;cursor:pointer;text-align:left;flex:1 1 100%}
+.ps-chip[aria-pressed="true"]{background:#00C9A7;border-color:#00C9A7;color:#fff}
+#fdTerm .ps-chip{flex:1 1 0;min-width:0;padding:10px 4px;text-align:center}
+.ps-result{margin-top:16px;padding:16px;border-radius:12px;background:#F1FBF9;border-left:6px solid #00C9A7;font-size:1.25rem;line-height:1.5}
+.ps-result small{display:block;font-size:0.85rem;color:#555;margin-top:8px}
+.ps-fig svg{width:100%;max-width:480px;height:auto;display:block;margin:0 auto}
+a{color:#00776a}
+a.call{display:inline-block;font-weight:700;font-size:1.25rem;background:#00C9A7;color:#fff;border-radius:12px;padding:12px 18px;text-decoration:none;margin:4px 0}
+.small{font-size:0.85rem;color:#555}
+@media (display-mode: standalone){.install{display:none}}
+button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border:2px solid #00C9A7;border-radius:12px;padding:12px 18px;cursor:pointer}
+"""
+POCKET_HTML = """<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Narita Pocket Guide | PackSmart</title>
+<meta name="description" content="A simple Narita Airport helper that works offline: terminals, prayer rooms, baby rooms, lockers and more. By PackSmart.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="__GUIDE_URL__">
+<meta name="theme-color" content="#00C9A7">
+<link rel="manifest" href="/narita-pocket.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/favicon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Narita">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>__CSS__</style>
+</head>
+<body>
+<header class="top">
+<div><strong>Narita Pocket Guide</strong> <span class="by">by PackSmart</span></div>
+<div class="status" id="status" role="status">Checking...</div>
+</header>
+<main>
+<p class="lead">Choose your terminal and what you need. Facts checked 16 November 2026 from Narita Airport's own pages.</p>
+__FINDER__
+<section class="card ps-fig">
+<h2>Which terminal?</h2>
+__SVG__
+<p class="small">Check your ticket or airline app: airlines can change terminals.</p>
+</section>
+<section class="card">
+<h2>Need help?</h2>
+<p>Every terminal has information counters. Look for the "?" sign. Staff will help, so just ask.</p>
+<p><a class="call" href="tel:+81476348000">Call +81 476-34-8000</a><br><span class="small">Narita Airport Information, open 24 hours. Your phone company may charge for calls abroad.</span></p>
+</section>
+<section class="card">
+<h2>After landing</h2>
+<ol>
+<li><strong>Immigration.</strong> Have your passport ready. Follow the signs and staff.</li>
+<li><strong>Baggage claim.</strong> Find your flight on the screens.</li>
+<li><strong>Customs.</strong> Show your Visit Japan Web QR code, or a paper form if your flight gave you one.</li>
+<li><strong>Arrivals hall.</strong> SIM and Wi-Fi counters, cash machines, convenience stores and train tickets.</li>
+</ol>
+<p class="small">Free Wi-Fi for quick messages: connect to <strong>FreeWiFi-NARITA</strong>. Visit Japan Web needs internet, so fill it in before you fly and take a screenshot of the QR codes.</p>
+</section>
+<section class="card install" id="install">
+<h2>Keep this on your phone</h2>
+<p>Add it to your home screen once, while you have signal. It then opens like an app, even with no internet.</p>
+<ul>
+<li><strong>iPhone:</strong> in Safari, tap Share, then "Add to Home Screen".</li>
+<li><strong>Android:</strong> in Chrome, tap the menu (three dots), then "Add to Home screen" or "Install app".</li>
+</ul>
+<p id="installRow" hidden><button type="button" class="big" id="installBtn">Add to home screen</button></p>
+</section>
+<p class="small">Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). The full guide, with trains, SIM and luggage, is at <a href="__GUIDE_URL__">packsmartapp.com</a> (needs internet).</p>
+</main>
+<script>
+(function(){
+  var st=document.getElementById('status');
+  var saved=false;
+  function paint(){
+    if(!navigator.onLine){ st.className='status off'; st.textContent=saved?'Offline: saved copy':'Offline'; }
+    else if(saved){ st.className='status saved'; st.textContent='Saved for offline use'; }
+    else { st.className='status'; st.textContent='Online'; }
+  }
+  window.addEventListener('online',paint); window.addEventListener('offline',paint); paint();
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/narita-sw.js',{scope:'/narita-pocket',updateViaCache:'none'})
+      .then(function(){ return navigator.serviceWorker.ready; })
+      .then(function(){ return caches.has('narita-pocket-v1'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('narita-pocket-v1').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .catch(function(){ paint(); });
+  }
+  var dp=null;
+  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; document.getElementById('installRow').hidden=false; });
+  var b=document.getElementById('installBtn');
+  if(b){ b.addEventListener('click',function(){ if(!dp) return; dp.prompt(); dp=null; document.getElementById('installRow').hidden=true; }); }
+  if(window.navigator.standalone){ var i=document.getElementById('install'); if(i) i.hidden=true; }
+})();
+</script>
+</body>
+</html>
+"""
+POCKET_HTML = (POCKET_HTML.replace("__CSS__", POCKET_CSS).replace("__FINDER__", FINDER)
+               .replace("__SVG__", POCKET_SVG).replace("__GUIDE_URL__", URL))
+if re.search(r"\b(India|Indian|INR|Rs\.?|rupee|lakh|Aadhaar|UPI|VFS|BLS)\b|₹", re.sub(r"<script[^>]*>.*?</script>", "", POCKET_HTML, flags=re.S)):
+    die("neutral-rule violation in the pocket guide")
+
+POCKET_SW = """/* Narita Pocket Guide service worker. Bump V when the page changes shape. */
+var V='narita-pocket-v1';
+var PAGE='/narita-pocket';
+var SHELL=[PAGE,'/narita-pocket.webmanifest','/favicon-32.png','/favicon-192.png','/favicon-512.png'];
+self.addEventListener('install',function(e){
+  e.waitUntil(caches.open(V).then(function(c){return c.addAll(SHELL);}).then(function(){return self.skipWaiting();}));
+});
+self.addEventListener('activate',function(e){
+  e.waitUntil(caches.keys().then(function(ks){
+    return Promise.all(ks.filter(function(k){return k.indexOf('narita-pocket-')===0&&k!==V;}).map(function(k){return caches.delete(k);}));
+  }).then(function(){return self.clients.claim();}));
+});
+function pageFirst(req){
+  return new Promise(function(resolve){
+    var done=false;
+    function fromCache(){ return caches.match(PAGE).then(function(m){ if(m&&!done){done=true;resolve(m);} return m; }); }
+    var t=setTimeout(fromCache,3000);
+    fetch(req).then(function(res){
+      clearTimeout(t);
+      var cp=(res&&res.ok)?res.clone():null;
+      if(!done){done=true;resolve(res);}
+      if(cp){ caches.open(V).then(function(c){c.put(PAGE,cp);}); }
+    }).catch(function(){
+      clearTimeout(t);
+      fromCache().then(function(m){ if(!m&&!done){done=true;resolve(Response.error());} });
+    });
+  });
+}
+self.addEventListener('fetch',function(e){
+  var r=e.request;
+  if(r.method!=='GET') return;
+  var u=new URL(r.url);
+  if(u.origin!==location.origin) return;
+  if(r.mode==='navigate'){
+    if(u.pathname!==PAGE) return;
+    e.respondWith(pageFirst(r));
+    return;
+  }
+  e.respondWith(caches.match(r).then(function(m){return m||fetch(r);}));
+});
+"""
+POCKET_MANIFEST = json.dumps({
+    "name": "Narita Pocket Guide",
+    "short_name": "Narita",
+    "description": "A simple Narita Airport helper that works offline.",
+    "start_url": POCKET_PATH,
+    "scope": POCKET_PATH,
+    "display": "standalone",
+    "background_color": "#ffffff",
+    "theme_color": "#00C9A7",
+    "lang": "en",
+    "icons": [
+        {"src": "/favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+        {"src": "/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+    ],
+}, indent=2) + "\n"
+PUB = os.path.join(ROOT, "public")
+for _name, _content in (("narita-pocket.html", POCKET_HTML), ("narita-sw.js", POCKET_SW), ("narita-pocket.webmanifest", POCKET_MANIFEST)):
+    _p = os.path.join(PUB, _name)
+    _old = open(_p, encoding="utf-8").read() if os.path.isfile(_p) else None
+    if _old != _content:
+        open(_p, "w", encoding="utf-8").write(_content)
+        changed.append("%s (%s bytes)" % (_name, len(_content.encode("utf-8"))))
 
 # ---- link from the Japan guide
 MARK = "narita-airport-guide link"

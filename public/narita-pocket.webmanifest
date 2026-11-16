@@ -1,0 +1,25 @@
+{
+  "name": "Narita Pocket Guide",
+  "short_name": "Narita",
+  "description": "A simple Narita Airport helper that works offline.",
+  "start_url": "/narita-pocket",
+  "scope": "/narita-pocket",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#00C9A7",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/favicon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    }
+  ]
+}

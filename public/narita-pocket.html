@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Narita Pocket Guide | PackSmart</title>
+<meta name="description" content="A simple Narita Airport helper that works offline: terminals, prayer rooms, baby rooms, lockers and more. By PackSmart.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://www.packsmartapp.com/blog/narita-airport-guide">
+<meta name="theme-color" content="#00C9A7">
+<link rel="manifest" href="/narita-pocket.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/favicon-192.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Narita">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<style>
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:19px;line-height:1.55;color:#0f0f23;background:#f6f8f8;padding-bottom:env(safe-area-inset-bottom)}
+.top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:3px solid #00C9A7;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.top strong{font-size:1.15rem}
+.top span.by{color:#666;font-size:0.9rem}
+.status{font-size:0.9rem;font-weight:700;border-radius:20px;padding:4px 12px;background:#E9ECEF;color:#333}
+.status.saved{background:#D9F7EF;color:#0b6b59}
+.status.off{background:#FFE9C9;color:#7a4a00}
+main{max-width:640px;margin:0 auto;padding:14px 14px 40px}
+.lead{margin:6px 2px 14px;color:#444}
+.card{background:#fff;border:2px solid #00C9A7;border-radius:14px;padding:18px 18px;margin:16px 0}
+.card h2{margin:0 0 8px;font-size:1.3rem}
+.card ul,.card ol{margin:0 0 6px 1.2rem;padding:0}
+.card li{margin:0 0 8px}
+.ps-finder{background:#fff;border:2px solid #00C9A7;border-radius:14px;padding:18px;margin:16px 0}
+.ps-finder h2{margin:0 0 6px;font-size:1.4rem}
+.ps-step-h{font-weight:700;font-size:1.1rem;margin:14px 0 6px}
+.ps-chips{display:flex;flex-wrap:wrap;gap:10px}
+.ps-chip{font:inherit;font-size:1.1rem;font-weight:600;min-height:56px;padding:10px 16px;border-radius:12px;border:2px solid #E1E5E8;background:#fff;color:#0f0f23;cursor:pointer;text-align:left;flex:1 1 100%}
+.ps-chip[aria-pressed="true"]{background:#00C9A7;border-color:#00C9A7;color:#fff}
+#fdTerm .ps-chip{flex:1 1 0;min-width:0;padding:10px 4px;text-align:center}
+.ps-result{margin-top:16px;padding:16px;border-radius:12px;background:#F1FBF9;border-left:6px solid #00C9A7;font-size:1.25rem;line-height:1.5}
+.ps-result small{display:block;font-size:0.85rem;color:#555;margin-top:8px}
+.ps-fig svg{width:100%;max-width:480px;height:auto;display:block;margin:0 auto}
+a{color:#00776a}
+a.call{display:inline-block;font-weight:700;font-size:1.25rem;background:#00C9A7;color:#fff;border-radius:12px;padding:12px 18px;text-decoration:none;margin:4px 0}
+.small{font-size:0.85rem;color:#555}
+@media (display-mode: standalone){.install{display:none}}
+button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border:2px solid #00C9A7;border-radius:12px;padding:12px 18px;cursor:pointer}
+</style>
+</head>
+<body>
+<header class="top">
+<div><strong>Narita Pocket Guide</strong> <span class="by">by PackSmart</span></div>
+<div class="status" id="status" role="status">Checking...</div>
+</header>
+<main>
+<p class="lead">Choose your terminal and what you need. Facts checked 16 November 2026 from Narita Airport's own pages.</p>
+<section class="ps-finder" id="finder">
+<h2>Find it fast</h2>
+<p>Choose your terminal, then what you need. Large buttons, no typing.</p>
+<p class="ps-step-h">1. Which terminal are you in?</p>
+<div class="ps-chips" id="fdTerm"></div>
+<p class="ps-step-h">2. What do you need?</p>
+<div class="ps-chips" id="fdWhat"></div>
+<div class="ps-result" id="fdResult" aria-live="polite">Choose a terminal and what you need, and the answer shows here.</div>
+<noscript><p>This tool needs JavaScript. The full table is just below.</p></noscript>
+</section>
+<script>
+(function(){
+  var D={"terms": [["T1", "Terminal 1"], ["T2", "Terminal 2"], ["T3", "Terminal 3"]], "items": [["prayer", "Prayer room", {"T1": "3F (passport-control area)", "T2": "1F, Main Building; and 3F, Main Building (passport-control area)", "T3": "2F, Main Building"}], ["baby", "Baby room", {"T1": "Baby rooms are on several floors. Ask at an information counter for the nearest one.", "T2": "Baby rooms are on several floors. Ask at an information counter for the nearest one.", "T3": "Baby rooms are on several floors. Ask at an information counter for the nearest one."}], ["quiet", "Quiet room", {"T1": "2F, domestic departure area; and 2F, international departure area", "T2": "2F, domestic departure area; and 2F, international departure area", "T3": "3F, Main Building (public area); 3F domestic departure; 3F international departure"}], ["info", "Information counter", {"T1": "B1F, 1F, 2F, 3F and 4F", "T2": "B1F, 1F and 3F (Main Building)", "T3": "1F and 2F (Main Building)"}], ["help", "Wheelchair and help", {"T1": "Go to an information counter (marked with a ? sign). Wheelchair rental, accessible toilets and special assistance are arranged through the airport. Narita Airport Information: +81 476-34-8000, open 24 hours.", "T2": "Go to an information counter (marked with a ? sign). Wheelchair rental, accessible toilets and special assistance are arranged through the airport. Narita Airport Information: +81 476-34-8000, open 24 hours.", "T3": "Go to an information counter (marked with a ? sign). Wheelchair rental, accessible toilets and special assistance are arranged through the airport. Narita Airport Information: +81 476-34-8000, open 24 hours."}], ["lockers", "Coin lockers", {"T1": "B1F, 1F and 4F", "T2": "B1F and 3F (Main Building)", "T3": "2F (Main Building)"}], ["wifi", "Wi-Fi rental counter", {"T1": "1F", "T2": "B1F, Main Building", "T3": "1F and 2F (Main Building)"}], ["shower", "Showers and day rooms (paid)", {"T1": "2F; and 3F (passport-control area)", "T2": "3F, Main Building (passport-control area)", "T3": ""}], ["internet", "Free internet point", {"T1": "4F", "T2": "1F, Main Building", "T3": ""}], ["play", "Children's play area", {"T1": "3F (paid Kids Park, after passport control); Baby Play Space", "T2": "2F, domestic services area (after departure procedures)", "T3": ""}]]};
+  var term=null, what=null;
+  var tEl=document.getElementById('fdTerm'), wEl=document.getElementById('fdWhat'), rEl=document.getElementById('fdResult');
+  if(!tEl||!wEl||!rEl) return;
+  function mk(label,id,group){
+    var b=document.createElement('button'); b.type='button'; b.className='ps-chip'; b.textContent=label; b.setAttribute('aria-pressed','false'); b.setAttribute('data-id',id);
+    b.addEventListener('click',function(){
+      if(group==='t'){term=id;} else {what=id;}
+      [].forEach.call((group==='t'?tEl:wEl).children,function(c){c.setAttribute('aria-pressed',c.getAttribute('data-id')===id?'true':'false');});
+      show();
+    });
+    return b;
+  }
+  D.terms.forEach(function(t){tEl.appendChild(mk(t[1],t[0],'t'));});
+  D.items.forEach(function(i){wEl.appendChild(mk(i[1],i[0],'w'));});
+  function show(){
+    if(!term||!what){ rEl.textContent=!term?'Now choose your terminal.':'Now choose what you need.'; return; }
+    var tn=D.terms.filter(function(t){return t[0]===term;})[0][1];
+    var it=D.items.filter(function(i){return i[0]===what;})[0];
+    var txt=it[2][term];
+    rEl.innerHTML='';
+    var s=document.createElement('strong'); s.textContent=it[1]+' at '+tn; rEl.appendChild(s);
+    rEl.appendChild(document.createElement('br'));
+    rEl.appendChild(document.createTextNode(txt?txt:'The airport list does not show one here. Please ask at an information counter.'));
+    var sm=document.createElement('small'); sm.textContent='From Narita Airport pages, checked 16 November 2026. Floors can change. If you cannot find it, ask at an information counter (look for the ? sign).'; rEl.appendChild(sm);
+  }
+})();
+</script>
+<section class="card ps-fig">
+<h2>Which terminal?</h2>
+<svg id="pkDiagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 704" role="img" aria-labelledby="pkT pkD" font-family="Arial, Helvetica, sans-serif">
+<title id="pkT">Narita Airport at a glance</title>
+<desc id="pkD">Three terminals stacked top to bottom. Terminal 1 has its own train station. Terminals 2 and 3 share one station, under Terminal 2. A free shuttle bus links the terminals, and Terminals 2 and 3 are also joined by a walkway.</desc>
+<rect x="0" y="0" width="480" height="704" fill="#ffffff"/>
+<text x="240" y="38" font-size="26" font-weight="700" text-anchor="middle" fill="#0f0f23">Narita Airport at a glance</text>
+<text x="240" y="64" font-size="17" text-anchor="middle" fill="#555555">3 terminals, 2 train stations</text>
+<g transform="translate(0,82)">
+<rect x="20" y="10" width="440" height="140" rx="14" fill="#F1FBF9" stroke="#00C9A7" stroke-width="3"/>
+<text x="38" y="46" font-size="28" font-weight="700" fill="#0f0f23">Terminal 1</text>
+<text x="38" y="80" font-size="21" fill="#0f0f23">North Wing: SkyTeam airlines</text>
+<text x="38" y="106" font-size="21" fill="#0f0f23">South Wing: Star Alliance, incl. ANA</text>
+<text x="38" y="134" font-size="21" font-weight="700" fill="#0b7a67">Train: Narita Airport Station</text>
+<line x1="60" y1="150" x2="60" y2="220" stroke="#E94560" stroke-width="4"/>
+<polygon points="50,210 60,224 70,210" fill="#E94560"/>
+<polygon points="50,160 60,146 70,160" fill="#E94560"/>
+<text x="88" y="192" font-size="21" fill="#0f0f23">Free shuttle bus: about 10 min</text>
+<rect x="20" y="224" width="440" height="116" rx="14" fill="#F1FBF9" stroke="#00C9A7" stroke-width="3"/>
+<text x="38" y="260" font-size="28" font-weight="700" fill="#0f0f23">Terminal 2</text>
+<text x="38" y="294" font-size="21" fill="#0f0f23">oneworld airlines and others</text>
+<text x="38" y="322" font-size="21" font-weight="700" fill="#0b7a67">Train: Airport Terminal 2·3 Station</text>
+<line x1="60" y1="340" x2="60" y2="436" stroke="#E94560" stroke-width="4"/>
+<polygon points="50,350 60,336 70,350" fill="#E94560"/>
+<polygon points="50,426 60,440 70,426" fill="#E94560"/>
+<text x="88" y="382" font-size="21" fill="#0f0f23">Walk about 15 min</text>
+<text x="88" y="408" font-size="21" fill="#0f0f23">or shuttle about 3 min</text>
+<rect x="20" y="440" width="440" height="140" rx="14" fill="#FFF5F7" stroke="#E94560" stroke-width="3"/>
+<text x="38" y="476" font-size="28" font-weight="700" fill="#0f0f23">Terminal 3</text>
+<text x="38" y="510" font-size="21" fill="#0f0f23">Low-cost airlines</text>
+<text x="38" y="538" font-size="21" font-weight="700" fill="#b0243d">No station of its own:</text>
+<text x="38" y="564" font-size="21" font-weight="700" fill="#b0243d">use the Terminal 2·3 station</text>
+</g>
+<text x="240" y="692" font-size="14" text-anchor="middle" fill="#777777">Simplified, not to scale. packsmartapp.com</text>
+</svg>
+<p class="small">Check your ticket or airline app: airlines can change terminals.</p>
+</section>
+<section class="card">
+<h2>Need help?</h2>
+<p>Every terminal has information counters. Look for the "?" sign. Staff will help, so just ask.</p>
+<p><a class="call" href="tel:+81476348000">Call +81 476-34-8000</a><br><span class="small">Narita Airport Information, open 24 hours. Your phone company may charge for calls abroad.</span></p>
+</section>
+<section class="card">
+<h2>After landing</h2>
+<ol>
+<li><strong>Immigration.</strong> Have your passport ready. Follow the signs and staff.</li>
+<li><strong>Baggage claim.</strong> Find your flight on the screens.</li>
+<li><strong>Customs.</strong> Show your Visit Japan Web QR code, or a paper form if your flight gave you one.</li>
+<li><strong>Arrivals hall.</strong> SIM and Wi-Fi counters, cash machines, convenience stores and train tickets.</li>
+</ol>
+<p class="small">Free Wi-Fi for quick messages: connect to <strong>FreeWiFi-NARITA</strong>. Visit Japan Web needs internet, so fill it in before you fly and take a screenshot of the QR codes.</p>
+</section>
+<section class="card install" id="install">
+<h2>Keep this on your phone</h2>
+<p>Add it to your home screen once, while you have signal. It then opens like an app, even with no internet.</p>
+<ul>
+<li><strong>iPhone:</strong> in Safari, tap Share, then "Add to Home Screen".</li>
+<li><strong>Android:</strong> in Chrome, tap the menu (three dots), then "Add to Home screen" or "Install app".</li>
+</ul>
+<p id="installRow" hidden><button type="button" class="big" id="installBtn">Add to home screen</button></p>
+</section>
+<p class="small">Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). The full guide, with trains, SIM and luggage, is at <a href="https://www.packsmartapp.com/blog/narita-airport-guide">packsmartapp.com</a> (needs internet).</p>
+</main>
+<script>
+(function(){
+  var st=document.getElementById('status');
+  var saved=false;
+  function paint(){
+    if(!navigator.onLine){ st.className='status off'; st.textContent=saved?'Offline: saved copy':'Offline'; }
+    else if(saved){ st.className='status saved'; st.textContent='Saved for offline use'; }
+    else { st.className='status'; st.textContent='Online'; }
+  }
+  window.addEventListener('online',paint); window.addEventListener('offline',paint); paint();
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/narita-sw.js',{scope:'/narita-pocket',updateViaCache:'none'})
+      .then(function(){ return navigator.serviceWorker.ready; })
+      .then(function(){ return caches.has('narita-pocket-v1'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('narita-pocket-v1').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .catch(function(){ paint(); });
+  }
+  var dp=null;
+  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; document.getElementById('installRow').hidden=false; });
+  var b=document.getElementById('installBtn');
+  if(b){ b.addEventListener('click',function(){ if(!dp) return; dp.prompt(); dp=null; document.getElementById('installRow').hidden=true; }); }
+  if(window.navigator.standalone){ var i=document.getElementById('install'); if(i) i.hidden=true; }
+})();
+</script>
+</body>
+</html>
