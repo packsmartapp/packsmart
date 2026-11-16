@@ -93,6 +93,29 @@ def block(pid):
 pickups = block("pickups-japan").replace("pickups-japan", "pickups-narita")
 airalo = block("airalo-japan").replace("airalo-japan", "airalo-narita")
 
+# DiscoverCars block for Narita (adapted from the Japan guide block; Narita pre-selected, no India framing)
+cars = block("discovercars-japan-guide").replace("discovercars-japan-guide", "discovercars-narita")
+cars = cars.replace('<div data-ps-placement="discovercars-narita"', '<div id="rent-a-car" data-ps-placement="discovercars-narita"', 1)
+_h = "Rent a Car in Japan: Go Where Trains and Buses Don't"
+if _h not in cars:
+    die("cars heading not found")
+cars = cars.replace(_h, "Rent a Car at Narita: Go Where Trains and Buses Don't")
+_l = "Japan drives on the left, as in the UK, Australia and India."
+if _l not in cars:
+    die("cars left-hand line not found")
+cars = cars.replace(_l, "Japan drives on the left.")
+_on = 'class="ps-dc-chip on" data-country="japan" data-city="tokyo" data-place="hnd" aria-pressed="true"'
+_off = 'class="ps-dc-chip" data-country="japan" data-city="tokyo" data-place="nrt" aria-pressed="false"'
+if _on not in cars or _off not in cars:
+    die("cars chips not found")
+cars = cars.replace(_on, 'class="ps-dc-chip" data-country="japan" data-city="tokyo" data-place="hnd" aria-pressed="false"')
+cars = cars.replace(_off, 'class="ps-dc-chip on" data-country="japan" data-city="tokyo" data-place="nrt" aria-pressed="true"')
+if cars.count("&city=tokyo&place=hnd&locale=en") < 1:
+    die("cars initial widget place not found")
+cars = cars.replace("&city=tokyo&place=hnd&locale=en", "&city=tokyo&place=nrt&locale=en", 1)
+if "India" in cars:
+    die("India framing left in the Narita car block")
+
 # Narita-specific fare line for the transfer block
 old_fare = re.search(r'(<p data-ps-anchor="pickups"[^>]*>)Typical fares, airport to city centre:[^<]*(</p>)', pickups)
 if not old_fare:
@@ -613,7 +636,9 @@ TO_TOKYO = """<h2 id="to-tokyo">Getting to Tokyo</h2>
 <p><strong>Going on to Haneda?</strong> Keisei runs a direct train service to Haneda Airport (about 2 hours by Access Express), and a limousine bus takes about 85 minutes.</p>
 """ + KLOOK_TRANSPORT + """
 <p>If you would rather have a driver waiting for you after a long flight, you can book a fixed-price private transfer in advance:</p>
-""" + pickups
+""" + pickups + """
+<p>If you are leaving Tokyo by road, you can also collect a rental car at Narita:</p>
+""" + cars
 
 
 POCKET_BAR = """<style>
@@ -1142,6 +1167,15 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li>iPhone users can set up Welcome Suica Mobile before landing.</li></ul>'
       +'<p class="sm">Card types and sales points change often. Check JR East before you travel.</p>';
   }
+  function carHTML(){
+    return '<p class="n2">Most visitors skip a car in Tokyo, because trains are quicker.</p>'
+      +'<ul class="pl"><li>A car helps for trips out of the city, such as Mt Fuji or the countryside. Narita is an easy place to pick one up.</li>'
+      +'<li>Bring your <b>passport</b>, your <b>home driving licence</b> and an <b>International Driving Permit</b> (1949 Geneva Convention type). Get it before you leave home. It cannot be issued in Japan.</li>'
+      +'<li>Some countries, such as Germany and France, use an official Japanese translation of the licence instead. Check before you travel.</li>'
+      +'<li>Japan drives on the left.</li>'
+      +'<li>Book ahead in busy seasons.</li></ul>'
+      +'<p class="sm"><a href="'+GUIDE+'#rent-a-car">Compare car prices in the full guide</a> (needs internet)</p>';
+  }
   function bagsHTML(){
     return '<ul class="pl"><li><b>JAL ABC</b> and <b>Yamato</b> run luggage delivery counters at Narita. Ask which counter is in your terminal.</li>'
       +'<li>Usually arrives <b>the next day</b>. A medium suitcase starts from about &yen;1,950.</li>'
@@ -1150,7 +1184,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<p class="sm">Prices and cut-off times change. Confirm at the counter.</p>'
        +'<p class="sm">You can book it here (partner link): <a href="https://klook.tpo.lu/dc2ejBgY" target="_blank" rel="sponsored nofollow noopener">Luggage delivery between Tokyo hotels and Narita</a> (Terminals 1 and 2).</p>';
   }
-  var NEXT=[['🚆','Train, bus or taxi',trainHTML],['📱','Phone data',simHTML],['💴','Cash and train card',cashHTML],['📦','Send your suitcase',bagsHTML]];
+  var NEXT=[['🚆','Train, bus or taxi',trainHTML],['📱','Phone data',simHTML],['💴','Cash and train card',cashHTML],['📦','Send your suitcase',bagsHTML],['🚗','Rent a car',carHTML]];
   var at=$('arrTiles');
   NEXT.forEach(function(n,k){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);

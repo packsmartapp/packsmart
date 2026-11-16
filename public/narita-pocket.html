@@ -289,6 +289,15 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
       +'<li>iPhone users can set up Welcome Suica Mobile before landing.</li></ul>'
       +'<p class="sm">Card types and sales points change often. Check JR East before you travel.</p>';
   }
+  function carHTML(){
+    return '<p class="n2">Most visitors skip a car in Tokyo, because trains are quicker.</p>'
+      +'<ul class="pl"><li>A car helps for trips out of the city, such as Mt Fuji or the countryside. Narita is an easy place to pick one up.</li>'
+      +'<li>Bring your <b>passport</b>, your <b>home driving licence</b> and an <b>International Driving Permit</b> (1949 Geneva Convention type). Get it before you leave home. It cannot be issued in Japan.</li>'
+      +'<li>Some countries, such as Germany and France, use an official Japanese translation of the licence instead. Check before you travel.</li>'
+      +'<li>Japan drives on the left.</li>'
+      +'<li>Book ahead in busy seasons.</li></ul>'
+      +'<p class="sm"><a href="'+GUIDE+'#rent-a-car">Compare car prices in the full guide</a> (needs internet)</p>';
+  }
   function bagsHTML(){
     return '<ul class="pl"><li><b>JAL ABC</b> and <b>Yamato</b> run luggage delivery counters at Narita. Ask which counter is in your terminal.</li>'
       +'<li>Usually arrives <b>the next day</b>. A medium suitcase starts from about &yen;1,950.</li>'
@@ -297,7 +306,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
       +'<p class="sm">Prices and cut-off times change. Confirm at the counter.</p>'
        +'<p class="sm">You can book it here (partner link): <a href="https://klook.tpo.lu/dc2ejBgY" target="_blank" rel="sponsored nofollow noopener">Luggage delivery between Tokyo hotels and Narita</a> (Terminals 1 and 2).</p>';
   }
-  var NEXT=[['🚆','Train, bus or taxi',trainHTML],['📱','Phone data',simHTML],['💴','Cash and train card',cashHTML],['📦','Send your suitcase',bagsHTML]];
+  var NEXT=[['🚆','Train, bus or taxi',trainHTML],['📱','Phone data',simHTML],['💴','Cash and train card',cashHTML],['📦','Send your suitcase',bagsHTML],['🚗','Rent a car',carHTML]];
   var at=$('arrTiles');
   NEXT.forEach(function(n,k){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);
