@@ -374,7 +374,7 @@ BODY = "\n\n".join([
     FACILITIES,
     LEAVING,
     LAYOVER,
-    '<div class="tip-box">\n    <strong>Planning more of Japan?</strong> Our <a href="/blog/japan-travel-packing-guide">Japan travel and packing guide</a> covers what to pack, rail passes, etiquette and a budget breakdown.\n</div>',
+    '<div class="tip-box">\n    <strong>Planning more of Japan?</strong> Our <a href="/blog/japan-travel-packing-guide">Japan travel and packing guide</a> covers what to pack, rail passes, etiquette and a budget breakdown, and the <a href="/blog/japan-7-day-itinerary-budget">7-day Japan itinerary</a> shows how a first week can look.\n</div>',
     "<!-- FIRST-HAND NOTES: add notes and photos from a recent Narita visit here -->",
     faq_html(),
 ])
