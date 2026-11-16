@@ -604,6 +604,50 @@ TO_TOKYO = """<h2 id="to-tokyo">Getting to Tokyo</h2>
 """ + pickups
 
 
+POCKET_BAR = """<style>
+#psPocketBar{display:none}
+@media (max-width:820px){
+#psPocketBar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#1a1a3e;color:#fff;box-shadow:0 -6px 20px rgba(15,15,35,.25);transform:translateY(110%);transition:transform .25s ease-out;visibility:hidden}
+#psPocketBar.on{transform:none;visibility:visible}
+#psPocketBar .t{flex:1;min-width:0;line-height:1.25;font-size:15px}
+#psPocketBar .t b{display:block;font-size:16px}
+#psPocketBar .t span{color:#C9D1F0;font-size:13px}
+#psPocketBar a.go{flex:none;background:#00C9A7;color:#0f0f23;font-weight:800;font-size:16px;text-decoration:none;border-radius:12px;padding:12px 16px;min-height:44px;display:flex;align-items:center}
+#psPocketBar button.x{flex:none;background:none;border:0;color:#fff;font-size:26px;line-height:1;width:44px;height:44px;cursor:pointer;opacity:.8}
+html.ps-pb body{padding-bottom:84px}
+}
+@media (prefers-reduced-motion:reduce){#psPocketBar{transition:none}}
+@media print{#psPocketBar{display:none!important}}
+</style>
+<div id="psPocketBar" role="region" aria-label="Narita Pocket Guide">
+<div class="t"><b>Get the Narita Pocket Guide</b><span>Free. Works offline at the airport.</span></div>
+<a class="go" href="/narita-pocket">Get it</a>
+<button type="button" class="x" aria-label="Hide this message">&times;</button>
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('psPocketBar'); if(!bar) return;
+  var KEY='psPocketBar', DAYS=30, shown=false;
+  function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){} return null; }
+  function ev(a){ try{ if(window.gtag) gtag('event','pocket_prompt',{event_category:'engagement',action:a,page_path:location.pathname}); }catch(e){} }
+  var mq=window.matchMedia&&window.matchMedia('(max-width: 820px)');
+  if(!mq||!mq.matches) return;
+  if(window.navigator.standalone) return;
+  var last=parseInt(ls(KEY)||'0',10); if(last&&Date.now()-last<DAYS*864e5) return;
+  var hold=document.getElementById('save-offline'), inView=false;
+  function paint(){
+    var want=(window.pageYOffset||document.documentElement.scrollTop)>500&&!inView;
+    if(want&&!shown){ shown=true; ev('view'); }
+    bar.classList.toggle('on',want);
+    document.documentElement.classList.toggle('ps-pb',want);
+  }
+  if(hold&&'IntersectionObserver' in window){ new IntersectionObserver(function(en){ inView=en[0].isIntersecting; paint(); }).observe(hold); }
+  window.addEventListener('scroll',paint,{passive:true}); paint();
+  bar.querySelector('.go').addEventListener('click',function(){ ev('open'); ls(KEY,String(Date.now())); });
+  bar.querySelector('.x').addEventListener('click',function(){ ev('dismiss'); ls(KEY,String(Date.now())); bar.classList.remove('on'); document.documentElement.classList.remove('ps-pb'); window.removeEventListener('scroll',paint); });
+})();
+</script>"""
+
 SAVE_BOX = """<div class="ps-about" id="save-offline">
 <h3 style="margin:0 0 6px;">Save the finder on your phone (works without internet)</h3>
 <p>Open the Narita Pocket Guide once while you have signal, then add it to your home screen. At the airport it opens like an app, even with no connection.</p>
@@ -704,6 +748,7 @@ BODY = "\n\n".join([
     faq_html(),
     ABOUT,
     RELATED,
+    POCKET_BAR,
 ])
 
 head = "\n".join([
@@ -840,6 +885,18 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 .tabs button span{font-size:1.5rem;line-height:1}
 .tabs button[aria-selected="true"]{color:#0b6b59}
 .tabs button[aria-selected="true"]::before{content:"";position:absolute;top:0;left:22%;right:22%;height:4px;border-radius:0 0 4px 4px;background:#00C9A7}
+.inst-strip{flex:none;display:flex;align-items:center;gap:10px;width:100%;border:0;border-bottom:2px solid #00C9A7;background:#D9F7EF;color:#0f3a33;font:inherit;font-size:0.95rem;line-height:1.25;padding:8px 14px;text-align:left;cursor:pointer;min-height:48px}
+.inst-strip[hidden]{display:none}
+.inst-strip .ico{font-size:1.4rem;flex:none}
+.inst-strip .go{margin-left:auto;flex:none;font-weight:800;background:#1a1a3e;color:#fff;border-radius:20px;padding:6px 14px;font-size:0.9rem}
+.istep{list-style:none;margin:12px 0;padding:0}
+.istep li{display:flex;gap:12px;align-items:center;margin:0 0 12px;font-size:1.1rem;line-height:1.3}
+.istep .n{flex:none;width:34px;height:34px;border-radius:50%;background:#1a1a3e;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.istep svg{flex:none;width:32px;height:32px;color:#0b6b59;background:#F1FBF9;border-radius:8px;padding:3px}
+.tipbox{background:#FFF4D6;border-radius:12px;padding:10px 12px;font-size:0.95rem;margin:8px 0;line-height:1.35}
+.sheet .lede{margin:2px 0 4px;color:#333;font-size:1rem}
+.sheet .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sheet .close.ghost{background:#fff;color:#1a1a3e;border:2px solid #1a1a3e}
 .scrim{position:fixed;inset:0;background:rgba(15,15,35,.45);z-index:7}
 .scrim[hidden],.sheet[hidden]{display:none}
 .sheet{position:fixed;left:0;right:0;bottom:var(--tabh);z-index:8;background:#fff;border-radius:22px 22px 0 0;box-shadow:0 -10px 30px rgba(15,15,35,.25);padding:16px 18px 16px;max-height:calc(100dvh - var(--tabh) - 70px);overflow-y:auto;max-width:560px;margin:0 auto;animation:up .18s ease-out}
@@ -876,6 +933,7 @@ POCKET_HTML = """<!DOCTYPE html>
 <div><strong>Narita Pocket Guide</strong><span class="by">by PackSmart &middot; 16 Nov 2026</span></div>
 <div class="status" id="status" role="status">Checking...</div>
 </header>
+<button type="button" class="inst-strip" id="instStrip" hidden><span class="ico" aria-hidden="true">&#128242;</span><span><b>Add this to your home screen</b><br>so it works with no internet</span><span class="go">How</span></button>
 <div class="panels" id="panels">
 <section class="panel" id="p-find" role="tabpanel" aria-labelledby="t-find">
 <p class="seg-h">Which terminal are you in?</p>
@@ -902,12 +960,7 @@ __SVG__
 <section class="panel" id="p-help" role="tabpanel" aria-labelledby="t-help" hidden>
 <a class="call" href="tel:+81476348000"><span aria-hidden="true">&#128222;</span> Call +81 476-34-8000</a>
 <div class="card"><h2>Narita Airport Information</h2><p>Open 24 hours. Your phone company may charge for calls abroad.</p><p>Every terminal has information counters. Look for the <strong>?</strong> sign. Staff will help, so just ask.</p></div>
-<details class="card install" id="install">
-<summary>Keep this on your phone</summary>
-<p>Add it to your home screen once, while you have signal. It then opens like an app, even with no internet.</p>
-<p><strong>iPhone:</strong> in Safari, tap Share, then "Add to Home Screen".<br><strong>Android:</strong> in Chrome, tap the menu (three dots), then "Add to Home screen" or "Install app".</p>
-<p id="installRow" hidden><button type="button" class="big" id="installBtn">Add to home screen</button></p>
-</details>
+<div class="card install" id="install"><h2>Keep this on your phone</h2><p>Add it to your home screen once, while you have signal. It then opens like an app, even with no internet.</p><p id="instHow" hidden><button type="button" class="big" id="instBtn">Show me how</button></p><p class="small" id="instDesk">Open this page on your phone, then add it to your home screen.</p></div>
 <p class="small">Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). The full guide, with trains, SIM and luggage, is at <a href="__GUIDE_URL__">packsmartapp.com</a> (needs internet).</p>
 </section>
 </div>
@@ -918,6 +971,10 @@ __SVG__
 <button type="button" role="tab" id="t-help" data-tab="help" aria-selected="false"><span aria-hidden="true">&#128587;</span>Help</button>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
+<div class="sheet" id="inst" role="dialog" aria-modal="true" aria-labelledby="instT" hidden>
+<h2 id="instT"><span aria-hidden="true">&#128242;</span>Add to your home screen</h2>
+<div id="instBody"></div>
+</div>
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle" hidden>
 <h2 id="shTitle"></h2>
 <div id="shBody" aria-live="polite"></div>
@@ -967,15 +1024,17 @@ __SVG__
     if(term==='ALL'&&D.terms.every(function(t){return it[2][t[0]]===it[2][D.terms[0][0]];})){ shB.appendChild(ans('All terminals',it[2][D.terms[0][0]],false)); }
     else if(term==='ALL'){ D.terms.forEach(function(t){ shB.appendChild(ans(t[1],it[2][t[0]],true)); }); }
     else { var tn=D.terms.filter(function(t){return t[0]===term;})[0][1]; shB.appendChild(ans(tn,it[2][term],false)); }
-    sheet.hidden=false; scrim.hidden=false; sheet.scrollTop=0; $('shClose').focus();
+    hideAll(); sheet.hidden=false; scrim.hidden=false; sheet.scrollTop=0; $('shClose').focus();
   }
-  function closeSheet(){ sheet.hidden=true; scrim.hidden=true; if(lastTile) lastTile.focus(); }
+  var inst=$('inst');
+  function hideAll(){ sheet.hidden=true; inst.hidden=true; scrim.hidden=true; }
+  function closeSheet(){ hideAll(); if(lastTile) lastTile.focus(); }
   $('shClose').addEventListener('click',closeSheet); scrim.addEventListener('click',closeSheet);
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!sheet.hidden) closeSheet(); });
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&(!sheet.hidden||!inst.hidden)) closeSheet(); });
   /* tabs */
   var tabs=[].slice.call(document.querySelectorAll('.tabs button'));
   function go(name,focus){
-    if(!sheet.hidden){ sheet.hidden=true; scrim.hidden=true; }
+    hideAll();
     tabs.forEach(function(b){ var on=b.getAttribute('data-tab')===name; b.setAttribute('aria-selected',on?'true':'false'); b.tabIndex=on?0:-1; $('p-'+(b.getAttribute('data-tab')==='arrive'?'arrive':b.getAttribute('data-tab'))).hidden=!on; });
     $('panels').scrollTop=0;
     try{ history.replaceState(null,'','#'+name); }catch(e){}
@@ -1001,12 +1060,53 @@ __SVG__
       .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('narita-pocket-v2').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
       .catch(function(){ paint(); });
   }
-  var dp=null;
-  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; $('installRow').hidden=false; var i=$('install'); if(i) i.open=true; });
-  var ib=$('installBtn');
-  if(ib){ ib.addEventListener('click',function(){ if(!dp) return; dp.prompt(); dp=null; $('installRow').hidden=true; }); }
-  var standalone=window.navigator.standalone||(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches);
-  if(standalone){ var i2=$('install'); if(i2) i2.hidden=true; }
+  /* install help: shown first, in the person's own phone type */
+  var ua=navigator.userAgent||'';
+  var isIOS=/iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var isAnd=/Android/.test(ua);
+  var mobile=isIOS||isAnd;
+  var standalone=!!(window.navigator.standalone||(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches));
+  function flag(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){} return null; }
+  var strip=$('instStrip'), dp=null;
+  function needed(){ return mobile&&!standalone&&flag('nrtInstalled')!=='1'; }
+  function refresh(){
+    var n=needed(); strip.hidden=!n;
+    $('instHow').hidden=!n; $('instDesk').hidden=mobile;
+    if(standalone||flag('nrtInstalled')==='1'){ $('install').hidden=true; }
+  }
+  var SHARE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
+  var PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>';
+  var DOTS='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>';
+  var DOWN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg>';
+  function steps(list){ return '<ol class="istep">'+list.map(function(x,i){ return '<li><span class="n">'+(i+1)+'</span>'+x[0]+'<span>'+x[1]+'</span></li>'; }).join('')+'</ol>'; }
+  function openInst(){
+    var h='<p class="lede">Do this once, now, while you have signal. Then it opens like an app, even with no internet.</p>';
+    if(isIOS){
+      h+=steps([[SHARE,'Tap the <b>Share</b> button (a square with an arrow) in Safari'],[PLUS,'Scroll down and tap <b>Add to Home Screen</b>'],['','Tap <b>Add</b>']]);
+      h+='<div class="tipbox">Cannot see Share? Tap the <b>&middot;&middot;&middot;</b> button first. Not in Safari (for example Chrome, Instagram or Facebook)? Open this page in <b>Safari</b> first.</div>';
+    } else if(dp){
+      h+='<button type="button" class="close" id="instGo">Install now</button>';
+      h+='<div class="tipbox">Or tap the menu <b>&#8942;</b> in Chrome, then <b>Install app</b> or <b>Add to Home screen</b>.</div>';
+    } else {
+      h+=steps([[DOTS,'Tap the menu <b>&#8942;</b> (three dots) in Chrome'],[DOWN,'Tap <b>Install app</b> or <b>Add to Home screen</b>'],['','Tap <b>Install</b> or <b>Add</b>']]);
+      h+='<div class="tipbox">Do not see it? Open this page in Chrome and try again.</div>';
+    }
+    h+='<div class="row2"><button type="button" class="close ghost" id="instLater">Later</button><button type="button" class="close" id="instDone">I added it</button></div>';
+    $('instBody').innerHTML=h;
+    lastTile=document.activeElement&&document.activeElement.focus?document.activeElement:null;
+    hideAll(); inst.hidden=false; scrim.hidden=false; inst.scrollTop=0;
+    var go=$('instGo'); if(go){ go.addEventListener('click',function(){ if(!dp) return; dp.prompt(); try{ dp.userChoice.then(function(r){ if(r&&r.outcome==='accepted') markInstalled(); }); }catch(e){} dp=null; closeSheet(); }); }
+    $('instLater').addEventListener('click',closeSheet);
+    $('instDone').addEventListener('click',function(){ markInstalled(); closeSheet(); });
+    (go||$('instDone')).focus();
+  }
+  function markInstalled(){ flag('nrtInstalled','1'); refresh(); }
+  strip.addEventListener('click',openInst);
+  $('instBtn').addEventListener('click',openInst);
+  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; });
+  window.addEventListener('appinstalled',function(){ markInstalled(); if(!inst.hidden) closeSheet(); });
+  refresh();
+  if(needed()&&!flag('nrtIntro')){ flag('nrtIntro','1'); setTimeout(function(){ if(sheet.hidden&&inst.hidden) openInst(); },700); }
 })();
 </script>
 </body>

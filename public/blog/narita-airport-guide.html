@@ -982,6 +982,50 @@
     </div>
 </div>
 
+<style>
+#psPocketBar{display:none}
+@media (max-width:820px){
+#psPocketBar{position:fixed;left:0;right:0;bottom:0;z-index:90;display:flex;align-items:center;gap:10px;padding:10px 12px calc(10px + env(safe-area-inset-bottom));background:#1a1a3e;color:#fff;box-shadow:0 -6px 20px rgba(15,15,35,.25);transform:translateY(110%);transition:transform .25s ease-out;visibility:hidden}
+#psPocketBar.on{transform:none;visibility:visible}
+#psPocketBar .t{flex:1;min-width:0;line-height:1.25;font-size:15px}
+#psPocketBar .t b{display:block;font-size:16px}
+#psPocketBar .t span{color:#C9D1F0;font-size:13px}
+#psPocketBar a.go{flex:none;background:#00C9A7;color:#0f0f23;font-weight:800;font-size:16px;text-decoration:none;border-radius:12px;padding:12px 16px;min-height:44px;display:flex;align-items:center}
+#psPocketBar button.x{flex:none;background:none;border:0;color:#fff;font-size:26px;line-height:1;width:44px;height:44px;cursor:pointer;opacity:.8}
+html.ps-pb body{padding-bottom:84px}
+}
+@media (prefers-reduced-motion:reduce){#psPocketBar{transition:none}}
+@media print{#psPocketBar{display:none!important}}
+</style>
+<div id="psPocketBar" role="region" aria-label="Narita Pocket Guide">
+<div class="t"><b>Get the Narita Pocket Guide</b><span>Free. Works offline at the airport.</span></div>
+<a class="go" href="/narita-pocket">Get it</a>
+<button type="button" class="x" aria-label="Hide this message">&times;</button>
+</div>
+<script>
+(function(){
+  var bar=document.getElementById('psPocketBar'); if(!bar) return;
+  var KEY='psPocketBar', DAYS=30, shown=false;
+  function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){} return null; }
+  function ev(a){ try{ if(window.gtag) gtag('event','pocket_prompt',{event_category:'engagement',action:a,page_path:location.pathname}); }catch(e){} }
+  var mq=window.matchMedia&&window.matchMedia('(max-width: 820px)');
+  if(!mq||!mq.matches) return;
+  if(window.navigator.standalone) return;
+  var last=parseInt(ls(KEY)||'0',10); if(last&&Date.now()-last<DAYS*864e5) return;
+  var hold=document.getElementById('save-offline'), inView=false;
+  function paint(){
+    var want=(window.pageYOffset||document.documentElement.scrollTop)>500&&!inView;
+    if(want&&!shown){ shown=true; ev('view'); }
+    bar.classList.toggle('on',want);
+    document.documentElement.classList.toggle('ps-pb',want);
+  }
+  if(hold&&'IntersectionObserver' in window){ new IntersectionObserver(function(en){ inView=en[0].isIntersecting; paint(); }).observe(hold); }
+  window.addEventListener('scroll',paint,{passive:true}); paint();
+  bar.querySelector('.go').addEventListener('click',function(){ ev('open'); ls(KEY,String(Date.now())); });
+  bar.querySelector('.x').addEventListener('click',function(){ ev('dismiss'); ls(KEY,String(Date.now())); bar.classList.remove('on'); document.documentElement.classList.remove('ps-pb'); window.removeEventListener('scroll',paint); });
+})();
+</script>
+
     </div>
 
 <footer class="footer">
