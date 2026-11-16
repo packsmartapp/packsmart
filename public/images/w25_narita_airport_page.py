@@ -915,6 +915,10 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 .reset[hidden]{display:none}
 .reset{font:inherit;font-size:0.85rem;font-weight:700;color:#0b6b59;background:none;border:0;text-decoration:underline;cursor:pointer;padding:8px 4px;margin:0 0 0 2px}
 .lead2{margin:0 2px 8px;font-size:0.9rem;color:#555}
+html.lg{font-size:118%}
+.sheet .jp{font-size:2.1rem;font-weight:800;line-height:1.35;text-align:center;margin:10px 0 6px;color:#0f0f23}
+.sheet .rom{font-size:1.15rem;text-align:center;color:#444;margin:0 0 8px}
+.sheet .en2{font-size:1.15rem;text-align:center;font-weight:700;margin:0 0 8px;color:#00776a}
 .heroline{display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,#1a1a3e,#0f0f23);color:#fff;border-radius:14px;padding:8px 14px;margin:0 0 8px}
 .heroline .big2{flex:none;font-size:1.7rem;font-weight:800;line-height:1;color:#00C9A7}
 .heroline span{font-size:0.9rem;line-height:1.25}
@@ -1025,6 +1029,9 @@ POCKET_HTML = """<!DOCTYPE html>
 </section>
 <section class="panel" id="p-help" role="tabpanel" aria-labelledby="t-help" hidden>
 <a class="call" href="tel:+81476348000"><span aria-hidden="true">&#128222;</span> Call +81 476-34-8000</a>
+<div class="card"><h2>Bigger writing</h2><p><button type="button" class="big" id="lgBtn">Make writing bigger</button></p></div>
+<div class="card"><h2>Show this to staff</h2><p class="small">Cannot say it in English or Japanese? Tap one, then hold up your phone. The staff will read it.</p><div class="tiles" id="askTiles"></div></div>
+<div class="card" id="shareCard" hidden><h2>Helping someone travel?</h2><p>Send this guide to their phone before the trip, so it is saved for use with no internet.</p><p><button type="button" class="big" id="shareBtn">Send this guide</button></p></div>
 <div class="card"><h2>Narita Airport Information</h2><p>Open 24 hours. Your phone company may charge for calls abroad.</p><p>Every terminal has information counters. Look for the <strong>?</strong> sign. Staff will help, so just ask.</p></div>
 <div class="card install" id="install"><h2>Keep this on your phone</h2><p>Add it to your home screen once, while you have signal. It then opens like an app, even with no internet.</p><p id="instHow" hidden><button type="button" class="big" id="instBtn">Show me how</button></p><p class="small" id="instDesk">Open this page on your phone, then add it to your home screen.</p></div>
 <p class="small">Facility details come from Narita Airport's own pages, checked 16 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). The full guide, with trains, SIM and luggage, is at <a href="__GUIDE_URL__">packsmartapp.com</a> (needs internet).</p>
@@ -1174,7 +1181,7 @@ POCKET_HTML = """<!DOCTYPE html>
   }
   var DEP=[['Tax-free kiosk, if you shopped','Scan your passport at the kiosk in the departure lobby before you check in any bags.'],
     ['Check in',ckText],
-    ['Last jobs','Change money, sort roaming or insurance, hand back rented Wi-Fi. Spend any Welcome Suica balance: no refunds.'],
+    ['Before security','Change money, sort roaming or insurance, hand back rented Wi-Fi. Spend any Welcome Suica balance: no refunds.'],
     ['Security',"Have your passport, boarding pass and carry-on ready. Check your airline's rules on liquids."],
     ['Customs, only if needed','Declare over ¥1 million cash, foreign-made goods like a watch, or duty-free items. Checked-bag items: before check-in.'],
     ['Passport control','Show your passport and boarding pass. Automatic gates give no stamp.'],
@@ -1312,6 +1319,42 @@ POCKET_HTML = """<!DOCTYPE html>
   function markInstalled(){ flag('nrtInstalled','1'); refresh(); }
   strip.addEventListener('click',openInst);
   $('instBtn').addEventListener('click',openInst);
+  /* show this to staff */
+  var ASK=[['🚻','Toilet','トイレはどこですか？','Toire wa doko desu ka?','Where is the toilet?'],
+    ['🚆','Train station','電車の駅はどこですか？','Densha no eki wa doko desu ka?','Where is the train station?'],
+    ['🚌','Bus stop','バス乗り場はどこですか？','Basu noriba wa doko desu ka?','Where is the bus stop?'],
+    ['🚕','Taxi','タクシー乗り場はどこですか？','Takushii noriba wa doko desu ka?','Where is the taxi stand?'],
+    ['🍜','Food','食事ができる所はどこですか？','Shokuji ga dekiru tokoro wa doko desu ka?','Where can I eat?'],
+    ['🛫','My gate','搭乗口はどこですか？','Toujouguchi wa doko desu ka?','Where is my boarding gate?'],
+    ['♿','Wheelchair','車いすをお願いします。','Kuruma-isu o onegai shimasu.','A wheelchair, please.'],
+    ['🆘','Help me','すみません、助けてください。','Sumimasen, tasukete kudasai.','Excuse me, please help me.'],
+    ['🤒','I feel sick','具合が悪いです。助けてください。','Guai ga warui desu. Tasukete kudasai.','I feel sick. Please help me.']];
+  var askT=$('askTiles');
+  ASK.forEach(function(a,n){
+    var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n%3);
+    var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=a[0];
+    var tx=document.createElement('span'); tx.className='tx'; tx.textContent=a[1];
+    b.appendChild(ic); b.appendChild(tx);
+    b.addEventListener('click',function(){
+      var h='<p class="jp"></p><p class="rom"></p><p class="en2"></p>';
+      openInfo(a[0],'Show this to staff',h,b);
+      var q=shB.querySelectorAll('p'); q[0].textContent=a[2]; q[1].textContent=a[3]; q[2].textContent=a[4];
+    });
+    askT.appendChild(b);
+  });
+  /* bigger writing */
+  var lgBtn=$('lgBtn');
+  function paintLg(){ var on=document.documentElement.classList.contains('lg'); lgBtn.textContent=on?'Back to normal writing':'Make writing bigger'; }
+  try{ if(localStorage.getItem('nrtLg')==='1') document.documentElement.classList.add('lg'); }catch(e){}
+  paintLg();
+  lgBtn.addEventListener('click',function(){
+    var on=document.documentElement.classList.toggle('lg'); try{localStorage.setItem('nrtLg',on?'1':'0');}catch(e){} paintLg();
+  });
+  /* send this guide */
+  if(navigator.share){
+    $('shareCard').hidden=false;
+    $('shareBtn').addEventListener('click',function(){ try{ navigator.share({title:'Narita Pocket Guide',url:location.href.split('#')[0]}); }catch(e){} });
+  }
   window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; });
   window.addEventListener('appinstalled',function(){ markInstalled(); if(!inst.hidden) closeSheet(); });
   refresh();
