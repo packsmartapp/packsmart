@@ -30,37 +30,52 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 .panel[hidden]{display:none}
 .seg-h{font-weight:700;font-size:0.95rem;color:#333;margin:2px 2px 8px}
 .seg{display:grid;grid-template-columns:repeat(3,1fr) 1.15fr;gap:8px}
-.seg button{font:inherit;min-height:58px;border:2px solid #D5DCE0;background:#fff;color:#0f0f23;border-radius:14px;cursor:pointer;padding:4px 2px;line-height:1.1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.seg button{font:inherit;min-height:54px;border:2px solid #D5DCE0;background:#fff;color:#0f0f23;border-radius:14px;cursor:pointer;padding:4px 2px;line-height:1.1;display:flex;flex-direction:column;align-items:center;justify-content:center}
 .seg button small{font-size:0.7rem;font-weight:600;color:#666}
 .seg button b{font-size:1.5rem}
 .seg button.txt{font-weight:700;font-size:0.95rem}
 .seg button[aria-pressed="true"]{background:#1a1a3e;border-color:#1a1a3e;color:#fff;box-shadow:0 3px 0 #00C9A7}
 .seg button[aria-pressed="true"] small{color:#B9C3E6}
-.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
-.tile{font:inherit;display:flex;align-items:center;gap:10px;min-height:76px;padding:8px 10px;border-radius:16px;border:2px solid #E1E8EB;background:#fff;color:#0f0f23;cursor:pointer;text-align:left;box-shadow:0 2px 0 rgba(15,15,35,.06)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.tile{font:inherit;display:flex;align-items:center;gap:10px;min-height:64px;padding:8px 10px;border-radius:16px;border:2px solid #E1E8EB;background:#fff;color:#0f0f23;cursor:pointer;text-align:left;box-shadow:0 2px 0 rgba(15,15,35,.06)}
 .tile:active{transform:translateY(1px)}
-.tile .ic{flex:none;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.65rem;background:#D9F7EF}
+.tile .ic{flex:none;width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.65rem;background:#D9F7EF}
 .tile.c1 .ic{background:#FDE4E9}
 .tile.c2 .ic{background:#E6E6F5}
 .tile .tx{font-weight:700;font-size:1rem;line-height:1.2}
-.hint{margin:12px 2px 0;font-size:0.85rem;color:#555;text-align:center}
+.hint{margin:8px 2px 0;font-size:0.82rem;color:#555;text-align:center}
 .card{background:#fff;border-radius:16px;padding:14px 16px;margin:0 0 10px;border:2px solid #E1E8EB}
 .card h2{margin:0 0 6px;font-size:1.1rem}
 .card p{margin:0 0 6px}
 .small{font-size:0.82rem;color:#555}
 .mapcard{padding:10px;text-align:center}
 .mapcard svg{width:100%;height:auto;max-height:calc(100dvh - 64px - var(--tabh) - 96px);display:block;margin:0 auto}
-.steps{list-style:none;margin:0;padding:0;counter-reset:s}
-.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;background:#fff;border:2px solid #E1E8EB;border-radius:16px;padding:12px 14px;margin:0 0 10px;line-height:1.35}
-.steps li::before{content:counter(s);flex:none;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#00C9A7,#0b8f7c);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
-.steps b{display:block}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{margin:0 0 7px}
+.stp{font:inherit;width:100%;display:flex;gap:12px;align-items:flex-start;text-align:left;background:#fff;border:2px solid #E1E8EB;border-radius:14px;padding:8px 12px;line-height:1.28;color:#0f0f23;cursor:pointer;box-shadow:0 2px 0 rgba(15,15,35,.05)}
+.stp .n{flex:none;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#00C9A7,#0b8f7c);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.stp b{display:block;font-size:1.02rem}
+.stp .tx{font-size:0.9rem;color:#333}
+.stp[aria-pressed="true"]{background:#F1FBF9;border-color:#00C9A7}
+.stp[aria-pressed="true"] .n{background:#0b6b59}
+.stp[aria-pressed="true"] b{text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:#00C9A7}
+.lead2{margin:0 2px 8px;font-size:0.9rem;color:#555}
+.heroline{display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,#1a1a3e,#0f0f23);color:#fff;border-radius:14px;padding:8px 14px;margin:0 0 8px}
+.heroline .big2{flex:none;font-size:1.7rem;font-weight:800;line-height:1;color:#00C9A7}
+.heroline span{font-size:0.9rem;line-height:1.25}
+.sec-h{font-weight:800;font-size:0.95rem;margin:10px 2px 4px;color:#1a1a3e}
+.sheet ul.pl{margin:6px 0 6px 1.1rem;padding:0;font-size:1.05rem}
+.sheet ul.pl li{margin:0 0 6px}
+.sheet p.n2{margin:6px 0;font-size:1.05rem}
+.sheet .sm{font-size:0.85rem;color:#555;margin:6px 0 0}
+.tiles .tile:last-child:nth-child(odd){grid-column:1/-1}
 a{color:#00776a}
 a.call{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,#E94560,#c92f4a);color:#fff;border-radius:16px;padding:16px 14px;text-decoration:none;margin:0 0 10px;box-shadow:0 3px 0 #9d2238}
 details.card summary{font-weight:700;font-size:1.05rem;cursor:pointer;min-height:36px;display:flex;align-items:center}
 details.card[open] summary{margin-bottom:6px}
 button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border:2px solid #00C9A7;border-radius:12px;padding:12px 18px;cursor:pointer}
-.tabs{flex:none;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-top:1px solid #D5DCE0;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 14px rgba(15,15,35,.08);position:relative;z-index:6}
-.tabs button{font:inherit;height:64px;border:0;background:none;color:#5a6070;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:0.8rem;font-weight:700;cursor:pointer;position:relative}
+.tabs{flex:none;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid #D5DCE0;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 14px rgba(15,15,35,.08);position:relative;z-index:6}
+.tabs button{font:inherit;height:64px;border:0;background:none;color:#5a6070;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:0.74rem;font-weight:700;cursor:pointer;position:relative}
 .tabs button span{font-size:1.5rem;line-height:1}
 .tabs button[aria-selected="true"]{color:#0b6b59}
 .tabs button[aria-selected="true"]::before{content:"";position:absolute;top:0;left:22%;right:22%;height:4px;border-radius:0 0 4px 4px;background:#00C9A7}
@@ -86,7 +101,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 .sheet .ans.mini{font-size:1.05rem;margin:6px 0}
 .sheet .close{font:inherit;font-weight:800;width:100%;min-height:54px;margin-top:8px;border:0;border-radius:14px;background:#1a1a3e;color:#fff;font-size:1.1rem;cursor:pointer}
 @media (prefers-reduced-motion:reduce){.sheet{animation:none}.tile:active{transform:none}}
-@media (max-height:640px){.tile{min-height:64px}.tabs button{height:58px}body{--tabh:calc(58px + env(safe-area-inset-bottom))}}
+@media (max-height:640px){.tile{min-height:62px}.tabs button{height:58px}body{--tabh:calc(58px + env(safe-area-inset-bottom))}}
 </style>
 </head>
 <body>
@@ -99,8 +114,9 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <section class="panel" id="p-find" role="tabpanel" aria-labelledby="t-find">
 <p class="seg-h">Which terminal are you in?</p>
 <div class="seg" id="seg"></div>
+<p class="seg-h" style="margin-top:14px">What do you need? <span class="small">Tap one.</span></p>
 <div class="tiles" id="tiles"></div>
-<p class="hint">Tap what you need. Not sure of your terminal? Choose "Not sure" to see all three.</p>
+<p class="hint">Floors can change. Ask at an information counter (? sign).</p>
 <noscript><p class="card">This guide needs JavaScript. Please turn it on, or ask at any information counter (look for the ? sign).</p></noscript>
 </section>
 <section class="panel" id="p-map" role="tabpanel" aria-labelledby="t-map" hidden>
@@ -142,25 +158,27 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <p class="small" style="text-align:center">Check your ticket or airline app: airlines can change terminals.</p>
 </section>
 <section class="panel" id="p-arrive" role="tabpanel" aria-labelledby="t-arrive" hidden>
-<ol class="steps">
-<li><span><b>Immigration</b>Have your passport ready. Follow the signs and staff.</span></li>
-<li><span><b>Baggage claim</b>Find your flight on the screens.</span></li>
-<li><span><b>Customs</b>Show your Visit Japan Web QR code, or the paper form if your flight gave you one.</span></li>
-<li><span><b>Arrivals hall</b>SIM and Wi-Fi counters, cash machines, convenience stores and train tickets.</span></li>
-</ol>
-<div class="card"><p class="small" style="margin:0">Free Wi-Fi for quick messages: connect to <strong>FreeWiFi-NARITA</strong>. Visit Japan Web needs internet, so fill it in before you fly and take a screenshot of the QR codes.</p></div>
+<p class="lead2">Landed? Tap a step to tick it off.</p>
+<ol class="steps" id="arrSteps"></ol>
+<p class="sec-h">Then, once you are out</p>
+<div class="tiles" id="arrTiles"></div>
+</section>
+<section class="panel" id="p-depart" role="tabpanel" aria-labelledby="t-depart" hidden>
+<div class="heroline"><span class="big2">2 h</span><span><b>Arrive at least 2 hours early.</b><br>Your airline sets when check-in opens.</span></div>
+<ol class="steps" id="depSteps"></ol>
 </section>
 <section class="panel" id="p-help" role="tabpanel" aria-labelledby="t-help" hidden>
 <a class="call" href="tel:+81476348000"><span aria-hidden="true">&#128222;</span> Call +81 476-34-8000</a>
 <div class="card"><h2>Narita Airport Information</h2><p>Open 24 hours. Your phone company may charge for calls abroad.</p><p>Every terminal has information counters. Look for the <strong>?</strong> sign. Staff will help, so just ask.</p></div>
 <div class="card install" id="install"><h2>Keep this on your phone</h2><p>Add it to your home screen once, while you have signal. It then opens like an app, even with no internet.</p><p id="instHow" hidden><button type="button" class="big" id="instBtn">Show me how</button></p><p class="small" id="instDesk">Open this page on your phone, then add it to your home screen.</p></div>
-<p class="small">Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). The full guide, with trains, SIM and luggage, is at <a href="https://www.packsmartapp.com/blog/narita-airport-guide">packsmartapp.com</a> (needs internet).</p>
+<p class="small">Facility details come from Narita Airport's own pages, checked 16 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). The full guide, with trains, SIM and luggage, is at <a href="https://www.packsmartapp.com/blog/narita-airport-guide">packsmartapp.com</a> (needs internet).</p>
 </section>
 </div>
 <nav class="tabs" role="tablist" aria-label="Sections">
 <button type="button" role="tab" id="t-find" data-tab="find" aria-selected="true"><span aria-hidden="true">&#128269;</span>Find</button>
 <button type="button" role="tab" id="t-map" data-tab="map" aria-selected="false"><span aria-hidden="true">&#128506;&#65039;</span>Map</button>
 <button type="button" role="tab" id="t-arrive" data-tab="arrive" aria-selected="false"><span aria-hidden="true">&#128748;</span>Arrival</button>
+<button type="button" role="tab" id="t-depart" data-tab="depart" aria-selected="false"><span aria-hidden="true">&#128747;</span>Departure</button>
 <button type="button" role="tab" id="t-help" data-tab="help" aria-selected="false"><span aria-hidden="true">&#128587;</span>Help</button>
 </nav>
 <div class="scrim" id="scrim" hidden></div>
@@ -171,14 +189,13 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle" hidden>
 <h2 id="shTitle"></h2>
 <div id="shBody" aria-live="polite"></div>
-<p class="small" style="margin:6px 0 0">From Narita Airport pages, checked 16 November 2026. Floors can change. If you cannot find it, ask at an information counter (look for the ? sign).</p>
 <button type="button" class="close" id="shClose">Close</button>
 </div>
 <script>
 (function(){
-  var D={"terms": [["T1", "Terminal 1"], ["T2", "Terminal 2"], ["T3", "Terminal 3"]], "items": [["prayer", "Prayer room", {"T1": "3F (passport-control area)", "T2": "1F, Main Building; and 3F, Main Building (passport-control area)", "T3": "2F, Main Building"}], ["baby", "Baby room", {"T1": "Baby rooms are on several floors. Ask at an information counter for the nearest one.", "T2": "Baby rooms are on several floors. Ask at an information counter for the nearest one.", "T3": "Baby rooms are on several floors. Ask at an information counter for the nearest one."}], ["quiet", "Quiet room", {"T1": "2F, domestic departure area; and 2F, international departure area", "T2": "2F, domestic departure area; and 2F, international departure area", "T3": "3F, Main Building (public area); 3F domestic departure; 3F international departure"}], ["info", "Information counter", {"T1": "B1F, 1F, 2F, 3F and 4F", "T2": "B1F, 1F and 3F (Main Building)", "T3": "1F and 2F (Main Building)"}], ["help", "Wheelchair and help", {"T1": "Go to an information counter (marked with a ? sign). Wheelchair rental, accessible toilets and special assistance are arranged through the airport. Narita Airport Information: +81 476-34-8000, open 24 hours.", "T2": "Go to an information counter (marked with a ? sign). Wheelchair rental, accessible toilets and special assistance are arranged through the airport. Narita Airport Information: +81 476-34-8000, open 24 hours.", "T3": "Go to an information counter (marked with a ? sign). Wheelchair rental, accessible toilets and special assistance are arranged through the airport. Narita Airport Information: +81 476-34-8000, open 24 hours."}], ["lockers", "Coin lockers", {"T1": "B1F, 1F and 4F", "T2": "B1F and 3F (Main Building)", "T3": "2F (Main Building)"}], ["wifi", "Wi-Fi rental counter", {"T1": "1F", "T2": "B1F, Main Building", "T3": "1F and 2F (Main Building)"}], ["shower", "Showers and day rooms (paid)", {"T1": "2F; and 3F (passport-control area)", "T2": "3F, Main Building (passport-control area)", "T3": ""}], ["internet", "Free internet point", {"T1": "4F", "T2": "1F, Main Building", "T3": ""}], ["play", "Children's play area", {"T1": "3F (paid Kids Park, after passport control); Baby Play Space", "T2": "2F, domestic services area (after departure procedures)", "T3": ""}]]};
-  var ICON={prayer:'\uD83D\uDE4F',baby:'\uD83C\uDF7C',quiet:'\uD83E\uDD2B',info:'\u2139\uFE0F',help:'\u267F',lockers:'\uD83E\uDDF3',wifi:'\uD83D\uDCF6',shower:'\uD83D\uDEBF',internet:'\uD83D\uDCBB',play:'\uD83E\uDDF8'};
-  var SHORT={prayer:'Prayer room',baby:'Baby room',quiet:'Quiet room',info:'Information counter',help:'Wheelchair and help',lockers:'Coin lockers',wifi:'Wi-Fi rental',shower:'Showers, day rooms',internet:'Free internet',play:'Kids play area'};
+  var D={"terms": [["T1", "Terminal 1"], ["T2", "Terminal 2"], ["T3", "Terminal 3"]], "items": [["prayer", "Prayer room", {"T1": "3F (passport-control area)", "T2": "1F, Main Building; and 3F, Main Building (passport-control area)", "T3": "2F, Main Building"}], ["baby", "Baby room", {"T1": "Baby rooms are on several floors. Ask at an information counter for the nearest one.", "T2": "Baby rooms are on several floors. Ask at an information counter for the nearest one.", "T3": "Baby rooms are on several floors. Ask at an information counter for the nearest one."}], ["quiet", "Quiet room", {"T1": "2F, domestic departure area; and 2F, international departure area", "T2": "2F, domestic departure area; and 2F, international departure area", "T3": "3F, Main Building (public area); 3F domestic departure; 3F international departure"}], ["info", "Information counter", {"T1": "B1F, 1F, 2F, 3F and 4F", "T2": "B1F, 1F and 3F (Main Building)", "T3": "1F and 2F (Main Building)"}], ["help", "Wheelchair and help", {"T1": "Go to an information counter (marked with a ? sign). Wheelchair rental, accessible toilets and special assistance are arranged through the airport. Narita Airport Information: +81 476-34-8000, open 24 hours.", "T2": "Go to an information counter (marked with a ? sign). Wheelchair rental, accessible toilets and special assistance are arranged through the airport. Narita Airport Information: +81 476-34-8000, open 24 hours.", "T3": "Go to an information counter (marked with a ? sign). Wheelchair rental, accessible toilets and special assistance are arranged through the airport. Narita Airport Information: +81 476-34-8000, open 24 hours."}], ["lockers", "Coin lockers", {"T1": "B1F, 1F and 4F", "T2": "B1F and 3F (Main Building)", "T3": "2F (Main Building)"}], ["wifi", "Wi-Fi rental counter", {"T1": "1F", "T2": "B1F, Main Building", "T3": "1F and 2F (Main Building)"}], ["shower", "Showers and day rooms (paid)", {"T1": "2F; and 3F (passport-control area)", "T2": "3F, Main Building (passport-control area)", "T3": ""}], ["internet", "Free internet point", {"T1": "4F", "T2": "1F, Main Building", "T3": ""}], ["smoking", "Smoking area", {"T1": "14 designated smoking areas in the terminal. Look for the smoking-room signs, or ask at an information counter. Smoking is not allowed anywhere else at the airport, inside or outside the terminals.", "T2": "19 designated smoking areas in the terminal. Look for the smoking-room signs, or ask at an information counter. Smoking is not allowed anywhere else at the airport, inside or outside the terminals.", "T3": "Narita's service list shows a smoking area in Terminal 3 but gives no details. Ask at an information counter. Smoking is not allowed anywhere else at the airport, inside or outside the terminals."}], ["play", "Children's play area", {"T1": "3F (paid Kids Park, after passport control); Baby Play Space", "T2": "2F, domestic services area (after departure procedures)", "T3": ""}]]};
+  var ICON={prayer:'\uD83D\uDE4F',baby:'\uD83C\uDF7C',quiet:'\uD83E\uDD2B',info:'\u2139\uFE0F',help:'\u267F',lockers:'\uD83E\uDDF3',wifi:'\uD83D\uDCF6',shower:'\uD83D\uDEBF',internet:'\uD83D\uDCBB',play:'\uD83E\uDDF8',smoking:'\uD83D\uDEAC'};
+  var SHORT={prayer:'Prayer room',baby:'Baby room',quiet:'Quiet room',info:'Information counter',help:'Wheelchair and help',lockers:'Coin lockers',wifi:'Wi-Fi rental',shower:'Showers, day rooms',internet:'Free internet',play:'Kids play area',smoking:'Smoking room'};
   var term='ALL', lastTile=null;
   try{ var s=localStorage.getItem('nrtTerm'); if(s&&/^(ALL|T1|T2|T3)$/.test(s)) term=s; }catch(e){}
   function $(id){return document.getElementById(id);}
@@ -186,7 +203,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   var seg=$('seg');
   function segBtn(id,html,cls){
     var b=document.createElement('button'); b.type='button'; b.setAttribute('data-t',id); if(cls) b.className=cls;
-    b.innerHTML=html; b.addEventListener('click',function(){ term=id; try{localStorage.setItem('nrtTerm',id);}catch(e){} paintSeg(); }); return b;
+    b.innerHTML=html; b.addEventListener('click',function(){ term=id; try{localStorage.setItem('nrtTerm',id);}catch(e){} paintSeg(); renderDep(); }); return b;
   }
   D.terms.forEach(function(t){ seg.appendChild(segBtn(t[0],'<small>Terminal</small><b>'+t[0].charAt(1)+'</b>')); });
   seg.appendChild(segBtn('ALL','Not sure','txt'));
@@ -224,6 +241,88 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   function closeSheet(){ hideAll(); if(lastTile) lastTile.focus(); }
   $('shClose').addEventListener('click',closeSheet); scrim.addEventListener('click',closeSheet);
   document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&(!sheet.hidden||!inst.hidden)) closeSheet(); });
+  /* answer sheet for info tiles (static text only) */
+  function openInfo(icon,title,html,btn){
+    lastTile=btn||null; shT.textContent='';
+    var ic=document.createElement('span'); ic.setAttribute('aria-hidden','true'); ic.textContent=icon; shT.appendChild(ic);
+    shT.appendChild(document.createTextNode(title)); shB.innerHTML=html;
+    hideAll(); sheet.hidden=false; scrim.hidden=false; sheet.scrollTop=0; $('shClose').focus();
+  }
+  function item(id){ return D.items.filter(function(i){return i[0]===id;})[0]; }
+  function trainHTML(){
+    var st={T1:'Terminal 1: <b>Narita Airport Station</b>.',T2:'Terminal 2: <b>Airport Terminal 2&middot;3 Station</b>.',T3:'Terminal 3: <b>Airport Terminal 2&middot;3 Station</b>. Walk about 15 minutes, or take the shuttle bus (about 3 minutes).'};
+    var h='<p class="n2">'+(term==='ALL'?[st.T1,st.T2,st.T3].join('<br>'):st[term])+'</p>';
+    h+='<ul class="pl"><li><b>Skyliner:</b> about 40 to 45 min to Nippori or Ueno, &yen;2,500 to &yen;2,600. Reserved seats.</li>'
+      +'<li><b>Narita Express:</b> about 1 hour to Tokyo Station, &yen;3,100 to &yen;3,300. Reserved seats.</li>'
+      +'<li><b>Access Express:</b> 60 to 75 min to the Asakusa and Ueno area, about &yen;1,300. No seat booking.</li>'
+      +'<li><b>Bus to Tokyo Station:</b> 65 to 90 min, about &yen;1,500.</li>'
+      +'<li><b>Limousine bus to hotels:</b> 75 to 90 min, from &yen;3,200.</li></ul>';
+    h+='<div class="tipbox">The Skyliner and Access Express can leave from the same platform. Check the train name and time. Trains are reported to stop around 11 pm.</div>';
+    h+='<p class="sm">Times and prices are approximate and change. Check the operator.</p>';
+    return h;
+  }
+  function simHTML(){
+    var w=item('wifi')[2], f=term==='ALL'?D.terms.map(function(t){return t[1]+': '+w[t[0]];}).join('<br>'):w[term];
+    return '<ul class="pl"><li><b>eSIM:</b> install it before you fly. It works as soon as you land.</li>'
+      +'<li><b>SIM and pocket Wi-Fi counters</b> are in the arrivals area. Wi-Fi rental counters:<br>'+f+'</li>'
+      +'<li><b>Pocket Wi-Fi</b> must be handed back before you reach the departures lobby.</li>'
+      +'<li><b>Free airport Wi-Fi:</b> FreeWiFi-NARITA. Fine for a quick message, not for a day of maps.</li></ul>'
+      +'<p class="sm">Counter hours and stock vary. Ordering ahead is safer.</p>';
+  }
+  function cashHTML(){
+    return '<ul class="pl"><li><b>Currency exchange</b> offices are in the arrivals area.</li>'
+      +'<li><b>Welcome Suica</b> is a tourist train card. No deposit, valid 28 days, and money left on it cannot be refunded.</li>'
+      +'<li>Buy it at a JR East Travel Service Center or Welcome Suica machine at Narita Airport Station (Terminal 1) or Airport Terminal 2&middot;3 Station. Expect a queue after a busy arrival.</li>'
+      +'<li>iPhone users can set up Welcome Suica Mobile before landing.</li></ul>'
+      +'<p class="sm">Card types and sales points change often. Check JR East before you travel.</p>';
+  }
+  function bagsHTML(){
+    return '<ul class="pl"><li><b>JAL ABC</b> and <b>Yamato</b> run luggage delivery counters at Narita. Ask which counter is in your terminal.</li>'
+      +'<li>Usually arrives <b>the next day</b>. A medium suitcase starts from about &yen;1,950.</li>'
+      +'<li>Write down your hotel name, address and phone number.</li>'
+      +'<li>Keep medicines, valuables and chargers with you.</li></ul>'
+      +'<p class="sm">Prices and cut-off times change. Confirm at the counter.</p>';
+  }
+  var NEXT=[['🚆','Train or bus to Tokyo',trainHTML],['📱','Phone data',simHTML],['💴','Cash and train card',cashHTML],['📦','Send your suitcase',bagsHTML]];
+  var at=$('arrTiles');
+  NEXT.forEach(function(n,k){
+    var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);
+    var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=n[0];
+    var tx=document.createElement('span'); tx.className='tx'; tx.textContent=n[1]; b.appendChild(ic); b.appendChild(tx);
+    b.addEventListener('click',function(){ openInfo(n[0],n[1],n[2](),b); }); at.appendChild(b);
+  });
+  /* tick-off steps for arrival and departure */
+  var doneA=[], doneD=[];
+  function renderSteps(ol,list,done){
+    ol.innerHTML='';
+    list.forEach(function(st,i){
+      var li=document.createElement('li'), b=document.createElement('button'); b.type='button'; b.className='stp'; b.setAttribute('aria-pressed',done[i]?'true':'false');
+      var n=document.createElement('span'); n.className='n'; n.textContent=done[i]?'✓':String(i+1);
+      var tx=document.createElement('span'); tx.className='tx'; var bb=document.createElement('b'); bb.textContent=st[0]; tx.appendChild(bb);
+      tx.appendChild(document.createTextNode(typeof st[1]==='function'?st[1]():st[1]));
+      b.appendChild(n); b.appendChild(tx);
+      b.addEventListener('click',function(){ done[i]=!done[i]; b.setAttribute('aria-pressed',done[i]?'true':'false'); n.textContent=done[i]?'✓':String(i+1); });
+      li.appendChild(b); ol.appendChild(li);
+    });
+  }
+  var ARR=[['Health check',"Hand in the plane's health form. Feeling unwell? Tell an officer."],
+    ['Immigration','Show your passport. Automatic gates give no stamp: ask staff if you want one.'],
+    ['Baggage claim','Find your flight on the screen and go to its carousel. Carts are nearby.'],
+    ['Customs','Show your Visit Japan Web QR code or paper form. Food or plants? Declare them first.'],
+    ['Arrivals lobby','You are in. Follow the signs to trains, buses and taxis.']];
+  function ckText(){
+    var f={T1:'4F',T2:'3F',T3:'2F'};
+    if(term==='ALL') return 'Airline counters: Terminal 1 on 4F, Terminal 2 on 3F, Terminal 3 on 2F. Or use a kiosk or self bag drop.';
+    return 'Terminal '+term.charAt(1)+': your airline counter is on '+f[term]+'. Or use a kiosk or self bag drop.';
+  }
+  var DEP=[['Check in',ckText],
+    ['Last jobs','Change money, sort roaming or insurance, hand back rented Wi-Fi. Spend any Welcome Suica balance: no refunds.'],
+    ['Security',"Have your passport, boarding pass and carry-on ready. Check your airline's rules on liquids."],
+    ['Customs, only if needed','Declare over ¥1 million cash, foreign-made goods like a watch, or duty-free items. Checked-bag items: before check-in.'],
+    ['Passport control','Show your passport and boarding pass. Automatic gates give no stamp.'],
+    ['Boarding gate','Be at your gate well before boarding. Wait for staff instructions.']];
+  function renderDep(){ renderSteps($('depSteps'),DEP,doneD); }
+  renderSteps($('arrSteps'),ARR,doneA); renderDep();
   /* tabs */
   var tabs=[].slice.call(document.querySelectorAll('.tabs button'));
   function go(name,focus){
@@ -237,7 +336,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
     b.addEventListener('click',function(){ go(b.getAttribute('data-tab')); });
     b.addEventListener('keydown',function(e){ var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(d){ e.preventDefault(); go(tabs[(i+d+tabs.length)%tabs.length].getAttribute('data-tab'),true); } });
   });
-  var h=(location.hash||'').replace('#',''); go(/^(find|map|arrive|help)$/.test(h)?h:'find');
+  var h=(location.hash||'').replace('#',''); go(/^(find|map|arrive|depart|help)$/.test(h)?h:'find');
   /* offline status and install */
   var st=$('status'), saved=false;
   function paint(){
