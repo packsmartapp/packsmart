@@ -316,6 +316,10 @@ FINDER_DATA = {
             "T1": "Free toilets are in the public areas and also after security. Look for the toilet signs, or ask at an information counter. Accessible (multipurpose) toilets are available too.",
             "T2": "Free toilets are in the public areas and also after security. Look for the toilet signs, or ask at an information counter. Accessible (multipurpose) toilets are available too.",
             "T3": "Free toilets are in the public areas and also after security. Look for the toilet signs, or ask at an information counter. Accessible (multipurpose) toilets are available too."}],
+        ["food", "Food and drink", {
+            "T1": "Most restaurants are on 4F and 5F of the Central Building. Convenience stores on the lower floors, and one is open all night. Many restaurants close by about 9 pm. Hours change, so check the shop door. Narita Airport's website has a restaurant search with vegetarian and halal filters.",
+            "T2": "Mostly Japanese food. Look on 4F, with more on lower floors. There is a convenience store open all night, and reportedly a 24-hour beef bowl restaurant. Many restaurants close by about 9 pm. Hours change, so check the shop door. Narita Airport's website has a restaurant search with vegetarian and halal filters.",
+            "T3": "A food court on 2F, with some counters opening very early, around 4 am. A 24-hour convenience store is on 2F. After security the choice is limited, so eat before you go through. Many restaurants close by about 9 pm. Hours change, so check the shop door. Narita Airport's website has a restaurant search with vegetarian and halal filters."}],
         ["prayer", "Prayer room", {
             "T1": "3F (passport-control area)",
             "T2": "1F, Main Building; and 3F, Main Building (passport-control area)",
@@ -1046,8 +1050,8 @@ POCKET_HTML = """<!DOCTYPE html>
 <script>
 (function(){
   var D=__FINDER_JSON__;
-  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8',smoking:'\\uD83D\\uDEAC',toilet:'\\uD83D\\uDEBB'};
-  var SHORT={prayer:'Prayer room',baby:'Baby room',quiet:'Quiet room',info:'Information counter',help:'Wheelchair and help',lockers:'Coin lockers',wifi:'Wi-Fi rental',shower:'Showers, day rooms',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets'};
+  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8',smoking:'\\uD83D\\uDEAC',toilet:'\\uD83D\\uDEBB',food:'\\uD83C\\uDF5C'};
+  var SHORT={prayer:'Prayer room',baby:'Baby room',quiet:'Quiet room',info:'Information counter',help:'Wheelchair and help',lockers:'Coin lockers',wifi:'Wi-Fi rental',shower:'Showers, day rooms',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets',food:'Food and drink'};
   var term='ALL', lastTile=null;
   try{ var s=localStorage.getItem('nrtTerm'); if(s&&/^(ALL|T1|T2|T3)$/.test(s)) term=s; }catch(e){}
   function $(id){return document.getElementById(id);}
