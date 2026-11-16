@@ -1119,10 +1119,11 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Narita Express:</b> about 1 hour to Tokyo Station, &yen;3,100 to &yen;3,300. Reserved seats.</li>'
       +'<li><b>Access Express:</b> 60 to 75 min to the Asakusa and Ueno area, about &yen;1,300. No seat booking.</li>'
       +'<li><b>Bus to Tokyo Station:</b> 65 to 90 min, about &yen;1,500.</li>'
-      +'<li><b>Limousine bus to hotels:</b> 75 to 90 min, from &yen;3,200.</li></ul>';
+      +'<li><b>Limousine bus to hotels:</b> 75 to 90 min, from &yen;3,200.</li>'
+       +'<li><b>Taxi or private car:</b> door to door, 60 to 90 min. A metered taxi is often over &yen;20,000. A fixed-price private car is about &euro;139 per car (figure from the company, Nov 2026).</li></ul>';
     h+='<div class="tipbox">The Skyliner and Access Express can leave from the same platform. Check the train name and time. Trains are reported to stop around 11 pm.</div>';
     h+='<p class="sm">Times and prices are approximate and change. Check the operator.</p>';
-    h+='<p class="sm">Book ahead (partner links, needs internet): <a href="https://klook.tpx.li/gIYih1CY" target="_blank" rel="sponsored nofollow noopener">Skyliner</a> &middot; <a href="https://klook.tpx.li/tX4jclRv" target="_blank" rel="sponsored nofollow noopener">Narita Express</a>. These are Klook links. PackSmart may earn a small commission at no extra cost to you.</p>'+more('#to-tokyo');
+    h+='<p class="sm">Book ahead (partner links, needs internet): <a href="https://klook.tpx.li/gIYih1CY" target="_blank" rel="sponsored nofollow noopener">Skyliner</a> &middot; <a href="https://klook.tpx.li/tX4jclRv" target="_blank" rel="sponsored nofollow noopener">Narita Express</a> &middot; <a href="https://klook.tpx.li/SISnlOYP" target="_blank" rel="sponsored nofollow noopener">Limousine bus</a> (all Klook) &middot; <a href="https://tpx.li/qYFLwgZ8" target="_blank" rel="sponsored nofollow noopener">Private car</a> (Welcome Pickups). PackSmart may earn a small commission at no extra cost to you.</p>'+more('#to-tokyo');
     return h;
   }
   function simHTML(){
@@ -1148,7 +1149,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<p class="sm">Prices and cut-off times change. Confirm at the counter.</p>'
        +'<p class="sm">Book ahead (partner link, needs internet): <a href="https://klook.tpo.lu/dc2ejBgY" target="_blank" rel="sponsored nofollow noopener">Klook hotel and airport luggage delivery</a> for Tokyo hotels and Narita Terminals 1 and 2. PackSmart may earn a small commission at no extra cost to you.</p>'+more('#luggage');
   }
-  var NEXT=[['🚆','Train or bus to Tokyo',trainHTML],['📱','Phone data',simHTML],['💴','Cash and train card',cashHTML],['📦','Send your suitcase',bagsHTML]];
+  var NEXT=[['🚆','Train, bus or taxi',trainHTML],['📱','Phone data',simHTML],['💴','Cash and train card',cashHTML],['📦','Send your suitcase',bagsHTML]];
   var at=$('arrTiles');
   NEXT.forEach(function(n,k){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);
@@ -1202,10 +1203,11 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Narita Express:</b> about 1 hour from Tokyo Station, &yen;3,100 to &yen;3,300. Reserved seats.</li>'
       +'<li><b>Access Express:</b> 60 to 75 min, about &yen;1,300. No seat booking.</li>'
       +'<li><b>Bus from Tokyo Station:</b> 65 to 90 min, about &yen;1,500.</li>'
-      +'<li><b>Limousine bus from hotels:</b> 75 to 90 min, from &yen;3,200.</li></ul>';
+      +'<li><b>Limousine bus from hotels:</b> 75 to 90 min, from &yen;3,200.</li>'
+       +'<li><b>Taxi or private car:</b> door to door, 60 to 90 min. A metered taxi is often over &yen;20,000. A fixed-price private car is about &euro;139 per car (figure from the company, Nov 2026).</li></ul>';
     h+='<div class="tipbox"><b>Early flight?</b> The first Skyliner leaves Keisei-Ueno at about 5:40 and the first Tokyo Station bus at about 5:00. Check first-train times the day before. For a very early flight you may need a bus, a taxi, or a hotel near the airport the night before.</div>';
     h+='<p class="sm">Times and prices are approximate and change. Check the operator.</p>';
-    h+='<p class="sm">Book ahead (partner links, needs internet): <a href="https://klook.tpx.li/gIYih1CY" target="_blank" rel="sponsored nofollow noopener">Skyliner</a> &middot; <a href="https://klook.tpx.li/tX4jclRv" target="_blank" rel="sponsored nofollow noopener">Narita Express</a>. These are Klook links. PackSmart may earn a small commission at no extra cost to you.</p>'+more('#to-tokyo');
+    h+='<p class="sm">Book ahead (partner links, needs internet): <a href="https://klook.tpx.li/gIYih1CY" target="_blank" rel="sponsored nofollow noopener">Skyliner</a> &middot; <a href="https://klook.tpx.li/tX4jclRv" target="_blank" rel="sponsored nofollow noopener">Narita Express</a> &middot; <a href="https://klook.tpx.li/SISnlOYP" target="_blank" rel="sponsored nofollow noopener">Limousine bus</a> (all Klook) &middot; <a href="https://tpx.li/qYFLwgZ8" target="_blank" rel="sponsored nofollow noopener">Private car</a> (Welcome Pickups). PackSmart may earn a small commission at no extra cost to you.</p>'+more('#to-tokyo');
     return h;
   }
   function sendOutHTML(){
