@@ -280,7 +280,7 @@
   </url>
   <url>
     <loc>https://www.packsmartapp.com/blog/japan-travel-packing-guide</loc>
-    <lastmod>2026-11-15</lastmod>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -453,6 +453,12 @@
   <url>
     <loc>https://www.packsmartapp.com/blog/bali-10-day-itinerary-mid-range</loc>
     <lastmod>2026-11-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.packsmartapp.com/blog/narita-airport-guide</loc>
+    <lastmod>2026-11-16</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
