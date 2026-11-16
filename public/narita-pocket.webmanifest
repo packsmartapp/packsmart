@@ -5,8 +5,8 @@
   "start_url": "/narita-pocket",
   "scope": "/narita-pocket",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#00C9A7",
+  "background_color": "#1a1a3e",
+  "theme_color": "#1a1a3e",
   "lang": "en",
   "icons": [
     {

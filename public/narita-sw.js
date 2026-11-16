@@ -1,5 +1,5 @@
 /* Narita Pocket Guide service worker. Bump V when the page changes shape. */
-var V='narita-pocket-v1';
+var V='narita-pocket-v2';
 var PAGE='/narita-pocket';
 var SHELL=[PAGE,'/narita-pocket.webmanifest','/favicon-32.png','/favicon-192.png','/favicon-512.png'];
 self.addEventListener('install',function(e){

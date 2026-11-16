@@ -792,36 +792,65 @@ if old != page:
 POCKET_PATH = "/narita-pocket"
 POCKET_SVG = re.search(r'<svg id="nrtDiagram".*?</svg>', DIAGRAM, re.S).group(0).replace('id="nrtDiagram"', 'id="pkDiagram"').replace('id="nrtT"', 'id="pkT"').replace('id="nrtD"', 'id="pkD"').replace('aria-labelledby="nrtT nrtD"', 'aria-labelledby="pkT pkD"')
 POCKET_CSS = """
-*{box-sizing:border-box}
-html{-webkit-text-size-adjust:100%}
-body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:19px;line-height:1.55;color:#0f0f23;background:#f6f8f8;padding-bottom:env(safe-area-inset-bottom)}
-.top{position:sticky;top:0;z-index:5;background:#fff;border-bottom:3px solid #00C9A7;padding:calc(10px + env(safe-area-inset-top)) 16px 10px;display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
-.top strong{font-size:1.15rem}
-.top span.by{color:#666;font-size:0.9rem}
-.status{font-size:0.9rem;font-weight:700;border-radius:20px;padding:4px 12px;background:#E9ECEF;color:#333}
-.status.saved{background:#D9F7EF;color:#0b6b59}
-.status.off{background:#FFE9C9;color:#7a4a00}
-main{max-width:640px;margin:0 auto;padding:14px 14px 40px}
-.lead{margin:6px 2px 14px;color:#444}
-.card{background:#fff;border:2px solid #00C9A7;border-radius:14px;padding:18px 18px;margin:16px 0}
-.card h2{margin:0 0 8px;font-size:1.3rem}
-.card ul,.card ol{margin:0 0 6px 1.2rem;padding:0}
-.card li{margin:0 0 8px}
-.ps-finder{background:#fff;border:2px solid #00C9A7;border-radius:14px;padding:18px;margin:16px 0}
-.ps-finder h2{margin:0 0 6px;font-size:1.4rem}
-.ps-step-h{font-weight:700;font-size:1.1rem;margin:14px 0 6px}
-.ps-chips{display:flex;flex-wrap:wrap;gap:10px}
-.ps-chip{font:inherit;font-size:1.1rem;font-weight:600;min-height:56px;padding:10px 16px;border-radius:12px;border:2px solid #E1E5E8;background:#fff;color:#0f0f23;cursor:pointer;text-align:left;flex:1 1 100%}
-.ps-chip[aria-pressed="true"]{background:#00C9A7;border-color:#00C9A7;color:#fff}
-#fdTerm .ps-chip{flex:1 1 0;min-width:0;padding:10px 4px;text-align:center}
-.ps-result{margin-top:16px;padding:16px;border-radius:12px;background:#F1FBF9;border-left:6px solid #00C9A7;font-size:1.25rem;line-height:1.5}
-.ps-result small{display:block;font-size:0.85rem;color:#555;margin-top:8px}
-.ps-fig svg{width:100%;max-width:480px;height:auto;display:block;margin:0 auto}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;height:100%}
+body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:18px;line-height:1.5;color:#0f0f23;background:#EEF3F4;--tabh:calc(64px + env(safe-area-inset-bottom))}
+.top{flex:none;background:linear-gradient(135deg,#1a1a3e 0%,#0f0f23 55%,#0b5d57 140%);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 16px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:3px solid #00C9A7}
+.top strong{display:block;font-size:1.15rem;line-height:1.2}
+.top .by{display:block;font-size:0.78rem;color:#B9C3E6;margin-top:2px}
+.status{flex:none;font-size:0.8rem;font-weight:700;border-radius:20px;padding:5px 11px;background:rgba(255,255,255,.16);color:#fff;white-space:nowrap}
+.status.saved{background:#00C9A7;color:#0f0f23}
+.status.off{background:#FFB84D;color:#3a2400}
+.panels{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:12px}
+.panel{max-width:560px;margin:0 auto;padding:12px 14px 4px}
+.panel[hidden]{display:none}
+.seg-h{font-weight:700;font-size:0.95rem;color:#333;margin:2px 2px 8px}
+.seg{display:grid;grid-template-columns:repeat(3,1fr) 1.15fr;gap:8px}
+.seg button{font:inherit;min-height:58px;border:2px solid #D5DCE0;background:#fff;color:#0f0f23;border-radius:14px;cursor:pointer;padding:4px 2px;line-height:1.1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.seg button small{font-size:0.7rem;font-weight:600;color:#666}
+.seg button b{font-size:1.5rem}
+.seg button.txt{font-weight:700;font-size:0.95rem}
+.seg button[aria-pressed="true"]{background:#1a1a3e;border-color:#1a1a3e;color:#fff;box-shadow:0 3px 0 #00C9A7}
+.seg button[aria-pressed="true"] small{color:#B9C3E6}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+.tile{font:inherit;display:flex;align-items:center;gap:10px;min-height:76px;padding:8px 10px;border-radius:16px;border:2px solid #E1E8EB;background:#fff;color:#0f0f23;cursor:pointer;text-align:left;box-shadow:0 2px 0 rgba(15,15,35,.06)}
+.tile:active{transform:translateY(1px)}
+.tile .ic{flex:none;width:46px;height:46px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.65rem;background:#D9F7EF}
+.tile.c1 .ic{background:#FDE4E9}
+.tile.c2 .ic{background:#E6E6F5}
+.tile .tx{font-weight:700;font-size:1rem;line-height:1.2}
+.hint{margin:12px 2px 0;font-size:0.85rem;color:#555;text-align:center}
+.card{background:#fff;border-radius:16px;padding:14px 16px;margin:0 0 10px;border:2px solid #E1E8EB}
+.card h2{margin:0 0 6px;font-size:1.1rem}
+.card p{margin:0 0 6px}
+.small{font-size:0.82rem;color:#555}
+.mapcard{padding:10px;text-align:center}
+.mapcard svg{width:100%;height:auto;max-height:calc(100dvh - 64px - var(--tabh) - 96px);display:block;margin:0 auto}
+.steps{list-style:none;margin:0;padding:0;counter-reset:s}
+.steps li{counter-increment:s;display:flex;gap:12px;align-items:flex-start;background:#fff;border:2px solid #E1E8EB;border-radius:16px;padding:12px 14px;margin:0 0 10px;line-height:1.35}
+.steps li::before{content:counter(s);flex:none;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#00C9A7,#0b8f7c);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.steps b{display:block}
 a{color:#00776a}
-a.call{display:inline-block;font-weight:700;font-size:1.25rem;background:#00C9A7;color:#fff;border-radius:12px;padding:12px 18px;text-decoration:none;margin:4px 0}
-.small{font-size:0.85rem;color:#555}
-@media (display-mode: standalone){.install{display:none}}
+a.call{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,#E94560,#c92f4a);color:#fff;border-radius:16px;padding:16px 14px;text-decoration:none;margin:0 0 10px;box-shadow:0 3px 0 #9d2238}
+details.card summary{font-weight:700;font-size:1.05rem;cursor:pointer;min-height:36px;display:flex;align-items:center}
+details.card[open] summary{margin-bottom:6px}
 button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border:2px solid #00C9A7;border-radius:12px;padding:12px 18px;cursor:pointer}
+.tabs{flex:none;display:grid;grid-template-columns:repeat(4,1fr);background:#fff;border-top:1px solid #D5DCE0;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 14px rgba(15,15,35,.08);position:relative;z-index:6}
+.tabs button{font:inherit;height:64px;border:0;background:none;color:#5a6070;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:0.8rem;font-weight:700;cursor:pointer;position:relative}
+.tabs button span{font-size:1.5rem;line-height:1}
+.tabs button[aria-selected="true"]{color:#0b6b59}
+.tabs button[aria-selected="true"]::before{content:"";position:absolute;top:0;left:22%;right:22%;height:4px;border-radius:0 0 4px 4px;background:#00C9A7}
+.scrim{position:fixed;inset:0;background:rgba(15,15,35,.45);z-index:7}
+.scrim[hidden],.sheet[hidden]{display:none}
+.sheet{position:fixed;left:0;right:0;bottom:var(--tabh);z-index:8;background:#fff;border-radius:22px 22px 0 0;box-shadow:0 -10px 30px rgba(15,15,35,.25);padding:16px 18px 16px;max-height:calc(100dvh - var(--tabh) - 70px);overflow-y:auto;max-width:560px;margin:0 auto;animation:up .18s ease-out}
+@keyframes up{from{transform:translateY(24px);opacity:.4}to{transform:none;opacity:1}}
+.sheet h2{margin:0 0 4px;font-size:1.3rem;display:flex;align-items:center;gap:10px}
+.sheet .ans{font-size:1.35rem;line-height:1.4;margin:8px 0;padding:12px 14px;border-radius:12px;background:#F1FBF9;border-left:6px solid #00C9A7}
+.sheet .ans em{display:block;font-style:normal;font-weight:800;font-size:0.85rem;color:#0b6b59;margin-bottom:2px}
+.sheet .ans.mini{font-size:1.05rem;margin:6px 0}
+.sheet .close{font:inherit;font-weight:800;width:100%;min-height:54px;margin-top:8px;border:0;border-radius:14px;background:#1a1a3e;color:#fff;font-size:1.1rem;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}.tile:active{transform:none}}
+@media (max-height:640px){.tile{min-height:64px}.tabs button{height:58px}body{--tabh:calc(58px + env(safe-area-inset-bottom))}}
 """
 POCKET_HTML = """<!DOCTYPE html>
 <html lang="en">
@@ -832,7 +861,7 @@ POCKET_HTML = """<!DOCTYPE html>
 <meta name="description" content="A simple Narita Airport helper that works offline: terminals, prayer rooms, baby rooms, lockers and more. By PackSmart.">
 <meta name="robots" content="noindex,follow">
 <link rel="canonical" href="__GUIDE_URL__">
-<meta name="theme-color" content="#00C9A7">
+<meta name="theme-color" content="#1a1a3e">
 <link rel="manifest" href="/narita-pocket.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="apple-touch-icon" href="/favicon-192.png">
@@ -844,47 +873,121 @@ POCKET_HTML = """<!DOCTYPE html>
 </head>
 <body>
 <header class="top">
-<div><strong>Narita Pocket Guide</strong> <span class="by">by PackSmart</span></div>
+<div><strong>Narita Pocket Guide</strong><span class="by">by PackSmart &middot; 16 Nov 2026</span></div>
 <div class="status" id="status" role="status">Checking...</div>
 </header>
-<main>
-<p class="lead">Choose your terminal and what you need. Facts checked 16 November 2026 from Narita Airport's own pages.</p>
-__FINDER__
-<section class="card ps-fig">
-<h2>Which terminal?</h2>
+<div class="panels" id="panels">
+<section class="panel" id="p-find" role="tabpanel" aria-labelledby="t-find">
+<p class="seg-h">Which terminal are you in?</p>
+<div class="seg" id="seg"></div>
+<div class="tiles" id="tiles"></div>
+<p class="hint">Tap what you need. Not sure of your terminal? Choose "Not sure" to see all three.</p>
+<noscript><p class="card">This guide needs JavaScript. Please turn it on, or ask at any information counter (look for the ? sign).</p></noscript>
+</section>
+<section class="panel" id="p-map" role="tabpanel" aria-labelledby="t-map" hidden>
+<div class="card mapcard">
 __SVG__
-<p class="small">Check your ticket or airline app: airlines can change terminals.</p>
+</div>
+<p class="small" style="text-align:center">Check your ticket or airline app: airlines can change terminals.</p>
 </section>
-<section class="card">
-<h2>Need help?</h2>
-<p>Every terminal has information counters. Look for the "?" sign. Staff will help, so just ask.</p>
-<p><a class="call" href="tel:+81476348000">Call +81 476-34-8000</a><br><span class="small">Narita Airport Information, open 24 hours. Your phone company may charge for calls abroad.</span></p>
-</section>
-<section class="card">
-<h2>After landing</h2>
-<ol>
-<li><strong>Immigration.</strong> Have your passport ready. Follow the signs and staff.</li>
-<li><strong>Baggage claim.</strong> Find your flight on the screens.</li>
-<li><strong>Customs.</strong> Show your Visit Japan Web QR code, or a paper form if your flight gave you one.</li>
-<li><strong>Arrivals hall.</strong> SIM and Wi-Fi counters, cash machines, convenience stores and train tickets.</li>
+<section class="panel" id="p-arrive" role="tabpanel" aria-labelledby="t-arrive" hidden>
+<ol class="steps">
+<li><span><b>Immigration</b>Have your passport ready. Follow the signs and staff.</span></li>
+<li><span><b>Baggage claim</b>Find your flight on the screens.</span></li>
+<li><span><b>Customs</b>Show your Visit Japan Web QR code, or the paper form if your flight gave you one.</span></li>
+<li><span><b>Arrivals hall</b>SIM and Wi-Fi counters, cash machines, convenience stores and train tickets.</span></li>
 </ol>
-<p class="small">Free Wi-Fi for quick messages: connect to <strong>FreeWiFi-NARITA</strong>. Visit Japan Web needs internet, so fill it in before you fly and take a screenshot of the QR codes.</p>
+<div class="card"><p class="small" style="margin:0">Free Wi-Fi for quick messages: connect to <strong>FreeWiFi-NARITA</strong>. Visit Japan Web needs internet, so fill it in before you fly and take a screenshot of the QR codes.</p></div>
 </section>
-<section class="card install" id="install">
-<h2>Keep this on your phone</h2>
+<section class="panel" id="p-help" role="tabpanel" aria-labelledby="t-help" hidden>
+<a class="call" href="tel:+81476348000"><span aria-hidden="true">&#128222;</span> Call +81 476-34-8000</a>
+<div class="card"><h2>Narita Airport Information</h2><p>Open 24 hours. Your phone company may charge for calls abroad.</p><p>Every terminal has information counters. Look for the <strong>?</strong> sign. Staff will help, so just ask.</p></div>
+<details class="card install" id="install">
+<summary>Keep this on your phone</summary>
 <p>Add it to your home screen once, while you have signal. It then opens like an app, even with no internet.</p>
-<ul>
-<li><strong>iPhone:</strong> in Safari, tap Share, then "Add to Home Screen".</li>
-<li><strong>Android:</strong> in Chrome, tap the menu (three dots), then "Add to Home screen" or "Install app".</li>
-</ul>
+<p><strong>iPhone:</strong> in Safari, tap Share, then "Add to Home Screen".<br><strong>Android:</strong> in Chrome, tap the menu (three dots), then "Add to Home screen" or "Install app".</p>
 <p id="installRow" hidden><button type="button" class="big" id="installBtn">Add to home screen</button></p>
-</section>
+</details>
 <p class="small">Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). The full guide, with trains, SIM and luggage, is at <a href="__GUIDE_URL__">packsmartapp.com</a> (needs internet).</p>
-</main>
+</section>
+</div>
+<nav class="tabs" role="tablist" aria-label="Sections">
+<button type="button" role="tab" id="t-find" data-tab="find" aria-selected="true"><span aria-hidden="true">&#128269;</span>Find</button>
+<button type="button" role="tab" id="t-map" data-tab="map" aria-selected="false"><span aria-hidden="true">&#128506;&#65039;</span>Map</button>
+<button type="button" role="tab" id="t-arrive" data-tab="arrive" aria-selected="false"><span aria-hidden="true">&#128748;</span>Arrival</button>
+<button type="button" role="tab" id="t-help" data-tab="help" aria-selected="false"><span aria-hidden="true">&#128587;</span>Help</button>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle" hidden>
+<h2 id="shTitle"></h2>
+<div id="shBody" aria-live="polite"></div>
+<p class="small" style="margin:6px 0 0">From Narita Airport pages, checked 16 November 2026. Floors can change. If you cannot find it, ask at an information counter (look for the ? sign).</p>
+<button type="button" class="close" id="shClose">Close</button>
+</div>
 <script>
 (function(){
-  var st=document.getElementById('status');
-  var saved=false;
+  var D=__FINDER_JSON__;
+  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8'};
+  var SHORT={prayer:'Prayer room',baby:'Baby room',quiet:'Quiet room',info:'Information counter',help:'Wheelchair and help',lockers:'Coin lockers',wifi:'Wi-Fi rental',shower:'Showers, day rooms',internet:'Free internet',play:'Kids play area'};
+  var term='ALL', lastTile=null;
+  try{ var s=localStorage.getItem('nrtTerm'); if(s&&/^(ALL|T1|T2|T3)$/.test(s)) term=s; }catch(e){}
+  function $(id){return document.getElementById(id);}
+  /* terminal selector */
+  var seg=$('seg');
+  function segBtn(id,html,cls){
+    var b=document.createElement('button'); b.type='button'; b.setAttribute('data-t',id); if(cls) b.className=cls;
+    b.innerHTML=html; b.addEventListener('click',function(){ term=id; try{localStorage.setItem('nrtTerm',id);}catch(e){} paintSeg(); }); return b;
+  }
+  D.terms.forEach(function(t){ seg.appendChild(segBtn(t[0],'<small>Terminal</small><b>'+t[0].charAt(1)+'</b>')); });
+  seg.appendChild(segBtn('ALL','Not sure','txt'));
+  function paintSeg(){ [].forEach.call(seg.children,function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-t')===term?'true':'false'); }); }
+  paintSeg();
+  /* need tiles */
+  var tiles=$('tiles');
+  D.items.forEach(function(it,n){
+    var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n%3); b.setAttribute('data-id',it[0]);
+    var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=ICON[it[0]]||'\\u2022';
+    var tx=document.createElement('span'); tx.className='tx'; tx.textContent=SHORT[it[0]]||it[1];
+    b.appendChild(ic); b.appendChild(tx);
+    b.addEventListener('click',function(){ openSheet(it,b); });
+    tiles.appendChild(b);
+  });
+  /* answer sheet */
+  var sheet=$('sheet'), scrim=$('scrim'), shT=$('shTitle'), shB=$('shBody');
+  var NONE='The airport list does not show one here. Please ask at an information counter.';
+  function ans(label,txt,mini){
+    var d=document.createElement('div'); d.className='ans'+(mini?' mini':'');
+    if(label){ var e=document.createElement('em'); e.textContent=label; d.appendChild(e); }
+    d.appendChild(document.createTextNode(txt||NONE)); return d;
+  }
+  function openSheet(it,btn){
+    lastTile=btn; shT.textContent=''; shB.textContent='';
+    var ic=document.createElement('span'); ic.setAttribute('aria-hidden','true'); ic.textContent=ICON[it[0]]||''; shT.appendChild(ic);
+    shT.appendChild(document.createTextNode(it[1]));
+    if(term==='ALL'&&D.terms.every(function(t){return it[2][t[0]]===it[2][D.terms[0][0]];})){ shB.appendChild(ans('All terminals',it[2][D.terms[0][0]],false)); }
+    else if(term==='ALL'){ D.terms.forEach(function(t){ shB.appendChild(ans(t[1],it[2][t[0]],true)); }); }
+    else { var tn=D.terms.filter(function(t){return t[0]===term;})[0][1]; shB.appendChild(ans(tn,it[2][term],false)); }
+    sheet.hidden=false; scrim.hidden=false; sheet.scrollTop=0; $('shClose').focus();
+  }
+  function closeSheet(){ sheet.hidden=true; scrim.hidden=true; if(lastTile) lastTile.focus(); }
+  $('shClose').addEventListener('click',closeSheet); scrim.addEventListener('click',closeSheet);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&!sheet.hidden) closeSheet(); });
+  /* tabs */
+  var tabs=[].slice.call(document.querySelectorAll('.tabs button'));
+  function go(name,focus){
+    if(!sheet.hidden){ sheet.hidden=true; scrim.hidden=true; }
+    tabs.forEach(function(b){ var on=b.getAttribute('data-tab')===name; b.setAttribute('aria-selected',on?'true':'false'); b.tabIndex=on?0:-1; $('p-'+(b.getAttribute('data-tab')==='arrive'?'arrive':b.getAttribute('data-tab'))).hidden=!on; });
+    $('panels').scrollTop=0;
+    try{ history.replaceState(null,'','#'+name); }catch(e){}
+    if(focus){ var cur=tabs.filter(function(b){return b.getAttribute('data-tab')===name;})[0]; if(cur) cur.focus(); }
+  }
+  tabs.forEach(function(b,i){
+    b.addEventListener('click',function(){ go(b.getAttribute('data-tab')); });
+    b.addEventListener('keydown',function(e){ var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(d){ e.preventDefault(); go(tabs[(i+d+tabs.length)%tabs.length].getAttribute('data-tab'),true); } });
+  });
+  var h=(location.hash||'').replace('#',''); go(/^(find|map|arrive|help)$/.test(h)?h:'find');
+  /* offline status and install */
+  var st=$('status'), saved=false;
   function paint(){
     if(!navigator.onLine){ st.className='status off'; st.textContent=saved?'Offline: saved copy':'Offline'; }
     else if(saved){ st.className='status saved'; st.textContent='Saved for offline use'; }
@@ -894,27 +997,28 @@ __SVG__
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/narita-sw.js',{scope:'/narita-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
-      .then(function(){ return caches.has('narita-pocket-v1'); })
-      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('narita-pocket-v1').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .then(function(){ return caches.has('narita-pocket-v2'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('narita-pocket-v2').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
       .catch(function(){ paint(); });
   }
   var dp=null;
-  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; document.getElementById('installRow').hidden=false; });
-  var b=document.getElementById('installBtn');
-  if(b){ b.addEventListener('click',function(){ if(!dp) return; dp.prompt(); dp=null; document.getElementById('installRow').hidden=true; }); }
-  if(window.navigator.standalone){ var i=document.getElementById('install'); if(i) i.hidden=true; }
+  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; $('installRow').hidden=false; var i=$('install'); if(i) i.open=true; });
+  var ib=$('installBtn');
+  if(ib){ ib.addEventListener('click',function(){ if(!dp) return; dp.prompt(); dp=null; $('installRow').hidden=true; }); }
+  var standalone=window.navigator.standalone||(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches);
+  if(standalone){ var i2=$('install'); if(i2) i2.hidden=true; }
 })();
 </script>
 </body>
 </html>
 """
-POCKET_HTML = (POCKET_HTML.replace("__CSS__", POCKET_CSS).replace("__FINDER__", FINDER)
+POCKET_HTML = (POCKET_HTML.replace("__CSS__", POCKET_CSS).replace("__FINDER_JSON__", json.dumps(FINDER_DATA, ensure_ascii=False))
                .replace("__SVG__", POCKET_SVG).replace("__GUIDE_URL__", URL))
 if re.search(r"\b(India|Indian|INR|Rs\.?|rupee|lakh|Aadhaar|UPI|VFS|BLS)\b|₹", re.sub(r"<script[^>]*>.*?</script>", "", POCKET_HTML, flags=re.S)):
     die("neutral-rule violation in the pocket guide")
 
 POCKET_SW = """/* Narita Pocket Guide service worker. Bump V when the page changes shape. */
-var V='narita-pocket-v1';
+var V='narita-pocket-v2';
 var PAGE='/narita-pocket';
 var SHELL=[PAGE,'/narita-pocket.webmanifest','/favicon-32.png','/favicon-192.png','/favicon-512.png'];
 self.addEventListener('install',function(e){
@@ -961,8 +1065,8 @@ POCKET_MANIFEST = json.dumps({
     "start_url": POCKET_PATH,
     "scope": POCKET_PATH,
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#00C9A7",
+    "background_color": "#1a1a3e",
+    "theme_color": "#1a1a3e",
     "lang": "en",
     "icons": [
         {"src": "/favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
