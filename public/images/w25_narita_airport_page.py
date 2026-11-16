@@ -56,12 +56,16 @@ checks = [
     (29, "googletagmanager.com/gtag/js"),
     (85, "<style>"),
     (454, "</style>"),
-    (465, '<nav class="nav" id="nav">'),
-    (477, "</nav>"),
 ]
 for n, needle in checks:
     if needle not in line(n):
         die("template line %d does not contain %r (template changed?)" % (n, needle))
+NAV0 = next((i for i, l in enumerate(t) if '<nav class="nav" id="nav">' in l), None)
+if NAV0 is None:
+    die("nav not found in template")
+NAV1 = next((i for i in range(NAV0, len(t)) if "</nav>" in t[i]), None)
+if NAV1 is None:
+    die("nav end not found in template")
 FOOT = next((i for i, l in enumerate(t) if '<footer class="footer">' in l), None)
 if FOOT is None:
     die("footer not found in template")
@@ -162,13 +166,14 @@ ld_article = {
     "publisher": {"@type": "Organization", "name": "PackSmart",
                   "logo": {"@type": "ImageObject", "url": SITE + "/logo.png"}},
     "mainEntityOfPage": URL,
+    "about": {"@type": "Airport", "name": "Narita International Airport", "iataCode": "NRT", "url": "https://www.narita-airport.jp/en/"},
 }
 ld_crumbs = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     "itemListElement": [
         {"@type": "ListItem", "position": 1, "name": "Home", "item": SITE},
-        {"@type": "ListItem", "position": 2, "name": "Blog", "item": SITE + "/blog"},
+        {"@type": "ListItem", "position": 2, "name": "Travel Essentials", "item": SITE + "/travel-essentials"},
         {"@type": "ListItem", "position": 3, "name": "Narita Airport Guide", "item": URL},
     ],
 }
@@ -183,11 +188,17 @@ TOC = [
     ("terminals", "Which terminal?"),
     ("arrival", "Your first hour after landing"),
     ("connected", "Getting online: SIM, eSIM and Wi-Fi"),
+    ("ic-card", "A train card (Suica or PASMO)"),
     ("to-tokyo", "Getting to Tokyo"),
+    ("luggage", "Sending your suitcase to your hotel"),
+    ("finder", "Find it fast: prayer room, baby room and more"),
     ("facilities", "Facilities by terminal"),
+    ("help", "Help for older travellers and anyone who needs assistance"),
     ("leaving", "Leaving Narita"),
     ("layover", "A short stop or a long layover"),
+    ("narita-or-haneda", "Narita or Haneda?"),
     ("faq", "FAQ"),
+    ("about-this-guide", "About this guide and change log"),
 ]
 toc_html = ('<div class="toc">\n    <h3>Table of Contents</h3>\n    <ol>\n'
             + "\n".join('        <li><a href="#%s">%s</a></li>' % (i, esc(n)) for i, n in TOC)
@@ -213,6 +224,25 @@ PRINT_CSS = """<style>
   .ps-scroll td:first-child{font-size:1.08rem;padding-top:8px!important;}
   .ps-scroll td[data-label]:not(:first-child)::before{content:attr(data-label);display:block;font-size:0.72rem;font-weight:700;color:#00967d;text-transform:uppercase;letter-spacing:0.03em;}
 }
+
+.ps-fig{margin:22px 0;text-align:center;}
+.ps-fig svg{width:100%;max-width:480px;height:auto;display:block;margin:0 auto;}
+.ps-fig figcaption{font-size:0.85rem;color:#777;margin-top:6px;}
+.ps-btn2{font:inherit;font-size:1rem;font-weight:700;color:#0f0f23;background:#fff;border:2px solid #00C9A7;border-radius:10px;padding:12px 18px;cursor:pointer;margin:6px 6px 0 0;}
+.ps-btn2:hover,.ps-btn2:focus-visible{background:#00C9A7;color:#fff;}
+.ps-finder{background:#fff;border:2px solid #00C9A7;border-radius:14px;padding:22px 24px;margin:24px 0;}
+.ps-finder h2{margin-top:0!important;}
+.ps-step-h{font-weight:700;font-size:1.1rem;margin:14px 0 6px;}
+.ps-chips{display:flex;flex-wrap:wrap;gap:10px;}
+.ps-chip{font:inherit;font-size:1.05rem;font-weight:600;min-height:48px;padding:10px 16px;border-radius:12px;border:2px solid #E9ECEF;background:#fff;color:#0f0f23;cursor:pointer;}
+.ps-chip:hover{border-color:#00C9A7;}
+.ps-chip[aria-pressed="true"]{background:#00C9A7;border-color:#00C9A7;color:#fff;}
+.ps-result{margin-top:18px;padding:16px 18px;border-radius:12px;background:#F1FBF9;border-left:5px solid #00C9A7;font-size:1.2rem;line-height:1.5;}
+.ps-result small{display:block;font-size:0.88rem;color:#666;margin-top:8px;line-height:1.45;}
+.ps-about{background:#f8f9fa;border-radius:12px;padding:16px 20px;margin:28px 0;font-size:0.95rem;line-height:1.6;}
+.ps-about h2{margin:0 0 6px!important;font-size:1.15rem!important;}
+.ps-about ul{margin:6px 0 0 1.2rem;padding:0;}
+@media(max-width:600px){.ps-finder{padding:16px;}.ps-chip{flex:1 1 100%;text-align:left;}}
 @media print{
   body *{visibility:hidden!important}
   .ps-card,.ps-card *{visibility:visible!important}
@@ -220,6 +250,260 @@ PRINT_CSS = """<style>
   .ps-print-btn{display:none!important}
 }
 </style>"""
+
+DIAGRAM = """<figure class="ps-fig" id="at-a-glance">
+<svg id="nrtDiagram" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 590" role="img" aria-labelledby="nrtT nrtD" font-family="Arial, Helvetica, sans-serif">
+<title id="nrtT">Narita Airport at a glance</title>
+<desc id="nrtD">Three terminals stacked top to bottom. Terminal 1 has its own train station. Terminals 2 and 3 share one station, under Terminal 2. A free shuttle bus links the terminals, and Terminals 2 and 3 are also joined by a walkway.</desc>
+<rect x="0" y="0" width="480" height="590" fill="#ffffff"/>
+<rect x="20" y="10" width="440" height="140" rx="14" fill="#F1FBF9" stroke="#00C9A7" stroke-width="3"/>
+<text x="38" y="46" font-size="28" font-weight="700" fill="#0f0f23">Terminal 1</text>
+<text x="38" y="80" font-size="21" fill="#0f0f23">North Wing: SkyTeam airlines</text>
+<text x="38" y="106" font-size="21" fill="#0f0f23">South Wing: Star Alliance, incl. ANA</text>
+<text x="38" y="132" font-size="21" font-weight="700" fill="#0b7a67">Train: Narita Airport Station</text>
+<line x1="60" y1="150" x2="60" y2="220" stroke="#E94560" stroke-width="4"/>
+<polygon points="50,210 60,224 70,210" fill="#E94560"/>
+<polygon points="50,160 60,146 70,160" fill="#E94560"/>
+<text x="88" y="192" font-size="21" fill="#0f0f23">Free shuttle bus: about 10 min</text>
+<rect x="20" y="224" width="440" height="112" rx="14" fill="#F1FBF9" stroke="#00C9A7" stroke-width="3"/>
+<text x="38" y="260" font-size="28" font-weight="700" fill="#0f0f23">Terminal 2</text>
+<text x="38" y="294" font-size="21" fill="#0f0f23">oneworld airlines and others</text>
+<text x="38" y="320" font-size="21" font-weight="700" fill="#0b7a67">Train: Airport Terminal 2·3 Station</text>
+<line x1="60" y1="336" x2="60" y2="428" stroke="#E94560" stroke-width="4"/>
+<polygon points="50,346 60,332 70,346" fill="#E94560"/>
+<polygon points="50,418 60,432 70,418" fill="#E94560"/>
+<text x="88" y="378" font-size="21" fill="#0f0f23">Walk about 15 min</text>
+<text x="88" y="404" font-size="21" fill="#0f0f23">or shuttle about 3 min</text>
+<rect x="20" y="432" width="440" height="122" rx="14" fill="#FFF5F7" stroke="#E94560" stroke-width="3"/>
+<text x="38" y="468" font-size="28" font-weight="700" fill="#0f0f23">Terminal 3</text>
+<text x="38" y="502" font-size="21" fill="#0f0f23">Low-cost airlines</text>
+<text x="38" y="528" font-size="21" font-weight="700" fill="#b0243d">No station of its own:</text>
+<text x="38" y="550" font-size="21" font-weight="700" fill="#b0243d">use the Terminal 2·3 station</text>
+<text x="240" y="578" font-size="15" text-anchor="middle" fill="#777777">Simplified diagram, not to scale. packsmartapp.com</text>
+</svg>
+<figcaption>Narita at a glance: a simple diagram, not to scale.</figcaption>
+<button type="button" class="ps-btn2" id="nrtDl">Download the diagram (PNG)</button>
+</figure>
+<script>
+(function(){
+  var b=document.getElementById('nrtDl'); if(!b) return;
+  b.addEventListener('click',function(){
+    try{
+      var svg=document.getElementById('nrtDiagram');
+      var xml=new XMLSerializer().serializeToString(svg);
+      var img=new Image();
+      img.onload=function(){
+        var c=document.createElement('canvas'); c.width=960; c.height=1180;
+        var x=c.getContext('2d'); x.fillStyle='#fff'; x.fillRect(0,0,c.width,c.height); x.drawImage(img,0,0,c.width,c.height);
+        c.toBlob(function(bl){
+          var a=document.createElement('a'); a.href=URL.createObjectURL(bl); a.download='narita-airport-at-a-glance.png';
+          document.body.appendChild(a); a.click(); document.body.removeChild(a);
+        },'image/png');
+      };
+      img.src='data:image/svg+xml;charset=utf-8,'+encodeURIComponent(xml);
+    }catch(e){ window.print(); }
+  });
+})();
+</script>"""
+
+FINDER_DATA = {
+    "terms": [["T1", "Terminal 1"], ["T2", "Terminal 2"], ["T3", "Terminal 3"]],
+    "items": [
+        ["prayer", "Prayer room", {
+            "T1": "3F (passport-control area)",
+            "T2": "1F, Main Building; and 3F, Main Building (passport-control area)",
+            "T3": "2F, Main Building"}],
+        ["baby", "Baby room", {
+            "T1": "Baby rooms are on several floors. Ask at an information counter for the nearest one.",
+            "T2": "Baby rooms are on several floors. Ask at an information counter for the nearest one.",
+            "T3": "Baby rooms are on several floors. Ask at an information counter for the nearest one."}],
+        ["quiet", "Quiet room", {
+            "T1": "2F, domestic departure area; and 2F, international departure area",
+            "T2": "2F, domestic departure area; and 2F, international departure area",
+            "T3": "3F, Main Building (public area); 3F domestic departure; 3F international departure"}],
+        ["info", "Information counter", {
+            "T1": "B1F, 1F, 2F, 3F and 4F",
+            "T2": "B1F, 1F and 3F (Main Building)",
+            "T3": "1F and 2F (Main Building)"}],
+        ["help", "Wheelchair and help", {
+            "T1": "Go to an information counter (marked with a ? sign). Wheelchair rental, accessible toilets and special assistance are arranged through the airport. Narita Airport Information: +81 476-34-8000, open 24 hours.",
+            "T2": "Go to an information counter (marked with a ? sign). Wheelchair rental, accessible toilets and special assistance are arranged through the airport. Narita Airport Information: +81 476-34-8000, open 24 hours.",
+            "T3": "Go to an information counter (marked with a ? sign). Wheelchair rental, accessible toilets and special assistance are arranged through the airport. Narita Airport Information: +81 476-34-8000, open 24 hours."}],
+        ["lockers", "Coin lockers", {
+            "T1": "B1F, 1F and 4F",
+            "T2": "B1F and 3F (Main Building)",
+            "T3": "2F (Main Building)"}],
+        ["wifi", "Wi-Fi rental counter", {
+            "T1": "1F",
+            "T2": "B1F, Main Building",
+            "T3": "1F and 2F (Main Building)"}],
+        ["shower", "Showers and day rooms (paid)", {
+            "T1": "2F; and 3F (passport-control area)",
+            "T2": "3F, Main Building (passport-control area)",
+            "T3": ""}],
+        ["internet", "Free internet point", {
+            "T1": "4F",
+            "T2": "1F, Main Building",
+            "T3": ""}],
+        ["play", "Children's play area", {
+            "T1": "3F (paid Kids Park, after passport control); Baby Play Space",
+            "T2": "2F, domestic services area (after departure procedures)",
+            "T3": ""}],
+    ],
+}
+
+FINDER = """<section class="ps-finder" id="finder">
+<h2>Find it fast</h2>
+<p>Choose your terminal, then what you need. Large buttons, no typing.</p>
+<p class="ps-step-h">1. Which terminal are you in?</p>
+<div class="ps-chips" id="fdTerm"></div>
+<p class="ps-step-h">2. What do you need?</p>
+<div class="ps-chips" id="fdWhat"></div>
+<div class="ps-result" id="fdResult" aria-live="polite">Choose a terminal and what you need, and the answer shows here.</div>
+<noscript><p>This tool needs JavaScript. The full table is just below.</p></noscript>
+</section>
+<script>
+(function(){
+  var D=__FINDER_JSON__;
+  var term=null, what=null;
+  var tEl=document.getElementById('fdTerm'), wEl=document.getElementById('fdWhat'), rEl=document.getElementById('fdResult');
+  if(!tEl||!wEl||!rEl) return;
+  function mk(label,id,group){
+    var b=document.createElement('button'); b.type='button'; b.className='ps-chip'; b.textContent=label; b.setAttribute('aria-pressed','false'); b.setAttribute('data-id',id);
+    b.addEventListener('click',function(){
+      if(group==='t'){term=id;} else {what=id;}
+      [].forEach.call((group==='t'?tEl:wEl).children,function(c){c.setAttribute('aria-pressed',c.getAttribute('data-id')===id?'true':'false');});
+      show();
+    });
+    return b;
+  }
+  D.terms.forEach(function(t){tEl.appendChild(mk(t[1],t[0],'t'));});
+  D.items.forEach(function(i){wEl.appendChild(mk(i[1],i[0],'w'));});
+  function show(){
+    if(!term||!what){ rEl.textContent=!term?'Now choose your terminal.':'Now choose what you need.'; return; }
+    var tn=D.terms.filter(function(t){return t[0]===term;})[0][1];
+    var it=D.items.filter(function(i){return i[0]===what;})[0];
+    var txt=it[2][term];
+    rEl.innerHTML='';
+    var s=document.createElement('strong'); s.textContent=it[1]+' at '+tn; rEl.appendChild(s);
+    rEl.appendChild(document.createElement('br'));
+    rEl.appendChild(document.createTextNode(txt?txt:'The airport list does not show one here. Please ask at an information counter.'));
+    var sm=document.createElement('small'); sm.textContent='From Narita Airport pages, checked 16 November 2026. Floors can change. If you cannot find it, ask at an information counter (look for the ? sign).'; rEl.appendChild(sm);
+  }
+})();
+</script>"""
+FINDER = FINDER.replace("__FINDER_JSON__", json.dumps(FINDER_DATA, ensure_ascii=False))
+
+CHOOSER = """<h3>Where are you staying?</h3>
+<div class="ps-scroll">
+<table class="checklist-table">
+<thead><tr><th>You are going to</th><th>Easiest choice</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td><strong>Ueno, Nippori or Asakusa</strong></td><td>Keisei Skyliner (fast) or Access Express (cheaper)</td><td>Both run straight to that side of Tokyo.</td></tr>
+<tr><td><strong>Tokyo Station, Shinjuku, Shibuya or Yokohama</strong></td><td>JR Narita Express</td><td>Direct, no changing trains, and there is room for suitcases.</td></tr>
+<tr><td><strong>A large hotel or Tokyo Disney Resort</strong></td><td>Airport Limousine Bus</td><td>Stops at many hotels, so you do not carry bags up and down station stairs.</td></tr>
+<tr><td><strong>Tokyo Station area, lowest cost</strong></td><td>TYO-NRT bus or Access Express</td><td>The cheapest direct choices.</td></tr>
+<tr><td><strong>Tired, lots of luggage, or not sure</strong></td><td>Limousine bus or a pre-booked private transfer</td><td>Least walking and the fewest decisions.</td></tr>
+</tbody>
+</table>
+</div>
+"""
+
+IC_CARD = """<h2 id="ic-card">A train card (Suica or PASMO)</h2>
+<p>A tap-on travel card saves you buying a ticket for every train, subway or bus ride, and it also pays in many shops and vending machines. Visitors usually buy a tourist version, called Welcome Suica. It has no deposit, it is valid for 28 days, and any money left on it cannot be refunded.</p>
+<ul>
+<li><strong>Where at Narita:</strong> JR East Travel Service Centers and dedicated Welcome Suica ticket machines at Narita Airport Station (Terminal 1) and Airport Terminal 2·3 Station.</li>
+<li><strong>Queues:</strong> expect a line just after a busy arrival. If the machine queue is long, try the service counter.</li>
+<li><strong>iPhone users:</strong> an app version, Welcome Suica Mobile, lets you set up before you land (iPhone only, as of April 2026).</li>
+<li><strong>Staying longer than 28 days?</strong> A regular Suica or PASMO may suit you better. Ask at the counter.</li>
+</ul>
+<div class="warning-box">
+    <strong>This changes often.</strong> Sales points and card types have changed several times in recent years. Check <a href="https://www.jreast.co.jp/multi/en/welcomeSUICA/welcomeSUICA.html" target="_blank" rel="noopener noreferrer">JR East's Welcome Suica page</a> before you travel.
+</div>"""
+
+LUGGAGE = """<h2 id="luggage">Sending your suitcase to your hotel</h2>
+<p>If you do not want to carry heavy bags on a crowded train, you can post them ahead. Two companies, JAL ABC and Yamato, run delivery counters at Narita. Ask which counter is in your terminal.</p>
+<ul>
+<li><strong>Usually next day.</strong> Most airport luggage delivery arrives the following day. Some same-day services exist, but they have cut-off times and can pause in busy seasons, so do not plan around same-day.</li>
+<li><strong>Prices vary by size.</strong> A medium suitcase usually starts from about ¥1,950 (around 120 cm for length, width and height added together).</li>
+<li><strong>Have these ready:</strong> your hotel name, address and phone number, written down.</li>
+<li><strong>Keep with you:</strong> medicines, valuables, chargers and a change of clothes.</li>
+</ul>
+<p class="ps-note">Sources: <a href="https://tokyocheapo.com/travel/luggage-delivery-services" target="_blank" rel="noopener noreferrer">Tokyo Cheapo</a> and <a href="https://fun-japan.jp/en/articles/13685" target="_blank" rel="noopener noreferrer">Fun Japan</a>, checked 16 November 2026. Prices and cut-off times change, so confirm at the counter.</p>"""
+
+HELP = """<h2 id="help">Help for older travellers and anyone who needs assistance</h2>
+<p>You do not have to cope alone. Narita is set up to help, and asking early is easier than struggling.</p>
+<ul>
+<li><strong>Information counters.</strong> Look for the "?" sign. Staff can answer questions and solve problems.</li>
+<li><strong>Phone help.</strong> Narita Airport Information is open 24 hours a day: +81 476-34-8000.</li>
+<li><strong>Facilities.</strong> Narita lists accessible toilets, wheelchair rental, special-assistance and intercom services, and quiet rooms in all three terminals. Lifts have voice guidance, low buttons and Braille, and the terminal shuttle buses have low floors for wheelchairs.</li>
+<li><strong>Trains.</strong> Reserved trains such as the Narita Express may have only one or two wheelchair spaces, so book early and tell station staff you need help.</li>
+<li><strong>Before you fly.</strong> Ask your airline to arrange assistance at the airport when you book.</li>
+</ul>
+<p class="ps-note">Sources: <a href="https://www.narita-airport.jp/en/bf/" target="_blank" rel="noopener noreferrer">Narita Airport: customers requiring assistance</a>, <a href="https://www.narita-airport.jp/en/service/ud/" target="_blank" rel="noopener noreferrer">universal design facilities</a> and <a href="https://www.narita-airport.jp/en/service/ud/other-ud/" target="_blank" rel="noopener noreferrer">other facilities</a>; <a href="https://www.japan.travel/en/tokyo2020/barrier-free-for-everyone/" target="_blank" rel="noopener noreferrer">Japan National Tourism Organization</a>.</p>"""
+
+LATE = """<h3>Landing late or leaving very early?</h3>
+<p>The 9h nine hours Narita Airport capsule hotel sits inside the airport area next to Terminal 2·3 Station and has a 24-hour front desk. Its booking listing shows check-in from 2 pm to midnight and check-out by 10 am, and it asks you to tell them your arrival time in advance. From Terminal 1 or Terminal 3, use the terminal shuttle bus. The Japan National Tourism Organization lists it as the closest hotel for international flights.</p>"""
+
+NRT_HND = """<h2 id="narita-or-haneda">Narita or Haneda?</h2>
+<p>Many travellers cannot choose, because the airline decides. If you can choose, here is the short version.</p>
+<div class="ps-scroll">
+<table class="checklist-table">
+<thead><tr><th></th><th>Narita (NRT)</th><th>Haneda (HND)</th></tr></thead>
+<tbody>
+<tr><td><strong>Where</strong></td><td>About 60 km east of Tokyo, in Chiba</td><td>Closer to central Tokyo</td></tr>
+<tr><td><strong>Getting into the city</strong></td><td>About an hour or more</td><td>Usually quicker</td></tr>
+<tr><td><strong>Flights</strong></td><td>Many international routes and low-cost airlines</td><td>Many domestic flights, plus international</td></tr>
+<tr><td><strong>Good to know</strong></td><td>Three terminals; plan for the transfer</td><td>Often easier for a late arrival</td></tr>
+</tbody>
+</table>
+</div>"""
+
+ABOUT = """<div class="ps-about" id="about-this-guide">
+<h2>About this guide</h2>
+<p>Written by PackSmart. Our founder visited Narita in October 2026. Facility details were checked against Narita Airport's own pages on 16 November 2026, and transport fares and times are rounded ranges from several public sources. Spotted something out of date? <a href="/contact">Tell us</a> and we will fix it.</p>
+<ul>
+<li><strong>16 Nov 2026:</strong> first version.</li>
+<li><strong>16 Nov 2026:</strong> added the find-it tool, the diagram, the train card, luggage, assistance, late arrival and Narita-or-Haneda sections.</li>
+</ul>
+</div>"""
+
+def _card(title, text, slug, tag):
+    return ('        <div class="related-card">\n            <div class="related-card-body">\n                <h4>%s</h4>\n                <p>%s</p>\n'
+            '                <a href="https://www.packsmartapp.com%s">Read More <span class="related-arrow">&rarr;</span></a>\n                <div class="related-tag">%s</div>\n            </div>\n        </div>\n') % (title, text, slug, tag)
+
+RELATED = ('<div class="related-posts">\n    <h3>Related Guides</h3>\n    <div class="related-grid">\n'
+    + _card("Japan Travel and Packing Guide 2026", "What to pack, rail passes, etiquette and a budget breakdown for Tokyo, Kyoto and Osaka.", "/blog/japan-travel-packing-guide", "Destination Guide")
+    + _card("Japan 7-Day Itinerary on a Budget", "A first week in Tokyo, Kyoto and Osaka, with costs.", "/blog/japan-7-day-itinerary-budget", "Itinerary")
+    + _card("Best eSIM for International Travel", "Compare travel eSIMs before you fly.", "/blog/best-esim-international-travel-comparison", "Travel Essentials")
+    + '    </div>\n</div>')
+
+# hero image (optional): save the photo as public/images/narita-airport-hero.jpg (any of jpg/jpeg/png/webp), then run this script
+def prepare_hero():
+    imgdir = os.path.join(ROOT, "public", "images")
+    src = None
+    for ext in ("jpg", "jpeg", "png", "webp"):
+        cand = os.path.join(imgdir, "narita-airport-hero." + ext)
+        if os.path.isfile(cand):
+            src = cand
+            break
+    if not src:
+        return None, None
+    dst = os.path.join(imgdir, "narita-airport-hero-1600.jpg")
+    note = None
+    if (not os.path.isfile(dst)) or os.path.getmtime(dst) < os.path.getmtime(src):
+        import subprocess, shutil
+        try:
+            subprocess.run(["sips", "-Z", "1600", "-s", "format", "jpeg", "-s", "formatOptions", "72", src, "--out", dst],
+                           check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+            note = "narita-airport-hero-1600.jpg (optimised from your photo)"
+        except Exception:
+            if src.lower().endswith(".jpg"):
+                return "/images/" + os.path.basename(src), "using the original photo (could not optimise it here)"
+            return None, None
+    return "/images/narita-airport-hero-1600.jpg", note
+
+HERO_URL, HERO_NOTE = prepare_hero()
 
 CARD = """<div class="ps-card" id="one-page">
 <h2>Narita on one page</h2>
@@ -281,6 +565,8 @@ CONNECTED = """<h2 id="connected">Getting online: SIM, eSIM and Wi-Fi</h2>
 
 TO_TOKYO = """<h2 id="to-tokyo">Getting to Tokyo</h2>
 <p>Narita is far from the city, so choose your route by where you are staying. Times and prices below are approximate: they differ a little between sources and change over time, so check the operator before you go.</p>
+""" + CHOOSER + """
+<h3>All the options</h3>
 <div class="ps-scroll">
 <table class="checklist-table">
 <thead><tr><th>Option</th><th>Goes to</th><th>About how long</th><th>About how much</th><th>Good to know</th></tr></thead>
@@ -336,6 +622,9 @@ LEAVING = """<h2 id="leaving">Leaving Narita</h2>
 LAYOVER = """<h2 id="layover">A short stop or a long layover</h2>
 <p>If you have less than about 4 hours between flights, stay in the airport. Immigration, the train ride and the trip back eat up the time. With a longer wait you could visit Naritasan Shinjoji Temple, which is a short trip from the airport, or rest in a day room. Narita also has paid shower rooms and day rooms for a break between flights.</p>"""
 
+
+
+
 AFFILIATE_P = ('<p style="font-size:0.82rem;color:#999;margin-bottom:0.5rem;padding-bottom:0.8rem;border-bottom:1px solid #eee;">'
                'This article contains affiliate links. If you make a purchase through these links, we may earn a small commission at no extra cost to you. '
                '<a href="/affiliate-disclosure" style="color:#00C9A7;">Learn more</a>.</p>')
@@ -367,16 +656,25 @@ BODY = "\n\n".join([
     toc_html,
     CARD,
     TERMINALS,
+    DIAGRAM,
     ARRIVAL,
     CONNECTED,
     airalo,
+    IC_CARD,
     TO_TOKYO,
+    LUGGAGE,
+    FINDER,
     FACILITIES,
+    HELP,
     LEAVING,
     LAYOVER,
+    LATE,
+    NRT_HND,
     '<div class="tip-box">\n    <strong>Planning more of Japan?</strong> Our <a href="/blog/japan-travel-packing-guide">Japan travel and packing guide</a> covers what to pack, rail passes, etiquette and a budget breakdown, and the <a href="/blog/japan-7-day-itinerary-budget">7-day Japan itinerary</a> shows how a first week can look.\n</div>',
     "<!-- FIRST-HAND NOTES: add notes and photos from a recent Narita visit here -->",
     faq_html(),
+    ABOUT,
+    RELATED,
 ])
 
 head = "\n".join([
@@ -395,11 +693,11 @@ head = "\n".join([
     '    <meta property="og:url" content="%s">' % URL,
     '    <meta property="og:type" content="article">',
     '    <meta property="og:site_name" content="PackSmart">',
-    '    <meta property="og:image" content="%s/og-default.png">' % SITE,
+    ('    <meta property="og:image" content="%s%s">' % (SITE, HERO_URL)) if HERO_URL else ('    <meta property="og:image" content="%s/og-default.png">' % SITE),
     '    <meta name="twitter:card" content="summary_large_image">',
     '    <meta name="twitter:title" content="%s">' % html.escape(TITLE),
     '    <meta name="twitter:description" content="%s">' % html.escape(DESC),
-    '    <meta name="twitter:image" content="%s/og-default.png">' % SITE,
+    ('    <meta name="twitter:image" content="%s%s">' % (SITE, HERO_URL)) if HERO_URL else ('    <meta name="twitter:image" content="%s/og-default.png">' % SITE),
     '    <meta property="article:author" content="PackSmart">',
     '    <meta property="article:section" content="Travel">',
     line(25), line(26), line(28),
@@ -411,13 +709,14 @@ head = "\n".join([
     line(462),
     "</head>",
     "<body>",
-    "\n".join(t[464:477]),
+    "\n".join(t[NAV0:NAV1 + 1]),
     "",
-    '    <div class="hero-blog" style="background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);">',
+    ('    <div class="hero-blog" style="background: linear-gradient(rgba(15,15,35,0.62), rgba(26,26,62,0.72)), url(\'%s\'); background-size: cover; background-position: center 40%%;">' % HERO_URL) if HERO_URL else '    <div class="hero-blog" style="background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);">',
     "        <h1>%s</h1>" % esc(H1),
     '        <div class="meta">November 16, 2026 · 8 min read</div>',
     '        <div class="meta">Airport Guide • Japan</div>',
-    '        <div class="meta">Last updated: November 2026</div>',
+    '        <div class="meta">Last updated: November 2026 · Facts checked 16 Nov 2026</div>',
+    ('        <div class="meta" style="font-size:0.75rem;opacity:0.75;">Photo: susi-paku / PAKUTASO. Illustrative image of a Narita terminal.</div>' if HERO_URL else ''),
     "</div>",
     "",
     '    <div class="content">',
@@ -452,6 +751,8 @@ if "data-ps-placement=\"pickups-japan\"" in page or "airalo-japan" in page:
     die("placement id rename failed")
 
 changed = []
+if HERO_NOTE:
+    changed.append(HERO_NOTE)
 old = open(OUT, encoding="utf-8").read() if os.path.isfile(OUT) else None
 if old != page:
     open(OUT, "w", encoding="utf-8").write(page)
