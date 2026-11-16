@@ -874,8 +874,25 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 .card h2{margin:0 0 6px;font-size:1.1rem}
 .card p{margin:0 0 6px}
 .small{font-size:0.82rem;color:#555}
-.mapcard{padding:10px;text-align:center}
-.mapcard svg{width:100%;height:auto;max-height:calc(100dvh - 64px - var(--tabh) - 96px);display:block;margin:0 auto}
+.tmap{display:flex;flex-direction:column}
+.tcard{position:relative;display:flex;gap:14px;align-items:center;border-radius:20px;padding:14px 14px;border:2px solid #CDEFE8;background:linear-gradient(135deg,#E6FAF5,#fff 70%);box-shadow:0 3px 0 rgba(15,15,35,.06)}
+.tcard h3{margin:0 0 4px;font-size:1.25rem;line-height:1.1}
+.tcard p{margin:2px 0;font-size:0.95rem;line-height:1.3}
+.tcard .tb{min-width:0}
+.badge{flex:none;width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#00C9A7,#0b8f7c);box-shadow:0 3px 0 rgba(0,0,0,.12)}
+.t2{border-color:#D3D3EE;background:linear-gradient(135deg,#ECECF9,#fff 70%)}
+.t2 .badge{background:linear-gradient(135deg,#34346e,#1a1a3e)}
+.t3{border-color:#F6CBD3;background:linear-gradient(135deg,#FDECEF,#fff 70%)}
+.t3 .badge{background:linear-gradient(135deg,#E94560,#c92f4a)}
+.wing{display:inline-block;font-size:0.72rem;font-weight:800;letter-spacing:.02em;text-transform:uppercase;background:#1a1a3e;color:#fff;border-radius:6px;padding:1px 6px;margin-right:4px;vertical-align:1px}
+.stn{display:inline-block;margin-top:6px!important;font-weight:700;color:#0b6b59;background:#fff;border:1.5px solid #BFEADF;border-radius:10px;padding:3px 9px}
+.t2 .stn{color:#1a1a3e;border-color:#D3D3EE}
+.stn.warn{color:#a3243b;border-color:#F6CBD3}
+.tlink{display:flex;gap:10px;align-items:center;margin:0 0 0 27px;padding:6px 0 6px 20px;border-left:3px dashed #B9C3D0;font-size:0.9rem;font-weight:600;color:#2a2f45;line-height:1.25}
+.tlink span:first-child{font-size:1.3rem}
+.mine{display:none;position:absolute;top:-10px;right:12px;background:#E94560;color:#fff;font-size:0.72rem;font-weight:800;border-radius:12px;padding:2px 10px;box-shadow:0 2px 0 rgba(0,0,0,.15)}
+.tcard.sel{box-shadow:0 0 0 3px #E94560,0 4px 0 rgba(15,15,35,.1)}
+.tcard.sel .mine{display:block}
 .steps{list-style:none;margin:0;padding:0}
 .steps li{margin:0 0 7px}
 .stp{font:inherit;width:100%;display:flex;gap:12px;align-items:flex-start;text-align:left;background:#fff;border:2px solid #E1E8EB;border-radius:14px;padding:8px 12px;line-height:1.28;color:#0f0f23;cursor:pointer;box-shadow:0 2px 0 rgba(15,15,35,.05)}
@@ -884,7 +901,9 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 .stp .tx{font-size:0.9rem;color:#333}
 .stp[aria-pressed="true"]{background:#F1FBF9;border-color:#00C9A7}
 .stp[aria-pressed="true"] .n{background:#0b6b59}
-.stp[aria-pressed="true"] b{text-decoration:line-through;text-decoration-thickness:2px;text-decoration-color:#00C9A7}
+.stp[aria-pressed="true"] b::after{content:" · Done";font-size:0.8rem;font-weight:700;color:#0b6b59}
+.reset[hidden]{display:none}
+.reset{font:inherit;font-size:0.85rem;font-weight:700;color:#0b6b59;background:none;border:0;text-decoration:underline;cursor:pointer;padding:8px 4px;margin:0 0 0 2px}
 .lead2{margin:0 2px 8px;font-size:0.9rem;color:#555}
 .heroline{display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,#1a1a3e,#0f0f23);color:#fff;border-radius:14px;padding:8px 14px;margin:0 0 8px}
 .heroline .big2{flex:none;font-size:1.7rem;font-weight:800;line-height:1;color:#00C9A7}
@@ -964,20 +983,26 @@ POCKET_HTML = """<!DOCTYPE html>
 <noscript><p class="card">This guide needs JavaScript. Please turn it on, or ask at any information counter (look for the ? sign).</p></noscript>
 </section>
 <section class="panel" id="p-map" role="tabpanel" aria-labelledby="t-map" hidden>
-<div class="card mapcard">
-__SVG__
+<div class="tmap" id="tmap">
+<div class="tcard t1" data-t="T1"><span class="mine">Your terminal</span><div class="badge">1</div><div class="tb"><h3>Terminal 1</h3><p><span class="wing">North Wing</span> SkyTeam airlines</p><p><span class="wing">South Wing</span> Star Alliance, incl. ANA</p><p class="stn"><span aria-hidden="true">&#128646;</span> Narita Airport Station</p></div></div>
+<div class="tlink"><span aria-hidden="true">&#128652;</span><span>Free shuttle bus: about 10 min</span></div>
+<div class="tcard t2" data-t="T2"><span class="mine">Your terminal</span><div class="badge">2</div><div class="tb"><h3>Terminal 2</h3><p>oneworld airlines and others</p><p class="stn"><span aria-hidden="true">&#128646;</span> Airport Terminal 2&middot;3 Station</p></div></div>
+<div class="tlink"><span aria-hidden="true">&#128694;</span><span>Walk about 15 min<br>or shuttle about 3 min</span></div>
+<div class="tcard t3" data-t="T3"><span class="mine">Your terminal</span><div class="badge">3</div><div class="tb"><h3>Terminal 3</h3><p>Low-cost airlines</p><p class="stn warn"><span aria-hidden="true">&#9888;&#65039;</span> No station of its own: use the Terminal 2&middot;3 station</p></div></div>
 </div>
-<p class="small" style="text-align:center">Check your ticket or airline app: airlines can change terminals.</p>
+<p class="small" style="text-align:center;margin-top:10px">Simplified, not to scale. Check your ticket or airline app: airlines can change terminals.</p>
 </section>
 <section class="panel" id="p-arrive" role="tabpanel" aria-labelledby="t-arrive" hidden>
 <p class="lead2">Landed? Tap a step to tick it off.</p>
 <ol class="steps" id="arrSteps"></ol>
+<button type="button" class="reset" id="arrReset" hidden>Clear ticks</button>
 <p class="sec-h">Then, once you are out</p>
 <div class="tiles" id="arrTiles"></div>
 </section>
 <section class="panel" id="p-depart" role="tabpanel" aria-labelledby="t-depart" hidden>
 <div class="heroline"><span class="big2">2 h</span><span><b>Arrive at least 2 hours early.</b><br>Your airline sets when check-in opens.</span></div>
 <ol class="steps" id="depSteps"></ol>
+<button type="button" class="reset" id="depReset" hidden>Clear ticks</button>
 </section>
 <section class="panel" id="p-help" role="tabpanel" aria-labelledby="t-help" hidden>
 <a class="call" href="tel:+81476348000"><span aria-hidden="true">&#128222;</span> Call +81 476-34-8000</a>
@@ -1019,7 +1044,7 @@ __SVG__
   }
   D.terms.forEach(function(t){ seg.appendChild(segBtn(t[0],'<small>Terminal</small><b>'+t[0].charAt(1)+'</b>')); });
   seg.appendChild(segBtn('ALL','Not sure','txt'));
-  function paintSeg(){ [].forEach.call(seg.children,function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-t')===term?'true':'false'); }); }
+  function paintSeg(){ [].forEach.call(seg.children,function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-t')===term?'true':'false'); }); [].forEach.call(document.querySelectorAll('#tmap .tcard'),function(c){ c.classList.toggle('sel',c.getAttribute('data-t')===term); }); }
   paintSeg();
   /* need tiles */
   var tiles=$('tiles');
@@ -1113,10 +1138,11 @@ __SVG__
       var tx=document.createElement('span'); tx.className='tx'; var bb=document.createElement('b'); bb.textContent=st[0]; tx.appendChild(bb);
       tx.appendChild(document.createTextNode(typeof st[1]==='function'?st[1]():st[1]));
       b.appendChild(n); b.appendChild(tx);
-      b.addEventListener('click',function(){ done[i]=!done[i]; b.setAttribute('aria-pressed',done[i]?'true':'false'); n.textContent=done[i]?'✓':String(i+1); });
+      b.addEventListener('click',function(){ done[i]=!done[i]; b.setAttribute('aria-pressed',done[i]?'true':'false'); n.textContent=done[i]?'✓':String(i+1); syncReset(); });
       li.appendChild(b); ol.appendChild(li);
     });
   }
+  function syncReset(){ $('arrReset').hidden=!doneA.some(Boolean); $('depReset').hidden=!doneD.some(Boolean); }
   var ARR=[['Health check',"Hand in the plane's health form. Feeling unwell? Tell an officer."],
     ['Immigration','Show your passport. Automatic gates give no stamp: ask staff if you want one.'],
     ['Baggage claim','Find your flight on the screen and go to its carousel. Carts are nearby.'],
@@ -1135,6 +1161,8 @@ __SVG__
     ['Boarding gate','Be at your gate well before boarding. Wait for staff instructions.']];
   function renderDep(){ renderSteps($('depSteps'),DEP,doneD); }
   renderSteps($('arrSteps'),ARR,doneA); renderDep();
+  $('arrReset').addEventListener('click',function(){ doneA.length=0; renderSteps($('arrSteps'),ARR,doneA); syncReset(); });
+  $('depReset').addEventListener('click',function(){ doneD.length=0; renderDep(); syncReset(); });
   /* tabs */
   var tabs=[].slice.call(document.querySelectorAll('.tabs button'));
   function go(name,focus){
