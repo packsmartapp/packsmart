@@ -26,22 +26,22 @@
     },
     {
       "source": "/blog/fifa-world-cup-2026-travel-packing-guide",
-      "destination": "/blog/usa-travel-packing-guide-from-india",
+      "destination": "/blog/usa-travel-packing-guide",
       "permanent": true
     },
     {
       "source": "/blog/fifa-world-cup-2026-travel-packing-guide.html",
-      "destination": "/blog/usa-travel-packing-guide-from-india",
+      "destination": "/blog/usa-travel-packing-guide",
       "permanent": true
     },
     {
       "source": "/blog/fifa-world-cup-2026-usa-host-cities-guide",
-      "destination": "/blog/usa-travel-packing-guide-from-india",
+      "destination": "/blog/usa-travel-packing-guide",
       "permanent": true
     },
     {
       "source": "/blog/fifa-world-cup-2026-usa-host-cities-guide.html",
-      "destination": "/blog/usa-travel-packing-guide-from-india",
+      "destination": "/blog/usa-travel-packing-guide",
       "permanent": true
     },
     {
@@ -72,6 +72,66 @@
     {
       "source": "/blog/fifa-world-cup-2026-match-day-guide.html",
       "destination": "/blog",
+      "permanent": true
+    },
+    {
+      "source": "/blog/canada-travel-packing-guide-from-india",
+      "destination": "/blog/canada-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/canada-travel-packing-guide-from-india.html",
+      "destination": "/blog/canada-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/usa-travel-packing-guide-from-india",
+      "destination": "/blog/usa-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/usa-travel-packing-guide-from-india.html",
+      "destination": "/blog/usa-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/australia-travel-packing-guide-from-india",
+      "destination": "/blog/australia-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/australia-travel-packing-guide-from-india.html",
+      "destination": "/blog/australia-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/south-korea-travel-packing-guide-from-india",
+      "destination": "/blog/south-korea-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/south-korea-travel-packing-guide-from-india.html",
+      "destination": "/blog/south-korea-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/uk-travel-packing-guide-from-india",
+      "destination": "/blog/uk-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/uk-travel-packing-guide-from-india.html",
+      "destination": "/blog/uk-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/new-zealand-travel-packing-guide-from-india",
+      "destination": "/blog/new-zealand-travel-packing-guide",
+      "permanent": true
+    },
+    {
+      "source": "/blog/new-zealand-travel-packing-guide-from-india.html",
+      "destination": "/blog/new-zealand-travel-packing-guide",
       "permanent": true
     }
   ],
