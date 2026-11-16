@@ -566,6 +566,17 @@ CONNECTED = """<h2 id="connected">Getting online: SIM, eSIM and Wi-Fi</h2>
 </div>
 <p>Narita's own facility list shows Wi-Fi rental counters on the 1st floor of Terminal 1, the basement 1st floor of the Terminal 2 main building, and the 1st and 2nd floors of the Terminal 3 main building. Counter hours and stock vary by company, so ordering ahead is safer.</p>"""
 
+
+KLOOK_TRANSPORT = """<div data-ps-placement="klook-narita-transport" style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">
+<p style="margin:0 0 8px;"><strong>Want your train or bus ticket sorted before you fly?</strong> You can buy these as e-tickets on Klook. You can also buy at the station or bus counter when you arrive, so booking ahead is a convenience, not a must.</p>
+<ul style="margin:0 0 8px 18px;">
+<li><a href="https://klook.tpx.li/gIYih1CY" target="_blank" rel="nofollow noopener sponsored" style="color:#00C9A7;text-decoration:underline;">Keisei Skyliner tickets</a> (Ueno and Nippori)</li>
+<li><a href="https://klook.tpx.li/tX4jclRv" target="_blank" rel="nofollow noopener sponsored" style="color:#00C9A7;text-decoration:underline;">Narita Express (N'EX) tickets</a></li>
+<li><a href="https://klook.tpx.li/SISnlOYP" target="_blank" rel="nofollow noopener sponsored" style="color:#00C9A7;text-decoration:underline;">Airport Limousine Bus tickets</a> (hotel-direct)</li>
+</ul>
+<p style="margin:0;font-size:0.85rem;color:#555;">Before you pay, read each listing's change and cancellation rules. Some Skyliner options cannot be cancelled, and Limousine Bus bookings cannot be amended: you cancel and rebook. Buses can run late in traffic, so leave a buffer. We earn a small commission if you book through these links, at no extra cost to you.</p>
+</div>"""
+
 TO_TOKYO = """<h2 id="to-tokyo">Getting to Tokyo</h2>
 <p>Narita is far from the city, so choose your route by where you are staying. Times and prices below are approximate: they differ a little between sources and change over time, so check the operator before you go.</p>
 """ + CHOOSER + """
@@ -588,6 +599,7 @@ TO_TOKYO = """<h2 id="to-tokyo">Getting to Tokyo</h2>
 </div>
 <p><strong>Late arrival?</strong> The Narita Express and Skyliner are reported to stop around 11 pm, while buses run later. If you land late, check the last train before you book.</p>
 <p><strong>Going on to Haneda?</strong> Keisei runs a direct train service to Haneda Airport (about 2 hours by Access Express), and a limousine bus takes about 85 minutes.</p>
+""" + KLOOK_TRANSPORT + """
 <p>If you would rather have a driver waiting for you after a long flight, you can book a fixed-price private transfer in advance:</p>
 """ + pickups
 
@@ -620,10 +632,12 @@ LEAVING = """<h2 id="leaving">Leaving Narita</h2>
 <li><strong>Terminal 3 takes longer.</strong> If you arrive by train, you get off at Terminal 2 and walk about 15 minutes or take the shuttle. Allow extra time.</li>
 <li><strong>Return rented gear first.</strong> If you rented a pocket Wi-Fi, hand it back before you reach the departures lobby, especially at Terminal 1.</li>
 <li><strong>Allow time.</strong> Check-in, security and passport control all take time, so arrive early.</li>
-</ul>"""
+</ul>
+<p data-ps-placement="bags-narita-tokyo" style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">&#129523; Checked out of your Tokyo hotel with hours to spare before a Narita flight? <a href="https://radicalstorage.tpx.li/d0Eds67a" target="_blank" rel="nofollow noopener sponsored" style="color:#00C9A7;text-decoration:underline;">Store your bags in Tokyo with Radical Storage</a> and travel light until it is time to go.</p>"""
 
 LAYOVER = """<h2 id="layover">A short stop or a long layover</h2>
-<p>If you have less than about 4 hours between flights, stay in the airport. Immigration, the train ride and the trip back eat up the time. With a longer wait you could visit Naritasan Shinjoji Temple, which is a short trip from the airport, or rest in a day room. Narita also has paid shower rooms and day rooms for a break between flights.</p>"""
+<p>If you have less than about 4 hours between flights, stay in the airport. Immigration, the train ride and the trip back eat up the time. With a longer wait you could visit Naritasan Shinjoji Temple, which is a short trip from the airport, or rest in a day room. Narita also has paid shower rooms and day rooms for a break between flights.</p>
+<p data-ps-placement="klook-narita-layover">If you would rather not plan it yourself, Klook lists a <a href="https://klook.tpx.li/lGwthXzC" target="_blank" rel="nofollow noopener sponsored" style="color:#00C9A7;text-decoration:underline;">private half-day Narita layover tour</a> that visits the Naritasan approach street and the temple, with free cancellation up to 24 hours before. It has very few reviews so far, so read the listing first. Leaving the airport means passing immigration, so check whether you need a visa, and leave plenty of time to get back. We earn a small commission if you book through this link, at no extra cost to you.</p>"""
 
 
 
