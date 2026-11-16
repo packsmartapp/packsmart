@@ -179,6 +179,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <div class="card"><h2>Bigger writing</h2><p><button type="button" class="big" id="lgBtn">Make writing bigger</button></p></div>
 <div class="card"><h2>Show this to staff</h2><p class="small">Cannot say it in English or Japanese? Tap one, then hold up your phone. The staff will read it.</p><div class="tiles" id="askTiles"></div></div>
 <div class="card" id="shareCard" hidden><h2>Helping someone travel?</h2><p>Send this guide to their phone before the trip, so it is saved for use with no internet.</p><p><button type="button" class="big" id="shareBtn">Send this guide</button></p></div>
+<p class="small">Some links in this guide are partner links. We may earn a small commission at no cost to you.</p>
 <div class="card"><h2>Narita Airport Information</h2><p>Open 24 hours. Your phone company may charge for calls abroad.</p><p>Every terminal has information counters. Look for the <strong>?</strong> sign. Staff will help, so just ask.</p></div>
 <div class="card install" id="install"><h2>Keep this on your phone</h2><p>Add it to your home screen once, while you have signal. It then opens like an app, even with no internet.</p><p id="instHow" hidden><button type="button" class="big" id="instBtn">Show me how</button></p><p class="small" id="instDesk">Open this page on your phone, then add it to your home screen.</p></div>
 <p class="small">Facility details come from Narita Airport's own pages, checked 16 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). The full guide, with trains, SIM and luggage, is at <a href="https://www.packsmartapp.com/blog/narita-airport-guide">packsmartapp.com</a> (needs internet).</p>
@@ -270,7 +271,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
        +'<li><b>Taxi or private car:</b> door to door, 60 to 90 min. A metered taxi is often over &yen;20,000. A fixed-price private car is about &euro;139 per car (figure from the company, Nov 2026).</li></ul>';
     h+='<div class="tipbox">The Skyliner and Access Express can leave from the same platform. Check the train name and time. Trains are reported to stop around 11 pm.</div>';
     h+='<p class="sm">Times and prices are approximate and change. Check the operator.</p>';
-    h+='<p class="sm">Book ahead (partner links, needs internet): <a href="https://klook.tpx.li/gIYih1CY" target="_blank" rel="sponsored nofollow noopener">Skyliner</a> &middot; <a href="https://klook.tpx.li/tX4jclRv" target="_blank" rel="sponsored nofollow noopener">Narita Express</a> &middot; <a href="https://klook.tpx.li/SISnlOYP" target="_blank" rel="sponsored nofollow noopener">Limousine bus</a> (all Klook) &middot; <a href="https://tpx.li/qYFLwgZ8" target="_blank" rel="sponsored nofollow noopener">Private car</a> (Welcome Pickups). PackSmart may earn a small commission at no extra cost to you.</p>'+more('#to-tokyo');
+    h+='<p class="sm">You can book tickets here (partner links): <a href="https://klook.tpx.li/gIYih1CY" target="_blank" rel="sponsored nofollow noopener">Skyliner</a> &middot; <a href="https://klook.tpx.li/tX4jclRv" target="_blank" rel="sponsored nofollow noopener">Narita Express</a> &middot; <a href="https://klook.tpx.li/SISnlOYP" target="_blank" rel="sponsored nofollow noopener">Limousine bus</a> &middot; <a href="https://tpx.li/qYFLwgZ8" target="_blank" rel="sponsored nofollow noopener">Private car</a></p>';
     return h;
   }
   function simHTML(){
@@ -294,7 +295,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
       +'<li>Write down your hotel name, address and phone number.</li>'
       +'<li>Keep medicines, valuables and chargers with you.</li></ul>'
       +'<p class="sm">Prices and cut-off times change. Confirm at the counter.</p>'
-       +'<p class="sm">Book ahead (partner link, needs internet): <a href="https://klook.tpo.lu/dc2ejBgY" target="_blank" rel="sponsored nofollow noopener">Klook hotel and airport luggage delivery</a> for Tokyo hotels and Narita Terminals 1 and 2. PackSmart may earn a small commission at no extra cost to you.</p>'+more('#luggage');
+       +'<p class="sm">You can book it here (partner link): <a href="https://klook.tpo.lu/dc2ejBgY" target="_blank" rel="sponsored nofollow noopener">Luggage delivery between Tokyo hotels and Narita</a> (Terminals 1 and 2).</p>';
   }
   var NEXT=[['🚆','Train, bus or taxi',trainHTML],['📱','Phone data',simHTML],['💴','Cash and train card',cashHTML],['📦','Send your suitcase',bagsHTML]];
   var at=$('arrTiles');
@@ -354,7 +355,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
        +'<li><b>Taxi or private car:</b> door to door, 60 to 90 min. A metered taxi is often over &yen;20,000. A fixed-price private car is about &euro;139 per car (figure from the company, Nov 2026).</li></ul>';
     h+='<div class="tipbox"><b>Early flight?</b> The first Skyliner leaves Keisei-Ueno at about 5:40 and the first Tokyo Station bus at about 5:00. Check first-train times the day before. For a very early flight you may need a bus, a taxi, or a hotel near the airport the night before.</div>';
     h+='<p class="sm">Times and prices are approximate and change. Check the operator.</p>';
-    h+='<p class="sm">Book ahead (partner links, needs internet): <a href="https://klook.tpx.li/gIYih1CY" target="_blank" rel="sponsored nofollow noopener">Skyliner</a> &middot; <a href="https://klook.tpx.li/tX4jclRv" target="_blank" rel="sponsored nofollow noopener">Narita Express</a> &middot; <a href="https://klook.tpx.li/SISnlOYP" target="_blank" rel="sponsored nofollow noopener">Limousine bus</a> (all Klook) &middot; <a href="https://tpx.li/qYFLwgZ8" target="_blank" rel="sponsored nofollow noopener">Private car</a> (Welcome Pickups). PackSmart may earn a small commission at no extra cost to you.</p>'+more('#to-tokyo');
+    h+='<p class="sm">You can book tickets here (partner links): <a href="https://klook.tpx.li/gIYih1CY" target="_blank" rel="sponsored nofollow noopener">Skyliner</a> &middot; <a href="https://klook.tpx.li/tX4jclRv" target="_blank" rel="sponsored nofollow noopener">Narita Express</a> &middot; <a href="https://klook.tpx.li/SISnlOYP" target="_blank" rel="sponsored nofollow noopener">Limousine bus</a> &middot; <a href="https://tpx.li/qYFLwgZ8" target="_blank" rel="sponsored nofollow noopener">Private car</a></p>';
     return h;
   }
   function sendOutHTML(){
@@ -364,7 +365,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
       +'<li>Counters are in Terminals 1 and 2. Ask which one and its opening hours, especially for an early or late flight.</li>'
       +'<li>Keep your passport, medicines and valuables with you.</li></ul>'
       +'<p class="sm">A medium suitcase starts from about &yen;1,950. Rules, prices and cut-off times change: confirm with the company.</p>'
-       +'<p class="sm">Book ahead (partner link, needs internet): <a href="https://klook.tpo.lu/dc2ejBgY" target="_blank" rel="sponsored nofollow noopener">Klook hotel and airport luggage delivery</a> for Tokyo hotels and Narita Terminals 1 and 2. PackSmart may earn a small commission at no extra cost to you.</p>'+more('#luggage');
+       +'<p class="sm">You can book it here (partner link): <a href="https://klook.tpo.lu/dc2ejBgY" target="_blank" rel="sponsored nofollow noopener">Luggage delivery between Tokyo hotels and Narita</a> (Terminals 1 and 2).</p>';
   }
   function taxHTML(){
     return '<p class="n2">From <b>1 November 2026</b> you pay the full price, tax included, at the shop. You claim the tax back at the airport.</p>'
