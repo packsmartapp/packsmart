@@ -20,10 +20,19 @@ def row(label, text):
     return f'<div style="margin:0 0 8px;"><span style="{LBL}">{label}</span><span style="{VAL}">{text}</span></div>'
 
 
-def card(pid, tag, title, desc, rows, btn, link):
+def banner(img, w, h, alt, link):
+    return (
+        f'<a href="{link}" target="_blank" rel="sponsored nofollow noopener" tabindex="-1" style="display:block;max-width:340px;margin:0 auto 12px;">'
+        f'<picture><source type="image/webp" srcset="/images/{img}.webp">'
+        f'<img src="/images/{img}.png" width="{w}" height="{h}" loading="lazy" alt="{alt}" style="display:block;width:100%;height:auto;border-radius:12px;"></picture></a>'
+    )
+
+
+def card(pid, tag, title, desc, rows, btn, link, pic):
     body = "".join(row(a, b) for a, b in rows)
     return (
         f'<div data-ps-placement="{pid}" style="display:flex;flex-direction:column;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:16px 16px 14px;">'
+        f'{pic}'
         f'<span style="align-self:flex-start;background:#E7FAF5;color:#0a8f78;font-size:0.72rem;font-weight:700;letter-spacing:.03em;padding:3px 10px;border-radius:999px;margin:0 0 8px;">{tag}</span>'
         f'<strong style="display:block;font-size:1.15rem;color:#0f0f23;margin:0 0 4px;">{title}</strong>'
         f'<p style="margin:0 0 12px;font-size:0.93rem;line-height:1.45;color:#333;">{desc}</p>'
@@ -44,7 +53,8 @@ def block(suffix):
             ("Data", "Sakura offers 3 GB a day on docomo, or unlimited data on au (a fair use policy may apply)."),
             ("Pick up", "At a Sakura Mobile counter at Narita, Haneda, Kansai or Fukuoka airport, or have it sent to your hotel. Nothing to return: throw the SIM away after your trip."),
         ],
-        "Get a travel SIM", SIM_LINK)
+        "Get a travel SIM", SIM_LINK,
+        banner("sakura-sim-banner", 380, 364, "Sakura Mobile Japan travel SIM card", SIM_LINK))
     wifi = card(
         "sakura-japan-wifi" + suffix, "FOR FAMILIES AND GROUPS", "Pocket Wi-Fi",
         "One small device connects every phone, and it works with any phone. When your trip ends, post it back in the envelope that comes with it.",
@@ -52,7 +62,8 @@ def block(suffix):
             ("Price", "The price depends on your dates. Sakura shows the total once you choose them. It runs on the docomo network, and Sakura describes the data as unlimited, so check the plan terms when you book."),
             ("Pick up", "At a Sakura Mobile counter at Narita, Haneda, Kansai, Fukuoka, New Chitose or Chubu Centrair airport, or have it sent to your hotel or a post office."),
         ],
-        "Rent a pocket Wi-Fi", LINK)
+        "Rent a pocket Wi-Fi", LINK,
+        banner("sakura-wifi-banner", 570, 546, "Sakura Mobile pocket Wi-Fi device", LINK))
     return (
         MARK + "\n"
         '<div style="max-width:800px;margin:24px auto;padding:22px 24px;background:#f0faf7;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:12px;">\n'
