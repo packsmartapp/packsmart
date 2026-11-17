@@ -962,6 +962,13 @@ if bad:
 if "data-ps-placement=\"pickups-japan\"" in page or "airalo-japan" in page:
     die("placement id rename failed")
 
+# GA4 click names for the Sakura and Japan Bullet Train partner links (idempotent)
+for _dom, _nm in (("p.sakuramobile.jp", "Sakura_Mobile"), ("japan-bullettrain.com", "Japan_Bullet_Train")):
+    if "'%s'" % _dom not in page:
+        page = page.replace("'klook.tpx.li': 'Klook',", "'%s': '%s',\n        'klook.tpx.li': 'Klook'," % (_dom, _nm), 1)
+    if "'%s'" % _dom not in page:
+        die("could not add %s to the affiliate click map" % _dom)
+
 changed = []
 if HERO_NOTE:
     changed.append(HERO_NOTE)
