@@ -1123,8 +1123,8 @@ POCKET_HTML = """<!DOCTYPE html>
 <script>
 (function(){
   var D=__FINDER_JSON__;
-  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8',smoking:'\\uD83D\\uDEAC',toilet:'\\uD83D\\uDEBB',food:'\\uD83C\\uDF5C',money:'\\uD83D\\uDCB4',unwell:'\\uD83C\\uDFE5',pharmacy:'\\uD83D\\uDC8A',charge:'\\uD83D\\uDD0B',more:'\\u2795'};
-  var SHORT={prayer:'Prayer room',baby:'Baby room',quiet:'Quiet room',info:'Information counter',help:'Wheelchair and help',lockers:'Luggage',wifi:'Wi-Fi rental',shower:'Showers, day rooms',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets',food:'Food and drink',money:'Money and ATMs',unwell:'Feeling unwell',pharmacy:'Pharmacy',charge:'Phone charging',more:'More places'};
+  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8',smoking:'\\uD83D\\uDEAC',toilet:'\\uD83D\\uDEBB',food:'\\uD83C\\uDF5C',money:'\\uD83D\\uDCB4',unwell:'\\uD83C\\uDFE5',pharmacy:'\\uD83D\\uDC8A',trains:'\\uD83D\\uDE86',phone:'\\uD83D\\uDCF6',charge:'\\uD83D\\uDD0B',more:'\\u2795'};
+  var SHORT={prayer:'Prayer room',baby:'Baby room',quiet:'Quiet room',info:'Information counter',help:'Wheelchair and help',lockers:'Luggage',wifi:'Wi-Fi rental',shower:'Showers, day rooms',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets',food:'Food and drink',money:'Money and ATMs',unwell:'Feeling unwell',pharmacy:'Pharmacy',trains:'Train, bus, taxi',phone:'Phone and Wi-Fi',charge:'Phone charging',more:'More places'};
   var term='ALL', lastTile=null;
   try{ var s=localStorage.getItem('nrtTerm'); if(s&&/^(ALL|T1|T2|T3)$/.test(s)) term=s; }catch(e){}
   function $(id){return document.getElementById(id);}
@@ -1157,12 +1157,20 @@ POCKET_HTML = """<!DOCTYPE html>
     offTimer=setTimeout(function(){ off.classList.add('off'); offTimer=null; },320);
   }
   tiles2.inert=true;
-  D.items.forEach(function(it,n){
+  var PH_TXT=' Phone charging: free power outlets are in many places in every terminal, and paid power bank rental (ChargeSPOT) is before security, open 24 hours.';
+  var phoneIt=['phone','Phone and Wi-Fi',{}];
+  D.terms.forEach(function(t){ phoneIt[2][t[0]]='Pocket Wi-Fi and SIM rental counters: '+item('wifi')[2][t[0]]+'.'+PH_TXT; });
+  var trainsIt=['trains','Train, bus or taxi',{}];
+  var LIST=[];
+  ['money','food','toilet','help','lockers','baby','play','trains','info','unwell','pharmacy','phone','prayer','quiet','shower','smoking'].forEach(function(id){
+    LIST.push(id==='trains'?trainsIt:id==='phone'?phoneIt:item(id));
+  });
+  LIST.forEach(function(it,n){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n%3); b.setAttribute('data-id',it[0]);
     var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=ICON[it[0]]||'\\u2022';
     var tx=document.createElement('span'); tx.className='tx'; tx.textContent=SHORT[it[0]]||it[1];
     b.appendChild(ic); b.appendChild(tx);
-    b.addEventListener('click',function(){ openSheet(it,b); });
+    b.addEventListener('click',function(){ if(it[0]==='trains'){ openInfo(ICON.trains,it[1],trainHTML(),b); } else { openSheet(it,b); } });
     (n<MAIN?tiles:tiles2).appendChild(b);
     if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u2192','More','Information counter, prayer room and others',function(){ slideTo(1); })); }
   });
