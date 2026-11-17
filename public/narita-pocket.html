@@ -55,6 +55,10 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 .sheet a{color:#00776a;font-weight:700}
 .tcard{position:relative;display:flex;gap:14px;align-items:center;border-radius:20px;padding:14px 14px;border:2px solid #CDEFE8;background:linear-gradient(135deg,#E6FAF5,#fff 70%);box-shadow:0 3px 0 rgba(15,15,35,.06)}
 .tcard h3{margin:0 0 4px;font-size:1.25rem;line-height:1.1}
+.tcard.here{border-color:#00A98C;box-shadow:0 0 0 3px rgba(0,201,167,.35)}
+.tcard .heretag{display:inline-block;background:#00A98C;color:#fff;font-weight:800;font-size:.78rem;border-radius:20px;padding:2px 10px;margin:0 0 4px}
+.tcard .route{font-weight:700;color:#2a2f45;margin-top:6px}
+.tlink[hidden]{display:none}
 .tcard p{margin:2px 0;font-size:0.95rem;line-height:1.3}
 .tcard .tb{min-width:0}
 .badge{flex:none;width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#00C9A7,#0b8f7c);box-shadow:0 3px 0 rgba(0,0,0,.12)}
@@ -195,16 +199,17 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <noscript><p class="card">This guide needs JavaScript. Please turn it on, or ask at any information counter (look for the ? sign).</p></noscript>
 </section>
 <section class="panel" id="p-map" role="tabpanel" aria-labelledby="t-map" hidden>
-<p class="seg-h" style="margin-top:2px">Narita has 3 terminals</p>
-<p class="lead2">Your ticket or airline app shows which one is yours.</p>
+<p class="seg-h" style="margin-top:2px">Which terminal are you in?</p>
+<div class="seg" id="mseg"></div>
+<p class="lead2" id="mLead" style="margin-top:10px">Your ticket or airline app shows which one is yours.</p>
 <div class="tmap" id="tmap">
 <div class="tcard t1" data-t="T1"><div class="badge">1</div><div class="tb"><h3>Terminal 1</h3><p><span class="wing">North Wing</span> SkyTeam airlines</p><p><span class="wing">South Wing</span> Star Alliance, incl. ANA</p><p class="stn"><span aria-hidden="true">&#128646;</span> Narita Airport Station</p></div></div>
 <div class="tlink"><span aria-hidden="true">&#128652;</span><span>Free shuttle bus: about 10 min</span></div>
 <div class="tcard t2" data-t="T2"><div class="badge">2</div><div class="tb"><h3>Terminal 2</h3><p>oneworld airlines and others</p><p class="stn"><span aria-hidden="true">&#128646;</span> Airport Terminal 2&middot;3 Station</p></div></div>
-<div class="tlink"><span aria-hidden="true">&#128694;</span><span>Walk about 15 min<br>or shuttle about 3 min</span></div>
+<div class="tlink"><span aria-hidden="true">&#128694;</span><span>Walk about 15 min<br>or shuttle bus 3 to 6 min</span></div>
 <div class="tcard t3" data-t="T3"><div class="badge">3</div><div class="tb"><h3>Terminal 3</h3><p>Low-cost airlines</p><p class="stn warn"><span aria-hidden="true">&#9888;&#65039;</span> No station of its own: use the Terminal 2&middot;3 station</p></div></div>
 </div>
-<p class="small" style="text-align:center;margin-top:10px">Simplified, not to scale. Airlines can change terminals, so check before you go.</p>
+<p class="small" style="text-align:center;margin-top:10px">Simplified, not to scale. Airlines can change terminals, so check before you go. Shuttle buses can run late in traffic. <a href="https://www.narita-airport.jp/en/access/shuttlebus" target="_blank" rel="noopener noreferrer">Official shuttle bus page</a> (needs internet).</p>
 </section>
 <section class="panel" id="p-arrive" role="tabpanel" aria-labelledby="t-arrive" hidden>
 <p class="lead2">Landed? Tap a step to tick it off.</p>
@@ -251,7 +256,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 </div>
 <nav class="tabs" role="tablist" aria-label="Sections">
 <button type="button" role="tab" id="t-find" data-tab="find" aria-selected="true"><span aria-hidden="true">&#128269;</span>Find</button>
-<button type="button" role="tab" id="t-map" data-tab="map" aria-selected="false"><span aria-hidden="true">&#128506;&#65039;</span>Map</button>
+<button type="button" role="tab" id="t-map" data-tab="map" aria-selected="false"><span aria-hidden="true">&#128506;&#65039;</span>Terminals</button>
 <button type="button" role="tab" id="t-arrive" data-tab="arrive" aria-selected="false"><span aria-hidden="true">&#128748;</span>Arrival</button>
 <button type="button" role="tab" id="t-depart" data-tab="depart" aria-selected="false"><span aria-hidden="true">&#128747;</span>Departure</button>
 <button type="button" role="tab" id="t-help" data-tab="help" aria-selected="false"><span aria-hidden="true">&#128587;</span>Help</button>
@@ -282,7 +287,27 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   }
   D.terms.forEach(function(t){ seg.appendChild(segBtn(t[0],'<small>Terminal</small><b>'+t[0].charAt(1)+'</b>')); });
   seg.appendChild(segBtn('ALL','Not sure','txt'));
-  function paintSeg(){ [].forEach.call(seg.children,function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-t')===term?'true':'false'); }); }
+  var mseg=$('mseg');
+  D.terms.forEach(function(t){ mseg.appendChild(segBtn(t[0],'<small>Terminal</small><b>'+t[0].charAt(1)+'</b>')); });
+  mseg.appendChild(segBtn('ALL','Not sure','txt'));
+  function paintSeg(){ [seg,mseg].forEach(function(g){ [].forEach.call(g.children,function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-t')===term?'true':'false'); }); }); paintMap(); }
+  /* Terminals tab: personal view for the terminal the person chose */
+  function paintMap(){
+    var R={T1:{T2:'Free shuttle bus, about 10 min',T3:'Free shuttle bus, about 14 min'},
+           T2:{T1:'Free shuttle bus, about 10 min',T3:'Walk about 15 min, or shuttle bus about 6 min'},
+           T3:{T1:'Free shuttle bus, about 14 min',T2:'Walk about 15 min, or shuttle bus about 3 min'}};
+    var personal=(term==='T1'||term==='T2'||term==='T3');
+    $('mLead').textContent=personal?('You are in Terminal '+term.charAt(1)+'. Here is how to reach the others.'):'Your ticket or airline app shows which one is yours.';
+    [].forEach.call(document.querySelectorAll('#tmap .tlink'),function(e){ e.hidden=personal; });
+    [].forEach.call(document.querySelectorAll('#tmap .tcard'),function(c){
+      var id=c.getAttribute('data-t'), tb=c.querySelector('.tb');
+      [].forEach.call(c.querySelectorAll('.heretag,.route'),function(e){ e.parentNode.removeChild(e); });
+      c.classList.toggle('here',personal&&id===term);
+      if(!personal) return;
+      if(id===term){ var g=document.createElement('p'); g.className='heretag'; g.textContent='You are here'; tb.insertBefore(g,tb.firstChild); }
+      else { var r=document.createElement('p'); r.className='route'; r.textContent='\uD83D\uDE8C From here: '+R[term][id]; tb.appendChild(r); }
+    });
+  }
   paintSeg();
   /* need tiles */
   var tiles=$('tiles'), tiles2=$('tiles2'), track=$('track'), pager=$('pager'), page=0, offTimer=null;
