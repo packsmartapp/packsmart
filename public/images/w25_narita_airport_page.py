@@ -223,9 +223,90 @@ TOC = [
     ("faq", "FAQ"),
     ("about-this-guide", "About this guide and change log"),
 ]
-toc_html = ('<div class="toc">\n    <h3>Table of Contents</h3>\n    <ol>\n'
-            + "\n".join('        <li><a href="#%s">%s</a></li>' % (i, esc(n)) for i, n in TOC)
-            + "\n    </ol>\n</div>")
+# ---- v71: "What do you need first?" tiles + a quick-jump bar that appears once you scroll
+TOC_SHORT = {
+    "one-page": "On one page", "terminals": "Terminals", "arrival": "First hour", "connected": "Get online",
+    "ic-card": "Train card", "to-tokyo": "To Tokyo", "luggage": "Suitcase", "finder": "Find it fast",
+    "facilities": "Facilities", "help": "Help", "leaving": "Leaving", "layover": "Layover",
+    "narita-or-haneda": "Narita or Haneda", "faq": "FAQ", "about-this-guide": "About",
+}
+TOC_TILES = [
+    ("connected", "&#128246;", "Get online", "SIM, eSIM, Wi-Fi"),
+    ("ic-card", "&#128646;", "Train card", "Suica or PASMO"),
+    ("to-tokyo", "&#128652;", "Get to Tokyo", "Train, bus, taxi"),
+    ("luggage", "&#129523;", "Send your suitcase", "To your hotel"),
+    ("finder", "&#128332;", "Prayer and baby rooms", "Find it fast"),
+    ("help", "&#129309;", "Help and assistance", "For older travellers"),
+]
+TOC_CSS = """<style>
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+""" + ",".join("#%s" % i for i, _ in TOC) + """{scroll-margin-top:var(--psn-off,150px)}
+.psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0}
+.psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
+.psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
+.psn-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}
+.psn-tile{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:14px 14px 12px;text-decoration:none!important;color:#0f0f23!important;transition:border-color .15s,box-shadow .15s}
+.psn-tile:hover,.psn-tile:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25)}
+.psn-tile .em{font-size:1.6rem;line-height:1.1;margin-bottom:4px}
+.psn-tile b{font-size:1.02rem}
+.psn-tile small{color:#666;font-size:.82rem}
+.psn-now details{margin-top:12px}
+.psn-now summary{cursor:pointer;font-weight:700;color:#0a8f78;font-size:.95rem;padding:6px 0}
+.psn-now ol{columns:2;column-gap:24px;margin:8px 0 0;padding-left:1.3rem;font-size:.92rem}
+.psn-now li{margin:0 0 6px;break-inside:avoid}
+.psn-now li a{color:#0f0f23}
+#psnBar{position:fixed;left:0;right:0;top:var(--psn-top,64px);z-index:40;background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #e9f3f0;padding:10px 0;transform:translateY(-130%);visibility:hidden;transition:transform .25s ease-out,visibility .25s}
+#psnBar.on{transform:none;visibility:visible}
+#psnBar .in{max-width:800px;margin:0 auto;padding:0 20px;display:flex;gap:8px;align-items:center}
+#psnBar .rail{flex:1;min-width:0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:center}
+#psnBar .rail::-webkit-scrollbar{display:none}
+#psnBar .chip{flex:none;text-decoration:none;font-weight:700;font-size:.92rem;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 14px;white-space:nowrap;transition:background .15s,border-color .15s}
+#psnBar .chip:hover{border-color:#00C9A7}
+#psnBar .chip.cur{background:#00C9A7;border-color:#00C9A7}
+#psnBar .up{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-family:inherit}
+@media (max-width:600px){.psn-now ol{columns:1}}
+@media print{#psnBar{display:none!important}}
+</style>"""
+toc_html = (
+    TOC_CSS
+    + '\n<div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p>'
+    + '<div class="psn-tiles">'
+    + "".join('<a class="psn-tile" href="#%s" data-psn="tile-%s"><span class="em">%s</span><b>%s</b><small>%s</small></a>' % (i, i, e, esc(b), esc(sm)) for i, e, b, sm in TOC_TILES)
+    + '</div>\n<details><summary>See all %d sections</summary><ol>' % len(TOC)
+    + "".join('<li><a href="#%s" data-psn="list-%s">%s</a></li>' % (i, i, esc(n)) for i, n in TOC)
+    + '</ol></details></div>\n'
+    + '<div id="psnBar" role="navigation" aria-label="Jump to a section"><div class="in">'
+    + '<button type="button" class="up" aria-label="Back to the top of the page" data-psn="up">&uarr;</button><div class="rail">'
+    + "".join('<a class="chip" href="#%s" data-id="%s" data-psn="chip-%s">%s</a>' % (i, i, i, esc(TOC_SHORT[i])) for i, _ in TOC)
+    + '</div></div></div>\n'
+    + """<script>
+(function(){
+  var bar=document.getElementById('psnBar'); if(!bar) return;
+  var rail=bar.querySelector('.rail'), chips=[].slice.call(rail.querySelectorAll('.chip')), nav=document.getElementById('nav');
+  var ids=chips.map(function(c){return c.getAttribute('data-id')}), cur=null, tick=false;
+  function ev(a){ try{ if(window.gtag) gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname}); }catch(e){} }
+  function setTop(){ var h=nav?Math.round(nav.getBoundingClientRect().bottom):64; if(h<0||h>140) h=64; document.documentElement.style.setProperty('--psn-top',h+'px'); document.documentElement.style.setProperty('--psn-off',(h+84)+'px'); }
+  function current(){ var y=window.pageYOffset+260, c=null; ids.forEach(function(id){ var e=document.getElementById(id); if(e&&e.getBoundingClientRect().top+window.pageYOffset<=y) c=id; }); return c; }
+  function paint(){
+    tick=false;
+    var box=document.getElementById('contents'), on=box?box.getBoundingClientRect().bottom<(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-top'),10)||64):window.pageYOffset>520;
+    bar.classList.toggle('on',on);
+    var c=on?current():null;
+    if(c===cur) return; cur=c;
+    chips.forEach(function(a){
+      var is=a.getAttribute('data-id')===c; a.classList.toggle('cur',is);
+      if(is){ a.setAttribute('aria-current','true'); var t=a.offsetLeft-rail.offsetLeft-rail.clientWidth/2+a.offsetWidth/2; if(Math.abs(rail.scrollLeft-t)>8) rail.scrollTo({left:t}); } else a.removeAttribute('aria-current');
+    });
+  }
+  function req(){ if(!tick){ tick=true; requestAnimationFrame(paint); } }
+  window.addEventListener('scroll',req,{passive:true}); window.addEventListener('resize',function(){ setTop(); req(); });
+  setTop(); paint();
+  bar.querySelector('.up').addEventListener('click',function(){ ev('up'); try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } });
+  document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('[data-psn]'); if(a) ev(a.getAttribute('data-psn')); });
+})();
+</script>"""
+)
 
 PRINT_CSS = """<style>
 .ps-card{background:#fff;border:2px solid #00C9A7;border-radius:14px;padding:22px 24px;margin:24px 0;}
