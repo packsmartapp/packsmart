@@ -35,7 +35,7 @@ META = '<span class="meta">November 16, 2026 &middot; 8 min read</span>'
 BR_MORE = '<br><span class="read-more">Read more &rarr;</span>'
 if seg.count(META) != 1 or seg.count(BR_MORE) != 1:
     sys.exit("card markup is not what was expected; page not changed")
-ICON = ('<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" '
+ICON = ('<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" '
         'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg>')
 NEW = ('<div class="pg-meta">' + META + '<span class="read-more">Read more &rarr;</span></div>\n'
        '                <span class="pg-strip"><span class="pg-ic">' + ICON + '</span>'
@@ -49,7 +49,7 @@ CSS = """<style id="pg-strip-css">
 .pg-meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;column-gap:.6rem;row-gap:.25rem}
 .pg-meta .read-more{white-space:nowrap}
 .pg-strip{display:flex;align-items:center;gap:.65rem;margin-top:1rem;background:#E7FAF5;border:1px solid #bfeee2;color:#0f0f23;border-radius:12px;padding:.5rem .8rem .5rem .55rem}
-.pg-ic{flex:none;width:30px;height:30px;border-radius:9px;background:#00C9A7;display:flex;align-items:center;justify-content:center}
+.pg-ic{flex:none;width:30px;height:30px;border-radius:9px;background:#F97316;color:#fff;display:flex;align-items:center;justify-content:center}
 .pg-tx{flex:1;font-weight:800;font-size:.9rem;line-height:1.25}
 @media (max-width:480px){.blog-card-body.pg-body{padding-left:1.3rem;padding-right:1.3rem}.pg-meta .read-more{font-size:.85rem}}
 </style>

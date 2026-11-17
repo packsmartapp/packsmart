@@ -838,10 +838,13 @@ BODY = "\n\n".join([
 # hero button (v50): a quiet way into the Pocket Guide from the top of the article
 HERO_CTA = ('        <div style="margin:48px 0 0;text-align:center;">'
             '<a href="/narita-pocket?src=hero" onclick="try{window.gtag&&gtag(\'event\',\'pocket_prompt\',{event_category:\'engagement\',action:\'open_hero\',page_path:location.pathname});}catch(e){}" '
-            'style="display:inline-block;background:#00C9A7;color:#0f0f23;text-align:center;padding:12px 24px;width:300px;max-width:100%;box-sizing:border-box;border-radius:12px;text-decoration:none;min-height:44px;box-shadow:0 6px 18px rgba(0,0,0,.28);line-height:1.2;">'
+            'style="display:inline-flex;align-items:center;gap:12px;background:#00C9A7;color:#0f0f23;text-align:left;padding:12px 18px 12px 14px;width:300px;max-width:100%;box-sizing:border-box;border-radius:12px;text-decoration:none;min-height:44px;box-shadow:0 6px 18px rgba(0,0,0,.28);line-height:1.2;">'
+            '<span aria-hidden="true" style="flex:none;width:40px;height:40px;border-radius:50%;background:#F97316;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.18);">'
+            '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg></span>'
+            '<span style="flex:1;min-width:0;text-align:left;">'
             '<span style="display:block;font-weight:700;font-size:0.8rem;opacity:0.8;">Download to your phone</span>'
-            '<span style="display:block;font-weight:800;font-size:1.1rem;margin-top:2px;">Narita Pocket Guide</span>'
-            '<span style="display:block;font-weight:600;font-size:0.8rem;margin-top:2px;opacity:0.8;">Works offline</span></a></div>')
+            '<span style="display:block;font-weight:800;font-size:1.05rem;margin-top:2px;">Narita Pocket Guide</span>'
+            '<span style="display:block;font-weight:600;font-size:0.8rem;margin-top:2px;opacity:0.8;">Works offline</span></span></a></div>')
 
 head = "\n".join([
     "<!DOCTYPE html>",
