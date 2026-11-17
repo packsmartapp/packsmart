@@ -973,9 +973,15 @@ html.lg{font-size:118%}
 .sheet p.n2{margin:6px 0;font-size:1.05rem}
 .sheet .sm{font-size:0.85rem;color:#555;margin:6px 0 0}
 .tiles .tile:last-child:nth-child(odd){grid-column:1/-1}
-.tiles .tile[hidden]{display:none}
+.pager{overflow:hidden;margin-top:6px}
+.track{display:flex;align-items:flex-start;transition:transform .28s ease}
+.tiles.pane{flex:0 0 100%;min-width:0;margin-top:0;visibility:visible}
+.tiles.pane.off{visibility:hidden}
+.tiles.pane .tile:last-child:nth-child(odd):not(.more){grid-column:auto}
 .tiles .tile.more{grid-column:1/-1;min-height:56px;background:#F1F5F6;border-style:dashed}
 .tiles .tile.more .tx{font-weight:700}
+.tiles .tile.more small{display:block;font-weight:600;font-size:.82em;color:#4a5068;margin-top:2px}
+@media (prefers-reduced-motion:reduce){.track{transition:none}}
 a{color:#00776a}
 a.call{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,#E94560,#c92f4a);color:#fff;border-radius:16px;padding:16px 14px;text-decoration:none;margin:0 0 10px;box-shadow:0 3px 0 #9d2238}
 details.card summary{font-weight:700;font-size:1.05rem;cursor:pointer;min-height:36px;display:flex;align-items:center}
@@ -1040,7 +1046,7 @@ POCKET_HTML = """<!DOCTYPE html>
 <p class="seg-h">Which terminal are you in?</p>
 <div class="seg" id="seg"></div>
 <p class="seg-h" style="margin-top:14px">What do you need? <span class="small">Tap one.</span></p>
-<div class="tiles" id="tiles"></div>
+<div class="pager" id="pager"><div class="track" id="track"><div class="tiles pane" id="tiles"></div><div class="tiles pane off" id="tiles2" aria-hidden="true"></div></div></div>
 <p class="hint">Floors can change. Ask at an information counter (? sign).</p>
 <noscript><p class="card">This guide needs JavaScript. Please turn it on, or ask at any information counter (look for the ? sign).</p></noscript>
 </section>
@@ -1122,29 +1128,44 @@ POCKET_HTML = """<!DOCTYPE html>
   function paintSeg(){ [].forEach.call(seg.children,function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-t')===term?'true':'false'); }); }
   paintSeg();
   /* need tiles */
-  var tiles=$('tiles');
-  var MAIN=8, MORE_CLOSED='More: information counter, prayer room and others', MORE_OPEN='Show fewer';
+  var tiles=$('tiles'), tiles2=$('tiles2'), track=$('track'), pager=$('pager'), page=0, offTimer=null;
+  var MAIN=8;
+  function pill(cls,iconTxt,label,sub,fn){
+    var b=document.createElement('button'); b.type='button'; b.className='tile more'+(cls?' '+cls:'');
+    var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=iconTxt;
+    var tx=document.createElement('span'); tx.className='tx'; tx.appendChild(document.createTextNode(label));
+    var sm=document.createElement('small'); sm.textContent=sub; tx.appendChild(sm);
+    b.appendChild(ic); b.appendChild(tx); b.addEventListener('click',fn); return b;
+  }
+  function slideTo(p){
+    page=p; if(offTimer){ clearTimeout(offTimer); offTimer=null; }
+    var on=p?tiles2:tiles, off=p?tiles:tiles2;
+    on.classList.remove('off'); on.removeAttribute('aria-hidden'); on.inert=false;
+    off.setAttribute('aria-hidden','true'); off.inert=true;
+    track.style.transform='translateX('+(p?'-100%':'0')+')';
+    offTimer=setTimeout(function(){ off.classList.add('off'); offTimer=null; },320);
+    try{ pager.scrollIntoView({block:'nearest'}); }catch(e){}
+  }
+  tiles2.inert=true;
   D.items.forEach(function(it,n){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n%3); b.setAttribute('data-id',it[0]);
     var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=ICON[it[0]]||'\\u2022';
     var tx=document.createElement('span'); tx.className='tx'; tx.textContent=SHORT[it[0]]||it[1];
     b.appendChild(ic); b.appendChild(tx);
     b.addEventListener('click',function(){ openSheet(it,b); });
-    if(n>=MAIN){ b.hidden=true; b.setAttribute('data-x','1'); }
-    tiles.appendChild(b);
-    if(n===MAIN-1){
-      var mb=document.createElement('button'); mb.type='button'; mb.className='tile more'; mb.setAttribute('aria-expanded','false');
-      var mi=document.createElement('span'); mi.className='ic'; mi.setAttribute('aria-hidden','true'); mi.textContent=ICON.more;
-      var mt=document.createElement('span'); mt.className='tx'; mt.textContent=MORE_CLOSED;
-      mb.appendChild(mi); mb.appendChild(mt);
-      mb.addEventListener('click',function(){
-        var open=mb.getAttribute('aria-expanded')!=='true';
-        mb.setAttribute('aria-expanded',open?'true':'false'); mt.textContent=open?MORE_OPEN:MORE_CLOSED;
-        [].forEach.call(tiles.querySelectorAll('[data-x]'),function(x){ x.hidden=!open; });
-      });
-      tiles.appendChild(mb);
-    }
+    if(n===MAIN){ tiles2.appendChild(pill('pgback','\\u2B05\\uFE0F','Back','Main places',function(){ slideTo(0); })); }
+    (n<MAIN?tiles:tiles2).appendChild(b);
+    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u27A1\\uFE0F','More','Information counter, prayer room and others',function(){ slideTo(1); })); }
   });
+  /* swipe between the two screens */
+  (function(){
+    var sx=0, sy=0, on=false;
+    pager.addEventListener('touchstart',function(e){ if(e.touches.length!==1){on=false;return;} on=true; sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
+    pager.addEventListener('touchend',function(e){
+      if(!on) return; on=false; var t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy;
+      if(Math.abs(dx)>60 && Math.abs(dx)>1.6*Math.abs(dy)){ if(dx<0 && page===0) slideTo(1); else if(dx>0 && page===1) slideTo(0); }
+    },{passive:true});
+  })();
   /* answer sheet */
   var sheet=$('sheet'), scrim=$('scrim'), shT=$('shTitle'), shB=$('shBody');
   var NONE='The airport list does not show one here. Please ask at an information counter.';
