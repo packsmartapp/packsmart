@@ -676,6 +676,7 @@ TO_TOKYO = """<h2 id="to-tokyo">Getting to Tokyo</h2>
 </div>
 <p><strong>Late arrival?</strong> The Narita Express and Skyliner are reported to stop around 11 pm, while buses run later. If you land late, check the last train before you book.</p>
 <p><strong>Going on to Haneda?</strong> Keisei runs a direct train service to Haneda Airport (about 2 hours by Access Express), and a limousine bus takes about 85 minutes.</p>
+<p data-ps-placement="jw-shinkansen-narita"><strong>Going on to Kyoto or Osaka?</strong> The Shinkansen (bullet train) leaves from Tokyo Station, which the Narita Express reaches in about an hour. If you want your tickets sorted before you fly, you can <a href="https://www.japan-bullettrain.com/?via=packsmart" target="_blank" rel="nofollow noopener sponsored" style="color:#00C9A7;text-decoration:underline;">book Shinkansen tickets online with Japan Bullet Train</a> (partner link). The company says its tickets cover the JR East, JR West, JR Central and JR Kyushu Shinkansen lines and are collected with a QR code. You can also buy at a station on the day, so check the price and the change and cancellation rules before you pay.</p>
 """ + KLOOK_TRANSPORT + """
 <p>If you would rather have a driver waiting for you after a long flight, you can book a fixed-price private transfer in advance:</p>
 """ + pickups + """
