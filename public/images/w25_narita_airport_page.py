@@ -977,6 +977,9 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 .sec-h{font-weight:800;font-size:0.95rem;margin:10px 2px 4px;color:#1a1a3e}
 #p-help .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
 #p-help .sec-h{margin-top:16px}
+.cats{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 10px}
+.cats button{font:inherit;font-weight:700;font-size:.92rem;min-height:40px;padding:6px 12px;border-radius:20px;border:2px solid #DCE3E8;background:#fff;color:#0f0f23;cursor:pointer}
+.cats button[aria-pressed=true]{background:#1a1a3e;border-color:#1a1a3e;color:#fff}
 #p-help .tile{padding:8px;gap:8px}
 #p-help .tile .ic{width:38px;height:38px;font-size:1.45rem}
 #p-help .tile .tx{font-size:.95rem;min-width:0;overflow-wrap:break-word}
@@ -1103,7 +1106,7 @@ POCKET_HTML = """<!DOCTYPE html>
 </section>
 <section class="panel" id="p-help" role="tabpanel" aria-labelledby="t-help" hidden>
 <a class="call" href="tel:+81476348000"><span aria-hidden="true">&#128222;</span> Call +81 476-34-8000</a>
-<div class="card"><h2>Show this to staff</h2><p class="small">Cannot say it in English or Japanese? Tap one, then hold up your phone. The staff will read it.</p><p class="sec-h">Where is&hellip;?</p><div class="tiles" id="askTiles1"></div><p class="sec-h">Getting there</p><div class="tiles" id="askTiles2"></div><p class="sec-h">Help and problems</p><div class="tiles" id="askTiles3"></div></div>
+<div class="card"><h2>Say it in Japanese</h2><p class="small">Tap one, then hold up your phone so the person can read it. Or tap Play to hear it.</p><div class="cats" id="askCats" role="group" aria-label="Phrase groups"></div><div class="tiles" id="askTiles"></div></div>
 <div class="card" id="shareCard" hidden><h2>Helping someone travel?</h2><p>Send this guide to their phone before the trip, so it is saved for use with no internet.</p><p><button type="button" class="big" id="shareBtn">Send this guide</button></p></div>
 <p class="small">Some links in this guide are partner links. We may earn a small commission at no cost to you.</p>
 <div class="card"><h2>Narita Airport Information</h2><p>Open 24 hours. Your phone company may charge for calls abroad.</p><p>Every terminal has information counters. Look for the <strong>?</strong> sign. Staff will help, so just ask.</p></div>
@@ -1445,40 +1448,120 @@ POCKET_HTML = """<!DOCTYPE html>
   strip.addEventListener('click',openInst);
   $('instBtn').addEventListener('click',openInst);
   /* show this to staff */
-  var ASK=[[1,'🚻','Toilet','トイレはどこですか？','Toire wa doko desu ka?','Where is the toilet?'],
-    [1,'ℹ️','Information counter','案内所はどこですか？','Annaijo wa doko desu ka?','Where is the information counter?'],
-    [1,'🎫','Check-in','チェックインカウンターはどこですか？','Chekkuin kauntaa wa doko desu ka?','Where is the check-in counter?'],
-    [1,'💴','Money exchange','両替所はどこですか？','Ryougaejo wa doko desu ka?','Where can I exchange money?'],
-    [1,'💊','Pharmacy','薬局はどこですか？','Yakkyoku wa doko desu ka?','Where is a pharmacy?'],
-    [1,'🍜','Food','食事ができる所はどこですか？','Shokuji ga dekiru tokoro wa doko desu ka?','Where can I eat?'],
-    [1,'🚆','Train station','電車の駅はどこですか？','Densha no eki wa doko desu ka?','Where is the train station?'],
-    [1,'🚌','Bus stop','バス乗り場はどこですか？','Basu noriba wa doko desu ka?','Where is the bus stop?'],
-    [1,'🚕','Taxi','タクシー乗り場はどこですか？','Takushii noriba wa doko desu ka?','Where is the taxi stand?'],
-    [1,'🛫','My gate','搭乗口はどこですか？','Toujouguchi wa doko desu ka?','Where is my boarding gate?'],
-    [2,'📍','Take me here','この住所までお願いします。','Kono juusho made onegai shimasu.','Please take me to this address. Show the address on your phone.'],
-    [2,'🚉','Tokyo Station?','これは東京駅に行きますか？','Kore wa Toukyou-eki ni ikimasu ka?','Does this go to Tokyo Station?'],
-    [3,'🆘','Help me','すみません、助けてください。','Sumimasen, tasukete kudasai.','Excuse me, please help me.'],
-    [3,'🤒','I feel sick','具合が悪いです。助けてください。','Guai ga warui desu. Tasukete kudasai.','I feel sick. Please help me.'],
-    [3,'🚑','Ambulance','救急車を呼んでください。','Kyuukyuusha o yonde kudasai.','Please call an ambulance.'],
-    [3,'♿','Wheelchair','車いすをお願いします。','Kuruma-isu o onegai shimasu.','A wheelchair, please.'],
-    [3,'🛂','Lost passport','パスポートをなくしました。','Pasupooto o nakushimashita.','I lost my passport.'],
-    [3,'🧳','Lost bag','かばんをなくしました。','Kaban o nakushimashita.','I lost my bag.'],
-    [3,'⏰','Missed my flight','飛行機に乗り遅れました。','Hikouki ni noriokuremashita.','I missed my flight.'],
-    [3,'🗣️','English?','英語を話せる人はいますか？','Eigo o hanaseru hito wa imasu ka?','Is there someone who speaks English?']];
-  var askN={1:0,2:0,3:0};
-  ASK.forEach(function(a){
-    var g=a[0], n=askN[g]++, askT=$('askTiles'+g); a=a.slice(1);
-    var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n%3);
-    var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=a[0];
-    var tx=document.createElement('span'); tx.className='tx'; tx.textContent=a[1];
-    b.appendChild(ic); b.appendChild(tx);
-    b.addEventListener('click',function(){
-      var h='<p class="jp"></p><p class="rom"></p><p class="en2"></p>';
-      openInfo(a[0],'Show this to staff',h,b);
-      var q=shB.querySelectorAll('p'); q[0].textContent=a[2]; q[1].textContent=a[3]; q[2].textContent=a[4];
+  var ASK=[
+    ['basics','👋','Hello','こんにちは。','Konnichiwa.','Hello.'],
+    ['basics','🙏','Thank you','ありがとうございます。','Arigatou gozaimasu.','Thank you very much.'],
+    ['basics','🙇','Excuse me','すみません。','Sumimasen.','Excuse me. Or: I am sorry.'],
+    ['basics','👌','No thanks','大丈夫です。','Daijoubu desu.','I am fine, no thank you.'],
+    ['basics','❓','I do not understand','分かりません。','Wakarimasen.','I do not understand.'],
+    ['basics','🐢','Slowly, please','ゆっくりお願いします。','Yukkuri onegai shimasu.','Please speak slowly.'],
+    ['basics','🔁','Once more','もう一度お願いします。','Mou ichido onegai shimasu.','One more time, please.'],
+    ['basics','⏳','One moment','ちょっと待ってください。','Chotto matte kudasai.','Please wait a moment.'],
+    ['basics','✍️','Write it down','書いてください。','Kaite kudasai.','Please write it down.'],
+    ['basics','🗣️','English?','英語を話せる人はいますか？','Eigo o hanaseru hito wa imasu ka?','Is there someone who speaks English?'],
+    ['where','🚻','Toilet','トイレはどこですか？','Toire wa doko desu ka?','Where is the toilet?'],
+    ['where','🚪','Exit','出口はどこですか？','Deguchi wa doko desu ka?','Where is the exit?'],
+    ['where','➡️','Entrance','入口はどこですか？','Iriguchi wa doko desu ka?','Where is the entrance?'],
+    ['where','🛗','Lift','エレベーターはどこですか？','Erebeetaa wa doko desu ka?','Where is the lift?'],
+    ['where','☕','Coffee','コーヒーはどこですか？','Koohii wa doko desu ka?','Where is the coffee?'],
+    ['where','💧','Water','お水はどこですか？','Omizu wa doko desu ka?','Where is the water?'],
+    ['where','🏪','Convenience store','コンビニはどこですか？','Konbini wa doko desu ka?','Where is a convenience store?'],
+    ['where','🍜','Food','食事ができる所はどこですか？','Shokuji ga dekiru tokoro wa doko desu ka?','Where can I eat?'],
+    ['where','🏧','ATM','ATMはどこですか？','Eetiiemu wa doko desu ka?','Where is an ATM?'],
+    ['where','🔐','Coin locker','コインロッカーはどこですか？','Koin rokkaa wa doko desu ka?','Where are the coin lockers?'],
+    ['where','ℹ️','Information','案内所はどこですか？','Annaijo wa doko desu ka?','Where is the information counter?'],
+    ['where','💊','Pharmacy','薬局はどこですか？','Yakkyoku wa doko desu ka?','Where is a pharmacy?'],
+    ['shop','💴','How much?','いくらですか？','Ikura desu ka?','How much is it?'],
+    ['shop','👉','This one','これをください。','Kore o kudasai.','This one, please.'],
+    ['shop','💳','Card OK?','カードは使えますか？','Kaado wa tsukaemasu ka?','Can I pay by card?'],
+    ['shop','♨️','Heat it up','温めてください。','Atatamete kudasai.','Please heat it up.'],
+    ['shop','🛍️','A bag, please','袋をください。','Fukuro o kudasai.','A bag, please.'],
+    ['shop','🙅','No bag','袋はいりません。','Fukuro wa irimasen.','I do not need a bag.'],
+    ['shop','🧾','Receipt','レシートをください。','Reshiito o kudasai.','A receipt, please.'],
+    ['shop','🏷️','Tax-free?','免税で買えますか？','Menzei de kaemasu ka?','Can I buy this tax-free?'],
+    ['shop','👗','Fitting room','試着室はどこですか？','Shichakushitsu wa doko desu ka?','Where is the fitting room?'],
+    ['shop','📏','Bigger size?','もっと大きいサイズはありますか？','Motto ookii saizu wa arimasu ka?','Do you have a bigger size?'],
+    ['eat','👥','Two people','二人です。','Futari desu.','Two people.'],
+    ['eat','👤','One person','一人です。','Hitori desu.','One person.'],
+    ['eat','📖','Menu, please','メニューをください。','Menyuu o kudasai.','The menu, please.'],
+    ['eat','🔤','English menu?','英語のメニューはありますか？','Eigo no menyuu wa arimasu ka?','Do you have an English menu?'],
+    ['eat','🥤','Water, please','お水をください。','Omizu o kudasai.','Water, please.'],
+    ['eat','🍴','A fork','フォークをください。','Fooku o kudasai.','A fork, please.'],
+    ['eat','🧾','The bill','お会計をお願いします。','Okaikei o onegai shimasu.','The bill, please.'],
+    ['eat','😋','Delicious','おいしいです。','Oishii desu.','It is delicious.'],
+    ['eat','🌶️','Not spicy?','辛くないものはありますか？','Karakunai mono wa arimasu ka?','Do you have something not spicy?'],
+    ['eat','🥗','No meat or fish','肉と魚は食べません。','Niku to sakana wa tabemasen.','I do not eat meat or fish.'],
+    ['eat','⚠️','Food allergy','食物アレルギーがあります。','Shokumotsu arerugii ga arimasu.','I have a food allergy. Write or point to what you cannot eat.'],
+    ['sights','🎟️','Ticket counter','チケット売り場はどこですか？','Chiketto uriba wa doko desu ka?','Where is the ticket counter?'],
+    ['sights','⏱️','Wait time','待ち時間はどのくらいですか？','Machijikan wa dono kurai desu ka?','How long is the wait?'],
+    ['sights','🚶','End of the line','列の最後尾はどこですか？','Retsu no saikoubi wa doko desu ka?','Where is the end of the line?'],
+    ['sights','📸','Photo, please','写真を撮っていただけますか？','Shashin o totte itadakemasu ka?','Could you take a photo of us?'],
+    ['sights','🕒','Open until?','何時まで開いていますか？','Nanji made aite imasu ka?','Until what time is it open?'],
+    ['sights','🪑','Place to rest','休める所はどこですか？','Yasumeru tokoro wa doko desu ka?','Where can I rest?'],
+    ['sights','🗺️','Map, please','地図をください。','Chizu o kudasai.','A map, please.'],
+    ['sights','👶','Stroller','ベビーカーを借りられますか？','Bebiikaa o kariraremasu ka?','Can I rent a stroller?'],
+    ['sights','♿','Wheelchair rental','車いすを借りられますか？','Kuruma-isu o kariraremasu ka?','Can I rent a wheelchair?'],
+    ['sights','📦','Lost and found','落とし物の窓口はどこですか？','Otoshimono no madoguchi wa doko desu ka?','Where is the lost and found?'],
+    ['go','🗺️','Show on map','この場所へはどう行けばいいですか？','Kono basho e wa dou ikeba ii desu ka?','How do I get to this place? Show it on your phone.'],
+    ['go','🥾','Is it far?','遠いですか？','Tooi desu ka?','Is it far?'],
+    ['go','🚉','Nearest station','一番近い駅はどこですか？','Ichiban chikai eki wa doko desu ka?','Where is the nearest station?'],
+    ['go','🔢','Which platform?','何番ホームですか？','Nanban hoomu desu ka?','Which platform is it?'],
+    ['go','🎫','Buy a ticket','切符はどこで買えますか？','Kippu wa doko de kaemasu ka?','Where can I buy a ticket?'],
+    ['go','🌙','Last train','終電は何時ですか？','Shuuden wa nanji desu ka?','What time is the last train?'],
+    ['go','🚆','Tokyo Station?','これは東京駅に行きますか？','Kore wa Toukyou-eki ni ikimasu ka?','Does this go to Tokyo Station?'],
+    ['go','📞','Call a taxi','タクシーを呼んでください。','Takushii o yonde kudasai.','Please call a taxi.'],
+    ['go','📍','Take me here','この住所までお願いします。','Kono juusho made onegai shimasu.','Please take me to this address. Show the address on your phone.'],
+    ['go','🛑','Stop here','ここで止めてください。','Koko de tomete kudasai.','Please stop here.'],
+    ['air','🧳','Baggage claim','手荷物受取所はどこですか？','Tenimotsu uketorijo wa doko desu ka?','Where is baggage claim?'],
+    ['air','🎫','Check-in','チェックインカウンターはどこですか？','Chekkuin kauntaa wa doko desu ka?','Where is the check-in counter?'],
+    ['air','🛫','My gate','搭乗口はどこですか？','Toujouguchi wa doko desu ka?','Where is my boarding gate?'],
+    ['air','💴','Money exchange','両替所はどこですか？','Ryougaejo wa doko desu ka?','Where can I exchange money?'],
+    ['air','🚆','Train station','電車の駅はどこですか？','Densha no eki wa doko desu ka?','Where is the train station?'],
+    ['air','🚌','Bus stop','バス乗り場はどこですか？','Basu noriba wa doko desu ka?','Where is the bus stop?'],
+    ['air','🚕','Taxi stand','タクシー乗り場はどこですか？','Takushii noriba wa doko desu ka?','Where is the taxi stand?'],
+    ['air','⏰','Missed my flight','飛行機に乗り遅れました。','Hikouki ni noriokuremashita.','I missed my flight.'],
+    ['help','🆘','Help me','すみません、助けてください。','Sumimasen, tasukete kudasai.','Excuse me, please help me.'],
+    ['help','🤒','I feel sick','具合が悪いです。助けてください。','Guai ga warui desu. Tasukete kudasai.','I feel sick. Please help me.'],
+    ['help','🚑','Ambulance','救急車を呼んでください。','Kyuukyuusha o yonde kudasai.','Please call an ambulance.'],
+    ['help','🚓','Police','警察を呼んでください。','Keisatsu o yonde kudasai.','Please call the police.'],
+    ['help','🏥','Hospital','病院はどこですか？','Byouin wa doko desu ka?','Where is a hospital?'],
+    ['help','💊','Need medicine','薬が欲しいです。','Kusuri ga hoshii desu.','I need medicine.'],
+    ['help','♿','Wheelchair','車いすをお願いします。','Kuruma-isu o onegai shimasu.','A wheelchair, please.'],
+    ['help','🛂','Lost passport','パスポートをなくしました。','Pasupooto o nakushimashita.','I lost my passport.'],
+    ['help','👛','Lost wallet','財布をなくしました。','Saifu o nakushimashita.','I lost my wallet.'],
+    ['help','📱','Lost phone','スマホをなくしました。','Sumaho o nakushimashita.','I lost my phone.'],
+    ['help','🧳','Lost bag','かばんをなくしました。','Kaban o nakushimashita.','I lost my bag.'],
+    ['help','🧒','Lost child','子どもがいなくなりました。助けてください。','Kodomo ga inaku narimashita. Tasukete kudasai.','My child is missing. Please help me.']];
+  var ASKC=[['basics','Basics'],['where','Where is&hellip;?'],['shop','Shopping'],['eat','Eating out'],['sights','Sights'],['go','Getting around'],['air','Airport'],['help','Help']];
+  var askCat='basics'; try{ var sc=localStorage.getItem('nrtAskCat'); if(sc&&ASKC.some(function(c){return c[0]===sc;})) askCat=sc; }catch(e){}
+  var askT=$('askTiles'), askC=$('askCats');
+  function jaVoices(){ try{ return window.speechSynthesis.getVoices().filter(function(v){return /^ja/i.test(v.lang);}); }catch(e){ return []; } }
+  function canSpeak(){ try{ if(!('speechSynthesis' in window)||typeof SpeechSynthesisUtterance==='undefined') return false; var all=window.speechSynthesis.getVoices(); return !all.length||jaVoices().length>0; }catch(e){ return false; } }
+  function speakJp(txt){ try{ var ss=window.speechSynthesis; ss.cancel(); var u=new SpeechSynthesisUtterance(txt); u.lang='ja-JP'; u.rate=0.85; var vs=jaVoices(); if(vs.length) u.voice=vs[0]; ss.speak(u); }catch(e){} }
+  try{ window.speechSynthesis.getVoices(); window.speechSynthesis.addEventListener('voiceschanged',function(){}); }catch(e){}
+  function paintAsk(){
+    [].forEach.call(askC.children,function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-c')===askCat?'true':'false'); });
+    askT.textContent=''; var n=0;
+    ASK.filter(function(a){return a[0]===askCat;}).forEach(function(a){
+      var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n++%3);
+      var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=a[1];
+      var tx=document.createElement('span'); tx.className='tx'; tx.textContent=a[2];
+      b.appendChild(ic); b.appendChild(tx);
+      b.addEventListener('click',function(){
+        var h='<p class="jp"></p><p class="rom"></p><p class="en2"></p>'+(canSpeak()?'<p><button type="button" class="big" id="playJp" style="width:100%;font-size:1.15rem">&#128266; Play</button></p>':'');
+        openInfo(a[1],'Show this, or play it',h,b);
+        var q=shB.querySelectorAll('p'); q[0].textContent=a[3]; q[1].textContent=a[4]; q[2].textContent=a[5];
+        var pb=$('playJp'); if(pb) pb.addEventListener('click',function(){ speakJp(a[3]); });
+      });
+      askT.appendChild(b);
     });
-    askT.appendChild(b);
+  }
+  ASKC.forEach(function(c){
+    var b=document.createElement('button'); b.type='button'; b.setAttribute('data-c',c[0]); b.innerHTML=c[1];
+    b.addEventListener('click',function(){ askCat=c[0]; try{localStorage.setItem('nrtAskCat',c[0]);}catch(e){} paintAsk(); });
+    askC.appendChild(b);
   });
+  paintAsk();
   /* send this guide */
   if(navigator.share){
     $('shareCard').hidden=false;
