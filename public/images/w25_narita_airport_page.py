@@ -835,10 +835,12 @@ BODY = "\n\n".join([
 ])
 
 # hero button (v50): a quiet way into the Pocket Guide from the top of the article
-HERO_CTA = ('        <div style="margin:18px 0 4px;text-align:center;">'
+HERO_CTA = ('        <div style="margin:56px 0 0;text-align:center;">'
             '<a href="/narita-pocket?src=hero" onclick="try{window.gtag&&gtag(\'event\',\'pocket_prompt\',{event_category:\'engagement\',action:\'open_hero\',page_path:location.pathname});}catch(e){}" '
-            'style="display:inline-block;background:#00C9A7;color:#0f0f23;font-weight:800;font-size:1.05rem;padding:14px 24px;border-radius:12px;text-decoration:none;min-height:44px;box-shadow:0 6px 18px rgba(0,0,0,.28);">Open the free Pocket Guide</a>'
-            '<div style="margin-top:8px;font-size:0.85rem;color:#fff;opacity:0.9;">Works offline at the airport</div></div>')
+            'style="display:inline-block;background:#00C9A7;color:#0f0f23;text-align:center;padding:12px 28px;border-radius:12px;text-decoration:none;min-height:44px;box-shadow:0 6px 18px rgba(0,0,0,.28);line-height:1.2;">'
+            '<span style="display:block;font-weight:700;font-size:0.8rem;opacity:0.8;">Download to your phone</span>'
+            '<span style="display:block;font-weight:800;font-size:1.1rem;margin-top:2px;">Narita Pocket Guide</span>'
+            '<span style="display:block;font-weight:600;font-size:0.8rem;margin-top:2px;opacity:0.8;">Works offline</span></a></div>')
 
 head = "\n".join([
     "<!DOCTYPE html>",
@@ -879,8 +881,8 @@ head = "\n".join([
     '        <div class="meta">November 16, 2026 · 8 min read</div>',
     '        <div class="meta">Airport Guide • Japan</div>',
     '        <div class="meta">Last updated: November 2026 · Facts checked 16 Nov 2026</div>',
-    HERO_CTA,
     ('        <div class="meta" style="font-size:0.75rem;opacity:0.75;">Photo: susi-paku / PAKUTASO. Illustrative image of a Narita terminal.</div>' if HERO_URL else ''),
+    HERO_CTA,
     "</div>",
     "",
     '    <div class="content">',
