@@ -15,6 +15,39 @@
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Narita">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
+<script>(function(){
+  var ID='G-0C4Z7VVGPE', G='narita', AP='NRT', W=window;
+  var dbg=/[?&]pgdebug\b/.test(location.search||'');
+  function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){} return null; }
+  var dnt=(navigator.doNotTrack==='1'||W.doNotTrack==='1'||navigator.globalPrivacyControl===true);
+  W.pgDnt=dnt;
+  function off(){ return dnt||ls('pgOff')==='1'; }
+  var MODE=(navigator.standalone||(W.matchMedia&&W.matchMedia('(display-mode: standalone)').matches))?'app':'web';
+  W.dataLayer=W.dataLayer||[]; function gt(){ W.dataLayer.push(arguments); }
+  var loaded=false;
+  function loadGA(){
+    if(loaded||off()||!navigator.onLine) return; loaded=true;
+    var cfg={transport_type:'beacon',allow_google_signals:false,allow_ad_personalization_signals:false,page_title:'Pocket Guide: '+G};
+    if(dbg) cfg.debug_mode=true;
+    gt('js',new Date()); gt('config',ID,cfg);
+    var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+ID; document.head.appendChild(s);
+  }
+  function qread(){ try{ return JSON.parse(ls('pgQ')||'[]'); }catch(e){ return []; } }
+  function flush(){
+    if(off()||!navigator.onLine) return; var a=qread(); if(!a.length) return; ls('pgQ','[]'); loadGA();
+    var now=Date.now(); a.forEach(function(x){ if(!x||now-x.t>7*864e5) return; var p=x.p||{}; p.queued=1; p.age_min=Math.round((now-x.t)/6e4); gt('event',x.n,p); });
+  }
+  W.pgTrack=function(n,p){
+    if(off()) return;
+    p=p||{}; p.guide=G; p.airport=AP; p.mode=MODE;
+    for(var k in p){ if(typeof p[k]==='string') p[k]=p[k].replace(/\s+/g,' ').trim().slice(0,100); }
+    if(dbg||W.__pgTest){ (W.__pgLog=W.__pgLog||[]).push({n:n,p:p,online:navigator.onLine}); if(dbg&&W.console) console.log('[pg]',n,p); }
+    if(!navigator.onLine){ var a=qread(); a.push({n:n,p:p,t:Date.now()}); ls('pgQ',JSON.stringify(a.slice(-60))); return; }
+    loadGA(); flush(); gt('event',n,p);
+  };
+  W.addEventListener('online',flush);
+  var errs=0; W.addEventListener('error',function(e){ if(errs++<3) W.pgTrack('pg_error',{msg:String(e&&e.message||'error')}); });
+})();</script>
 <style>
 *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
 html{-webkit-text-size-adjust:100%;height:100%}
@@ -44,6 +77,13 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 .tile.c2 .ic{background:#E6E6F5}
 .tile .tx{font-weight:700;font-size:1rem;line-height:1.2}
 .hint{margin:8px 2px 0;font-size:0.82rem;color:#555;text-align:center}
+#sponsor{margin:12px 0 0}
+#sponsor[hidden]{display:none}
+.spon-a{display:block;text-decoration:none;color:inherit;border:1px solid #e3e3ea;border-radius:12px;padding:10px 12px;background:#fff}
+.spon-l{display:block;font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:#666;margin-bottom:2px}
+.spon-a b{display:block;font-size:0.95rem;color:#1a1a3e}
+.spon-t{display:block;font-size:0.85rem;color:#444;margin-top:2px}
+.spon-c{display:inline-block;margin-top:6px;font-size:0.85rem;font-weight:600;color:#1a1a3e;text-decoration:underline}
 .card{background:#fff;border-radius:16px;padding:14px 16px;margin:0 0 10px;border:2px solid #E1E8EB}
 .card h2{margin:0 0 6px;font-size:1.1rem}
 .card p{margin:0 0 6px}
@@ -203,6 +243,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <p class="seg-h" style="margin-top:14px">What do you need? <span class="small">Tap one.</span></p>
 <div class="pager" id="pager"><div class="track" id="track"><div class="tiles pane" id="tiles"></div><div class="tiles pane off" id="tiles2" aria-hidden="true"></div></div></div>
 <p class="hint">Floors can change. Ask at an information counter (? sign).</p>
+<div id="sponsor" hidden></div>
 <noscript><p class="card">This guide needs JavaScript. Please turn it on, or ask at any information counter (look for the ? sign).</p></noscript>
 </section>
 <section class="panel" id="p-map" role="tabpanel" aria-labelledby="t-map" hidden>
@@ -258,7 +299,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 </div></div>
 <div class="quiet"><div class="card slim" id="shareCard" hidden><div class="row"><div><h2>Helping someone travel?</h2><p>Send them this guide for offline use.</p></div><button type="button" class="big" id="shareBtn">Send it</button></div></div>
 <div class="card slim install" id="install"><div class="row"><div><h2>Keep this on your phone</h2><p>Add it to your home screen. Works offline.</p><p class="small" id="instDesk">Open this page on your phone, then add it to your home screen.</p></div><div id="instHow" hidden><button type="button" class="big" id="instBtn">Show me</button></div></div></div>
-<p class="small">Facility details come from Narita Airport's own pages, checked 16 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). The full guide, with trains, SIM and luggage, is at <a href="https://www.packsmartapp.com/blog/narita-airport-guide">packsmartapp.com</a> (needs internet).</p></div>
+<p class="small">Facility details come from Narita Airport's own pages, checked 16 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). We count anonymous taps to improve this guide: no name, no account. <a href="/privacy-policy">Privacy</a> &middot; <a href="#" id="pgOpt">Turn off counting</a>. The full guide, with trains, SIM and luggage, is at <a href="https://www.packsmartapp.com/blog/narita-airport-guide">packsmartapp.com</a> (needs internet).</p></div>
 </section>
 </div>
 <nav class="tabs" role="tablist" aria-label="Sections">
@@ -591,6 +632,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   var DOWN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg>';
   function steps(list){ return '<ol class="istep">'+list.map(function(x,i){ return '<li><span class="n">'+(i+1)+'</span>'+x[0]+'<span>'+x[1]+'</span></li>'; }).join('')+'</ol>'; }
   function openInst(){
+    pgTrack('pg_install_view',{via:instVia}); instVia='help';
     var h='<p class="lede">Do this once, now, while you have signal. Then it opens like an app, even with no internet.</p>';
     if(isIOS){
       h+=steps([[SHARE,'Tap the <b>Share</b> button (a square with an arrow) in Safari'],[PLUS,'Scroll down and tap <b>Add to Home Screen</b>'],['','Tap <b>Add</b>']]);
@@ -606,14 +648,14 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
     $('instBody').innerHTML=h;
     lastTile=document.activeElement&&document.activeElement.focus?document.activeElement:null;
     hideAll(); inst.hidden=false; scrim.hidden=false; inst.scrollTop=0;
-    var go=$('instGo'); if(go){ go.addEventListener('click',function(){ if(!dp) return; dp.prompt(); try{ dp.userChoice.then(function(r){ if(r&&r.outcome==='accepted') markInstalled(); }); }catch(e){} dp=null; closeSheet(); }); }
+    var go=$('instGo'); if(go){ go.addEventListener('click',function(){ if(!dp) return; dp.prompt(); try{ dp.userChoice.then(function(r){ if(r&&r.outcome) pgTrack('pg_install_prompt',{outcome:r.outcome}); if(r&&r.outcome==='accepted') markInstalled(); }); }catch(e){} dp=null; closeSheet(); }); }
     $('instLater').addEventListener('click',closeSheet);
     $('instDone').addEventListener('click',function(){ markInstalled(); closeSheet(); });
     (go||$('instDone')).focus();
   }
   function markInstalled(){ flag('nrtInstalled','1'); refresh(); }
-  strip.addEventListener('click',openInst);
-  $('instBtn').addEventListener('click',openInst);
+  strip.addEventListener('click',function(){ instVia='strip'; openInst(); });
+  $('instBtn').addEventListener('click',function(){ instVia='help'; openInst(); });
   /* show this to staff */
   var ASK=[
     ['basics','👋','Hello','こんにちは。','Konnichiwa.','Hello.'],
@@ -754,12 +796,77 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   /* send this guide */
   if(navigator.share){
     $('shareCard').hidden=false;
-    $('shareBtn').addEventListener('click',function(){ try{ navigator.share({title:'Narita Pocket Guide',url:location.href.split('#')[0]}); }catch(e){} });
+    $('shareBtn').addEventListener('click',function(){ try{ navigator.share({title:'Narita Pocket Guide',url:location.origin+location.pathname+'?src=share'}); }catch(e){} });
   }
   window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; });
-  window.addEventListener('appinstalled',function(){ markInstalled(); if(!inst.hidden) closeSheet(); });
+  window.addEventListener('appinstalled',function(){ pgTrack('pg_installed',{via:'browser'}); markInstalled(); if(!inst.hidden) closeSheet(); });
+  /* analytics: taps only (see PG_BOOT). One delegated listener, so tiles need no code of their own. */
+  var AUTO_INSTALL_SHEET=true;
+  var instVia='help';
+  function tabNow(){ var p=document.querySelector('.panel:not([hidden])'); return p?p.id.replace('p-',''):''; }
+  function whereNow(){ return ((!sheet.hidden&&shT.textContent)||tabNow()).replace(/^[^A-Za-z0-9]+/,''); }
+  function bare(h){ return String(h||'').replace(/^www\./,''); }
+  function linkEv(a){
+    var h=a.getAttribute('href')||''; if(!h||h.charAt(0)==='#'||a.hasAttribute('data-sp')) return;
+    if(/^tel:/i.test(h)){ var d=h.replace(/^tel:/i,'').replace(/[^0-9+]/g,''); var nm={'119':'fire_ambulance','110':'police','+81476348000':'airport','+815038162787':'help_line'}; pgTrack('pg_call',{dest:nm[d]||d,where:whereNow()}); return; }
+    if(/^mailto:/i.test(h)) return;
+    if(/(^|\s)sponsored(\s|$)/.test(a.getAttribute('rel')||'')){ pgTrack('pg_partner',{partner:a.textContent,host:a.hostname,where:whereNow()}); return; }
+    if(a.hostname&&bare(a.hostname)!==bare(location.hostname)&&a.hostname!=='packsmartapp.com'){ pgTrack('pg_outbound',{host:a.hostname,where:whereNow()}); return; }
+    pgTrack('pg_internal',{path:a.pathname,where:whereNow()});
+  }
+  document.addEventListener('click',function(e){
+    var el=e.target&&e.target.closest?e.target.closest('a,button'):null; if(!el) return;
+    if(el.tagName==='A'){ linkEv(el); return; }
+    var id=el.id||'', tab=tabNow(), tx;
+    if(el.getAttribute('role')==='tab'&&el.getAttribute('data-tab')){ pgTrack('pg_tab',{tab:el.getAttribute('data-tab')}); return; }
+    if(el.classList.contains('tile')){
+      if(el.classList.contains('more')){ pgTrack('pg_slide',{tab:tab,to:el.classList.contains('pgnext')?'more':'back'}); return; }
+      tx=el.querySelector('.tx'); var lab=el.getAttribute('data-id')||(tx?tx.textContent:'');
+      if(el.closest('#askTiles')) pgTrack('pg_phrase',{cat:askCat,item:lab});
+      else pgTrack('pg_tile',{tab:tab,item:lab,terminal:term});
+      return;
+    }
+    if(el.hasAttribute('data-t')&&el.closest('.seg')){ pgTrack('pg_terminal',{terminal:el.getAttribute('data-t'),from:tab}); return; }
+    if(el.hasAttribute('data-c')&&el.closest('#askCats')){ pgTrack('pg_phrase_cat',{cat:el.getAttribute('data-c')}); return; }
+    if(el.hasAttribute('data-d')){ pgTrack('pg_dep_view',{view:el.getAttribute('data-d')}); return; }
+    if(el.classList.contains('stp')){ tx=el.querySelector('b'); pgTrack('pg_step',{tab:tab,step:tx?tx.textContent:'',done:el.getAttribute('aria-pressed')==='true'?1:0}); return; }
+    if(id==='playJp'){ var en=shB.querySelector('.en2'); pgTrack('pg_play',{item:en?en.textContent:''}); return; }
+    if(id==='shareBtn'){ pgTrack('pg_share',{}); return; }
+    if(id==='instGo'){ pgTrack('pg_install_tap',{}); return; }
+    if(id==='instLater'){ pgTrack('pg_install_later',{}); return; }
+    if(id==='instDone'){ pgTrack('pg_install_claimed',{}); return; }
+  });
+  (function(){
+    var n=parseInt(flag('pgVisits')||'0',10)+1; flag('pgVisits',String(n));
+    var sp=new URLSearchParams(location.search), src=(sp.get('src')||'').replace(/[^a-z0-9_-]/gi,'').slice(0,20);
+    if(src&&!flag('pgSrc')) flag('pgSrc',src);
+    var ref=''; try{ if(document.referrer){ var rh=bare(new URL(document.referrer).hostname); ref=(rh===bare(location.hostname)||rh==='packsmartapp.com')?'packsmartapp.com':rh; } }catch(e){}
+    pgTrack('pg_open',{os:isIOS?'ios':isAnd?'android':'desktop',src:src,src_first:flag('pgSrc')||'',ref:ref,visit:Math.min(n,20),online:navigator.onLine?1:0,lang:(navigator.language||'').slice(0,5).toLowerCase()});
+    if(standalone&&!flag('pgApp')){ flag('pgApp','1'); pgTrack('pg_first_app_open',{os:isIOS?'ios':isAnd?'android':'desktop'}); }
+  })();
+  /* transparency line + off switch */
+  (function(){
+    var po=$('pgOpt'); if(!po) return;
+    function paintOpt(){ if(window.pgDnt){ po.textContent='Counting is off (your browser asks sites not to track).'; po.removeAttribute('href'); } else { po.textContent=flag('pgOff')==='1'?'Turn counting back on':'Turn off counting'; } }
+    po.addEventListener('click',function(e){ e.preventDefault(); if(window.pgDnt) return; if(flag('pgOff')==='1'){ flag('pgOff','0'); } else { flag('pgOff','1'); flag('pgQ','[]'); } paintOpt(); });
+    paintOpt();
+  })();
+  /* the one sponsor slot (off unless SPONSOR is set in the generator) */
+  (function(){
+    var SP=null, box=$('sponsor'); if(!SP||!box||!/^https:\/\//.test(SP.url)) return;
+    var a=document.createElement('a'); a.href=SP.url; a.target='_blank'; a.rel='sponsored nofollow noopener'; a.className='spon-a'; a.setAttribute('data-sp','1');
+    var l=document.createElement('span'); l.className='spon-l'; l.textContent='Sponsor';
+    var b=document.createElement('b'); b.textContent=SP.brand;
+    var s=document.createElement('span'); s.className='spon-t'; s.textContent=SP.line;
+    var c=document.createElement('span'); c.className='spon-c'; c.textContent=SP.cta||'Learn more';
+    a.appendChild(l); a.appendChild(b); a.appendChild(s); a.appendChild(c); box.appendChild(a);
+    function vis(){ box.hidden=!navigator.onLine; } vis(); window.addEventListener('online',vis); window.addEventListener('offline',vis);
+    a.addEventListener('click',function(){ pgTrack('pg_sponsor_click',{brand:SP.id,slot:'find_bottom'}); });
+    if('IntersectionObserver' in window){ var seen=false; new IntersectionObserver(function(en){ if(en[0].isIntersecting&&!seen&&!box.hidden){ seen=true; pgTrack('pg_sponsor_view',{brand:SP.id,slot:'find_bottom'}); } },{threshold:0.5}).observe(box); }
+  })();
+  
   refresh();
-  if(needed()&&!flag('nrtIntro')){ flag('nrtIntro','1'); setTimeout(function(){ if(sheet.hidden&&inst.hidden) openInst(); },700); }
+  if(needed()&&!flag('nrtIntro')&&AUTO_INSTALL_SHEET){ flag('nrtIntro','1'); setTimeout(function(){ if(sheet.hidden&&inst.hidden){ instVia='auto'; openInst(); } },700); }
 })();
 </script>
 </body>
