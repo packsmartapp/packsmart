@@ -276,10 +276,8 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   }
   function simHTML(){
     var w=item('wifi')[2], f=term==='ALL'?D.terms.map(function(t){return t[1]+': '+w[t[0]];}).join('<br>'):w[term];
-    var sk=term==='T1'?'Terminal 1 South Wing, 1F, at the JAL ABC counter.':term==='T2'?'Terminal 2, 1F, at the JAL ABC counter.':term==='T3'?'No counter at Terminal 3. Take the free shuttle bus or the sky bridge to Terminal 2, 1F.':'Terminal 1 South Wing, 1F, or Terminal 2, 1F, both at the JAL ABC counter. No counter at Terminal 3: take the free shuttle bus or the sky bridge to Terminal 2.';
     return '<ul class="pl"><li><b>eSIM:</b> install it before you fly. It works as soon as you land.</li>'
       +'<li><b>SIM and pocket Wi-Fi counters</b> are in the arrivals area. Wi-Fi rental counters:<br>'+f+'</li>'
-      +'<li><b>Sakura Mobile pickup:</b> '+sk+'</li>'
       +'<li><b>Free airport Wi-Fi:</b> FreeWiFi-NARITA. Fine for a quick message, not for a day of maps.</li></ul>'
       +'<p class="sm">Counter hours and stock vary. Ordering ahead is safer.</p>'
       +'<p class="sm">You can book pocket Wi-Fi here (partner link): <a href="https://p.sakuramobile.jp/idevaffiliate.php?id=728" target="_blank" rel="sponsored nofollow noopener">Sakura Mobile</a></p>';
