@@ -103,7 +103,12 @@ html.lg{font-size:118%}
 .tiles .tile.more .tx{font-weight:800;line-height:1.15}
 .tiles .tile.more small{display:block;font-weight:700;font-size:.8em;color:#4a5568;margin-top:1px}
 .tiles .tile.pgnext{flex-direction:row-reverse;justify-content:space-between}
-.tiles.pane .tile:not(.more){min-height:78px}
+.tiles.pane .tile:not(.more){flex-direction:row;justify-content:flex-start;text-align:left;min-height:76px;gap:8px;padding:8px 10px}
+.tiles.pane .tile:not(.more) .ic{width:42px;height:auto;flex:none;background:transparent;font-size:2.15rem;line-height:1.1}
+.tiles.pane .tile:not(.more) .tx{flex:1;min-width:0;text-align:left;line-height:1.15}
+.tiles.pane .tile:not(.more).c0{background:linear-gradient(180deg,#F3FDFA,#CFF4EB);border:2px solid #8EE3D2;box-shadow:0 4px 0 #00A98C}
+.tiles.pane .tile:not(.more).c1{background:linear-gradient(180deg,#FFF5F7,#FFD9E0);border:2px solid #FFA3B3;box-shadow:0 4px 0 #C93550}
+.tiles.pane .tile:not(.more).c2{background:linear-gradient(180deg,#F6F6FF,#DADAF8);border:2px solid #AFAFEE;box-shadow:0 4px 0 #5959BE}
 @media (prefers-reduced-motion:reduce){.track{transition:none}}
 a{color:#00776a}
 a.call{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,#E94560,#c92f4a);color:#fff;border-radius:16px;padding:16px 14px;text-decoration:none;margin:0 0 10px;box-shadow:0 3px 0 #9d2238}
