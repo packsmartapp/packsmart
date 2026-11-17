@@ -115,7 +115,17 @@ for name, cfg in PAGES.items():
     path = os.path.join(BASE, name)
     s = open(path, encoding="utf-8").read()
     if MARK in s:
-        print("skip (already done):", name)
+        # already has the block: refresh it in place (wording, banners) so re-running always brings it up to date
+        pat = re.compile(re.escape(MARK) + r".*?Order ahead: same-day orders are possible, but stock is limited\.</p>\n</div>\n", re.S)
+        ms = list(pat.finditer(s))
+        assert len(ms) == 1, (name, "block count", len(ms))
+        fresh = block(cfg["suffix"])
+        if ms[0].group(0) == fresh:
+            print("up to date:", name)
+        else:
+            s = s[:ms[0].start()] + fresh + s[ms[0].end():]
+            open(path, "w", encoding="utf-8").write(s)
+            print("refreshed:", name)
         continue
     # 1. insert block after the Airalo block (exactly one place)
     ms = list(AFTER_RE.finditer(s))
