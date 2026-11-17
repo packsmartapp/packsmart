@@ -93,8 +93,9 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 .sec-h{font-weight:800;font-size:0.95rem;margin:10px 2px 4px;color:#1a1a3e}
 #p-help .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
 #p-help .sec-h{margin-top:16px}
-.cats{display:flex;flex-wrap:wrap;gap:6px;margin:10px 0 10px}
-.cats button{font:inherit;font-weight:700;font-size:.92rem;min-height:40px;padding:6px 12px;border-radius:20px;border:2px solid #DCE3E8;background:#fff;color:#0f0f23;cursor:pointer}
+.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:10px 0 12px}
+.cats button{font:inherit;font-weight:700;font-size:.78rem;line-height:1.1;min-height:58px;padding:6px 2px;border-radius:14px;border:2px solid #DCE3E8;background:#F4F7F8;color:#2a2f45;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;overflow-wrap:break-word;min-width:0}
+.cats button .ci{font-size:1.25rem;line-height:1}
 .cats button[aria-pressed=true]{background:#1a1a3e;border-color:#1a1a3e;color:#fff}
 #p-help .tile{padding:8px;gap:8px}
 #p-help .tile .ic{width:38px;height:38px;font-size:1.45rem}
@@ -114,14 +115,20 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 @media (max-width:380px){#p-help .tile{padding:7px 6px;gap:6px}#p-help .tile .ic{width:32px;height:32px;font-size:1.25rem}#p-help .tile .tx{font-size:.86rem}}
 @media (max-width:340px){#p-help .tile{padding:6px 5px;gap:5px}#p-help .tile .ic{width:26px;height:26px;font-size:1.05rem}#p-help .tile .tx{font-size:.78rem}}
 .card.slim{padding:10px 12px}
+.quiet{margin-top:18px}
+.quiet .card.slim{background:#E8EEF1;border-color:#E8EEF1;padding:8px 12px;margin-bottom:6px}
+.quiet .card.slim h2{font-size:.92rem}
+.quiet .card.slim p{font-size:.85rem;color:#3d4659}
+.quiet .card.slim button.big{padding:7px 12px;font-size:.88rem;border-color:#9DB4BC;background:#fff}
+.quiet>.small{margin-top:10px}
 .card.slim .row{display:flex;gap:10px;align-items:center}
 .card.slim .row>div:first-child{flex:1;min-width:0}
 .card.slim h2{font-size:1rem;margin:0 0 2px}
 .card.slim p{margin:0;font-size:.9rem}
 .card.slim p.small{font-size:.8rem;margin-top:2px}
 .card.slim button.big{flex:none;padding:10px 14px;font-size:.95rem}
-#p-help .tile.more{padding:5px 12px;gap:8px;min-height:50px}
-#p-help .tile.more .ic{width:36px;height:36px;font-size:1.35rem}
+#p-help .tile.more{padding:4px 12px;gap:8px;min-height:46px;background:#EAF8F4;border:2px solid #BCE8DD;color:#0b6f60}
+#p-help .tile.more .ic{width:30px;height:30px;font-size:1.15rem}
 #p-help .tile.more .tx{font-size:1rem}
 .tiles.pane .tile:last-child:nth-child(odd):not(.more){grid-column:auto}
 .tiles .tile.more{grid-column:1/-1;min-height:50px;padding:5px 12px;gap:8px;background:#fff;border:3px solid #00C9A7;box-shadow:none;color:#0b6f60}
@@ -238,20 +245,20 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 </div>
 <div class="hpane off" id="hp2" aria-hidden="true">
 <div class="card" id="numCard"><h2>Useful phone numbers</h2><p class="small">Tap a number to call. Your phone company may charge for calls abroad.</p>
+<p class="sec-h">Emergency (free, 24 hours)</p>
+<div class="numgrid"><a class="num em" href="tel:119"><span class="ni" aria-hidden="true">&#128657;</span><span class="nt"><b>Ambulance or fire</b><span>119</span></span></a><a class="num em" href="tel:110"><span class="ni" aria-hidden="true">&#128659;</span><span class="nt"><b>Police</b><span>110</span></span></a></div>
 <p class="sec-h">At Narita Airport only</p>
 <a class="num air" href="tel:+81476348000"><span class="ni" aria-hidden="true">&#8505;&#65039;</span><span class="nt"><b>Narita Airport Information</b><span>+81 476-34-8000</span><small>Open 24 hours</small></span></a>
 <p class="small" style="margin-top:8px">Every terminal has information counters. Look for the <strong>?</strong> sign. Staff will help, so just ask.</p>
-<p class="sec-h">Emergency (free, 24 hours)</p>
-<div class="numgrid"><a class="num em" href="tel:119"><span class="ni" aria-hidden="true">&#128657;</span><span class="nt"><b>Ambulance or fire</b><span>119</span></span></a><a class="num em" href="tel:110"><span class="ni" aria-hidden="true">&#128659;</span><span class="nt"><b>Police</b><span>110</span></span></a></div>
 <p class="sec-h">Help or travel questions</p>
 <a class="num hot" href="tel:+815038162787"><span class="ni" aria-hidden="true">&#128222;</span><span class="nt"><b>Japan Visitor Hotline</b><span>050-3816-2787</span><small>24 hours. English, Chinese, Korean</small></span></a>
 </div>
 <div class="tiles hnav" id="hnav2"></div>
 </div>
 </div></div>
-<div class="card slim" id="shareCard" hidden><div class="row"><div><h2>Helping someone travel?</h2><p>Send them this guide for offline use.</p></div><button type="button" class="big" id="shareBtn">Send it</button></div></div>
+<div class="quiet"><div class="card slim" id="shareCard" hidden><div class="row"><div><h2>Helping someone travel?</h2><p>Send them this guide for offline use.</p></div><button type="button" class="big" id="shareBtn">Send it</button></div></div>
 <div class="card slim install" id="install"><div class="row"><div><h2>Keep this on your phone</h2><p>Add it to your home screen. Works offline.</p><p class="small" id="instDesk">Open this page on your phone, then add it to your home screen.</p></div><div id="instHow" hidden><button type="button" class="big" id="instBtn">Show me</button></div></div></div>
-<p class="small">Facility details come from Narita Airport's own pages, checked 16 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). The full guide, with trains, SIM and luggage, is at <a href="https://www.packsmartapp.com/blog/narita-airport-guide">packsmartapp.com</a> (needs internet).</p>
+<p class="small">Facility details come from Narita Airport's own pages, checked 16 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). The full guide, with trains, SIM and luggage, is at <a href="https://www.packsmartapp.com/blog/narita-airport-guide">packsmartapp.com</a> (needs internet).</p></div>
 </section>
 </div>
 <nav class="tabs" role="tablist" aria-label="Sections">
@@ -692,7 +699,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
     ['help','📱','Lost phone','スマホをなくしました。','Sumaho o nakushimashita.','I lost my phone.'],
     ['help','🧳','Lost bag','かばんをなくしました。','Kaban o nakushimashita.','I lost my bag.'],
     ['help','🧒','Lost child','子どもがいなくなりました。助けてください。','Kodomo ga inaku narimashita. Tasukete kudasai.','My child is missing. Please help me.']];
-  var ASKC=[['basics','Basics'],['where','Where is&hellip;?'],['shop','Shopping'],['eat','Eating out'],['sights','Sights'],['go','Getting around'],['air','Airport'],['help','Help']];
+  var ASKC=[['basics','Basics','👋'],['where','Where is&hellip;?','📍'],['shop','Shopping','🛍️'],['eat','Eating out','🍜'],['sights','Sights','🎡'],['go','Getting around','🚆'],['air','Airport','✈️'],['help','Help','🆘']];
   var askCat='basics'; try{ var sc=localStorage.getItem('nrtAskCat'); if(sc&&ASKC.some(function(c){return c[0]===sc;})) askCat=sc; }catch(e){}
   var askT=$('askTiles'), askC=$('askCats');
   function jaVoices(){ try{ return window.speechSynthesis.getVoices().filter(function(v){return /^ja/i.test(v.lang);}); }catch(e){ return []; } }
@@ -717,7 +724,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
     });
   }
   ASKC.forEach(function(c){
-    var b=document.createElement('button'); b.type='button'; b.setAttribute('data-c',c[0]); b.innerHTML=c[1];
+    var b=document.createElement('button'); b.type='button'; b.setAttribute('data-c',c[0]); var ci=document.createElement('span'); ci.className='ci'; ci.setAttribute('aria-hidden','true'); ci.textContent=c[2]; var cl=document.createElement('span'); cl.innerHTML=c[1]; b.appendChild(ci); b.appendChild(cl);
     b.addEventListener('click',function(){ askCat=c[0]; try{localStorage.setItem('nrtAskCat',c[0]);}catch(e){} paintAsk(); });
     askC.appendChild(b);
   });
@@ -735,7 +742,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
       hTimer=setTimeout(function(){ off.classList.add('off'); hTimer=null; },320);
     }
     hp2.inert=true;
-    $('hnav1').appendChild(pill('pgnext','\u2192','More','Phone numbers and more',function(){ hslide(1); }));
+    $('hnav1').appendChild(pill('pgnext','\u2192','Phone numbers','Emergency, airport, help line',function(){ hslide(1); }));
     $('hnav2').appendChild(pill('pgback','\u2190','Back','Say it in Japanese',function(){ hslide(0); }));
     var sx=0, sy=0, on=false;
     hpager.addEventListener('touchstart',function(e){ if(e.touches.length!==1){on=false;return;} on=true; sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
