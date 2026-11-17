@@ -383,6 +383,14 @@ FINDER_DATA = {
             "T1": "3F (paid Kids Park, after passport control); Baby Play Space",
             "T2": "2F, domestic services area (after departure procedures)",
             "T3": ""}],
+        ["pharmacy", "Pharmacy and medicine", {
+            "T1": "Pharmacies and drugstores: B1F and 4F (before security), and 3F (after security, international flights). Some medicines are sold only when a pharmacist is on duty. Opening hours vary, so check the shop.",
+            "T2": "Pharmacies and drugstores in the Main Building: 2F (before security) and 3F (after security, international flights). Some medicines are sold only when a pharmacist is on duty. Opening hours vary, so check the shop.",
+            "T3": "A drugstore on 2F, before security. It sells cold, pain and stomach medicine, masks and travel goods. Opening hours vary, so check the shop."}],
+        ["charge", "Phone charging", {
+            "T1": "Free power outlets are in a number of places in every terminal. Ask at an information counter for the nearest. Paid power bank rental (ChargeSPOT) is before security in every terminal, open 24 hours.",
+            "T2": "Free power outlets are in a number of places in every terminal. Ask at an information counter for the nearest. Paid power bank rental (ChargeSPOT) is before security in every terminal, open 24 hours.",
+            "T3": "Free power outlets are in a number of places in every terminal. Ask at an information counter for the nearest. Paid power bank rental (ChargeSPOT) is before security in every terminal, open 24 hours."}],
         ["money", "Money and ATMs", {
             "T1": "ATMs: 1F, 3F and 4F. Currency exchange: B1F, 1F, 3F and 4F. Exchange rates differ from shop to shop, so check the rate before you exchange.",
             "T2": "ATMs: B1F, 1F, 2F and 3F (Main Building). Currency exchange: B1F, 1F and 3F (Main Building). Exchange rates differ from shop to shop, so check the rate before you exchange.",
@@ -393,7 +401,7 @@ FINDER_DATA = {
             "T3": "The airport list does not show a clinic in Terminal 3. Go to an information counter (? sign) and ask for help. Narita Airport Information: +81 476-34-8000, open 24 hours. In an emergency, call 119 for an ambulance."}],
     ],
 }
-_ORDER = ["money", "food", "toilet", "help", "lockers", "baby", "play", "wifi", "info", "unwell", "prayer", "quiet", "shower", "smoking"]
+_ORDER = ["money", "food", "toilet", "help", "lockers", "baby", "play", "wifi", "info", "unwell", "pharmacy", "charge", "prayer", "quiet", "shower", "smoking"]
 assert sorted(_ORDER) == sorted(i[0] for i in FINDER_DATA["items"])
 FINDER_DATA["items"].sort(key=lambda i: _ORDER.index(i[0]))
 
@@ -975,7 +983,7 @@ html.lg{font-size:118%}
 .tiles .tile:last-child:nth-child(odd){grid-column:1/-1}
 .pager{overflow:hidden;margin-top:6px}
 .track{display:flex;align-items:flex-start;transition:transform .28s ease}
-.tiles.pane{flex:0 0 100%;min-width:0;margin-top:0;visibility:visible}
+.tiles.pane{flex:0 0 100%;min-width:0;margin-top:0;visibility:visible;grid-auto-rows:minmax(78px,auto)}
 .tiles.pane.off{visibility:hidden}
 .tiles.pane .tile:last-child:nth-child(odd):not(.more){grid-column:auto}
 .tiles .tile.more{grid-column:1/-1;min-height:60px;background:#00C9A7;border:2px solid #0b8f7c;color:#0f0f23;box-shadow:0 3px 0 #0b8f7c}
@@ -1115,8 +1123,8 @@ POCKET_HTML = """<!DOCTYPE html>
 <script>
 (function(){
   var D=__FINDER_JSON__;
-  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8',smoking:'\\uD83D\\uDEAC',toilet:'\\uD83D\\uDEBB',food:'\\uD83C\\uDF5C',money:'\\uD83D\\uDCB4',unwell:'\\uD83C\\uDFE5',more:'\\u2795'};
-  var SHORT={prayer:'Prayer room',baby:'Baby room',quiet:'Quiet room',info:'Information counter',help:'Wheelchair and help',lockers:'Luggage',wifi:'Wi-Fi rental',shower:'Showers, day rooms',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets',food:'Food and drink',money:'Money and ATMs',unwell:'Feeling unwell',more:'More places'};
+  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8',smoking:'\\uD83D\\uDEAC',toilet:'\\uD83D\\uDEBB',food:'\\uD83C\\uDF5C',money:'\\uD83D\\uDCB4',unwell:'\\uD83C\\uDFE5',pharmacy:'\\uD83D\\uDC8A',charge:'\\uD83D\\uDD0B',more:'\\u2795'};
+  var SHORT={prayer:'Prayer room',baby:'Baby room',quiet:'Quiet room',info:'Information counter',help:'Wheelchair and help',lockers:'Luggage',wifi:'Wi-Fi rental',shower:'Showers, day rooms',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets',food:'Food and drink',money:'Money and ATMs',unwell:'Feeling unwell',pharmacy:'Pharmacy',charge:'Phone charging',more:'More places'};
   var term='ALL', lastTile=null;
   try{ var s=localStorage.getItem('nrtTerm'); if(s&&/^(ALL|T1|T2|T3)$/.test(s)) term=s; }catch(e){}
   function $(id){return document.getElementById(id);}
@@ -1147,7 +1155,6 @@ POCKET_HTML = """<!DOCTYPE html>
     off.setAttribute('aria-hidden','true'); off.inert=true;
     track.style.transform='translateX('+(p?'-100%':'0')+')';
     offTimer=setTimeout(function(){ off.classList.add('off'); offTimer=null; },320);
-    try{ pager.scrollIntoView({block:'nearest'}); }catch(e){}
   }
   tiles2.inert=true;
   D.items.forEach(function(it,n){
@@ -1156,10 +1163,10 @@ POCKET_HTML = """<!DOCTYPE html>
     var tx=document.createElement('span'); tx.className='tx'; tx.textContent=SHORT[it[0]]||it[1];
     b.appendChild(ic); b.appendChild(tx);
     b.addEventListener('click',function(){ openSheet(it,b); });
-    if(n===MAIN){ tiles2.appendChild(pill('pgback','\\u2B05\\uFE0F','Back','Main places',function(){ slideTo(0); })); }
     (n<MAIN?tiles:tiles2).appendChild(b);
     if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u27A1\\uFE0F','More','Information counter, prayer room and others',function(){ slideTo(1); })); }
   });
+  tiles2.appendChild(pill('pgback','\\u2B05\\uFE0F','Back','Main places',function(){ slideTo(0); }));
   /* swipe between the two screens */
   (function(){
     var sx=0, sy=0, on=false;
