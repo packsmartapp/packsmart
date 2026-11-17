@@ -38,7 +38,7 @@ def jb_leg(text, icon="", blue=False):
 def box(suffix):
     return (
         '<div data-ps-placement="jw-shinkansen-' + suffix + '" style="max-width:800px;margin:20px auto;padding:20px;background:#f0faf7;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:12px;">'
-        '<style>.ps-jb-btn{transition:background .15s,box-shadow .15s}.ps-jb-btn:hover,.ps-jb-btn:focus-visible{background:#00B396!important;box-shadow:0 4px 14px rgba(0,201,167,.35)}'
+        '<style>.ps-jb-ghost{transition:background .15s,box-shadow .15s}.ps-jb-btn:hover .ps-jb-ghost,.ps-jb-btn:focus-visible .ps-jb-ghost{background:#E7FAF5!important;box-shadow:0 2px 10px rgba(0,201,167,.25)}'
         '.jb-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:22px;align-items:center;margin:0 0 16px}'
         '.jb-row{display:flex;gap:22px;align-items:flex-start}.jb-row .jb-tx{flex:1 1 0;min-width:0}.jb-row .jb-bt{flex:0 0 280px}'
         '@media(max-width:640px){.jb-grid{grid-template-columns:1fr;gap:14px}.jb-row{flex-direction:column;align-items:stretch;gap:12px}.jb-row .jb-bt{flex:none}}'
@@ -58,7 +58,7 @@ def box(suffix):
         '<div class="jb-row"><div class="jb-tx">'
         '<p style="margin:0;font-size:0.95rem;line-height:1.5;color:#333;">' + ("" if suffix == "itinerary" else "The Shinkansen leaves from Tokyo Station. ") + 'If you want your tickets sorted before you travel, you can book them online. The company says its tickets cover the JR East, JR West, JR Central and JR Kyushu Shinkansen lines and are collected with a QR code.</p>'
         '</div><div class="jb-bt">'
-        '<a class="ps-jb-btn" href="' + JB_LINK + '" target="_blank" rel="nofollow noopener sponsored" style="display:block;box-sizing:border-box;background:#00C9A7;color:#0f0f23;text-align:center;text-decoration:none;border-radius:12px;padding:11px 14px;min-height:48px;line-height:1.25;"><span style="display:block;font-weight:800;font-size:1.02rem;">Book Shinkansen tickets</span><span style="display:block;font-weight:600;font-size:0.8rem;opacity:0.8;margin-top:2px;">Japan Bullet Train &middot; partner link</span></a>'
+        '<a class="ps-jb-btn" href="' + JB_LINK + '" target="_blank" rel="nofollow noopener sponsored" style="display:block;box-sizing:border-box;text-decoration:none;"><span class="ps-jb-ghost" style="display:block;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;text-align:center;font-weight:700;font-size:1rem;border-radius:12px;padding:11px 14px;min-height:46px;line-height:1.25;">Book Shinkansen tickets &rarr;</span><span style="display:block;text-align:center;font-size:0.76rem;color:#777;margin-top:6px;">Japan Bullet Train &middot; partner link</span></a>'
         '<p style="margin:10px 0 0;font-size:0.85rem;line-height:1.5;color:#555;">You can also buy at a station on the day, so check the price and the change and cancellation rules before you pay.</p>'
         '</div></div></div>'
     )

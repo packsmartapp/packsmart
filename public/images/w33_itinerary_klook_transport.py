@@ -30,18 +30,18 @@ def kl_row(label, text):
 def kl_tile(r):
     pid, name, to, mins, price, note, link, btn, svg = r
     return (
-        '<div data-ps-placement="klook-japan-transport-itinerary-%s" style="display:flex;flex-direction:column;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:12px 12px 14px;">' % pid
-        + '<a href="%s" target="_blank" rel="nofollow noopener sponsored" tabindex="-1" aria-hidden="true" style="display:block;margin:0 0 10px;border-radius:12px;overflow:hidden;">%s</a>' % (link, svg)
+        '<a class="ps-kl-tile" data-ps-placement="klook-japan-transport-itinerary-%s" href="%s" target="_blank" rel="nofollow noopener sponsored" style="display:flex;flex-direction:column;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:12px 12px 14px;text-decoration:none;color:#0f0f23;">' % (pid, link)
+        + '<span style="display:block;margin:0 0 10px;border-radius:12px;overflow:hidden;">%s</span>' % svg
         + '<strong style="display:block;font-size:1.1rem;color:#0f0f23;margin:0 0 8px;">%s</strong>' % name
         + kl_row("Goes to", to) + kl_row("About how long", mins) + kl_row("About how much", price)
         + '<p style="margin:0 0 12px;font-size:0.88rem;color:#555;line-height:1.4;">%s</p><span style="flex:1;min-height:4px;display:block;"></span>' % note
-        + '<a class="ps-kl-btn" href="%s" target="_blank" rel="nofollow noopener sponsored" style="display:block;box-sizing:border-box;background:#00C9A7;color:#0f0f23;text-align:center;text-decoration:none;border-radius:12px;padding:11px 14px;min-height:48px;line-height:1.25;"><span style="display:block;font-weight:800;font-size:1.02rem;">%s</span><span style="display:block;font-weight:600;font-size:0.8rem;opacity:0.8;margin-top:2px;">Klook &middot; partner link</span></a></div>' % (link, btn)
+        + '<span class="ps-kl-ghost" style="display:block;box-sizing:border-box;border:1.5px solid #00C9A7;color:#0a8f78;text-align:center;font-weight:700;font-size:0.98rem;border-radius:12px;padding:10px 12px;min-height:46px;line-height:1.25;display:flex;align-items:center;justify-content:center;">%s&nbsp;&rarr;</span><span style="display:block;text-align:center;font-size:0.76rem;color:#777;margin-top:6px;">Klook &middot; partner link</span></a>' % btn.replace(" ", "&nbsp;", btn.count(" ") - 1)
     )
 
 
 KLOOK_TRANSPORT = (
     '<div data-ps-placement="klook-japan-transport-itinerary" style="max-width:800px;margin:20px auto;padding:20px;background:#f0faf7;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:12px;">'
-    '<style>.ps-kl-btn{transition:background .15s,box-shadow .15s}.ps-kl-btn:hover,.ps-kl-btn:focus-visible{background:#00B396!important;box-shadow:0 4px 14px rgba(0,201,167,.35)}</style>'
+    '<style>.ps-kl-tile{transition:border-color .15s,box-shadow .15s}.ps-kl-tile:hover,.ps-kl-tile:focus-visible{border-color:#00C9A7!important;box-shadow:0 2px 10px rgba(0,201,167,.25)}.ps-kl-ghost{transition:background .15s}.ps-kl-tile:hover .ps-kl-ghost,.ps-kl-tile:focus-visible .ps-kl-ghost{background:#E7FAF5}</style>'
     '<strong style="display:block;font-size:1.1rem;color:#0f0f23;margin:0 0 6px;">Landing at Narita? Want your train or bus ticket sorted before you fly?</strong>'
     '<p style="margin:0 0 14px;font-size:0.95rem;color:#333;line-height:1.5;">You can buy these as e-tickets on Klook. You can also buy at the station or bus counter when you arrive, so booking ahead is a convenience, not a must.</p>'
     '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:0 0 12px;">'
