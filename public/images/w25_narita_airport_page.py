@@ -994,7 +994,16 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 .tiles.pane.off{visibility:hidden}
 .hpane{flex:0 0 100%;min-width:0}
 .hpane.off{visibility:hidden;height:0;overflow:hidden}
-#p-help .tiles.hnav{grid-template-columns:minmax(0,1fr);margin:0 0 12px}
+#p-help .tiles.hnav{grid-template-columns:minmax(0,1fr);margin:2px 0 12px}
+@media (max-width:380px){#p-help .tile{padding:7px 6px;gap:6px}#p-help .tile .ic{width:32px;height:32px;font-size:1.25rem}#p-help .tile .tx{font-size:.86rem}}
+@media (max-width:340px){#p-help .tile{padding:6px 5px;gap:5px}#p-help .tile .ic{width:26px;height:26px;font-size:1.05rem}#p-help .tile .tx{font-size:.78rem}}
+.card.slim{padding:10px 12px}
+.card.slim .row{display:flex;gap:10px;align-items:center}
+.card.slim .row>div:first-child{flex:1;min-width:0}
+.card.slim h2{font-size:1rem;margin:0 0 2px}
+.card.slim p{margin:0;font-size:.9rem}
+.card.slim p.small{font-size:.8rem;margin-top:2px}
+.card.slim button.big{flex:none;padding:10px 14px;font-size:.95rem}
 #p-help .tile.more{padding:5px 12px;gap:8px;min-height:50px}
 #p-help .tile.more .ic{width:36px;height:36px;font-size:1.35rem}
 #p-help .tile.more .tx{font-size:1rem}
@@ -1124,10 +1133,11 @@ POCKET_HTML = """<!DOCTYPE html>
 </section>
 <section class="panel" id="p-help" role="tabpanel" aria-labelledby="t-help" hidden>
 <div class="pager" id="hpager"><div class="track" id="htrack">
-<div class="hpane" id="hp1"><div class="tiles hnav" id="hnav1"></div>
-<div class="card"><h2>Say it in Japanese</h2><p class="small">Tap one, then hold up your phone so the person can read it. Or tap Play to hear it.</p><div class="cats" id="askCats" role="group" aria-label="Phrase groups"></div><div class="tiles" id="askTiles"></div></div>
+<div class="hpane" id="hp1">
+<div class="card" id="sayCard"><h2>Say it in Japanese</h2><p class="small">Tap one, then show your phone. Or tap Play.</p><div class="cats" id="askCats" role="group" aria-label="Phrase groups"></div><div class="tiles" id="askTiles"></div></div>
+<div class="tiles hnav" id="hnav1"></div>
 </div>
-<div class="hpane off" id="hp2" aria-hidden="true"><div class="tiles hnav" id="hnav2"></div>
+<div class="hpane off" id="hp2" aria-hidden="true">
 <div class="card" id="numCard"><h2>Useful phone numbers</h2><p class="small">Tap a number to call. Your phone company may charge for calls abroad.</p>
 <p class="sec-h">At Narita Airport only</p>
 <a class="num air" href="tel:+81476348000"><span class="ni" aria-hidden="true">&#8505;&#65039;</span><span class="nt"><b>Narita Airport Information</b><span>+81 476-34-8000</span><small>Open 24 hours</small></span></a>
@@ -1137,9 +1147,9 @@ POCKET_HTML = """<!DOCTYPE html>
 <p class="sec-h">Help or travel questions</p>
 <a class="num hot" href="tel:+815038162787"><span class="ni" aria-hidden="true">&#128222;</span><span class="nt"><b>Japan Visitor Hotline</b><span>050-3816-2787</span><small>24 hours. English, Chinese, Korean</small></span></a>
 </div>
-<div class="card" id="shareCard" hidden><h2>Helping someone travel?</h2><p>Send this guide to their phone before the trip, so it is saved for use with no internet.</p><p><button type="button" class="big" id="shareBtn">Send this guide</button></p></div>
-<p class="small">Some links in this guide are partner links. We may earn a small commission at no cost to you.</p>
-<div class="card install" id="install"><h2>Keep this on your phone</h2><p>Add it to your home screen once, while you have signal. It then opens like an app, even with no internet.</p><p id="instHow" hidden><button type="button" class="big" id="instBtn">Show me how</button></p><p class="small" id="instDesk">Open this page on your phone, then add it to your home screen.</p></div>
+<div class="tiles hnav" id="hnav2"></div>
+<div class="card slim" id="shareCard" hidden><div class="row"><div><h2>Helping someone travel?</h2><p>Send them this guide for offline use.</p></div><button type="button" class="big" id="shareBtn">Send it</button></div></div>
+<div class="card slim install" id="install"><div class="row"><div><h2>Keep this on your phone</h2><p>Add it to your home screen. Works offline.</p><p class="small" id="instDesk">Open this page on your phone, then add it to your home screen.</p></div><div id="instHow" hidden><button type="button" class="big" id="instBtn">Show me</button></div></div></div>
 <p class="small">Facility details come from Narita Airport's own pages, checked 16 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). The full guide, with trains, SIM and luggage, is at <a href="__GUIDE_URL__">packsmartapp.com</a> (needs internet).</p>
 </div>
 </div></div>
@@ -1496,7 +1506,7 @@ POCKET_HTML = """<!DOCTYPE html>
     ['where','🛗','Lift','エレベーターはどこですか？','Erebeetaa wa doko desu ka?','Where is the lift?'],
     ['where','☕','Coffee','コーヒーはどこですか？','Koohii wa doko desu ka?','Where is the coffee?'],
     ['where','💧','Water','お水はどこですか？','Omizu wa doko desu ka?','Where is the water?'],
-    ['where','🏪','Convenience store','コンビニはどこですか？','Konbini wa doko desu ka?','Where is a convenience store?'],
+    ['where','🏪','Konbini','コンビニはどこですか？','Konbini wa doko desu ka?','Where is a convenience store?'],
     ['where','🍜','Food','食事ができる所はどこですか？','Shokuji ga dekiru tokoro wa doko desu ka?','Where can I eat?'],
     ['where','🏧','ATM','ATMはどこですか？','Eetiiemu wa doko desu ka?','Where is an ATM?'],
     ['where','🔐','Coin locker','コインロッカーはどこですか？','Koin rokkaa wa doko desu ka?','Where are the coin lockers?'],
@@ -1598,6 +1608,7 @@ POCKET_HTML = """<!DOCTYPE html>
     var hp1=$('hp1'), hp2=$('hp2'), htrack=$('htrack'), hpager=$('hpager'), hpage=0, hTimer=null;
     function hslide(p){
       hpage=p; if(hTimer){ clearTimeout(hTimer); hTimer=null; }
+      var pn=document.querySelector('.panels'); if(pn) pn.scrollTop=0;
       var on=p?hp2:hp1, off=p?hp1:hp2;
       on.classList.remove('off'); on.removeAttribute('aria-hidden'); on.inert=false;
       off.setAttribute('aria-hidden','true'); off.inert=true;
