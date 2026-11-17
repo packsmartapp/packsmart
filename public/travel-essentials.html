@@ -126,12 +126,13 @@
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Travel Essentials", "url": "https://www.packsmartapp.com/travel-essentials", "description": "Plain-English travel help that is not about one destination: airport guides, visas, eSIM and insurance, solo and family travel, and packing lists for any trip.", "isPartOf": {"@type": "WebSite", "name": "PackSmart", "url": "https://www.packsmartapp.com"}}
 </script>
-<style id="pg-badge2-css">
-.pg-row{display:flex;justify-content:space-between;align-items:flex-end;gap:.75rem;margin-top:.5rem}
-.pg-badge{display:block;background:#00C9A7;color:#0f0f23;text-align:center;border-radius:12px;padding:.5rem .9rem;line-height:1.25}
-.pg-badge span{display:block;font-size:.68rem;font-weight:700;opacity:.85}
-.pg-badge b{display:block;font-size:.85rem;font-weight:800}
-@media (max-width:340px){.pg-row{flex-wrap:wrap}}
+<style id="pg-strip-css">
+.pg-meta{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:baseline;column-gap:.6rem;row-gap:.25rem}
+.pg-meta .read-more{white-space:nowrap}
+.pg-strip{display:flex;align-items:center;gap:.65rem;margin-top:1rem;background:#E7FAF5;border:1px solid #bfeee2;color:#0f0f23;border-radius:12px;padding:.5rem .8rem .5rem .55rem}
+.pg-ic{flex:none;width:30px;height:30px;border-radius:9px;background:#00C9A7;display:flex;align-items:center;justify-content:center}
+.pg-tx{flex:1;font-weight:800;font-size:.9rem;line-height:1.25}
+@media (max-width:480px){.blog-card-body.pg-body{padding-left:1.3rem;padding-right:1.3rem}.pg-meta .read-more{font-size:.85rem}}
 </style>
 </head>
 <body>
@@ -166,12 +167,12 @@
         <div class="blog-grid">
         <a href="/blog/narita-airport-guide" class="blog-card">
             <img class="blog-card-img" src="/images/narita-airport-card-680.webp" alt="A busy check-in hall at Narita Airport with travellers and luggage" width="680" height="340" loading="lazy">
-            <div class="blog-card-body">
+            <div class="blog-card-body pg-body">
                 <span class="tag">Airport Guide</span>
                 <h2>Narita Airport Guide 2026: Terminals, Arrival Steps, SIM and Getting to Tokyo</h2>
                 <p>Which terminal, what to do after landing, SIM and eSIM options, trains and buses to Tokyo, and where to find prayer rooms, baby rooms and quiet rooms.</p>
-                <span class="meta">November 16, 2026 &middot; 8 min read</span>
-                <div class="pg-row"><span class="read-more">Read more &rarr;</span><span class="pg-badge"><span>Download to your phone</span><b>Narita Pocket Guide</b><span>Works offline</span></span></div>
+                <div class="pg-meta"><span class="meta">November 16, 2026 &middot; 8 min read</span><span class="read-more">Read more &rarr;</span></div>
+                <span class="pg-strip"><span class="pg-ic"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg></span><span class="pg-tx">Narita Pocket Guide Inside</span></span>
             </div>
         </a>
         </div>
