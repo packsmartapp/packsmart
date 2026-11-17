@@ -978,9 +978,12 @@ html.lg{font-size:118%}
 .tiles.pane{flex:0 0 100%;min-width:0;margin-top:0;visibility:visible}
 .tiles.pane.off{visibility:hidden}
 .tiles.pane .tile:last-child:nth-child(odd):not(.more){grid-column:auto}
-.tiles .tile.more{grid-column:1/-1;min-height:56px;background:#F1F5F6;border-style:dashed}
-.tiles .tile.more .tx{font-weight:700}
-.tiles .tile.more small{display:block;font-weight:600;font-size:.82em;color:#4a5068;margin-top:2px}
+.tiles .tile.more{grid-column:1/-1;min-height:60px;background:#00C9A7;border:2px solid #0b8f7c;color:#0f0f23;box-shadow:0 3px 0 #0b8f7c}
+.tiles .tile.more .ic{background:#fff}
+.tiles .tile.more .tx{font-weight:800}
+.tiles .tile.more small{display:block;font-weight:700;font-size:.82em;color:#0f0f23;margin-top:2px}
+.tiles .tile.pgback{background:#1a1a3e;border-color:#0f0f23;color:#fff;box-shadow:0 3px 0 #0f0f23}
+.tiles .tile.pgback small{color:#E3E8EC}
 @media (prefers-reduced-motion:reduce){.track{transition:none}}
 a{color:#00776a}
 a.call{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,#E94560,#c92f4a);color:#fff;border-radius:16px;padding:16px 14px;text-decoration:none;margin:0 0 10px;box-shadow:0 3px 0 #9d2238}
