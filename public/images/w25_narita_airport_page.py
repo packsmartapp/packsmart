@@ -983,15 +983,17 @@ html.lg{font-size:118%}
 .tiles .tile:last-child:nth-child(odd){grid-column:1/-1}
 .pager{overflow:hidden;margin-top:6px}
 .track{display:flex;align-items:flex-start;transition:transform .28s ease}
-.tiles.pane{flex:0 0 100%;min-width:0;margin-top:0;visibility:visible;grid-auto-rows:minmax(78px,auto)}
+.tiles.pane{flex:0 0 100%;min-width:0;margin-top:0;visibility:visible}
 .tiles.pane.off{visibility:hidden}
 .tiles.pane .tile:last-child:nth-child(odd):not(.more){grid-column:auto}
-.tiles .tile.more{grid-column:1/-1;min-height:60px;background:#00C9A7;border:2px solid #0b8f7c;color:#0f0f23;box-shadow:0 3px 0 #0b8f7c}
-.tiles .tile.more .ic{background:#fff}
-.tiles .tile.more .tx{font-weight:800}
-.tiles .tile.more small{display:block;font-weight:700;font-size:.82em;color:#0f0f23;margin-top:2px}
-.tiles .tile.pgback{background:#1a1a3e;border-color:#0f0f23;color:#fff;box-shadow:0 3px 0 #0f0f23}
-.tiles .tile.pgback small{color:#E3E8EC}
+.tiles .tile.more{grid-column:1/-1;min-height:50px;padding:5px 12px;gap:8px;background:#fff;border:3px solid #00C9A7;box-shadow:none;color:#0b6f60}
+.tiles .tile.more .ic{width:30px;height:36px;border-radius:0;background:transparent;color:#00C9A7;font-weight:900;font-size:2.1rem;line-height:1;padding-bottom:4px}
+.tiles .tile.more .tx{font-weight:800;line-height:1.15}
+.tiles .tile.more small{display:block;font-weight:700;font-size:.8em;color:#4a5568;margin-top:1px}
+.tiles .tile.pgnext{flex-direction:row-reverse;justify-content:space-between}
+.tiles .tile.pgnext .ic{justify-content:flex-end}
+.tiles .tile.pgback .ic{justify-content:flex-start}
+.tiles.pane .tile:not(.more){min-height:78px}
 @media (prefers-reduced-motion:reduce){.track{transition:none}}
 a{color:#00776a}
 a.call{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,#E94560,#c92f4a);color:#fff;border-radius:16px;padding:16px 14px;text-decoration:none;margin:0 0 10px;box-shadow:0 3px 0 #9d2238}
@@ -1164,9 +1166,9 @@ POCKET_HTML = """<!DOCTYPE html>
     b.appendChild(ic); b.appendChild(tx);
     b.addEventListener('click',function(){ openSheet(it,b); });
     (n<MAIN?tiles:tiles2).appendChild(b);
-    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u27A1\\uFE0F','More','Information counter, prayer room and others',function(){ slideTo(1); })); }
+    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u203A','More','Information counter, prayer room and others',function(){ slideTo(1); })); }
   });
-  tiles2.appendChild(pill('pgback','\\u2B05\\uFE0F','Back','Main places',function(){ slideTo(0); }));
+  tiles2.appendChild(pill('pgback','\\u2039','Back','Main places',function(){ slideTo(0); }));
   /* swipe between the two screens */
   (function(){
     var sx=0, sy=0, on=false;
