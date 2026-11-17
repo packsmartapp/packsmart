@@ -126,7 +126,13 @@ pickups = pickups.replace(
     + "Typical fares, airport to city centre: Narita about €139 · Tokyo Haneda about €45. Per car, not per person."
     + old_fare.group(2),
 )
-# widget heading: keep as is. Wording below the widget stays generic.
+# v73: a title for the transfer box, in the same voice as the rental car box
+_PK_H = "Your Driver at Narita: Comfort After a Long Flight, to Your Hotel"
+_k = pickups.find("</style>")
+if _k < 0:
+    die("pickups style close not found")
+_k += len("</style>")
+pickups = pickups[:_k] + '\n    <h3 style="margin:0 0 16px 0;color:#0f0f23;font-size:1.3rem;line-height:1.3;">' + _PK_H + '</h3>' + pickups[_k:]
 
 # Airalo heading wording for an airport page
 airalo = airalo.replace("Install it before you fly, switch it on when you land. No airport SIM queue.",
@@ -965,11 +971,11 @@ HERO_CTA = ('        <div style="margin:48px 0 0;text-align:center;">'
             '<a href="/narita-pocket?src=hero" onclick="try{window.gtag&&gtag(\'event\',\'pocket_prompt\',{event_category:\'engagement\',action:\'open_hero\',page_path:location.pathname});}catch(e){}" '
             'style="display:inline-flex;align-items:center;gap:12px;background:#00C9A7;color:#0f0f23;text-align:left;padding:12px 14px 12px 20px;width:340px;max-width:100%;box-sizing:border-box;border-radius:12px;text-decoration:none;min-height:44px;box-shadow:0 6px 18px rgba(0,0,0,.28);line-height:1.2;">'
             '<span style="flex:1;min-width:0;text-align:left;">'
-            '<span style="display:block;font-weight:700;font-size:0.8rem;opacity:0.8;">Download to your phone</span>'
+            '<span style="display:block;font-weight:700;font-size:0.8rem;opacity:0.8;">Save to your phone</span>'
             '<span style="display:block;font-weight:800;font-size:1.05rem;margin-top:2px;">Narita Pocket Guide</span>'
             '<span style="display:block;font-weight:600;font-size:0.8rem;margin-top:2px;opacity:0.8;">Works offline</span></span>'
             '<span aria-hidden="true" style="flex:none;width:40px;height:40px;border-radius:50%;background:#F97316;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.18);">'
-            '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11M7 11l5 5 5-5M5 20h14"/></svg></span>'
+            '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M12 8.5v6M9 11.5h6"/></svg></span>'
             '</a></div>')
 
 head = "\n".join([
@@ -1372,7 +1378,7 @@ POCKET_HTML = """<!DOCTYPE html>
 <meta name="theme-color" content="#1a1a3e">
 <link rel="manifest" href="/narita-pocket.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="apple-touch-icon" href="/favicon-192.png">
+<link rel="apple-touch-icon" href="/images/narita-apple-touch-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Narita">
@@ -1964,9 +1970,9 @@ if re.search(r"\b(India|Indian|INR|Rs\.?|rupee|lakh|Aadhaar|UPI|VFS|BLS)\b|₹",
     die("neutral-rule violation in the pocket guide")
 
 POCKET_SW = """/* Narita Pocket Guide service worker. Bump V when the page changes shape. */
-var V='narita-pocket-v2';
+var V='narita-pocket-v3';
 var PAGE='/narita-pocket';
-var SHELL=[PAGE,'/narita-pocket.webmanifest','/favicon-32.png','/favicon-192.png','/favicon-512.png'];
+var SHELL=[PAGE,'/narita-pocket.webmanifest','/favicon-32.png','/images/narita-icon-192.png','/images/narita-icon-512.png','/images/narita-icon-maskable-512.png'];
 self.addEventListener('install',function(e){
   e.waitUntil(caches.open(V).then(function(c){return c.addAll(SHELL);}).then(function(){return self.skipWaiting();}));
 });
@@ -2015,11 +2021,15 @@ POCKET_MANIFEST = json.dumps({
     "theme_color": "#1a1a3e",
     "lang": "en",
     "icons": [
-        {"src": "/favicon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-        {"src": "/favicon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+        {"src": "/images/narita-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+        {"src": "/images/narita-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+        {"src": "/images/narita-icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
     ],
 }, indent=2) + "\n"
 PUB = os.path.join(ROOT, "public")
+for _ic in ("narita-icon-192.png", "narita-icon-512.png", "narita-icon-maskable-512.png", "narita-apple-touch-180.png"):
+    if not os.path.isfile(os.path.join(PUB, "images", _ic)):
+        die("pocket guide icon missing: public/images/" + _ic + " (the service worker would fail to install without it)")
 for _name, _content in (("narita-pocket.html", POCKET_HTML), ("narita-sw.js", POCKET_SW), ("narita-pocket.webmanifest", POCKET_MANIFEST)):
     _p = os.path.join(PUB, _name)
     _old = open(_p, encoding="utf-8").read() if os.path.isfile(_p) else None
