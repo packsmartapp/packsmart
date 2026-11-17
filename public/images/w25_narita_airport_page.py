@@ -968,7 +968,6 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 .reset[hidden]{display:none}
 .reset{font:inherit;font-size:0.85rem;font-weight:700;color:#0b6b59;background:none;border:0;text-decoration:underline;cursor:pointer;padding:8px 4px;margin:0 0 0 2px}
 .lead2{margin:0 2px 8px;font-size:0.9rem;color:#555}
-html.lg{font-size:118%}
 .sheet .jp{font-size:2.1rem;font-weight:800;line-height:1.35;text-align:center;margin:10px 0 6px;color:#0f0f23}
 .sheet .rom{font-size:1.15rem;text-align:center;color:#444;margin:0 0 8px}
 .sheet .en2{font-size:1.15rem;text-align:center;font-weight:700;margin:0 0 8px;color:#00776a}
@@ -976,6 +975,11 @@ html.lg{font-size:118%}
 .heroline .big2{flex:none;font-size:1.7rem;font-weight:800;line-height:1;color:#00C9A7}
 .heroline span{font-size:0.9rem;line-height:1.25}
 .sec-h{font-weight:800;font-size:0.95rem;margin:10px 2px 4px;color:#1a1a3e}
+#p-help .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+#p-help .sec-h{margin-top:16px}
+#p-help .tile{padding:8px;gap:8px}
+#p-help .tile .ic{width:38px;height:38px;font-size:1.45rem}
+#p-help .tile .tx{font-size:.95rem;min-width:0;overflow-wrap:break-word}
 .sheet ul.pl{margin:6px 0 6px 1.1rem;padding:0;font-size:1.05rem}
 .sheet ul.pl li{margin:0 0 6px}
 .sheet p.n2{margin:6px 0;font-size:1.05rem}
@@ -1099,8 +1103,7 @@ POCKET_HTML = """<!DOCTYPE html>
 </section>
 <section class="panel" id="p-help" role="tabpanel" aria-labelledby="t-help" hidden>
 <a class="call" href="tel:+81476348000"><span aria-hidden="true">&#128222;</span> Call +81 476-34-8000</a>
-<div class="card"><h2>Bigger writing</h2><p><button type="button" class="big" id="lgBtn">Make writing bigger</button></p></div>
-<div class="card"><h2>Show this to staff</h2><p class="small">Cannot say it in English or Japanese? Tap one, then hold up your phone. The staff will read it.</p><div class="tiles" id="askTiles"></div></div>
+<div class="card"><h2>Show this to staff</h2><p class="small">Cannot say it in English or Japanese? Tap one, then hold up your phone. The staff will read it.</p><p class="sec-h">Where is&hellip;?</p><div class="tiles" id="askTiles1"></div><p class="sec-h">Getting there</p><div class="tiles" id="askTiles2"></div><p class="sec-h">Help and problems</p><div class="tiles" id="askTiles3"></div></div>
 <div class="card" id="shareCard" hidden><h2>Helping someone travel?</h2><p>Send this guide to their phone before the trip, so it is saved for use with no internet.</p><p><button type="button" class="big" id="shareBtn">Send this guide</button></p></div>
 <p class="small">Some links in this guide are partner links. We may earn a small commission at no cost to you.</p>
 <div class="card"><h2>Narita Airport Information</h2><p>Open 24 hours. Your phone company may charge for calls abroad.</p><p>Every terminal has information counters. Look for the <strong>?</strong> sign. Staff will help, so just ask.</p></div>
@@ -1442,17 +1445,29 @@ POCKET_HTML = """<!DOCTYPE html>
   strip.addEventListener('click',openInst);
   $('instBtn').addEventListener('click',openInst);
   /* show this to staff */
-  var ASK=[['🚻','Toilet','トイレはどこですか？','Toire wa doko desu ka?','Where is the toilet?'],
-    ['🚆','Train station','電車の駅はどこですか？','Densha no eki wa doko desu ka?','Where is the train station?'],
-    ['🚌','Bus stop','バス乗り場はどこですか？','Basu noriba wa doko desu ka?','Where is the bus stop?'],
-    ['🚕','Taxi','タクシー乗り場はどこですか？','Takushii noriba wa doko desu ka?','Where is the taxi stand?'],
-    ['🍜','Food','食事ができる所はどこですか？','Shokuji ga dekiru tokoro wa doko desu ka?','Where can I eat?'],
-    ['🛫','My gate','搭乗口はどこですか？','Toujouguchi wa doko desu ka?','Where is my boarding gate?'],
-    ['♿','Wheelchair','車いすをお願いします。','Kuruma-isu o onegai shimasu.','A wheelchair, please.'],
-    ['🆘','Help me','すみません、助けてください。','Sumimasen, tasukete kudasai.','Excuse me, please help me.'],
-    ['🤒','I feel sick','具合が悪いです。助けてください。','Guai ga warui desu. Tasukete kudasai.','I feel sick. Please help me.']];
-  var askT=$('askTiles');
-  ASK.forEach(function(a,n){
+  var ASK=[[1,'🚻','Toilet','トイレはどこですか？','Toire wa doko desu ka?','Where is the toilet?'],
+    [1,'ℹ️','Information counter','案内所はどこですか？','Annaijo wa doko desu ka?','Where is the information counter?'],
+    [1,'🎫','Check-in','チェックインカウンターはどこですか？','Chekkuin kauntaa wa doko desu ka?','Where is the check-in counter?'],
+    [1,'💴','Money exchange','両替所はどこですか？','Ryougaejo wa doko desu ka?','Where can I exchange money?'],
+    [1,'💊','Pharmacy','薬局はどこですか？','Yakkyoku wa doko desu ka?','Where is a pharmacy?'],
+    [1,'🍜','Food','食事ができる所はどこですか？','Shokuji ga dekiru tokoro wa doko desu ka?','Where can I eat?'],
+    [1,'🚆','Train station','電車の駅はどこですか？','Densha no eki wa doko desu ka?','Where is the train station?'],
+    [1,'🚌','Bus stop','バス乗り場はどこですか？','Basu noriba wa doko desu ka?','Where is the bus stop?'],
+    [1,'🚕','Taxi','タクシー乗り場はどこですか？','Takushii noriba wa doko desu ka?','Where is the taxi stand?'],
+    [1,'🛫','My gate','搭乗口はどこですか？','Toujouguchi wa doko desu ka?','Where is my boarding gate?'],
+    [2,'📍','Take me here','この住所までお願いします。','Kono juusho made onegai shimasu.','Please take me to this address. Show the address on your phone.'],
+    [2,'🚉','Tokyo Station?','これは東京駅に行きますか？','Kore wa Toukyou-eki ni ikimasu ka?','Does this go to Tokyo Station?'],
+    [3,'🆘','Help me','すみません、助けてください。','Sumimasen, tasukete kudasai.','Excuse me, please help me.'],
+    [3,'🤒','I feel sick','具合が悪いです。助けてください。','Guai ga warui desu. Tasukete kudasai.','I feel sick. Please help me.'],
+    [3,'🚑','Ambulance','救急車を呼んでください。','Kyuukyuusha o yonde kudasai.','Please call an ambulance.'],
+    [3,'♿','Wheelchair','車いすをお願いします。','Kuruma-isu o onegai shimasu.','A wheelchair, please.'],
+    [3,'🛂','Lost passport','パスポートをなくしました。','Pasupooto o nakushimashita.','I lost my passport.'],
+    [3,'🧳','Lost bag','かばんをなくしました。','Kaban o nakushimashita.','I lost my bag.'],
+    [3,'⏰','Missed my flight','飛行機に乗り遅れました。','Hikouki ni noriokuremashita.','I missed my flight.'],
+    [3,'🗣️','English?','英語を話せる人はいますか？','Eigo o hanaseru hito wa imasu ka?','Is there someone who speaks English?']];
+  var askN={1:0,2:0,3:0};
+  ASK.forEach(function(a){
+    var g=a[0], n=askN[g]++, askT=$('askTiles'+g); a=a.slice(1);
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n%3);
     var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=a[0];
     var tx=document.createElement('span'); tx.className='tx'; tx.textContent=a[1];
@@ -1463,14 +1478,6 @@ POCKET_HTML = """<!DOCTYPE html>
       var q=shB.querySelectorAll('p'); q[0].textContent=a[2]; q[1].textContent=a[3]; q[2].textContent=a[4];
     });
     askT.appendChild(b);
-  });
-  /* bigger writing */
-  var lgBtn=$('lgBtn');
-  function paintLg(){ var on=document.documentElement.classList.contains('lg'); lgBtn.textContent=on?'Back to normal writing':'Make writing bigger'; }
-  try{ if(localStorage.getItem('nrtLg')==='1') document.documentElement.classList.add('lg'); }catch(e){}
-  paintLg();
-  lgBtn.addEventListener('click',function(){
-    var on=document.documentElement.classList.toggle('lg'); try{localStorage.setItem('nrtLg',on?'1':'0');}catch(e){} paintLg();
   });
   /* send this guide */
   if(navigator.share){
