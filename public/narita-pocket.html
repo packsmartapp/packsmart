@@ -99,12 +99,10 @@ html.lg{font-size:118%}
 .tiles.pane.off{visibility:hidden}
 .tiles.pane .tile:last-child:nth-child(odd):not(.more){grid-column:auto}
 .tiles .tile.more{grid-column:1/-1;min-height:50px;padding:5px 12px;gap:8px;background:#fff;border:3px solid #00C9A7;box-shadow:none;color:#0b6f60}
-.tiles .tile.more .ic{width:30px;height:36px;border-radius:0;background:transparent;color:#00C9A7;font-weight:900;font-size:2.1rem;line-height:1;padding-bottom:4px}
+.tiles .tile.more .ic{width:36px;height:36px;border-radius:50%;background:#00C9A7;color:#fff;font-weight:900;font-size:1.35rem;line-height:1;justify-content:center}
 .tiles .tile.more .tx{font-weight:800;line-height:1.15}
 .tiles .tile.more small{display:block;font-weight:700;font-size:.8em;color:#4a5568;margin-top:1px}
 .tiles .tile.pgnext{flex-direction:row-reverse;justify-content:space-between}
-.tiles .tile.pgnext .ic{justify-content:flex-end}
-.tiles .tile.pgback .ic{justify-content:flex-start}
 .tiles.pane .tile:not(.more){min-height:78px}
 @media (prefers-reduced-motion:reduce){.track{transition:none}}
 a{color:#00776a}
@@ -260,9 +258,9 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
     b.appendChild(ic); b.appendChild(tx);
     b.addEventListener('click',function(){ openSheet(it,b); });
     (n<MAIN?tiles:tiles2).appendChild(b);
-    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\u203A','More','Information counter, prayer room and others',function(){ slideTo(1); })); }
+    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\u2192','More','Information counter, prayer room and others',function(){ slideTo(1); })); }
   });
-  tiles2.appendChild(pill('pgback','\u2039','Back','Main places',function(){ slideTo(0); }));
+  tiles2.appendChild(pill('pgback','\u2190','Back','Main places',function(){ slideTo(0); }));
   /* swipe between the two screens */
   (function(){
     var sx=0, sy=0, on=false;
