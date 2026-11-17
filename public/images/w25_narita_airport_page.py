@@ -1006,7 +1006,17 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 .tiles.pane .tile:not(.more).c2{background:linear-gradient(180deg,#F6F6FF,#DADAF8);border:2px solid #AFAFEE;box-shadow:0 4px 0 #5959BE}
 @media (prefers-reduced-motion:reduce){.track{transition:none}}
 a{color:#00776a}
-a.call{display:flex;align-items:center;justify-content:center;gap:10px;font-weight:800;font-size:1.2rem;background:linear-gradient(135deg,#E94560,#c92f4a);color:#fff;border-radius:16px;padding:16px 14px;text-decoration:none;margin:0 0 10px;box-shadow:0 3px 0 #9d2238}
+a.num{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;border-radius:16px;padding:12px 14px;margin:8px 0 0;min-height:60px}
+a.num .ni{font-size:1.9rem;line-height:1;flex:none}
+a.num .nt{display:flex;flex-direction:column;min-width:0;line-height:1.2}
+a.num .nt b{font-size:1rem;font-weight:800}
+a.num .nt span{font-size:1.25rem;font-weight:800;overflow-wrap:anywhere}
+a.num .nt small{font-size:.85rem;font-weight:600;opacity:.92;margin-top:2px}
+a.num.air{background:linear-gradient(135deg,#1a1a3e,#2c2c63);box-shadow:0 3px 0 #0b0b22}
+a.num.em{background:linear-gradient(135deg,#E94560,#c92f4a);box-shadow:0 3px 0 #9d2238;margin:0}
+a.num.hot{background:linear-gradient(135deg,#00B398,#00897a);box-shadow:0 3px 0 #006b5e}
+.numgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+.numgrid a.num{flex-direction:column;align-items:flex-start;gap:4px}
 details.card summary{font-weight:700;font-size:1.05rem;cursor:pointer;min-height:36px;display:flex;align-items:center}
 details.card[open] summary{margin-bottom:6px}
 button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border:2px solid #00C9A7;border-radius:12px;padding:12px 18px;cursor:pointer}
@@ -1105,7 +1115,15 @@ POCKET_HTML = """<!DOCTYPE html>
 </div>
 </section>
 <section class="panel" id="p-help" role="tabpanel" aria-labelledby="t-help" hidden>
-<a class="call" href="tel:+81476348000"><span aria-hidden="true">&#128222;</span> Call +81 476-34-8000</a>
+<div class="card" id="numCard"><h2>Useful phone numbers</h2><p class="small">Tap a number to call. Your phone company may charge for calls abroad.</p>
+<p class="sec-h">At Narita Airport only</p>
+<a class="num air" href="tel:+81476348000"><span class="ni" aria-hidden="true">&#8505;&#65039;</span><span class="nt"><b>Narita Airport Information</b><span>+81 476-34-8000</span><small>Open 24 hours</small></span></a>
+<p class="sec-h">Emergency, anywhere in Japan</p>
+<div class="numgrid"><a class="num em" href="tel:119"><span class="ni" aria-hidden="true">&#128657;</span><span class="nt"><b>Ambulance or fire</b><span>119</span></span></a><a class="num em" href="tel:110"><span class="ni" aria-hidden="true">&#128659;</span><span class="nt"><b>Police</b><span>110</span></span></a></div>
+<p class="small" style="margin-top:12px">Free of charge, 24 hours a day.</p>
+<p class="sec-h">Help or travel questions, anywhere in Japan</p>
+<a class="num hot" href="tel:+815038162787"><span class="ni" aria-hidden="true">&#128222;</span><span class="nt"><b>Japan Visitor Hotline</b><span>050-3816-2787</span><small>24 hours. English, Chinese, Korean</small></span></a>
+</div>
 <div class="card"><h2>Say it in Japanese</h2><p class="small">Tap one, then hold up your phone so the person can read it. Or tap Play to hear it.</p><div class="cats" id="askCats" role="group" aria-label="Phrase groups"></div><div class="tiles" id="askTiles"></div></div>
 <div class="card" id="shareCard" hidden><h2>Helping someone travel?</h2><p>Send this guide to their phone before the trip, so it is saved for use with no internet.</p><p><button type="button" class="big" id="shareBtn">Send this guide</button></p></div>
 <p class="small">Some links in this guide are partner links. We may earn a small commission at no cost to you.</p>
