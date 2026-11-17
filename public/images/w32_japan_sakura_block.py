@@ -12,67 +12,48 @@ MARK = "<!-- sakura-japan -->"
 LINK = "https://p.sakuramobile.jp/idevaffiliate.php?id=728"
 SIM_LINK = LINK  # TODO: swap for a link to Sakura's travel SIM page if the programme gives one (this one opens Sakura's home page)
 
-LBL = 'display:block;font-weight:700;color:#0a8f78;font-size:0.78rem;letter-spacing:.03em;text-transform:uppercase;'
-VAL = 'display:block;font-size:0.93rem;line-height:1.4;color:#0f0f23;'
 
-
-def row(label, text):
-    return f'<div style="margin:0 0 8px;"><span style="{LBL}">{label}</span><span style="{VAL}">{text}</span></div>'
-
-
-def banner(img, w, h, alt, link):
+def tile(pid, link, pill, img, w, h, alt, name, sub, price, note, label):
     return (
-        f'<a href="{link}" target="_blank" rel="sponsored nofollow noopener" tabindex="-1" style="display:block;max-width:340px;margin:0 auto 12px;">'
-        f'<picture><source type="image/webp" srcset="/images/{img}.webp">'
-        f'<img src="/images/{img}.png" width="{w}" height="{h}" loading="lazy" alt="{alt}" style="display:block;width:100%;height:auto;border-radius:12px;"></picture></a>'
+        f'<a class="ps-sk-tile" data-ps-placement="{pid}" href="{link}" target="_blank" rel="sponsored nofollow noopener" style="position:relative;display:flex;flex-direction:column;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:22px 16px 16px;text-decoration:none;text-align:center;color:#0f0f23;">'
+        f'<span style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#00C9A7;color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:.03em;padding:2px 10px;border-radius:999px;white-space:nowrap;">{pill}</span>'
+        f'<span style="display:block;max-width:340px;width:100%;margin:0 auto 12px;"><picture><source type="image/webp" srcset="/images/{img}.webp">'
+        f'<img src="/images/{img}.png" width="{w}" height="{h}" loading="lazy" alt="{alt}" style="display:block;width:100%;height:auto;border-radius:12px;"></picture></span>'
+        f'<span style="display:block;font-size:1.5rem;font-weight:700;line-height:1.15;">{name}</span>'
+        f'<span style="display:block;font-size:0.85rem;color:#666;line-height:1.35;margin:4px 0 10px;">{sub}</span>'
+        f'<span style="display:block;font-size:1.05rem;font-weight:700;color:#0a8f78;">{price}</span>'
+        f'<span style="display:block;font-size:0.78rem;color:#777;line-height:1.3;margin:6px 0 10px;">{note}</span>'
+        f'<span style="flex:1;min-height:2px;display:block;"></span>'
+        f'<span class="ps-sk-ghost" style="display:block;box-sizing:border-box;border:1.5px solid #00C9A7;color:#0a8f78;font-weight:700;font-size:1rem;border-radius:12px;padding:10px 14px;margin-top:6px;">{label} &rarr;</span>'
+        f'<span style="display:block;font-size:0.76rem;color:#777;margin-top:6px;">Sakura Mobile &middot; partner link</span></a>'
     )
 
 
-def card(pid, tag, title, desc, rows, btn, link, pic):
-    body = "".join(row(a, b) for a, b in rows)
-    return (
-        f'<div data-ps-placement="{pid}" style="display:flex;flex-direction:column;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:16px 16px 14px;">'
-        f'{pic}'
-        f'<span style="align-self:flex-start;background:#E7FAF5;color:#0a8f78;font-size:0.72rem;font-weight:700;letter-spacing:.03em;padding:3px 10px;border-radius:999px;margin:0 0 8px;">{tag}</span>'
-        f'<strong style="display:block;font-size:1.15rem;color:#0f0f23;margin:0 0 4px;">{title}</strong>'
-        f'<p style="margin:0 0 12px;font-size:0.93rem;line-height:1.45;color:#333;">{desc}</p>'
-        f'{body}'
-        f'<span style="flex:1;min-height:8px;display:block;"></span>'
-        f'<a class="ps-sk-btn" href="{link}" target="_blank" rel="sponsored nofollow noopener" style="display:block;box-sizing:border-box;background:#00C9A7;color:#0f0f23;text-align:center;text-decoration:none;border-radius:12px;padding:11px 14px;min-height:48px;line-height:1.25;">'
-        f'<span style="display:block;font-weight:800;font-size:1.05rem;">{btn}</span>'
-        f'<span style="display:block;font-weight:600;font-size:0.82rem;opacity:0.8;margin-top:2px;">Sakura Mobile &middot; partner link</span></a></div>'
-    )
+FOOT_PICK = (
+    '<p style="margin:0 0 8px;font-size:0.82rem;color:#666;line-height:1.5;"><strong style="color:#0a8f78;">Pick up:</strong> '
+    'the travel SIM is available at Sakura Mobile counters at Narita, Haneda, Kansai and Fukuoka airports, and the pocket Wi-Fi also at New Chitose and Chubu Centrair. '
+    'Both can be sent to your hotel, and the pocket Wi-Fi to a post office. The SIM needs no return: throw it away after your trip. '
+    'Post the pocket Wi-Fi back in the envelope that comes with it. A fair use policy may apply to unlimited data.</p>'
+)
 
 
 def block(suffix):
-    sim = card(
-        "sakura-japan-sim" + suffix, "FOR ONE TRAVELLER", "Travel SIM card",
-        "A small SIM card you put in your phone. Data only, with no phone number.",
-        [
-            ("Price", "From &yen;3,500 before tax. The price depends on how many days you choose."),
-            ("Data", "Sakura offers 3 GB a day on docomo, or unlimited data on au (a fair use policy may apply)."),
-            ("Pick up", "At a Sakura Mobile counter at Narita, Haneda, Kansai or Fukuoka airport, or have it sent to your hotel. Nothing to return: throw the SIM away after your trip."),
-        ],
-        "Get a travel SIM", SIM_LINK,
-        banner("sakura-sim-banner", 380, 364, "Sakura Mobile Japan travel SIM card", SIM_LINK))
-    wifi = card(
-        "sakura-japan-wifi" + suffix, "FOR FAMILIES AND GROUPS", "Pocket Wi-Fi",
-        "One small device connects every phone, and it works with any phone. When your trip ends, post it back in the envelope that comes with it.",
-        [
-            ("Price", "The price depends on your dates. Sakura shows the total once you choose them. It runs on the docomo network, and Sakura describes the data as unlimited, so check the plan terms when you book."),
-            ("Pick up", "At a Sakura Mobile counter at Narita, Haneda, Kansai, Fukuoka, New Chitose or Chubu Centrair airport, or have it sent to your hotel or a post office."),
-        ],
-        "Rent a pocket Wi-Fi", LINK,
-        banner("sakura-wifi-banner", 570, 546, "Sakura Mobile pocket Wi-Fi device", LINK))
+    sim = tile("sakura-japan-sim" + suffix, SIM_LINK, "FOR ONE TRAVELLER", "sakura-sim-banner", 380, 364,
+               "Sakura Mobile Japan travel SIM card", "Travel SIM card", "Data only, no phone number",
+               "From &yen;3,500 before tax", "3 GB a day on docomo, or unlimited on au", "Get a travel SIM")
+    wifi = tile("sakura-japan-wifi" + suffix, LINK, "FOR FAMILIES AND GROUPS", "sakura-wifi-banner", 570, 546,
+                "Sakura Mobile pocket Wi-Fi device", "Pocket Wi-Fi", "One device for every phone",
+                "The price depends on your dates", "Docomo network, data described as unlimited", "Rent a pocket Wi-Fi")
     return (
         MARK + "\n"
         '<div style="max-width:800px;margin:24px auto;padding:22px 24px;background:#f0faf7;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:12px;">\n'
-        '  <style>.ps-sk-btn{transition:background .15s,box-shadow .15s}.ps-sk-btn:hover,.ps-sk-btn:focus-visible{background:#00B396!important;box-shadow:0 4px 14px rgba(0,201,167,.35)}</style>\n'
+        '  <style>.ps-sk-tile{transition:border-color .15s,box-shadow .15s}.ps-sk-tile:hover,.ps-sk-tile:focus-visible{border-color:#00C9A7!important;box-shadow:0 2px 10px rgba(0,201,167,.25)}.ps-sk-ghost{transition:background .15s}.ps-sk-tile:hover .ps-sk-ghost,.ps-sk-tile:focus-visible .ps-sk-ghost{background:#E7FAF5}</style>\n'
         '  <strong style="display:block;font-size:1.1rem;color:#0f0f23;margin:0 0 6px 0;">No eSIM? Two other ways to get online</strong>\n'
-        '  <p style="margin:0 0 16px 0;font-size:0.95rem;color:#333;line-height:1.5;">An eSIM needs a compatible phone. If yours is not, or you would rather hold something real, choose a travel SIM card or a pocket Wi-Fi. Both are from Sakura Mobile.</p>\n'
-        '  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:12px;margin:0 0 12px 0;">\n'
+        '  <p style="margin:0 0 18px 0;font-size:0.9rem;color:#555;line-height:1.5;">An eSIM needs a compatible phone. If yours is not, or you would rather hold something real, choose a travel SIM card or a pocket Wi-Fi. Both are from Sakura Mobile.</p>\n'
+        '  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px 12px;margin:14px 0 16px 0;">\n'
         f'  {sim}\n  {wifi}\n  </div>\n'
-        '  <p style="margin:0;font-size:0.85rem;color:#666;line-height:1.5;">Order ahead: same-day orders are possible, but stock is limited.</p>\n'
+        f'  {FOOT_PICK}\n'
+        '  <p style="margin:0;font-size:0.82rem;color:#666;line-height:1.5;">Order ahead: same-day orders are possible, but stock is limited.</p>\n'
         '</div>\n'
     )
 
