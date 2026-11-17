@@ -801,6 +801,7 @@ share = re.sub(r"media=[^&\"']*", "media=" + quote(SITE + "/og-default.png", saf
 share = re.sub(r"description=[^\"']*", "description=" + enc_title, share)
 
 BODY = "\n\n".join([
+    '<p style="font-size:0.85rem;color:#666;margin:0 0 0.6rem;">Published November 16, 2026 · Last updated November 2026 · Facts checked 16 Nov 2026</p>',
     AFFILIATE_P,
     share,
     PRINT_CSS,
@@ -835,9 +836,9 @@ BODY = "\n\n".join([
 ])
 
 # hero button (v50): a quiet way into the Pocket Guide from the top of the article
-HERO_CTA = ('        <div style="margin:56px 0 0;text-align:center;">'
+HERO_CTA = ('        <div style="margin:48px 0 0;text-align:center;">'
             '<a href="/narita-pocket?src=hero" onclick="try{window.gtag&&gtag(\'event\',\'pocket_prompt\',{event_category:\'engagement\',action:\'open_hero\',page_path:location.pathname});}catch(e){}" '
-            'style="display:inline-block;background:#00C9A7;color:#0f0f23;text-align:center;padding:12px 28px;border-radius:12px;text-decoration:none;min-height:44px;box-shadow:0 6px 18px rgba(0,0,0,.28);line-height:1.2;">'
+            'style="display:inline-block;background:#00C9A7;color:#0f0f23;text-align:center;padding:12px 24px;width:300px;max-width:100%;box-sizing:border-box;border-radius:12px;text-decoration:none;min-height:44px;box-shadow:0 6px 18px rgba(0,0,0,.28);line-height:1.2;">'
             '<span style="display:block;font-weight:700;font-size:0.8rem;opacity:0.8;">Download to your phone</span>'
             '<span style="display:block;font-weight:800;font-size:1.1rem;margin-top:2px;">Narita Pocket Guide</span>'
             '<span style="display:block;font-weight:600;font-size:0.8rem;margin-top:2px;opacity:0.8;">Works offline</span></a></div>')
@@ -876,13 +877,11 @@ head = "\n".join([
     "<body>",
     "\n".join(t[NAV0:NAV1 + 1]),
     "",
-    ('    <div class="hero-blog" style="background: linear-gradient(rgba(15,15,35,0.62), rgba(26,26,62,0.72)), url(\'%s\'); background-size: cover; background-position: center 40%%;">' % HERO_URL) if HERO_URL else '    <div class="hero-blog" style="background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);">',
+    ('    <div class="hero-blog" style="position:relative; background: linear-gradient(rgba(15,15,35,0.62), rgba(26,26,62,0.72)), url(\'%s\'); background-size: cover; background-position: center 40%%;">' % HERO_URL) if HERO_URL else '    <div class="hero-blog" style="position:relative; background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);">',
     "        <h1>%s</h1>" % esc(H1),
-    '        <div class="meta">November 16, 2026 · 8 min read</div>',
-    '        <div class="meta">Airport Guide • Japan</div>',
-    '        <div class="meta">Last updated: November 2026 · Facts checked 16 Nov 2026</div>',
-    ('        <div class="meta" style="font-size:0.75rem;opacity:0.75;">Photo: susi-paku / PAKUTASO. Illustrative image of a Narita terminal.</div>' if HERO_URL else ''),
+    '        <div class="meta">Airport Guide • Japan · 8 min read</div>',
     HERO_CTA,
+    ('        <div style="position:absolute;left:12px;right:12px;bottom:8px;font-size:0.7rem;opacity:0.7;text-align:center;">Photo: susi-paku / PAKUTASO. Illustrative image of a Narita terminal.</div>' if HERO_URL else ''),
     "</div>",
     "",
     '    <div class="content">',
