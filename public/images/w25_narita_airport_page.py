@@ -393,7 +393,7 @@ FINDER_DATA = {
             "T3": "The airport list does not show a clinic in Terminal 3. Go to an information counter (? sign) and ask for help. Narita Airport Information: +81 476-34-8000, open 24 hours. In an emergency, call 119 for an ambulance."}],
     ],
 }
-_ORDER = ["money", "info", "toilet", "food", "help", "unwell", "wifi", "lockers", "baby", "prayer", "quiet", "shower", "smoking", "play"]
+_ORDER = ["money", "food", "toilet", "help", "lockers", "baby", "play", "wifi", "info", "unwell", "prayer", "quiet", "shower", "smoking"]
 assert sorted(_ORDER) == sorted(i[0] for i in FINDER_DATA["items"])
 FINDER_DATA["items"].sort(key=lambda i: _ORDER.index(i[0]))
 
@@ -1123,7 +1123,7 @@ POCKET_HTML = """<!DOCTYPE html>
   paintSeg();
   /* need tiles */
   var tiles=$('tiles');
-  var MAIN=8, MORE_CLOSED='More: baby room, prayer room, showers and others', MORE_OPEN='Show fewer';
+  var MAIN=8, MORE_CLOSED='More: information counter, prayer room and others', MORE_OPEN='Show fewer';
   D.items.forEach(function(it,n){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n%3); b.setAttribute('data-id',it[0]);
     var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=ICON[it[0]]||'\\u2022';
