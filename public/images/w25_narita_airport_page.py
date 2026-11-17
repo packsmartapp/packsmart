@@ -339,10 +339,10 @@ FINDER_DATA = {
             "T1": "Free toilets are in the public areas and also after security. Look for the toilet signs, or ask at an information counter. Accessible (multipurpose) toilets are available too.",
             "T2": "Free toilets are in the public areas and also after security. Look for the toilet signs, or ask at an information counter. Accessible (multipurpose) toilets are available too.",
             "T3": "Free toilets are in the public areas and also after security. Look for the toilet signs, or ask at an information counter. Accessible (multipurpose) toilets are available too."}],
-        ["food", "Food and drink", {
-            "T1": "Most restaurants are on 4F and 5F of the Central Building. Convenience stores on the lower floors, and one is open all night. Many restaurants close by about 9 pm. Hours change, so check the shop door. Narita Airport's website has a restaurant search with vegetarian and halal filters.",
-            "T2": "Mostly Japanese food. Look on 4F, with more on lower floors. There is a convenience store open all night, and reportedly a 24-hour beef bowl restaurant. Many restaurants close by about 9 pm. Hours change, so check the shop door. Narita Airport's website has a restaurant search with vegetarian and halal filters.",
-            "T3": "A food court on 2F, with some counters opening very early, around 4 am. A 24-hour convenience store is on 2F. After security the choice is limited, so eat before you go through. Many restaurants close by about 9 pm. Hours change, so check the shop door. Narita Airport's website has a restaurant search with vegetarian and halal filters."}],
+        ["food", "Food, drink and water", {
+            "T1": "Restaurants: mostly 4F and 5F of the Central Building. Convenience stores: B1F and 1F, and one is open all night. Water: fountains and hot and cold water points are in every terminal. Ask at an information counter for the nearest. Many restaurants close by about 9 pm. Hours change, so check the shop door. Narita Airport's website has a restaurant search with vegetarian and halal filters.",
+            "T2": "Mostly Japanese food. Look on 4F, with more on lower floors. Convenience stores: B1F, 1F and 2F (Main Building), and one is open all night. There is reportedly a 24-hour beef bowl restaurant. Water: fountains and hot and cold water points are in every terminal. Ask at an information counter for the nearest. Many restaurants close by about 9 pm. Hours change, so check the shop door. Narita Airport's website has a restaurant search with vegetarian and halal filters.",
+            "T3": "A food court on 2F, with some counters opening very early, around 4 am. A 24-hour convenience store is on 2F. After security the choice is limited, so eat before you go through. Water: fountains and hot and cold water points are in every terminal. Ask at an information counter for the nearest. Many restaurants close by about 9 pm. Hours change, so check the shop door. Narita Airport's website has a restaurant search with vegetarian and halal filters."}],
         ["prayer", "Prayer room", {
             "T1": "3F (passport-control area)",
             "T2": "1F, Main Building; and 3F, Main Building (passport-control area)",
@@ -368,16 +368,12 @@ FINDER_DATA = {
             "T2": "Coin lockers: B1F and 3F (Main Building). Delivery and storage counters: 1F and 3F (Main Building).",
             "T3": "Coin lockers: 2F (Main Building). Delivery and storage counter: 1F (Main Building)."}],
         ["wifi", "Wi-Fi rental counter", {
-            "T1": "1F",
-            "T2": "B1F, Main Building",
+            "T1": "1F and 4F",
+            "T2": "B1F, 1F and 3F (Main Building)",
             "T3": "1F and 2F (Main Building)"}],
         ["shower", "Showers and day rooms (paid)", {
             "T1": "2F; and 3F (passport-control area)",
             "T2": "3F, Main Building (passport-control area)",
-            "T3": ""}],
-        ["internet", "Free internet point", {
-            "T1": "4F",
-            "T2": "1F, Main Building",
             "T3": ""}],
         ["smoking", "Smoking area", {
             "T1": "14 designated smoking areas in the terminal. Look for the smoking-room signs, or ask at an information counter. Smoking is not allowed anywhere else at the airport, inside or outside the terminals.",
@@ -397,7 +393,7 @@ FINDER_DATA = {
             "T3": "The airport list does not show a clinic in Terminal 3. Go to an information counter (? sign) and ask for help. Narita Airport Information: +81 476-34-8000, open 24 hours. In an emergency, call 119 for an ambulance."}],
     ],
 }
-_ORDER = ["money", "info", "toilet", "food", "help", "unwell", "wifi", "lockers", "baby", "prayer", "quiet", "shower", "internet", "smoking", "play"]
+_ORDER = ["money", "info", "toilet", "food", "help", "unwell", "wifi", "lockers", "baby", "prayer", "quiet", "shower", "smoking", "play"]
 assert sorted(_ORDER) == sorted(i[0] for i in FINDER_DATA["items"])
 FINDER_DATA["items"].sort(key=lambda i: _ORDER.index(i[0]))
 
@@ -610,7 +606,7 @@ CONNECTED = """<h2 id="connected">Getting online: SIM, eSIM and Wi-Fi</h2>
 </tbody>
 </table>
 </div>
-<p>Narita's own facility list shows Wi-Fi rental counters on the 1st floor of Terminal 1, the basement 1st floor of the Terminal 2 main building, and the 1st and 2nd floors of the Terminal 3 main building. Counter hours and stock vary by company, so ordering ahead is safer.</p>"""
+<p>Narita's own facility list shows Wi-Fi rental counters on the 1st and 4th floors of Terminal 1, the basement 1st, 1st and 3rd floors of the Terminal 2 main building, and the 1st and 2nd floors of the Terminal 3 main building. Counter hours and stock vary by company, so ordering ahead is safer.</p>"""
 
 
 SAKURA_LINK = "https://p.sakuramobile.jp/idevaffiliate.php?id=728"
@@ -730,7 +726,7 @@ FACILITIES = """<h2 id="facilities">Facilities by terminal</h2>
 <tr><td><strong>Information counter</strong></td><td>B1F, 1F, 2F, 3F, 4F</td><td>B1F, 1F, 3F (Main Building)</td><td>1F, 2F (Main Building)</td></tr>
 <tr><td><strong>Coin lockers</strong></td><td>B1F, 1F, 4F</td><td>B1F, 3F (Main Building)</td><td>2F (Main Building)</td></tr>
 <tr><td><strong>Showers and day rooms</strong> (paid)</td><td>2F; 3F (passport-control area)</td><td>3F, Main Building (passport-control area)</td><td>-</td></tr>
-<tr><td><strong>Wi-Fi rental counter</strong></td><td>1F</td><td>B1F, Main Building</td><td>1F, 2F (Main Building)</td></tr>
+<tr><td><strong>Wi-Fi rental counter</strong></td><td>1F, 4F</td><td>B1F, 1F, 3F (Main Building)</td><td>1F, 2F (Main Building)</td></tr>
 <tr><td><strong>Free internet point</strong></td><td>4F</td><td>1F, Main Building</td><td>-</td></tr>
 <tr><td><strong>Children's play area</strong></td><td>3F (paid Kids Park, after passport control); Baby Play Space</td><td>2F, domestic services area (after departure procedures)</td><td>-</td></tr>
 </tbody>
@@ -1196,7 +1192,7 @@ POCKET_HTML = """<!DOCTYPE html>
   function simHTML(){
     var w=item('wifi')[2], f=term==='ALL'?D.terms.map(function(t){return t[1]+': '+w[t[0]];}).join('<br>'):w[term];
     return '<ul class="pl"><li><b>eSIM:</b> install it before you fly. It works as soon as you land.</li>'
-      +'<li><b>SIM and pocket Wi-Fi counters</b> are in the arrivals area. Wi-Fi rental counters:<br>'+f+'</li>'
+      +'<li><b>SIM and pocket Wi-Fi counters</b> are in the public areas, before passport control. Floors:<br>'+f+'</li>'
       +'<li><b>Free airport Wi-Fi:</b> FreeWiFi-NARITA. Fine for a quick message, not for a day of maps.</li></ul>'
       +'<p class="sm">Counter hours and stock vary. Ordering ahead is safer.</p>'
       +'<p class="sm">You can book pocket Wi-Fi here (partner link): <a href="https://p.sakuramobile.jp/idevaffiliate.php?id=728" target="_blank" rel="sponsored nofollow noopener">Sakura Mobile</a></p>';
