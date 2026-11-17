@@ -602,6 +602,18 @@ CONNECTED = """<h2 id="connected">Getting online: SIM, eSIM and Wi-Fi</h2>
 <p>Narita's own facility list shows Wi-Fi rental counters on the 1st floor of Terminal 1, the basement 1st floor of the Terminal 2 main building, and the 1st and 2nd floors of the Terminal 3 main building. Counter hours and stock vary by company, so ordering ahead is safer.</p>"""
 
 
+SAKURA_LINK = "https://p.sakuramobile.jp/idevaffiliate.php?id=728"
+SAKURA = """<div data-ps-placement="sakura-narita-wifi" style="background:#f0faf7;border-left:3px solid #00C9A7;padding:14px 18px;border-radius:0 8px 8px 0;font-size:0.95rem;margin:20px 0;">
+<p style="margin:0 0 8px;"><strong>Pocket Wi-Fi or eSIM?</strong> An eSIM is the simplest choice for one traveller with a compatible phone. A pocket Wi-Fi suits families and groups, because one small device connects every phone, and it works with any phone.</p>
+<ul style="margin:0 0 10px 18px;padding:0;">
+<li>Sakura Mobile rents pocket Wi-Fi on the docomo network from about &yen;299 a day plus tax. Sakura describes the data as unlimited, so check the plan terms when you book.</li>
+<li>Pick it up at the Sakura Mobile counter at Terminal 1 (South Wing, 1st floor) or Terminal 2 (1st floor), or at a post office. There is no counter at Terminal 3: take the free shuttle bus or the sky bridge to Terminal 2.</li>
+<li>Order ahead. Same-day orders are possible, but stock is limited.</li>
+</ul>
+<p style="margin:0 0 6px;"><a href="__SAKURA_LINK__" target="_blank" rel="sponsored nofollow noopener" style="font-weight:700;">Rent a pocket Wi-Fi from Sakura Mobile</a></p>
+<p style="margin:0;font-size:0.82rem;color:#666;">This is a partner link. We may earn a small commission at no cost to you.</p>
+</div>""".replace("__SAKURA_LINK__", SAKURA_LINK)
+
 KLOOK_TRANSPORT = """<div data-ps-placement="klook-narita-transport" style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">
 <p style="margin:0 0 8px;"><strong>Want your train or bus ticket sorted before you fly?</strong> You can buy these as e-tickets on Klook. You can also buy at the station or bus counter when you arrive, so booking ahead is a convenience, not a must.</p>
 <ul style="margin:0 0 8px 18px;">
@@ -771,6 +783,7 @@ BODY = "\n\n".join([
     ARRIVAL,
     CONNECTED,
     airalo,
+    SAKURA,
     IC_CARD,
     TO_TOKYO,
     LUGGAGE,
@@ -1154,11 +1167,13 @@ POCKET_HTML = """<!DOCTYPE html>
   }
   function simHTML(){
     var w=item('wifi')[2], f=term==='ALL'?D.terms.map(function(t){return t[1]+': '+w[t[0]];}).join('<br>'):w[term];
+    var sk=term==='T1'?'Terminal 1 South Wing, 1F, at the JAL ABC counter.':term==='T2'?'Terminal 2, 1F, at the JAL ABC counter.':term==='T3'?'No counter at Terminal 3. Take the free shuttle bus or the sky bridge to Terminal 2, 1F.':'Terminal 1 South Wing, 1F, or Terminal 2, 1F, both at the JAL ABC counter. No counter at Terminal 3: take the free shuttle bus or the sky bridge to Terminal 2.';
     return '<ul class="pl"><li><b>eSIM:</b> install it before you fly. It works as soon as you land.</li>'
       +'<li><b>SIM and pocket Wi-Fi counters</b> are in the arrivals area. Wi-Fi rental counters:<br>'+f+'</li>'
-      +'<li><b>Pocket Wi-Fi</b> must be handed back before you reach the departures lobby.</li>'
+      +'<li><b>Sakura Mobile pickup:</b> '+sk+'</li>'
       +'<li><b>Free airport Wi-Fi:</b> FreeWiFi-NARITA. Fine for a quick message, not for a day of maps.</li></ul>'
-      +'<p class="sm">Counter hours and stock vary. Ordering ahead is safer.</p>';
+      +'<p class="sm">Counter hours and stock vary. Ordering ahead is safer.</p>'
+      +'<p class="sm">You can book pocket Wi-Fi here (partner link): <a href="https://p.sakuramobile.jp/idevaffiliate.php?id=728" target="_blank" rel="sponsored nofollow noopener">Sakura Mobile</a></p>';
   }
   function cashHTML(){
     return '<ul class="pl"><li><b>Currency exchange</b> offices are in the arrivals area.</li>'
