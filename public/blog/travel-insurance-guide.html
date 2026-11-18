@@ -472,7 +472,7 @@
 <style>
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-#why-needed,#types-coverage,#how-choose,#covered-not,#cost-breakdown,#when-buy,#filing-claim,#trip-types,#preexisting,#tips-mistakes{scroll-margin-top:96px}
+#why-needed,#types-coverage,#how-choose,#covered-not,#cost-breakdown,#when-buy,#filing-claim,#trip-types,#preexisting,#tips-mistakes{scroll-margin-top:var(--psn-off,150px)}
 .psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0;font-family:"DM Sans",sans-serif}
 .psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
 .psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
@@ -488,24 +488,60 @@ html{scroll-behavior:smooth}
 .psn-now li{margin:0 0 6px;break-inside:avoid}
 .psn-now li a{color:#0f0f23}
 @media (max-width:600px){.psn-now ol{columns:1}}
+#psnBar{position:fixed;left:0;right:0;top:var(--psn-top,64px);z-index:40;background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #e9f3f0;padding:10px 0;transform:translateY(-130%);visibility:hidden;transition:transform .25s ease-out,visibility .25s}
+#psnBar.on{transform:none;visibility:visible}
+#psnBar .in{max-width:800px;margin:0 auto;padding:0 20px;display:flex;gap:8px;align-items:center}
+#psnBar .rail{flex:1;min-width:0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:center}
+#psnBar .rail::-webkit-scrollbar{display:none}
+#psnBar .chip{flex:none;text-decoration:none;font-weight:700;font-size:.92rem;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 14px;white-space:nowrap;transition:background .15s,border-color .15s}
+#psnBar .chip:hover{border-color:#00C9A7}
+#psnBar .chip.cur{background:#00C9A7;border-color:#00C9A7}
+#psnBar .up{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-family:inherit}
+@media (max-width:600px){.psn-now ol{columns:1}}
+@media print{#psnBar{display:none!important}}
 </style>
 <div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p><div class="psn-tiles"><a class="psn-tile" href="#types-coverage" data-psn="tile-types-coverage"><span class="em">&#128221;</span><b>Coverage types</b><small>Explained</small></a><a class="psn-tile" href="#how-choose" data-psn="tile-how-choose"><span class="em">&#9989;</span><b>Choose a plan</b><small>What to look for</small></a><a class="psn-tile" href="#covered-not" data-psn="tile-covered-not"><span class="em">&#10067;</span><b>Covered or not</b><small>What is included</small></a><a class="psn-tile" href="#cost-breakdown" data-psn="tile-cost-breakdown"><span class="em">&#128176;</span><b>What it costs</b><small>By trip type</small></a><a class="psn-tile" href="#filing-claim" data-psn="tile-filing-claim"><span class="em">&#128236;</span><b>File a claim</b><small>Step by step</small></a><a class="psn-tile" href="#preexisting" data-psn="tile-preexisting"><span class="em">&#127973;</span><b>Pre-existing</b><small>Health conditions</small></a></div>
 <details><summary>See all 10 sections</summary><ol><li><a href="#why-needed" data-psn="list-why-needed">Why You Need Travel Insurance</a></li><li><a href="#types-coverage" data-psn="list-types-coverage">Types of Coverage Explained</a></li><li><a href="#how-choose" data-psn="list-how-choose">How to Choose the Right Plan</a></li><li><a href="#covered-not" data-psn="list-covered-not">What's Covered vs Not Covered</a></li><li><a href="#cost-breakdown" data-psn="list-cost-breakdown">Cost Breakdown by Trip Type</a></li><li><a href="#when-buy" data-psn="list-when-buy">When to Buy Insurance</a></li><li><a href="#filing-claim" data-psn="list-filing-claim">How to File a Claim</a></li><li><a href="#trip-types" data-psn="list-trip-types">Insurance for Different Travel Styles</a></li><li><a href="#preexisting" data-psn="list-preexisting">Pre-Existing Conditions</a></li><li><a href="#tips-mistakes" data-psn="list-tips-mistakes">Essential Tips & Common Mistakes</a></li></ol></details></div>
+<div id="psnBar" role="navigation" aria-label="Jump to a section"><div class="in"><button type="button" class="up" aria-label="Back to the top of the page" data-psn="up">&uarr;</button><div class="rail"><a class="chip" href="#why-needed" data-id="why-needed" data-psn="chip-why-needed">Why insure</a><a class="chip" href="#types-coverage" data-id="types-coverage" data-psn="chip-types-coverage">Coverage</a><a class="chip" href="#how-choose" data-id="how-choose" data-psn="chip-how-choose">Choose</a><a class="chip" href="#covered-not" data-id="covered-not" data-psn="chip-covered-not">Covered?</a><a class="chip" href="#cost-breakdown" data-id="cost-breakdown" data-psn="chip-cost-breakdown">What it costs</a><a class="chip" href="#when-buy" data-id="when-buy" data-psn="chip-when-buy">When to buy</a><a class="chip" href="#filing-claim" data-id="filing-claim" data-psn="chip-filing-claim">Claims</a><a class="chip" href="#trip-types" data-id="trip-types" data-psn="chip-trip-types">Travel styles</a><a class="chip" href="#preexisting" data-id="preexisting" data-psn="chip-preexisting">Pre-existing</a><a class="chip" href="#tips-mistakes" data-id="tips-mistakes" data-psn="chip-tips-mistakes">Tips</a></div></div></div>
 <script>
 (function(){
-function ev(a){try{if(window.gtag)gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname});}catch(x){}}
-document.addEventListener('click',function(e){
-var a=e.target.closest&&e.target.closest('.psn-now a[href^="#"]'); if(!a) return;
-ev(a.getAttribute('data-psn'));
-var id=a.getAttribute('href').slice(1), t=document.getElementById(id); if(!t) return;
-e.preventDefault();
-function pos(){return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-96)}
-var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
-try{window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'});}catch(x){window.scrollTo(0,pos());}
-try{history.replaceState(null,'','#'+id);}catch(x){}
-function fix(){if(Math.abs(t.getBoundingClientRect().top-96)>8){try{window.scrollTo({top:pos(),behavior:'auto'});}catch(x){window.scrollTo(0,pos());}}}
-setTimeout(fix,1000);setTimeout(fix,2200);
-});
+  var bar=document.getElementById('psnBar'); if(!bar) return;
+  var rail=bar.querySelector('.rail'), chips=[].slice.call(rail.querySelectorAll('.chip')), nav=document.getElementById('nav');
+  var ids=chips.map(function(c){return c.getAttribute('data-id')}), cur=null, tick=false;
+  function ev(a){ try{ if(window.gtag) gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname}); }catch(e){} }
+  function setTop(){ var h=nav?Math.round(nav.getBoundingClientRect().bottom):64; if(h<0||h>140) h=64; document.documentElement.style.setProperty('--psn-top',h+'px'); document.documentElement.style.setProperty('--psn-off',(h+84)+'px'); }
+  function off(){ return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-off'),10)||156; }
+  function current(){ var y=window.pageYOffset+260, c=null; ids.forEach(function(id){ var e=document.getElementById(id); if(e&&e.getBoundingClientRect().top+window.pageYOffset<=y) c=id; }); return c; }
+  function paint(){
+    tick=false;
+    var box=document.getElementById('contents'), on=box?box.getBoundingClientRect().bottom<(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-top'),10)||64):window.pageYOffset>520;
+    bar.classList.toggle('on',on);
+    var c=on?current():null;
+    if(c===cur) return; cur=c;
+    chips.forEach(function(a){
+      var is=a.getAttribute('data-id')===c; a.classList.toggle('cur',is);
+      if(is){ a.setAttribute('aria-current','true'); var t=a.offsetLeft-rail.offsetLeft-rail.clientWidth/2+a.offsetWidth/2; if(Math.abs(rail.scrollLeft-t)>8) rail.scrollTo({left:t}); } else a.removeAttribute('aria-current');
+    });
+  }
+  function req(){ if(!tick){ tick=true; requestAnimationFrame(paint); } }
+  window.addEventListener('scroll',req,{passive:true}); window.addEventListener('resize',function(){ setTop(); req(); });
+  setTop(); paint();
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function jump(id){
+    var t=document.getElementById(id); if(!t) return false;
+    function pos(){ return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-off()); }
+    try{ window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'}); }catch(e){ window.scrollTo(0,pos()); }
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+    function fix(){ if(Math.abs(t.getBoundingClientRect().top-off())>8){ try{ window.scrollTo({top:pos(),behavior:'auto'}); }catch(e){ window.scrollTo(0,pos()); } } }
+    setTimeout(fix,1000); setTimeout(fix,2200);
+    return true;
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-psn]'); if(!a) return;
+    var k=a.getAttribute('data-psn'); ev(k);
+    if(k==='up'){ try{ window.scrollTo({top:0,behavior:calm?'auto':'smooth'}); }catch(x){ window.scrollTo(0,0); } return; }
+    var h=a.getAttribute('href'); if(h&&h.charAt(0)==='#'&&jump(h.slice(1))) e.preventDefault();
+  });
 })();
 </script>
 

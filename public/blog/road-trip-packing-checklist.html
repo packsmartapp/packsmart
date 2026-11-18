@@ -457,7 +457,7 @@
         <style>
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-#car-essentials,#documents,#clothing,#toiletries,#tech,#comfort,#snacks,#families,#winter,#mistakes,#printable{scroll-margin-top:96px}
+#car-essentials,#documents,#clothing,#toiletries,#tech,#comfort,#snacks,#families,#winter,#mistakes,#printable{scroll-margin-top:var(--psn-off,150px)}
 .psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0;font-family:"DM Sans",sans-serif}
 .psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
 .psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
@@ -473,24 +473,60 @@ html{scroll-behavior:smooth}
 .psn-now li{margin:0 0 6px;break-inside:avoid}
 .psn-now li a{color:#0f0f23}
 @media (max-width:600px){.psn-now ol{columns:1}}
+#psnBar{position:fixed;left:0;right:0;top:var(--psn-top,64px);z-index:40;background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #e9f3f0;padding:10px 0;transform:translateY(-130%);visibility:hidden;transition:transform .25s ease-out,visibility .25s}
+#psnBar.on{transform:none;visibility:visible}
+#psnBar .in{max-width:800px;margin:0 auto;padding:0 20px;display:flex;gap:8px;align-items:center}
+#psnBar .rail{flex:1;min-width:0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:center}
+#psnBar .rail::-webkit-scrollbar{display:none}
+#psnBar .chip{flex:none;text-decoration:none;font-weight:700;font-size:.92rem;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 14px;white-space:nowrap;transition:background .15s,border-color .15s}
+#psnBar .chip:hover{border-color:#00C9A7}
+#psnBar .chip.cur{background:#00C9A7;border-color:#00C9A7}
+#psnBar .up{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-family:inherit}
+@media (max-width:600px){.psn-now ol{columns:1}}
+@media print{#psnBar{display:none!important}}
 </style>
 <div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p><div class="psn-tiles"><a class="psn-tile" href="#car-essentials" data-psn="tile-car-essentials"><span class="em">&#128663;</span><b>Car essentials</b><small>Safety gear</small></a><a class="psn-tile" href="#documents" data-psn="tile-documents"><span class="em">&#128196;</span><b>Documents</b><small>And money</small></a><a class="psn-tile" href="#clothing" data-psn="tile-clothing"><span class="em">&#128085;</span><b>Clothing</b><small>And footwear</small></a><a class="psn-tile" href="#tech" data-psn="tile-tech"><span class="em">&#128241;</span><b>Tech</b><small>Phone and navigation</small></a><a class="psn-tile" href="#families" data-psn="tile-families"><span class="em">&#128106;</span><b>With kids</b><small>Road trip tips</small></a><a class="psn-tile" href="#printable" data-psn="tile-printable"><span class="em">&#128424;&#65039;</span><b>Checklist</b><small>Quick printable</small></a></div>
 <details><summary>See all 11 sections</summary><ol><li><a href="#car-essentials" data-psn="list-car-essentials">Car Essentials & Safety Gear</a></li><li><a href="#documents" data-psn="list-documents">Documents & Money</a></li><li><a href="#clothing" data-psn="list-clothing">Clothing & Footwear</a></li><li><a href="#toiletries" data-psn="list-toiletries">Toiletries & Personal Care</a></li><li><a href="#tech" data-psn="list-tech">Tech & Navigation</a></li><li><a href="#comfort" data-psn="list-comfort">Comfort & Entertainment</a></li><li><a href="#snacks" data-psn="list-snacks">Snacks & Drinks</a></li><li><a href="#families" data-psn="list-families">Road Tripping with Kids</a></li><li><a href="#winter" data-psn="list-winter">Winter Road Trip Add-Ons</a></li><li><a href="#mistakes" data-psn="list-mistakes">7 Common Road Trip Packing Mistakes</a></li><li><a href="#printable" data-psn="list-printable">Quick Printable Checklist</a></li></ol></details></div>
+<div id="psnBar" role="navigation" aria-label="Jump to a section"><div class="in"><button type="button" class="up" aria-label="Back to the top of the page" data-psn="up">&uarr;</button><div class="rail"><a class="chip" href="#car-essentials" data-id="car-essentials" data-psn="chip-car-essentials">Car</a><a class="chip" href="#documents" data-id="documents" data-psn="chip-documents">Documents</a><a class="chip" href="#clothing" data-id="clothing" data-psn="chip-clothing">Clothing</a><a class="chip" href="#toiletries" data-id="toiletries" data-psn="chip-toiletries">Toiletries</a><a class="chip" href="#tech" data-id="tech" data-psn="chip-tech">Tech</a><a class="chip" href="#comfort" data-id="comfort" data-psn="chip-comfort">Comfort</a><a class="chip" href="#snacks" data-id="snacks" data-psn="chip-snacks">Snacks</a><a class="chip" href="#families" data-id="families" data-psn="chip-families">Kids</a><a class="chip" href="#winter" data-id="winter" data-psn="chip-winter">Winter</a><a class="chip" href="#mistakes" data-id="mistakes" data-psn="chip-mistakes">Mistakes</a><a class="chip" href="#printable" data-id="printable" data-psn="chip-printable">Checklist</a></div></div></div>
 <script>
 (function(){
-function ev(a){try{if(window.gtag)gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname});}catch(x){}}
-document.addEventListener('click',function(e){
-var a=e.target.closest&&e.target.closest('.psn-now a[href^="#"]'); if(!a) return;
-ev(a.getAttribute('data-psn'));
-var id=a.getAttribute('href').slice(1), t=document.getElementById(id); if(!t) return;
-e.preventDefault();
-function pos(){return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-96)}
-var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
-try{window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'});}catch(x){window.scrollTo(0,pos());}
-try{history.replaceState(null,'','#'+id);}catch(x){}
-function fix(){if(Math.abs(t.getBoundingClientRect().top-96)>8){try{window.scrollTo({top:pos(),behavior:'auto'});}catch(x){window.scrollTo(0,pos());}}}
-setTimeout(fix,1000);setTimeout(fix,2200);
-});
+  var bar=document.getElementById('psnBar'); if(!bar) return;
+  var rail=bar.querySelector('.rail'), chips=[].slice.call(rail.querySelectorAll('.chip')), nav=document.getElementById('nav');
+  var ids=chips.map(function(c){return c.getAttribute('data-id')}), cur=null, tick=false;
+  function ev(a){ try{ if(window.gtag) gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname}); }catch(e){} }
+  function setTop(){ var h=nav?Math.round(nav.getBoundingClientRect().bottom):64; if(h<0||h>140) h=64; document.documentElement.style.setProperty('--psn-top',h+'px'); document.documentElement.style.setProperty('--psn-off',(h+84)+'px'); }
+  function off(){ return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-off'),10)||156; }
+  function current(){ var y=window.pageYOffset+260, c=null; ids.forEach(function(id){ var e=document.getElementById(id); if(e&&e.getBoundingClientRect().top+window.pageYOffset<=y) c=id; }); return c; }
+  function paint(){
+    tick=false;
+    var box=document.getElementById('contents'), on=box?box.getBoundingClientRect().bottom<(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-top'),10)||64):window.pageYOffset>520;
+    bar.classList.toggle('on',on);
+    var c=on?current():null;
+    if(c===cur) return; cur=c;
+    chips.forEach(function(a){
+      var is=a.getAttribute('data-id')===c; a.classList.toggle('cur',is);
+      if(is){ a.setAttribute('aria-current','true'); var t=a.offsetLeft-rail.offsetLeft-rail.clientWidth/2+a.offsetWidth/2; if(Math.abs(rail.scrollLeft-t)>8) rail.scrollTo({left:t}); } else a.removeAttribute('aria-current');
+    });
+  }
+  function req(){ if(!tick){ tick=true; requestAnimationFrame(paint); } }
+  window.addEventListener('scroll',req,{passive:true}); window.addEventListener('resize',function(){ setTop(); req(); });
+  setTop(); paint();
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function jump(id){
+    var t=document.getElementById(id); if(!t) return false;
+    function pos(){ return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-off()); }
+    try{ window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'}); }catch(e){ window.scrollTo(0,pos()); }
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+    function fix(){ if(Math.abs(t.getBoundingClientRect().top-off())>8){ try{ window.scrollTo({top:pos(),behavior:'auto'}); }catch(e){ window.scrollTo(0,pos()); } } }
+    setTimeout(fix,1000); setTimeout(fix,2200);
+    return true;
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-psn]'); if(!a) return;
+    var k=a.getAttribute('data-psn'); ev(k);
+    if(k==='up'){ try{ window.scrollTo({top:0,behavior:calm?'auto':'smooth'}); }catch(x){ window.scrollTo(0,0); } return; }
+    var h=a.getAttribute('href'); if(h&&h.charAt(0)==='#'&&jump(h.slice(1))) e.preventDefault();
+  });
 })();
 </script>
         <p>There's nothing quite like the freedom of a road trip &mdash; open windows, good music, and the promise of adventure around every bend. But that freedom quickly turns into frustration when you're 200 kilometres from the nearest town and realise you forgot your phone charger, snacks, or worse, your driver's licence.</p>
