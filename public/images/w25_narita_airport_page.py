@@ -558,12 +558,12 @@ IC_CARD = """<h2 id="ic-card">A train card (Suica or PASMO)</h2>
 LUGGAGE = """<h2 id="luggage">Sending your suitcase to your hotel</h2>
 <p>If you do not want to carry heavy bags on a crowded train, you can post them ahead. Two companies, JAL ABC and Yamato, run delivery counters at Narita. Ask which counter is in your terminal.</p>
 <ul>
-<li><strong>Usually next day.</strong> Most airport luggage delivery arrives the following day. Some same-day services exist, but they have cut-off times and can pause in busy seasons, so do not plan around same-day.</li>
-<li><strong>Prices vary by size.</strong> A medium suitcase usually starts from about ¥1,950 (around 120 cm for length, width and height added together).</li>
+<li><strong>Usually next day.</strong> JAL ABC says the earliest delivery from the airport is the next day. Some same-day services exist for limited areas, with cut-off times, so do not plan around same-day.</li>
+<li><strong>Prices vary by size.</strong> JAL ABC lists ¥1,950 for a bag up to 120 cm (length, width and height added together) sent to Tokyo, Kanagawa, Chiba or Saitama. Bigger bags cost more.</li>
 <li><strong>Have these ready:</strong> your hotel name, address and phone number, written down.</li>
 <li><strong>Keep with you:</strong> medicines, valuables, chargers and a change of clothes.</li>
 </ul>
-<p class="ps-note">Sources: <a href="https://tokyocheapo.com/travel/luggage-delivery-services" target="_blank" rel="noopener noreferrer">Tokyo Cheapo</a> and <a href="https://fun-japan.jp/en/articles/13685" target="_blank" rel="noopener noreferrer">Fun Japan</a>, checked 16 November 2026. Prices and cut-off times change, so confirm at the counter.</p>"""
+<p class="ps-note">Sources: <a href="https://www.narita-airport.jp/en/service/delivery/baggage/" target="_blank" rel="noopener noreferrer">Narita Airport: baggage delivery</a> and <a href="https://www.jalabc.com/en/hands-freetravel/airport-baggage-delivery/from-the-airport.html" target="_blank" rel="noopener noreferrer">JAL ABC airport luggage delivery</a>, checked 18 November 2026. Prices and cut-off times change, so confirm at the counter.</p>"""
 
 HELP = """<h2 id="help">Help for older travellers and anyone who needs assistance</h2>
 <p>You do not have to cope alone. Narita is set up to help, and asking early is easier than struggling.</p>

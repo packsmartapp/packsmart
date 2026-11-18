@@ -572,13 +572,13 @@ LUGGAGE = """<h2 id="luggage">Sending your suitcase to your hotel</h2>
 <p>If you do not want to carry heavy bags on a crowded train, you can post them ahead. Haneda's floor maps list delivery counters run by Yamato, JAL and Sagawa. Ask which counter is in your terminal.</p>
 <ul>
 <li><strong>Terminal 3.</strong> Delivery counters (Yamato and JAL) are on the 2nd floor, in the arrival area, and on the 3rd floor, in the departure area.</li>
-<li><strong>Usually next day.</strong> Most airport luggage delivery arrives the following day. Some same-day services exist, but they have cut-off times and can pause in busy seasons, so do not plan around same-day.</li>
-<li><strong>Prices vary by size and company.</strong> Ask for the price at the counter before you hand your bag over.</li>
+<li><strong>Usually next day.</strong> JAL ABC says the earliest delivery from the airport is the next day. Some same-day services exist for limited areas, with cut-off times, so do not plan around same-day.</li>
+<li><strong>Prices vary by size and company.</strong> JAL ABC lists ¥1,950 for a bag up to 120 cm (length, width and height added together) sent to Tokyo, Kanagawa, Chiba or Saitama. Ask for the price at the counter before you hand your bag over.</li>
 <li><strong>Have these ready:</strong> your hotel name, address and phone number, written down.</li>
 <li><strong>Keep with you:</strong> medicines, valuables, chargers and a change of clothes.</li>
 </ul>
 <p data-ps-placement="klook-haneda-luggage">Prefer to book it online? Klook lists a <a href="https://klook.tpo.lu/jmWXAbkc" target="_blank" rel="nofollow noopener sponsored">luggage delivery service between Tokyo hotels and the airport</a> (Haneda or Narita), a partner link. Check the listing for sizes, prices and cut-off times.</p>
-<p class="ps-note">Sources: <a href="https://tokyo-haneda.com/site_resource/floor/pdf/floor__pdf_floor_map_t3_en.pdf" target="_blank" rel="noopener noreferrer">Haneda Terminal 3 floor map</a> (PDF), <a href="https://tokyocheapo.com/travel/luggage-delivery-services" target="_blank" rel="noopener noreferrer">Tokyo Cheapo</a> and <a href="https://fun-japan.jp/en/articles/13685" target="_blank" rel="noopener noreferrer">Fun Japan</a>, checked 18 November 2026. Cut-off times change, so confirm at the counter.</p>"""
+<p class="ps-note">Sources: <a href="https://tokyo-haneda.com/site_resource/floor/pdf/floor__pdf_floor_map_t3_en.pdf" target="_blank" rel="noopener noreferrer">Haneda Terminal 3 floor map</a> (PDF) and <a href="https://www.jalabc.com/en/hands-freetravel/airport-baggage-delivery/from-the-airport.html" target="_blank" rel="noopener noreferrer">JAL ABC airport luggage delivery</a>, checked 18 November 2026. Cut-off times change, so confirm at the counter.</p>"""
 
 HELP = """<h2 id="help">Help for older travellers and anyone who needs assistance</h2>
 <p>You do not have to cope alone. Haneda is set up to help, and asking early is easier than struggling.</p>
@@ -848,7 +848,7 @@ TO_TOKYO = """<h2 id="to-tokyo">Getting to Tokyo</h2>
 """ + pickups + """
 <p>If you are leaving Tokyo by road, you can also collect a rental car at Haneda:</p>
 """ + cars + """
-<p class="ps-note">Sources: <a href="https://tokyo-haneda.com/en/access/train" target="_blank" rel="noopener noreferrer">Haneda Airport: trains and monorail</a>, <a href="https://www.gotokyo.org/en/plan/airport-access/haneda-airport/" target="_blank" rel="noopener noreferrer">GO TOKYO</a>, <a href="https://ana.co.jp/en/gb/international/departure/airport/map/hnd.html" target="_blank" rel="noopener noreferrer">ANA's Haneda guide</a>, <a href="https://www.tokyo-haneda.com/en/access/taxi" target="_blank" rel="noopener noreferrer">Haneda taxis</a>. Checked 18 November 2026.</p>"""
+<p class="ps-note">Sources: <a href="https://tokyo-haneda.com/en/access/train" target="_blank" rel="noopener noreferrer">Haneda Airport: trains and monorail</a>, <a href="https://ana.co.jp/en/gb/international/departure/airport/map/hnd.html" target="_blank" rel="noopener noreferrer">ANA's Haneda guide</a>, <a href="https://www.tokyo-haneda.com/en/access/taxi" target="_blank" rel="noopener noreferrer">Haneda taxis</a>. Checked 18 November 2026.</p>"""
 
 
 POCKET_BAR = """<style>
