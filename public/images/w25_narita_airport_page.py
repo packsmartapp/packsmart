@@ -219,6 +219,7 @@ TOC = [
     ("connected", "Getting online: SIM, eSIM and Wi-Fi"),
     ("ic-card", "A train card (Suica or PASMO)"),
     ("to-tokyo", "Getting to Tokyo"),
+    ("rent-a-car", "Rent a car at Narita"),
     ("luggage", "Sending your suitcase to your hotel"),
     ("finder", "Find it fast: prayer room, baby room and more"),
     ("facilities", "Facilities by terminal"),
@@ -232,7 +233,7 @@ TOC = [
 # ---- v71: "What do you need first?" tiles + a quick-jump bar that appears once you scroll
 TOC_SHORT = {
     "one-page": "On one page", "terminals": "Terminals", "arrival": "First hour", "connected": "Get online",
-    "ic-card": "Train card", "to-tokyo": "To Tokyo", "luggage": "Suitcase", "finder": "Find it fast",
+    "ic-card": "Train card", "to-tokyo": "To Tokyo", "rent-a-car": "Rent a car", "luggage": "Suitcase", "finder": "Find it fast",
     "facilities": "Facilities", "help": "Help", "leaving": "Leaving", "layover": "Layover",
     "narita-or-haneda": "Narita or Haneda", "faq": "FAQ", "about-this-guide": "About",
 }
@@ -243,6 +244,7 @@ TOC_TILES = [
     ("luggage", "&#129523;", "Send your suitcase", "To your hotel"),
     ("finder", "&#128332;", "Prayer and baby rooms", "Find it fast"),
     ("help", "&#129309;", "Help and assistance", "For older travellers"),
+    ("rent-a-car", "&#128663;", "Rent a car", "Beyond the city"),
 ]
 TOC_CSS = """<style>
 html{scroll-behavior:smooth}
@@ -271,7 +273,7 @@ html{scroll-behavior:smooth}
 #psnBar .chip:hover{border-color:#00C9A7}
 #psnBar .chip.cur{background:#00C9A7;border-color:#00C9A7}
 #psnBar .up{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-family:inherit}
-@media (max-width:600px){.psn-now ol{columns:1}}
+@media (max-width:600px){.psn-now ol{columns:1}.psn-tiles .psn-tile:last-child:nth-child(odd){grid-column:1/-1}}
 @media print{#psnBar{display:none!important}}
 </style>"""
 toc_html = (
