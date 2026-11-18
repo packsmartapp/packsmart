@@ -122,6 +122,17 @@
         .te-jump a:hover { background: var(--action); color: #fff; border-color: var(--action); }
         .te-back { text-align: center; margin-top: 1rem; color: var(--text-secondary); }
         .te-back a { color: var(--action); font-weight: 600; }
+
+        .filter-wrap { max-width: 860px; margin: 0 auto 2rem; text-align: center; }
+        .filter-label { font-size: 0.95rem; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+        .filter-bar { display: flex; gap: 8px; flex-wrap: wrap; justify-content: center; align-items: center; margin-bottom: 0; }
+        .filter-btn { display: inline-flex; align-items: center; justify-content: center; padding: 11px 18px; min-height: 46px; border-radius: 999px; border: 1.5px solid var(--border); background: var(--bg-white); color: var(--text); font-size: 1rem; font-weight: 600; cursor: pointer; text-decoration: none; transition: all 0.2s; font-family: var(--font-body); }
+        .filter-btn .cnt { font-style: normal; font-weight: 500; font-size: 0.85rem; color: var(--text-secondary); margin-left: 6px; }
+        .filter-btn:hover { background: var(--bg-white); color: var(--text); border-color: var(--action); }
+        .filter-btn.active, .filter-btn.active:hover { background: var(--action); color: #fff; border-color: var(--action); }
+        .filter-btn.active .cnt { color: rgba(255,255,255,.85); }
+        .te-section[hidden] { display: none; }
+        @media (max-width: 480px) { .filter-btn { padding: 10px 13px; font-size: 0.95rem; } .filter-btn .cnt { margin-left: 4px; } .filter-bar { gap: 8px 6px; } }
     </style>
 <script type="application/ld+json">
 {"@context": "https://schema.org", "@type": "CollectionPage", "name": "Travel Essentials", "url": "https://www.packsmartapp.com/travel-essentials", "description": "Plain-English travel help that is not about one destination: airport guides, visas, eSIM and insurance, solo and family travel, and packing lists for any trip.", "isPartOf": {"@type": "WebSite", "name": "PackSmart", "url": "https://www.packsmartapp.com"}}
@@ -155,11 +166,15 @@
         <h1>Travel <em style="font-family:var(--font-display);font-style:italic;">Essentials</em></h1>
         <p>Plain-English help for the parts of a trip that are not about one destination.</p>
     </div>
-    <div class="te-jump">
-        <a href="#airports">Airports</a>
-        <a href="#before-you-fly">Before you fly</a>
-        <a href="#your-way">Travelling your way</a>
-        <a href="#packing">Packing lists</a>
+    <div class="filter-wrap te-filter" id="teFilter">
+        <div class="filter-label" id="teFilterLabel">What do you need help with?</div>
+        <div class="filter-bar" role="group" aria-labelledby="teFilterLabel">
+            <a href="#all" class="filter-btn active" data-sec="all" aria-pressed="true">All <i class="cnt"></i></a>
+            <a href="#airports" class="filter-btn" data-sec="airports" aria-pressed="false">Airports <i class="cnt"></i></a>
+            <a href="#before-you-fly" class="filter-btn" data-sec="before-you-fly" aria-pressed="false">Before you fly <i class="cnt"></i></a>
+            <a href="#your-way" class="filter-btn" data-sec="your-way" aria-pressed="false">Travelling your way <i class="cnt"></i></a>
+            <a href="#packing" class="filter-btn" data-sec="packing" aria-pressed="false">Packing lists <i class="cnt"></i></a>
+        </div>
     </div>
     <section class="te-section" id="airports">
         <h2 class="te-h">Airports</h2>
@@ -431,6 +446,53 @@ document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click
 document.getElementById('menuBtn').addEventListener('click', function() {
     document.getElementById('navLinks').classList.toggle('open');
 });
+</script>
+
+<script>
+(function () {
+    var wrap = document.getElementById('teFilter');
+    if (!wrap) return;
+    var btns = Array.prototype.slice.call(wrap.querySelectorAll('.filter-btn'));
+    var secs = Array.prototype.slice.call(document.querySelectorAll('.te-section'));
+    var total = 0;
+    secs.forEach(function (s) {
+        var n = s.querySelectorAll('.blog-card').length;
+        total += n;
+        var b = wrap.querySelector('[data-sec="' + s.id + '"] .cnt');
+        if (b) b.textContent = n;
+    });
+    var all = wrap.querySelector('[data-sec="all"] .cnt');
+    if (all) all.textContent = total;
+
+    function track(label) {
+        try { if (window.gtag) gtag('event', 'essentials_filter', { event_category: 'engagement', filter_label: label, page_path: location.pathname }); } catch (e) {}
+    }
+    function show(id) {
+        var known = id === 'all' || secs.some(function (s) { return s.id === id; });
+        if (!known) id = 'all';
+        secs.forEach(function (s) { s.hidden = !(id === 'all' || s.id === id); });
+        btns.forEach(function (b) {
+            var on = b.getAttribute('data-sec') === id;
+            b.classList.toggle('active', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+        });
+        return id;
+    }
+    btns.forEach(function (b) {
+        b.addEventListener('click', function (e) {
+            e.preventDefault();
+            var id = show(b.getAttribute('data-sec'));
+            track(id);
+            try { history.replaceState(null, '', id === 'all' ? location.pathname + location.search : '#' + id); } catch (err) {}
+        });
+    });
+    var h = (location.hash || '').replace('#', '');
+    if (h && h !== 'all') {
+        show(h);
+        var t = document.getElementById(h);
+        if (t && !t.hidden) { setTimeout(function () { wrap.scrollIntoView({ block: 'start' }); }, 0); }
+    }
+})();
 </script>
 
 </body>
