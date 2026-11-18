@@ -1,7 +1,7 @@
 /* Narita Pocket Guide service worker. Bump V when the page changes shape. */
-var V='narita-pocket-v3';
+var V='narita-pocket-v4';
 var PAGE='/narita-pocket';
-var SHELL=[PAGE,'/narita-pocket.webmanifest','/favicon-32.png','/images/narita-icon-192.png','/images/narita-icon-512.png','/images/narita-icon-maskable-512.png'];
+var SHELL=[PAGE,'/narita-pocket.webmanifest','/favicon-32.png','/images/narita-icon-v2-192.png','/images/narita-icon-v2-512.png','/images/narita-icon-v2-maskable-512.png'];
 self.addEventListener('install',function(e){
   e.waitUntil(caches.open(V).then(function(c){return c.addAll(SHELL);}).then(function(){return self.skipWaiting();}));
 });
