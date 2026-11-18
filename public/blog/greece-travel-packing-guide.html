@@ -642,22 +642,45 @@
     <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/greece-travel-packing-guide').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
 
-        <div class="table-of-contents">
-            <h3>📑 Table of Contents</h3>
-            <ul>
-                <li><a href="#visa-entry">Visa & Entry Requirements</a></li>
-                <li><a href="#best-time">Best Time to Visit Greece</a></li>
-                <li><a href="#what-to-pack">What to Pack for Greece</a></li>
-                <li><a href="#island-guides">Island-Specific Travel Guides</a></li>
-                <li><a href="#athens">Athens City Essentials</a></li>
-                <li><a href="#ferry-logistics">Ferry & Island Hopping Logistics</a></li>
-                <li><a href="#cultural">Cultural Etiquette & Tips</a></li>
-                <li><a href="#food">Greek Food Guide</a></li>
-                <li><a href="#budget">Budget Breakdown</a></li>
-                <li><a href="#apps">Useful Apps for Greece Travel</a></li>
-                <li><a href="#faq">Frequently Asked Questions</a></li>
-            </ul>
-        </div>
+        <style>
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+#visa-entry,#best-time,#what-to-pack,#island-guides,#athens,#ferry-logistics,#cultural,#food,#budget,#apps,#faq{scroll-margin-top:96px}
+.psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0;font-family:"DM Sans",sans-serif}
+.psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
+.psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
+.psn-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}
+.psn-tile{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:14px 14px 12px;text-decoration:none!important;color:#0f0f23!important;transition:border-color .15s,box-shadow .15s}
+.psn-tile:hover,.psn-tile:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25)}
+.psn-tile .em{font-size:1.6rem;line-height:1.1;margin-bottom:4px}
+.psn-tile b{font-size:1.02rem}
+.psn-tile small{color:#666;font-size:.82rem}
+.psn-now details{margin-top:12px}
+.psn-now summary{cursor:pointer;font-weight:700;color:#0a8f78;font-size:.95rem;padding:6px 0}
+.psn-now ol{columns:2;column-gap:24px;margin:8px 0 0;padding-left:1.3rem;font-size:.92rem;list-style:decimal}
+.psn-now li{margin:0 0 6px;break-inside:avoid}
+.psn-now li a{color:#0f0f23}
+@media (max-width:600px){.psn-now ol{columns:1}}
+</style>
+<div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p><div class="psn-tiles"><a class="psn-tile" href="#visa-entry" data-psn="tile-visa-entry"><span class="em">&#128706;</span><b>Visa and entry</b><small>What you need</small></a><a class="psn-tile" href="#best-time" data-psn="tile-best-time"><span class="em">&#9728;&#65039;</span><b>Best time</b><small>Seasons and crowds</small></a><a class="psn-tile" href="#what-to-pack" data-psn="tile-what-to-pack"><span class="em">&#129523;</span><b>What to pack</b><small>For Greece</small></a><a class="psn-tile" href="#island-guides" data-psn="tile-island-guides"><span class="em">&#127965;&#65039;</span><b>Islands</b><small>Island by island</small></a><a class="psn-tile" href="#ferry-logistics" data-psn="tile-ferry-logistics"><span class="em">&#9972;&#65039;</span><b>Ferries</b><small>Island hopping</small></a><a class="psn-tile" href="#budget" data-psn="tile-budget"><span class="em">&#128176;</span><b>Budget</b><small>What it costs</small></a></div>
+<details><summary>See all 11 sections</summary><ol><li><a href="#visa-entry" data-psn="list-visa-entry">Visa & Entry Requirements</a></li><li><a href="#best-time" data-psn="list-best-time">Best Time to Visit Greece</a></li><li><a href="#what-to-pack" data-psn="list-what-to-pack">What to Pack for Greece</a></li><li><a href="#island-guides" data-psn="list-island-guides">Island-Specific Travel Guides</a></li><li><a href="#athens" data-psn="list-athens">Athens City Essentials</a></li><li><a href="#ferry-logistics" data-psn="list-ferry-logistics">Ferry & Island Hopping Logistics</a></li><li><a href="#cultural" data-psn="list-cultural">Cultural Etiquette & Tips</a></li><li><a href="#food" data-psn="list-food">Greek Food Guide</a></li><li><a href="#budget" data-psn="list-budget">Budget Breakdown</a></li><li><a href="#apps" data-psn="list-apps">Useful Apps for Greece Travel</a></li><li><a href="#faq" data-psn="list-faq">Frequently Asked Questions</a></li></ol></details></div>
+<script>
+(function(){
+function ev(a){try{if(window.gtag)gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname});}catch(x){}}
+document.addEventListener('click',function(e){
+var a=e.target.closest&&e.target.closest('.psn-now a[href^="#"]'); if(!a) return;
+ev(a.getAttribute('data-psn'));
+var id=a.getAttribute('href').slice(1), t=document.getElementById(id); if(!t) return;
+e.preventDefault();
+function pos(){return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-96)}
+var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+try{window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'});}catch(x){window.scrollTo(0,pos());}
+try{history.replaceState(null,'','#'+id);}catch(x){}
+function fix(){if(Math.abs(t.getBoundingClientRect().top-96)>8){try{window.scrollTo({top:pos(),behavior:'auto'});}catch(x){window.scrollTo(0,pos());}}}
+setTimeout(fix,1000);setTimeout(fix,2200);
+});
+})();
+</script>
 
         <h2 id="visa-entry">Visa & Entry Requirements for Americans, Brits, Australians & Canadians</h2>
         <p>Greece is part of the Schengen Area, making entry straightforward for citizens of the US, UK, Australia, and Canada. Here's what you need to know:</p>
@@ -1272,7 +1295,7 @@
   <p style="margin:0;font-size:0.8rem;color:#777;line-height:1.4;">Works on eSIM-ready, unlocked phones. Airalo may ask you to verify your ID before you buy, so keep your passport handy.</p>
 </div>
 
-<h2 style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
+<h2 id="faq" style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
 <details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
   <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">What do I need to pack for Greece island hopping?</summary>
   <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Pack lightweight summer clothing, swimwear, sun protection (SPF 50+), comfortable walking shoes, a reusable water bottle, and quick-dry items for ferry rides. Bring a small daypack for island exploring and consider packing layers for cooler evenings. Compression cubes help maximize luggage space on ferries.</div>

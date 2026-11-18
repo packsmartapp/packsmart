@@ -454,21 +454,45 @@
     <a class="share-btn pinterest" href="https://pinterest.com/pin/create/button/?url=https%3A//www.packsmartapp.com/blog/train-travel-tips-beginners&media=https%3A//images.unsplash.com/photo-1541701494587-cb58502866ab%3Fw%3D1200%26h%3D600%26fit%3Dcrop%26auto%3Dformat%26q%3D75&description=Train%20Travel%20Tips%3A%20The%20Complete%20Guide%20for%20Beginners%20%282026%29" target="_blank" rel="noopener" title="Pinterest"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
     <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/train-travel-tips-beginners.html').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
-        <div class="toc">
-        <div class="toc-title">What's Inside</div>
-        <ol>
-            <li><a href="#why-train">Why Travel by Train?</a></li>
-            <li><a href="#booking">How to Book Train Tickets</a></li>
-            <li><a href="#seats">Choosing the Right Seat & Class</a></li>
-            <li><a href="#packing">What to Pack for a Train Journey</a></li>
-            <li><a href="#station">Navigating the Train Station</a></li>
-            <li><a href="#onboard">On Board: Making the Most of Your Journey</a></li>
-            <li><a href="#overnight">Overnight & Long-Distance Train Tips</a></li>
-            <li><a href="#etiquette">Train Etiquette (Unwritten Rules)</a></li>
-            <li><a href="#delays">Dealing with Delays & Connections</a></li>
-            <li><a href="#mistakes">8 Common Train Travel Mistakes</a></li>
-        </ol>
-    </div>
+        <style>
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+#why-train,#booking,#seats,#packing,#station,#onboard,#overnight,#etiquette,#delays,#mistakes{scroll-margin-top:96px}
+.psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0;font-family:"DM Sans",sans-serif}
+.psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
+.psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
+.psn-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}
+.psn-tile{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:14px 14px 12px;text-decoration:none!important;color:#0f0f23!important;transition:border-color .15s,box-shadow .15s}
+.psn-tile:hover,.psn-tile:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25)}
+.psn-tile .em{font-size:1.6rem;line-height:1.1;margin-bottom:4px}
+.psn-tile b{font-size:1.02rem}
+.psn-tile small{color:#666;font-size:.82rem}
+.psn-now details{margin-top:12px}
+.psn-now summary{cursor:pointer;font-weight:700;color:#0a8f78;font-size:.95rem;padding:6px 0}
+.psn-now ol{columns:2;column-gap:24px;margin:8px 0 0;padding-left:1.3rem;font-size:.92rem;list-style:decimal}
+.psn-now li{margin:0 0 6px;break-inside:avoid}
+.psn-now li a{color:#0f0f23}
+@media (max-width:600px){.psn-now ol{columns:1}}
+</style>
+<div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p><div class="psn-tiles"><a class="psn-tile" href="#booking" data-psn="tile-booking"><span class="em">&#127915;</span><b>Book tickets</b><small>How it works</small></a><a class="psn-tile" href="#seats" data-psn="tile-seats"><span class="em">&#128186;</span><b>Seats and class</b><small>Pick the right one</small></a><a class="psn-tile" href="#packing" data-psn="tile-packing"><span class="em">&#129523;</span><b>What to pack</b><small>For the journey</small></a><a class="psn-tile" href="#station" data-psn="tile-station"><span class="em">&#128649;</span><b>At the station</b><small>Find your way</small></a><a class="psn-tile" href="#overnight" data-psn="tile-overnight"><span class="em">&#128716;</span><b>Overnight trains</b><small>Long journeys</small></a><a class="psn-tile" href="#delays" data-psn="tile-delays"><span class="em">&#9200;</span><b>Delays</b><small>And connections</small></a></div>
+<details><summary>See all 10 sections</summary><ol><li><a href="#why-train" data-psn="list-why-train">Why Travel by Train?</a></li><li><a href="#booking" data-psn="list-booking">How to Book Train Tickets</a></li><li><a href="#seats" data-psn="list-seats">Choosing the Right Seat & Class</a></li><li><a href="#packing" data-psn="list-packing">What to Pack for a Train Journey</a></li><li><a href="#station" data-psn="list-station">Navigating the Train Station</a></li><li><a href="#onboard" data-psn="list-onboard">On Board: Making the Most of Your Journey</a></li><li><a href="#overnight" data-psn="list-overnight">Overnight & Long-Distance Train Tips</a></li><li><a href="#etiquette" data-psn="list-etiquette">Train Etiquette (Unwritten Rules)</a></li><li><a href="#delays" data-psn="list-delays">Dealing with Delays & Connections</a></li><li><a href="#mistakes" data-psn="list-mistakes">8 Common Train Travel Mistakes</a></li></ol></details></div>
+<script>
+(function(){
+function ev(a){try{if(window.gtag)gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname});}catch(x){}}
+document.addEventListener('click',function(e){
+var a=e.target.closest&&e.target.closest('.psn-now a[href^="#"]'); if(!a) return;
+ev(a.getAttribute('data-psn'));
+var id=a.getAttribute('href').slice(1), t=document.getElementById(id); if(!t) return;
+e.preventDefault();
+function pos(){return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-96)}
+var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+try{window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'});}catch(x){window.scrollTo(0,pos());}
+try{history.replaceState(null,'','#'+id);}catch(x){}
+function fix(){if(Math.abs(t.getBoundingClientRect().top-96)>8){try{window.scrollTo({top:pos(),behavior:'auto'});}catch(x){window.scrollTo(0,pos());}}}
+setTimeout(fix,1000);setTimeout(fix,2200);
+});
+})();
+</script>
         <p>There's something special about train travel that no other mode of transport offers &mdash; watching landscapes roll past your window, the freedom to walk around, no security queues, and arriving right in the heart of a city. Whether you're planning a scenic rail journey across Europe, a cross-country trip in India, or just your first long-distance train ride, this guide has everything you need.</p>
 
         <p>If you've only ever travelled by plane or car, train travel can feel unfamiliar. Different ticket types, platform numbers, seat reservations, and unspoken rules can be confusing. This guide breaks it all down so your first train journey is smooth, comfortable, and enjoyable.</p>

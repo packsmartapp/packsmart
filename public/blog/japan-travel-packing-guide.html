@@ -496,22 +496,45 @@
     <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/japan-travel-packing-guide').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
 
-<div class="toc">
-    <h3>Table of Contents</h3>
-    <ol>
-        <li><a href="#visa-entry">Visa & Entry Information</a></li>
-        <li><a href="#best-time">Best Time to Visit Japan</a></li>
-        <li><a href="#packing-by-season">What to Pack by Season</a></li>
-        <li><a href="#city-guides">City-Specific Packing Tips</a></li>
-        <li><a href="#cultural-etiquette">Cultural Etiquette & Customs</a></li>
-        <li><a href="#jr-pass">JR Pass Guide</a></li>
-        <li><a href="#budget">Budget Breakdown in USD</a></li>
-        <li><a href="#food-guide">Food Guide & Local Dining</a></li>
-        <li><a href="#accommodation">Accommodation Types</a></li>
-        <li><a href="#useful-apps">Useful Travel Apps</a></li>
-        <li><a href="#faq">FAQ</a></li>
-    </ol>
-</div>
+<style>
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+#visa-entry,#best-time,#packing-by-season,#city-guides,#cultural-etiquette,#jr-pass,#budget,#food-guide,#accommodation,#useful-apps,#faq{scroll-margin-top:96px}
+.psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0;font-family:"DM Sans",sans-serif}
+.psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
+.psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
+.psn-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}
+.psn-tile{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:14px 14px 12px;text-decoration:none!important;color:#0f0f23!important;transition:border-color .15s,box-shadow .15s}
+.psn-tile:hover,.psn-tile:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25)}
+.psn-tile .em{font-size:1.6rem;line-height:1.1;margin-bottom:4px}
+.psn-tile b{font-size:1.02rem}
+.psn-tile small{color:#666;font-size:.82rem}
+.psn-now details{margin-top:12px}
+.psn-now summary{cursor:pointer;font-weight:700;color:#0a8f78;font-size:.95rem;padding:6px 0}
+.psn-now ol{columns:2;column-gap:24px;margin:8px 0 0;padding-left:1.3rem;font-size:.92rem;list-style:decimal}
+.psn-now li{margin:0 0 6px;break-inside:avoid}
+.psn-now li a{color:#0f0f23}
+@media (max-width:600px){.psn-now ol{columns:1}}
+</style>
+<div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p><div class="psn-tiles"><a class="psn-tile" href="#visa-entry" data-psn="tile-visa-entry"><span class="em">&#128706;</span><b>Visa and entry</b><small>What you need</small></a><a class="psn-tile" href="#best-time" data-psn="tile-best-time"><span class="em">&#127800;</span><b>Best time</b><small>Seasons and crowds</small></a><a class="psn-tile" href="#packing-by-season" data-psn="tile-packing-by-season"><span class="em">&#129523;</span><b>What to pack</b><small>Season by season</small></a><a class="psn-tile" href="#city-guides" data-psn="tile-city-guides"><span class="em">&#127961;&#65039;</span><b>City tips</b><small>Tokyo, Kyoto, Osaka</small></a><a class="psn-tile" href="#jr-pass" data-psn="tile-jr-pass"><span class="em">&#128646;</span><b>JR Pass</b><small>Worth it or not</small></a><a class="psn-tile" href="#budget" data-psn="tile-budget"><span class="em">&#128176;</span><b>Budget</b><small>Cost per day</small></a></div>
+<details><summary>See all 11 sections</summary><ol><li><a href="#visa-entry" data-psn="list-visa-entry">Visa & Entry Information</a></li><li><a href="#best-time" data-psn="list-best-time">Best Time to Visit Japan</a></li><li><a href="#packing-by-season" data-psn="list-packing-by-season">What to Pack by Season</a></li><li><a href="#city-guides" data-psn="list-city-guides">City-Specific Packing Tips</a></li><li><a href="#cultural-etiquette" data-psn="list-cultural-etiquette">Cultural Etiquette & Customs</a></li><li><a href="#jr-pass" data-psn="list-jr-pass">JR Pass Guide</a></li><li><a href="#budget" data-psn="list-budget">Budget Breakdown in USD</a></li><li><a href="#food-guide" data-psn="list-food-guide">Food Guide & Local Dining</a></li><li><a href="#accommodation" data-psn="list-accommodation">Accommodation Types</a></li><li><a href="#useful-apps" data-psn="list-useful-apps">Useful Travel Apps</a></li><li><a href="#faq" data-psn="list-faq">FAQ</a></li></ol></details></div>
+<script>
+(function(){
+function ev(a){try{if(window.gtag)gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname});}catch(x){}}
+document.addEventListener('click',function(e){
+var a=e.target.closest&&e.target.closest('.psn-now a[href^="#"]'); if(!a) return;
+ev(a.getAttribute('data-psn'));
+var id=a.getAttribute('href').slice(1), t=document.getElementById(id); if(!t) return;
+e.preventDefault();
+function pos(){return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-96)}
+var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+try{window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'});}catch(x){window.scrollTo(0,pos());}
+try{history.replaceState(null,'','#'+id);}catch(x){}
+function fix(){if(Math.abs(t.getBoundingClientRect().top-96)>8){try{window.scrollTo({top:pos(),behavior:'auto'});}catch(x){window.scrollTo(0,pos());}}}
+setTimeout(fix,1000);setTimeout(fix,2200);
+});
+})();
+</script>
 
 <h2 id="visa-entry">Visa & Entry Information for International Travelers</h2>
 <p>Japan welcomes travelers from the United States, United Kingdom, Australia, and Canada with streamlined entry procedures. Understanding visa requirements and entry documentation prevents delays and complications at immigration.</p>

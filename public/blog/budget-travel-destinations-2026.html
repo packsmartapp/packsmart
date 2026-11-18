@@ -475,19 +475,45 @@
     <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/budget-travel-destinations-2026').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
 
-    <div class="toc" style="background:#f0fef9;border:1px solid #ddd;border-radius:8px;padding:1.5rem 2rem;margin-bottom:2.5rem;">
-        <div style="font-weight:700;font-size:1rem;margin-bottom:.8rem;">In this guide</div>
-        <ol style="padding-left:1.2rem;">
-            <li style="margin-bottom:.4rem;font-size:.92rem;"><a href="#why-budget" style="color:var(--primary);text-decoration:none;font-weight:500;">Why Budget Travel in 2026?</a></li>
-            <li style="margin-bottom:.4rem;font-size:.92rem;"><a href="#asia" style="color:var(--primary);text-decoration:none;font-weight:500;">Southeast Asia</a></li>
-            <li style="margin-bottom:.4rem;font-size:.92rem;"><a href="#south-asia" style="color:var(--primary);text-decoration:none;font-weight:500;">South Asia</a></li>
-            <li style="margin-bottom:.4rem;font-size:.92rem;"><a href="#europe" style="color:var(--primary);text-decoration:none;font-weight:500;">Eastern Europe & Balkans</a></li>
-            <li style="margin-bottom:.4rem;font-size:.92rem;"><a href="#latin" style="color:var(--primary);text-decoration:none;font-weight:500;">Latin America</a></li>
-            <li style="margin-bottom:.4rem;font-size:.92rem;"><a href="#africa" style="color:var(--primary);text-decoration:none;font-weight:500;">Africa</a></li>
-            <li style="margin-bottom:.4rem;font-size:.92rem;"><a href="#tips" style="color:var(--primary);text-decoration:none;font-weight:500;">Budget Travel Tips That Actually Work</a></li>
-            <li style="margin-bottom:.4rem;font-size:.92rem;"><a href="#pack" style="color:var(--primary);text-decoration:none;font-weight:500;">What to Pack for Budget Travel</a></li>
-        </ol>
-    </div>
+    <style>
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+#why-budget,#asia,#south-asia,#europe,#latin,#africa,#tips,#pack{scroll-margin-top:96px}
+.psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0;font-family:"DM Sans",sans-serif}
+.psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
+.psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
+.psn-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}
+.psn-tile{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:14px 14px 12px;text-decoration:none!important;color:#0f0f23!important;transition:border-color .15s,box-shadow .15s}
+.psn-tile:hover,.psn-tile:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25)}
+.psn-tile .em{font-size:1.6rem;line-height:1.1;margin-bottom:4px}
+.psn-tile b{font-size:1.02rem}
+.psn-tile small{color:#666;font-size:.82rem}
+.psn-now details{margin-top:12px}
+.psn-now summary{cursor:pointer;font-weight:700;color:#0a8f78;font-size:.95rem;padding:6px 0}
+.psn-now ol{columns:2;column-gap:24px;margin:8px 0 0;padding-left:1.3rem;font-size:.92rem;list-style:decimal}
+.psn-now li{margin:0 0 6px;break-inside:avoid}
+.psn-now li a{color:#0f0f23}
+@media (max-width:600px){.psn-now ol{columns:1}}
+</style>
+<div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p><div class="psn-tiles"><a class="psn-tile" href="#asia" data-psn="tile-asia"><span class="em">&#127796;</span><b>Southeast Asia</b><small>Destinations</small></a><a class="psn-tile" href="#south-asia" data-psn="tile-south-asia"><span class="em">&#127956;&#65039;</span><b>South Asia</b><small>Destinations</small></a><a class="psn-tile" href="#europe" data-psn="tile-europe"><span class="em">&#127984;</span><b>Eastern Europe</b><small>And the Balkans</small></a><a class="psn-tile" href="#latin" data-psn="tile-latin"><span class="em">&#127758;</span><b>Latin America</b><small>Destinations</small></a><a class="psn-tile" href="#tips" data-psn="tile-tips"><span class="em">&#128161;</span><b>Money tips</b><small>That actually work</small></a><a class="psn-tile" href="#pack" data-psn="tile-pack"><span class="em">&#129523;</span><b>What to pack</b><small>For budget travel</small></a></div>
+<details><summary>See all 8 sections</summary><ol><li><a href="#why-budget" data-psn="list-why-budget">Why Budget Travel in 2026?</a></li><li><a href="#asia" data-psn="list-asia">Southeast Asia</a></li><li><a href="#south-asia" data-psn="list-south-asia">South Asia</a></li><li><a href="#europe" data-psn="list-europe">Eastern Europe & Balkans</a></li><li><a href="#latin" data-psn="list-latin">Latin America</a></li><li><a href="#africa" data-psn="list-africa">Africa</a></li><li><a href="#tips" data-psn="list-tips">Budget Travel Tips That Actually Work</a></li><li><a href="#pack" data-psn="list-pack">What to Pack for Budget Travel</a></li></ol></details></div>
+<script>
+(function(){
+function ev(a){try{if(window.gtag)gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname});}catch(x){}}
+document.addEventListener('click',function(e){
+var a=e.target.closest&&e.target.closest('.psn-now a[href^="#"]'); if(!a) return;
+ev(a.getAttribute('data-psn'));
+var id=a.getAttribute('href').slice(1), t=document.getElementById(id); if(!t) return;
+e.preventDefault();
+function pos(){return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-96)}
+var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+try{window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'});}catch(x){window.scrollTo(0,pos());}
+try{history.replaceState(null,'','#'+id);}catch(x){}
+function fix(){if(Math.abs(t.getBoundingClientRect().top-96)>8){try{window.scrollTo({top:pos(),behavior:'auto'});}catch(x){window.scrollTo(0,pos());}}}
+setTimeout(fix,1000);setTimeout(fix,2200);
+});
+})();
+</script>
 
         <p>Travelling doesn't have to drain your savings. Some of the most incredible destinations in the world cost a fraction of what you'd spend on a weekend in London or New York. The trick is knowing where to go, when to visit, and how to stretch your money.</p>
 
