@@ -608,8 +608,8 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/narita-sw.js',{scope:'/narita-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
-      .then(function(){ return caches.has('narita-pocket-v2'); })
-      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('narita-pocket-v2').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .then(function(){ return caches.has('narita-pocket-v3'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('narita-pocket-v3').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
       .catch(function(){ paint(); });
   }
   /* install help: shown first, in the person's own phone type */

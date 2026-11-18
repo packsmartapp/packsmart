@@ -280,7 +280,7 @@
   </url>
   <url>
     <loc>https://www.packsmartapp.com/blog/japan-travel-packing-guide</loc>
-    <lastmod>2026-11-16</lastmod>
+    <lastmod>2026-11-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -466,6 +466,12 @@
     <loc>https://www.packsmartapp.com/travel-essentials</loc>
     <lastmod>2026-11-16</lastmod>
     <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.packsmartapp.com/blog/haneda-airport-guide</loc>
+    <lastmod>2026-11-18</lastmod>
+    <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 </urlset>

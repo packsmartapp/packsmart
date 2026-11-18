@@ -1,0 +1,31 @@
+{
+  "name": "Haneda Pocket Guide",
+  "short_name": "Haneda",
+  "description": "A simple Haneda Airport helper that works offline.",
+  "start_url": "/haneda-pocket",
+  "scope": "/haneda-pocket",
+  "display": "standalone",
+  "background_color": "#1a1a3e",
+  "theme_color": "#1a1a3e",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/images/haneda-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/haneda-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/haneda-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

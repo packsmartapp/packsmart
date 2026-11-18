@@ -308,7 +308,7 @@ toc_html = (
   function req(){ if(!tick){ tick=true; requestAnimationFrame(paint); } }
   window.addEventListener('scroll',req,{passive:true}); window.addEventListener('resize',function(){ setTop(); req(); });
   setTop(); paint();
-  bar.querySelector('.up').addEventListener('click',function(){ ev('up'); try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } });
+  bar.querySelector('.up').addEventListener('click',function(){ try{ window.scrollTo({top:0,behavior:'smooth'}); }catch(e){ window.scrollTo(0,0); } });
   document.addEventListener('click',function(e){ var a=e.target.closest&&e.target.closest('[data-psn]'); if(a) ev(a.getAttribute('data-psn')); });
 })();
 </script>"""
@@ -528,6 +528,21 @@ CHOOSER = """<h3>Where are you staying?</h3>
 </div>
 """
 
+SHOW_SUICA_TILE = os.environ.get("PS_SUICA", "0") == "1"   # off unless Ari says go (listing was sold out 18 Nov 2026)
+SUICA_LINK = "https://klook.tpo.lu/jXhmixp4"
+SUICA_SVG = '<svg aria-hidden="true" focusable="false" style="display:block;width:100%;height:auto;" viewBox="0 0 120 84" xmlns="http://www.w3.org/2000/svg"><rect width="120" height="84" rx="10" fill="#E7FAF5"/><g transform="rotate(-6 60 44)"><rect x="22" y="16" width="76" height="50" rx="8" fill="#fff" stroke="#0f0f23" stroke-width="2.5"/><rect x="22" y="26" width="76" height="9" fill="#00C9A7"/><circle cx="40" cy="52" r="5" fill="none" stroke="#0a8f78" stroke-width="2.5"/><path d="M58 47a9 9 0 0 1 0 10M64 43a15 15 0 0 1 0 18M70 39a21 21 0 0 1 0 26" fill="none" stroke="#00C9A7" stroke-width="2.5" stroke-linecap="round"/></g></svg>'
+SUICA_TILE = (
+    '<div data-ps-box="suica" style="margin:20px 0;padding:18px;background:#f0faf7;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:12px;">'
+    '<style>.ps-su{display:flex;gap:16px;align-items:center}.ps-su-img{flex:0 0 120px}.ps-su-tx{flex:1;min-width:0}.ps-su-btn{transition:background .15s}.ps-su-btn:hover .ps-su-ghost,.ps-su-btn:focus-visible .ps-su-ghost{background:#E7FAF5}@media(max-width:560px){.ps-su{flex-direction:column;align-items:stretch}.ps-su-img{flex:none;width:120px}}</style>'
+    '<div class="ps-su"><div class="ps-su-img">' + SUICA_SVG + '</div><div class="ps-su-tx">'
+    '<strong style="display:block;font-size:1.1rem;color:#0f0f23;margin:0 0 6px;">Want your Welcome Suica ready when you land?</strong>'
+    '<p style="margin:0 0 10px;font-size:0.95rem;line-height:1.5;color:#333;">You can book one in advance on Klook and collect it at the airport with your booking voucher, instead of queuing at a machine. The card comes with &yen;1,500 to &yen;2,000 already on it, and money left over cannot be refunded.</p>'
+    '<p style="margin:0 0 12px;font-size:0.88rem;line-height:1.5;color:#555;">Check the listing for the exact pick-up counter and how long the card is valid. You can always buy one from JR East on arrival instead.</p>'
+    '<a class="ps-su-btn" data-ps-placement="klook-narita-suica" href="' + SUICA_LINK + '" target="_blank" rel="nofollow noopener sponsored" style="display:block;box-sizing:border-box;text-decoration:none;max-width:340px;"><span class="ps-su-ghost" style="display:flex;align-items:center;justify-content:center;box-sizing:border-box;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;text-align:center;font-weight:700;font-size:0.98rem;border-radius:12px;padding:10px 14px;min-height:46px;line-height:1.25;">See the Suica listing&nbsp;&rarr;</span><span style="display:block;text-align:center;font-size:0.76rem;color:#777;margin-top:6px;">Klook &middot; partner link</span></a>'
+    '<p style="margin:10px 0 0;font-size:0.82rem;line-height:1.5;color:#555;">We earn a small commission if you book through this link, at no extra cost to you.</p>'
+    '</div></div></div>'
+)
+
 IC_CARD = """<h2 id="ic-card">A train card (Suica or PASMO)</h2>
 <p>A tap-on travel card saves you buying a ticket for every train, subway or bus ride, and it also pays in many shops and vending machines. Visitors usually buy a tourist version, called Welcome Suica. It has no deposit, it is valid for 28 days, and any money left on it cannot be refunded.</p>
 <ul>
@@ -536,7 +551,7 @@ IC_CARD = """<h2 id="ic-card">A train card (Suica or PASMO)</h2>
 <li><strong>iPhone users:</strong> an app version, Welcome Suica Mobile, lets you set up before you land (iPhone only, as of April 2026).</li>
 <li><strong>Staying longer than 28 days?</strong> A regular Suica or PASMO may suit you better. Ask at the counter.</li>
 </ul>
-<div class="warning-box">
+""" + (SUICA_TILE if SHOW_SUICA_TILE else "") + """<div class="warning-box">
     <strong>This changes often.</strong> Sales points and card types have changed several times in recent years. Check <a href="https://www.jreast.co.jp/multi/en/welcomeSUICA/welcomeSUICA.html" target="_blank" rel="noopener noreferrer">JR East's Welcome Suica page</a> before you travel.
 </div>"""
 
@@ -576,7 +591,8 @@ NRT_HND = """<h2 id="narita-or-haneda">Narita or Haneda?</h2>
 <tr><td><strong>Good to know</strong></td><td>Three terminals; plan for the transfer</td><td>Often easier for a late arrival</td></tr>
 </tbody>
 </table>
-</div>"""
+</div>
+<p>For the other airport, see our <a href="/blog/haneda-airport-guide">Haneda Airport guide</a>.</p>"""
 
 ABOUT = """<div class="ps-about" id="about-this-guide">
 <h2>About this guide</h2>
@@ -1051,7 +1067,7 @@ if "data-ps-placement=\"pickups-japan\"" in page or "airalo-japan" in page:
     die("placement id rename failed")
 
 # GA4 click names for the Sakura and Japan Bullet Train partner links (idempotent)
-for _dom, _nm in (("p.sakuramobile.jp", "Sakura_Mobile"), ("japan-bullettrain.com", "Japan_Bullet_Train")):
+for _dom, _nm in (("p.sakuramobile.jp", "Sakura_Mobile"), ("japan-bullettrain.com", "Japan_Bullet_Train"), ("klook.tpo.lu", "Klook")):
     if "'%s'" % _dom not in page:
         page = page.replace("'klook.tpx.li': 'Klook',", "'%s': '%s',\n        'klook.tpx.li': 'Klook'," % (_dom, _nm), 1)
     if "'%s'" % _dom not in page:
@@ -1764,8 +1780,8 @@ POCKET_HTML = """<!DOCTYPE html>
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/narita-sw.js',{scope:'/narita-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
-      .then(function(){ return caches.has('narita-pocket-v2'); })
-      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('narita-pocket-v2').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .then(function(){ return caches.has('narita-pocket-v3'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('narita-pocket-v3').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
       .catch(function(){ paint(); });
   }
   /* install help: shown first, in the person's own phone type */
