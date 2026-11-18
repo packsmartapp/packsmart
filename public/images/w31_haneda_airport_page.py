@@ -577,6 +577,7 @@ LUGGAGE = """<h2 id="luggage">Sending your suitcase to your hotel</h2>
 <li><strong>Have these ready:</strong> your hotel name, address and phone number, written down.</li>
 <li><strong>Keep with you:</strong> medicines, valuables, chargers and a change of clothes.</li>
 </ul>
+<p data-ps-placement="klook-haneda-luggage">Prefer to book it online? Klook lists a <a href="https://klook.tpo.lu/jmWXAbkc" target="_blank" rel="nofollow noopener sponsored">luggage delivery service between Tokyo hotels and the airport</a> (Haneda or Narita), a partner link. Check the listing for sizes, prices and cut-off times.</p>
 <p class="ps-note">Sources: <a href="https://tokyo-haneda.com/site_resource/floor/pdf/floor__pdf_floor_map_t3_en.pdf" target="_blank" rel="noopener noreferrer">Haneda Terminal 3 floor map</a> (PDF), <a href="https://tokyocheapo.com/travel/luggage-delivery-services" target="_blank" rel="noopener noreferrer">Tokyo Cheapo</a> and <a href="https://fun-japan.jp/en/articles/13685" target="_blank" rel="noopener noreferrer">Fun Japan</a>, checked 18 November 2026. Cut-off times change, so confirm at the counter.</p>"""
 
 HELP = """<h2 id="help">Help for older travellers and anyone who needs assistance</h2>
@@ -606,7 +607,7 @@ HND_NRT = """<h2 id="haneda-or-narita">Haneda or Narita?</h2>
 </tbody>
 </table>
 </div>
-<p><strong>Going between the two?</strong> Haneda's train page lists about 1 hour 45 minutes by train to Narita Airport Station. Keikyu and Keisei trains connect the airports, and a limousine bus takes roughly 85 minutes. Allow extra time for the transfer.</p>"""
+<p><strong>Going between the two?</strong> Haneda's train page lists about 1 hour 45 minutes by train to Narita Airport Station. Keikyu and Keisei trains connect the airports, and a limousine bus takes roughly 85 minutes. Allow extra time for the transfer. Klook also sells a direct <a href="https://klook.tpo.lu/isKZCpio" target="_blank" rel="nofollow noopener sponsored">bus ticket between Haneda and Narita</a> (partner link).</p>"""
 
 ABOUT = """<div class="ps-about" id="about-this-guide">
 <h2>About this guide</h2>
@@ -777,6 +778,50 @@ JB_SHINKANSEN = (
 
 
 
+# ---- Klook placements (links verified in Chrome 18 Nov 2026; aff_pid=711400) ----
+KL_LIMO_LINK = "https://klook.tpo.lu/PwSUuJEu"
+KL_CAR_LINK = "https://klook.tpo.lu/5y9oQYD7"
+KL_BAGS_LINK = "https://klook.tpo.lu/jmWXAbkc"
+KL_HNDNRT_LINK = "https://klook.tpo.lu/isKZCpio"
+KL_BUS = '<svg aria-hidden="true" focusable="false" style="display:block;width:100%;height:auto;" viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="150" fill="#FFF1E2"/><g fill="#fbd9b6"><rect x="14" y="40" width="40" height="74"/><rect x="60" y="62" width="28" height="52"/><rect x="236" y="34" width="44" height="80"/><rect x="284" y="64" width="26" height="50"/></g><g fill="#fff3e6"><rect x="22" y="50" width="8" height="8"/><rect x="38" y="50" width="8" height="8"/><rect x="22" y="66" width="8" height="8"/><rect x="38" y="66" width="8" height="8"/><rect x="246" y="46" width="8" height="8"/><rect x="262" y="46" width="8" height="8"/><rect x="246" y="62" width="8" height="8"/><rect x="262" y="62" width="8" height="8"/></g><rect y="116" width="320" height="34" fill="#efd3b3"/><rect y="132" width="320" height="3" fill="#fff" opacity=".6"/><g><rect x="52" y="64" width="216" height="56" rx="10" fill="#fff" stroke="#0f0f23" stroke-width="2.5"/><rect x="52" y="104" width="216" height="8" fill="#F97316"/><g fill="#9ad8e8" stroke="#0f0f23" stroke-width="1.5"><rect x="64" y="72" width="26" height="22" rx="3"/><rect x="96" y="72" width="26" height="22" rx="3"/><rect x="128" y="72" width="26" height="22" rx="3"/><rect x="160" y="72" width="26" height="22" rx="3"/><rect x="192" y="72" width="26" height="22" rx="3"/><rect x="228" y="72" width="30" height="30" rx="3"/></g><circle cx="94" cy="122" r="11" fill="#0f0f23"/><circle cx="94" cy="122" r="4" fill="#bbb"/><circle cx="226" cy="122" r="11" fill="#0f0f23"/><circle cx="226" cy="122" r="4" fill="#bbb"/></g></svg>'
+KL_CAR = '<svg aria-hidden="true" focusable="false" style="display:block;width:100%;height:auto;" viewBox="0 0 320 150" xmlns="http://www.w3.org/2000/svg"><rect width="320" height="150" fill="#E7FAF5"/><g fill="#cdeee5"><rect x="18" y="52" width="30" height="62"/><rect x="54" y="68" width="24" height="46"/><rect x="240" y="44" width="34" height="70"/><rect x="280" y="66" width="28" height="48"/></g><rect y="116" width="320" height="34" fill="#d6f1ea"/><rect y="132" width="320" height="3" fill="#fff" opacity=".7"/><g><path d="M56 112 L56 98 C56 92 60 88 66 86 L108 70 C116 66 124 64 134 64 L190 64 C200 64 208 68 216 74 L246 88 C256 90 262 96 262 104 L262 112 Z" fill="#fff" stroke="#0f0f23" stroke-width="2.5" stroke-linejoin="round"/><path d="M116 72 L134 68 L160 68 L160 88 L104 88 Z" fill="#9ad8e8" stroke="#0f0f23" stroke-width="1.5" stroke-linejoin="round"/><path d="M168 68 L190 68 C196 68 202 71 208 76 L220 88 L168 88 Z" fill="#9ad8e8" stroke="#0f0f23" stroke-width="1.5" stroke-linejoin="round"/><rect x="56" y="100" width="206" height="6" fill="#00C9A7"/><circle cx="96" cy="114" r="12" fill="#0f0f23"/><circle cx="96" cy="114" r="4.5" fill="#bbb"/><circle cx="224" cy="114" r="12" fill="#0f0f23"/><circle cx="224" cy="114" r="4.5" fill="#bbb"/></g></svg>'
+KL_LBL = "display:block;font-weight:700;color:#0a8f78;font-size:0.76rem;letter-spacing:.03em;text-transform:uppercase;"
+KL_VAL = "display:block;font-size:0.92rem;line-height:1.35;color:#0f0f23;"
+KL_ROWS = [
+    ("limousine", "Airport Limousine Bus", "Shinjuku, Ikebukuro, Tokyo Disney Resort and other stops", "About 45 to 80 min", "About &yen;1,000 to &yen;1,300", "Board by scanning a QR code. Easy with heavy luggage.", KL_LIMO_LINK, "See Limousine Bus tickets", KL_BUS),
+    ("car", "Private car transfer", "Your hotel in Tokyo, door to door", "Depends on the traffic", "From about US$54 per car", "A driver meets you at arrivals and helps with bags.", KL_CAR_LINK, "See private transfers", KL_CAR),
+]
+
+
+def kl_row(label, text):
+    return '<div style="margin:0 0 7px;"><span style="%s">%s</span><span style="%s">%s</span></div>' % (KL_LBL, label, KL_VAL, text)
+
+
+def kl_tile(r):
+    pid, name, to, mins, price, note, link, btn, svg = r
+    return (
+        '<a class="ps-kl-tile" data-ps-placement="klook-haneda-transport-%s" href="%s" target="_blank" rel="nofollow noopener sponsored" style="display:flex;flex-direction:column;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:12px 12px 14px;text-decoration:none;color:#0f0f23;">' % (pid, link)
+        + '<span style="display:block;margin:0 0 10px;border-radius:12px;overflow:hidden;">%s</span>' % svg
+        + '<strong style="display:block;font-size:1.1rem;color:#0f0f23;margin:0 0 8px;">%s</strong>' % name
+        + kl_row("Goes to", to) + kl_row("About how long", mins) + kl_row("About how much", price)
+        + '<p style="margin:0 0 12px;font-size:0.88rem;color:#555;line-height:1.4;">%s</p><span style="flex:1;min-height:4px;display:block;"></span>' % note
+        + '<span class="ps-kl-ghost" style="display:block;box-sizing:border-box;border:1.5px solid #00C9A7;color:#0a8f78;text-align:center;font-weight:700;font-size:0.98rem;border-radius:12px;padding:10px 12px;min-height:46px;line-height:1.25;display:flex;align-items:center;justify-content:center;">%s&nbsp;&rarr;</span><span style="display:block;text-align:center;font-size:0.76rem;color:#777;margin-top:6px;">Klook &middot; partner link</span></a>' % btn.replace(" ", "&nbsp;", btn.count(" ") - 1)
+    )
+
+
+KLOOK_TRANSPORT = (
+    '<div data-ps-placement="klook-haneda-transport" style="max-width:800px;margin:20px auto;padding:20px;background:#f0faf7;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:12px;">'
+    '<style>.ps-kl-tile{transition:border-color .15s,box-shadow .15s}.ps-kl-tile:hover,.ps-kl-tile:focus-visible{border-color:#00C9A7!important;box-shadow:0 2px 10px rgba(0,201,167,.25)}.ps-kl-ghost{transition:background .15s}.ps-kl-tile:hover .ps-kl-ghost,.ps-kl-tile:focus-visible .ps-kl-ghost{background:#E7FAF5}</style>'
+    '<strong style="display:block;font-size:1.1rem;color:#0f0f23;margin:0 0 6px;">Want your bus or car sorted before you fly?</strong>'
+    '<p style="margin:0 0 14px;font-size:0.95rem;color:#333;line-height:1.5;">You can book both on Klook. You can also buy a bus ticket at the airport or take a train, so booking ahead is a convenience, not a must.</p>'
+    '<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin:0 0 12px;">'
+    + "".join(kl_tile(r) for r in KL_ROWS) +
+    '</div>'
+    '<p style="margin:0;font-size:0.85rem;color:#555;line-height:1.5;">Before you pay, read each listing\'s change and cancellation rules. Limousine Bus bookings cannot be amended: you cancel and rebook. Buses can run late in traffic, so leave a buffer. Klook prices checked 18 Nov 2026 and they change by date and route. We earn a small commission if you book through these links, at no extra cost to you.</p>'
+    '</div>'
+)
+
+
 TO_TOKYO = """<h2 id="to-tokyo">Getting to Tokyo</h2>
 <p>Haneda is close to the city, so most people take a train. Times and prices below are approximate: they differ a little between sources and change over time, so check the operator before you go.</p>
 """ + CHOOSER + """
@@ -795,6 +840,7 @@ TO_TOKYO = """<h2 id="to-tokyo">Getting to Tokyo</h2>
 <div class="warning-box">
     <strong>Check the train name.</strong> Keikyu runs fast and slow trains on the same line, and the time to Shinagawa depends on which you board. Look at the train type and destination on the display before you get on.
 </div>
+""" + KLOOK_TRANSPORT + """
 <p><strong>Late arrival?</strong> Trains run from about 5 am until around midnight (ANA's airport guide lists the last Keikyu train around 23:48 and the last Monorail around 00:02). After that, late-night buses and taxis run, and there are hotels inside the terminals. Check the last train for your route before you book.</p>
 <p><strong>Going on to Narita?</strong> See the Haneda-or-Narita section below.</p>
 """ + JB_SHINKANSEN + """
@@ -1040,7 +1086,7 @@ if "data-ps-placement=\"pickups-japan\"" in page or "airalo-japan" in page:
     die("placement id rename failed")
 
 # GA4 click names for the Sakura and Japan Bullet Train partner links (idempotent)
-for _dom, _nm in (("p.sakuramobile.jp", "Sakura_Mobile"), ("japan-bullettrain.com", "Japan_Bullet_Train")):
+for _dom, _nm in (("p.sakuramobile.jp", "Sakura_Mobile"), ("japan-bullettrain.com", "Japan_Bullet_Train"), ("klook.tpo.lu", "Klook")):
     if "'%s'" % _dom not in page:
         page = page.replace("'klook.tpx.li': 'Klook',", "'%s': '%s',\n        'klook.tpx.li': 'Klook'," % (_dom, _nm), 1)
     if "'%s'" % _dom not in page:
@@ -1114,7 +1160,7 @@ PG_HOOKS = r"""/* analytics: taps only (see PG_BOOT). One delegated listener, so
   function bare(h){ return String(h||'').replace(/^www\./,''); }
   function linkEv(a){
     var h=a.getAttribute('href')||''; if(!h||h.charAt(0)==='#'||a.hasAttribute('data-sp')) return;
-    if(/^tel:/i.test(h)){ var d=h.replace(/^tel:/i,'').replace(/[^0-9+]/g,''); var nm={'119':'fire_ambulance','110':'police','+81476348000':'airport','+815038162787':'help_line'}; pgTrack('pg_call',{dest:nm[d]||d,where:whereNow()}); return; }
+    if(/^tel:/i.test(h)){ var d=h.replace(/^tel:/i,'').replace(/[^0-9+]/g,''); var nm={'119':'fire_ambulance','110':'police','+81357578111':'airport','+815038162787':'help_line'}; pgTrack('pg_call',{dest:nm[d]||d,where:whereNow()}); return; }
     if(/^mailto:/i.test(h)) return;
     if(/(^|\s)sponsored(\s|$)/.test(a.getAttribute('rel')||'')){ pgTrack('pg_partner',{partner:a.textContent,host:a.hostname,where:whereNow()}); return; }
     if(a.hostname&&bare(a.hostname)!==bare(location.hostname)&&a.hostname!=='packsmartapp.com'){ pgTrack('pg_outbound',{host:a.hostname,where:whereNow()}); return; }
@@ -1587,6 +1633,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Private car:</b> a fixed-price transfer is about &euro;45 per car (figure from the company, Nov 2026).</li></ul>';
     h+='<div class="tipbox">Trains run from about 5 am until around midnight. After that, late-night buses and taxis run. Check the last train for your route.</div>';
     h+='<p class="sm">Times and prices are approximate and change. Check the operator.</p>';
+    h+='<p class="sm">You can book here (partner links): <a href="https://klook.tpo.lu/PwSUuJEu" target="_blank" rel="sponsored nofollow noopener">Limousine bus</a> &middot; <a href="https://klook.tpo.lu/5y9oQYD7" target="_blank" rel="sponsored nofollow noopener">Private car</a></p>';
     return h;
   }
   function simHTML(){
@@ -1618,7 +1665,8 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li>Usually arrives <b>the next day</b>.</li>'
       +'<li>Write down your hotel name, address and phone number.</li>'
       +'<li>Keep medicines, valuables and chargers with you.</li></ul>'
-      +'<p class="sm">Prices and cut-off times change. Confirm at the counter.</p>';
+      +'<p class="sm">Prices and cut-off times change. Confirm at the counter.</p>'
+      +'<p class="sm">You can also book online (partner link): <a href="https://klook.tpo.lu/jmWXAbkc" target="_blank" rel="sponsored nofollow noopener">Luggage delivery between Tokyo hotels and the airport</a> (Haneda or Narita).</p>';
   }
   var NEXT=[['🚆','Train, bus or taxi',trainHTML],['📱','Phone data',simHTML],['💴','Cash and train card',cashHTML],['📦','Send your suitcase',bagsHTML],['🚗','Rent a car',carHTML]];
   var at=$('arrTiles');
@@ -1746,8 +1794,8 @@ POCKET_HTML = """<!DOCTYPE html>
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/haneda-sw.js',{scope:'/haneda-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
-      .then(function(){ return caches.has('haneda-pocket-v1'); })
-      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('haneda-pocket-v1').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .then(function(){ return caches.has('haneda-pocket-v2'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('haneda-pocket-v2').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
       .catch(function(){ paint(); });
   }
   /* install help: shown first, in the person's own phone type */
@@ -1952,7 +2000,7 @@ if re.search(r"\b(India|Indian|INR|Rs\.?|rupee|lakh|Aadhaar|UPI|VFS|BLS)\b|₹",
     die("neutral-rule violation in the pocket guide")
 
 POCKET_SW = """/* Haneda Pocket Guide service worker. Bump V when the page changes shape. */
-var V='haneda-pocket-v1';
+var V='haneda-pocket-v2';
 var PAGE='/haneda-pocket';
 var SHELL=[PAGE,'/haneda-pocket.webmanifest','/favicon-32.png','/images/haneda-icon-192.png','/images/haneda-icon-512.png','/images/haneda-icon-maskable-512.png'];
 self.addEventListener('install',function(e){

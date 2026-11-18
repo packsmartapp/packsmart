@@ -1,5 +1,5 @@
 /* Haneda Pocket Guide service worker. Bump V when the page changes shape. */
-var V='haneda-pocket-v1';
+var V='haneda-pocket-v2';
 var PAGE='/haneda-pocket';
 var SHELL=[PAGE,'/haneda-pocket.webmanifest','/favicon-32.png','/images/haneda-icon-192.png','/images/haneda-icon-512.png','/images/haneda-icon-maskable-512.png'];
 self.addEventListener('install',function(e){

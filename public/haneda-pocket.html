@@ -442,6 +442,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
       +'<li><b>Private car:</b> a fixed-price transfer is about &euro;45 per car (figure from the company, Nov 2026).</li></ul>';
     h+='<div class="tipbox">Trains run from about 5 am until around midnight. After that, late-night buses and taxis run. Check the last train for your route.</div>';
     h+='<p class="sm">Times and prices are approximate and change. Check the operator.</p>';
+    h+='<p class="sm">You can book here (partner links): <a href="https://klook.tpo.lu/PwSUuJEu" target="_blank" rel="sponsored nofollow noopener">Limousine bus</a> &middot; <a href="https://klook.tpo.lu/5y9oQYD7" target="_blank" rel="sponsored nofollow noopener">Private car</a></p>';
     return h;
   }
   function simHTML(){
@@ -473,7 +474,8 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
       +'<li>Usually arrives <b>the next day</b>.</li>'
       +'<li>Write down your hotel name, address and phone number.</li>'
       +'<li>Keep medicines, valuables and chargers with you.</li></ul>'
-      +'<p class="sm">Prices and cut-off times change. Confirm at the counter.</p>';
+      +'<p class="sm">Prices and cut-off times change. Confirm at the counter.</p>'
+      +'<p class="sm">You can also book online (partner link): <a href="https://klook.tpo.lu/jmWXAbkc" target="_blank" rel="sponsored nofollow noopener">Luggage delivery between Tokyo hotels and the airport</a> (Haneda or Narita).</p>';
   }
   var NEXT=[['🚆','Train, bus or taxi',trainHTML],['📱','Phone data',simHTML],['💴','Cash and train card',cashHTML],['📦','Send your suitcase',bagsHTML],['🚗','Rent a car',carHTML]];
   var at=$('arrTiles');
@@ -601,8 +603,8 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/haneda-sw.js',{scope:'/haneda-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
-      .then(function(){ return caches.has('haneda-pocket-v1'); })
-      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('haneda-pocket-v1').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .then(function(){ return caches.has('haneda-pocket-v2'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('haneda-pocket-v2').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
       .catch(function(){ paint(); });
   }
   /* install help: shown first, in the person's own phone type */
@@ -801,7 +803,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   function bare(h){ return String(h||'').replace(/^www\./,''); }
   function linkEv(a){
     var h=a.getAttribute('href')||''; if(!h||h.charAt(0)==='#'||a.hasAttribute('data-sp')) return;
-    if(/^tel:/i.test(h)){ var d=h.replace(/^tel:/i,'').replace(/[^0-9+]/g,''); var nm={'119':'fire_ambulance','110':'police','+81476348000':'airport','+815038162787':'help_line'}; pgTrack('pg_call',{dest:nm[d]||d,where:whereNow()}); return; }
+    if(/^tel:/i.test(h)){ var d=h.replace(/^tel:/i,'').replace(/[^0-9+]/g,''); var nm={'119':'fire_ambulance','110':'police','+81357578111':'airport','+815038162787':'help_line'}; pgTrack('pg_call',{dest:nm[d]||d,where:whereNow()}); return; }
     if(/^mailto:/i.test(h)) return;
     if(/(^|\s)sponsored(\s|$)/.test(a.getAttribute('rel')||'')){ pgTrack('pg_partner',{partner:a.textContent,host:a.hostname,where:whereNow()}); return; }
     if(a.hostname&&bare(a.hostname)!==bare(location.hostname)&&a.hostname!=='packsmartapp.com'){ pgTrack('pg_outbound',{host:a.hostname,where:whereNow()}); return; }
