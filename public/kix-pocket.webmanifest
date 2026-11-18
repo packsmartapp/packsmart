@@ -1,0 +1,31 @@
+{
+  "name": "Kansai Airport Pocket Guide",
+  "short_name": "KIX",
+  "description": "A simple Kansai Airport helper that works offline.",
+  "start_url": "/kix-pocket",
+  "scope": "/kix-pocket",
+  "display": "standalone",
+  "background_color": "#c8283a",
+  "theme_color": "#1a1a3e",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/images/kix-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/kix-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/kix-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

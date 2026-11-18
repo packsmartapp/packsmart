@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Kansai Airport Pocket Guide | PackSmart</title>
+<meta name="description" content="A simple Kansai Airport helper that works offline: terminals, trains and buses to Osaka and Kyoto, prayer rooms, showers, luggage and more. By PackSmart.">
+<meta name="robots" content="noindex,follow">
+<link rel="canonical" href="https://www.packsmartapp.com/blog/kansai-airport-guide">
+<meta name="theme-color" content="#1a1a3e">
+<link rel="manifest" href="/kix-pocket.webmanifest">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
+<link rel="apple-touch-icon" href="/images/kix-apple-touch-180.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="KIX">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<script>(function(){
+  var ID='G-0C4Z7VVGPE', G='kix', AP='KIX', W=window;
+  var dbg=/[?&]pgdebug\b/.test(location.search||'');
+  function ls(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){} return null; }
+  var dnt=(navigator.doNotTrack==='1'||W.doNotTrack==='1'||navigator.globalPrivacyControl===true);
+  W.pgDnt=dnt;
+  function off(){ return dnt||ls('pgOff')==='1'; }
+  var MODE=(navigator.standalone||(W.matchMedia&&W.matchMedia('(display-mode: standalone)').matches))?'app':'web';
+  W.dataLayer=W.dataLayer||[]; function gt(){ W.dataLayer.push(arguments); }
+  var loaded=false;
+  function loadGA(){
+    if(loaded||off()||!navigator.onLine) return; loaded=true;
+    var cfg={transport_type:'beacon',allow_google_signals:false,allow_ad_personalization_signals:false,page_title:'Pocket Guide: '+G};
+    if(dbg) cfg.debug_mode=true;
+    gt('js',new Date()); gt('config',ID,cfg);
+    var s=document.createElement('script'); s.async=true; s.src='https://www.googletagmanager.com/gtag/js?id='+ID; document.head.appendChild(s);
+  }
+  function qread(){ try{ return JSON.parse(ls('pgQ')||'[]'); }catch(e){ return []; } }
+  function flush(){
+    if(off()||!navigator.onLine) return; var a=qread(); if(!a.length) return; ls('pgQ','[]'); loadGA();
+    var now=Date.now(); a.forEach(function(x){ if(!x||now-x.t>7*864e5) return; var p=x.p||{}; p.queued=1; p.age_min=Math.round((now-x.t)/6e4); gt('event',x.n,p); });
+  }
+  W.pgTrack=function(n,p){
+    if(off()) return;
+    p=p||{}; p.guide=G; p.airport=AP; p.mode=MODE;
+    for(var k in p){ if(typeof p[k]==='string') p[k]=p[k].replace(/\s+/g,' ').trim().slice(0,100); }
+    if(dbg||W.__pgTest){ (W.__pgLog=W.__pgLog||[]).push({n:n,p:p,online:navigator.onLine}); if(dbg&&W.console) console.log('[pg]',n,p); }
+    if(!navigator.onLine){ var a=qread(); a.push({n:n,p:p,t:Date.now()}); ls('pgQ',JSON.stringify(a.slice(-60))); return; }
+    loadGA(); flush(); gt('event',n,p);
+  };
+  W.addEventListener('online',flush);
+  var errs=0; W.addEventListener('error',function(e){ if(errs++<3) W.pgTrack('pg_error',{msg:String(e&&e.message||'error')}); });
+})();</script>
+<style>
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;height:100%}
+body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overflow:hidden;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;font-size:18px;line-height:1.5;color:#0f0f23;background:#EEF3F4;--tabh:calc(64px + env(safe-area-inset-bottom))}
+.top{flex:none;background:linear-gradient(135deg,#1a1a3e 0%,#0f0f23 55%,#0b5d57 140%);color:#fff;padding:calc(10px + env(safe-area-inset-top)) 16px 12px;display:flex;justify-content:space-between;align-items:center;gap:10px;border-bottom:3px solid #00C9A7}
+.top strong{display:block;font-size:1.15rem;line-height:1.2}
+.top .by{display:block;font-size:0.78rem;color:#B9C3E6;margin-top:2px}
+.status{flex:none;font-size:0.8rem;font-weight:700;border-radius:20px;padding:5px 11px;background:rgba(255,255,255,.16);color:#fff;white-space:nowrap}
+.status.saved{background:#00C9A7;color:#0f0f23}
+.status.off{background:#FFB84D;color:#3a2400}
+.panels{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:12px}
+.panel{max-width:560px;margin:0 auto;padding:12px 14px 4px}
+.panel[hidden]{display:none}
+.seg-h{font-weight:700;font-size:0.95rem;color:#333;margin:2px 2px 8px}
+.seg{display:grid;grid-template-columns:repeat(2,1fr) 1.3fr;gap:8px}
+.seg button{font:inherit;min-height:54px;border:2px solid #D5DCE0;background:#fff;color:#0f0f23;border-radius:14px;cursor:pointer;padding:4px 2px;line-height:1.1;display:flex;flex-direction:column;align-items:center;justify-content:center}
+.seg button small{font-size:0.7rem;font-weight:600;color:#666}
+.seg button b{font-size:1.5rem}
+.seg button.txt{font-weight:700;font-size:0.95rem}
+.seg button[aria-pressed="true"]{background:#1a1a3e;border-color:#1a1a3e;color:#fff;box-shadow:0 3px 0 #00C9A7}
+.seg button[aria-pressed="true"] small{color:#B9C3E6}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:6px}
+.tile{font:inherit;display:flex;align-items:center;gap:10px;min-height:64px;padding:8px 10px;border-radius:16px;border:2px solid #E1E8EB;background:#fff;color:#0f0f23;cursor:pointer;text-align:left;box-shadow:0 2px 0 rgba(15,15,35,.06)}
+.tile:active{transform:translateY(1px)}
+.tile .ic{flex:none;width:42px;height:42px;border-radius:14px;display:flex;align-items:center;justify-content:center;font-size:1.65rem;background:#D9F7EF}
+.tile.c1 .ic{background:#FDE4E9}
+.tile.c2 .ic{background:#E6E6F5}
+.tile .tx{font-weight:700;font-size:1rem;line-height:1.2}
+.hint{margin:8px 2px 0;font-size:0.82rem;color:#555;text-align:center}
+#sponsor{margin:12px 0 0}
+#sponsor[hidden]{display:none}
+.spon-a{display:block;text-decoration:none;color:inherit;border:1px solid #e3e3ea;border-radius:12px;padding:10px 12px;background:#fff}
+.spon-l{display:block;font-size:0.68rem;letter-spacing:0.06em;text-transform:uppercase;color:#666;margin-bottom:2px}
+.spon-a b{display:block;font-size:0.95rem;color:#1a1a3e}
+.spon-t{display:block;font-size:0.85rem;color:#444;margin-top:2px}
+.spon-c{display:inline-block;margin-top:6px;font-size:0.85rem;font-weight:600;color:#1a1a3e;text-decoration:underline}
+.card{background:#fff;border-radius:16px;padding:14px 16px;margin:0 0 10px;border:2px solid #E1E8EB}
+.card h2{margin:0 0 6px;font-size:1.1rem}
+.card p{margin:0 0 6px}
+.small{font-size:0.82rem;color:#555}
+.tmap{display:flex;flex-direction:column}
+.seg2{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0 0 10px}
+.seg2 button{font:inherit;font-weight:800;font-size:0.95rem;min-height:46px;border:2px solid #D5DCE0;background:#fff;color:#0f0f23;border-radius:14px;cursor:pointer}
+.seg2 button[aria-pressed="true"]{background:#1a1a3e;border-color:#1a1a3e;color:#fff;box-shadow:0 3px 0 #00C9A7}
+.sheet a{color:#00776a;font-weight:700}
+.tcard{position:relative;display:flex;gap:14px;align-items:center;border-radius:20px;padding:14px 14px;border:2px solid #CDEFE8;background:linear-gradient(135deg,#E6FAF5,#fff 70%);box-shadow:0 3px 0 rgba(15,15,35,.06)}
+.tcard h3{margin:0 0 4px;font-size:1.25rem;line-height:1.1}
+.tcard.here{border-color:#00A98C;box-shadow:0 0 0 3px rgba(0,201,167,.35)}
+.tcard .heretag{display:inline-block;background:#00A98C;color:#fff;font-weight:800;font-size:.78rem;border-radius:20px;padding:2px 10px;margin:0 0 4px}
+.tcard .route{font-weight:700;color:#2a2f45;margin-top:6px}
+.tlink[hidden]{display:none}
+.tcard p{margin:2px 0;font-size:0.95rem;line-height:1.3}
+.tcard .tb{min-width:0}
+.badge{flex:none;width:54px;height:54px;border-radius:16px;display:flex;align-items:center;justify-content:center;font-size:1.9rem;font-weight:800;color:#fff;background:linear-gradient(135deg,#00C9A7,#0b8f7c);box-shadow:0 3px 0 rgba(0,0,0,.12)}
+.t2{border-color:#D3D3EE;background:linear-gradient(135deg,#ECECF9,#fff 70%)}
+.t2 .badge{background:linear-gradient(135deg,#34346e,#1a1a3e)}
+.t3{border-color:#F6CBD3;background:linear-gradient(135deg,#FDECEF,#fff 70%)}
+.t3 .badge{background:linear-gradient(135deg,#E94560,#c92f4a)}
+.wing{display:inline-block;font-size:0.72rem;font-weight:800;letter-spacing:.02em;text-transform:uppercase;background:#1a1a3e;color:#fff;border-radius:6px;padding:1px 6px;margin-right:4px;vertical-align:1px}
+.stn{display:inline-block;margin-top:6px!important;font-weight:700;color:#0b6b59;background:#fff;border:1.5px solid #BFEADF;border-radius:10px;padding:3px 9px}
+.t2 .stn{color:#1a1a3e;border-color:#D3D3EE}
+.stn.warn{color:#a3243b;border-color:#F6CBD3}
+.tlink{display:flex;gap:10px;align-items:center;margin:0 0 0 27px;padding:6px 0 6px 20px;border-left:3px dashed #B9C3D0;font-size:0.9rem;font-weight:600;color:#2a2f45;line-height:1.25}
+.tlink span:first-child{font-size:1.3rem}
+.steps{list-style:none;margin:0;padding:0}
+.steps li{margin:0 0 7px}
+.stp{font:inherit;width:100%;display:flex;gap:12px;align-items:flex-start;text-align:left;background:#fff;border:2px solid #E1E8EB;border-radius:14px;padding:8px 12px;line-height:1.28;color:#0f0f23;cursor:pointer;box-shadow:0 2px 0 rgba(15,15,35,.05)}
+.stp .n{flex:none;width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#00C9A7,#0b8f7c);color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.stp b{display:block;font-size:1.02rem}
+.stp .tx{font-size:0.9rem;color:#333}
+.stp[aria-pressed="true"]{background:#F1FBF9;border-color:#00C9A7}
+.stp[aria-pressed="true"] .n{background:#0b6b59}
+.stp[aria-pressed="true"] b::after{content:" · Done";font-size:0.8rem;font-weight:700;color:#0b6b59}
+.reset[hidden]{display:none}
+.reset{font:inherit;font-size:0.85rem;font-weight:700;color:#0b6b59;background:none;border:0;text-decoration:underline;cursor:pointer;padding:8px 4px;margin:0 0 0 2px}
+.lead2{margin:0 2px 8px;font-size:0.9rem;color:#555}
+.sheet .jp{font-size:2.1rem;font-weight:800;line-height:1.35;text-align:center;margin:10px 0 6px;color:#0f0f23}
+.sheet .rom{font-size:1.15rem;text-align:center;color:#444;margin:0 0 8px}
+.sheet .en2{font-size:1.15rem;text-align:center;font-weight:700;margin:0 0 8px;color:#00776a}
+.heroline{display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,#1a1a3e,#0f0f23);color:#fff;border-radius:14px;padding:8px 14px;margin:0 0 8px}
+.heroline .big2{flex:none;font-size:1.7rem;font-weight:800;line-height:1;color:#00C9A7}
+.heroline span{font-size:0.9rem;line-height:1.25}
+.sec-h{font-weight:800;font-size:0.95rem;margin:10px 2px 4px;color:#1a1a3e}
+#p-help .tiles{grid-template-columns:repeat(2,minmax(0,1fr))}
+#p-help .sec-h{margin-top:16px}
+.cats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px;margin:10px 0 12px}
+.cats button{font:inherit;font-weight:700;font-size:.78rem;line-height:1.1;min-height:58px;padding:6px 2px;border-radius:14px;border:2px solid #DCE3E8;background:#F4F7F8;color:#2a2f45;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;overflow-wrap:break-word;min-width:0}
+.cats button .ci{font-size:1.25rem;line-height:1}
+.cats button[aria-pressed=true]{background:#1a1a3e;border-color:#1a1a3e;color:#fff}
+#p-help .tile{padding:8px;gap:8px}
+#p-help .tile .ic{width:38px;height:38px;font-size:1.45rem}
+#p-help .tile .tx{font-size:.95rem;min-width:0;overflow-wrap:break-word}
+.sheet ul.pl{margin:6px 0 6px 1.1rem;padding:0;font-size:1.05rem}
+.sheet ul.pl li{margin:0 0 6px}
+.sheet p.n2{margin:6px 0;font-size:1.05rem}
+.sheet .sm{font-size:0.85rem;color:#555;margin:6px 0 0}
+.tiles .tile:last-child:nth-child(odd){grid-column:1/-1}
+.pager{overflow:hidden;margin-top:6px}
+.track{display:flex;align-items:flex-start;transition:transform .28s ease}
+.tiles.pane{flex:0 0 100%;min-width:0;margin-top:0;visibility:visible}
+.tiles.pane.off{visibility:hidden}
+.hpane{flex:0 0 100%;min-width:0}
+.hpane.off{visibility:hidden;height:0;overflow:hidden}
+#p-help .tiles.hnav{grid-template-columns:minmax(0,1fr);margin:2px 0 12px}
+@media (max-width:380px){#p-help .tile{padding:7px 6px;gap:6px}#p-help .tile .ic{width:32px;height:32px;font-size:1.25rem}#p-help .tile .tx{font-size:.86rem}}
+@media (max-width:340px){#p-help .tile{padding:6px 5px;gap:5px}#p-help .tile .ic{width:26px;height:26px;font-size:1.05rem}#p-help .tile .tx{font-size:.78rem}}
+.card.slim{padding:10px 12px}
+.quiet{margin-top:18px}
+.quiet .card.slim{background:#E8EEF1;border-color:#E8EEF1;padding:8px 12px;margin-bottom:6px}
+.quiet .card.slim h2{font-size:.92rem}
+.quiet .card.slim p{font-size:.85rem;color:#3d4659}
+.quiet .card.slim button.big{padding:7px 12px;font-size:.88rem;border-color:#9DB4BC;background:#fff}
+.quiet>.small{margin-top:10px}
+.card.slim .row{display:flex;gap:10px;align-items:center}
+.card.slim .row>div:first-child{flex:1;min-width:0}
+.card.slim h2{font-size:1rem;margin:0 0 2px}
+.card.slim p{margin:0;font-size:.9rem}
+.card.slim p.small{font-size:.8rem;margin-top:2px}
+.card.slim button.big{flex:none;padding:10px 14px;font-size:.95rem}
+#p-help .tile.more{padding:4px 12px;gap:8px;min-height:46px;background:#EAF8F4;border:2px solid #BCE8DD;color:#0b6f60}
+#p-help .tile.more .ic{width:30px;height:30px;font-size:1.15rem}
+#p-help .tile.more .tx{font-size:1rem}
+.tiles.pane .tile:last-child:nth-child(odd):not(.more){grid-column:auto}
+.tiles .tile.more{grid-column:1/-1;min-height:50px;padding:5px 12px;gap:8px;background:#fff;border:3px solid #00C9A7;box-shadow:none;color:#0b6f60}
+.tiles .tile.more .ic{width:36px;height:36px;border-radius:50%;background:#00C9A7;color:#fff;font-weight:900;font-size:1.35rem;line-height:1;justify-content:center}
+.tiles .tile.more .tx{font-weight:800;line-height:1.15}
+.tiles .tile.more small{display:block;font-weight:700;font-size:.8em;color:#4a5568;margin-top:1px}
+.tiles .tile.pgnext{flex-direction:row-reverse;justify-content:space-between}
+.tiles.pane .tile:not(.more){flex-direction:row;justify-content:flex-start;text-align:left;min-height:76px;gap:8px;padding:8px 10px}
+.tiles.pane .tile:not(.more) .ic{width:42px;height:auto;flex:none;background:transparent;font-size:2.15rem;line-height:1.1}
+.tiles.pane .tile:not(.more) .tx{flex:1;min-width:0;text-align:left;line-height:1.15}
+.tiles.pane .tile:not(.more).c0{background:linear-gradient(180deg,#F3FDFA,#CFF4EB);border:2px solid #8EE3D2;box-shadow:0 4px 0 #00A98C}
+.tiles.pane .tile:not(.more).c1{background:linear-gradient(180deg,#FFF5F7,#FFD9E0);border:2px solid #FFA3B3;box-shadow:0 4px 0 #C93550}
+.tiles.pane .tile:not(.more).c2{background:linear-gradient(180deg,#F6F6FF,#DADAF8);border:2px solid #AFAFEE;box-shadow:0 4px 0 #5959BE}
+@media (prefers-reduced-motion:reduce){.track{transition:none}}
+a{color:#00776a}
+a.num{display:flex;align-items:center;gap:12px;text-decoration:none;color:#fff;border-radius:16px;padding:12px 14px;margin:8px 0 0;min-height:60px}
+a.num .ni{font-size:1.9rem;line-height:1;flex:none}
+a.num .nt{display:flex;flex-direction:column;min-width:0;line-height:1.2}
+a.num .nt b{font-size:1rem;font-weight:800}
+a.num .nt span{font-size:1.25rem;font-weight:800;overflow-wrap:anywhere}
+a.num .nt small{font-size:.85rem;font-weight:600;opacity:.92;margin-top:2px}
+a.num.air{background:linear-gradient(135deg,#1a1a3e,#2c2c63);box-shadow:0 3px 0 #0b0b22}
+a.num.em{background:linear-gradient(135deg,#E94560,#c92f4a);box-shadow:0 3px 0 #9d2238;margin:0}
+a.num.hot{background:linear-gradient(135deg,#00B398,#00897a);box-shadow:0 3px 0 #006b5e}
+.numgrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px;margin-top:8px}
+.numgrid a.num{padding:10px 10px;gap:8px;min-height:56px}
+.numgrid a.num .ni{font-size:1.6rem}
+.numgrid a.num .nt b{font-size:.9rem}
+details.card summary{font-weight:700;font-size:1.05rem;cursor:pointer;min-height:36px;display:flex;align-items:center}
+details.card[open] summary{margin-bottom:6px}
+button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border:2px solid #00C9A7;border-radius:12px;padding:12px 18px;cursor:pointer}
+.tabs{flex:none;display:grid;grid-template-columns:repeat(5,1fr);background:#fff;border-top:1px solid #D5DCE0;padding-bottom:env(safe-area-inset-bottom);box-shadow:0 -4px 14px rgba(15,15,35,.08);position:relative;z-index:6}
+.tabs button{font:inherit;height:64px;border:0;background:none;color:#5a6070;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;font-size:0.74rem;font-weight:700;cursor:pointer;position:relative}
+.tabs button span{font-size:1.5rem;line-height:1}
+.tabs button[aria-selected="true"]{color:#0b6b59}
+.tabs button[aria-selected="true"]::before{content:"";position:absolute;top:0;left:22%;right:22%;height:4px;border-radius:0 0 4px 4px;background:#00C9A7}
+.inst-strip{flex:none;display:flex;align-items:center;gap:10px;width:100%;border:0;border-bottom:2px solid #00C9A7;background:#D9F7EF;color:#0f3a33;font:inherit;font-size:0.95rem;line-height:1.25;padding:8px 14px;text-align:left;cursor:pointer;min-height:48px}
+.inst-strip[hidden]{display:none}
+.inst-strip .ico{font-size:1.4rem;flex:none}
+.inst-strip .go{margin-left:auto;flex:none;font-weight:800;background:#1a1a3e;color:#fff;border-radius:20px;padding:6px 14px;font-size:0.9rem}
+.istep{list-style:none;margin:12px 0;padding:0}
+.istep li{display:flex;gap:12px;align-items:center;margin:0 0 12px;font-size:1.1rem;line-height:1.3}
+.istep .n{flex:none;width:34px;height:34px;border-radius:50%;background:#1a1a3e;color:#fff;font-weight:800;display:flex;align-items:center;justify-content:center}
+.istep svg{flex:none;width:32px;height:32px;color:#0b6b59;background:#F1FBF9;border-radius:8px;padding:3px}
+.tipbox{background:#FFF4D6;border-radius:12px;padding:10px 12px;font-size:0.95rem;margin:8px 0;line-height:1.35}
+.sheet .lede{margin:2px 0 4px;color:#333;font-size:1rem}
+.sheet .row2{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.sheet .close.ghost{background:#fff;color:#1a1a3e;border:2px solid #1a1a3e}
+.scrim{position:fixed;inset:0;background:rgba(15,15,35,.45);z-index:7}
+.scrim[hidden],.sheet[hidden]{display:none}
+.sheet{position:fixed;left:0;right:0;bottom:var(--tabh);z-index:8;background:#fff;border-radius:22px 22px 0 0;box-shadow:0 -10px 30px rgba(15,15,35,.25);padding:16px 18px 16px;max-height:calc(100dvh - var(--tabh) - 70px);overflow-y:auto;max-width:560px;margin:0 auto;animation:up .18s ease-out}
+@keyframes up{from{transform:translateY(24px);opacity:.4}to{transform:none;opacity:1}}
+.sheet h2{margin:0 0 4px;font-size:1.3rem;display:flex;align-items:center;gap:10px}
+.sheet .ans{font-size:1.35rem;line-height:1.4;margin:8px 0;padding:12px 14px;border-radius:12px;background:#F1FBF9;border-left:6px solid #00C9A7}
+.sheet .ans em{display:block;font-style:normal;font-weight:800;font-size:0.85rem;color:#0b6b59;margin-bottom:2px}
+.sheet .ans.mini{font-size:1.05rem;margin:6px 0}
+.sheet .close{font:inherit;font-weight:800;width:100%;min-height:54px;margin-top:8px;border:0;border-radius:14px;background:#1a1a3e;color:#fff;font-size:1.1rem;cursor:pointer}
+@media (prefers-reduced-motion:reduce){.sheet{animation:none}.tile:active{transform:none}}
+@media (max-height:640px){.tile{min-height:62px}.tabs button{height:58px}body{--tabh:calc(58px + env(safe-area-inset-bottom))}}
+</style>
+</head>
+<body>
+<header class="top">
+<div><strong>Kansai Airport Pocket Guide</strong><span class="by">by PackSmart &middot; 18 Nov 2026</span></div>
+<div class="status" id="status" role="status">Checking...</div>
+</header>
+<button type="button" class="inst-strip" id="instStrip" hidden><span class="ico" aria-hidden="true">&#128242;</span><span><b>Add this to your home screen</b><br>so it works with no internet</span><span class="go">How</span></button>
+<div class="panels" id="panels">
+<section class="panel" id="p-find" role="tabpanel" aria-labelledby="t-find">
+<p class="seg-h">Which terminal are you in?</p>
+<div class="seg" id="seg"></div>
+<p class="seg-h" style="margin-top:14px">What do you need? <span class="small">Tap one.</span></p>
+<div class="pager" id="pager"><div class="track" id="track"><div class="tiles pane" id="tiles"></div><div class="tiles pane off" id="tiles2" aria-hidden="true"></div></div></div>
+<p class="hint">Floors can change. Ask at an information counter.</p>
+<div id="sponsor" hidden></div>
+<noscript><p class="card">This guide needs JavaScript. Please turn it on, or ask at any information counter.</p></noscript>
+</section>
+<section class="panel" id="p-map" role="tabpanel" aria-labelledby="t-map" hidden>
+<p class="seg-h" style="margin-top:2px">Which terminal are you in?</p>
+<div class="seg" id="mseg"></div>
+<p class="lead2" id="mLead" style="margin-top:10px">Your ticket or airline app shows which one is yours.</p>
+<div class="tmap" id="tmap">
+<div class="tcard t1" data-t="T1"><div class="badge">1</div><div class="tb"><h3>Terminal 1</h3><p>International arrivals, 1st floor</p><p class="stn"><span aria-hidden="true">&#128646;</span> Kansai Airport Station, 2nd floor</p></div></div>
+<div class="tlink"><span aria-hidden="true">&#128652;</span><span>Free shuttle bus<br>(Aeroplaza 1st floor)</span></div>
+<div class="tcard t2" data-t="T2"><div class="badge">2</div><div class="tb"><h3>Terminal 2</h3><p>Peach, Jeju Air, Spring Airlines</p></div></div>
+</div>
+<p class="small" style="text-align:center;margin-top:10px">Simplified, not to scale. Airlines can change terminals, so check before you go. Shuttle buses can run late in traffic. <a href="https://www.kansai-airport.or.jp/en/access/t2" target="_blank" rel="noopener noreferrer">Official page on getting to Terminal 2</a> (needs internet).</p>
+</section>
+<section class="panel" id="p-arrive" role="tabpanel" aria-labelledby="t-arrive" hidden>
+<p class="lead2">Landed? Tap a step to tick it off.</p>
+<ol class="steps" id="arrSteps"></ol>
+<button type="button" class="reset" id="arrReset" hidden>Clear ticks</button>
+<p class="sec-h">Then, once you are out</p>
+<div class="tiles" id="arrTiles"></div>
+</section>
+<section class="panel" id="p-depart" role="tabpanel" aria-labelledby="t-depart" hidden>
+<div class="seg2" id="depSeg" role="group" aria-label="Departure sections"><button type="button" data-d="before" aria-pressed="true">Before you go</button><button type="button" data-d="air" aria-pressed="false">At the airport</button></div>
+<div id="depBefore">
+<div class="tiles" id="depTiles"></div>
+<p class="hint">Tap one for the details. Prices and times are approximate.</p>
+</div>
+<div id="depAir" hidden>
+<div class="heroline"><span class="big2">2 h</span><span><b>Aim to arrive about 2 hours early.</b><br>Your airline sets when check-in opens, so check your ticket.</span></div>
+<ol class="steps" id="depSteps"></ol>
+<button type="button" class="reset" id="depReset" hidden>Clear ticks</button>
+</div>
+</section>
+<section class="panel" id="p-help" role="tabpanel" aria-labelledby="t-help" hidden>
+<div class="pager" id="hpager"><div class="track" id="htrack">
+<div class="hpane" id="hp1">
+<div class="card" id="sayCard"><h2>Say it in Japanese</h2><p class="small">Tap one, then show your phone. Or tap Play.</p><div class="cats" id="askCats" role="group" aria-label="Phrase groups"></div><div class="tiles" id="askTiles"></div></div>
+<div class="tiles hnav" id="hnav1"></div>
+</div>
+<div class="hpane off" id="hp2" aria-hidden="true">
+<div class="card" id="numCard"><h2>Useful phone numbers</h2><p class="small">Tap a number to call. Your phone company may charge for calls abroad.</p>
+<p class="sec-h">Emergency (free, 24 hours)</p>
+<div class="numgrid"><a class="num em" href="tel:119"><span class="ni" aria-hidden="true">&#128657;</span><span class="nt"><b>Ambulance or fire</b><span>119</span></span></a><a class="num em" href="tel:110"><span class="ni" aria-hidden="true">&#128659;</span><span class="nt"><b>Police</b><span>110</span></span></a></div>
+<p class="sec-h">At Kansai Airport only</p>
+<a class="num air" href="tel:+81724566160"><span class="ni" aria-hidden="true">&#8505;&#65039;</span><span class="nt"><b>Kansai Tourist Information Center</b><span>+81 72-456-6160</span><small>9 am to 7 pm</small></span></a>
+<p class="small" style="margin-top:8px">The Tourist Information Center is on 1F of Terminal 1, south side. Staff will help, so just ask.</p>
+<p class="sec-h">Help or travel questions</p>
+<a class="num hot" href="tel:+815038162787"><span class="ni" aria-hidden="true">&#128222;</span><span class="nt"><b>Japan Visitor Hotline</b><span>050-3816-2787</span><small>24 hours. English, Chinese, Korean</small></span></a>
+</div>
+<div class="tiles hnav" id="hnav2"></div>
+</div>
+</div></div>
+<div class="quiet"><div class="card slim" id="shareCard" hidden><div class="row"><div><h2>Helping someone travel?</h2><p>Send them this guide for offline use.</p></div><button type="button" class="big" id="shareBtn">Send it</button></div></div>
+<div class="card slim install" id="install"><div class="row"><div><h2>Keep this on your phone</h2><p>Add it to your home screen. Works offline.</p><p class="small" id="instDesk">Open this page on your phone, then add it to your home screen.</p></div><div id="instHow" hidden><button type="button" class="big" id="instBtn">Show me</button></div></div></div>
+<p class="small">Facility details come from Kansai Airport's own service pages, checked 18 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). We count anonymous taps to improve this guide: no name, no account. <a href="/privacy-policy">Privacy</a> &middot; <a href="#" id="pgOpt">Turn off counting</a>. The full guide, with trains, SIM and luggage, is at <a href="https://www.packsmartapp.com/blog/kansai-airport-guide">packsmartapp.com</a> (needs internet).</p></div>
+</section>
+</div>
+<nav class="tabs" role="tablist" aria-label="Sections">
+<button type="button" role="tab" id="t-find" data-tab="find" aria-selected="true"><span aria-hidden="true">&#128269;</span>Find</button>
+<button type="button" role="tab" id="t-map" data-tab="map" aria-selected="false"><span aria-hidden="true">&#128506;&#65039;</span>Terminals</button>
+<button type="button" role="tab" id="t-arrive" data-tab="arrive" aria-selected="false"><span aria-hidden="true">&#128748;</span>Arrival</button>
+<button type="button" role="tab" id="t-depart" data-tab="depart" aria-selected="false"><span aria-hidden="true">&#128747;</span>Departure</button>
+<button type="button" role="tab" id="t-help" data-tab="help" aria-selected="false"><span aria-hidden="true">&#128587;</span>Help</button>
+</nav>
+<div class="scrim" id="scrim" hidden></div>
+<div class="sheet" id="inst" role="dialog" aria-modal="true" aria-labelledby="instT" hidden>
+<h2 id="instT"><span aria-hidden="true">&#128242;</span>Add to your home screen</h2>
+<div id="instBody"></div>
+</div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="shTitle" hidden>
+<h2 id="shTitle"></h2>
+<div id="shBody" aria-live="polite"></div>
+<button type="button" class="close" id="shClose">Close</button>
+</div>
+<script>
+(function(){
+  var D={"terms": [["T1", "Terminal 1"], ["T2", "Terminal 2"]], "items": [["money", "Money and ATMs", {"T1": "Currency exchange: KIX Currency Exchange on 1F north (6:15 am to 11 pm) and Travelex on 1F south (6:15 am to 11 pm); more on 3F and 4F. ATMs: Japan Post Bank on 1F; Seven Bank on 3F (international gate area) and 4F; Lawson Bank on 4F. MUFG Bank on 2F is open on weekdays, 9 am to 3 pm. ATM and exchange rates differ, so check before you pay.", "T2": "The airport's lists show nothing for Terminal 2 here. Please ask at an information counter, or take the free shuttle bus to Terminal 1."}], ["food", "Food, drink and water", {"T1": "A food court is in the centre of 2F, and there is a Lawson on 2F (north end) and another on 4F. FamilyMart is in Kansai Airport Station, 2F (south square). Opening hours differ, so check the shop.", "T2": "The airport's lists show nothing for Terminal 2 here. Please ask at an information counter, or take the free shuttle bus to Terminal 1."}], ["toilet", "Toilets", {"T1": "1F: north end, south end and centre. 2F: north end (behind Lawson) and centre (in the food court). 4F: north end, south end and centre. There are also toilets in the domestic and international gate areas.", "T2": "The airport's lists show nothing for Terminal 2 here. Please ask at an information counter, or take the free shuttle bus to Terminal 1."}], ["help", "Wheelchair and help", {"T1": "Go to an information counter. Wheelchair and special assistance are listed in the airport's service pages, and your airline can arrange help for you if you ask when you book. In an emergency, call 119.", "T2": "Go to an information counter. Wheelchair and special assistance are listed in the airport's service pages, and your airline can arrange help for you if you ask when you book. In an emergency, call 119."}], ["lockers", "Luggage delivery and storage", {"T1": "Delivery counters: Yamato on 4F north (6:30 am to 10:30 pm) and a new Yamato counter on 1F north, open from 16 November 2026 (6:30 am to 10:30 pm). JAL ABC on 4F south (6:30 am to 11 pm, last reception 10:30 pm) and on the north end of 1F. Kansai Airport Baggage Service on 1F (7 am to 9 pm). Hours change, so check.", "T2": "There is no baggage counter in Terminal 2. The airport says to use the 4th floor of Terminal 1."}], ["baby", "Nursing room", {"T1": "Baby rooms with a nursing area are listed on the airport's service pages. The pages we read do not give the floor, so ask at an information counter for the nearest.", "T2": "The airport's lists show nothing for Terminal 2 here. Please ask at an information counter, or take the free shuttle bus to Terminal 1."}], ["wifi", "Wi-Fi and SIM", {"T1": "1F: Global WiFi counter and SIM vending machines (24 hours), a JTB SIM vending machine (24 hours), and the XCom Global shop at the arrival gate (7 am to 10 pm). 2F: XCom Global counter next to the Nankai station gate. 4F: Global WiFi shop on the north side (6:30 am to 11 pm) and Telecom Square. Rental is not available after security.", "T2": "XCom Global is listed on 1F of Terminal 2."}], ["info", "Information counter", {"T1": "Kansai Tourist Information Center: 1F, south side, before security (9 am to 7 pm). It gives sightseeing information in English, Chinese and Korean, sells train tickets for foreign travellers and can book hotels. There is also an information counter on 4F.", "T2": "The airport's lists show nothing for Terminal 2 here. Please ask at an information counter, or take the free shuttle bus to Terminal 1."}], ["unwell", "Feeling unwell", {"T1": "The airport's clinic is on 2F of Terminal 1 (9 am to 5 pm, from the airport's service pages). Outside those hours, ask at an information counter. In an emergency, call 119.", "T2": "Ask at an information counter, or take the free shuttle bus to Terminal 1, where the airport's clinic is. In an emergency, call 119."}], ["prayer", "Prayer room", {"T1": "Prayer rooms are on 3F and in the international gate area (after security). The airport's FAQ lists three locations in Terminal 1. The prayer rooms and the washing spaces before prayer are separated by gender. Anyone can use them.", "T2": "The airport lists prayer rooms in Terminal 1 only. Take the free shuttle bus to Terminal 1, or ask at an information counter."}], ["shower", "Showers", {"T1": "After security: 2F, in the middle of the international gate area near Gate 22 (7 am to 11 pm, 800 yen for 15 minutes). Before security: Cafe Lounge NODOKA on Aeroplaza 2F (24 hours, 1,400 yen for 40 minutes, amenity set included). Hotel Nikko Kansai Airport also lists shower booths (9 am to 9 pm, 2,500 yen per hour).", "T2": "The airport's lists show nothing for Terminal 2 here. Please ask at an information counter, or take the free shuttle bus to Terminal 1."}]]};
+  var ICON={prayer:'\uD83D\uDE4F',baby:'\uD83C\uDF7C',quiet:'\uD83E\uDD2B',info:'\u2139\uFE0F',help:'\u267F',lockers:'\uD83E\uDDF3',wifi:'\uD83D\uDCF6',shower:'\uD83D\uDEBF',internet:'\uD83D\uDCBB',play:'\uD83E\uDDF8',smoking:'\uD83D\uDEAC',toilet:'\uD83D\uDEBB',food:'\uD83C\uDF5C',money:'\uD83D\uDCB4',unwell:'\uD83C\uDFE5',pharmacy:'\uD83D\uDC8A',trains:'\uD83D\uDE86',phone:'\uD83D\uDCF6',charge:'\uD83D\uDD0B',more:'\u2795'};
+  var SHORT={prayer:'Prayer room',baby:'Nursing room',quiet:'Quiet space',info:'Information counter',help:'Wheelchair and help',lockers:'Luggage',wifi:'Wi-Fi rental',shower:'Showers',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets',food:'Food and drink',money:'Money and ATMs',unwell:'Feeling unwell',pharmacy:'Pharmacy',trains:'Train or bus',phone:'Phone and Wi-Fi',charge:'Phone charging',more:'More places'};
+  var term='ALL', lastTile=null;
+  try{ var s=localStorage.getItem('kixTerm'); if(s&&/^(ALL|T1|T2)$/.test(s)) term=s; }catch(e){}
+  function $(id){return document.getElementById(id);}
+  /* terminal selector */
+  var seg=$('seg');
+  function segBtn(id,html,cls){
+    var b=document.createElement('button'); b.type='button'; b.setAttribute('data-t',id); if(cls) b.className=cls;
+    b.innerHTML=html; b.addEventListener('click',function(){ term=id; try{localStorage.setItem('kixTerm',id);}catch(e){} paintSeg(); renderDep(); }); return b;
+  }
+  D.terms.forEach(function(t){ seg.appendChild(segBtn(t[0],'<small>Terminal</small><b>'+t[0].charAt(1)+'</b>')); });
+  seg.appendChild(segBtn('ALL','Not sure','txt'));
+  var mseg=$('mseg');
+  D.terms.forEach(function(t){ mseg.appendChild(segBtn(t[0],'<small>Terminal</small><b>'+t[0].charAt(1)+'</b>')); });
+  mseg.appendChild(segBtn('ALL','Not sure','txt'));
+  function paintSeg(){ [seg,mseg].forEach(function(g){ [].forEach.call(g.children,function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-t')===term?'true':'false'); }); }); paintMap(); }
+  /* Terminals tab: personal view for the terminal the person chose */
+  function paintMap(){
+    var R={T1:{T2:'Free shuttle bus. The stop is on the 1st floor of Aeroplaza'},T2:{T1:'Free shuttle bus to Terminal 1'}};
+    var personal=(term==='T1'||term==='T2');
+    $('mLead').textContent=personal?('You are in Terminal '+term.charAt(1)+'. Here is how to reach the others.'):'Your ticket or airline app shows which one is yours.';
+    [].forEach.call(document.querySelectorAll('#tmap .tlink'),function(e){ e.hidden=personal; });
+    [].forEach.call(document.querySelectorAll('#tmap .tcard'),function(c){
+      var id=c.getAttribute('data-t'), tb=c.querySelector('.tb');
+      [].forEach.call(c.querySelectorAll('.heretag,.route'),function(e){ e.parentNode.removeChild(e); });
+      c.classList.toggle('here',personal&&id===term);
+      if(!personal) return;
+      if(id===term){ var g=document.createElement('p'); g.className='heretag'; g.textContent='You are here'; tb.insertBefore(g,tb.firstChild); }
+      else { var r=document.createElement('p'); r.className='route'; r.textContent='\uD83D\uDE8C From here: '+R[term][id]; tb.appendChild(r); }
+    });
+  }
+  paintSeg();
+  /* need tiles */
+  var tiles=$('tiles'), tiles2=$('tiles2'), track=$('track'), pager=$('pager'), page=0, offTimer=null;
+  var MAIN=8;
+  function pill(cls,iconTxt,label,sub,fn){
+    var b=document.createElement('button'); b.type='button'; b.className='tile more'+(cls?' '+cls:'');
+    var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=iconTxt;
+    var tx=document.createElement('span'); tx.className='tx'; tx.appendChild(document.createTextNode(label));
+    var sm=document.createElement('small'); sm.textContent=sub; tx.appendChild(sm);
+    b.appendChild(ic); b.appendChild(tx); b.addEventListener('click',fn); return b;
+  }
+  function slideTo(p){
+    page=p; if(offTimer){ clearTimeout(offTimer); offTimer=null; }
+    var on=p?tiles2:tiles, off=p?tiles:tiles2;
+    on.classList.remove('off'); on.removeAttribute('aria-hidden'); on.inert=false;
+    off.setAttribute('aria-hidden','true'); off.inert=true;
+    track.style.transform='translateX('+(p?'-100%':'0')+')';
+    offTimer=setTimeout(function(){ off.classList.add('off'); offTimer=null; },320);
+  }
+  tiles2.inert=true;
+  var PH_TXT=' Phone charging: power outlets and charging corners are marked on the terminal floor maps. Ask at an information counter for the nearest.';
+  var phoneIt=['phone','Phone and Wi-Fi',{}];
+  D.terms.forEach(function(t){ var w0=item('wifi')[2][t[0]]; if(w0.charAt(w0.length-1)==='.'){ w0=w0.slice(0,-1); } phoneIt[2][t[0]]='Pocket Wi-Fi and SIM rental counters: '+w0+'.'+PH_TXT; });
+  var trainsIt=['trains','Train or bus',{}];
+  var LIST=[];
+  ['money','food','toilet','help','lockers','baby','trains','info','unwell','phone','prayer','shower'].forEach(function(id){
+    LIST.push(id==='trains'?trainsIt:id==='phone'?phoneIt:item(id));
+  });
+  LIST.forEach(function(it,n){
+    var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n%3); b.setAttribute('data-id',it[0]);
+    var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=ICON[it[0]]||'\u2022';
+    var tx=document.createElement('span'); tx.className='tx'; tx.textContent=SHORT[it[0]]||it[1];
+    b.appendChild(ic); b.appendChild(tx);
+    b.addEventListener('click',function(){ if(it[0]==='trains'){ openInfo(ICON.trains,it[1],trainHTML(),b); } else { openSheet(it,b); } });
+    (n<MAIN?tiles:tiles2).appendChild(b);
+    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\u2192','More','Feeling unwell, prayer room, showers',function(){ slideTo(1); })); }
+  });
+  tiles2.appendChild(pill('pgback','\u2190','Back','Main places',function(){ slideTo(0); }));
+  /* swipe between the two screens */
+  (function(){
+    var sx=0, sy=0, on=false;
+    pager.addEventListener('touchstart',function(e){ if(e.touches.length!==1){on=false;return;} on=true; sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
+    pager.addEventListener('touchend',function(e){
+      if(!on) return; on=false; var t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy;
+      if(Math.abs(dx)>60 && Math.abs(dx)>1.6*Math.abs(dy)){ if(dx<0 && page===0) slideTo(1); else if(dx>0 && page===1) slideTo(0); }
+    },{passive:true});
+  })();
+  /* answer sheet */
+  var sheet=$('sheet'), scrim=$('scrim'), shT=$('shTitle'), shB=$('shBody');
+  var NONE='The airport list does not show one here. Please ask at an information counter.';
+  function ans(label,txt,mini){
+    var d=document.createElement('div'); d.className='ans'+(mini?' mini':'');
+    if(label){ var e=document.createElement('em'); e.textContent=label; d.appendChild(e); }
+    d.appendChild(document.createTextNode(txt||NONE)); return d;
+  }
+  function openSheet(it,btn){
+    lastTile=btn; shT.textContent=''; shB.textContent='';
+    var ic=document.createElement('span'); ic.setAttribute('aria-hidden','true'); ic.textContent=ICON[it[0]]||''; shT.appendChild(ic);
+    shT.appendChild(document.createTextNode(it[1]));
+    if(term==='ALL'&&D.terms.every(function(t){return it[2][t[0]]===it[2][D.terms[0][0]];})){ shB.appendChild(ans('All terminals',it[2][D.terms[0][0]],false)); }
+    else if(term==='ALL'){ D.terms.forEach(function(t){ shB.appendChild(ans(t[1],it[2][t[0]],true)); }); }
+    else { var tn=D.terms.filter(function(t){return t[0]===term;})[0][1]; shB.appendChild(ans(tn,it[2][term],false)); }
+    hideAll(); sheet.hidden=false; scrim.hidden=false; sheet.scrollTop=0; $('shClose').focus();
+  }
+  var inst=$('inst');
+  function hideAll(){ sheet.hidden=true; inst.hidden=true; scrim.hidden=true; }
+  function closeSheet(){ hideAll(); if(lastTile) lastTile.focus(); }
+  $('shClose').addEventListener('click',closeSheet); scrim.addEventListener('click',closeSheet);
+  document.addEventListener('keydown',function(e){ if(e.key==='Escape'&&(!sheet.hidden||!inst.hidden)) closeSheet(); });
+  /* answer sheet for info tiles (static text only) */
+  function openInfo(icon,title,html,btn){
+    lastTile=btn||null; shT.textContent='';
+    var ic=document.createElement('span'); ic.setAttribute('aria-hidden','true'); ic.textContent=icon; shT.appendChild(ic);
+    shT.appendChild(document.createTextNode(title)); shB.innerHTML=html;
+    hideAll(); sheet.hidden=false; scrim.hidden=false; sheet.scrollTop=0; $('shClose').focus();
+  }
+  function item(id){ return D.items.filter(function(i){return i[0]===id;})[0]; }
+  function trainHTML(){
+    var h='<p class="n2">'+(term==='T2'?'Terminal 2: use the free shuttle bus to Terminal 1 for the trains. Limousine buses stop at both terminals.':'Kansai Airport Station is joined to Terminal 1 on the <b>2nd floor</b>. <b>Haruka</b> and <b>Rapi:t</b> trains board outside Terminal 1, 2nd floor. Buses leave from the <b>1st floor</b>.')+'</p>';
+    h+='<ul class="pl"><li><b>JR Haruka:</b> about 30 min to Tennoji, 50 to Shin-Osaka, 75 to Kyoto. Needs a limited express ticket on top of the basic fare.</li>'
+      +'<li><b>JR Kansai Airport Rapid:</b> about 65 min to Osaka Station, about 45 to Tennoji. No extra ticket.</li>'
+      +'<li><b>Nankai to Namba:</b> Rapi:t about 34 to 39 min (extra ticket, the upgrade is 520 yen). Airport Express about 43 min (normal ticket only).</li>'
+      +'<li><b>Limousine bus:</b> 1,800 yen to Osaka Station (about 60 min, stop 5) and 2,800 yen to Kyoto Station (about 1 h 25 to 1 h 30, stop 8), one way. Tickets from the window or machines on the 1st floor.</li></ul>';
+    h+='<div class="tipbox">Trains and buses stop in the late evening. We did not confirm last-train times, so check JR West and Nankai for your route.</div>';
+    h+='<p class="sm">Times and prices are approximate and change. Check the operator.</p>';
+    h+='<p class="sm">You can book here (partner links): <a href="https://klook.tpo.lu/h5bWYxiJ" target="_blank" rel="sponsored nofollow noopener">Bus to Osaka</a> &middot; <a href="https://klook.tpo.lu/tP1t7fQO" target="_blank" rel="sponsored nofollow noopener">Bus to Kyoto</a> &middot; <a href="https://klook.tpo.lu/0HgyOcKK" target="_blank" rel="sponsored nofollow noopener">Haruka</a> &middot; <a href="https://klook.tpo.lu/7ZUxBiZ1" target="_blank" rel="sponsored nofollow noopener">Rapi:t</a></p>';
+    return h;
+  }
+  function simHTML(){
+    return '<ul class="pl"><li><b>eSIM:</b> install it before you fly. It works as soon as you land.</li>'
+      +'<li><b>SIM vending machines</b> (Global WiFi and JTB) are on the 1st floor of Terminal 1, open 24 hours.</li>'
+      +'<li><b>Pocket Wi-Fi:</b> pick-up lockers and an unmanned machine near the arrival gate on the 1st floor, and an XCom Global shop at the arrival gate (7 am to 10 pm). Rental is not available after security.</li>'
+      +'<li><b>Free airport Wi-Fi:</b> AirportFreeWiFi-Kansai. Fine for a quick message, not for a day of maps.</li></ul>'
+      +'<p class="sm">Counter hours and stock vary. Ordering ahead is safer.</p>';
+  }
+  function cashHTML(){
+    return '<ul class="pl"><li><b>Currency exchange</b> and <b>cash machines</b> are in Terminal 1. Tap Find, then Money and ATMs.</li>'
+      +'<li><b>ICOCA</b> is the local tap-on train card. The airport says it is sold at the JR or Nankai Kansai Airport Station, outside Terminal 1 on the 2nd floor. JR West ticket machines sell it too.</li>'
+      +'<li>Kyoto&rsquo;s city buses and subway accept ICOCA, Suica, PASMO and PiTaPa.</li></ul>'
+      +'<p class="sm">Card types and sales points change often. Check before you buy, or ask at the Tourist Information Center (1F, south side, 9 am to 7 pm).</p>';
+  }
+  function carHTML(){
+    return '<p class="n2">Most visitors skip a car in Osaka and Kyoto, because trains are quicker.</p>'
+      +'<ul class="pl"><li>A car helps for trips out of the cities, such as the Kii peninsula or the countryside. Rental car counters are on Aeroplaza, 1st and 2nd floors.</li>'
+      +'<li>Bring your <b>passport</b>, your <b>home driving licence</b> and an <b>International Driving Permit</b> (1949 Geneva Convention type). Get it before you leave home. It cannot be issued in Japan.</li>'
+      +'<li>Some countries, such as Germany and France, use an official Japanese translation of the licence instead. Check before you travel.</li>'
+      +'<li>Japan drives on the left.</li>'
+      +'<li>Book ahead in busy seasons.</li></ul>'
+      +'<p class="sm"><a href="'+GUIDE+'#rent-a-car">Compare car prices in the full guide</a> (needs internet)</p>';
+  }
+  function bagsHTML(){
+    return '<ul class="pl"><li>Yamato and JAL ABC run baggage counters in <b>Terminal 1</b> (4th floor, and 1st floor). There is also a Kansai Airport Baggage Service counter on 1F. <b>Terminal 2 has none.</b></li>'
+      +'<li>Usually arrives <b>the next day</b>. Ask the counter for the delivery day.</li>'
+      +'<li>JAL ABC lists a limit of 160 cm (length, width and height added) and 30 kg per bag.</li>'
+      +'<li>Write down your hotel name, address and phone number.</li>'
+      +'<li>Keep medicines, valuables and chargers with you.</li></ul>'
+      +'<p class="sm">Prices and cut-off times change. Confirm at the counter.</p>'
+      +'<p class="sm">You can also book online (partner link): <a href="https://klook.tpo.lu/YhvjP926" target="_blank" rel="sponsored nofollow noopener">Osaka and Kyoto luggage delivery</a>.</p>';
+  }
+  var NEXT=[['🚆','Train or bus',trainHTML],['📱','Phone data',simHTML],['💴','Cash and train card',cashHTML],['📦','Send your suitcase',bagsHTML],['🚗','Rent a car',carHTML]];
+  var at=$('arrTiles');
+  NEXT.forEach(function(n,k){
+    var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);
+    var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=n[0];
+    var tx=document.createElement('span'); tx.className='tx'; tx.textContent=n[1]; b.appendChild(ic); b.appendChild(tx);
+    b.addEventListener('click',function(){ openInfo(n[0],n[1],n[2](),b); }); at.appendChild(b);
+  });
+  /* tick-off steps for arrival and departure */
+  var doneA=[], doneD=[];
+  function renderSteps(ol,list,done){
+    ol.innerHTML='';
+    list.forEach(function(st,i){
+      var li=document.createElement('li'), b=document.createElement('button'); b.type='button'; b.className='stp'; b.setAttribute('aria-pressed',done[i]?'true':'false');
+      var n=document.createElement('span'); n.className='n'; n.textContent=done[i]?'✓':String(i+1);
+      var tx=document.createElement('span'); tx.className='tx'; var bb=document.createElement('b'); bb.textContent=st[0]; tx.appendChild(bb);
+      tx.appendChild(document.createTextNode(typeof st[1]==='function'?st[1]():st[1]));
+      b.appendChild(n); b.appendChild(tx);
+      b.addEventListener('click',function(){ done[i]=!done[i]; b.setAttribute('aria-pressed',done[i]?'true':'false'); n.textContent=done[i]?'✓':String(i+1); syncReset(); });
+      li.appendChild(b); ol.appendChild(li);
+    });
+  }
+  function syncReset(){ $('arrReset').hidden=!doneA.some(Boolean); $('depReset').hidden=!doneD.some(Boolean); }
+  var ARR=[['Immigration','Show your passport. Kiosks may handle immigration and customs together with your Visit Japan Web QR code. Automatic gates give no stamp: ask staff if you want one.'],
+    ['Baggage claim','Find your flight on the screen and go to its carousel.'],
+    ['Customs','Show your Visit Japan Web QR code or paper form. Food or plants? Declare them first.'],
+    ['Arrival area','You are on 1F. Buses are on this floor. For the trains, go up to the 2nd floor.']];
+  function ckText(){
+    if(term==='ALL') return 'Most airlines: Terminal 1, 4th floor (international departures). Peach, Jeju Air and Spring Airlines use Terminal 2. Check your ticket.';
+    if(term==='T1') return 'Terminal 1: international departures are on the 4th floor, before security. Check your ticket for the terminal.';
+    return 'Terminal 2 is used by Peach, Jeju Air and Spring Airlines. Check in at your airline counter there.';
+  }
+  var DEP=[['Tax-free procedure, if you shopped','Scan your passport at a tax-free procedure terminal before you board, with your receipts and the items with you. Ask at an information counter where the terminals are.'],
+    ['Check in',ckText],
+    ['Before security','Change money, sort roaming or insurance, hand back or post rented Wi-Fi. Check any train card balance.'],
+    ['Security',"Have your passport, boarding pass and carry-on ready. Check your airline's rules on liquids."],
+    ['Customs, only if needed','Declare over ¥1 million cash, foreign-made goods like a watch, or duty-free items. Checked-bag items: before check-in.'],
+    ['Passport control','Show your passport and boarding pass. Automatic gates give no stamp.'],
+    ['Boarding gate','Be at your gate well before boarding. Wait for staff instructions.']];
+  function renderDep(){ renderSteps($('depSteps'),DEP,doneD); }
+  renderSteps($('arrSteps'),ARR,doneA); renderDep();
+  $('arrReset').addEventListener('click',function(){ doneA.length=0; renderSteps($('arrSteps'),ARR,doneA); syncReset(); });
+  $('depReset').addEventListener('click',function(){ doneD.length=0; renderDep(); syncReset(); });
+  /* departure: before you go */
+  var GUIDE='https://www.packsmartapp.com/blog/kansai-airport-guide';
+  function more(a){ return '<p class="sm"><a href="'+GUIDE+a+'">More in the full guide</a> (needs internet)</p>'; }
+  function gettingHTML(){
+    var h='<p class="n2">By train, Kansai Airport Station is joined to Terminal 1 on the <b>2nd floor</b>. By bus, the airport limousine bus arrives at Terminal 1, <b>4th floor</b>, the international departure floor.</p>';
+    h+='<ul class="pl"><li><b>JR Haruka:</b> about 75 min from Kyoto, 50 from Shin-Osaka, 30 from Tennoji.</li>'
+      +'<li><b>JR Kansai Airport Rapid:</b> about 65 min from Osaka Station. The train splits at Hineno on the way to the airport: ride one of the first four cars.</li>'
+      +'<li><b>Nankai:</b> about 34 to 43 min from Namba.</li>'
+      +'<li><b>Limousine bus from the city:</b> about 60 min from Osaka Station (1,800 yen) and about 1 h 25 to 1 h 30 from Kyoto Station (2,800 yen), one way.</li></ul>';
+    h+='<div class="tipbox"><b>Early flight?</b> We did not confirm first-train times, so check JR West and Nankai for your route the day before. For a very early flight you may need a bus, a taxi, or a hotel at the airport the night before.</div>';
+    h+='<p class="sm">Times and prices are approximate and change. Check the operator.</p>';
+    return h;
+  }
+  function sendOutHTML(){
+    return '<ul class="pl"><li>Services such as <b>Yamato</b> and <b>JAL ABC</b> can collect your suitcase from your hotel and send it to Kansai Airport. Ask your hotel front desk what is on offer.</li>'
+      +'<li>Book ahead: JAL ABC&rsquo;s airport listing says to reserve its carrier service by phone three or four days before your departure date.</li>'
+      +'<li>On departure day, show your receipt and ID at the counter, collect the bag, then go to check-in.</li>'
+      +'<li>The counters are in Terminal 1 (4th and 1st floors). There is none in Terminal 2. Ask which one and its opening hours, especially for an early or late flight.</li>'
+      +'<li>Keep your passport, medicines and valuables with you.</li></ul>'
+      +'<p class="sm">Rules, prices and cut-off times change: confirm with the company.</p>';
+  }
+  function taxHTML(){
+    return '<p class="n2">From <b>1 November 2026</b> you pay the full price, tax included, at the shop. You claim the tax back at the airport.</p>'
+      +'<ul class="pl"><li>Applies when you spend <b>&yen;5,000 or more</b> (before tax) at one shop in one day.</li>'
+      +'<li>Within <b>90 days</b> of buying, scan your passport at a <b>tax-free procedure terminal</b> before you board, with your receipts and the items with you. Do not check the items in first.</li>'
+      +'<li>Ask at an information counter where the terminals are at Kansai Airport.</li>'
+      +'<li><b>Green</b> result: you are done. <b>Red</b> result: take the items to the customs inspection area.</li></ul>'
+      +'<div class="tipbox">Finish this before you board. If you miss your flight, neither customs nor the airline pays you back. Queues are likely while the system is new, so allow extra time.</div>'
+      +'<p class="sm">How the refund is paid is not covered in the official summary: ask at the kiosk or check your shop receipt. Source: Japan National Tourism Organization, checked 18 November 2026.</p>';
+  }
+  function earlyHTML(){
+    return '<p class="n2">For an international flight, about <b>2 hours</b> before departure is a common guide. Your airline sets its own advice, so check your ticket.</p>'
+      +'<ul class="pl"><li>Add the journey: about <b>75 minutes</b> by Haruka from Kyoto, <b>50</b> from Shin-Osaka, and <b>34 to 43</b> by Nankai from Namba.</li>'
+      +'<li>Add time to reach your station, and a little extra.</li>'
+      +'<li>Shopped tax-free? Add time for the tax-free procedure terminal.</li></ul>'
+      +'<div class="tipbox"><b>Example:</b> flight at 12:00. Be at the airport by 10:00. From Kyoto by Haruka, leave Kyoto Station by about 8:30 to keep a buffer.</div>'
+      +'<p class="sm">Your airline decides when check-in opens and closes. Check your ticket.</p>';
+  }
+  var BEFORE=[['🚆','Getting to the airport',gettingHTML],['📦','Luggage to the airport',sendOutHTML],['🧾','Tax refund',taxHTML],['⏰','How early to leave',earlyHTML]];
+  var dtl=$('depTiles');
+  BEFORE.forEach(function(n,k){
+    var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);
+    var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=n[0];
+    var tx=document.createElement('span'); tx.className='tx'; tx.textContent=n[1]; b.appendChild(ic); b.appendChild(tx);
+    b.addEventListener('click',function(){ openInfo(n[0],n[1],n[2](),b); }); dtl.appendChild(b);
+  });
+  var dseg=$('depSeg');
+  function paintDep(w){
+    [].forEach.call(dseg.children,function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-d')===w?'true':'false'); });
+    $('depBefore').hidden=(w!=='before'); $('depAir').hidden=(w!=='air'); $('panels').scrollTop=0;
+  }
+  [].forEach.call(dseg.children,function(b){ b.addEventListener('click',function(){ var w=b.getAttribute('data-d'); try{localStorage.setItem('kixDepSeg',w);}catch(e){} paintDep(w); }); });
+  var dsv='before'; try{ var q=localStorage.getItem('kixDepSeg'); if(q==='air'||q==='before') dsv=q; }catch(e){}
+  paintDep(dsv);
+  /* tabs */
+  var tabs=[].slice.call(document.querySelectorAll('.tabs button'));
+  function go(name,focus){
+    hideAll();
+    tabs.forEach(function(b){ var on=b.getAttribute('data-tab')===name; b.setAttribute('aria-selected',on?'true':'false'); b.tabIndex=on?0:-1; $('p-'+(b.getAttribute('data-tab')==='arrive'?'arrive':b.getAttribute('data-tab'))).hidden=!on; });
+    $('panels').scrollTop=0;
+    try{ history.replaceState(null,'','#'+name); }catch(e){}
+    if(focus){ var cur=tabs.filter(function(b){return b.getAttribute('data-tab')===name;})[0]; if(cur) cur.focus(); }
+  }
+  tabs.forEach(function(b,i){
+    b.addEventListener('click',function(){ go(b.getAttribute('data-tab')); });
+    b.addEventListener('keydown',function(e){ var d=e.key==='ArrowRight'?1:e.key==='ArrowLeft'?-1:0; if(d){ e.preventDefault(); go(tabs[(i+d+tabs.length)%tabs.length].getAttribute('data-tab'),true); } });
+  });
+  var h=(location.hash||'').replace('#',''); go(/^(find|map|arrive|depart|help)$/.test(h)?h:'find');
+  /* offline status and install */
+  var st=$('status'), saved=false;
+  function paint(){
+    if(!navigator.onLine){ st.className='status off'; st.textContent=saved?'Offline: saved copy':'Offline'; }
+    else if(saved){ st.className='status saved'; st.textContent='Saved for offline use'; }
+    else { st.className='status'; st.textContent='Online'; }
+  }
+  window.addEventListener('online',paint); window.addEventListener('offline',paint); paint();
+  if('serviceWorker' in navigator){
+    navigator.serviceWorker.register('/kix-sw.js',{scope:'/kix-pocket',updateViaCache:'none'})
+      .then(function(){ return navigator.serviceWorker.ready; })
+      .then(function(){ return caches.has('kix-pocket-v1'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('kix-pocket-v1').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .catch(function(){ paint(); });
+  }
+  /* install help: shown first, in the person's own phone type */
+  var ua=navigator.userAgent||'';
+  var isIOS=/iPad|iPhone|iPod/.test(ua)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);
+  var isAnd=/Android/.test(ua);
+  var mobile=isIOS||isAnd;
+  var standalone=!!(window.navigator.standalone||(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches));
+  function flag(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){} return null; }
+  var strip=$('instStrip'), dp=null;
+  function needed(){ return mobile&&!standalone&&flag('kixInstalled')!=='1'; }
+  function refresh(){
+    var n=needed(); strip.hidden=!n;
+    $('instHow').hidden=!n; $('instDesk').hidden=mobile;
+    if(standalone||flag('kixInstalled')==='1'){ $('install').hidden=true; }
+  }
+  var SHARE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
+  var PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>';
+  var DOTS='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>';
+  var DOWN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg>';
+  function steps(list){ return '<ol class="istep">'+list.map(function(x,i){ return '<li><span class="n">'+(i+1)+'</span>'+x[0]+'<span>'+x[1]+'</span></li>'; }).join('')+'</ol>'; }
+  function openInst(){
+    pgTrack('pg_install_view',{via:instVia}); instVia='help';
+    var h='<p class="lede">Do this once, now, while you have signal. Then it opens like an app, even with no internet.</p>';
+    if(isIOS){
+      h+=steps([[SHARE,'Tap the <b>Share</b> button (a square with an arrow) in Safari'],[PLUS,'Scroll down and tap <b>Add to Home Screen</b>'],['','Tap <b>Add</b>']]);
+      h+='<div class="tipbox">Cannot see Share? Tap the <b>&middot;&middot;&middot;</b> button first. Not in Safari (for example Chrome, Instagram or Facebook)? Open this page in <b>Safari</b> first.</div>';
+    } else if(dp){
+      h+='<button type="button" class="close" id="instGo">Install now</button>';
+      h+='<div class="tipbox">Or tap the menu <b>&#8942;</b> in Chrome, then <b>Install app</b> or <b>Add to Home screen</b>.</div>';
+    } else {
+      h+=steps([[DOTS,'Tap the menu <b>&#8942;</b> (three dots) in Chrome'],[DOWN,'Tap <b>Install app</b> or <b>Add to Home screen</b>'],['','Tap <b>Install</b> or <b>Add</b>']]);
+      h+='<div class="tipbox">Do not see it? Open this page in Chrome and try again.</div>';
+    }
+    h+='<div class="row2"><button type="button" class="close ghost" id="instLater">Later</button><button type="button" class="close" id="instDone">I added it</button></div>';
+    $('instBody').innerHTML=h;
+    lastTile=document.activeElement&&document.activeElement.focus?document.activeElement:null;
+    hideAll(); inst.hidden=false; scrim.hidden=false; inst.scrollTop=0;
+    var go=$('instGo'); if(go){ go.addEventListener('click',function(){ if(!dp) return; dp.prompt(); try{ dp.userChoice.then(function(r){ if(r&&r.outcome) pgTrack('pg_install_prompt',{outcome:r.outcome}); if(r&&r.outcome==='accepted') markInstalled(); }); }catch(e){} dp=null; closeSheet(); }); }
+    $('instLater').addEventListener('click',closeSheet);
+    $('instDone').addEventListener('click',function(){ markInstalled(); closeSheet(); });
+    (go||$('instDone')).focus();
+  }
+  function markInstalled(){ flag('kixInstalled','1'); refresh(); }
+  strip.addEventListener('click',function(){ instVia='strip'; openInst(); });
+  $('instBtn').addEventListener('click',function(){ instVia='help'; openInst(); });
+  /* show this to staff */
+  var ASK=[
+    ['basics','👋','Hello','こんにちは。','Konnichiwa.','Hello.'],
+    ['basics','🙏','Thank you','ありがとうございます。','Arigatou gozaimasu.','Thank you very much.'],
+    ['basics','🙇','Excuse me','すみません。','Sumimasen.','Excuse me. Or: I am sorry.'],
+    ['basics','👌','No thanks','大丈夫です。','Daijoubu desu.','I am fine, no thank you.'],
+    ['basics','❓','I do not understand','分かりません。','Wakarimasen.','I do not understand.'],
+    ['basics','🐢','Slowly, please','ゆっくりお願いします。','Yukkuri onegai shimasu.','Please speak slowly.'],
+    ['basics','🔁','Once more','もう一度お願いします。','Mou ichido onegai shimasu.','One more time, please.'],
+    ['basics','⏳','One moment','ちょっと待ってください。','Chotto matte kudasai.','Please wait a moment.'],
+    ['basics','✍️','Write it down','書いてください。','Kaite kudasai.','Please write it down.'],
+    ['basics','🗣️','English?','英語を話せる人はいますか？','Eigo o hanaseru hito wa imasu ka?','Is there someone who speaks English?'],
+    ['where','🚻','Toilet','トイレはどこですか？','Toire wa doko desu ka?','Where is the toilet?'],
+    ['where','🚪','Exit','出口はどこですか？','Deguchi wa doko desu ka?','Where is the exit?'],
+    ['where','➡️','Entrance','入口はどこですか？','Iriguchi wa doko desu ka?','Where is the entrance?'],
+    ['where','🛗','Lift','エレベーターはどこですか？','Erebeetaa wa doko desu ka?','Where is the lift?'],
+    ['where','☕','Coffee','コーヒーはどこですか？','Koohii wa doko desu ka?','Where is the coffee?'],
+    ['where','💧','Water','お水はどこですか？','Omizu wa doko desu ka?','Where is the water?'],
+    ['where','🏪','Konbini','コンビニはどこですか？','Konbini wa doko desu ka?','Where is a convenience store?'],
+    ['where','🍜','Food','食事ができる所はどこですか？','Shokuji ga dekiru tokoro wa doko desu ka?','Where can I eat?'],
+    ['where','🏧','ATM','ATMはどこですか？','Eetiiemu wa doko desu ka?','Where is an ATM?'],
+    ['where','🔐','Coin locker','コインロッカーはどこですか？','Koin rokkaa wa doko desu ka?','Where are the coin lockers?'],
+    ['where','ℹ️','Information','案内所はどこですか？','Annaijo wa doko desu ka?','Where is the information counter?'],
+    ['where','💊','Pharmacy','薬局はどこですか？','Yakkyoku wa doko desu ka?','Where is a pharmacy?'],
+    ['shop','💴','How much?','いくらですか？','Ikura desu ka?','How much is it?'],
+    ['shop','👉','This one','これをください。','Kore o kudasai.','This one, please.'],
+    ['shop','💳','Card OK?','カードは使えますか？','Kaado wa tsukaemasu ka?','Can I pay by card?'],
+    ['shop','♨️','Heat it up','温めてください。','Atatamete kudasai.','Please heat it up.'],
+    ['shop','🛍️','A bag, please','袋をください。','Fukuro o kudasai.','A bag, please.'],
+    ['shop','🙅','No bag','袋はいりません。','Fukuro wa irimasen.','I do not need a bag.'],
+    ['shop','🧾','Receipt','レシートをください。','Reshiito o kudasai.','A receipt, please.'],
+    ['shop','🏷️','Tax-free?','免税で買えますか？','Menzei de kaemasu ka?','Can I buy this tax-free?'],
+    ['shop','👗','Fitting room','試着室はどこですか？','Shichakushitsu wa doko desu ka?','Where is the fitting room?'],
+    ['shop','📏','Bigger size?','もっと大きいサイズはありますか？','Motto ookii saizu wa arimasu ka?','Do you have a bigger size?'],
+    ['eat','👥','Two people','二人です。','Futari desu.','Two people.'],
+    ['eat','👤','One person','一人です。','Hitori desu.','One person.'],
+    ['eat','📖','Menu, please','メニューをください。','Menyuu o kudasai.','The menu, please.'],
+    ['eat','🔤','English menu?','英語のメニューはありますか？','Eigo no menyuu wa arimasu ka?','Do you have an English menu?'],
+    ['eat','🥤','Water, please','お水をください。','Omizu o kudasai.','Water, please.'],
+    ['eat','🍴','A fork','フォークをください。','Fooku o kudasai.','A fork, please.'],
+    ['eat','🧾','The bill','お会計をお願いします。','Okaikei o onegai shimasu.','The bill, please.'],
+    ['eat','😋','Delicious','おいしいです。','Oishii desu.','It is delicious.'],
+    ['eat','🌶️','Not spicy?','辛くないものはありますか？','Karakunai mono wa arimasu ka?','Do you have something not spicy?'],
+    ['eat','🥗','No meat or fish','肉と魚は食べません。','Niku to sakana wa tabemasen.','I do not eat meat or fish.'],
+    ['eat','⚠️','Food allergy','食物アレルギーがあります。','Shokumotsu arerugii ga arimasu.','I have a food allergy. Write or point to what you cannot eat.'],
+    ['sights','🎟️','Ticket counter','チケット売り場はどこですか？','Chiketto uriba wa doko desu ka?','Where is the ticket counter?'],
+    ['sights','⏱️','Wait time','待ち時間はどのくらいですか？','Machijikan wa dono kurai desu ka?','How long is the wait?'],
+    ['sights','🚶','End of the line','列の最後尾はどこですか？','Retsu no saikoubi wa doko desu ka?','Where is the end of the line?'],
+    ['sights','📸','Photo, please','写真を撮っていただけますか？','Shashin o totte itadakemasu ka?','Could you take a photo of us?'],
+    ['sights','🕒','Open until?','何時まで開いていますか？','Nanji made aite imasu ka?','Until what time is it open?'],
+    ['sights','🪑','Place to rest','休める所はどこですか？','Yasumeru tokoro wa doko desu ka?','Where can I rest?'],
+    ['sights','🗺️','Map, please','地図をください。','Chizu o kudasai.','A map, please.'],
+    ['sights','👶','Stroller','ベビーカーを借りられますか？','Bebiikaa o kariraremasu ka?','Can I rent a stroller?'],
+    ['sights','♿','Wheelchair rental','車いすを借りられますか？','Kuruma-isu o kariraremasu ka?','Can I rent a wheelchair?'],
+    ['sights','📦','Lost and found','落とし物の窓口はどこですか？','Otoshimono no madoguchi wa doko desu ka?','Where is the lost and found?'],
+    ['go','🗺️','Show on map','この場所へはどう行けばいいですか？','Kono basho e wa dou ikeba ii desu ka?','How do I get to this place? Show it on your phone.'],
+    ['go','🥾','Is it far?','遠いですか？','Tooi desu ka?','Is it far?'],
+    ['go','🚉','Nearest station','一番近い駅はどこですか？','Ichiban chikai eki wa doko desu ka?','Where is the nearest station?'],
+    ['go','🔢','Which platform?','何番ホームですか？','Nanban hoomu desu ka?','Which platform is it?'],
+    ['go','🎫','Buy a ticket','切符はどこで買えますか？','Kippu wa doko de kaemasu ka?','Where can I buy a ticket?'],
+    ['go','🌙','Last train','終電は何時ですか？','Shuuden wa nanji desu ka?','What time is the last train?'],
+    ['go','🚆','Kyoto Station?','これは京都駅に行きますか？','Kore wa Kyouto-eki ni ikimasu ka?','Does this go to Kyoto Station?'],
+    ['go','🚉','Osaka Station?','これは大阪駅に行きますか？','Kore wa Oosaka-eki ni ikimasu ka?','Does this go to Osaka Station?'],
+    ['go','📞','Call a taxi','タクシーを呼んでください。','Takushii o yonde kudasai.','Please call a taxi.'],
+    ['go','📍','Take me here','この住所までお願いします。','Kono juusho made onegai shimasu.','Please take me to this address. Show the address on your phone.'],
+    ['go','🛑','Stop here','ここで止めてください。','Koko de tomete kudasai.','Please stop here.'],
+    ['air','🧳','Baggage claim','手荷物受取所はどこですか？','Tenimotsu uketorijo wa doko desu ka?','Where is baggage claim?'],
+    ['air','🎫','Check-in','チェックインカウンターはどこですか？','Chekkuin kauntaa wa doko desu ka?','Where is the check-in counter?'],
+    ['air','🛫','My gate','搭乗口はどこですか？','Toujouguchi wa doko desu ka?','Where is my boarding gate?'],
+    ['air','💴','Money exchange','両替所はどこですか？','Ryougaejo wa doko desu ka?','Where can I exchange money?'],
+    ['air','🚆','Train station','電車の駅はどこですか？','Densha no eki wa doko desu ka?','Where is the train station?'],
+    ['air','🚌','Bus stop','バス乗り場はどこですか？','Basu noriba wa doko desu ka?','Where is the bus stop?'],
+    ['air','🚕','Taxi stand','タクシー乗り場はどこですか？','Takushii noriba wa doko desu ka?','Where is the taxi stand?'],
+    ['air','⏰','Missed my flight','飛行機に乗り遅れました。','Hikouki ni noriokuremashita.','I missed my flight.'],
+    ['help','🆘','Help me','すみません、助けてください。','Sumimasen, tasukete kudasai.','Excuse me, please help me.'],
+    ['help','🤒','I feel sick','具合が悪いです。助けてください。','Guai ga warui desu. Tasukete kudasai.','I feel sick. Please help me.'],
+    ['help','🚑','Ambulance','救急車を呼んでください。','Kyuukyuusha o yonde kudasai.','Please call an ambulance.'],
+    ['help','🚓','Police','警察を呼んでください。','Keisatsu o yonde kudasai.','Please call the police.'],
+    ['help','🏥','Hospital','病院はどこですか？','Byouin wa doko desu ka?','Where is a hospital?'],
+    ['help','💊','Need medicine','薬が欲しいです。','Kusuri ga hoshii desu.','I need medicine.'],
+    ['help','♿','Wheelchair','車いすをお願いします。','Kuruma-isu o onegai shimasu.','A wheelchair, please.'],
+    ['help','🛂','Lost passport','パスポートをなくしました。','Pasupooto o nakushimashita.','I lost my passport.'],
+    ['help','👛','Lost wallet','財布をなくしました。','Saifu o nakushimashita.','I lost my wallet.'],
+    ['help','📱','Lost phone','スマホをなくしました。','Sumaho o nakushimashita.','I lost my phone.'],
+    ['help','🧳','Lost bag','かばんをなくしました。','Kaban o nakushimashita.','I lost my bag.'],
+    ['help','🧒','Lost child','子どもがいなくなりました。助けてください。','Kodomo ga inaku narimashita. Tasukete kudasai.','My child is missing. Please help me.']];
+  var ASKC=[['basics','Basics','👋'],['where','Where is&hellip;?','📍'],['shop','Shopping','🛍️'],['eat','Eating out','🍜'],['sights','Sights','🎡'],['go','Getting around','🚆'],['air','Airport','✈️'],['help','Help','🆘']];
+  var askCat='basics'; try{ var sc=localStorage.getItem('kixAskCat'); if(sc&&ASKC.some(function(c){return c[0]===sc;})) askCat=sc; }catch(e){}
+  var askT=$('askTiles'), askC=$('askCats');
+  function jaVoices(){ try{ return window.speechSynthesis.getVoices().filter(function(v){return /^ja/i.test(v.lang);}); }catch(e){ return []; } }
+  function canSpeak(){ try{ if(!('speechSynthesis' in window)||typeof SpeechSynthesisUtterance==='undefined') return false; var all=window.speechSynthesis.getVoices(); return !all.length||jaVoices().length>0; }catch(e){ return false; } }
+  function speakJp(txt){ try{ var ss=window.speechSynthesis; ss.cancel(); var u=new SpeechSynthesisUtterance(txt); u.lang='ja-JP'; u.rate=0.85; var vs=jaVoices(); if(vs.length) u.voice=vs[0]; ss.speak(u); }catch(e){} }
+  try{ window.speechSynthesis.getVoices(); window.speechSynthesis.addEventListener('voiceschanged',function(){}); }catch(e){}
+  function paintAsk(){
+    [].forEach.call(askC.children,function(b){ b.setAttribute('aria-pressed',b.getAttribute('data-c')===askCat?'true':'false'); });
+    askT.textContent=''; var n=0;
+    ASK.filter(function(a){return a[0]===askCat;}).forEach(function(a){
+      var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n++%3);
+      var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=a[1];
+      var tx=document.createElement('span'); tx.className='tx'; tx.textContent=a[2];
+      b.appendChild(ic); b.appendChild(tx);
+      b.addEventListener('click',function(){
+        var h='<p class="jp"></p><p class="rom"></p><p class="en2"></p>'+(canSpeak()?'<p><button type="button" class="big" id="playJp" style="width:100%;font-size:1.15rem">&#128266; Play</button></p>':'');
+        openInfo(a[1],'Show this, or play it',h,b);
+        var q=shB.querySelectorAll('p'); q[0].textContent=a[3]; q[1].textContent=a[4]; q[2].textContent=a[5];
+        var pb=$('playJp'); if(pb) pb.addEventListener('click',function(){ speakJp(a[3]); });
+      });
+      askT.appendChild(b);
+    });
+  }
+  ASKC.forEach(function(c){
+    var b=document.createElement('button'); b.type='button'; b.setAttribute('data-c',c[0]); var ci=document.createElement('span'); ci.className='ci'; ci.setAttribute('aria-hidden','true'); ci.textContent=c[2]; var cl=document.createElement('span'); cl.innerHTML=c[1]; b.appendChild(ci); b.appendChild(cl);
+    b.addEventListener('click',function(){ askCat=c[0]; try{localStorage.setItem('kixAskCat',c[0]);}catch(e){} paintAsk(); });
+    askC.appendChild(b);
+  });
+  paintAsk();
+  /* Help: two screens (phrases, then phone numbers) */
+  (function(){
+    var hp1=$('hp1'), hp2=$('hp2'), htrack=$('htrack'), hpager=$('hpager'), hpage=0, hTimer=null;
+    function hslide(p){
+      hpage=p; if(hTimer){ clearTimeout(hTimer); hTimer=null; }
+      var pn=document.querySelector('.panels'); if(pn) pn.scrollTop=0;
+      var on=p?hp2:hp1, off=p?hp1:hp2;
+      on.classList.remove('off'); on.removeAttribute('aria-hidden'); on.inert=false;
+      off.setAttribute('aria-hidden','true'); off.inert=true;
+      htrack.style.transform='translateX('+(p?'-100%':'0')+')';
+      hTimer=setTimeout(function(){ off.classList.add('off'); hTimer=null; },320);
+    }
+    hp2.inert=true;
+    $('hnav1').appendChild(pill('pgnext','\u2192','Phone numbers','Emergency, airport, help line',function(){ hslide(1); }));
+    $('hnav2').appendChild(pill('pgback','\u2190','Back','Say it in Japanese',function(){ hslide(0); }));
+    var sx=0, sy=0, on=false;
+    hpager.addEventListener('touchstart',function(e){ if(e.touches.length!==1){on=false;return;} on=true; sx=e.touches[0].clientX; sy=e.touches[0].clientY; },{passive:true});
+    hpager.addEventListener('touchend',function(e){
+      if(!on) return; on=false; var t=e.changedTouches[0], dx=t.clientX-sx, dy=t.clientY-sy;
+      if(Math.abs(dx)>60 && Math.abs(dx)>1.6*Math.abs(dy)){ if(dx<0 && hpage===0) hslide(1); else if(dx>0 && hpage===1) hslide(0); }
+    },{passive:true});
+  })();
+  /* send this guide */
+  if(navigator.share){
+    $('shareCard').hidden=false;
+    $('shareBtn').addEventListener('click',function(){ try{ navigator.share({title:'Kansai Airport Pocket Guide',url:location.origin+location.pathname+'?src=share'}); }catch(e){} });
+  }
+  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; });
+  window.addEventListener('appinstalled',function(){ pgTrack('pg_installed',{via:'browser'}); markInstalled(); if(!inst.hidden) closeSheet(); });
+  /* analytics: taps only (see PG_BOOT). One delegated listener, so tiles need no code of their own. */
+  var AUTO_INSTALL_SHEET=true;
+  var instVia='help';
+  function tabNow(){ var p=document.querySelector('.panel:not([hidden])'); return p?p.id.replace('p-',''):''; }
+  function whereNow(){ return ((!sheet.hidden&&shT.textContent)||tabNow()).replace(/^[^A-Za-z0-9]+/,''); }
+  function bare(h){ return String(h||'').replace(/^www\./,''); }
+  function linkEv(a){
+    var h=a.getAttribute('href')||''; if(!h||h.charAt(0)==='#'||a.hasAttribute('data-sp')) return;
+    if(/^tel:/i.test(h)){ var d=h.replace(/^tel:/i,'').replace(/[^0-9+]/g,''); var nm={'119':'fire_ambulance','110':'police','+81724566160':'tourist_info','+815038162787':'help_line'}; pgTrack('pg_call',{dest:nm[d]||d,where:whereNow()}); return; }
+    if(/^mailto:/i.test(h)) return;
+    if(/(^|\s)sponsored(\s|$)/.test(a.getAttribute('rel')||'')){ pgTrack('pg_partner',{partner:a.textContent,host:a.hostname,where:whereNow()}); return; }
+    if(a.hostname&&bare(a.hostname)!==bare(location.hostname)&&a.hostname!=='packsmartapp.com'){ pgTrack('pg_outbound',{host:a.hostname,where:whereNow()}); return; }
+    pgTrack('pg_internal',{path:a.pathname,where:whereNow()});
+  }
+  document.addEventListener('click',function(e){
+    var el=e.target&&e.target.closest?e.target.closest('a,button'):null; if(!el) return;
+    if(el.tagName==='A'){ linkEv(el); return; }
+    var id=el.id||'', tab=tabNow(), tx;
+    if(el.getAttribute('role')==='tab'&&el.getAttribute('data-tab')){ pgTrack('pg_tab',{tab:el.getAttribute('data-tab')}); return; }
+    if(el.classList.contains('tile')){
+      if(el.classList.contains('more')){ pgTrack('pg_slide',{tab:tab,to:el.classList.contains('pgnext')?'more':'back'}); return; }
+      tx=el.querySelector('.tx'); var lab=el.getAttribute('data-id')||(tx?tx.textContent:'');
+      if(el.closest('#askTiles')) pgTrack('pg_phrase',{cat:askCat,item:lab});
+      else pgTrack('pg_tile',{tab:tab,item:lab,terminal:term});
+      return;
+    }
+    if(el.hasAttribute('data-t')&&el.closest('.seg')){ pgTrack('pg_terminal',{terminal:el.getAttribute('data-t'),from:tab}); return; }
+    if(el.hasAttribute('data-c')&&el.closest('#askCats')){ pgTrack('pg_phrase_cat',{cat:el.getAttribute('data-c')}); return; }
+    if(el.hasAttribute('data-d')){ pgTrack('pg_dep_view',{view:el.getAttribute('data-d')}); return; }
+    if(el.classList.contains('stp')){ tx=el.querySelector('b'); pgTrack('pg_step',{tab:tab,step:tx?tx.textContent:'',done:el.getAttribute('aria-pressed')==='true'?1:0}); return; }
+    if(id==='playJp'){ var en=shB.querySelector('.en2'); pgTrack('pg_play',{item:en?en.textContent:''}); return; }
+    if(id==='shareBtn'){ pgTrack('pg_share',{}); return; }
+    if(id==='instGo'){ pgTrack('pg_install_tap',{}); return; }
+    if(id==='instLater'){ pgTrack('pg_install_later',{}); return; }
+    if(id==='instDone'){ pgTrack('pg_install_claimed',{}); return; }
+  });
+  (function(){
+    var n=parseInt(flag('pgVisits')||'0',10)+1; flag('pgVisits',String(n));
+    var sp=new URLSearchParams(location.search), src=(sp.get('src')||'').replace(/[^a-z0-9_-]/gi,'').slice(0,20);
+    if(src&&!flag('pgSrc')) flag('pgSrc',src);
+    var ref=''; try{ if(document.referrer){ var rh=bare(new URL(document.referrer).hostname); ref=(rh===bare(location.hostname)||rh==='packsmartapp.com')?'packsmartapp.com':rh; } }catch(e){}
+    pgTrack('pg_open',{os:isIOS?'ios':isAnd?'android':'desktop',src:src,src_first:flag('pgSrc')||'',ref:ref,visit:Math.min(n,20),online:navigator.onLine?1:0,lang:(navigator.language||'').slice(0,5).toLowerCase()});
+    if(standalone&&!flag('pgApp')){ flag('pgApp','1'); pgTrack('pg_first_app_open',{os:isIOS?'ios':isAnd?'android':'desktop'}); }
+  })();
+  /* transparency line + off switch */
+  (function(){
+    var po=$('pgOpt'); if(!po) return;
+    function paintOpt(){ if(window.pgDnt){ po.textContent='Counting is off (your browser asks sites not to track).'; po.removeAttribute('href'); } else { po.textContent=flag('pgOff')==='1'?'Turn counting back on':'Turn off counting'; } }
+    po.addEventListener('click',function(e){ e.preventDefault(); if(window.pgDnt) return; if(flag('pgOff')==='1'){ flag('pgOff','0'); } else { flag('pgOff','1'); flag('pgQ','[]'); } paintOpt(); });
+    paintOpt();
+  })();
+  /* the one sponsor slot (off unless SPONSOR is set in the generator) */
+  (function(){
+    var SP=null, box=$('sponsor'); if(!SP||!box||!/^https:\/\//.test(SP.url)) return;
+    var a=document.createElement('a'); a.href=SP.url; a.target='_blank'; a.rel='sponsored nofollow noopener'; a.className='spon-a'; a.setAttribute('data-sp','1');
+    var l=document.createElement('span'); l.className='spon-l'; l.textContent='Sponsor';
+    var b=document.createElement('b'); b.textContent=SP.brand;
+    var s=document.createElement('span'); s.className='spon-t'; s.textContent=SP.line;
+    var c=document.createElement('span'); c.className='spon-c'; c.textContent=SP.cta||'Learn more';
+    a.appendChild(l); a.appendChild(b); a.appendChild(s); a.appendChild(c); box.appendChild(a);
+    function vis(){ box.hidden=!navigator.onLine; } vis(); window.addEventListener('online',vis); window.addEventListener('offline',vis);
+    a.addEventListener('click',function(){ pgTrack('pg_sponsor_click',{brand:SP.id,slot:'find_bottom'}); });
+    if('IntersectionObserver' in window){ var seen=false; new IntersectionObserver(function(en){ if(en[0].isIntersecting&&!seen&&!box.hidden){ seen=true; pgTrack('pg_sponsor_view',{brand:SP.id,slot:'find_bottom'}); } },{threshold:0.5}).observe(box); }
+  })();
+  
+  refresh();
+  if(needed()&&!flag('kixIntro')&&AUTO_INSTALL_SHEET){ flag('kixIntro','1'); setTimeout(function(){ if(sheet.hidden&&inst.hidden){ instVia='auto'; openInst(); } },700); }
+})();
+</script>
+</body>
+</html>
