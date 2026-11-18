@@ -1005,7 +1005,7 @@ head = "\n".join([
     "        <h1>%s</h1>" % esc(H1),
     '        <div class="meta">Airport Guide • Japan · 8 min read</div>',
     HERO_CTA,
-    ('        <div style="position:absolute;left:12px;right:12px;bottom:8px;font-size:0.7rem;opacity:0.7;text-align:center;">Illustrative image of Haneda Airport.</div>' if HERO_URL else ''),
+    ('        <div style="position:absolute;left:12px;right:12px;bottom:8px;font-size:0.7rem;opacity:0.7;text-align:center;">Photo: PAKUTASO. Illustrative image of the Haneda Airport Terminal 3 departure hall.</div>' if HERO_URL else ''),
     "</div>",
     "",
     '    <div class="content">',
