@@ -1413,7 +1413,7 @@ POCKET_HTML = """<!DOCTYPE html>
 <meta name="theme-color" content="#1a1a3e">
 <link rel="manifest" href="/haneda-pocket.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="apple-touch-icon" href="/images/haneda-apple-touch-180.png">
+<link rel="apple-touch-icon" href="/images/haneda-apple-touch-v2-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Haneda">
@@ -1794,8 +1794,8 @@ POCKET_HTML = """<!DOCTYPE html>
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/haneda-sw.js',{scope:'/haneda-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
-      .then(function(){ return caches.has('haneda-pocket-v2'); })
-      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('haneda-pocket-v2').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .then(function(){ return caches.has('haneda-pocket-v3'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('haneda-pocket-v3').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
       .catch(function(){ paint(); });
   }
   /* install help: shown first, in the person's own phone type */
@@ -2000,9 +2000,9 @@ if re.search(r"\b(India|Indian|INR|Rs\.?|rupee|lakh|Aadhaar|UPI|VFS|BLS)\b|₹",
     die("neutral-rule violation in the pocket guide")
 
 POCKET_SW = """/* Haneda Pocket Guide service worker. Bump V when the page changes shape. */
-var V='haneda-pocket-v2';
+var V='haneda-pocket-v3';
 var PAGE='/haneda-pocket';
-var SHELL=[PAGE,'/haneda-pocket.webmanifest','/favicon-32.png','/images/haneda-icon-192.png','/images/haneda-icon-512.png','/images/haneda-icon-maskable-512.png'];
+var SHELL=[PAGE,'/haneda-pocket.webmanifest','/favicon-32.png','/images/haneda-icon-v2-192.png','/images/haneda-icon-v2-512.png','/images/haneda-icon-v2-maskable-512.png'];
 self.addEventListener('install',function(e){
   e.waitUntil(caches.open(V).then(function(c){return c.addAll(SHELL);}).then(function(){return self.skipWaiting();}));
 });
@@ -2051,13 +2051,13 @@ POCKET_MANIFEST = json.dumps({
     "theme_color": "#1a1a3e",
     "lang": "en",
     "icons": [
-        {"src": "/images/haneda-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-        {"src": "/images/haneda-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
-        {"src": "/images/haneda-icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
+        {"src": "/images/haneda-icon-v2-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+        {"src": "/images/haneda-icon-v2-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+        {"src": "/images/haneda-icon-v2-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"},
     ],
 }, indent=2) + "\n"
 PUB = os.path.join(ROOT, "public")
-for _ic in ("haneda-icon-192.png", "haneda-icon-512.png", "haneda-icon-maskable-512.png", "haneda-apple-touch-180.png"):
+for _ic in ("haneda-icon-v2-192.png", "haneda-icon-v2-512.png", "haneda-icon-v2-maskable-512.png", "haneda-apple-touch-v2-180.png"):
     if not os.path.isfile(os.path.join(PUB, "images", _ic)):
         die("pocket guide icon missing: public/images/" + _ic + " (the service worker would fail to install without it)")
 for _name, _content in (("haneda-pocket.html", POCKET_HTML), ("haneda-sw.js", POCKET_SW), ("haneda-pocket.webmanifest", POCKET_MANIFEST)):

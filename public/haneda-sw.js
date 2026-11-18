@@ -1,7 +1,7 @@
 /* Haneda Pocket Guide service worker. Bump V when the page changes shape. */
-var V='haneda-pocket-v2';
+var V='haneda-pocket-v3';
 var PAGE='/haneda-pocket';
-var SHELL=[PAGE,'/haneda-pocket.webmanifest','/favicon-32.png','/images/haneda-icon-192.png','/images/haneda-icon-512.png','/images/haneda-icon-maskable-512.png'];
+var SHELL=[PAGE,'/haneda-pocket.webmanifest','/favicon-32.png','/images/haneda-icon-v2-192.png','/images/haneda-icon-v2-512.png','/images/haneda-icon-v2-maskable-512.png'];
 self.addEventListener('install',function(e){
   e.waitUntil(caches.open(V).then(function(c){return c.addAll(SHELL);}).then(function(){return self.skipWaiting();}));
 });
