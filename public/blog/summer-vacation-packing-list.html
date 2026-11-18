@@ -462,11 +462,86 @@
     <a class="share-btn pinterest" href="https://pinterest.com/pin/create/button/?url=https%3A//www.packsmartapp.com/blog/summer-vacation-packing-list&media=https%3A//images.unsplash.com/photo-1469854523086-cc02fe5d8800%3Fw%3D1200%26h%3D600%26fit%3Dcrop%26auto%3Dformat%26q%3D75&description=Summer%20Vacation%20Packing%20List%202026%3A%20Beach%2C%20Mountain%20%26amp%3B%20Travel%20Checklist" target="_blank" rel="noopener" title="Pinterest"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
     <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/summer-vacation-packing-list').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
-<h2>The Summer Packing Challenge</h2>
+<style>
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+#the-summer-packing-challenge,#summer-clothing-for-hot,#summer-footwear-essentials,#critical-sun-protection,#summer-electronics-tech-gear,#travel-size-toiletries,#summer-health-kit,#beach-vs-city-summer,#essential-summer-travel-documents,#packing-strategy-for-hot,#the-ultimate-summer-vacation,#what-not-to-pack,#summer-travel-tips-hacks,#frequently-asked-questions{scroll-margin-top:var(--psn-off,150px)}
+.psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0;font-family:"DM Sans",sans-serif}
+.psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
+.psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
+.psn-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}
+.psn-tile{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:14px 14px 12px;text-decoration:none!important;color:#0f0f23!important;transition:border-color .15s,box-shadow .15s}
+.psn-tile:hover,.psn-tile:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25)}
+.psn-tile .em{font-size:1.6rem;line-height:1.1;margin-bottom:4px}
+.psn-tile b{font-size:1.02rem}
+.psn-tile small{color:#666;font-size:.82rem}
+.psn-now details{margin-top:12px}
+.psn-now summary{cursor:pointer;font-weight:700;color:#0a8f78;font-size:.95rem;padding:6px 0}
+.psn-now ol{columns:2;column-gap:24px;margin:8px 0 0;padding-left:1.3rem;font-size:.92rem;list-style:decimal}
+.psn-now li{margin:0 0 6px;break-inside:avoid}
+.psn-now li a{color:#0f0f23}
+@media (max-width:600px){.psn-now ol{columns:1}}
+#psnBar{position:fixed;left:0;right:0;top:var(--psn-top,64px);z-index:40;background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #e9f3f0;padding:10px 0;transform:translateY(-130%);visibility:hidden;transition:transform .25s ease-out,visibility .25s}
+#psnBar.on{transform:none;visibility:visible}
+#psnBar .in{max-width:800px;margin:0 auto;padding:0 20px;display:flex;gap:8px;align-items:center}
+#psnBar .rail{flex:1;min-width:0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:center}
+#psnBar .rail::-webkit-scrollbar{display:none}
+#psnBar .chip{flex:none;text-decoration:none;font-weight:700;font-size:.92rem;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 14px;white-space:nowrap;transition:background .15s,border-color .15s}
+#psnBar .chip:hover{border-color:#00C9A7}
+#psnBar .chip.cur{background:#00C9A7;border-color:#00C9A7}
+#psnBar .up{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-family:inherit}
+@media (max-width:600px){.psn-now ol{columns:1}}
+@media print{#psnBar{display:none!important}}
+</style>
+<div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p><div class="psn-tiles"><a class="psn-tile" href="#summer-clothing-for-hot" data-psn="tile-summer-clothing-for-hot"><span class="em">&#128085;</span><b>Clothing</b><small>For hot weather</small></a><a class="psn-tile" href="#summer-footwear-essentials" data-psn="tile-summer-footwear-essentials"><span class="em">&#129406;</span><b>Footwear</b><small>Summer shoes</small></a><a class="psn-tile" href="#critical-sun-protection" data-psn="tile-critical-sun-protection"><span class="em">&#9728;&#65039;</span><b>Sun protection</b><small>Critical items</small></a><a class="psn-tile" href="#beach-vs-city-summer" data-psn="tile-beach-vs-city-summer"><span class="em">&#127958;&#65039;</span><b>Beach or city</b><small>How to pack</small></a><a class="psn-tile" href="#the-ultimate-summer-vacation" data-psn="tile-the-ultimate-summer-vacation"><span class="em">&#9989;</span><b>Checklist</b><small>Tick it off</small></a><a class="psn-tile" href="#summer-travel-tips-hacks" data-psn="tile-summer-travel-tips-hacks"><span class="em">&#128161;</span><b>Tips and hacks</b><small>Pack smarter</small></a></div>
+<details><summary>See all 14 sections</summary><ol><li><a href="#the-summer-packing-challenge" data-psn="list-the-summer-packing-challenge">The Summer Packing Challenge</a></li><li><a href="#summer-clothing-for-hot" data-psn="list-summer-clothing-for-hot">Summer Clothing for Hot Weather</a></li><li><a href="#summer-footwear-essentials" data-psn="list-summer-footwear-essentials">Summer Footwear Essentials</a></li><li><a href="#critical-sun-protection" data-psn="list-critical-sun-protection">Critical Sun Protection</a></li><li><a href="#summer-electronics-tech-gear" data-psn="list-summer-electronics-tech-gear">Summer Electronics &amp; Tech Gear</a></li><li><a href="#travel-size-toiletries" data-psn="list-travel-size-toiletries">Travel-Size Toiletries</a></li><li><a href="#summer-health-kit" data-psn="list-summer-health-kit">Summer Health Kit</a></li><li><a href="#beach-vs-city-summer" data-psn="list-beach-vs-city-summer">Beach vs. City Summer Packing</a></li><li><a href="#essential-summer-travel-documents" data-psn="list-essential-summer-travel-documents">Essential Summer Travel Documents &amp; Money</a></li><li><a href="#packing-strategy-for-hot" data-psn="list-packing-strategy-for-hot">Packing Strategy for Hot Weather</a></li><li><a href="#the-ultimate-summer-vacation" data-psn="list-the-ultimate-summer-vacation">The Ultimate Summer Vacation Packing Checklist</a></li><li><a href="#what-not-to-pack" data-psn="list-what-not-to-pack">What NOT to Pack for Summer Vacation</a></li><li><a href="#summer-travel-tips-hacks" data-psn="list-summer-travel-tips-hacks">Summer Travel Tips &amp; Hacks</a></li><li><a href="#frequently-asked-questions" data-psn="list-frequently-asked-questions">Frequently Asked Questions</a></li></ol></details></div>
+<div id="psnBar" role="navigation" aria-label="Jump to a section"><div class="in"><button type="button" class="up" aria-label="Back to the top of the page" data-psn="up">&uarr;</button><div class="rail"><a class="chip" href="#summer-clothing-for-hot" data-id="summer-clothing-for-hot" data-psn="chip-summer-clothing-for-hot">Clothing</a><a class="chip" href="#summer-footwear-essentials" data-id="summer-footwear-essentials" data-psn="chip-summer-footwear-essentials">Footwear</a><a class="chip" href="#critical-sun-protection" data-id="critical-sun-protection" data-psn="chip-critical-sun-protection">Sun</a><a class="chip" href="#summer-electronics-tech-gear" data-id="summer-electronics-tech-gear" data-psn="chip-summer-electronics-tech-gear">Tech</a><a class="chip" href="#travel-size-toiletries" data-id="travel-size-toiletries" data-psn="chip-travel-size-toiletries">Toiletries</a><a class="chip" href="#summer-health-kit" data-id="summer-health-kit" data-psn="chip-summer-health-kit">Health</a><a class="chip" href="#beach-vs-city-summer" data-id="beach-vs-city-summer" data-psn="chip-beach-vs-city-summer">Beach or city</a><a class="chip" href="#essential-summer-travel-documents" data-id="essential-summer-travel-documents" data-psn="chip-essential-summer-travel-documents">Documents</a><a class="chip" href="#packing-strategy-for-hot" data-id="packing-strategy-for-hot" data-psn="chip-packing-strategy-for-hot">Strategy</a><a class="chip" href="#the-ultimate-summer-vacation" data-id="the-ultimate-summer-vacation" data-psn="chip-the-ultimate-summer-vacation">Checklist</a><a class="chip" href="#what-not-to-pack" data-id="what-not-to-pack" data-psn="chip-what-not-to-pack">Skip</a><a class="chip" href="#summer-travel-tips-hacks" data-id="summer-travel-tips-hacks" data-psn="chip-summer-travel-tips-hacks">Tips</a><a class="chip" href="#frequently-asked-questions" data-id="frequently-asked-questions" data-psn="chip-frequently-asked-questions">FAQ</a></div></div></div>
+<script>
+(function(){
+  var bar=document.getElementById('psnBar'); if(!bar) return;
+  var rail=bar.querySelector('.rail'), chips=[].slice.call(rail.querySelectorAll('.chip')), nav=document.getElementById('nav');
+  var ids=chips.map(function(c){return c.getAttribute('data-id')}), cur=null, tick=false;
+  function ev(a){ try{ if(window.gtag) gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname}); }catch(e){} }
+  function setTop(){ var h=nav?Math.round(nav.getBoundingClientRect().bottom):64; if(h<0||h>140) h=64; document.documentElement.style.setProperty('--psn-top',h+'px'); document.documentElement.style.setProperty('--psn-off',(h+84)+'px'); }
+  function off(){ return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-off'),10)||156; }
+  function current(){ var y=window.pageYOffset+260, c=null; ids.forEach(function(id){ var e=document.getElementById(id); if(e&&e.getBoundingClientRect().top+window.pageYOffset<=y) c=id; }); return c; }
+  function paint(){
+    tick=false;
+    var box=document.getElementById('contents'), on=box?box.getBoundingClientRect().bottom<(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-top'),10)||64):window.pageYOffset>520;
+    bar.classList.toggle('on',on);
+    var c=on?current():null;
+    if(c===cur) return; cur=c;
+    chips.forEach(function(a){
+      var is=a.getAttribute('data-id')===c; a.classList.toggle('cur',is);
+      if(is){ a.setAttribute('aria-current','true'); var t=a.offsetLeft-rail.offsetLeft-rail.clientWidth/2+a.offsetWidth/2; if(Math.abs(rail.scrollLeft-t)>8) rail.scrollTo({left:t}); } else a.removeAttribute('aria-current');
+    });
+  }
+  function req(){ if(!tick){ tick=true; requestAnimationFrame(paint); } }
+  window.addEventListener('scroll',req,{passive:true}); window.addEventListener('resize',function(){ setTop(); req(); });
+  setTop(); paint();
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function jump(id){
+    var t=document.getElementById(id); if(!t) return false;
+    function pos(){ return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-off()); }
+    try{ window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'}); }catch(e){ window.scrollTo(0,pos()); }
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+    function fix(){ if(Math.abs(t.getBoundingClientRect().top-off())>8){ try{ window.scrollTo({top:pos(),behavior:'auto'}); }catch(e){ window.scrollTo(0,pos()); } } }
+    setTimeout(fix,1000); setTimeout(fix,2200);
+    return true;
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-psn]'); if(!a) return;
+    var k=a.getAttribute('data-psn'); ev(k);
+    if(k==='up'){ try{ window.scrollTo({top:0,behavior:calm?'auto':'smooth'}); }catch(x){ window.scrollTo(0,0); } return; }
+    var h=a.getAttribute('href'); if(h&&h.charAt(0)==='#'&&jump(h.slice(1))) e.preventDefault();
+  });
+})();
+</script>
+<h2 id="the-summer-packing-challenge">The Summer Packing Challenge</h2>
         <p>Summer vacations conjure images of sunlit beaches, vibrant cities, and outdoor adventures. Yet preparing for hot-weather travel presents unique challenges: balancing minimal luggage with maximum comfort, protecting yourself from intense UV rays, and packing electronics that won't overheat. The solution isn't mysterious—it's understanding what summer weather demands and packing strategically to meet those needs.</p>
         <p>This comprehensive summer vacation packing list covers every scenario: beach getaways, city exploration, mountain hikes, and everything between. Whether you're traveling to Mediterranean coasts, tropical islands, or desert destinations, you'll find practical guidance organized by category with expert tips to keep your luggage light, your skin protected, and your vacation stress-free.</p>
 
-        <h2>Summer Clothing for Hot Weather</h2>
+        <h2 id="summer-clothing-for-hot">Summer Clothing for Hot Weather</h2>
         <p>Hot-weather clothing prioritizes breathability, sun protection, and quick drying. The key is choosing versatile pieces that work across multiple climates and occasions.</p>
 
 <figure style="margin:28px 0;text-align:center;">
@@ -500,7 +575,7 @@
             <strong>Pro Tip:</strong> Choose a color palette of 2-3 coordinating colors. This ensures all tops match all bottoms, multiplying outfit combinations while reducing items needed.
         </div>
 
-        <h2>Summer Footwear Essentials</h2>
+        <h2 id="summer-footwear-essentials">Summer Footwear Essentials</h2>
         <p>Summer travel demands multiple shoe types, but strategic choices prevent overpacking.</p>
 
 <figure style="margin:28px 0;text-align:center;">
@@ -519,7 +594,7 @@
             <strong>Important:</strong> Break in walking sandals before departure. Blisters on vacation are preventable misery. Pack blister treatment just in case.
         </div>
 
-        <h2>Critical Sun Protection</h2>
+        <h2 id="critical-sun-protection">Critical Sun Protection</h2>
         <p>UV damage accumulates rapidly in summer sun. Quality sun protection isn't optional—it's essential for health and vacation enjoyment.</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Travelling with kids this summer? See our <a href="/blog/family-summer-vacation-packing-list" style="color:#00C9A7;text-decoration:underline;">family summer vacation packing list</a>.</p>
         <ul>
@@ -533,7 +608,7 @@
             <li><strong>Lightweight scarf or neck gaiter:</strong> Doubles as sun protection and can cover shoulders on overly air-conditioned tours.</li>
         </ul>
 
-        <h2>Summer Electronics & Tech Gear</h2>
+        <h2 id="summer-electronics-tech-gear">Summer Electronics & Tech Gear</h2>
         <p>Heat and electronics don't mix, but smart packing protects devices while keeping you connected.</p>
         <ul>
             <li><strong>Waterproof phone case:</strong> Even if not swimming, sand damages electronics. A waterproof case costs $10-20 and protects expensive phones.</li>
@@ -549,7 +624,7 @@
             <strong>Pro Tip:</strong> In extreme heat, keep electronics in shaded areas and avoid leaving phones in direct sun. Overheating causes permanent battery damage.
         </div>
 
-        <h2>Travel-Size Toiletries</h2>
+        <h2 id="travel-size-toiletries">Travel-Size Toiletries</h2>
         <p>Pack essentials in travel sizes; buy specialty items at your destination if needed.</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Planning a summer getaway? Check our guides for <a href="/blog/italy-travel-packing-guide" style="color:#00C9A7;text-decoration:underline;">Italy</a>, <a href="/blog/spain-travel-packing-guide" style="color:#00C9A7;text-decoration:underline;">Spain</a>, and <a href="/blog/portugal-travel-packing-guide" style="color:#00C9A7;text-decoration:underline;">Portugal</a> — perfect summer destinations.</p>
         <ul>
@@ -567,7 +642,7 @@
             <li><strong>Basic first aid:</strong> Bandages, antibiotic ointment, and blister treatment.</li>
         </ul>
 
-        <h2>Summer Health Kit</h2>
+        <h2 id="summer-health-kit">Summer Health Kit</h2>
         <p>Heat and travel present specific health challenges. This focused kit addresses summer-specific concerns.</p>
         <ul>
             <li><strong>Insect repellent (DEET-based):</strong> Tropical and warm-weather destinations have mosquitoes. DEET-based repellents are most effective.</li>
@@ -579,7 +654,7 @@
             <li><strong>Hydration gel or tablets:</strong> If hiking or engaging in strenuous activities in heat.</li>
         </ul>
 
-        <h2>Beach vs. City Summer Packing</h2>
+        <h2 id="beach-vs-city-summer">Beach vs. City Summer Packing</h2>
 
         <h3>Beach-Focused Summer Trips</h3>
         <p>Emphasize water-friendly gear: multiple swimsuits, quick-dry clothes, waterproof protection, and beach-specific items.</p>
@@ -605,7 +680,7 @@
             <li>Hat for sun protection during long walking days</li>
         </ul>
 
-        <h2>Essential Summer Travel Documents & Money</h2>
+        <h2 id="essential-summer-travel-documents">Essential Summer Travel Documents & Money</h2>
         <p>Financial and legal preparedness prevents vacation disruptions.</p>
         <ul>
             <li><strong>Passport (check 6+ month validity):</strong> Many countries require 6 months validity beyond your departure date.</li>
@@ -617,7 +692,7 @@
             <li><strong>Emergency contact numbers:</strong> Printed list including embassy contact information.</li>
         </ul>
 
-        <h2>Packing Strategy for Hot Weather</h2>
+        <h2 id="packing-strategy-for-hot">Packing Strategy for Hot Weather</h2>
         <p>Summer packing follows specific principles that maximize space and minimize weight.</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;"><a href="/flights" style="color:#00C9A7;text-decoration:underline;">Book flights</a> for your summer holiday.</p>
         <ul>
@@ -630,7 +705,7 @@
             <li><strong>Fill shoes with socks:</strong> Maximize empty shoe space for small items like chargers or medications.</li>
         </ul>
 
-        <h2>The Ultimate Summer Vacation Packing Checklist</h2>
+        <h2 id="the-ultimate-summer-vacation">The Ultimate Summer Vacation Packing Checklist</h2>
         <p>Print this checklist and mark off items as you pack:</p>
         <table class="checklist-table">
             <thead>
@@ -694,7 +769,7 @@
             </tbody>
         </table>
 
-        <h2>What NOT to Pack for Summer Vacation</h2>
+        <h2 id="what-not-to-pack">What NOT to Pack for Summer Vacation</h2>
         <p>These items create problems in hot weather:</p>
         <ul>
             <li><strong>Heavy or thick fabrics:</strong> Denim, wool, and heavy cotton absorb sweat and heat. Stick to linen, cotton blends, and synthetics.</li>
@@ -707,7 +782,7 @@
             <li><strong>Bulky beach items:</strong> Buy cheap flip-flops, floats, and beach toys at your destination instead of packing them.</li>
         </ul>
 
-        <h2>Summer Travel Tips & Hacks</h2>
+        <h2 id="summer-travel-tips-hacks">Summer Travel Tips & Hacks</h2>
         <p>These strategies enhance comfort and convenience:</p>
 
 <figure style="margin:28px 0;text-align:center;">
@@ -736,7 +811,7 @@
     <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/summer-vacation-packing-list').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
 <div class="faq-section" style="margin:50px 0 30px;padding:30px 0;border-top:2px solid #f0f0f0;">
-<h2 style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
+<h2 id="frequently-asked-questions" style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
 <details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
   <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">What should I pack for a summer vacation?</summary>
   <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Pack light, breathable clothing in neutral colors; multiple swimsuits; reef-safe sunscreen (SPF 50+); a wide-brimmed hat and sunglasses; quick-dry towels; waterproof phone pouch; lightweight dresses or shorts; one casual evening outfit; sandals and flip-flops; travel-size toiletries; and electronics like a power bank. Prioritize lightweight fabrics like cotton, linen, and synthetic blends that dry quickly and breathe well.</div>

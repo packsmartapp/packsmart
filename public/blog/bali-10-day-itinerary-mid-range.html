@@ -316,7 +316,82 @@
     </p>
 
     <!-- Quick Budget Overview -->
-    <h2>Quick Budget Overview: 10 Days in Bali</h2>
+    <style>
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+#budget-overview,#itinerary,#esim,#day-1,#day-2,#day-3,#day-4,#day-5,#day-6,#day-7,#day-8,#day-9,#day-10,#where-to-stay,#food,#apps,#best-time,#faq,#rent-car{scroll-margin-top:var(--psn-off,150px)}
+.psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0;font-family:"DM Sans",sans-serif}
+.psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
+.psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
+.psn-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}
+.psn-tile{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:14px 14px 12px;text-decoration:none!important;color:#0f0f23!important;transition:border-color .15s,box-shadow .15s}
+.psn-tile:hover,.psn-tile:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25)}
+.psn-tile .em{font-size:1.6rem;line-height:1.1;margin-bottom:4px}
+.psn-tile b{font-size:1.02rem}
+.psn-tile small{color:#666;font-size:.82rem}
+.psn-now details{margin-top:12px}
+.psn-now summary{cursor:pointer;font-weight:700;color:#0a8f78;font-size:.95rem;padding:6px 0}
+.psn-now ol{columns:2;column-gap:24px;margin:8px 0 0;padding-left:1.3rem;font-size:.92rem;list-style:decimal}
+.psn-now li{margin:0 0 6px;break-inside:avoid}
+.psn-now li a{color:#0f0f23}
+@media (max-width:600px){.psn-now ol{columns:1}}
+#psnBar{position:fixed;left:0;right:0;top:var(--psn-top,64px);z-index:40;background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #e9f3f0;padding:10px 0;transform:translateY(-130%);visibility:hidden;transition:transform .25s ease-out,visibility .25s}
+#psnBar.on{transform:none;visibility:visible}
+#psnBar .in{max-width:800px;margin:0 auto;padding:0 20px;display:flex;gap:8px;align-items:center}
+#psnBar .rail{flex:1;min-width:0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:center}
+#psnBar .rail::-webkit-scrollbar{display:none}
+#psnBar .chip{flex:none;text-decoration:none;font-weight:700;font-size:.92rem;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 14px;white-space:nowrap;transition:background .15s,border-color .15s}
+#psnBar .chip:hover{border-color:#00C9A7}
+#psnBar .chip.cur{background:#00C9A7;border-color:#00C9A7}
+#psnBar .up{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-family:inherit}
+@media (max-width:600px){.psn-now ol{columns:1}}
+@media print{#psnBar{display:none!important}}
+</style>
+<div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p><div class="psn-tiles"><a class="psn-tile" href="#budget-overview" data-psn="tile-budget-overview"><span class="em">&#128176;</span><b>Quick budget</b><small>10 days at a glance</small></a><a class="psn-tile" href="#esim" data-psn="tile-esim"><span class="em">&#128241;</span><b>Get an eSIM</b><small>Before you fly</small></a><a class="psn-tile" href="#itinerary" data-psn="tile-itinerary"><span class="em">&#129517;</span><b>Day by day</b><small>Ubud to Nusa Penida</small></a><a class="psn-tile" href="#where-to-stay" data-psn="tile-where-to-stay"><span class="em">&#128716;</span><b>Where to stay</b><small>Mid-range picks</small></a><a class="psn-tile" href="#food" data-psn="tile-food"><span class="em">&#128154;</span><b>What to eat</b><small>Bali food guide</small></a><a class="psn-tile" href="#best-time" data-psn="tile-best-time"><span class="em">&#9728;&#65039;</span><b>Best time</b><small>Seasons and weather</small></a></div>
+<details><summary>See all 19 sections</summary><ol><li><a href="#budget-overview" data-psn="list-budget-overview">Quick budget overview</a></li><li><a href="#itinerary" data-psn="list-itinerary">The route: Ubud to Nusa Penida</a></li><li><a href="#esim" data-psn="list-esim">Before you go: get an eSIM</a></li><li><a href="#day-1" data-psn="list-day-1">Day 1: Ubud arrival and Monkey Forest</a></li><li><a href="#day-2" data-psn="list-day-2">Day 2: Ubud rice terraces and waterfalls</a></li><li><a href="#day-3" data-psn="list-day-3">Day 3: Ubud temples and art</a></li><li><a href="#day-4" data-psn="list-day-4">Day 4: Seminyak and Canggu beaches</a></li><li><a href="#day-5" data-psn="list-day-5">Day 5: Canggu surfing and Tanah Lot</a></li><li><a href="#day-6" data-psn="list-day-6">Day 6: Uluwatu cliffs and hidden beaches</a></li><li><a href="#day-7" data-psn="list-day-7">Day 7: Uluwatu and Jimbaran</a></li><li><a href="#day-8" data-psn="list-day-8">Day 8: Nusa Penida west coast</a></li><li><a href="#day-9" data-psn="list-day-9">Day 9: Nusa Penida east coast and snorkelling</a></li><li><a href="#day-10" data-psn="list-day-10">Day 10: Nusa Penida and departure</a></li><li><a href="#where-to-stay" data-psn="list-where-to-stay">Where to stay: mid-range picks</a></li><li><a href="#food" data-psn="list-food">What to eat: a quick Bali food guide</a></li><li><a href="#apps" data-psn="list-apps">Essential apps</a></li><li><a href="#best-time" data-psn="list-best-time">Best time to visit</a></li><li><a href="#faq" data-psn="list-faq">Frequently asked questions</a></li><li><a href="#rent-car" data-psn="list-rent-car">Rent a car in Bali</a></li></ol></details></div>
+<div id="psnBar" role="navigation" aria-label="Jump to a section"><div class="in"><button type="button" class="up" aria-label="Back to the top of the page" data-psn="up">&uarr;</button><div class="rail"><a class="chip" href="#budget-overview" data-id="budget-overview" data-psn="chip-budget-overview">Budget</a><a class="chip" href="#itinerary" data-id="itinerary" data-psn="chip-itinerary">Route</a><a class="chip" href="#esim" data-id="esim" data-psn="chip-esim">eSIM</a><a class="chip" href="#day-1" data-id="day-1" data-psn="chip-day-1">Day 1</a><a class="chip" href="#day-2" data-id="day-2" data-psn="chip-day-2">Day 2</a><a class="chip" href="#day-3" data-id="day-3" data-psn="chip-day-3">Day 3</a><a class="chip" href="#day-4" data-id="day-4" data-psn="chip-day-4">Day 4</a><a class="chip" href="#day-5" data-id="day-5" data-psn="chip-day-5">Day 5</a><a class="chip" href="#day-6" data-id="day-6" data-psn="chip-day-6">Day 6</a><a class="chip" href="#day-7" data-id="day-7" data-psn="chip-day-7">Day 7</a><a class="chip" href="#day-8" data-id="day-8" data-psn="chip-day-8">Day 8</a><a class="chip" href="#day-9" data-id="day-9" data-psn="chip-day-9">Day 9</a><a class="chip" href="#day-10" data-id="day-10" data-psn="chip-day-10">Day 10</a><a class="chip" href="#where-to-stay" data-id="where-to-stay" data-psn="chip-where-to-stay">Stay</a><a class="chip" href="#food" data-id="food" data-psn="chip-food">Food</a><a class="chip" href="#apps" data-id="apps" data-psn="chip-apps">Apps</a><a class="chip" href="#best-time" data-id="best-time" data-psn="chip-best-time">When</a><a class="chip" href="#faq" data-id="faq" data-psn="chip-faq">FAQ</a></div></div></div>
+<script>
+(function(){
+  var bar=document.getElementById('psnBar'); if(!bar) return;
+  var rail=bar.querySelector('.rail'), chips=[].slice.call(rail.querySelectorAll('.chip')), nav=document.getElementById('nav');
+  var ids=chips.map(function(c){return c.getAttribute('data-id')}), cur=null, tick=false;
+  function ev(a){ try{ if(window.gtag) gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname}); }catch(e){} }
+  function setTop(){ var h=nav?Math.round(nav.getBoundingClientRect().bottom):64; if(h<0||h>140) h=64; document.documentElement.style.setProperty('--psn-top',h+'px'); document.documentElement.style.setProperty('--psn-off',(h+84)+'px'); }
+  function off(){ return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-off'),10)||156; }
+  function current(){ var y=window.pageYOffset+260, c=null; ids.forEach(function(id){ var e=document.getElementById(id); if(e&&e.getBoundingClientRect().top+window.pageYOffset<=y) c=id; }); return c; }
+  function paint(){
+    tick=false;
+    var box=document.getElementById('contents'), on=box?box.getBoundingClientRect().bottom<(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-top'),10)||64):window.pageYOffset>520;
+    bar.classList.toggle('on',on);
+    var c=on?current():null;
+    if(c===cur) return; cur=c;
+    chips.forEach(function(a){
+      var is=a.getAttribute('data-id')===c; a.classList.toggle('cur',is);
+      if(is){ a.setAttribute('aria-current','true'); var t=a.offsetLeft-rail.offsetLeft-rail.clientWidth/2+a.offsetWidth/2; if(Math.abs(rail.scrollLeft-t)>8) rail.scrollTo({left:t}); } else a.removeAttribute('aria-current');
+    });
+  }
+  function req(){ if(!tick){ tick=true; requestAnimationFrame(paint); } }
+  window.addEventListener('scroll',req,{passive:true}); window.addEventListener('resize',function(){ setTop(); req(); });
+  setTop(); paint();
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function jump(id){
+    var t=document.getElementById(id); if(!t) return false;
+    function pos(){ return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-off()); }
+    try{ window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'}); }catch(e){ window.scrollTo(0,pos()); }
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+    function fix(){ if(Math.abs(t.getBoundingClientRect().top-off())>8){ try{ window.scrollTo({top:pos(),behavior:'auto'}); }catch(e){ window.scrollTo(0,pos()); } } }
+    setTimeout(fix,1000); setTimeout(fix,2200);
+    return true;
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-psn]'); if(!a) return;
+    var k=a.getAttribute('data-psn'); ev(k);
+    if(k==='up'){ try{ window.scrollTo({top:0,behavior:calm?'auto':'smooth'}); }catch(x){ window.scrollTo(0,0); } return; }
+    var h=a.getAttribute('href'); if(h&&h.charAt(0)==='#'&&jump(h.slice(1))) e.preventDefault();
+  });
+})();
+</script>
+<h2 id="budget-overview">Quick Budget Overview: 10 Days in Bali</h2>
 
     <table class="checklist-table">
         <thead>
@@ -353,7 +428,7 @@
 
     <!-- THE ROUTE -->
 
-<h2>The Route: Ubud &rarr; Seminyak &rarr; Uluwatu &rarr; Nusa Penida</h2>
+<h2 id="itinerary">The Route: Ubud &rarr; Seminyak &rarr; Uluwatu &rarr; Nusa Penida</h2>
 
     <p>This itinerary flows from the cultural interior to the coast and out to the islands. Each base gives you a completely different Bali experience.</p>
 
@@ -469,7 +544,7 @@
 </div>
 
 <!-- eSIM callout -->
-<h2>Before You Go: Get an eSIM</h2>
+<h2 id="esim">Before You Go: Get an eSIM</h2>
 <p>Roaming can get expensive, and hunting for a local SIM after a long flight is nobody&rsquo;s idea of a holiday. Install an eSIM before you fly and you have data the moment you land, for maps, Grab rides and hotel check-ins.</p>
 <div data-ps-placement="airalo-bali-itinerary" style="max-width:800px;margin:24px auto;padding:22px 24px;background:#f0faf7;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:12px;">
   <picture>
@@ -489,7 +564,7 @@
 
 <!-- DAY 1 -->
     <div class="day-card">
-        <h3>Day 1: Ubud &mdash; Arrival &amp; Monkey Forest</h3>
+        <h3 id="day-1">Day 1: Ubud &mdash; Arrival &amp; Monkey Forest</h3>
         <span class="day-budget">Est. cost: $60&ndash;$100</span>
 
         <h4>&#127749; Morning: Arrive &amp; settle in</h4>
@@ -539,7 +614,7 @@
 
 <!-- DAY 2 -->
     <div class="day-card">
-        <h3>Day 2: Ubud &mdash; Rice Terraces &amp; Waterfalls</h3>
+        <h3 id="day-2">Day 2: Ubud &mdash; Rice Terraces &amp; Waterfalls</h3>
         <span class="day-budget">Est. cost: $70&ndash;$120</span>
 
         <h4>&#127749; Morning: Tegallalang Rice Terraces</h4>
@@ -559,7 +634,7 @@
 
     <!-- DAY 3 -->
     <div class="day-card">
-        <h3>Day 3: Ubud &mdash; Temples &amp; Art</h3>
+        <h3 id="day-3">Day 3: Ubud &mdash; Temples &amp; Art</h3>
         <span class="day-budget">Est. cost: $55&ndash;$90</span>
 
         <h4>&#127749; Morning: Tirta Empul Water Temple</h4>
@@ -582,7 +657,7 @@
 
 <!-- DAY 4 -->
     <div class="day-card">
-        <h3>Day 4: Seminyak / Canggu &mdash; Beach Culture</h3>
+        <h3 id="day-4">Day 4: Seminyak / Canggu &mdash; Beach Culture</h3>
         <span class="day-budget">Est. cost: $80&ndash;$140</span>
 
         <h4>&#127749; Morning: Transfer to Seminyak &amp; brunch</h4>
@@ -602,7 +677,7 @@
 
     <!-- DAY 5 -->
     <div class="day-card">
-        <h3>Day 5: Canggu &mdash; Surfing &amp; Tanah Lot</h3>
+        <h3 id="day-5">Day 5: Canggu &mdash; Surfing &amp; Tanah Lot</h3>
         <span class="day-budget">Est. cost: $65&ndash;$110</span>
 
         <h4>&#127749; Morning: Surf lesson at Batu Bolong</h4>
@@ -651,7 +726,7 @@
 
 <!-- DAY 6 -->
     <div class="day-card">
-        <h3>Day 6: Uluwatu &mdash; Cliffs &amp; Hidden Beaches</h3>
+        <h3 id="day-6">Day 6: Uluwatu &mdash; Cliffs &amp; Hidden Beaches</h3>
         <span class="day-budget">Est. cost: $75&ndash;$130</span>
 
         <h4>&#127749; Morning: Transfer to Uluwatu</h4>
@@ -671,7 +746,7 @@
 
     <!-- DAY 7 -->
     <div class="day-card">
-        <h3>Day 7: Uluwatu &mdash; Jimbaran &amp; Beach Day</h3>
+        <h3 id="day-7">Day 7: Uluwatu &mdash; Jimbaran &amp; Beach Day</h3>
         <span class="day-budget">Est. cost: $65&ndash;$110</span>
 
         <h4>&#127749; Morning: Sunday&rsquo;s Beach Club or Sundays</h4>
@@ -694,7 +769,7 @@
 
     <!-- DAY 8 -->
     <div class="day-card">
-        <h3>Day 8: Nusa Penida &mdash; Arrival &amp; West Coast</h3>
+        <h3 id="day-8">Day 8: Nusa Penida &mdash; Arrival &amp; West Coast</h3>
         <span class="day-budget">Est. cost: $80&ndash;$130</span>
 
         <h4>&#9992;&#65039; Morning: Fast boat to Nusa Penida</h4>
@@ -714,7 +789,7 @@
 
     <!-- DAY 9 -->
     <div class="day-card">
-        <h3>Day 9: Nusa Penida &mdash; East Coast &amp; Snorkeling</h3>
+        <h3 id="day-9">Day 9: Nusa Penida &mdash; East Coast &amp; Snorkeling</h3>
         <span class="day-budget">Est. cost: $70&ndash;$120</span>
 
         <h4>&#127749; Morning: Angel&rsquo;s Billabong &amp; Broken Beach</h4>
@@ -733,7 +808,7 @@
 
     <!-- DAY 10 -->
     <div class="day-card">
-        <h3>Day 10: Nusa Penida &mdash; Diamond Beach &amp; Departure</h3>
+        <h3 id="day-10">Day 10: Nusa Penida &mdash; Diamond Beach &amp; Departure</h3>
         <span class="day-budget">Est. cost: $60&ndash;$100</span>
 
         <h4>&#127749; Morning: Diamond Beach &amp; Atuh Beach</h4>
@@ -756,7 +831,7 @@
     </p>
 
     <!-- WHERE TO STAY -->
-    <h2>Where to Stay: Mid-Range Picks</h2>
+    <h2 id="where-to-stay">Where to Stay: Mid-Range Picks</h2>
 
     <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">
         <a href="/blog/minimalist-packing-guide" style="color:#00C9A7;text-decoration:underline;">Master minimalist packing</a> — fit 10 days into carry-on with our smart packing framework.
@@ -784,7 +859,7 @@
     </div>
 
     <!-- FOOD GUIDE -->
-    <h2>What to Eat: A Quick Bali Food Guide</h2>
+    <h2 id="food">What to Eat: A Quick Bali Food Guide</h2>
 
     <table class="checklist-table">
         <thead>
@@ -811,7 +886,7 @@
     </figure>
 
     <!-- APPS -->
-    <h2>Essential Apps for Bali</h2>
+    <h2 id="apps">Essential Apps for Bali</h2>
 
     <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">
         <a href="/blog/travel-insurance-guide" style="color:#00C9A7;text-decoration:underline;">Get travel insurance for Bali</a> — covers medical emergencies, trip cancellation, and adventure activities.
@@ -837,7 +912,7 @@
     </table>
 
     <!-- Best Time to Visit -->
-    <h2>Best Time to Visit Bali</h2>
+    <h2 id="best-time">Best Time to Visit Bali</h2>
 
     <div class="weather-grid">
         <div class="weather-card">
@@ -860,7 +935,7 @@
 
     <!-- FAQ -->
 <div class="faq-section" style="margin:50px 0 30px;padding:30px 0;border-top:2px solid #f0f0f0;">
-<h2 style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
+<h2 id="faq" style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
 
     <details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
   <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">How much does a 10-day trip to Bali cost mid-range?</summary>
@@ -925,7 +1000,7 @@
 
 <!-- DiscoverCars Car Rental Widget -->
 <div data-ps-placement="discovercars-bali-itinerary" style="max-width: 800px; margin: 40px auto; padding: 35px 30px 22px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
-<h3 style="margin: 0 0 14px 0; color: #0f0f23; font-size: 1.3rem;">Rent a Car in Bali</h3>
+<h3 id="rent-car" style="margin: 0 0 14px 0; color: #0f0f23; font-size: 1.3rem;">Rent a Car in Bali</h3>
     <style>.ps-dc-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 14px 0;}.ps-dc-lab{font-size:0.85rem;font-weight:600;color:#0f0f23;margin-right:2px;}.ps-dc-chip{font:inherit;font-size:0.86rem;line-height:1.2;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 12px;cursor:pointer;transition:border-color .15s,box-shadow .15s,background .15s;}.ps-dc-chip:hover,.ps-dc-chip:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25);outline:none;}.ps-dc-chip.on{background:#00C9A7;border-color:#00C9A7;color:#fff;font-weight:600;}.ps-dc-mount{min-height:362px;}</style>
     <p style="margin: 0 0 10px 0; color: #444; font-size: 0.95rem; line-height: 1.7;">Taxis and ride-hailing cover Seminyak and Ubud, but a car helps for the north, the east coast and temple day trips. Bali drives on the left and traffic can be heavy, so renting suits confident drivers; many visitors hire a car with a driver instead.</p>
     <p style="margin: 0 0 16px 0; color: #666; font-size: 0.95rem; line-height: 1.7;">Pick-up is set to Ngurah Rai Airport; change it in the box if you need another spot. Carry your driving licence plus an International Driving Permit where the rules require one, and check the rental company's rules before you book.</p>

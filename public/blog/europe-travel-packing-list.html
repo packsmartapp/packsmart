@@ -626,7 +626,82 @@
     <a class="share-btn pinterest" href="https://pinterest.com/pin/create/button/?url=https%3A//www.packsmartapp.com/blog/europe-travel-packing-list&media=https%3A//images.unsplash.com/photo-1491557345352-5929e343eb89%3Fw%3D1200%26h%3D600%26fit%3Dcrop%26auto%3Dformat%26q%3D75&description=Europe%20Travel%20Packing%20List" target="_blank" rel="noopener" title="Pinterest"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
     <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/europe-travel-packing-list').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
-<h2>Why Europe Requires Smarter Packing</h2>
+<style>
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+#why-europe-requires-smarter,#europe-packing-by-season,#clothing-essentials-for-european,#footwear-the-1-priority,#documents-money-critical-essentials,#electronics-adapters,#toiletries-travel-size-is,#what-not-to-pack,#city-specific-packing-tips,#carry-on-only-packing,#complete-europe-packing-checklist,#frequently-asked-questions{scroll-margin-top:var(--psn-off,150px)}
+.psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0;font-family:"DM Sans",sans-serif}
+.psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
+.psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
+.psn-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}
+.psn-tile{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:14px 14px 12px;text-decoration:none!important;color:#0f0f23!important;transition:border-color .15s,box-shadow .15s}
+.psn-tile:hover,.psn-tile:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25)}
+.psn-tile .em{font-size:1.6rem;line-height:1.1;margin-bottom:4px}
+.psn-tile b{font-size:1.02rem}
+.psn-tile small{color:#666;font-size:.82rem}
+.psn-now details{margin-top:12px}
+.psn-now summary{cursor:pointer;font-weight:700;color:#0a8f78;font-size:.95rem;padding:6px 0}
+.psn-now ol{columns:2;column-gap:24px;margin:8px 0 0;padding-left:1.3rem;font-size:.92rem;list-style:decimal}
+.psn-now li{margin:0 0 6px;break-inside:avoid}
+.psn-now li a{color:#0f0f23}
+@media (max-width:600px){.psn-now ol{columns:1}}
+#psnBar{position:fixed;left:0;right:0;top:var(--psn-top,64px);z-index:40;background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #e9f3f0;padding:10px 0;transform:translateY(-130%);visibility:hidden;transition:transform .25s ease-out,visibility .25s}
+#psnBar.on{transform:none;visibility:visible}
+#psnBar .in{max-width:800px;margin:0 auto;padding:0 20px;display:flex;gap:8px;align-items:center}
+#psnBar .rail{flex:1;min-width:0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:center}
+#psnBar .rail::-webkit-scrollbar{display:none}
+#psnBar .chip{flex:none;text-decoration:none;font-weight:700;font-size:.92rem;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 14px;white-space:nowrap;transition:background .15s,border-color .15s}
+#psnBar .chip:hover{border-color:#00C9A7}
+#psnBar .chip.cur{background:#00C9A7;border-color:#00C9A7}
+#psnBar .up{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-family:inherit}
+@media (max-width:600px){.psn-now ol{columns:1}}
+@media print{#psnBar{display:none!important}}
+</style>
+<div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p><div class="psn-tiles"><a class="psn-tile" href="#europe-packing-by-season" data-psn="tile-europe-packing-by-season"><span class="em">&#9728;&#65039;</span><b>By season</b><small>Weather to expect</small></a><a class="psn-tile" href="#clothing-essentials-for-european" data-psn="tile-clothing-essentials-for-european"><span class="em">&#128085;</span><b>Clothing</b><small>What to wear</small></a><a class="psn-tile" href="#footwear-the-1-priority" data-psn="tile-footwear-the-1-priority"><span class="em">&#129406;</span><b>Footwear</b><small>Get this right</small></a><a class="psn-tile" href="#documents-money-critical-essentials" data-psn="tile-documents-money-critical-essentials"><span class="em">&#128196;</span><b>Documents and money</b><small>Critical essentials</small></a><a class="psn-tile" href="#electronics-adapters" data-psn="tile-electronics-adapters"><span class="em">&#128187;</span><b>Tech and adapters</b><small>Plugs and chargers</small></a><a class="psn-tile" href="#complete-europe-packing-checklist" data-psn="tile-complete-europe-packing-checklist"><span class="em">&#9989;</span><b>Full checklist</b><small>Tick it off</small></a></div>
+<details><summary>See all 12 sections</summary><ol><li><a href="#why-europe-requires-smarter" data-psn="list-why-europe-requires-smarter">Why Europe Requires Smarter Packing</a></li><li><a href="#europe-packing-by-season" data-psn="list-europe-packing-by-season">Europe Packing by Season: Weather &amp; What to Expect</a></li><li><a href="#clothing-essentials-for-european" data-psn="list-clothing-essentials-for-european">Clothing Essentials for European Travel</a></li><li><a href="#footwear-the-1-priority" data-psn="list-footwear-the-1-priority">Footwear: The #1 Priority</a></li><li><a href="#documents-money-critical-essentials" data-psn="list-documents-money-critical-essentials">Documents &amp; Money: Critical Essentials</a></li><li><a href="#electronics-adapters" data-psn="list-electronics-adapters">Electronics &amp; Adapters</a></li><li><a href="#toiletries-travel-size-is" data-psn="list-toiletries-travel-size-is">Toiletries: Travel-Size Is Your Friend</a></li><li><a href="#what-not-to-pack" data-psn="list-what-not-to-pack">What NOT to Pack for Europe</a></li><li><a href="#city-specific-packing-tips" data-psn="list-city-specific-packing-tips">City-Specific Packing Tips</a></li><li><a href="#carry-on-only-packing" data-psn="list-carry-on-only-packing">Carry-On Only Packing for Europe: Why It Works</a></li><li><a href="#complete-europe-packing-checklist" data-psn="list-complete-europe-packing-checklist">Complete Europe Packing Checklist</a></li><li><a href="#frequently-asked-questions" data-psn="list-frequently-asked-questions">Frequently Asked Questions</a></li></ol></details></div>
+<div id="psnBar" role="navigation" aria-label="Jump to a section"><div class="in"><button type="button" class="up" aria-label="Back to the top of the page" data-psn="up">&uarr;</button><div class="rail"><a class="chip" href="#europe-packing-by-season" data-id="europe-packing-by-season" data-psn="chip-europe-packing-by-season">Seasons</a><a class="chip" href="#clothing-essentials-for-european" data-id="clothing-essentials-for-european" data-psn="chip-clothing-essentials-for-european">Clothing</a><a class="chip" href="#footwear-the-1-priority" data-id="footwear-the-1-priority" data-psn="chip-footwear-the-1-priority">Footwear</a><a class="chip" href="#documents-money-critical-essentials" data-id="documents-money-critical-essentials" data-psn="chip-documents-money-critical-essentials">Documents</a><a class="chip" href="#electronics-adapters" data-id="electronics-adapters" data-psn="chip-electronics-adapters">Tech</a><a class="chip" href="#toiletries-travel-size-is" data-id="toiletries-travel-size-is" data-psn="chip-toiletries-travel-size-is">Toiletries</a><a class="chip" href="#what-not-to-pack" data-id="what-not-to-pack" data-psn="chip-what-not-to-pack">Skip</a><a class="chip" href="#city-specific-packing-tips" data-id="city-specific-packing-tips" data-psn="chip-city-specific-packing-tips">Cities</a><a class="chip" href="#carry-on-only-packing" data-id="carry-on-only-packing" data-psn="chip-carry-on-only-packing">Carry-on</a><a class="chip" href="#complete-europe-packing-checklist" data-id="complete-europe-packing-checklist" data-psn="chip-complete-europe-packing-checklist">Checklist</a><a class="chip" href="#frequently-asked-questions" data-id="frequently-asked-questions" data-psn="chip-frequently-asked-questions">FAQ</a></div></div></div>
+<script>
+(function(){
+  var bar=document.getElementById('psnBar'); if(!bar) return;
+  var rail=bar.querySelector('.rail'), chips=[].slice.call(rail.querySelectorAll('.chip')), nav=document.getElementById('nav');
+  var ids=chips.map(function(c){return c.getAttribute('data-id')}), cur=null, tick=false;
+  function ev(a){ try{ if(window.gtag) gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname}); }catch(e){} }
+  function setTop(){ var h=nav?Math.round(nav.getBoundingClientRect().bottom):64; if(h<0||h>140) h=64; document.documentElement.style.setProperty('--psn-top',h+'px'); document.documentElement.style.setProperty('--psn-off',(h+84)+'px'); }
+  function off(){ return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-off'),10)||156; }
+  function current(){ var y=window.pageYOffset+260, c=null; ids.forEach(function(id){ var e=document.getElementById(id); if(e&&e.getBoundingClientRect().top+window.pageYOffset<=y) c=id; }); return c; }
+  function paint(){
+    tick=false;
+    var box=document.getElementById('contents'), on=box?box.getBoundingClientRect().bottom<(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-top'),10)||64):window.pageYOffset>520;
+    bar.classList.toggle('on',on);
+    var c=on?current():null;
+    if(c===cur) return; cur=c;
+    chips.forEach(function(a){
+      var is=a.getAttribute('data-id')===c; a.classList.toggle('cur',is);
+      if(is){ a.setAttribute('aria-current','true'); var t=a.offsetLeft-rail.offsetLeft-rail.clientWidth/2+a.offsetWidth/2; if(Math.abs(rail.scrollLeft-t)>8) rail.scrollTo({left:t}); } else a.removeAttribute('aria-current');
+    });
+  }
+  function req(){ if(!tick){ tick=true; requestAnimationFrame(paint); } }
+  window.addEventListener('scroll',req,{passive:true}); window.addEventListener('resize',function(){ setTop(); req(); });
+  setTop(); paint();
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function jump(id){
+    var t=document.getElementById(id); if(!t) return false;
+    function pos(){ return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-off()); }
+    try{ window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'}); }catch(e){ window.scrollTo(0,pos()); }
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+    function fix(){ if(Math.abs(t.getBoundingClientRect().top-off())>8){ try{ window.scrollTo({top:pos(),behavior:'auto'}); }catch(e){ window.scrollTo(0,pos()); } } }
+    setTimeout(fix,1000); setTimeout(fix,2200);
+    return true;
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-psn]'); if(!a) return;
+    var k=a.getAttribute('data-psn'); ev(k);
+    if(k==='up'){ try{ window.scrollTo({top:0,behavior:calm?'auto':'smooth'}); }catch(x){ window.scrollTo(0,0); } return; }
+    var h=a.getAttribute('href'); if(h&&h.charAt(0)==='#'&&jump(h.slice(1))) e.preventDefault();
+  });
+})();
+</script>
+<h2 id="why-europe-requires-smarter">Why Europe Requires Smarter Packing</h2>
         <p>Packing for Europe is fundamentally different from packing for other destinations. You'll navigate historic cobblestone streets in Rome, take trains across borders, pass through museum dress codes, and face unpredictable weather swings. The average European hotel room is 30% smaller than North American accommodations, and train compartments are even tighter.</p>
 
 <figure style="margin:28px 0;text-align:center;">
@@ -635,7 +710,7 @@
 </figure>
         <p>This guide covers everything: seasonal clothing, essential documents, city-specific tips, and the one mistake that will ruin your trip—wrong footwear.</p>
 
-        <h2>Europe Packing by Season: Weather & What to Expect</h2>
+        <h2 id="europe-packing-by-season">Europe Packing by Season: Weather & What to Expect</h2>
         <div class="weather-grid">
             <div class="weather-card">
                 <h4>Spring (Mar–May)</h4>
@@ -660,7 +735,7 @@
             </div>
         </div>
 
-        <h2>Clothing Essentials for European Travel</h2>
+        <h2 id="clothing-essentials-for-european">Clothing Essentials for European Travel</h2>
         <h3>The Foundation: Versatile Layers</h3>
         <p>Europe's weather is notoriously inconsistent. Build an outfit system around neutral colors (black, navy, beige, gray) that mix and match effortlessly. Pack 4–5 tops, 2–3 bottoms, and layer over them.</p>
         <ul>
@@ -675,7 +750,7 @@
             <strong>Pro Tip:</strong> A lightweight scarf is your secret weapon. Wear it as a shawl in museums and churches (dress code enforcement is real), a shoulder wrap when cool, or a light blanket on trains.
         </div>
 
-        <h2>Footwear: The #1 Priority (Get This Wrong, Ruin Your Trip)</h2>
+        <h2 id="footwear-the-1-priority">Footwear: The #1 Priority (Get This Wrong, Ruin Your Trip)</h2>
         <p>Europe means walking. A lot. You'll cover 8–15km per day navigating uneven cobblestones, steep staircases in medieval towns, and endless city neighborhoods. Wrong shoes mean blisters, pain, and ruined experiences.</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Review our <a href="/blog/international-travel-checklist" style="color:#00C9A7;text-decoration:underline;">international travel checklist</a> before your European trip.</p>
         <h3>What to Pack:</h3>
@@ -690,7 +765,7 @@
             <strong>Critical Warning:</strong> Do NOT pack new shoes. Do NOT think you'll "break them in" during your trip. Test-wear any footwear at least 10 times before flying. This single decision determines 80% of trip enjoyment.
         </div>
 
-        <h2>Documents & Money: Critical Essentials</h2>
+        <h2 id="documents-money-critical-essentials">Documents & Money: Critical Essentials</h2>
         <ul>
             <li><strong>Passport:</strong> Valid for 6 months beyond travel dates (required for all borders)</li>
             <li><strong>Schengen visa:</strong> Check requirements by nationality—most US/UK/Canada/AU citizens get 90 days visa-free</li>
@@ -706,7 +781,7 @@
             <strong>Money Tip:</strong> Most of Europe is cashless. Pay by card/phone 80% of the time. ATMs are abundant (€2–3 withdrawal fee). Carry maximum €100 cash as backup.
         </div>
 
-        <h2>Electronics & Adapters</h2>
+        <h2 id="electronics-adapters">Electronics & Adapters</h2>
         <ul>
             <li><strong>Plug adapters:</strong> Type C (standard EU), Type F (Germany/Austria), Type G (UK)—get a universal adapter covering all</li>
             <li><strong>Power bank:</strong> 20,000mAh minimum for day trips (cities are walkable but battery-intensive)</li>
@@ -715,7 +790,7 @@
             <li><strong>Optional:</strong> Portable WiFi hotspot if visiting rural areas</li>
         </ul>
 
-        <h2>Toiletries: Travel-Size Is Your Friend</h2>
+        <h2 id="toiletries-travel-size-is">Toiletries: Travel-Size Is Your Friend</h2>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Need the full list and the liquids rules? See our <a href="/blog/travel-toiletries-checklist" style="color:#00C9A7;text-decoration:underline;">travel toiletries packing list</a>.</p>
         <p>Pack travel-sized toiletries in a clear ziplock (TSA/EASA carry-on requirement). Europe's pharmacies are exceptional—toiletries are actually cheaper there than major US chains.</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Pack smarter with our <a href="/blog/minimalist-packing-guide" style="color:#00C9A7;text-decoration:underline;">minimalist packing guide</a>.</p>
@@ -732,7 +807,7 @@
             <li>Deodorant refills, razors (€2–3)</li>
         </ul>
 
-        <h2>What NOT to Pack for Europe</h2>
+        <h2 id="what-not-to-pack">What NOT to Pack for Europe</h2>
         <h3>Common Packing Mistakes:</h3>
         <ul>
             <li><strong>Too many outfits:</strong> Pack for 7 days of travel with 3–4 clothing items maximum. Laundromats cost €3–8/load.</li>
@@ -743,7 +818,7 @@
             <li><strong>Unnecessary electronics:</strong> Laptop is overkill unless working. Tablet optional.</li>
         </ul>
 
-        <h2>City-Specific Packing Tips</h2>
+        <h2 id="city-specific-packing-tips">City-Specific Packing Tips</h2>
         <h3>Paris</h3>
         <p>Dress code is real. Parisians are stylish. Pack one dressier outfit for museums and restaurants. Closed-toe shoes preferred over sneakers (though younger areas are more casual). Lightweight scarf or cardigan essential year-round. <a href="https://tiqets.tpx.li/uKjDLvNJ" target="_blank" rel="noopener" style="color:#00C9A7;">Book skip-the-line tickets</a> for the Louvre, Eiffel Tower, and Musée d'Orsay to avoid long queues.</p>
 
@@ -765,7 +840,7 @@
         <h3>Amsterdam</h3>
         <p>Casual and practical. Waterproof jacket essential (rain and canal splashes). Comfortable cycling-friendly shoes recommended. Dress code is minimal—style is minimal and functional.</p>
 
-        <h2>Carry-On Only Packing for Europe: Why It Works</h2>
+        <h2 id="carry-on-only-packing">Carry-On Only Packing for Europe: Why It Works</h2>
         <p>Europe is the single best place on Earth to travel carry-on only. Here's why:</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;"><a href="/flights" style="color:#00C9A7;text-decoration:underline;">Find the best flight deals</a> to Europe.</p>
         <ul>
@@ -779,7 +854,7 @@
             <strong>Carry-On Dimensions:</strong> 55x40x20cm (22x16x8in) for most European airlines. Confirm with your specific carrier. Soft-sided bags compress—hardside doesn't. Choose soft.
         </div>
 
-        <h2>Complete Europe Packing Checklist</h2>
+        <h2 id="complete-europe-packing-checklist">Complete Europe Packing Checklist</h2>
         <table class="checklist-table">
             <thead>
                 <tr>
@@ -968,7 +1043,7 @@
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Country-specific lists: our <a href="/blog/germany-travel-packing-guide" style="color:#00C9A7;text-decoration:underline;">Germany packing guide</a> and <a href="/blog/greece-travel-packing-guide" style="color:#00C9A7;text-decoration:underline;">Greece packing guide</a> go deeper on weather, etiquette and budget.</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Planning a specific route? Our <a href="/blog/france-travel-packing-guide" style="color:#00C9A7;text-decoration:underline;">France packing guide</a> and <a href="/blog/spain-travel-packing-guide" style="color:#00C9A7;text-decoration:underline;">Spain packing guide</a> cover France and Spain in the same depth, and our <a href="/blog/italy-7-day-itinerary-mid-range" style="color:#00C9A7;text-decoration:underline;">7-day Rome, Florence and Venice itinerary</a> shows how to put Rome, Florence and Venice together day by day.</p>
 
-<h2 style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
+<h2 id="frequently-asked-questions" style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
 <details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
   <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">What should I pack for a trip to Europe?</summary>
   <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Pack versatile, layerable clothing in neutral colors that mix and match. Include comfortable walking shoes (broken in!), a light waterproof jacket, a scarf (useful for warmth and covering shoulders in churches), a cross-body anti-theft bag, a universal power adapter (Type C for most of Europe), and copies of your passport, insurance, and hotel bookings.</div>

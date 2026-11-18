@@ -462,11 +462,86 @@
     <a class="share-btn pinterest" href="https://pinterest.com/pin/create/button/?url=https%3A//www.packsmartapp.com/blog/family-summer-vacation-packing-list&media=https%3A//images.unsplash.com/photo-1476234251651-f353703a034d%3Fw%3D1200%26h%3D600%26fit%3Dcrop%26auto%3Dformat%26q%3D75&description=Family%20Summer%20Vacation%20Packing%20List%202026%3A%20Complete%20Guide%20for%20Kids%20%26%20Parents" target="_blank" rel="noopener" title="Pinterest"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
     <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/family-summer-vacation-packing-list').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
-<h2>Packing for the Whole Family: A Sanity Saver</h2>
+<style>
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+#packing-for-the-whole,#packing-strategy-for-family,#babies-toddlers-0-2,#young-children-3-8,#tweens-teens-9-17,#universal-family-packing-what,#summer-safety-tips-for,#packing-organization-systems-for,#frequently-asked-questions{scroll-margin-top:var(--psn-off,150px)}
+.psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0;font-family:"DM Sans",sans-serif}
+.psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
+.psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
+.psn-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}
+.psn-tile{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:14px 14px 12px;text-decoration:none!important;color:#0f0f23!important;transition:border-color .15s,box-shadow .15s}
+.psn-tile:hover,.psn-tile:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25)}
+.psn-tile .em{font-size:1.6rem;line-height:1.1;margin-bottom:4px}
+.psn-tile b{font-size:1.02rem}
+.psn-tile small{color:#666;font-size:.82rem}
+.psn-now details{margin-top:12px}
+.psn-now summary{cursor:pointer;font-weight:700;color:#0a8f78;font-size:.95rem;padding:6px 0}
+.psn-now ol{columns:2;column-gap:24px;margin:8px 0 0;padding-left:1.3rem;font-size:.92rem;list-style:decimal}
+.psn-now li{margin:0 0 6px;break-inside:avoid}
+.psn-now li a{color:#0f0f23}
+@media (max-width:600px){.psn-now ol{columns:1}}
+#psnBar{position:fixed;left:0;right:0;top:var(--psn-top,64px);z-index:40;background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #e9f3f0;padding:10px 0;transform:translateY(-130%);visibility:hidden;transition:transform .25s ease-out,visibility .25s}
+#psnBar.on{transform:none;visibility:visible}
+#psnBar .in{max-width:800px;margin:0 auto;padding:0 20px;display:flex;gap:8px;align-items:center}
+#psnBar .rail{flex:1;min-width:0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:center}
+#psnBar .rail::-webkit-scrollbar{display:none}
+#psnBar .chip{flex:none;text-decoration:none;font-weight:700;font-size:.92rem;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 14px;white-space:nowrap;transition:background .15s,border-color .15s}
+#psnBar .chip:hover{border-color:#00C9A7}
+#psnBar .chip.cur{background:#00C9A7;border-color:#00C9A7}
+#psnBar .up{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-family:inherit}
+@media (max-width:600px){.psn-now ol{columns:1}}
+@media print{#psnBar{display:none!important}}
+</style>
+<div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p><div class="psn-tiles"><a class="psn-tile" href="#babies-toddlers-0-2" data-psn="tile-babies-toddlers-0-2"><span class="em">&#128118;</span><b>Babies and toddlers</b><small>Ages 0 to 2</small></a><a class="psn-tile" href="#young-children-3-8" data-psn="tile-young-children-3-8"><span class="em">&#128106;</span><b>Young children</b><small>Ages 3 to 8</small></a><a class="psn-tile" href="#tweens-teens-9-17" data-psn="tile-tweens-teens-9-17"><span class="em">&#128106;</span><b>Tweens and teens</b><small>Ages 9 to 17</small></a><a class="psn-tile" href="#universal-family-packing-what" data-psn="tile-universal-family-packing-what"><span class="em">&#129523;</span><b>Everyone</b><small>Family essentials</small></a><a class="psn-tile" href="#summer-safety-tips-for" data-psn="tile-summer-safety-tips-for"><span class="em">&#128737;&#65039;</span><b>Summer safety</b><small>For children</small></a><a class="psn-tile" href="#packing-organization-systems-for" data-psn="tile-packing-organization-systems-for"><span class="em">&#128221;</span><b>Stay organised</b><small>Packing systems</small></a></div>
+<details><summary>See all 9 sections</summary><ol><li><a href="#packing-for-the-whole" data-psn="list-packing-for-the-whole">Packing for the Whole Family: A Sanity Saver</a></li><li><a href="#packing-strategy-for-family" data-psn="list-packing-strategy-for-family">Packing Strategy for Family Trips</a></li><li><a href="#babies-toddlers-0-2" data-psn="list-babies-toddlers-0-2">Babies &amp; Toddlers (0-2 Years) Packing List</a></li><li><a href="#young-children-3-8" data-psn="list-young-children-3-8">Young Children (3-8 Years) Packing List</a></li><li><a href="#tweens-teens-9-17" data-psn="list-tweens-teens-9-17">Tweens &amp; Teens (9-17 Years) Packing List</a></li><li><a href="#universal-family-packing-what" data-psn="list-universal-family-packing-what">Universal Family Packing: What Every Child &amp; Family Member Needs</a></li><li><a href="#summer-safety-tips-for" data-psn="list-summer-safety-tips-for">Summer Safety Tips for Families with Children</a></li><li><a href="#packing-organization-systems-for" data-psn="list-packing-organization-systems-for">Packing Organization Systems for Families</a></li><li><a href="#frequently-asked-questions" data-psn="list-frequently-asked-questions">Frequently Asked Questions</a></li></ol></details></div>
+<div id="psnBar" role="navigation" aria-label="Jump to a section"><div class="in"><button type="button" class="up" aria-label="Back to the top of the page" data-psn="up">&uarr;</button><div class="rail"><a class="chip" href="#packing-strategy-for-family" data-id="packing-strategy-for-family" data-psn="chip-packing-strategy-for-family">Strategy</a><a class="chip" href="#babies-toddlers-0-2" data-id="babies-toddlers-0-2" data-psn="chip-babies-toddlers-0-2">Babies</a><a class="chip" href="#young-children-3-8" data-id="young-children-3-8" data-psn="chip-young-children-3-8">Ages 3 to 8</a><a class="chip" href="#tweens-teens-9-17" data-id="tweens-teens-9-17" data-psn="chip-tweens-teens-9-17">Teens</a><a class="chip" href="#universal-family-packing-what" data-id="universal-family-packing-what" data-psn="chip-universal-family-packing-what">Everyone</a><a class="chip" href="#summer-safety-tips-for" data-id="summer-safety-tips-for" data-psn="chip-summer-safety-tips-for">Safety</a><a class="chip" href="#packing-organization-systems-for" data-id="packing-organization-systems-for" data-psn="chip-packing-organization-systems-for">Organise</a><a class="chip" href="#frequently-asked-questions" data-id="frequently-asked-questions" data-psn="chip-frequently-asked-questions">FAQ</a></div></div></div>
+<script>
+(function(){
+  var bar=document.getElementById('psnBar'); if(!bar) return;
+  var rail=bar.querySelector('.rail'), chips=[].slice.call(rail.querySelectorAll('.chip')), nav=document.getElementById('nav');
+  var ids=chips.map(function(c){return c.getAttribute('data-id')}), cur=null, tick=false;
+  function ev(a){ try{ if(window.gtag) gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname}); }catch(e){} }
+  function setTop(){ var h=nav?Math.round(nav.getBoundingClientRect().bottom):64; if(h<0||h>140) h=64; document.documentElement.style.setProperty('--psn-top',h+'px'); document.documentElement.style.setProperty('--psn-off',(h+84)+'px'); }
+  function off(){ return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-off'),10)||156; }
+  function current(){ var y=window.pageYOffset+260, c=null; ids.forEach(function(id){ var e=document.getElementById(id); if(e&&e.getBoundingClientRect().top+window.pageYOffset<=y) c=id; }); return c; }
+  function paint(){
+    tick=false;
+    var box=document.getElementById('contents'), on=box?box.getBoundingClientRect().bottom<(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-top'),10)||64):window.pageYOffset>520;
+    bar.classList.toggle('on',on);
+    var c=on?current():null;
+    if(c===cur) return; cur=c;
+    chips.forEach(function(a){
+      var is=a.getAttribute('data-id')===c; a.classList.toggle('cur',is);
+      if(is){ a.setAttribute('aria-current','true'); var t=a.offsetLeft-rail.offsetLeft-rail.clientWidth/2+a.offsetWidth/2; if(Math.abs(rail.scrollLeft-t)>8) rail.scrollTo({left:t}); } else a.removeAttribute('aria-current');
+    });
+  }
+  function req(){ if(!tick){ tick=true; requestAnimationFrame(paint); } }
+  window.addEventListener('scroll',req,{passive:true}); window.addEventListener('resize',function(){ setTop(); req(); });
+  setTop(); paint();
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function jump(id){
+    var t=document.getElementById(id); if(!t) return false;
+    function pos(){ return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-off()); }
+    try{ window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'}); }catch(e){ window.scrollTo(0,pos()); }
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+    function fix(){ if(Math.abs(t.getBoundingClientRect().top-off())>8){ try{ window.scrollTo({top:pos(),behavior:'auto'}); }catch(e){ window.scrollTo(0,pos()); } } }
+    setTimeout(fix,1000); setTimeout(fix,2200);
+    return true;
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-psn]'); if(!a) return;
+    var k=a.getAttribute('data-psn'); ev(k);
+    if(k==='up'){ try{ window.scrollTo({top:0,behavior:calm?'auto':'smooth'}); }catch(x){ window.scrollTo(0,0); } return; }
+    var h=a.getAttribute('href'); if(h&&h.charAt(0)==='#'&&jump(h.slice(1))) e.preventDefault();
+  });
+})();
+</script>
+<h2 id="packing-for-the-whole">Packing for the Whole Family: A Sanity Saver</h2>
         <p>Family summer vacations are magical—creating memories with your children in new places, watching their faces light up at new experiences, building family bonds. But packing for a family with children of multiple ages and needs? That's a different story. Parents often overpack trying to prepare for every scenario, resulting in suitcases too heavy to manage and luggage fees that rival hotel costs.</p>
         <p>This family summer vacation packing list breaks down exactly what to pack for each age group: babies/toddlers, children 3-8 years old, tweens (9-12), and teens (13+). You'll find specific quantities, age-appropriate items, entertainment strategies, sun protection protocols, and medications each age group needs. Follow this guide and you'll pack efficiently without stress, knowing you have everything to keep every family member safe, comfortable, and happy.</p>
 
-        <h2>Packing Strategy for Family Trips</h2>
+        <h2 id="packing-strategy-for-family">Packing Strategy for Family Trips</h2>
         <p>Before diving into specific items, understand the core family packing principle: <strong>less is more</strong>. Most summer destinations have laundry facilities. You can wash clothes every 2-3 days instead of packing enough for each day. This single strategy reduces packing volume by 60%.</p>
 
 <figure style="margin:28px 0;text-align:center;">
@@ -482,7 +557,7 @@
             <li><strong>Separate children's luggage from parent luggage:</strong> When possible, let older children manage their own small travel bag. This teaches responsibility and distributes packing load.</li>
         </ul>
 
-        <h2>Babies & Toddlers (0-2 Years) Packing List</h2>
+        <h2 id="babies-toddlers-0-2">Babies & Toddlers (0-2 Years) Packing List</h2>
         <p>Babies require specific gear and lots of consumables. Budget extra luggage space.</p>
 
 <figure style="margin:28px 0;text-align:center;">
@@ -538,7 +613,7 @@
             <strong>Pro Tip:</strong> Take photos of your baby's car seat installation before traveling. If you need a rental seat at your destination, you'll have reference photos for correct installation.
         </div>
 
-        <h2>Young Children (3-8 Years) Packing List</h2>
+        <h2 id="young-children-3-8">Young Children (3-8 Years) Packing List</h2>
         <p>Kids this age are active, prone to accidents, and have specific preferences that matter to their happiness.</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Explore <a href="/blog/best-summer-travel-destinations-india-2026" style="color:#00C9A7;text-decoration:underline;">best summer destinations</a> for family holiday ideas.</p>
 
@@ -601,7 +676,7 @@
             <strong>Important:</strong> Even if kids are excellent swimmers, bring approved flotation devices for ocean, lakes, or unfamiliar pools. Rip currents and water depth vary; additional flotation prevents panic and water inhalation.
         </div>
 
-        <h2>Tweens & Teens (9-17 Years) Packing List</h2>
+        <h2 id="tweens-teens-9-17">Tweens & Teens (9-17 Years) Packing List</h2>
         <p>Older children appreciate autonomy and want age-appropriate clothing and activities.</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Don't forget items on our <a href="/blog/international-travel-checklist" style="color:#00C9A7;text-decoration:underline;">international travel checklist</a>.</p>
 
@@ -649,7 +724,7 @@
             <li><strong>Retainers or braces supplies:</strong> Cleaning solution, extra rubber bands.</li>
         </ul>
 
-        <h2>Universal Family Packing: What Every Child & Family Member Needs</h2>
+        <h2 id="universal-family-packing-what">Universal Family Packing: What Every Child & Family Member Needs</h2>
         <table class="checklist-table">
             <thead>
                 <tr>
@@ -702,7 +777,7 @@
             </tbody>
         </table>
 
-        <h2>Summer Safety Tips for Families with Children</h2>
+        <h2 id="summer-safety-tips-for">Summer Safety Tips for Families with Children</h2>
         <ul>
             <li><strong>Sun protection is non-negotiable:</strong> Apply sunscreen every 2 hours on every child. Reapply immediately after water activities. Use UPF-protective swim shirts for extended water time.</li>
             <li><strong>Hydration prevents emergencies:</strong> Require children to drink water throughout the day. Dehydration sneaks up, especially with active kids in heat.</li>
@@ -717,7 +792,7 @@
             <strong>Pro Tip:</strong> Create a family packing checklist and assign age-appropriate packing tasks to older children. This teaches responsibility and makes them invested in the trip while reducing parent workload.
         </div>
 
-        <h2>Packing Organization Systems for Families</h2>
+        <h2 id="packing-organization-systems-for">Packing Organization Systems for Families</h2>
         <ul>
             <li><strong>Color-code by child:</strong> Assign each child a color (blue, red, green). Use colored stickers or tape on packing cubes so kids can identify their belongings.</li>
             <li><strong>Individual packing cubes per child:</strong> Each child gets one cube with all their clothing for the trip. They can find items independently.</li>
@@ -737,7 +812,7 @@
     <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/family-summer-vacation-packing-list').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
 <div class="faq-section" style="margin:50px 0 30px;padding:30px 0;border-top:2px solid #f0f0f0;">
-<h2 style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
+<h2 id="frequently-asked-questions" style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
 <details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
   <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">What essentials should I pack for a family summer vacation with children?</summary>
   <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Pack age-appropriate clothing for each child, multiple swimsuits, sun protection (sunscreen SPF 50+, hats, sunglasses), medications (pain relievers, anti-diarrhea, antihistamines), first aid supplies, child-safe entertainment (tablets, books, games), snacks (non-perishable favorites), portable car seat or booster if needed, diaper supplies for babies/toddlers, change of clothes for each child, quick-dry towels, and portable changing mat. Include medicines your kids normally take plus travel-specific items like motion sickness medication.</div>

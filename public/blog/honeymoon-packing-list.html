@@ -462,11 +462,86 @@
     <a class="share-btn pinterest" href="https://pinterest.com/pin/create/button/?url=https%3A//www.packsmartapp.com/blog/honeymoon-packing-list&media=https%3A//images.unsplash.com/photo-1519741497674-611481863552%3Fw%3D1200%26h%3D600%26fit%3Dcrop%26auto%3Dformat%26q%3D75&description=Honeymoon%20Packing%20List%202026%3A%20The%20Complete%20Guide%20for%20Couples" target="_blank" rel="noopener" title="Pinterest"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738.098.119.112.224.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.632-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0z"/></svg></a>
     <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/honeymoon-packing-list').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
-<h2>Planning Your Perfect Honeymoon Getaway</h2>
+<style>
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+#planning-your-perfect-honeymoon,#essential-documents-for-newlyweds,#romantic-intimate-essentials,#clothing-for-couples-photoshoots,#popular-honeymoon-destination-specific,#toiletries-personal-care-for,#electronics-capturing-memories,#what-not-to-pack,#honeymoon-packing-tips,#honeymoon-packing-checklist,#frequently-asked-questions{scroll-margin-top:var(--psn-off,150px)}
+.psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0;font-family:"DM Sans",sans-serif}
+.psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
+.psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
+.psn-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}
+.psn-tile{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:14px 14px 12px;text-decoration:none!important;color:#0f0f23!important;transition:border-color .15s,box-shadow .15s}
+.psn-tile:hover,.psn-tile:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25)}
+.psn-tile .em{font-size:1.6rem;line-height:1.1;margin-bottom:4px}
+.psn-tile b{font-size:1.02rem}
+.psn-tile small{color:#666;font-size:.82rem}
+.psn-now details{margin-top:12px}
+.psn-now summary{cursor:pointer;font-weight:700;color:#0a8f78;font-size:.95rem;padding:6px 0}
+.psn-now ol{columns:2;column-gap:24px;margin:8px 0 0;padding-left:1.3rem;font-size:.92rem;list-style:decimal}
+.psn-now li{margin:0 0 6px;break-inside:avoid}
+.psn-now li a{color:#0f0f23}
+@media (max-width:600px){.psn-now ol{columns:1}}
+#psnBar{position:fixed;left:0;right:0;top:var(--psn-top,64px);z-index:40;background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #e9f3f0;padding:10px 0;transform:translateY(-130%);visibility:hidden;transition:transform .25s ease-out,visibility .25s}
+#psnBar.on{transform:none;visibility:visible}
+#psnBar .in{max-width:800px;margin:0 auto;padding:0 20px;display:flex;gap:8px;align-items:center}
+#psnBar .rail{flex:1;min-width:0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:center}
+#psnBar .rail::-webkit-scrollbar{display:none}
+#psnBar .chip{flex:none;text-decoration:none;font-weight:700;font-size:.92rem;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 14px;white-space:nowrap;transition:background .15s,border-color .15s}
+#psnBar .chip:hover{border-color:#00C9A7}
+#psnBar .chip.cur{background:#00C9A7;border-color:#00C9A7}
+#psnBar .up{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-family:inherit}
+@media (max-width:600px){.psn-now ol{columns:1}}
+@media print{#psnBar{display:none!important}}
+</style>
+<div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p><div class="psn-tiles"><a class="psn-tile" href="#essential-documents-for-newlyweds" data-psn="tile-essential-documents-for-newlyweds"><span class="em">&#128196;</span><b>Documents</b><small>For newlyweds</small></a><a class="psn-tile" href="#romantic-intimate-essentials" data-psn="tile-romantic-intimate-essentials"><span class="em">&#128154;</span><b>Romantic essentials</b><small>Intimate touches</small></a><a class="psn-tile" href="#clothing-for-couples-photoshoots" data-psn="tile-clothing-for-couples-photoshoots"><span class="em">&#128247;</span><b>Photoshoot outfits</b><small>For couples</small></a><a class="psn-tile" href="#popular-honeymoon-destination-specific" data-psn="tile-popular-honeymoon-destination-specific"><span class="em">&#128205;</span><b>By destination</b><small>Where you are going</small></a><a class="psn-tile" href="#electronics-capturing-memories" data-psn="tile-electronics-capturing-memories"><span class="em">&#128187;</span><b>Tech and memories</b><small>Capture the trip</small></a><a class="psn-tile" href="#honeymoon-packing-checklist" data-psn="tile-honeymoon-packing-checklist"><span class="em">&#9989;</span><b>Checklist</b><small>Tick it off</small></a></div>
+<details><summary>See all 11 sections</summary><ol><li><a href="#planning-your-perfect-honeymoon" data-psn="list-planning-your-perfect-honeymoon">Planning Your Perfect Honeymoon Getaway</a></li><li><a href="#essential-documents-for-newlyweds" data-psn="list-essential-documents-for-newlyweds">Essential Documents for Newlyweds</a></li><li><a href="#romantic-intimate-essentials" data-psn="list-romantic-intimate-essentials">Romantic &amp; Intimate Essentials</a></li><li><a href="#clothing-for-couples-photoshoots" data-psn="list-clothing-for-couples-photoshoots">Clothing for Couples Photoshoots</a></li><li><a href="#popular-honeymoon-destination-specific" data-psn="list-popular-honeymoon-destination-specific">Popular Honeymoon Destination-Specific Packing</a></li><li><a href="#toiletries-personal-care-for" data-psn="list-toiletries-personal-care-for">Toiletries &amp; Personal Care for Couples</a></li><li><a href="#electronics-capturing-memories" data-psn="list-electronics-capturing-memories">Electronics &amp; Capturing Memories</a></li><li><a href="#what-not-to-pack" data-psn="list-what-not-to-pack">What NOT to Pack for Your Honeymoon</a></li><li><a href="#honeymoon-packing-tips" data-psn="list-honeymoon-packing-tips">Honeymoon Packing Tips</a></li><li><a href="#honeymoon-packing-checklist" data-psn="list-honeymoon-packing-checklist">Honeymoon Packing Checklist</a></li><li><a href="#frequently-asked-questions" data-psn="list-frequently-asked-questions">Frequently Asked Questions</a></li></ol></details></div>
+<div id="psnBar" role="navigation" aria-label="Jump to a section"><div class="in"><button type="button" class="up" aria-label="Back to the top of the page" data-psn="up">&uarr;</button><div class="rail"><a class="chip" href="#essential-documents-for-newlyweds" data-id="essential-documents-for-newlyweds" data-psn="chip-essential-documents-for-newlyweds">Documents</a><a class="chip" href="#romantic-intimate-essentials" data-id="romantic-intimate-essentials" data-psn="chip-romantic-intimate-essentials">Romantic</a><a class="chip" href="#clothing-for-couples-photoshoots" data-id="clothing-for-couples-photoshoots" data-psn="chip-clothing-for-couples-photoshoots">Outfits</a><a class="chip" href="#popular-honeymoon-destination-specific" data-id="popular-honeymoon-destination-specific" data-psn="chip-popular-honeymoon-destination-specific">By place</a><a class="chip" href="#toiletries-personal-care-for" data-id="toiletries-personal-care-for" data-psn="chip-toiletries-personal-care-for">Toiletries</a><a class="chip" href="#electronics-capturing-memories" data-id="electronics-capturing-memories" data-psn="chip-electronics-capturing-memories">Tech</a><a class="chip" href="#what-not-to-pack" data-id="what-not-to-pack" data-psn="chip-what-not-to-pack">Skip</a><a class="chip" href="#honeymoon-packing-tips" data-id="honeymoon-packing-tips" data-psn="chip-honeymoon-packing-tips">Tips</a><a class="chip" href="#honeymoon-packing-checklist" data-id="honeymoon-packing-checklist" data-psn="chip-honeymoon-packing-checklist">Checklist</a><a class="chip" href="#frequently-asked-questions" data-id="frequently-asked-questions" data-psn="chip-frequently-asked-questions">FAQ</a></div></div></div>
+<script>
+(function(){
+  var bar=document.getElementById('psnBar'); if(!bar) return;
+  var rail=bar.querySelector('.rail'), chips=[].slice.call(rail.querySelectorAll('.chip')), nav=document.getElementById('nav');
+  var ids=chips.map(function(c){return c.getAttribute('data-id')}), cur=null, tick=false;
+  function ev(a){ try{ if(window.gtag) gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname}); }catch(e){} }
+  function setTop(){ var h=nav?Math.round(nav.getBoundingClientRect().bottom):64; if(h<0||h>140) h=64; document.documentElement.style.setProperty('--psn-top',h+'px'); document.documentElement.style.setProperty('--psn-off',(h+84)+'px'); }
+  function off(){ return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-off'),10)||156; }
+  function current(){ var y=window.pageYOffset+260, c=null; ids.forEach(function(id){ var e=document.getElementById(id); if(e&&e.getBoundingClientRect().top+window.pageYOffset<=y) c=id; }); return c; }
+  function paint(){
+    tick=false;
+    var box=document.getElementById('contents'), on=box?box.getBoundingClientRect().bottom<(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-top'),10)||64):window.pageYOffset>520;
+    bar.classList.toggle('on',on);
+    var c=on?current():null;
+    if(c===cur) return; cur=c;
+    chips.forEach(function(a){
+      var is=a.getAttribute('data-id')===c; a.classList.toggle('cur',is);
+      if(is){ a.setAttribute('aria-current','true'); var t=a.offsetLeft-rail.offsetLeft-rail.clientWidth/2+a.offsetWidth/2; if(Math.abs(rail.scrollLeft-t)>8) rail.scrollTo({left:t}); } else a.removeAttribute('aria-current');
+    });
+  }
+  function req(){ if(!tick){ tick=true; requestAnimationFrame(paint); } }
+  window.addEventListener('scroll',req,{passive:true}); window.addEventListener('resize',function(){ setTop(); req(); });
+  setTop(); paint();
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function jump(id){
+    var t=document.getElementById(id); if(!t) return false;
+    function pos(){ return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-off()); }
+    try{ window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'}); }catch(e){ window.scrollTo(0,pos()); }
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+    function fix(){ if(Math.abs(t.getBoundingClientRect().top-off())>8){ try{ window.scrollTo({top:pos(),behavior:'auto'}); }catch(e){ window.scrollTo(0,pos()); } } }
+    setTimeout(fix,1000); setTimeout(fix,2200);
+    return true;
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-psn]'); if(!a) return;
+    var k=a.getAttribute('data-psn'); ev(k);
+    if(k==='up'){ try{ window.scrollTo({top:0,behavior:calm?'auto':'smooth'}); }catch(x){ window.scrollTo(0,0); } return; }
+    var h=a.getAttribute('href'); if(h&&h.charAt(0)==='#'&&jump(h.slice(1))) e.preventDefault();
+  });
+})();
+</script>
+<h2 id="planning-your-perfect-honeymoon">Planning Your Perfect Honeymoon Getaway</h2>
         <p>Your honeymoon should be romantic, relaxed, and completely free of "I wish I'd packed that" moments. The challenge: most couples are packing together for the first time as a married couple, often while exhausted from wedding planning. This comprehensive honeymoon packing list ensures both partners have everything needed for romance, comfort, and memories that last a lifetime.</p>
         <p>Whether you're heading to the turquoise waters of the Maldives, the lush temples of Bali, the romantic streets of Europe, or any dream destination, this guide covers everything from important documents for newlyweds to romantic essentials and couple photography outfits.</p>
 
-        <h2>Essential Documents for Newlyweds</h2>
+        <h2 id="essential-documents-for-newlyweds">Essential Documents for Newlyweds</h2>
         <p>Honeymoon planning requires specific legal documentation that other trips don't demand. Don't overlook these.</p>
 
 <figure style="margin:28px 0;text-align:center;">
@@ -493,7 +568,7 @@
     <a href="/blog/international-travel-checklist" style="color:#00C9A7;text-decoration:underline;">Review our international travel checklist</a> — A complete verification list for documents, visas, and travel preparations.
 </p>
 
-        <h2>Romantic & Intimate Essentials</h2>
+        <h2 id="romantic-intimate-essentials">Romantic & Intimate Essentials</h2>
         <p>Beyond standard travel items, honeymoons require items that set the romantic mood.</p>
         <ul>
             <li><strong>Lingerie or intimacy-boosting items:</strong> Comfortable, packable options that make you feel confident. Skip impractical pieces that wrinkle or require dry cleaning.</li>
@@ -505,7 +580,7 @@
             <li><strong>Bluetooth speaker:</strong> Waterproof portable speaker for romantic ambiance on your balcony or beach setup.</li>
         </ul>
 
-        <h2>Clothing for Couples Photoshoots</h2>
+        <h2 id="clothing-for-couples-photoshoots">Clothing for Couples Photoshoots</h2>
         <p>Most couples want beautiful photos of their honeymoon. Pack with this in mind.</p>
 
 <figure style="margin:28px 0;text-align:center;">
@@ -526,7 +601,7 @@
             <strong>Pro Tip:</strong> Plan 1-2 outfit combinations with your partner before packing. Choose colors and styles that flatter both of you. Most beautiful honeymoon photos happen during golden hour at sunset, so pack one "golden hour outfit" you both love.
         </div>
 
-        <h2>Popular Honeymoon Destination-Specific Packing</h2>
+        <h2 id="popular-honeymoon-destination-specific">Popular Honeymoon Destination-Specific Packing</h2>
         <p>Tailor your list based on your honeymoon destination:</p>
 
         <h3>Maldives Honeymoon Packing</h3>
@@ -574,7 +649,7 @@
             </div>
         </div>
 
-        <h2>Toiletries & Personal Care for Couples</h2>
+        <h2 id="toiletries-personal-care-for">Toiletries & Personal Care for Couples</h2>
         <p>Shared bathrooms mean packing efficiency matters, but don't skip your preferred products.</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Protect your special trip with <a href="/blog/travel-insurance-guide" style="color:#00C9A7;text-decoration:underline;">travel insurance</a>.</p>
         <ul>
@@ -589,7 +664,7 @@
             <li><strong>Luxury items:</strong> Face masks, sheet masks, hair treatments for pampering moments together.</li>
         </ul>
 
-        <h2>Electronics & Capturing Memories</h2>
+        <h2 id="electronics-capturing-memories">Electronics & Capturing Memories</h2>
         <p>You'll want to capture and share your honeymoon moments.</p>
         <ul>
             <li><strong>Camera or smartphone:</strong> Your primary picture-taking device. A smartphone with a good camera is often sufficient.</li>
@@ -601,7 +676,7 @@
             <li><strong>Universal adapter:</strong> Different regions use different plug types.</li>
         </ul>
 
-        <h2>What NOT to Pack for Your Honeymoon</h2>
+        <h2 id="what-not-to-pack">What NOT to Pack for Your Honeymoon</h2>
         <ul>
             <li><strong>Excessive formal wear:</strong> Most honeymoons are relaxed. One nice outfit is enough.</li>
             <li><strong>Too many shoes:</strong> Honeymoons are typically beach/casual. Limit to flip-flops, casual shoes, and one dressy pair.</li>
@@ -611,7 +686,7 @@
             <li><strong>Work items or laptops:</strong> This is your honeymoon. Leave work behind unless absolutely unavoidable.</li>
         </ul>
 
-        <h2>Honeymoon Packing Tips</h2>
+        <h2 id="honeymoon-packing-tips">Honeymoon Packing Tips</h2>
         <ul>
             <li><strong>Pack together:</strong> This prevents duplicate items and ensures both partners have what they need.</li>
             <li><strong>Use packing cubes by activity/type:</strong> Swimwear, casual clothes, formal wear, toiletries—separate cubes make unpacking easier.</li>
@@ -620,7 +695,7 @@
             <li><strong>Leave room in luggage:</strong> You'll buy souvenirs, gifts, and possibly new items on your honeymoon. Pack only 75% capacity.</li>
         </ul>
 
-        <h2>Honeymoon Packing Checklist</h2>
+        <h2 id="honeymoon-packing-checklist">Honeymoon Packing Checklist</h2>
         <table class="checklist-table">
             <thead>
                 <tr>
@@ -679,7 +754,7 @@
     <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/honeymoon-packing-list').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
 <div class="faq-section" style="margin:50px 0 30px;padding:30px 0;border-top:2px solid #f0f0f0;">
-<h2 style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
+<h2 id="frequently-asked-questions" style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
 <details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
   <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">What are essential documents for a honeymoon trip?</summary>
   <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">Essential documents include both passports, marriage certificate (required for some countries, hotels, and spousal visa applications), travel insurance with couple coverage, copies of all bookings and confirmations, vaccination records if required, proof of accommodation, and emergency contact information. Keep originals and digital copies in separate bags. Scan everything and email copies to yourself for emergency access.</div>

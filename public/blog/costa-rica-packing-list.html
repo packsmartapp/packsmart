@@ -466,7 +466,82 @@
     <button class="share-btn copy-link" onclick="navigator.clipboard.writeText('https://www.packsmartapp.com/blog/costa-rica-packing-list').then(()=>this.textContent='Copied!')" title="Copy Link"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"/></svg> Link</button>
 </div>
 
-<h2>Planning Your Costa Rican Adventure</h2>
+<style>
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+#planning-your-costa-rican,#entry-requirements-for-us,#best-time-to-visit,#essential-costa-rica-clothing,#adventure-activity-gear-zip,#rain-gear-waterproof-protection,#regional-packing-guide,#wildlife-viewing-photography-essentials,#sun-bug-protection-essentials,#health-safety-medications,#toiletries-personal-care,#sustainable-eco-friendly-travel,#useful-apps-resources-for,#costa-rica-budget-breakdown,#the-ultimate-costa-rica,#what-not-to-pack,#packing-strategy-for-costa,#frequently-asked-questions{scroll-margin-top:var(--psn-off,150px)}
+.psn-now{background:#E7FAF5;border:1px solid #cdeee5;border-left:4px solid #00C9A7;border-radius:14px;padding:20px;margin:24px 0;font-family:"DM Sans",sans-serif}
+.psn-now h3{margin:0 0 4px;font-size:1.2rem;color:#0f0f23}
+.psn-now p.psn-sub{margin:0 0 14px;font-size:.95rem;color:#555}
+.psn-tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(138px,1fr));gap:10px}
+.psn-tile{display:flex;flex-direction:column;gap:2px;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:14px 14px 12px;text-decoration:none!important;color:#0f0f23!important;transition:border-color .15s,box-shadow .15s}
+.psn-tile:hover,.psn-tile:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25)}
+.psn-tile .em{font-size:1.6rem;line-height:1.1;margin-bottom:4px}
+.psn-tile b{font-size:1.02rem}
+.psn-tile small{color:#666;font-size:.82rem}
+.psn-now details{margin-top:12px}
+.psn-now summary{cursor:pointer;font-weight:700;color:#0a8f78;font-size:.95rem;padding:6px 0}
+.psn-now ol{columns:2;column-gap:24px;margin:8px 0 0;padding-left:1.3rem;font-size:.92rem;list-style:decimal}
+.psn-now li{margin:0 0 6px;break-inside:avoid}
+.psn-now li a{color:#0f0f23}
+@media (max-width:600px){.psn-now ol{columns:1}}
+#psnBar{position:fixed;left:0;right:0;top:var(--psn-top,64px);z-index:40;background:rgba(255,255,255,.97);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px);border-bottom:1px solid #e9f3f0;padding:10px 0;transform:translateY(-130%);visibility:hidden;transition:transform .25s ease-out,visibility .25s}
+#psnBar.on{transform:none;visibility:visible}
+#psnBar .in{max-width:800px;margin:0 auto;padding:0 20px;display:flex;gap:8px;align-items:center}
+#psnBar .rail{flex:1;min-width:0;display:flex;gap:8px;overflow-x:auto;scrollbar-width:none;-webkit-overflow-scrolling:touch;align-items:center}
+#psnBar .rail::-webkit-scrollbar{display:none}
+#psnBar .chip{flex:none;text-decoration:none;font-weight:700;font-size:.92rem;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 14px;white-space:nowrap;transition:background .15s,border-color .15s}
+#psnBar .chip:hover{border-color:#00C9A7}
+#psnBar .chip.cur{background:#00C9A7;border-color:#00C9A7}
+#psnBar .up{flex:none;width:38px;height:38px;border-radius:50%;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;font-size:1.1rem;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer;padding:0;font-family:inherit}
+@media (max-width:600px){.psn-now ol{columns:1}}
+@media print{#psnBar{display:none!important}}
+</style>
+<div class="psn-now" id="contents"><h3>What do you need first?</h3><p class="psn-sub">Tap a card to jump straight there.</p><div class="psn-tiles"><a class="psn-tile" href="#entry-requirements-for-us" data-psn="tile-entry-requirements-for-us"><span class="em">&#128706;</span><b>Entry rules</b><small>What you need</small></a><a class="psn-tile" href="#best-time-to-visit" data-psn="tile-best-time-to-visit"><span class="em">&#9728;&#65039;</span><b>Best time</b><small>Dry and green season</small></a><a class="psn-tile" href="#essential-costa-rica-clothing" data-psn="tile-essential-costa-rica-clothing"><span class="em">&#128085;</span><b>Clothing</b><small>By season</small></a><a class="psn-tile" href="#adventure-activity-gear-zip" data-psn="tile-adventure-activity-gear-zip"><span class="em">&#127956;&#65039;</span><b>Adventure gear</b><small>Zip-line, hike, raft</small></a><a class="psn-tile" href="#regional-packing-guide" data-psn="tile-regional-packing-guide"><span class="em">&#128205;</span><b>By region</b><small>Arenal to Guanacaste</small></a><a class="psn-tile" href="#costa-rica-budget-breakdown" data-psn="tile-costa-rica-budget-breakdown"><span class="em">&#128176;</span><b>Budget</b><small>Daily costs</small></a></div>
+<details><summary>See all 18 sections</summary><ol><li><a href="#planning-your-costa-rican" data-psn="list-planning-your-costa-rican">Planning Your Costa Rican Adventure</a></li><li><a href="#entry-requirements-for-us" data-psn="list-entry-requirements-for-us">Entry Requirements for US, UK, AU &amp; CA Travelers</a></li><li><a href="#best-time-to-visit" data-psn="list-best-time-to-visit">Best Time to Visit Costa Rica</a></li><li><a href="#essential-costa-rica-clothing" data-psn="list-essential-costa-rica-clothing">Essential Costa Rica Clothing by Season</a></li><li><a href="#adventure-activity-gear-zip" data-psn="list-adventure-activity-gear-zip">Adventure Activity Gear: Zip-Lining, Hiking &amp; Water Sports</a></li><li><a href="#rain-gear-waterproof-protection" data-psn="list-rain-gear-waterproof-protection">Rain Gear &amp; Waterproof Protection</a></li><li><a href="#regional-packing-guide" data-psn="list-regional-packing-guide">Regional Packing Guide</a></li><li><a href="#wildlife-viewing-photography-essentials" data-psn="list-wildlife-viewing-photography-essentials">Wildlife Viewing &amp; Photography Essentials</a></li><li><a href="#sun-bug-protection-essentials" data-psn="list-sun-bug-protection-essentials">Sun &amp; Bug Protection Essentials</a></li><li><a href="#health-safety-medications" data-psn="list-health-safety-medications">Health, Safety &amp; Medications</a></li><li><a href="#toiletries-personal-care" data-psn="list-toiletries-personal-care">Toiletries &amp; Personal Care</a></li><li><a href="#sustainable-eco-friendly-travel" data-psn="list-sustainable-eco-friendly-travel">Sustainable &amp; Eco-Friendly Travel Practices</a></li><li><a href="#useful-apps-resources-for" data-psn="list-useful-apps-resources-for">Useful Apps &amp; Resources for Costa Rica Travel</a></li><li><a href="#costa-rica-budget-breakdown" data-psn="list-costa-rica-budget-breakdown">Costa Rica Budget Breakdown (USD per day)</a></li><li><a href="#the-ultimate-costa-rica" data-psn="list-the-ultimate-costa-rica">The Ultimate Costa Rica Packing Checklist</a></li><li><a href="#what-not-to-pack" data-psn="list-what-not-to-pack">What NOT to Pack for Costa Rica</a></li><li><a href="#packing-strategy-for-costa" data-psn="list-packing-strategy-for-costa">Packing Strategy for Costa Rica</a></li><li><a href="#frequently-asked-questions" data-psn="list-frequently-asked-questions">Frequently Asked Questions</a></li></ol></details></div>
+<div id="psnBar" role="navigation" aria-label="Jump to a section"><div class="in"><button type="button" class="up" aria-label="Back to the top of the page" data-psn="up">&uarr;</button><div class="rail"><a class="chip" href="#entry-requirements-for-us" data-id="entry-requirements-for-us" data-psn="chip-entry-requirements-for-us">Visa</a><a class="chip" href="#best-time-to-visit" data-id="best-time-to-visit" data-psn="chip-best-time-to-visit">When</a><a class="chip" href="#essential-costa-rica-clothing" data-id="essential-costa-rica-clothing" data-psn="chip-essential-costa-rica-clothing">Seasons</a><a class="chip" href="#adventure-activity-gear-zip" data-id="adventure-activity-gear-zip" data-psn="chip-adventure-activity-gear-zip">Adventure</a><a class="chip" href="#rain-gear-waterproof-protection" data-id="rain-gear-waterproof-protection" data-psn="chip-rain-gear-waterproof-protection">Rain gear</a><a class="chip" href="#regional-packing-guide" data-id="regional-packing-guide" data-psn="chip-regional-packing-guide">Regions</a><a class="chip" href="#wildlife-viewing-photography-essentials" data-id="wildlife-viewing-photography-essentials" data-psn="chip-wildlife-viewing-photography-essentials">Wildlife</a><a class="chip" href="#sun-bug-protection-essentials" data-id="sun-bug-protection-essentials" data-psn="chip-sun-bug-protection-essentials">Sun and bugs</a><a class="chip" href="#health-safety-medications" data-id="health-safety-medications" data-psn="chip-health-safety-medications">Health</a><a class="chip" href="#toiletries-personal-care" data-id="toiletries-personal-care" data-psn="chip-toiletries-personal-care">Toiletries</a><a class="chip" href="#sustainable-eco-friendly-travel" data-id="sustainable-eco-friendly-travel" data-psn="chip-sustainable-eco-friendly-travel">Eco travel</a><a class="chip" href="#useful-apps-resources-for" data-id="useful-apps-resources-for" data-psn="chip-useful-apps-resources-for">Apps</a><a class="chip" href="#costa-rica-budget-breakdown" data-id="costa-rica-budget-breakdown" data-psn="chip-costa-rica-budget-breakdown">Budget</a><a class="chip" href="#the-ultimate-costa-rica" data-id="the-ultimate-costa-rica" data-psn="chip-the-ultimate-costa-rica">Checklist</a><a class="chip" href="#what-not-to-pack" data-id="what-not-to-pack" data-psn="chip-what-not-to-pack">Skip</a><a class="chip" href="#packing-strategy-for-costa" data-id="packing-strategy-for-costa" data-psn="chip-packing-strategy-for-costa">Strategy</a><a class="chip" href="#frequently-asked-questions" data-id="frequently-asked-questions" data-psn="chip-frequently-asked-questions">FAQ</a></div></div></div>
+<script>
+(function(){
+  var bar=document.getElementById('psnBar'); if(!bar) return;
+  var rail=bar.querySelector('.rail'), chips=[].slice.call(rail.querySelectorAll('.chip')), nav=document.getElementById('nav');
+  var ids=chips.map(function(c){return c.getAttribute('data-id')}), cur=null, tick=false;
+  function ev(a){ try{ if(window.gtag) gtag('event','toc_nav',{event_category:'engagement',action:a,page_path:location.pathname}); }catch(e){} }
+  function setTop(){ var h=nav?Math.round(nav.getBoundingClientRect().bottom):64; if(h<0||h>140) h=64; document.documentElement.style.setProperty('--psn-top',h+'px'); document.documentElement.style.setProperty('--psn-off',(h+84)+'px'); }
+  function off(){ return parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-off'),10)||156; }
+  function current(){ var y=window.pageYOffset+260, c=null; ids.forEach(function(id){ var e=document.getElementById(id); if(e&&e.getBoundingClientRect().top+window.pageYOffset<=y) c=id; }); return c; }
+  function paint(){
+    tick=false;
+    var box=document.getElementById('contents'), on=box?box.getBoundingClientRect().bottom<(parseInt(getComputedStyle(document.documentElement).getPropertyValue('--psn-top'),10)||64):window.pageYOffset>520;
+    bar.classList.toggle('on',on);
+    var c=on?current():null;
+    if(c===cur) return; cur=c;
+    chips.forEach(function(a){
+      var is=a.getAttribute('data-id')===c; a.classList.toggle('cur',is);
+      if(is){ a.setAttribute('aria-current','true'); var t=a.offsetLeft-rail.offsetLeft-rail.clientWidth/2+a.offsetWidth/2; if(Math.abs(rail.scrollLeft-t)>8) rail.scrollTo({left:t}); } else a.removeAttribute('aria-current');
+    });
+  }
+  function req(){ if(!tick){ tick=true; requestAnimationFrame(paint); } }
+  window.addEventListener('scroll',req,{passive:true}); window.addEventListener('resize',function(){ setTop(); req(); });
+  setTop(); paint();
+  var calm=window.matchMedia&&matchMedia('(prefers-reduced-motion:reduce)').matches;
+  function jump(id){
+    var t=document.getElementById(id); if(!t) return false;
+    function pos(){ return Math.max(0,t.getBoundingClientRect().top+window.pageYOffset-off()); }
+    try{ window.scrollTo({top:pos(),behavior:calm?'auto':'smooth'}); }catch(e){ window.scrollTo(0,pos()); }
+    try{ history.replaceState(null,'','#'+id); }catch(e){}
+    function fix(){ if(Math.abs(t.getBoundingClientRect().top-off())>8){ try{ window.scrollTo({top:pos(),behavior:'auto'}); }catch(e){ window.scrollTo(0,pos()); } } }
+    setTimeout(fix,1000); setTimeout(fix,2200);
+    return true;
+  }
+  document.addEventListener('click',function(e){
+    var a=e.target.closest&&e.target.closest('[data-psn]'); if(!a) return;
+    var k=a.getAttribute('data-psn'); ev(k);
+    if(k==='up'){ try{ window.scrollTo({top:0,behavior:calm?'auto':'smooth'}); }catch(x){ window.scrollTo(0,0); } return; }
+    var h=a.getAttribute('href'); if(h&&h.charAt(0)==='#'&&jump(h.slice(1))) e.preventDefault();
+  });
+})();
+</script>
+<h2 id="planning-your-costa-rican">Planning Your Costa Rican Adventure</h2>
 <p>Costa Rica—the "Rich Coast"—delivers rainforests, pristine beaches, zip-lines, wildlife encounters, and adventure sports in a compact package. This Central American gem attracts travelers from the US, UK, Australia, and Canada with its combination of natural wonders, accessible infrastructure, and remarkably affordable adventures. Yet packing for Costa Rica requires thoughtful preparation: jungle conditions demand different gear than beaches, and adventure activities (zip-lining, whitewater rafting, hiking) require specific equipment.</p>
 
 <figure style="margin:28px 0;text-align:center;">
@@ -476,7 +551,7 @@
 
 <p>This comprehensive guide covers what to pack for rainforests and beaches, adventure gear for activities, weather-appropriate clothing, entry requirements for Western travelers, region-specific recommendations, and sustainable travel tips. Whether you're exploring Arenal's volcanic landscapes, Manuel Antonio's beaches, Monteverde's misty cloud forests, or the Caribbean coast's laid-back vibes, you'll find practical packing guidance organized by activity and region.</p>
 
-<h2>Entry Requirements for US, UK, AU & CA Travelers</h2>
+<h2 id="entry-requirements-for-us">Entry Requirements for US, UK, AU & CA Travelers</h2>
 <p>Costa Rica offers visa-free entry for most Western travelers, making it an accessible destination. However, requirements vary by nationality and you must meet specific conditions.</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Pack light for adventure — our <a href="/blog/minimalist-packing-guide" style="color:#00C9A7;text-decoration:underline;">minimalist packing guide</a> can help.</p>
 
@@ -520,7 +595,7 @@
 <strong>Pro Tip:</strong> Regardless of nationality, obtain travel insurance. Costa Rica has excellent medical facilities, but treatment costs without insurance can be expensive. SafetyWing's travel medical insurance starts from around $2 per day and covers new, unexpected medical issues. Keep copies of your passport and travel documents separately from originals.
 </div>
 
-<h2>Best Time to Visit Costa Rica</h2>
+<h2 id="best-time-to-visit">Best Time to Visit Costa Rica</h2>
 <p>Costa Rica's weather divides into two distinct seasons, each offering different advantages and challenges.</p>
 
 <figure style="margin:28px 0;text-align:center;">
@@ -554,7 +629,7 @@
 <li><strong>April & May:</strong> Transition months; minimal rain, moderate prices, fewer crowds</li>
 </ul>
 
-<h2>Essential Costa Rica Clothing by Season</h2>
+<h2 id="essential-costa-rica-clothing">Essential Costa Rica Clothing by Season</h2>
 
 <h3>Rainforest & Jungle Clothing (All Seasons)</h3>
 <p>Costa Rica's rainforests demand specific gear regardless of season. Even in dry season, morning humidity and sudden weather changes require adaptability.</p>
@@ -583,7 +658,7 @@
 <li><strong>Lightweight cardigan or thin wrap:</strong> Air-conditioned establishments can be cold; thin layers essential.</li>
 </ul>
 
-<h2>Adventure Activity Gear: Zip-Lining, Hiking & Water Sports</h2>
+<h2 id="adventure-activity-gear-zip">Adventure Activity Gear: Zip-Lining, Hiking & Water Sports</h2>
 
 <h3>Zip-Lining Essentials</h3>
 <p>Costa Rica's famous canopy tours demand specific gear for safety and comfort. Most operators provide harnesses, but bring:</p>
@@ -629,7 +704,7 @@
 <li><strong>Fins/flippers:</strong> Rentals usually included; bring your own if you have specific size/comfort needs.</li>
 </ul>
 
-<h2>Rain Gear & Waterproof Protection</h2>
+<h2 id="rain-gear-waterproof-protection">Rain Gear & Waterproof Protection</h2>
 
 <p>Proper rain gear distinguishes comfortable trips from miserable ones. Green Season afternoon showers are brief but intense; pack smartly.</p>
 
@@ -651,7 +726,7 @@
 <li><strong>Accept wet clothes:</strong> In Green Season, everything gets slightly damp from humidity. Quick-dry fabrics return to dry within hours. Cotton stays damp for 12+ hours, encouraging mildew.</li>
 </ul>
 
-<h2>Regional Packing Guide</h2>
+<h2 id="regional-packing-guide">Regional Packing Guide</h2>
 
 <h3>Arenal & La Fortuna (Northern Zone)</h3>
 <p><strong>Highlights:</strong> Arenal Volcano, hot springs, rainforest, adventure sports, zip-lining</p>
@@ -723,7 +798,7 @@
 <li>Beach resort wear (touristy areas)</li>
 </ul>
 
-<h2>Wildlife Viewing & Photography Essentials</h2>
+<h2 id="wildlife-viewing-photography-essentials">Wildlife Viewing & Photography Essentials</h2>
 
 <p>Costa Rica's megafauna (sloths, monkeys, macaws, toucans, jaguars, tapirs, poison dart frogs) represents one of the world's most biodiverse concentrations. Pack smart for respectful wildlife interaction.</p>
 
@@ -753,7 +828,7 @@
 <li><strong>Hire local naturalist guides ($50-100/day):</strong> They know where to find animals, their behaviors, and ecology. Their expertise transforms experiences.</li>
 </ul>
 
-<h2>Sun & Bug Protection Essentials</h2>
+<h2 id="sun-bug-protection-essentials">Sun & Bug Protection Essentials</h2>
 
 <h3>Sun Protection (USD)</h3>
 <ul>
@@ -778,7 +853,7 @@
 <li><strong>Anti-itch cream for bites ($8-12):</strong> Hydrocortisone cream provides quick relief from mosquito and sand fly bites.</li>
 </ul>
 
-<h2>Health, Safety & Medications</h2>
+<h2 id="health-safety-medications">Health, Safety & Medications</h2>
 
 <h3>Medications & Health Supplies (USD)</h3>
 <ul>
@@ -804,7 +879,7 @@
 <li><strong>Altitude adjustment:</strong> Monteverde (4,700 ft) causes mild altitude effects for some. Ascend gradually; drink extra water.</li>
 </ul>
 
-<h2>Toiletries & Personal Care</h2>
+<h2 id="toiletries-personal-care">Toiletries & Personal Care</h2>
 
 <h3>Travel-Size Toiletries (Bring from Home USD)</h3>
 <ul>
@@ -831,7 +906,7 @@
 <li><strong>eSIM or international phone plan ($20-80):</strong> An Airalo eSIM covers Costa Rica from about US$7.50 for 1 GB (see the plan tiles in the Apps section). Alternative: buy local SIM card upon arrival (Kolbi, Movistar offer prepaid plans).</li>
 </ul>
 
-<h2>Sustainable & Eco-Friendly Travel Practices</h2>
+<h2 id="sustainable-eco-friendly-travel">Sustainable & Eco-Friendly Travel Practices</h2>
 
 <p>Costa Rica's conservation ethic—"pura vida"—emphasizes sustainability. Pack accordingly to minimize environmental impact.</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Protect your trip with <a href="/blog/travel-insurance-guide" style="color:#00C9A7;text-decoration:underline;">the right travel insurance</a>.</p>
@@ -951,7 +1026,7 @@
         &#129523; Checked out but your flight or overnight train is hours away? Store your bags in <a href="https://radicalstorage.tpx.li/aUt76AdI" target="_blank" rel="nofollow noopener sponsored" style="color:#00C9A7;text-decoration:underline;">San Jos&eacute;</a> with Radical Storage and explore hands-free.
     </p>
 
-<h2>Useful Apps & Resources for Costa Rica Travel</h2>
+<h2 id="useful-apps-resources-for">Useful Apps & Resources for Costa Rica Travel</h2>
 
 <h3>Navigation & Transportation</h3>
 <ul>
@@ -997,7 +1072,7 @@
 <li><strong>Pharmacy Finder:</strong> Locate pharmacies and hospitals; pharmacists provide over-the-counter medications without prescriptions.</li>
 </ul>
 
-<h2>Costa Rica Budget Breakdown (USD per day)</h2>
+<h2 id="costa-rica-budget-breakdown">Costa Rica Budget Breakdown (USD per day)</h2>
 
 <p>Understanding typical daily costs helps you budget appropriately and pack accordingly.</p>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;"><a href="/flights" style="color:#00C9A7;text-decoration:underline;">Compare flight prices</a> to Costa Rica.</p>
@@ -1047,7 +1122,7 @@
 
 <p><strong>Cost Notes:</strong> Prices in 2026 USD; slight fluctuation based on season. Green Season (May-Nov) costs 40-50% less than Dry Season. Budget travelers thrive in Costa Rica; local food is cheap and delicious. Mid-range travelers get best value (comfort + affordability). Luxury travelers find excellent resort experiences ($150-300/night accommodation with world-class amenities).</p>
 
-<h2>The Ultimate Costa Rica Packing Checklist</h2>
+<h2 id="the-ultimate-costa-rica">The Ultimate Costa Rica Packing Checklist</h2>
 <p>Print this checklist and mark off items as you pack:</p>
 <table class="checklist-table">
 <thead>
@@ -1126,7 +1201,7 @@
 </tbody>
 </table>
 
-<h2>What NOT to Pack for Costa Rica</h2>
+<h2 id="what-not-to-pack">What NOT to Pack for Costa Rica</h2>
 <ul>
 <li><strong>Excessive shoes:</strong> Pack 4-5 pairs maximum. You need hiking boots, casual shoes, water shoes, and sandals. Beyond that is excess weight.</li>
 <li><strong>Formal or dressy clothing:</strong> Costa Rica is casual. Flip-flops and t-shirts work for 90% of dining. Nice casual (clean shorts + nice shirt) handles upscale restaurants.</li>
@@ -1140,7 +1215,7 @@
 <li><strong>Medications without prescriptions:</strong> Some medications available over-the-counter in Costa Rica are restricted in your home country. Carry prescriptions and originals only.</li>
 </ul>
 
-<h2>Packing Strategy for Costa Rica</h2>
+<h2 id="packing-strategy-for-costa">Packing Strategy for Costa Rica</h2>
 <ul>
 <li><strong>Roll, don't fold:</strong> Rolling saves 30% space and reduces wrinkles. Essential for carryon-only travel.</li>
 <li><strong>Use packing cubes:</strong> Organize by activity (adventure, beach, cool-weather layers). Enables quick outfit assembly.</li>
@@ -1163,7 +1238,7 @@
 </div>
 
 <div class="faq-section" style="margin:50px 0 30px;padding:30px 0;border-top:2px solid #f0f0f0;">
-<h2 style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
+<h2 id="frequently-asked-questions" style="font-size:1.6rem;color:#0f0f23;margin-bottom:20px;padding-bottom:8px;border-bottom:3px solid #00C9A7;display:inline-block;">Frequently Asked Questions</h2>
 <details style="margin-bottom:12px;background:#f8f9fa;border-radius:10px;border:1px solid #e9ecef;">
   <summary style="padding:16px 20px;font-weight:600;cursor:pointer;color:#0f0f23;font-size:1.05rem;">Do I need a visa to visit Costa Rica?</summary>
   <div style="padding:0 20px 16px;color:#555;font-size:0.98rem;line-height:1.8;">US, UK, Australian, and Canadian citizens do not need a visa to enter Costa Rica for tourism. US citizens receive 90 days; UK citizens receive 30 days; Australians receive 30 days; Canadians receive 180 days. You must have a valid passport with at least 6 months validity beyond your stay. Consider travel insurance even without visa requirements.</div>
