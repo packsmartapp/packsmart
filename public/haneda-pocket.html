@@ -456,7 +456,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   function cashHTML(){
     return '<ul class="pl"><li><b>Currency exchange</b> offices and <b>cash machines</b> are in the terminals. Tap Find, then Money and ATMs.</li>'
       +'<li><b>Welcome Suica</b> is a tourist train card. No deposit, valid 28 days, and money left on it cannot be refunded.</li>'
-      +'<li>Where to buy it at Haneda changes. Ask at the Tourist Information Center (Terminal 3, 2F arrival lobby, open 24 hours) or check JR East before you travel.</li>'
+      +'<li>Where to buy it: the JR East Travel Service Center or the Welcome Suica machines at Haneda Airport Terminal 3 (Tokyo Monorail) Station. Not sure? Ask at the Tourist Information Center (Terminal 3, 2F arrival lobby, open 24 hours).</li>'
       +'<li>iPhone users can set up Welcome Suica Mobile before landing.</li></ul>'
       +'<p class="sm">Card types and sales points change often. Check JR East before you travel.</p>';
   }
@@ -603,8 +603,8 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/haneda-sw.js',{scope:'/haneda-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
-      .then(function(){ return caches.has('haneda-pocket-v3'); })
-      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('haneda-pocket-v3').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .then(function(){ return caches.has('haneda-pocket-v4'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('haneda-pocket-v4').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
       .catch(function(){ paint(); });
   }
   /* install help: shown first, in the person's own phone type */

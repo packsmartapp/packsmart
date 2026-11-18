@@ -559,7 +559,7 @@ CHOOSER = """<h3>Where are you staying?</h3>
 IC_CARD = """<h2 id="ic-card">A train card (Suica or PASMO)</h2>
 <p>A tap-on travel card saves you buying a ticket for every train, subway or bus ride, and it also pays in many shops and vending machines. Visitors usually buy a tourist version, called Welcome Suica. It has no deposit, it is valid for 28 days, and any money left on it cannot be refunded.</p>
 <ul>
-<li><strong>Where at Haneda:</strong> sales points change, so check <a href="https://www.jreast.co.jp/multi/en/welcomeSUICA/welcomeSUICA.html" target="_blank" rel="noopener noreferrer">JR East's Welcome Suica page</a> before you fly. The Tourist Information Center in the Terminal 3 arrival lobby (open 24 hours) handles JR tickets and can point you the right way.</li>
+<li><strong>Where at Haneda:</strong> the JR East Travel Service Center and the dedicated Welcome Suica ticket machines at Haneda Airport Terminal 3 (Tokyo Monorail) Station. In principle only one card is sold per person. Sales points change, so check <a href="https://www.jreast.co.jp/en/multi/welcomesuica/purchase.html" target="_blank" rel="noopener noreferrer">JR East's Welcome Suica page</a> before you fly. The Tourist Information Center in the Terminal 3 arrival lobby (open 24 hours) handles JR tickets and can point you the right way.</li>
 <li><strong>Which trains:</strong> IC cards such as Suica and PASMO are used on many Tokyo trains, subways and buses. Look for the card symbol on the ticket gate.</li>
 <li><strong>iPhone users:</strong> an app version, Welcome Suica Mobile, lets you set up before you land (iPhone only, as of April 2026).</li>
 <li><strong>Staying longer than 28 days?</strong> A regular Suica or PASMO may suit you better. Ask at a ticket counter.</li>
@@ -732,7 +732,7 @@ SAKURA = """<div style="max-width:800px;margin:24px auto;padding:22px 24px;backg
   <a class="ps-sk-tile" data-ps-placement="sakura-haneda-wifi" href="__SAKURA_LINK__" target="_blank" rel="sponsored nofollow noopener" style="position:relative;display:flex;flex-direction:column;background:#fff;border:1.5px solid #cdeee5;border-radius:12px;padding:22px 16px 16px;text-decoration:none;text-align:center;color:#0f0f23;"><span style="position:absolute;top:-10px;left:50%;transform:translateX(-50%);background:#00C9A7;color:#fff;font-size:0.68rem;font-weight:700;letter-spacing:.03em;padding:2px 10px;border-radius:999px;white-space:nowrap;">FOR FAMILIES AND GROUPS</span><span style="display:block;max-width:340px;width:100%;margin:0 auto 12px;"><picture><source type="image/webp" srcset="/images/sakura-wifi-banner.webp"><img src="/images/sakura-wifi-banner.png" width="570" height="546" loading="lazy" alt="Sakura Mobile pocket Wi-Fi device" style="display:block;width:100%;height:auto;border-radius:12px;"></picture></span><span style="display:block;font-size:1.5rem;font-weight:700;line-height:1.15;">Pocket Wi-Fi</span><span style="display:block;font-size:0.85rem;color:#666;line-height:1.35;margin:4px 0 10px;">One device for every phone</span><span style="display:block;font-size:1.05rem;font-weight:700;color:#0a8f78;">The price depends on your dates</span><span style="display:block;font-size:0.78rem;color:#777;line-height:1.3;margin:6px 0 10px;">Docomo network, data described as unlimited</span><span style="flex:1;min-height:2px;display:block;"></span><span class="ps-sk-ghost" style="display:block;box-sizing:border-box;border:1.5px solid #00C9A7;color:#0a8f78;font-weight:700;font-size:1rem;border-radius:12px;padding:10px 14px;margin-top:6px;">Rent a pocket Wi-Fi &rarr;</span><span style="display:block;font-size:0.76rem;color:#777;margin-top:6px;">Sakura Mobile &middot; partner link</span></a>
   </div>
   <p style="margin:0 0 8px;font-size:0.82rem;color:#666;line-height:1.5;"><strong style="color:#0a8f78;">Pocket Wi-Fi pick-up:</strong> at the JAL ABC counter in Terminal 3, on the 2nd floor of the arrival lobby (Sakura lists it as closed from 1 am to 4 am), or ask for free delivery to your hotel. Return it in the prepaid envelope that comes with it: post it in any Japanese postbox before you leave, or hand it in at the same counter. A fair use policy may apply to unlimited data.</p>
-  <p style="margin:0;font-size:0.82rem;color:#666;line-height:1.5;">For the travel SIM card, check Sakura Mobile's page for how and where yours is collected. Order ahead: same-day orders are possible, but stock is limited.</p>
+  <p style="margin:0;font-size:0.82rem;color:#666;line-height:1.5;"><strong style="color:#0a8f78;">Travel SIM card pick-up:</strong> Sakura Mobile lists pick-up at Haneda in the Terminal 3 arrival lobby, the same JAL ABC counter. Show your booking on your phone. Order ahead: same-day orders are possible, but stock is limited.</p>
 </div>""".replace("__SAKURA_SIM_LINK__", SAKURA_SIM_LINK).replace("__SAKURA_LINK__", SAKURA_LINK)
 
 JB_LINK = "https://www.japan-bullettrain.com/?via=packsmart"
@@ -1647,7 +1647,7 @@ POCKET_HTML = """<!DOCTYPE html>
   function cashHTML(){
     return '<ul class="pl"><li><b>Currency exchange</b> offices and <b>cash machines</b> are in the terminals. Tap Find, then Money and ATMs.</li>'
       +'<li><b>Welcome Suica</b> is a tourist train card. No deposit, valid 28 days, and money left on it cannot be refunded.</li>'
-      +'<li>Where to buy it at Haneda changes. Ask at the Tourist Information Center (Terminal 3, 2F arrival lobby, open 24 hours) or check JR East before you travel.</li>'
+      +'<li>Where to buy it: the JR East Travel Service Center or the Welcome Suica machines at Haneda Airport Terminal 3 (Tokyo Monorail) Station. Not sure? Ask at the Tourist Information Center (Terminal 3, 2F arrival lobby, open 24 hours).</li>'
       +'<li>iPhone users can set up Welcome Suica Mobile before landing.</li></ul>'
       +'<p class="sm">Card types and sales points change often. Check JR East before you travel.</p>';
   }
@@ -1794,8 +1794,8 @@ POCKET_HTML = """<!DOCTYPE html>
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/haneda-sw.js',{scope:'/haneda-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
-      .then(function(){ return caches.has('haneda-pocket-v3'); })
-      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('haneda-pocket-v3').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .then(function(){ return caches.has('haneda-pocket-v4'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('haneda-pocket-v4').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
       .catch(function(){ paint(); });
   }
   /* install help: shown first, in the person's own phone type */
@@ -2000,7 +2000,7 @@ if re.search(r"\b(India|Indian|INR|Rs\.?|rupee|lakh|Aadhaar|UPI|VFS|BLS)\b|₹",
     die("neutral-rule violation in the pocket guide")
 
 POCKET_SW = """/* Haneda Pocket Guide service worker. Bump V when the page changes shape. */
-var V='haneda-pocket-v3';
+var V='haneda-pocket-v4';
 var PAGE='/haneda-pocket';
 var SHELL=[PAGE,'/haneda-pocket.webmanifest','/favicon-32.png','/images/haneda-icon-v2-192.png','/images/haneda-icon-v2-512.png','/images/haneda-icon-v2-maskable-512.png'];
 self.addEventListener('install',function(e){
