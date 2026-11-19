@@ -12,8 +12,9 @@ No partner links in this card: it only sends people to the guides, and the offer
 Run from the repo root, after w47:   python3 tools/w48_japan_articles_block.py
 Idempotent (marker data-pga="japan-v2"). Writes nothing at all if any article is missing its insertion point.
 
-Eleven pages: the five Japan trip articles (card near the top / in "getting there") and the six airport and station
-guides (card just before the FAQ, own guide left out, the next stops lead).
+Eleven pages. Every card sits near the top: after the visa section (packing guides), before the itinerary (7-day), right
+after the "on one page" summary (city guides, and the six airport and station guides, where the page's own guide is left
+out and the next stops lead).
 
 To add a guide: add it to tools/pocket_guides.json with "country": "Japan" and a "stop" (a new stop goes into
 "stop_order" too), then re-run. To change the colours: edit the BG / ACCENT block below and re-run on a clean checkout
@@ -61,29 +62,29 @@ ARTICLES = {
     "japan-travel-packing-guide": ("japan-packing", ["narita", "haneda"], TITLE, SUB,
                                    "before", "<!-- narita-airport-guide link -->"),
     "japan-travel-packing-guide-from-india": ("japan-packing-in", ["narita", "haneda"], TITLE, SUB,
-                                              "before", '<h2 id="apps">'),
+                                              "before", '<h2 id="weather">'),
     "japan-7-day-itinerary-budget": ("japan-7day", ["narita", "haneda"],
                                      "Landing in Tokyo, then on to Kyoto? Keep the guides in your pocket.", SUB_TRIP,
                                      "before", '<h2 id="itinerary">'),
     "kyoto-travel-guide": ("kyoto-city", ["kyoto", "kix"],
                            "Arriving in Kyoto? Keep the guide on your phone.", SUB,
-                           "after_list", '<h2 id="getting-around">'),
+                           "before", '<h2 id="areas">'),
     "osaka-travel-guide": ("osaka-city", ["osaka", "kix"],
                            "Arriving in Osaka? Keep the guide on your phone.", SUB,
-                           "after_list", '<h2 id="getting-around">'),
-    # airport and station guides: card before the FAQ; the page's own guide is left out; the next stops lead
+                           "before", '<h2 id="areas">'),
+    # airport and station guides: card right after the "on one page" box and its QR code; the page's own guide is left out; the next stops lead
     "narita-airport-guide": ("narita-airport", ["tokyo"], "Heading into Tokyo? Keep the guides in your pocket.", SUB_NEXT,
-                             "before", '<h2 id="faq">', ["narita"]),
+                             "before", '<h2 id="terminals">', ["narita"]),
     "haneda-airport-guide": ("haneda-airport", ["tokyo"], "Heading into Tokyo? Keep the guides in your pocket.", SUB_NEXT,
-                             "before", '<h2 id="faq">', ["haneda"]),
+                             "before", '<h2 id="terminals">', ["haneda"]),
     "kansai-airport-guide": ("kansai-airport", ["osaka", "kyoto"], "Heading into the city? Keep the guides in your pocket.", SUB_NEXT,
-                             "before", '<h2 id="faq">', ["kix"]),
+                             "before", '<h2 id="terminals">', ["kix"]),
     "tokyo-station-guide": ("tokyo-station", ["kyoto", "osaka"], "Heading on by bullet train? Keep the guides in your pocket.", SUB_NEXT,
-                            "before", '<h2 id="faq">', ["tokyo"]),
+                            "before", '<h2 id="which-side">', ["tokyo"]),
     "kyoto-station-guide": ("kyoto-station", ["osaka", "kix"], "Heading on? Keep the guides in your pocket.", SUB_NEXT,
-                            "before", '<h2 id="faq">', ["kyoto"]),
+                            "before", '<h2 id="which-side">', ["kyoto"]),
     "osaka-station-guide": ("osaka-station", ["kyoto", "kix"], "Heading on? Keep the guides in your pocket.", SUB_NEXT,
-                            "before", '<h2 id="faq">', ["osaka"]),
+                            "before", '<h2 id="which-station">', ["osaka"]),
 }
 
 CSS = """<style id="pga-css">

@@ -583,6 +583,52 @@ html{scroll-behavior:smooth}
 <button type="button" class="ps-print-btn" onclick="window.print()">Print this card</button>
 </div>
 
+<style id="pga-css">
+.pga{max-width:800px;margin:28px auto;border-radius:26px;overflow:hidden;background:#fff;border:1px solid #dfe8e5;box-shadow:0 12px 30px rgba(15,15,35,.14);font-family:"DM Sans",sans-serif;color:#1b1f33;line-height:1.45}
+.pga *{box-sizing:border-box}
+.pga-top{padding:26px 28px 22px;background:linear-gradient(160deg,#2f6fe0 0%,#6a4fd0 55%,#9a46b0 100%);color:#fff}
+.pga .pga-kick{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:20px;padding:4px 12px;margin:0 0 10px;line-height:1.4;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);color:#fff}
+.pga .pga-title{margin:0 0 6px;font-size:25px;line-height:1.2;font-weight:800;color:#fff}
+.pga .pga-sub{margin:0 0 20px;font-size:15px;line-height:1.5;color:#fff;max-width:560px}
+.pga-route{display:flex;align-items:flex-start;padding-top:6px}
+.pga-stop{display:grid;grid-template-columns:16px auto 1fr;grid-template-rows:auto auto;align-items:center;min-width:0;flex-shrink:1}
+.pga-dot{width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.3)}
+.pga .pga-city{margin-left:10px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#fff;line-height:16px}
+.pga-ln{height:2px;background:rgba(255,255,255,.7);margin:0 14px 0 12px}
+.pga-icons{grid-column:1/-1;margin-top:22px;display:flex;flex-wrap:wrap;gap:6px;align-self:start}
+.pga a.pga-t{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;padding-top:24px;width:86px;text-decoration:none!important;color:#fff!important}
+.pga a.pga-t img{width:64px;height:64px;border-radius:23%;display:block;box-shadow:0 6px 14px rgba(0,0,0,.35);transition:transform .15s}
+.pga a.pga-t.lead img{box-shadow:0 0 0 3px #fff,0 6px 14px rgba(0,0,0,.35)}
+.pga a.pga-t:hover img,.pga a.pga-t:focus-visible img{transform:scale(1.07)}
+.pga a.pga-t b{font-size:13px;font-weight:700;line-height:1.1;text-align:center}
+.pga a.pga-t em{position:absolute;top:0;left:50%;transform:translateX(-50%);font-style:normal;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:#fff;color:#0b5d57;border-radius:10px;padding:2px 8px;white-space:nowrap;line-height:1.4}
+.pga-ticks{padding:16px 28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 18px}
+.pga-tick{display:flex;gap:9px;align-items:flex-start;font-size:14px;line-height:1.35;color:#1b1f33}
+.pga-tick::before{content:"\2713";flex:none;width:22px;height:22px;border-radius:50%;background:#D9F7EF;color:#0b5d57;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center}
+.pga .pga-foot{margin:0;padding:12px 28px 14px;border-top:1px solid #edf1f0;font-size:13.5px;line-height:1.5;color:#4a5268}
+.pga .pga-foot b{color:#0f0f23}
+@media (max-width:700px){
+.pga{margin:22px 0;border-radius:20px}
+.pga-top{padding:20px 16px 18px}
+.pga .pga-title{font-size:21px}
+.pga .pga-sub{font-size:14.5px;margin-bottom:18px}
+.pga-route{display:block;padding-top:0}
+.pga-stop{display:grid;grid-template-columns:16px 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:start;padding-bottom:20px}
+.pga-stop:last-child{padding-bottom:0}
+.pga-dot{grid-column:1;grid-row:1}
+.pga .pga-city{grid-column:2;grid-row:1;margin-left:0}
+.pga-ln{grid-column:1;grid-row:2;width:2px;height:auto;margin:4px 0 0;justify-self:center;align-self:stretch}
+.pga-icons{grid-column:2;grid-row:2;margin-top:12px;gap:4px}
+.pga a.pga-t{width:78px}
+.pga-icons:not(.hl) a.pga-t{padding-top:0}
+.pga a.pga-t img{width:56px;height:56px}
+.pga-ticks{grid-template-columns:1fr;padding:16px}
+.pga .pga-foot{padding:12px 16px 14px}
+}
+@media print{.pga{display:none!important}}
+</style>
+<aside class="pga" id="pocket-guides-japan" data-pga="japan-v2" data-pga-article="osaka-station" role="complementary" aria-label="Offline pocket guides for Japan"><div class="pga-top"><span class="pga-kick">Free offline pocket guides</span><p class="pga-title">Heading on? Keep the guides in your pocket.</p><p class="pga-sub">Short, big-print helpers for the next stops. Open one, save it to your home screen, and it works with no signal. Free, no app store, no account.</p><div class="pga-route"><div class="pga-stop" style="flex:3.7 1 0"><span class="pga-dot"></span><span class="pga-city">Tokyo</span><span class="pga-ln"></span><div class="pga-icons"><a class="pga-t" href="/haneda-pocket?src=art_osaka-station" data-pga-to="haneda"><img src="/images/haneda-icon-v2-192.png" alt="" width="64" height="64" loading="lazy"><b>Haneda</b></a><a class="pga-t" href="/narita-pocket?src=art_osaka-station" data-pga-to="narita"><img src="/images/narita-icon-v2-192.png" alt="" width="64" height="64" loading="lazy"><b>Narita</b></a><a class="pga-t" href="/tokyo-pocket?src=art_osaka-station" data-pga-to="tokyo"><img src="/images/tokyo-icon-192.png" alt="" width="64" height="64" loading="lazy"><b>Tokyo Station</b></a></div></div><div class="pga-stop" style="flex:1.7 1 0"><span class="pga-dot"></span><span class="pga-city">Kyoto</span><span class="pga-ln"></span><div class="pga-icons hl"><a class="pga-t lead" href="/kyoto-pocket?src=art_osaka-station" data-pga-to="kyoto"><em>Start here</em><img src="/images/kyoto-icon-192.png" alt="" width="64" height="64" loading="lazy"><b>Kyoto Station</b></a></div></div><div class="pga-stop" style="flex:1.7 1 0"><span class="pga-dot"></span><span class="pga-city">Osaka</span><div class="pga-icons hl"><a class="pga-t lead" href="/kix-pocket?src=art_osaka-station" data-pga-to="kix"><em>Start here</em><img src="/images/kix-icon-192.png" alt="" width="64" height="64" loading="lazy"><b>Kansai Airport</b></a></div></div></div></div><div class="pga-ticks"><div class="pga-tick"><span><b>Finds things fast.</b> Toilets, lockers, food, exits and trains.</span></div><div class="pga-tick"><span><b>Big print.</b> Easy to show station or airport staff.</span></div><div class="pga-tick"><span><b>No signal needed</b> once it is saved.</span></div></div><p class="pga-foot"><b>Save it in three taps:</b> open a guide, then on Android tap Install, or on iPhone tap Share and then Add to Home Screen.</p></aside>
+<script>(function(){var b=document.getElementById('pocket-guides-japan');if(!b)return;b.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-pga-to]');if(!a)return;try{if(window.gtag)gtag('event','pg_article_tap',{event_category:'engagement',to:a.getAttribute('data-pga-to'),article:b.getAttribute('data-pga-article'),page_path:location.pathname});}catch(x){}});})();</script>
 <h2 id="which-station">Which station do you need?</h2>
 <p>North Osaka has several big stations with similar names. JNTO says they confuse locals and visitors alike. The short version: <strong>Shin-Osaka</strong> is where the Shinkansen (bullet trains) stop. <strong>Osaka Station</strong> and <strong>Umeda</strong>, to the south, are the downtown hub for local trains, subways and private railways. If you arrive by bullet train, you get off at Shin-Osaka and then take a local train or the subway into the city.</p>
 <h3>Which one is yours?</h3>
@@ -868,52 +914,6 @@ html{scroll-behavior:smooth}
 
 <!-- FIRST-HAND NOTES: add notes and photos from a Shin-Osaka or Osaka Station visit here -->
 
-<style id="pga-css">
-.pga{max-width:800px;margin:28px auto;border-radius:26px;overflow:hidden;background:#fff;border:1px solid #dfe8e5;box-shadow:0 12px 30px rgba(15,15,35,.14);font-family:"DM Sans",sans-serif;color:#1b1f33;line-height:1.45}
-.pga *{box-sizing:border-box}
-.pga-top{padding:26px 28px 22px;background:linear-gradient(160deg,#2f6fe0 0%,#6a4fd0 55%,#9a46b0 100%);color:#fff}
-.pga .pga-kick{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:20px;padding:4px 12px;margin:0 0 10px;line-height:1.4;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);color:#fff}
-.pga .pga-title{margin:0 0 6px;font-size:25px;line-height:1.2;font-weight:800;color:#fff}
-.pga .pga-sub{margin:0 0 20px;font-size:15px;line-height:1.5;color:#fff;max-width:560px}
-.pga-route{display:flex;align-items:flex-start;padding-top:6px}
-.pga-stop{display:grid;grid-template-columns:16px auto 1fr;grid-template-rows:auto auto;align-items:center;min-width:0;flex-shrink:1}
-.pga-dot{width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 0 0 4px rgba(255,255,255,.3)}
-.pga .pga-city{margin-left:10px;font-size:12px;font-weight:800;letter-spacing:.1em;text-transform:uppercase;color:#fff;line-height:16px}
-.pga-ln{height:2px;background:rgba(255,255,255,.7);margin:0 14px 0 12px}
-.pga-icons{grid-column:1/-1;margin-top:22px;display:flex;flex-wrap:wrap;gap:6px;align-self:start}
-.pga a.pga-t{display:flex;flex-direction:column;align-items:center;gap:6px;position:relative;padding-top:24px;width:86px;text-decoration:none!important;color:#fff!important}
-.pga a.pga-t img{width:64px;height:64px;border-radius:23%;display:block;box-shadow:0 6px 14px rgba(0,0,0,.35);transition:transform .15s}
-.pga a.pga-t.lead img{box-shadow:0 0 0 3px #fff,0 6px 14px rgba(0,0,0,.35)}
-.pga a.pga-t:hover img,.pga a.pga-t:focus-visible img{transform:scale(1.07)}
-.pga a.pga-t b{font-size:13px;font-weight:700;line-height:1.1;text-align:center}
-.pga a.pga-t em{position:absolute;top:0;left:50%;transform:translateX(-50%);font-style:normal;font-size:10px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:#fff;color:#0b5d57;border-radius:10px;padding:2px 8px;white-space:nowrap;line-height:1.4}
-.pga-ticks{padding:16px 28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px 18px}
-.pga-tick{display:flex;gap:9px;align-items:flex-start;font-size:14px;line-height:1.35;color:#1b1f33}
-.pga-tick::before{content:"\2713";flex:none;width:22px;height:22px;border-radius:50%;background:#D9F7EF;color:#0b5d57;font-weight:800;font-size:12px;display:flex;align-items:center;justify-content:center}
-.pga .pga-foot{margin:0;padding:12px 28px 14px;border-top:1px solid #edf1f0;font-size:13.5px;line-height:1.5;color:#4a5268}
-.pga .pga-foot b{color:#0f0f23}
-@media (max-width:700px){
-.pga{margin:22px 0;border-radius:20px}
-.pga-top{padding:20px 16px 18px}
-.pga .pga-title{font-size:21px}
-.pga .pga-sub{font-size:14.5px;margin-bottom:18px}
-.pga-route{display:block;padding-top:0}
-.pga-stop{display:grid;grid-template-columns:16px 1fr;grid-template-rows:auto auto;column-gap:12px;align-items:start;padding-bottom:20px}
-.pga-stop:last-child{padding-bottom:0}
-.pga-dot{grid-column:1;grid-row:1}
-.pga .pga-city{grid-column:2;grid-row:1;margin-left:0}
-.pga-ln{grid-column:1;grid-row:2;width:2px;height:auto;margin:4px 0 0;justify-self:center;align-self:stretch}
-.pga-icons{grid-column:2;grid-row:2;margin-top:12px;gap:4px}
-.pga a.pga-t{width:78px}
-.pga-icons:not(.hl) a.pga-t{padding-top:0}
-.pga a.pga-t img{width:56px;height:56px}
-.pga-ticks{grid-template-columns:1fr;padding:16px}
-.pga .pga-foot{padding:12px 16px 14px}
-}
-@media print{.pga{display:none!important}}
-</style>
-<aside class="pga" id="pocket-guides-japan" data-pga="japan-v2" data-pga-article="osaka-station" role="complementary" aria-label="Offline pocket guides for Japan"><div class="pga-top"><span class="pga-kick">Free offline pocket guides</span><p class="pga-title">Heading on? Keep the guides in your pocket.</p><p class="pga-sub">Short, big-print helpers for the next stops. Open one, save it to your home screen, and it works with no signal. Free, no app store, no account.</p><div class="pga-route"><div class="pga-stop" style="flex:3.7 1 0"><span class="pga-dot"></span><span class="pga-city">Tokyo</span><span class="pga-ln"></span><div class="pga-icons"><a class="pga-t" href="/haneda-pocket?src=art_osaka-station" data-pga-to="haneda"><img src="/images/haneda-icon-v2-192.png" alt="" width="64" height="64" loading="lazy"><b>Haneda</b></a><a class="pga-t" href="/narita-pocket?src=art_osaka-station" data-pga-to="narita"><img src="/images/narita-icon-v2-192.png" alt="" width="64" height="64" loading="lazy"><b>Narita</b></a><a class="pga-t" href="/tokyo-pocket?src=art_osaka-station" data-pga-to="tokyo"><img src="/images/tokyo-icon-192.png" alt="" width="64" height="64" loading="lazy"><b>Tokyo Station</b></a></div></div><div class="pga-stop" style="flex:1.7 1 0"><span class="pga-dot"></span><span class="pga-city">Kyoto</span><span class="pga-ln"></span><div class="pga-icons hl"><a class="pga-t lead" href="/kyoto-pocket?src=art_osaka-station" data-pga-to="kyoto"><em>Start here</em><img src="/images/kyoto-icon-192.png" alt="" width="64" height="64" loading="lazy"><b>Kyoto Station</b></a></div></div><div class="pga-stop" style="flex:1.7 1 0"><span class="pga-dot"></span><span class="pga-city">Osaka</span><div class="pga-icons hl"><a class="pga-t lead" href="/kix-pocket?src=art_osaka-station" data-pga-to="kix"><em>Start here</em><img src="/images/kix-icon-192.png" alt="" width="64" height="64" loading="lazy"><b>Kansai Airport</b></a></div></div></div></div><div class="pga-ticks"><div class="pga-tick"><span><b>Finds things fast.</b> Toilets, lockers, food, exits and trains.</span></div><div class="pga-tick"><span><b>Big print.</b> Easy to show station or airport staff.</span></div><div class="pga-tick"><span><b>No signal needed</b> once it is saved.</span></div></div><p class="pga-foot"><b>Save it in three taps:</b> open a guide, then on Android tap Install, or on iPhone tap Share and then Add to Home Screen.</p></aside>
-<script>(function(){var b=document.getElementById('pocket-guides-japan');if(!b)return;b.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-pga-to]');if(!a)return;try{if(window.gtag)gtag('event','pg_article_tap',{event_category:'engagement',to:a.getAttribute('data-pga-to'),article:b.getAttribute('data-pga-article'),page_path:location.pathname});}catch(x){}});})();</script>
 <h2 id="faq">Frequently Asked Questions</h2>
 <h3>Which station do I use in Osaka: Shin-Osaka, Osaka or Umeda?</h3>
 <p>Shin-Osaka is where the Shinkansen (bullet trains) stop. Osaka Station and Umeda, to the south, are the downtown hub for local trains, subways and private railways. The Japan National Tourism Organization (JNTO) says the similar names confuse locals and visitors alike. If you arrive by Shinkansen, you get off at Shin-Osaka and then take a local train or the subway into the city.</p>
