@@ -14,3 +14,6 @@ summary_table.txt
 homepage-mockup.html
 backlink-outreach/
 PROJECT_CONTEXT.md
+
+# Python bytecode
+__pycache__/

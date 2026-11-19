@@ -1,0 +1,3 @@
+# Not part of the site: build scripts and scratch
+tools/
+.tmp_kyoto/
