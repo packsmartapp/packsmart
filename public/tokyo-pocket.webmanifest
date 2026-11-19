@@ -1,0 +1,31 @@
+{
+  "name": "Tokyo Station Pocket Guide",
+  "short_name": "Tokyo",
+  "description": "A simple Tokyo Station helper that works offline.",
+  "start_url": "/tokyo-pocket",
+  "scope": "/tokyo-pocket",
+  "display": "standalone",
+  "background_color": "#2e7d5b",
+  "theme_color": "#1a1a3e",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/images/tokyo-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/tokyo-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/tokyo-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
