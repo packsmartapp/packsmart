@@ -43,12 +43,11 @@ KICK = "background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);
 # -------------------------------------------------------------------------------------------------------------
 
 TITLE = "Landing in Japan? Get the airport and station guides on your phone."
-SUB = ("Find the toilets, lockers, exits, trains and buses in seconds. Keep the important phone numbers and Japanese phrases "
-       "to show staff within reach. Install the guide that fits your trip, and it works even with no signal.")
-SUB_TRIP = ("Install the guide for the airport you land at and the stations on the way to Kyoto. Find the toilets, lockers, exits, "
-            "trains and buses, with important phone numbers and Japanese phrases to show staff. They work even with no signal.")
-SUB_NEXT = ("Find the toilets, lockers, exits, trains and buses in seconds. Keep the important phone numbers and Japanese phrases "
-            "to show staff within reach. Install the guides for your next stops, and they work even with no signal.")
+LIST = ("Find the ATMs, trains, buses, toilets, lockers, exits, emergency phone numbers, and easy Japanese words "
+        "to talk or show to staff, all in one place. ")
+SUB = LIST + "Install and it works even offline."
+SUB_TRIP = LIST + "Install the guides for your airport and the stations on your route, and they work even offline."
+SUB_NEXT = LIST + "Install the guides for your next stops, and they work even offline."
 TICKS = ["<b>Arrival and leaving steps.</b> What to do after landing, and how to get on trains and buses.",
          "<b>Phone numbers that matter.</b> Emergency, lost and found and more, tap to call.",
          "<b>Japanese for staff.</b> Show the phrase on your screen when you need help."]
@@ -92,7 +91,7 @@ CSS = """<style id="pga-css">
 .pga *{box-sizing:border-box}
 .pga-top{padding:26px 28px 22px;background:@BG@;color:#fff}
 .pga .pga-kick{display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;border-radius:20px;padding:4px 12px;margin:0 0 10px;line-height:1.4;@KICK@}
-.pga .pga-title{margin:0 0 6px;font-size:25px;line-height:1.2;font-weight:800;color:#fff}
+.pga .pga-title{text-wrap:balance;margin:0 0 6px;font-size:25px;line-height:1.2;font-weight:800;color:#fff}
 .pga .pga-sub{margin:0 0 20px;font-size:15px;line-height:1.5;color:#fff;max-width:560px}
 .pga-route{display:flex;align-items:flex-start;padding-top:6px}
 .pga-stop{display:grid;grid-template-columns:16px auto 1fr;grid-template-rows:auto auto;align-items:center;min-width:0;flex-shrink:1}
