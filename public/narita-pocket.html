@@ -314,7 +314,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 </div></div>
 <div class="quiet"><div class="card slim" id="shareCard" hidden><div class="row"><div><h2>Helping someone travel?</h2><p>Send them this guide for offline use.</p></div><button type="button" class="big" id="shareBtn">Send it</button></div></div>
 <div class="card slim" id="allGuides"><h2>More pocket guides</h2><a class="nxl first" href="/haneda-pocket?src=pk_narita" data-xg="haneda" data-via="list"><span aria-hidden="true">✈️</span><b>Haneda Airport</b><span aria-hidden="true">&rsaquo;</span></a><a class="nxl" href="/kix-pocket?src=pk_narita" data-xg="kix" data-via="list"><span aria-hidden="true">✈️</span><b>Kansai Airport</b><span aria-hidden="true">&rsaquo;</span></a><a class="nxl" href="/tokyo-pocket?src=pk_narita" data-xg="tokyo" data-via="list"><span aria-hidden="true">🚉</span><b>Tokyo Station</b><span aria-hidden="true">&rsaquo;</span></a><a class="nxl" href="/kyoto-pocket?src=pk_narita" data-xg="kyoto" data-via="list"><span aria-hidden="true">🚉</span><b>Kyoto Station</b><span aria-hidden="true">&rsaquo;</span></a><a class="nxl" href="/osaka-pocket?src=pk_narita" data-xg="osaka" data-via="list"><span aria-hidden="true">🚉</span><b>Osaka Station</b><span aria-hidden="true">&rsaquo;</span></a></div>
-<div class="card slim install" id="install"><div class="row"><div><h2>Keep this on your phone</h2><p>Add it to your home screen. Works offline.</p><p class="small" id="instDesk">Open this page on your phone, then add it to your home screen.</p></div><div id="instHow" hidden><button type="button" class="big" id="instBtn">Show me</button></div></div></div>
+<div class="card slim install" id="install"><div class="row"><div><h2>Keep this on your phone</h2><p id="instP">Add it to your home screen. Works offline.</p><p id="instDesk">Open this page on your phone to save it for offline use.</p></div><div id="instHow" hidden><button type="button" class="big" id="instBtn">Show me</button></div></div></div>
 <p class="small">Facility details come from Narita Airport's own pages, checked 16 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask at an information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). We count anonymous taps to improve this guide: no name, no account. <a href="/privacy-policy">Privacy</a> &middot; <a href="#" id="pgOpt">Turn off counting</a>. The full guide, with trains, SIM and luggage, is at <a href="https://www.packsmartapp.com/blog/narita-airport-guide">packsmartapp.com</a> (needs internet).</p></div>
 </section>
 </div>
@@ -624,8 +624,8 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/narita-sw.js',{scope:'/narita-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
-      .then(function(){ return caches.has('narita-pocket-v6'); })
-      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('narita-pocket-v6').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .then(function(){ return caches.has('narita-pocket-v7'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('narita-pocket-v7').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
       .catch(function(){ paint(); });
   }
   /* install help: shown first, in the person's own phone type */
@@ -642,7 +642,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   function needed(){ return mobile&&!standalone&&flag('nrtInstalled')!=='1'; }
   function refresh(){
     var n=needed(); strip.hidden=!n;
-    $('instHow').hidden=!n; $('instDesk').hidden=mobile;
+    $('instHow').hidden=!n; $('instDesk').hidden=mobile; $('instP').hidden=!mobile;
     if(standalone||flag('nrtInstalled')==='1'){ $('install').hidden=true; }
     updateStrip();
   }

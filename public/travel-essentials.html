@@ -149,12 +149,28 @@
 @media (max-width:480px){.blog-card-body.pg-body{padding-left:1.3rem;padding-right:1.3rem}.pg-meta .read-more{font-size:.85rem}}
 </style>
 <style id="pocket-hub-css">
-.pocket-hub{margin:0 0 1.6rem;padding:1rem 1.1rem;background:#E7FAF5;border:1px solid #bfeee2;border-radius:16px}
-.pocket-hub h2{font-size:1.05rem;font-weight:800;margin:0 0 .15rem;color:#0f0f23}
-.pocket-hub p{margin:0 0 .7rem;font-size:.92rem;color:#3d4659}
-.pocket-hub .ph-row{display:flex;flex-wrap:wrap;gap:8px}
-.pocket-hub .ph-row a{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border-radius:22px;background:#fff;border:1.5px solid #bfeee2;color:#0f0f23;font-weight:700;font-size:.9rem;text-decoration:none;min-height:40px}
-.pocket-hub .ph-row a:hover{border-color:#0b5d57}
+.pocket-hub{margin:0 0 2rem;padding:1.5rem 1.6rem 1.4rem;border-radius:24px;background:linear-gradient(180deg,#E7FAF5 0%,#F4FCFA 100%);border:1px solid #bfeee2}
+.pocket-hub .ph-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:.6rem 1rem;margin-bottom:1rem}
+.pocket-hub h2{font-family:var(--font-display);font-weight:400;font-size:2rem;line-height:1.1;margin:0;color:#0f0f23}
+.pocket-hub h2 em{font-style:italic;color:#0b8f78}
+.pocket-hub .ph-head p{margin:.3rem 0 0;color:#3d4659;max-width:34rem}
+.pocket-hub .ph-pill{font-size:.8rem;font-weight:800;background:#0f0f23;color:#fff;border-radius:20px;padding:6px 14px;white-space:nowrap}
+.pocket-hub .ph-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 .4rem}
+.pocket-hub .ph-chips a{font-size:.88rem;font-weight:700;padding:7px 14px;border-radius:22px;border:1.5px solid #bfeee2;background:#fff;color:#0f0f23;text-decoration:none}
+.pocket-hub .ph-chips i{font-style:normal;opacity:.6;margin-left:4px;font-weight:600}
+.pocket-hub .ph-cty{font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b5d57;margin:1rem 0 .7rem;display:flex;align-items:center;gap:10px}
+.pocket-hub .ph-cty::after{content:"";flex:1;height:1px;background:#bfeee2}
+.pocket-hub .ph-shelf{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
+.pocket-hub .ph-app{display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;color:#0f0f23;line-height:1.2;padding:6px 2px;border-radius:16px;transition:transform .15s}
+.pocket-hub .ph-app:hover{transform:translateY(-3px)}
+.pocket-hub .ph-app img{width:84px;height:84px;border-radius:21px;display:block;box-shadow:0 8px 18px rgba(15,15,35,.22);margin-bottom:.6rem}
+.pocket-hub .ph-app b{font-size:.95rem}
+.pocket-hub .ph-app small{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0b5d57;margin-top:2px}
+.pocket-hub .ph-all{display:flex;justify-content:center;margin-top:1.2rem}
+.pocket-hub .ph-all a{font-weight:800;color:#0f0f23;background:#fff;border:2px solid #0f0f23;border-radius:24px;padding:9px 20px;text-decoration:none}
+.pocket-hub .ph-foot{margin:1.2rem 0 0;font-size:.88rem;color:#3d4659;text-align:center}
+@media (max-width:900px){.pocket-hub .ph-shelf{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:18px}}
+@media (max-width:480px){.pocket-hub{padding:1.2rem 1rem}.pocket-hub h2{font-size:1.7rem}.pocket-hub .ph-app img{width:72px;height:72px;border-radius:18px}}
 </style>
 </head>
 <body>
@@ -177,7 +193,7 @@
         <h1>Travel <em style="font-family:var(--font-display);font-style:italic;">Essentials</em></h1>
         <p>Plain-English help for the parts of a trip that are not about one destination.</p>
     </div>
-    <section class="pocket-hub" id="pocket-hub" aria-labelledby="pocketHubT"><h2 id="pocketHubT">Offline pocket guides</h2><p>Short, big-print helpers for the airport or station. Open one on your phone and save it to your home screen. It works with no signal.</p><div class="ph-row"><a href="/haneda-pocket?src=hub">✈️ Haneda Airport</a><a href="/narita-pocket?src=hub">✈️ Narita Airport</a><a href="/kix-pocket?src=hub">✈️ Kansai Airport</a><a href="/tokyo-pocket?src=hub">🚉 Tokyo Station</a><a href="/kyoto-pocket?src=hub">🚉 Kyoto Station</a><a href="/osaka-pocket?src=hub">🚉 Osaka Station</a></div></section>
+    <section class="pocket-hub" id="pocket-hub" aria-labelledby="pocketHubT"><!-- pocket-hub-v2 --><div class="ph-head"><div><h2 id="pocketHubT">Your <em>pocket guides</em></h2><p>Big-print helpers for the airport or station. Open one on your phone and save it to your home screen.</p></div><span class="ph-pill">Free &middot; Works offline</span></div><div class="ph-cty" id="ph-japan">Japan</div><div class="ph-shelf"><a class="ph-app" href="/haneda-pocket?src=hub"><img src="/images/haneda-icon-v2-192.png" alt="" width="84" height="84" loading="lazy"><b>Haneda Airport</b><small>Airport</small></a><a class="ph-app" href="/narita-pocket?src=hub"><img src="/images/narita-icon-v2-192.png" alt="" width="84" height="84" loading="lazy"><b>Narita Airport</b><small>Airport</small></a><a class="ph-app" href="/kix-pocket?src=hub"><img src="/images/kix-icon-192.png" alt="" width="84" height="84" loading="lazy"><b>Kansai Airport</b><small>Airport</small></a><a class="ph-app" href="/tokyo-pocket?src=hub"><img src="/images/tokyo-icon-192.png" alt="" width="84" height="84" loading="lazy"><b>Tokyo Station</b><small>Station</small></a><a class="ph-app" href="/kyoto-pocket?src=hub"><img src="/images/kyoto-icon-192.png" alt="" width="84" height="84" loading="lazy"><b>Kyoto Station</b><small>Station</small></a><a class="ph-app" href="/osaka-pocket?src=hub"><img src="/images/osaka-icon-192.png" alt="" width="84" height="84" loading="lazy"><b>Osaka Station</b><small>Station</small></a></div><p class="ph-foot">No app store and no account. Add it to your home screen once, then it works with no signal.</p></section>
     <div class="filter-wrap te-filter" id="teFilter">
         <div class="filter-label" id="teFilterLabel">What do you need help with?</div>
         <div class="filter-bar" role="group" aria-labelledby="teFilterLabel">

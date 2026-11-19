@@ -1,5 +1,5 @@
 /* Kyoto Station Pocket Guide service worker. Bump V when the page changes shape. */
-var V='kyoto-pocket-v3';
+var V='kyoto-pocket-v4';
 var PAGE='/kyoto-pocket';
 var SHELL=[PAGE,'/kyoto-pocket.webmanifest','/favicon-32.png','/images/kyoto-icon-192.png','/images/kyoto-icon-512.png','/images/kyoto-icon-maskable-512.png'];
 self.addEventListener('install',function(e){

@@ -1,0 +1,12 @@
+{
+  "_note": "Registry of pocket guides. Read by tools/w46_hub_and_desktop.py. Add a guide here (key, name, country, type, icon, blurb) and re-run the hub script. Keep this file in tools/, never under public/.",
+  "country_order": ["Japan"],
+  "guides": [
+    {"key": "haneda", "name": "Haneda Airport", "country": "Japan", "type": "Airport", "icon": "haneda-icon-v2-192.png", "blurb": "Terminals, prayer rooms, nursing rooms, lockers"},
+    {"key": "narita", "name": "Narita Airport", "country": "Japan", "type": "Airport", "icon": "narita-icon-v2-192.png", "blurb": "Terminals, prayer rooms, baby rooms, lockers"},
+    {"key": "kix", "name": "Kansai Airport", "country": "Japan", "type": "Airport", "icon": "kix-icon-192.png", "blurb": "Trains and buses to Osaka and Kyoto, lockers, showers"},
+    {"key": "tokyo", "name": "Tokyo Station", "country": "Japan", "type": "Station", "icon": "tokyo-icon-192.png", "blurb": "Marunouchi and Yaesu sides, Shinkansen platforms, lockers"},
+    {"key": "kyoto", "name": "Kyoto Station", "country": "Japan", "type": "Station", "icon": "kyoto-icon-192.png", "blurb": "Central and Hachijo sides, platforms, buses, lockers"},
+    {"key": "osaka", "name": "Osaka Station", "country": "Japan", "type": "Station", "icon": "osaka-icon-192.png", "blurb": "Shin-Osaka and Osaka/Umeda, platforms, lockers"}
+  ]
+}
