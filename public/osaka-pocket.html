@@ -228,11 +228,25 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 .sheet .close{font:inherit;font-weight:800;width:100%;min-height:54px;margin-top:8px;border:0;border-radius:14px;background:#1a1a3e;color:#fff;font-size:1.1rem;cursor:pointer}
 @media (prefers-reduced-motion:reduce){.sheet{animation:none}.tile:active{transform:none}}
 @media (max-height:640px){.tile{min-height:62px}.tabs button{height:58px}body{--tabh:calc(58px + env(safe-area-inset-bottom))}}
+
+.nx{border-color:#BFE9DF;background:#F3FBF9}
+.nx h2{margin:0 0 2px}
+.nxa{display:flex;align-items:center;gap:12px;text-decoration:none;color:#0f0f23;background:#fff;border:2px solid #D5DCE0;border-radius:14px;padding:10px 12px;margin:8px 0 0;min-height:60px}
+.nxa .ni{font-size:1.6rem;line-height:1;flex:none}
+.nxa .nt{display:flex;flex-direction:column;min-width:0;line-height:1.2;flex:1}
+.nxa .nt b{font-size:1rem}
+.nxa .nt span{font-size:.82rem;color:#444;margin-top:2px}
+.nxa .go{flex:none;font-weight:800;font-size:.9rem;color:#0b5d57}
+.nxl{display:flex;align-items:center;gap:10px;text-decoration:none;color:#0f0f23;padding:9px 0;border-top:1px solid #D5DCE0;font-size:.92rem;min-height:44px}
+.nxl.first{border-top:0}
+.nxl b{flex:1}
+.nxoff{margin:8px 0 0;font-weight:700;color:#3a2400;background:#FFE7BF;border-radius:10px;padding:6px 10px}
+.nxoff[hidden]{display:none}
 </style>
 </head>
 <body>
 <header class="top">
-<div><strong>Osaka Station Pocket Guide</strong><span class="by">by PackSmart &middot; 19 Nov 2026</span></div>
+<div><strong>Osaka Station Pocket Guide</strong><span class="by">by PackSmart &middot; Checked 19 Nov 2026</span></div>
 <div class="status" id="status" role="status">Checking...</div>
 </header>
 <button type="button" class="inst-strip" id="instStrip" hidden><span class="ico" aria-hidden="true">&#128242;</span><span><b>Add this to your home screen</b><br>so it works with no internet</span><span class="go">How</span></button>
@@ -269,6 +283,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <div id="depBefore">
 <div class="tiles" id="depTiles"></div>
 <p class="hint">Tap one for the details. Prices and times are approximate.</p>
+<div class="card nx" id="nextCard"><h2>Heading on?</h2><p class="small">Your next pocket guides. Open it while you have signal, then add it to your home screen.</p><a class="nxa" href="/kyoto-pocket?src=pk_osaka" data-xg="kyoto" data-via="card"><span class="ni" aria-hidden="true">🚉</span><span class="nt"><b>Kyoto Station Pocket Guide</b><span>Central and Hachijo sides, platforms, buses, lockers</span></span><span class="go">Open &rsaquo;</span></a><a class="nxa" href="/kix-pocket?src=pk_osaka" data-xg="kix" data-via="card"><span class="ni" aria-hidden="true">✈️</span><span class="nt"><b>Kansai Airport Pocket Guide</b><span>Trains and buses to Osaka and Kyoto, lockers, showers</span></span><span class="go">Open &rsaquo;</span></a></div>
 </div>
 <div id="depAir" hidden>
 <div class="heroline"><span class="big2">20-27</span><span><b>Shinkansen platforms at Shin-Osaka.</b><br>20 to 22 head west, 23 to 27 head east. Check your ticket.</span></div>
@@ -296,6 +311,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 </div>
 </div></div>
 <div class="quiet"><div class="card slim" id="shareCard" hidden><div class="row"><div><h2>Helping someone travel?</h2><p>Send them this guide for offline use.</p></div><button type="button" class="big" id="shareBtn">Send it</button></div></div>
+<div class="card slim" id="allGuides"><h2>More pocket guides</h2><a class="nxl first" href="/haneda-pocket?src=pk_osaka" data-xg="haneda" data-via="list"><span aria-hidden="true">✈️</span><b>Haneda Airport</b><span aria-hidden="true">&rsaquo;</span></a><a class="nxl" href="/narita-pocket?src=pk_osaka" data-xg="narita" data-via="list"><span aria-hidden="true">✈️</span><b>Narita Airport</b><span aria-hidden="true">&rsaquo;</span></a><a class="nxl" href="/kix-pocket?src=pk_osaka" data-xg="kix" data-via="list"><span aria-hidden="true">✈️</span><b>Kansai Airport</b><span aria-hidden="true">&rsaquo;</span></a><a class="nxl" href="/tokyo-pocket?src=pk_osaka" data-xg="tokyo" data-via="list"><span aria-hidden="true">🚉</span><b>Tokyo Station</b><span aria-hidden="true">&rsaquo;</span></a><a class="nxl" href="/kyoto-pocket?src=pk_osaka" data-xg="kyoto" data-via="list"><span aria-hidden="true">🚉</span><b>Kyoto Station</b><span aria-hidden="true">&rsaquo;</span></a></div>
 <div class="card slim install" id="install"><div class="row"><div><h2>Keep this on your phone</h2><p>Add it to your home screen. Works offline.</p><p class="small" id="instDesk">Open this page on your phone, then add it to your home screen.</p></div><div id="instHow" hidden><button type="button" class="big" id="instBtn">Show me</button></div></div></div>
 <p class="small">Facility details come from JR West station maps and Osaka Metro, JNTO and Osaka tourism board pages, checked 19 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask station staff or a tourist information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). We count anonymous taps to improve this guide: no name, no account. <a href="/privacy-policy">Privacy</a> &middot; <a href="#" id="pgOpt">Turn off counting</a>. The full guide, with platforms, Umeda exits and luggage, is at <a href="https://www.packsmartapp.com/blog/osaka-station-guide">packsmartapp.com</a> (needs internet).</p></div>
 </section>
@@ -591,8 +607,8 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/osaka-sw.js',{scope:'/osaka-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
-      .then(function(){ return caches.has('osaka-pocket-v2'); })
-      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('osaka-pocket-v2').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .then(function(){ return caches.has('osaka-pocket-v3'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('osaka-pocket-v3').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
       .catch(function(){ paint(); });
   }
   /* install help: shown first, in the person's own phone type */
@@ -825,6 +841,17 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   window.addEventListener('appinstalled',function(){ pgTrack('pg_installed',{via:'browser'}); markInstalled(); if(!inst.hidden) closeSheet(); });
   /* analytics: taps only (see PG_BOOT). One delegated listener, so tiles need no code of their own. */
   var AUTO_INSTALL_SHEET=true; /* install-v2 */
+  /* xguide-v1: links to the other pocket guides. Needs signal, so say so when offline. */
+  document.addEventListener('click',function(e){
+    var a=e.target&&e.target.closest?e.target.closest('a[data-xg]'):null; if(!a) return;
+    if(navigator.onLine===false){
+      e.preventDefault();
+      var n=document.getElementById('nxOff'); if(!n){ n=document.createElement('p'); n.id='nxOff'; n.className='nxoff'; n.setAttribute('role','status'); }
+      n.textContent='No signal right now. Open this guide when you are back online, then save it to your phone.';
+      a.parentNode.insertBefore(n,a.nextSibling); n.hidden=false;
+    }
+  },true);
+
   var instVia='help';
   function tabNow(){ var p=document.querySelector('.panel:not([hidden])'); return p?p.id.replace('p-',''):''; }
   function whereNow(){ return ((!sheet.hidden&&shT.textContent)||tabNow()).replace(/^[^A-Za-z0-9]+/,''); }
@@ -833,6 +860,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
     var h=a.getAttribute('href')||''; if(!h||h.charAt(0)==='#'||a.hasAttribute('data-sp')) return;
     if(/^tel:/i.test(h)){ var d=h.replace(/^tel:/i,'').replace(/[^0-9+]/g,''); var nm={'119':'fire_ambulance','110':'police','+81663024538':'crosta_shin_osaka','+815038162787':'help_line'}; pgTrack('pg_call',{dest:nm[d]||d,where:whereNow()}); return; }
     if(/^mailto:/i.test(h)) return;
+    if(a.hasAttribute('data-xg')){ pgTrack('pg_xguide_tap',{to:a.getAttribute('data-xg'),via:a.getAttribute('data-via')||'',where:whereNow()}); return; }
     if(/(^|\s)sponsored(\s|$)/.test(a.getAttribute('rel')||'')){ pgTrack('pg_partner',{partner:a.textContent,host:a.hostname,where:whereNow()}); return; }
     if(a.hostname&&bare(a.hostname)!==bare(location.hostname)&&a.hostname!=='packsmartapp.com'){ pgTrack('pg_outbound',{host:a.hostname,where:whereNow()}); return; }
     pgTrack('pg_internal',{path:a.pathname,where:whereNow()});
