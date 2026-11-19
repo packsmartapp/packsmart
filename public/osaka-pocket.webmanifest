@@ -1,0 +1,31 @@
+{
+  "name": "Osaka Station Pocket Guide",
+  "short_name": "Osaka",
+  "description": "A simple Osaka station helper that works offline.",
+  "start_url": "/osaka-pocket",
+  "scope": "/osaka-pocket",
+  "display": "standalone",
+  "background_color": "#e08a10",
+  "theme_color": "#1a1a3e",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/images/osaka-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/osaka-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/osaka-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
