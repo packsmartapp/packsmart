@@ -42,16 +42,16 @@ RING = "#fff"                          # ring round the "Start here" icons. Bran
 KICK = "background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);color:#fff"
 # -------------------------------------------------------------------------------------------------------------
 
-TITLE = "Landing in Japan? Keep the guide in your pocket."
-SUB = ("Short, big-print helpers for Japan's airports and stations. Open one, save it to your home screen, "
-       "and it works with no signal. Free, no app store, no account.")
-SUB_TRIP = ("Pocket guides for the airport you land at and the stations on the way to Kyoto. Open one, save it to your home screen, "
-            "and it works with no signal. Free, no app store, no account.")
-SUB_NEXT = ("Short, big-print helpers for the next stops. Open one, save it to your home screen, "
-            "and it works with no signal. Free, no app store, no account.")
-TICKS = ["<b>Finds things fast.</b> Toilets, lockers, food, exits and trains.",
-         "<b>Big print.</b> Easy to show station or airport staff.",
-         "<b>No signal needed</b> once it is saved."]
+TITLE = "Landing in Japan? Get the airport and station guides on your phone."
+SUB = ("Find the toilets, lockers, exits, trains and buses in seconds. Keep the important phone numbers and Japanese phrases "
+       "to show staff within reach. Install the guide that fits your trip, and it works even with no signal.")
+SUB_TRIP = ("Install the guide for the airport you land at and the stations on the way to Kyoto. Find the toilets, lockers, exits, "
+            "trains and buses, with important phone numbers and Japanese phrases to show staff. They work even with no signal.")
+SUB_NEXT = ("Find the toilets, lockers, exits, trains and buses in seconds. Keep the important phone numbers and Japanese phrases "
+            "to show staff within reach. Install the guides for your next stops, and they work even with no signal.")
+TICKS = ["<b>Arrival and leaving steps.</b> What to do after landing, and how to get on trains and buses.",
+         "<b>Phone numbers that matter.</b> Emergency, lost and found and more, tap to call.",
+         "<b>Japanese for staff.</b> Show the phrase on your screen when you need help."]
 FOOT = ("<b>Save it in three taps:</b> open a guide, then on Android tap Install, "
         "or on iPhone tap Share and then Add to Home Screen.")
 
@@ -64,26 +64,26 @@ ARTICLES = {
     "japan-travel-packing-guide-from-india": ("japan-packing-in", ["narita", "haneda"], TITLE, SUB,
                                               "before", '<h2 id="weather">'),
     "japan-7-day-itinerary-budget": ("japan-7day", ["narita", "haneda"],
-                                     "Landing in Tokyo, then on to Kyoto? Keep the guides in your pocket.", SUB_TRIP,
+                                     "Landing in Tokyo, then on to Kyoto? Get the guides on your phone.", SUB_TRIP,
                                      "before", '<h2 id="itinerary">'),
     "kyoto-travel-guide": ("kyoto-city", ["kyoto", "kix"],
-                           "Arriving in Kyoto? Keep the guide on your phone.", SUB,
+                           "Arriving in Kyoto? Get the airport and station guides on your phone.", SUB,
                            "before", '<h2 id="areas">'),
     "osaka-travel-guide": ("osaka-city", ["osaka", "kix"],
-                           "Arriving in Osaka? Keep the guide on your phone.", SUB,
+                           "Arriving in Osaka? Get the airport and station guides on your phone.", SUB,
                            "before", '<h2 id="areas">'),
     # airport and station guides: card right after the "on one page" box and its QR code; the page's own guide is left out; the next stops lead
-    "narita-airport-guide": ("narita-airport", ["tokyo"], "Heading into Tokyo? Keep the guides in your pocket.", SUB_NEXT,
+    "narita-airport-guide": ("narita-airport", ["tokyo"], "Heading into Tokyo? Get the next guides on your phone.", SUB_NEXT,
                              "before", '<h2 id="terminals">', ["narita"]),
-    "haneda-airport-guide": ("haneda-airport", ["tokyo"], "Heading into Tokyo? Keep the guides in your pocket.", SUB_NEXT,
+    "haneda-airport-guide": ("haneda-airport", ["tokyo"], "Heading into Tokyo? Get the next guides on your phone.", SUB_NEXT,
                              "before", '<h2 id="terminals">', ["haneda"]),
-    "kansai-airport-guide": ("kansai-airport", ["osaka", "kyoto"], "Heading into the city? Keep the guides in your pocket.", SUB_NEXT,
+    "kansai-airport-guide": ("kansai-airport", ["osaka", "kyoto"], "Heading into the city? Get the next guides on your phone.", SUB_NEXT,
                              "before", '<h2 id="terminals">', ["kix"]),
-    "tokyo-station-guide": ("tokyo-station", ["kyoto", "osaka"], "Heading on by bullet train? Keep the guides in your pocket.", SUB_NEXT,
+    "tokyo-station-guide": ("tokyo-station", ["kyoto", "osaka"], "Heading on by bullet train? Get the next guides on your phone.", SUB_NEXT,
                             "before", '<h2 id="which-side">', ["tokyo"]),
-    "kyoto-station-guide": ("kyoto-station", ["osaka", "kix"], "Heading on? Keep the guides in your pocket.", SUB_NEXT,
+    "kyoto-station-guide": ("kyoto-station", ["osaka", "kix"], "Heading on? Get the next guides on your phone.", SUB_NEXT,
                             "before", '<h2 id="which-side">', ["kyoto"]),
-    "osaka-station-guide": ("osaka-station", ["kyoto", "kix"], "Heading on? Keep the guides in your pocket.", SUB_NEXT,
+    "osaka-station-guide": ("osaka-station", ["kyoto", "kix"], "Heading on? Get the next guides on your phone.", SUB_NEXT,
                             "before", '<h2 id="which-station">', ["osaka"]),
 }
 
