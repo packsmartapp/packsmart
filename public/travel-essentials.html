@@ -149,28 +149,49 @@
 @media (max-width:480px){.blog-card-body.pg-body{padding-left:1.3rem;padding-right:1.3rem}.pg-meta .read-more{font-size:.85rem}}
 </style>
 <style id="pocket-hub-css">
-.pocket-hub{margin:0 0 2rem;padding:1.5rem 1.6rem 1.4rem;border-radius:24px;background:linear-gradient(180deg,#E7FAF5 0%,#F4FCFA 100%);border:1px solid #bfeee2}
-.pocket-hub .ph-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:.6rem 1rem;margin-bottom:1rem}
-.pocket-hub h2{font-family:var(--font-display);font-weight:400;font-size:2rem;line-height:1.1;margin:0;color:#0f0f23}
+.pocket-hub{margin:0 0 2rem;background:#fff;border:1px solid #E1E8EB;border-radius:28px;padding:2rem 2.2rem;box-shadow:0 12px 32px rgba(15,15,35,.07);display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);grid-template-areas:"intro side" "more side";column-gap:2.2rem;row-gap:0;align-items:start}
+.pocket-hub .ph-intro{grid-area:intro}
+.pocket-hub .ph-more{grid-area:more}
+.pocket-hub .ph-kick{display:inline-block;font-size:.72rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b5d57;background:#D9F7EF;border-radius:20px;padding:4px 12px;margin-bottom:.7rem}
+.pocket-hub h2{font-family:var(--font-display);font-weight:400;font-size:2.3rem;line-height:1.08;margin:0 0 .6rem;color:#0f0f23}
 .pocket-hub h2 em{font-style:italic;color:#0b8f78}
-.pocket-hub .ph-head p{margin:.3rem 0 0;color:#3d4659;max-width:34rem}
-.pocket-hub .ph-pill{font-size:.8rem;font-weight:800;background:#0f0f23;color:#fff;border-radius:20px;padding:6px 14px;white-space:nowrap}
-.pocket-hub .ph-chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 .4rem}
-.pocket-hub .ph-chips a{font-size:.88rem;font-weight:700;padding:7px 14px;border-radius:22px;border:1.5px solid #bfeee2;background:#fff;color:#0f0f23;text-decoration:none}
-.pocket-hub .ph-chips i{font-style:normal;opacity:.6;margin-left:4px;font-weight:600}
-.pocket-hub .ph-cty{font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b5d57;margin:1rem 0 .7rem;display:flex;align-items:center;gap:10px}
-.pocket-hub .ph-cty::after{content:"";flex:1;height:1px;background:#bfeee2}
-.pocket-hub .ph-shelf{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:14px}
-.pocket-hub .ph-app{display:flex;flex-direction:column;align-items:center;text-align:center;text-decoration:none;color:#0f0f23;line-height:1.2;padding:6px 2px;border-radius:16px;transition:transform .15s}
-.pocket-hub .ph-app:hover{transform:translateY(-3px)}
-.pocket-hub .ph-app img{width:84px;height:84px;border-radius:21px;display:block;box-shadow:0 8px 18px rgba(15,15,35,.22);margin-bottom:.6rem}
-.pocket-hub .ph-app b{font-size:.95rem}
-.pocket-hub .ph-app small{font-size:.74rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0b5d57;margin-top:2px}
-.pocket-hub .ph-all{display:flex;justify-content:center;margin-top:1.2rem}
-.pocket-hub .ph-all a{font-weight:800;color:#0f0f23;background:#fff;border:2px solid #0f0f23;border-radius:24px;padding:9px 20px;text-decoration:none}
-.pocket-hub .ph-foot{margin:1.2rem 0 0;font-size:.88rem;color:#3d4659;text-align:center}
-@media (max-width:900px){.pocket-hub .ph-shelf{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:18px}}
-@media (max-width:480px){.pocket-hub{padding:1.2rem 1rem}.pocket-hub h2{font-size:1.7rem}.pocket-hub .ph-app img{width:72px;height:72px;border-radius:18px}}
+.pocket-hub .ph-lead{margin:0;color:#3d4659;font-size:1.05rem;line-height:1.5;max-width:36rem}
+.pocket-hub .ph-list{list-style:none;margin:1.1rem 0 0;padding:0;display:grid;gap:.75rem;max-width:36rem}
+.pocket-hub .ph-list li{display:flex;gap:.75rem;align-items:flex-start;line-height:1.38;color:#1b1f33;font-size:.98rem}
+.pocket-hub .ph-list li::before{content:"\2713";flex:none;width:24px;height:24px;border-radius:50%;background:#D9F7EF;color:#0b5d57;font-weight:800;display:flex;align-items:center;justify-content:center;font-size:.82rem;margin-top:1px}
+.pocket-hub .ph-list b{font-weight:800;color:#0f0f23}
+.pocket-hub .ph-how{margin:1.3rem 0 0;padding:1rem 1.1rem;background:#F4F7F9;border-radius:16px;max-width:36rem}
+.pocket-hub .ph-how h3{margin:0 0 .6rem;font-size:.8rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0b5d57}
+.pocket-hub .ph-how ol{list-style:none;margin:0;padding:0;display:grid;gap:.55rem;counter-reset:s}
+.pocket-hub .ph-how li{counter-increment:s;display:flex;gap:.7rem;align-items:flex-start;font-size:.93rem;line-height:1.35;color:#1b1f33}
+.pocket-hub .ph-how li::before{content:counter(s);flex:none;width:22px;height:22px;border-radius:50%;background:#0f0f23;color:#fff;font-weight:800;font-size:.78rem;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.pocket-hub .ph-side{grid-area:side;justify-self:center;align-self:center;text-align:center}
+.pocket-hub .ph-count{display:inline-block;font-size:.8rem;font-weight:800;color:#0f0f23;background:#F4F7F9;border-radius:20px;padding:5px 13px;margin-bottom:.9rem}
+.pocket-hub .ph-phone{position:relative;width:272px;margin:0 auto;border-radius:48px;padding:10px;background:#0b0b12;box-shadow:0 0 0 2px #2c2c3a,0 26px 50px rgba(15,15,35,.28)}
+.pocket-hub .ph-screen{position:relative;border-radius:39px;overflow:hidden;aspect-ratio:9/16;background:linear-gradient(165deg,#2f6fe0 0%,#6a4fd0 48%,#f0709a 100%);padding:14px 16px 16px;display:flex;flex-direction:column;text-align:left}
+.pocket-hub .ph-island{position:absolute;top:10px;left:50%;transform:translateX(-50%);width:84px;height:24px;border-radius:14px;background:#000}
+.pocket-hub .ph-status{display:flex;justify-content:space-between;align-items:center;color:#fff;font-weight:700;font-size:.78rem;padding:3px 8px 0}
+.pocket-hub .ph-batt{display:inline-block;width:22px;height:11px;border:1.5px solid #fff;border-radius:4px;position:relative}
+.pocket-hub .ph-batt::after{content:"";position:absolute;left:1.5px;top:1.5px;bottom:1.5px;width:70%;background:#fff;border-radius:2px}
+.pocket-hub .ph-widget{margin-top:2.3rem;background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);border-radius:20px;padding:11px 14px;color:#fff;text-shadow:0 1px 3px rgba(0,0,0,.35)}
+.pocket-hub .ph-widget b{display:block;font-size:.92rem}
+.pocket-hub .ph-widget span{display:block;font-size:.7rem;line-height:1.3;margin-top:2px;opacity:.95}
+.pocket-hub .ph-icons{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px 8px;margin-top:1.1rem}
+.pocket-hub .ph-icon{display:flex;flex-direction:column;align-items:center;gap:5px;text-decoration:none;color:#fff;font-size:.62rem;font-weight:600;text-shadow:0 1px 3px rgba(0,0,0,.45);line-height:1.1;text-align:center}
+.pocket-hub .ph-icon img{width:100%;max-width:50px;aspect-ratio:1;border-radius:23%;display:block;box-shadow:0 4px 10px rgba(0,0,0,.35);transition:transform .15s}
+.pocket-hub .ph-icon:hover img{transform:scale(1.08)}
+.pocket-hub .ph-dots{margin-top:auto;display:flex;justify-content:center;gap:6px}
+.pocket-hub .ph-dots i{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.5);cursor:pointer}
+.pocket-hub .ph-dots i.on{background:#fff}
+.pocket-hub .ph-tabs{display:flex;flex-wrap:wrap;gap:6px;justify-content:center;margin:0 auto .9rem;max-width:300px}
+.pocket-hub .ph-tabs button{font:inherit;font-size:.8rem;font-weight:800;border:1.5px solid #D5DCE0;background:#fff;color:#0f0f23;border-radius:20px;padding:5px 12px;cursor:pointer}
+.pocket-hub .ph-tabs button[aria-pressed=true]{background:#0f0f23;color:#fff;border-color:#0f0f23}
+.pocket-hub .ph-tabs i{font-style:normal;opacity:.6;margin-left:4px;font-weight:600}
+.pocket-hub .ph-home{width:92px;height:4px;border-radius:2px;background:#fff;opacity:.85;margin:12px auto 0}
+.pocket-hub .ph-cap{margin:.9rem 0 0;font-size:.84rem;color:#5a6378}
+.pocket-hub .ph-all{display:inline-block;margin-top:.7rem;font-weight:800;color:#0f0f23;background:#fff;border:2px solid #0f0f23;border-radius:24px;padding:8px 18px;text-decoration:none}
+@media (max-width:900px){.pocket-hub{grid-template-columns:1fr;grid-template-areas:"intro" "side" "more";padding:1.6rem 1.4rem;row-gap:1.4rem}.pocket-hub h2{font-size:2rem}}
+@media (max-width:480px){.pocket-hub{padding:1.3rem 1rem;border-radius:22px}.pocket-hub h2{font-size:1.75rem}.pocket-hub .ph-phone{width:250px}}
 </style>
 </head>
 <body>
@@ -193,7 +214,7 @@
         <h1>Travel <em style="font-family:var(--font-display);font-style:italic;">Essentials</em></h1>
         <p>Plain-English help for the parts of a trip that are not about one destination.</p>
     </div>
-    <section class="pocket-hub" id="pocket-hub" aria-labelledby="pocketHubT"><!-- pocket-hub-v2 --><div class="ph-head"><div><h2 id="pocketHubT">Your <em>pocket guides</em></h2><p>Big-print helpers for the airport or station. Open one on your phone and save it to your home screen.</p></div><span class="ph-pill">Free &middot; Works offline</span></div><div class="ph-cty" id="ph-japan">Japan</div><div class="ph-shelf"><a class="ph-app" href="/haneda-pocket?src=hub"><img src="/images/haneda-icon-v2-192.png" alt="" width="84" height="84" loading="lazy"><b>Haneda Airport</b><small>Airport</small></a><a class="ph-app" href="/narita-pocket?src=hub"><img src="/images/narita-icon-v2-192.png" alt="" width="84" height="84" loading="lazy"><b>Narita Airport</b><small>Airport</small></a><a class="ph-app" href="/kix-pocket?src=hub"><img src="/images/kix-icon-192.png" alt="" width="84" height="84" loading="lazy"><b>Kansai Airport</b><small>Airport</small></a><a class="ph-app" href="/tokyo-pocket?src=hub"><img src="/images/tokyo-icon-192.png" alt="" width="84" height="84" loading="lazy"><b>Tokyo Station</b><small>Station</small></a><a class="ph-app" href="/kyoto-pocket?src=hub"><img src="/images/kyoto-icon-192.png" alt="" width="84" height="84" loading="lazy"><b>Kyoto Station</b><small>Station</small></a><a class="ph-app" href="/osaka-pocket?src=hub"><img src="/images/osaka-icon-192.png" alt="" width="84" height="84" loading="lazy"><b>Osaka Station</b><small>Station</small></a></div><p class="ph-foot">No app store and no account. Add it to your home screen once, then it works with no signal.</p></section>
+    <section class="pocket-hub" id="pocket-hub" aria-labelledby="pocketHubT"><!-- pocket-hub-v2 pocket-hub-v3 --><div class="ph-intro"><span class="ph-kick">Offline pocket guides</span><h2 id="pocketHubT">Your <em>pocket guides</em></h2><p class="ph-lead">A pocket guide is a short, big-print helper for one airport or station. Open it on your phone, save it to your home screen, and it works like an app, even with no signal.</p></div><div class="ph-more"><ul class="ph-list"><li><span><b>Finds what you need fast.</b> Toilets, lockers, food, exits and trains, a couple of taps away.</span></li><li><span><b>Big print, plain English.</b> With a screen you can show station or airport staff in Japanese.</span></li><li><span><b>Works with no signal</b> once it is saved, so it still helps in a basement or on a train platform.</span></li><li><span><b>Checked against official sources.</b> The date it was last checked is at the top of every guide.</span></li></ul><div class="ph-how"><h3>Save it in three taps</h3><ol><li><span>Open a guide on your phone.</span></li><li><span>Android: tap <b>Install</b>. iPhone: tap Share, then <b>Add to Home Screen</b>.</span></li><li><span>Open it from your home screen whenever you need it.</span></li></ol></div></div><div class="ph-side"><span class="ph-count">Japan &middot; 6 guides</span><div class="ph-phone" role="group" aria-label="A phone home screen with the pocket guide icons"><div class="ph-screen"><span class="ph-island" aria-hidden="true"></span><div class="ph-status" aria-hidden="true"><span>9:41</span><span class="ph-batt"></span></div><div class="ph-widget" aria-hidden="true"><b>Works offline</b><span>Saved on your phone, no signal needed</span></div><div class="ph-page" data-ph-page="0"><div class="ph-icons"><a class="ph-icon" href="/haneda-pocket?src=hub"><img src="/images/haneda-icon-v2-192.png" alt="" width="50" height="50" loading="lazy"><span>Haneda</span></a><a class="ph-icon" href="/narita-pocket?src=hub"><img src="/images/narita-icon-v2-192.png" alt="" width="50" height="50" loading="lazy"><span>Narita</span></a><a class="ph-icon" href="/kix-pocket?src=hub"><img src="/images/kix-icon-192.png" alt="" width="50" height="50" loading="lazy"><span>Kansai</span></a><a class="ph-icon" href="/tokyo-pocket?src=hub"><img src="/images/tokyo-icon-192.png" alt="" width="50" height="50" loading="lazy"><span>Tokyo</span></a><a class="ph-icon" href="/kyoto-pocket?src=hub"><img src="/images/kyoto-icon-192.png" alt="" width="50" height="50" loading="lazy"><span>Kyoto</span></a><a class="ph-icon" href="/osaka-pocket?src=hub"><img src="/images/osaka-icon-192.png" alt="" width="50" height="50" loading="lazy"><span>Osaka</span></a></div></div><div class="ph-dots" aria-hidden="true"><i class="on"></i><i></i></div><div class="ph-home" aria-hidden="true"></div></div></div><p class="ph-cap">Tap an icon to open a guide. Free, no app store, no account.</p></div></section>
     <div class="filter-wrap te-filter" id="teFilter">
         <div class="filter-label" id="teFilterLabel">What do you need help with?</div>
         <div class="filter-bar" role="group" aria-labelledby="teFilterLabel">
