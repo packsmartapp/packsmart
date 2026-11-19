@@ -58,7 +58,7 @@ ARTICLES = {
     "japan-travel-packing-guide-from-india": ("japan-packing-in", ["narita", "haneda"], TITLE, SUB,
                                               "before", '<h2 id="apps">'),
     "japan-7-day-itinerary-budget": ("japan-7day", ["narita", "haneda"],
-                                     "Land on Day 1, change trains on Day 4.", SUB_TRIP,
+                                     "Landing in Tokyo, then on to Kyoto? Keep the guides in your pocket.", SUB_TRIP,
                                      "before", '<h2 id="itinerary">'),
     "kyoto-travel-guide": ("kyoto-city", ["kyoto", "kix"],
                            "Arriving in Kyoto? Keep the guide on your phone.", SUB,
