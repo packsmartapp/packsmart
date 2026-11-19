@@ -494,6 +494,7 @@ IC_CARD = """<h2 id="ic-card">A train card (ICOCA)</h2>
 <li><strong>Lockers:</strong> some coin lockers at Osaka Station take ICOCA. JR West has a page to search which are free.</li>
 <li><strong>Shinkansen:</strong> a Shinkansen ticket is separate. Buy it, or collect your reserved ticket, before you go to the gate.</li>
 </ul>
+<p data-ps-placement="klook-osaka-station-icoca">Arriving by air? Klook lists an <a href="https://klook.tpo.lu/bwJN4mpw" target="_blank" rel="nofollow noopener sponsored">ICOCA card with pick-up at Kansai Airport</a>, a partner link. You collect it at the airport, not at Shin-Osaka or Osaka, so it only helps if you fly in. Check the listing for the pick-up counter and hours.</p>
 <div class="warning-box">
     <strong>This changes often.</strong> Sales points, deposits and card types have changed several times in recent years. Check JR West's or Osaka Metro's page, or ask at a ticket office, before you buy.
 </div>"""
@@ -693,6 +694,7 @@ SHINKANSEN = """<h2 id="shinkansen">Shin-Osaka: the bullet train station</h2>
 <li><strong>Collecting a reserved ticket.</strong> JR West says reserved tickets can be collected at machines and ticket offices that show the 5489 Service sign.</li>
 <li><strong>Buses to Osaka (Itami) Airport.</strong> JR West's map marks the bus stop. Itami is for domestic flights only.</li>
 </ul>
+<p data-ps-placement="klook-osaka-station-shinkansen">Prefer to book online? Klook lists <a href="https://klook.tpo.lu/C5ZXAVkJ" target="_blank" rel="nofollow noopener sponsored">Shinkansen tickets from Osaka to Tokyo</a>, a partner link. Check the listing for the train and seat type, how you collect or show your ticket, and the change rules.</p>
 """ + JB_SHINKANSEN + """
 <p class="ps-note">Sources: <a href="https://www.westjr.co.jp/global/en/timetable/pdf/station_shin-osaka.pdf" target="_blank" rel="noopener noreferrer">JR West: Shin-Osaka Station map (as of 1 October 2026)</a>, <a href="https://traininfo.jr-central.co.jp/shinkansen/pc/en/ti08.html?station=4" target="_blank" rel="noopener noreferrer">JR Central: Shin-Osaka train information</a>, <a href="https://www.westjr.co.jp/global/en/ticket/receive/?railpass=13&amp;counter=1&amp;area=0" target="_blank" rel="noopener noreferrer">JR West: rail pass exchange and receipt</a> and <a href="https://www.westjr.co.jp/travel-information/en/train-usage-guide/howto/ticket-vending-machine/" target="_blank" rel="noopener noreferrer">ticket machines</a>. Checked 19 November 2026.</p>"""
 
@@ -712,6 +714,7 @@ BETWEEN = """<h2 id="between">Getting between Shin-Osaka and Umeda</h2>
 <li><strong>Fares:</strong> we did not confirm the fare for either, so we give none. Use <a href="https://subway.osakametro.co.jp/en/guide/fare/fare/price.php" target="_blank" rel="noopener noreferrer">Osaka Metro's fare search</a> for the subway, or tap in with ICOCA and the right fare is taken.</li>
 <li><strong>Going on to Namba:</strong> stay on the Midosuji Line, which runs through Umeda to Namba.</li>
 </ul>
+<p data-ps-placement="klook-osaka-station-metro-pass">Riding the subway a lot? Klook lists the <a href="https://klook.tpo.lu/cgJhxL5B" target="_blank" rel="nofollow noopener sponsored">Osaka Metro Pass</a> (1 or 2 days), a partner link. It covers Osaka Metro lines, including the Midosuji Line between Shin-Osaka and Umeda, not JR trains. Check on the listing what it covers and how to redeem it, and whether it pays off for your plans.</p>
 <p class="ps-note">Sources: Osaka tourism board and JNTO (<a href="https://www.japan.travel/en/destinations/kansai/osaka/shin-osaka-station-and-umeda/" target="_blank" rel="noopener noreferrer">Northern Osaka City</a>), and Osaka Metro's <a href="https://subway.osakametro.co.jp/en/station_guide/m/m16/" target="_blank" rel="noopener noreferrer">Umeda station page</a>. Checked 19 November 2026. Times and fares change, so check the operator.</p>"""
 
 UMEDA = """<h2 id="umeda">Osaka and Umeda: the station maze</h2>
@@ -830,6 +833,7 @@ LEAVING = """<h2 id="leaving">Leaving Osaka by train</h2>
 <ul>
 <li><strong>Know your station.</strong> Shinkansen leave from Shin-Osaka. Local trains and subways run from both Shin-Osaka and Osaka/Umeda.</li>
 <li><strong>To Kansai Airport.</strong> The Haruka limited express runs from Shin-Osaka in about 50 minutes. From Osaka Station, the Kansai Airport Rapid takes about 65 minutes, and the airport limousine bus from Osaka Station (Umeda) takes about 60 minutes and costs 1,800 yen one way (bus company's fare). JR West's discounted WEST QR HARUKA ticket for visitors with Temporary Visitor status was listed at 1,900 yen to Osaka or Shin-Osaka (adult) when we checked on 18 November 2026. See our <a href="/blog/kansai-airport-guide">Kansai Airport guide</a>.</li>
+<li data-ps-placement="klook-osaka-station-haruka"><strong>Haruka tickets online.</strong> Klook lists a <a href="https://klook.tpo.lu/aXZ9skxp" target="_blank" rel="nofollow noopener sponsored">JR Haruka ticket</a> (partner link) with Osaka and Shin-Osaka departures. It is for visitors with Temporary Visitor status, not for Japanese passport holders or permanent residents.</li>
 <li><strong>To Namba.</strong> Take the Midosuji subway line from Shin-Osaka or Umeda. It is about 20 minutes from Shin-Osaka with no change (JNTO).</li>
 <li><strong>To Kyoto.</strong> The JR Kyoto Line serves Osaka Station, and the Shinkansen to Kyoto leave from Shin-Osaka.</li>
 <li><strong>Allow time for the stations themselves.</strong> Umeda and Shin-Osaka are big. We did not find official walking times between gates, so we give none: add a buffer, especially with luggage.</li>
@@ -1513,6 +1517,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Midosuji subway line:</b> 3 stops between Shin-Osaka (M13) and Umeda (M16), with Nishinakajima-Minamigata (M14) and Nakatsu (M15) between. It carries on to Namba, about 20 min from Shin-Osaka with no change. At Shin-Osaka the subway is on the 2nd floor level.</li></ul>';
     h+='<div class="tipbox">The JR train stops at Osaka Station. The subway stops at Umeda, a separate station close by. See Umeda station maze.</div>';
     h+='<p class="sm">We did not confirm the fares. Tap in with ICOCA and the right fare is taken. Times are approximate and change. Check the operator.</p>';
+    h+='<p class="sm">Riding the subway a lot? Partner link: <a href="https://klook.tpo.lu/cgJhxL5B" target="_blank" rel="sponsored nofollow noopener">Osaka Metro Pass</a>. It covers Osaka Metro lines, not JR trains.</p>';
     return h;
   }
   function umedaHTML(){
@@ -1529,7 +1534,8 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li>Osaka Metro says it sells ICOCA at its pink ticket machines, with a 500 yen refundable deposit if you do not already have a card.</li>'
       +'<li>JR West ticket machines sell ICOCA too. We did not find an official list of sales points at Shin-Osaka and Osaka, so look for the JR West machines or ask a ticket office.</li>'
       +'<li>A Shinkansen ticket is separate. Buy it, or collect your reserved ticket, before the gate.</li></ul>'
-      +'<p class="sm">Card types and sales points change often. Check before you buy.</p>';
+      +'<p class="sm">Card types and sales points change often. Check before you buy.</p>'
+      +'<p class="sm">Arriving by air? Partner link: <a href="https://klook.tpo.lu/bwJN4mpw" target="_blank" rel="sponsored nofollow noopener">ICOCA card with pick-up at Kansai Airport</a>. You collect it at the airport, not at the stations.</p>';
   }
   function bagsHTML(){
     return '<ul class="pl"><li><b>Coin lockers:</b> at both stations. JR Osaka Station has 11 locker locations. Lockers fill up on busy days.</li>'
@@ -1605,13 +1611,15 @@ POCKET_HTML = """<!DOCTYPE html>
     return '<ul class="pl"><li><b>Reserved ticket:</b> collect it at machines and ticket offices that show the 5489 Service sign.</li>'
       +'<li><b>Rail pass exchange:</b> JR West lists Shin-Osaka Station 6 am to 10 pm, Travel Service Center SHIN-OSAKA 8 am to 10 pm (3rd floor concourse), and Osaka Station 6 am to 10 pm.</li>'
       +'<li><b>Japan Rail Pass:</b> not valid on Nozomi and Mizuho trains. Check the train name.</li></ul>'
-      +'<p class="sm">Hours change. Confirm with JR West.</p>';
+      +'<p class="sm">Hours change. Confirm with JR West.</p>'
+      +'<p class="sm">You can also book online (partner link): <a href="https://klook.tpo.lu/C5ZXAVkJ" target="_blank" rel="sponsored nofollow noopener">Shinkansen tickets from Osaka to Tokyo</a>.</p>';
   }
   function kixHTML(){
     return '<ul class="pl"><li><b>From Shin-Osaka:</b> Haruka limited express, about 50 min. It needs a limited express ticket on top of the basic fare.</li>'
       +'<li><b>From Osaka Station:</b> Kansai Airport Rapid, about 65 min.</li>'
       +'<li><b>Limousine bus from Osaka Station (Umeda):</b> about 60 min, 1,800 yen one way (bus company fare).</li>'
       +'<li>JR West lists a discounted WEST QR HARUKA ticket at 1,900 yen to Osaka or Shin-Osaka (adult) for visitors with Temporary Visitor status (checked 18 November 2026).</li></ul>'
+      +'<p class="sm">You can also book online (partner link): <a href="https://klook.tpo.lu/aXZ9skxp" target="_blank" rel="sponsored nofollow noopener">JR Haruka ticket</a>, for visitors with Temporary Visitor status.</p>'
       +'<div class="tipbox">We did not confirm last-train or first-train times. Check the timetable for your route the day before a very early or late flight.</div>'
       +'<p class="sm">Times and prices are approximate and change. Check the operator.</p>'
       +'<p class="sm"><a href="/blog/kansai-airport-guide">Our Kansai Airport guide</a> (needs internet)</p>';
