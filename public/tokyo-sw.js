@@ -1,5 +1,5 @@
 /* Tokyo Station Pocket Guide service worker. Bump V when the page changes shape. */
-var V='tokyo-pocket-v1';
+var V='tokyo-pocket-v2';
 var PAGE='/tokyo-pocket';
 var SHELL=[PAGE,'/tokyo-pocket.webmanifest','/favicon-32.png','/images/tokyo-icon-192.png','/images/tokyo-icon-512.png','/images/tokyo-icon-maskable-512.png'];
 self.addEventListener('install',function(e){

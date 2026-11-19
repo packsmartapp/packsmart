@@ -593,8 +593,8 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/kix-sw.js',{scope:'/kix-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
-      .then(function(){ return caches.has('kix-pocket-v1'); })
-      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('kix-pocket-v1').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
+      .then(function(){ return caches.has('kix-pocket-v2'); })
+      .then(function(ok){ saved=!!ok; if(!saved){ setTimeout(function(){ caches.has('kix-pocket-v2').then(function(k){ saved=!!k; paint(); }); },2500);} paint(); })
       .catch(function(){ paint(); });
   }
   /* install help: shown first, in the person's own phone type */
@@ -605,41 +605,77 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   var standalone=!!(window.navigator.standalone||(window.matchMedia&&window.matchMedia('(display-mode: standalone)').matches));
   function flag(k,v){ try{ if(v===undefined) return localStorage.getItem(k); localStorage.setItem(k,v); }catch(e){} return null; }
   var strip=$('instStrip'), dp=null;
+  var STRIP_HOW=strip.innerHTML;
+  var UA=navigator.userAgent||'';
+  var inApp=/FBAN|FBAV|FB_IAB|Instagram|Line\/|Snapchat|TikTok|musical_ly|MicroMessenger|LinkedInApp|Pinterest|GSA\//.test(UA)||(isAnd&&/; wv\)/.test(UA));
   function needed(){ return mobile&&!standalone&&flag('kixInstalled')!=='1'; }
   function refresh(){
     var n=needed(); strip.hidden=!n;
     $('instHow').hidden=!n; $('instDesk').hidden=mobile;
     if(standalone||flag('kixInstalled')==='1'){ $('install').hidden=true; }
+    updateStrip();
+  }
+  function updateStrip(){
+    if(dp&&!isIOS){ strip.innerHTML='<span class="ico" aria-hidden="true">&#128242;</span><span><b>Install this guide</b><br>so it works with no internet</span><span class="go">Install</span>'; }
+    else { strip.innerHTML=STRIP_HOW; }
   }
   var SHARE='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v12"/><path d="M8 7l4-4 4 4"/><path d="M6 11H5a1 1 0 0 0-1 1v8a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-8a1 1 0 0 0-1-1h-1"/></svg>';
   var PLUS='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M12 8v8M8 12h8"/></svg>';
   var DOTS='<svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><circle cx="12" cy="5" r="2"/><circle cx="12" cy="12" r="2"/><circle cx="12" cy="19" r="2"/></svg>';
   var DOWN='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 4v11"/><path d="M7 11l5 5 5-5"/><path d="M5 20h14"/></svg>';
   function steps(list){ return '<ol class="istep">'+list.map(function(x,i){ return '<li><span class="n">'+(i+1)+'</span>'+x[0]+'<span>'+x[1]+'</span></li>'; }).join('')+'</ol>'; }
-  function openInst(){
-    pgTrack('pg_install_view',{via:instVia}); instVia='help';
-    var h='<p class="lede">Do this once, now, while you have signal. Then it opens like an app, even with no internet.</p>';
-    if(isIOS){
+  function guideUrl(){ return location.origin+location.pathname; }
+  function runInstall(){
+    if(!dp) return false;
+    var p=dp; dp=null; updateStrip();
+    try{ p.prompt(); }catch(e){ return false; }
+    try{ p.userChoice.then(function(r){ if(r&&r.outcome) pgTrack('pg_install_prompt',{outcome:r.outcome}); if(r&&r.outcome==='accepted') markInstalled(); }); }catch(e){}
+    return true;
+  }
+  function openInst(quiet){
+    if(!quiet) pgTrack('pg_install_view',{via:instVia});
+    instVia='help';
+    var h='', title='Add to your home screen', one=false;
+    if(isIOS&&inApp){
+      one=true;
+      h+='<p class="lede">This page is open inside another app, which cannot add it to your home screen. Open it in <b>Safari</b> first.</p>';
+      h+=steps([['','Tap <b>Copy link</b> below'],['','Open <b>Safari</b> and paste the link in the address bar'],['','Then add it to your home screen']]);
+      h+='<button type="button" class="close" id="instCopy">Copy link</button>';
+    } else if(isIOS){
+      h+='<p class="lede">Do this once, now, while you have signal. Then it opens like an app, even with no internet.</p>';
       h+=steps([[SHARE,'Tap the <b>Share</b> button (a square with an arrow) in Safari'],[PLUS,'Scroll down and tap <b>Add to Home Screen</b>'],['','Tap <b>Add</b>']]);
-      h+='<div class="tipbox">Cannot see Share? Tap the <b>&middot;&middot;&middot;</b> button first. Not in Safari (for example Chrome, Instagram or Facebook)? Open this page in <b>Safari</b> first.</div>';
+      h+='<div class="tipbox">Cannot see Share? Tap the <b>&middot;&middot;&middot;</b> button first. Not in Safari? Open this page in <b>Safari</b> first.</div>';
+      h+='<p class="small">If you skip this, your phone may clear the saved copy when you have not opened the guide for a while.</p>';
     } else if(dp){
-      h+='<button type="button" class="close" id="instGo">Install now</button>';
-      h+='<div class="tipbox">Or tap the menu <b>&#8942;</b> in Chrome, then <b>Install app</b> or <b>Add to Home screen</b>.</div>';
+      title='Install this guide'; one=true;
+      h+='<p class="lede">One tap. Then it opens like an app, even with no internet.</p>';
+      h+='<button type="button" class="close" id="instGo">Install</button>';
+    } else if(inApp){
+      one=true;
+      h+='<p class="lede">This page is open inside another app. Open it in <b>Chrome</b> to install it.</p>';
+      h+=steps([['','Tap <b>Copy link</b> below'],['','Open <b>Chrome</b> and paste the link in the address bar'],['','Then tap <b>Install</b>']]);
+      h+='<button type="button" class="close" id="instCopy">Copy link</button>';
     } else {
-      h+=steps([[DOTS,'Tap the menu <b>&#8942;</b> (three dots) in Chrome'],[DOWN,'Tap <b>Install app</b> or <b>Add to Home screen</b>'],['','Tap <b>Install</b> or <b>Add</b>']]);
+      h+='<p class="lede">Do this once, now, while you have signal. Then it opens like an app, even with no internet.</p>';
+      h+=steps([[DOTS,'Tap the menu <b>&#8942;</b> (three dots) in your browser'],[DOWN,'Tap <b>Install app</b> or <b>Add to Home screen</b>'],['','Tap <b>Install</b> or <b>Add</b>']]);
       h+='<div class="tipbox">Do not see it? Open this page in Chrome and try again.</div>';
     }
-    h+='<div class="row2"><button type="button" class="close ghost" id="instLater">Later</button><button type="button" class="close" id="instDone">I added it</button></div>';
+    h+=one?'<div class="row2"><button type="button" class="close ghost" id="instLater">Later</button></div>':'<div class="row2"><button type="button" class="close ghost" id="instLater">Later</button><button type="button" class="close" id="instDone">I added it</button></div>';
+    $('instT').innerHTML='<span aria-hidden="true">&#128242;</span>'+title;
     $('instBody').innerHTML=h;
-    lastTile=document.activeElement&&document.activeElement.focus?document.activeElement:null;
+    if(!quiet){ lastTile=document.activeElement&&document.activeElement.focus?document.activeElement:null; }
     hideAll(); inst.hidden=false; scrim.hidden=false; inst.scrollTop=0;
-    var go=$('instGo'); if(go){ go.addEventListener('click',function(){ if(!dp) return; dp.prompt(); try{ dp.userChoice.then(function(r){ if(r&&r.outcome) pgTrack('pg_install_prompt',{outcome:r.outcome}); if(r&&r.outcome==='accepted') markInstalled(); }); }catch(e){} dp=null; closeSheet(); }); }
+    var go=$('instGo'); if(go){ go.addEventListener('click',function(){ runInstall(); closeSheet(); }); }
+    var cp=$('instCopy'); if(cp){ cp.addEventListener('click',function(){
+      var u=guideUrl(), done=function(){ cp.textContent='Link copied'; pgTrack('pg_install_copylink',{}); };
+      try{ navigator.clipboard.writeText(u).then(done,function(){ cp.textContent=u; }); }catch(e){ cp.textContent=u; }
+    }); }
     $('instLater').addEventListener('click',closeSheet);
-    $('instDone').addEventListener('click',function(){ markInstalled(); closeSheet(); });
-    (go||$('instDone')).focus();
+    var dn=$('instDone'); if(dn){ dn.addEventListener('click',function(){ markInstalled(); closeSheet(); }); }
+    (go||cp||dn||$('instLater')).focus();
   }
   function markInstalled(){ flag('kixInstalled','1'); refresh(); }
-  strip.addEventListener('click',function(){ instVia='strip'; openInst(); });
+  strip.addEventListener('click',function(){ instVia='strip'; if(dp&&!isIOS){ pgTrack('pg_install_tap',{via:'strip'}); runInstall(); } else { openInst(); } });
   $('instBtn').addEventListener('click',function(){ instVia='help'; openInst(); });
   /* show this to staff */
   var ASK=[
@@ -784,10 +820,11 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
     $('shareCard').hidden=false;
     $('shareBtn').addEventListener('click',function(){ try{ navigator.share({title:'Kansai Airport Pocket Guide',url:location.origin+location.pathname+'?src=share'}); }catch(e){} });
   }
-  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; });
+  window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; updateStrip();
+    if(!inst.hidden&&!isIOS&&!inApp&&!$('instGo')) openInst(true); });
   window.addEventListener('appinstalled',function(){ pgTrack('pg_installed',{via:'browser'}); markInstalled(); if(!inst.hidden) closeSheet(); });
   /* analytics: taps only (see PG_BOOT). One delegated listener, so tiles need no code of their own. */
-  var AUTO_INSTALL_SHEET=true;
+  var AUTO_INSTALL_SHEET=true; /* install-v2 */
   var instVia='help';
   function tabNow(){ var p=document.querySelector('.panel:not([hidden])'); return p?p.id.replace('p-',''):''; }
   function whereNow(){ return ((!sheet.hidden&&shT.textContent)||tabNow()).replace(/^[^A-Za-z0-9]+/,''); }
@@ -852,7 +889,11 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   })();
   
   refresh();
-  if(needed()&&!flag('kixIntro')&&AUTO_INSTALL_SHEET){ flag('kixIntro','1'); setTimeout(function(){ if(sheet.hidden&&inst.hidden){ instVia='auto'; openInst(); } },700); }
+  (function(){ var m=location.search.match(/[?&]src=([^&]*)/), src=m?m[1]:'', intent=/^(hero|box|bar)$/.test(src);
+    if(needed()&&AUTO_INSTALL_SHEET&&(intent||(isAnd&&!flag('kixIntro')))){ flag('kixIntro','1'); var waited=false;
+      var go=function(){ if(isAnd&&!dp&&!inApp&&!waited){ waited=true; setTimeout(go,800); return; }
+        if(sheet.hidden&&inst.hidden){ instVia='auto'; openInst(); } };
+      setTimeout(go,700); } })();
 })();
 </script>
 </body>

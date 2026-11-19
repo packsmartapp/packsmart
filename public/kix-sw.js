@@ -1,5 +1,5 @@
 /* Kansai Airport Pocket Guide service worker. Bump V when the page changes shape. */
-var V='kix-pocket-v1';
+var V='kix-pocket-v2';
 var PAGE='/kix-pocket';
 var SHELL=[PAGE,'/kix-pocket.webmanifest','/favicon-32.png','/images/kix-icon-192.png','/images/kix-icon-512.png','/images/kix-icon-maskable-512.png'];
 self.addEventListener('install',function(e){
