@@ -12,7 +12,9 @@
       "icon": "haneda-icon-v2-192.png",
       "blurb": "Terminals, prayer rooms, nursing rooms, lockers",
       "stop": "Tokyo",
-      "label": "Haneda"
+      "label": "Haneda",
+      "chip": "Tokyo Haneda",
+      "chip_rank": 2
     },
     {
       "key": "narita",
@@ -22,7 +24,9 @@
       "icon": "narita-icon-v2-192.png",
       "blurb": "Terminals, prayer rooms, baby rooms, lockers",
       "stop": "Tokyo",
-      "label": "Narita"
+      "label": "Narita",
+      "chip": "Tokyo Narita",
+      "chip_rank": 1
     },
     {
       "key": "kix",
@@ -32,7 +36,9 @@
       "icon": "kix-icon-192.png",
       "blurb": "Trains and buses to Osaka and Kyoto, lockers, showers",
       "stop": "Osaka",
-      "label": "Kansai Airport"
+      "label": "Kansai Airport",
+      "chip": "Osaka Kansai",
+      "chip_rank": 3
     },
     {
       "key": "tokyo",

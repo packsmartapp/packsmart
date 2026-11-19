@@ -10,6 +10,7 @@ Links carry ?src=art_<tag>; a tap sends one anonymous GA4 event (pg_article_tap:
 No partner links in this card: it only sends people to the guides, and the offers live inside the guides.
 
 Run from the repo root, after w47:   python3 tools/w48_japan_articles_block.py
+Superseded by w49 (trip picker), which replaces this card in place; this script leaves w49 pages alone.
 Idempotent (marker data-pga="japan-v2"). Writes nothing at all if any article is missing its insertion point.
 
 Eleven pages. Every card sits near the top: after the visa section (packing guides), before the itinerary (7-day), right
@@ -202,7 +203,7 @@ for slug, spec in ARTICLES.items():
     if not os.path.isfile(path):
         die("missing article " + os.path.relpath(path, ROOT))
     s = open(path, encoding="utf-8").read()
-    if MARK in s:
+    if MARK in s or 'data-pga="japan-v3"' in s:
         plans.append((path, None, slug))
         continue
     if s.count(anchor) != 1:
