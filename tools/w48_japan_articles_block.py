@@ -12,6 +12,9 @@ No partner links in this card: it only sends people to the guides, and the offer
 Run from the repo root, after w47:   python3 tools/w48_japan_articles_block.py
 Idempotent (marker data-pga="japan-v2"). Writes nothing at all if any article is missing its insertion point.
 
+Eleven pages: the five Japan trip articles (card near the top / in "getting there") and the six airport and station
+guides (card just before the FAQ, own guide left out, the next stops lead).
+
 To add a guide: add it to tools/pocket_guides.json with "country": "Japan" and a "stop" (a new stop goes into
 "stop_order" too), then re-run. To change the colours: edit the BG / ACCENT block below and re-run on a clean checkout
 (or replace the block between the <style id="pga-css"> tags by hand).
@@ -43,6 +46,8 @@ SUB = ("Short, big-print helpers for Japan's airports and stations. Open one, sa
        "and it works with no signal. Free, no app store, no account.")
 SUB_TRIP = ("Pocket guides for the airport you land at and the stations on the way to Kyoto. Open one, save it to your home screen, "
             "and it works with no signal. Free, no app store, no account.")
+SUB_NEXT = ("Short, big-print helpers for the next stops. Open one, save it to your home screen, "
+            "and it works with no signal. Free, no app store, no account.")
 TICKS = ["<b>Finds things fast.</b> Toilets, lockers, food, exits and trains.",
          "<b>Big print.</b> Easy to show station or airport staff.",
          "<b>No signal needed</b> once it is saved."]
@@ -66,6 +71,19 @@ ARTICLES = {
     "osaka-travel-guide": ("osaka-city", ["osaka", "kix"],
                            "Arriving in Osaka? Keep the guide on your phone.", SUB,
                            "after_list", '<h2 id="getting-around">'),
+    # airport and station guides: card before the FAQ; the page's own guide is left out; the next stops lead
+    "narita-airport-guide": ("narita-airport", ["tokyo"], "Heading into Tokyo? Keep the guides in your pocket.", SUB_NEXT,
+                             "before", '<h2 id="faq">', ["narita"]),
+    "haneda-airport-guide": ("haneda-airport", ["tokyo"], "Heading into Tokyo? Keep the guides in your pocket.", SUB_NEXT,
+                             "before", '<h2 id="faq">', ["haneda"]),
+    "kansai-airport-guide": ("kansai-airport", ["osaka", "kyoto"], "Heading into the city? Keep the guides in your pocket.", SUB_NEXT,
+                             "before", '<h2 id="faq">', ["kix"]),
+    "tokyo-station-guide": ("tokyo-station", ["kyoto", "osaka"], "Heading on by bullet train? Keep the guides in your pocket.", SUB_NEXT,
+                            "before", '<h2 id="faq">', ["tokyo"]),
+    "kyoto-station-guide": ("kyoto-station", ["osaka", "kix"], "Heading on? Keep the guides in your pocket.", SUB_NEXT,
+                            "before", '<h2 id="faq">', ["kyoto"]),
+    "osaka-station-guide": ("osaka-station", ["kyoto", "kix"], "Heading on? Keep the guides in your pocket.", SUB_NEXT,
+                            "before", '<h2 id="faq">', ["osaka"]),
 }
 
 CSS = """<style id="pga-css">
@@ -151,14 +169,15 @@ def tile(g, tag, lead):
             % (" lead" if lead else "", g["key"], tag, g["key"], pill, g["icon"], esc(g.get("label") or g["name"])))
 
 
-def block(slug, tag, lead, title, sub):
+def block(slug, tag, lead, title, sub, exclude=()):
     for k in lead:
         if k not in by_key:
             die("%s: Start-here guide %s is not in the registry" % (slug, k))
     stops = []
-    shown = [s for s in stop_order if any(g["stop"] == s for g in guides)]
+    pool = [g for g in guides if g["key"] not in exclude]
+    shown = [s for s in stop_order if any(g["stop"] == s for g in pool)]
     for i, s in enumerate(shown):
-        mine = [g for g in guides if g["stop"] == s]
+        mine = [g for g in pool if g["stop"] == s]
         mine.sort(key=lambda g: (0, lead.index(g["key"])) if g["key"] in lead else (1, 0))
         last = i == len(shown) - 1
         stops.append('<div class="pga-stop" style="flex:%s 1 0"><span class="pga-dot"></span><span class="pga-city">%s</span>%s<div class="pga-icons%s">%s</div></div>'
@@ -176,7 +195,9 @@ css = (CSS.replace("@BG@", BG).replace("@KICK@", KICK).replace("@DOT@", DOT).rep
        .replace("@LINE@", LINE).replace("@RING@", RING).replace("@PILL_BG@", PILL_BG).replace("@PILL_FG@", PILL_FG))
 
 plans = []
-for slug, (tag, lead, title, sub, kind, anchor) in ARTICLES.items():
+for slug, spec in ARTICLES.items():
+    tag, lead, title, sub, kind, anchor = spec[:6]
+    exclude = spec[6] if len(spec) > 6 else []
     path = os.path.join(BLOG, slug + ".html")
     if not os.path.isfile(path):
         die("missing article " + os.path.relpath(path, ROOT))
@@ -193,7 +214,7 @@ for slug, (tag, lead, title, sub, kind, anchor) in ARTICLES.items():
             die("%s: no </ul> after %r" % (slug, anchor))
         i = j + len("</ul>")
         i = i + 1 if s[i:i + 1] == "\n" else i
-    new = s[:i] + ("" if "pga-css" in s else css) + block(slug, tag, lead, title, sub) + JS + s[i:]
+    new = s[:i] + ("" if "pga-css" in s else css) + block(slug, tag, lead, title, sub, exclude) + JS + s[i:]
     plans.append((path, new, slug))
 
 for path, new, slug in plans:
