@@ -488,7 +488,7 @@ META = """<title>%s</title>
 
 HERO_HTML = ('    <div class="hero-blog" style="position:relative; background: linear-gradient(rgba(15,15,35,0.62), rgba(26,26,62,0.72)), '
              "url('%s'); background-size: cover; background-position: center 40%%;\">\n"
-             '        <h1>%s</h1>\n        <div class="meta">Destination Guide • Japan · 10 min read</div>\n'
+             '        <h1>%s</h1>\n        <div class="meta">Destination Guide • Japan · Published 19 Nov 2026 · 10 min read</div>\n'
              '        <div style="position:absolute;left:12px;right:12px;bottom:8px;font-size:0.7rem;opacity:0.7;text-align:center;">'
              'Photo: PAKUTASO. Illustrative image of the Fushimi Inari shrine in Kyoto.</div>\n</div>\n' % (HERO, esc(H1)))
 

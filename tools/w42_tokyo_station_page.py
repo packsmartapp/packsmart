@@ -962,7 +962,7 @@ head = "\n".join([
     "",
     ('    <div class="hero-blog" style="position:relative; background: linear-gradient(rgba(15,15,35,0.62), rgba(26,26,62,0.72)), url(\'%s\'); background-size: cover; background-position: center 40%%;">' % HERO_URL) if HERO_URL else '    <div class="hero-blog" style="position:relative; background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%);">',
     "        <h1>%s</h1>" % esc(H1),
-    '        <div class="meta">Station Guide • Japan · 8 min read</div>',
+    '        <div class="meta">Station Guide • Japan · Published 19 Nov 2026 · 8 min read</div>',
     HERO_CTA,
     ('        <div style="position:absolute;left:12px;right:12px;bottom:8px;font-size:0.7rem;opacity:0.7;text-align:center;">Photo: PAKUTASO. Illustrative image of the Tokyo Station Marunouchi building at night.</div>' if HERO_URL else ''),
     "</div>",
