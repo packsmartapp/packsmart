@@ -234,7 +234,7 @@ INTRO = """<p>Osaka is Japan's big food city and the easiest base for the wider 
 # ---- 2. areas
 AREAS = """<h2 id="areas">Where things are in Osaka</h2>
 <p>Osaka is easier to plan once you know four areas. Most of the city's trains and subway lines run through the first two.</p>
-<div class="ps-scroll"><table>
+<div class="ps-scroll"><table class="checklist-table">
 <thead><tr><th>Area</th><th>Known for</th><th>Getting there</th></tr></thead>
 <tbody>
 <tr><td><strong>Umeda (Kita)</strong></td><td data-label="Known for">Osaka Station, large department stores, the Umeda Sky Building viewpoint.</td><td data-label="Getting there">JR Osaka Station, Osaka Metro Umeda, and the Hankyu and Hanshin Umeda stations.</td></tr>
@@ -291,7 +291,7 @@ SUMO = ("""<h2 id="sumo">Sumo show with wagyu sukiyaki</h2>
 # ---- 6. day trips
 DAYTRIPS = ("""<h2 id="day-trips">Day trips from Osaka</h2>
 <p>These are the trips most visitors make from Osaka. Times are the train ride only, from official tourism pages.</p>
-<div class="ps-scroll"><table>
+<div class="ps-scroll"><table class="checklist-table">
 <thead><tr><th>Place</th><th>By train from Osaka</th><th>Good to know</th></tr></thead>
 <tbody>
 <tr><td><strong>Kobe</strong></td><td data-label="By train from Osaka">About 20 to 25 minutes on the JR Kobe Line to Sannomiya.</td><td data-label="Good to know">Kobe beef and the Nada sake district (see above).</td></tr>

@@ -246,7 +246,7 @@ INTRO = """<p>Kyoto is the easiest city in Japan to love and one of the hardest 
 # ---- 2. areas
 AREAS = """<h2 id="areas">Where things are in Kyoto</h2>
 <p>Kyoto is easier to plan once you split it into areas. Pick one or two per day and keep the rest for another day.</p>
-<div class="ps-scroll"><table>
+<div class="ps-scroll"><table class="checklist-table">
 <thead><tr><th>Area</th><th>Known for</th><th>Getting there</th></tr></thead>
 <tbody>
 <tr><td><strong>Kyoto Station</strong></td><td data-label="Known for">The main hub: bullet trains, JR lines, the Haruka to Kansai Airport, the subway and the city buses.</td><td data-label="Getting there">See our <a href="/blog/kyoto-station-guide">Kyoto Station guide</a>.</td></tr>
@@ -287,7 +287,7 @@ TEA = ("""<h2 id="tea">Tea ceremony and kimono</h2>
 # ---- 5. day trips
 DAYTRIPS = ("""<h2 id="day-trips">Day trips from Kyoto</h2>
 <p>Two day trips come up most often. Nara is short and easy by train. Amanohashidate and Ine Funaya on the Sea of Japan coast are much farther, and most visitors book a tour for them.</p>
-<div class="ps-scroll"><table>
+<div class="ps-scroll"><table class="checklist-table">
 <thead><tr><th>Place</th><th>From Kyoto Station</th><th>Good to know</th></tr></thead>
 <tbody>
 <tr><td><strong>Nara</strong></td><td data-label="From Kyoto Station">JR Rapid to JR Nara Station, about 41 minutes. Kintetsu Limited Express to Kintetsu-Nara, about 34 minutes.</td><td data-label="Good to know">Todai-ji and the deer in Nara Park. Take the Rapid, not the local train, which is about 25 minutes slower.</td></tr>
