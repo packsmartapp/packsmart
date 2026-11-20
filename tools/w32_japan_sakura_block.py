@@ -31,7 +31,7 @@ def tile(pid, link, pill, img, w, h, alt, name, sub, price, note, label):
 
 FOOT_PICK = (
     '<p style="margin:0 0 8px;font-size:0.82rem;color:#666;line-height:1.5;"><strong style="color:#0a8f78;">Pick up:</strong> '
-    'the travel SIM is available at Sakura Mobile counters at Narita, Haneda, Kansai and Fukuoka airports, and the pocket Wi-Fi also at New Chitose and Chubu Centrair. '
+    'at the JAL ABC counters in Narita Terminals 1 and 2 and Haneda Terminal 3, at Sakura Mobile's own counters at Kansai (Terminal 1) and Fukuoka, and also at New Chitose and Chubu Centrair for the pocket Wi-Fi. '
     'Both can be sent to your hotel, and the pocket Wi-Fi to a post office. The SIM needs no return: throw it away after your trip. '
     'Post the pocket Wi-Fi back in the envelope that comes with it. A fair use policy may apply to unlimited data.</p>'
 )
