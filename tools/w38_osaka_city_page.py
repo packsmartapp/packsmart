@@ -443,6 +443,7 @@ ABOUT = """<div class="ps-about" id="about-this-guide">
     official("https://www.kobe-niku.jp/en/", "the Kobe Beef Marketing and Distribution Promotion Association"),
     official("https://sumo.or.jp/EnTicket/year_schedule", "the Japan Sumo Association")]) + """. We print no prices, because they change by date and group size. Ratings and review counts come from the booking pages on 18, 19 and 20 November 2026 and change. Some of the links in this guide are partner links, marked as such. If a fact has changed, please <a href="/contact">tell us</a>.</p>
 <ul>
+<li><strong>20 Nov 2026:</strong> added a Hiroshima and Miyajima bus tour, a Nara section, two food tours and a USJ ticket box, and added photos to the tour boxes.</li>
 <li><strong>19 Nov 2026:</strong> first version.</li>
 </ul>
 </div>"""
