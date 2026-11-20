@@ -150,6 +150,10 @@ LOCAL_CSS = """<style>
 .ps-exp a.go{display:inline-block;font-weight:700;color:#0f0f23!important;background:#fff;border:2px solid #00C9A7;border-radius:10px;padding:11px 16px;text-decoration:none!important;min-height:44px;box-sizing:border-box;}
 .ps-exp a.go:hover,.ps-exp a.go:focus-visible{background:#00C9A7;color:#fff!important;}
 .ps-exp small{display:block;color:#777;font-size:.8rem;margin-top:8px;line-height:1.4;}
+.ps-exp figure{margin:0 0 14px;}
+.ps-exp figure img{display:block;width:100%;height:auto;aspect-ratio:12/5;max-height:200px;object-fit:cover;border-radius:8px;}
+.ps-exp figcaption{font-size:.72rem;color:#777;line-height:1.35;margin-top:4px;}
+.ps-exp figcaption a{color:#777!important;text-decoration:underline;}
 .ps-gyg{margin:24px 0;font-family:"DM Sans",sans-serif}
 .ps-gyg-h{display:block;text-align:center;font-size:1.05rem;font-weight:700;color:#0f0f23;margin:0 0 4px}
 .ps-gyg-s{text-align:center;font-size:.85rem;color:#3f7f70;margin:0 0 14px}
@@ -200,16 +204,24 @@ KLOOK = {
 }
 
 
-def exp(pid, tag, title, facts, label, note):
+def exp(pid, tag, title, facts, label, note, img=None):
     link = KLOOK.get(pid, "")
     if not link:
         return ""
     if any("PLACEHOLDER" in x for x in facts) or "PLACEHOLDER" in note:
         die("Klook placement %s has a link but its facts are still PLACEHOLDER" % pid)
     lis = "\n".join("<li>%s</li>" % f for f in facts)
-    return ('\n<div class="ps-exp" data-ps-placement="%s">\n<span class="tag">%s</span>\n<h3>%s</h3>\n<ul>\n%s\n</ul>\n'
+    fig = ""
+    if img:
+        fn, alt, credit = img
+        if not os.path.isfile(os.path.join(IMG, fn)):
+            die("missing public/images/" + fn)
+        fig = ('\n<figure><a href="%s" target="_blank" rel="nofollow noopener sponsored" tabindex="-1" aria-hidden="true">'
+               '<img src="/images/%s" alt="%s" width="1200" height="500" loading="lazy" decoding="async"></a>'
+               '<figcaption>%s</figcaption></figure>' % (link, fn, alt, credit))
+    return ('\n<div class="ps-exp" data-ps-placement="%s">%s\n<span class="tag">%s</span>\n<h3>%s</h3>\n<ul>\n%s\n</ul>\n'
             '<a class="go" href="%s" target="_blank" rel="nofollow noopener sponsored">%s</a>\n<small>%s</small>\n</div>'
-            % (pid, tag, title, lis, link, label, note))
+            % (pid, fig, tag, title, lis, link, label, note))
 
 
 def official(url, label):
@@ -257,7 +269,9 @@ CAR = ("""<h2 id="private-car">Private guide and car for the day</h2>
             "Stops on the listing: Fushimi Inari, Kiyomizu-dera, Kinkaku-ji and Arashiyama, with an optional Japanese lunch.",
             "The listing offers real-time voice and text translation in up to 75 languages. Bring your own earphones."],
            "See dates and options (partner link)",
-           "Rated 4.6 from about 342 reviews on the booking page, 20 November 2026."))
+           "Rated 4.6 from about 342 reviews on the booking page, 20 November 2026.",
+           img=("kyoto-box-arashiyama.webp", "A path through the Arashiyama bamboo grove in Kyoto, with tall bamboo on both sides",
+                "Photo: Pakutaso")))
 
 # ---- 4. tea ceremony and kimono
 TEA = ("""<h2 id="tea">Tea ceremony and kimono</h2>
@@ -290,7 +304,9 @@ DAYTRIPS = ("""<h2 id="day-trips">Day trips from Kyoto</h2>
             "Stops on the listing: Fushimi Inari, Kinkaku-ji, Arashiyama, and Nara with Todai-ji and the deer.",
             "It leaves from Kyoto or Osaka. Lunch is not included unless you pick a meal option."],
            "See dates and options (partner link)",
-           "Rated 4.4 from about 3,800 reviews on the booking page, 20 November 2026.") + """
+           "Rated 4.4 from about 3,800 reviews on the booking page, 20 November 2026.",
+           img=("kyoto-box-nara.webp", "Sika deer grazing and resting on the lawn in Nara Park, with a tiled-roof building behind",
+                "Photo: Pakutaso")) + """
 
 <h3>Amanohashidate and Ine Funaya</h3>
 <p>Amanohashidate is a pine-covered sandbar across Miyazu Bay in northern Kyoto Prefecture. JNTO calls it one of Japan's three scenic views, with Matsushima and Miyajima. The sandbar is 3.6 kilometres long, 20 metres wide at the narrowest point and 170 metres at the widest. From Amanohashidate Station it is about 6 minutes on foot to the sandbar and 12 minutes to the Amanohashidate Viewland lookout.</p>
@@ -304,7 +320,10 @@ DAYTRIPS = ("""<h2 id="day-trips">Day trips from Kyoto</h2>
             "Two packages: board and finish in Kyoto, or board in Kyoto and finish in Osaka.",
             "Tour staff speak Chinese, English and Japanese."],
            "See dates and options (partner link)",
-           "Rated 4.8 from about 1,400 reviews on the booking page, 20 November 2026."))
+           "Rated 4.8 from about 1,400 reviews on the booking page, 20 November 2026.",
+           img=("kyoto-box-ine.webp", "Wooden funaya boat houses at the water's edge in Ine, northern Kyoto Prefecture",
+                'Photo: <a href="https://commons.wikimedia.org/wiki/File:Funaya_in_Ine_Town,_Yosa_District,_Kyoto_Prefecture_003.jpg" target="_blank" rel="noopener">Naokijp</a>, '
+                '<a href="https://creativecommons.org/licenses/by-sa/4.0/" target="_blank" rel="noopener">CC BY-SA 4.0</a>, cropped, via Wikimedia Commons')))
 
 # ---- 6. sights
 SIGHTS = ("""<h2 id="sights">The main sights in the city</h2>
