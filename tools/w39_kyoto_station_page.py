@@ -498,6 +498,7 @@ LUGGAGE = """<h2 id="luggage">Lockers and luggage delivery</h2>
 <li><strong>Station to station.</strong> JR West says Crosta's luggage delivery runs between Kyoto, Shin-Osaka, Osaka, Hiroshima and Hakata stations, and its Same-day Delivery WEST sends bags on the Shinkansen.</li>
 <li><strong>Temporary counters.</strong> In busy seasons Kyoto City sets up an extra luggage point. The spring 2026 one was in the station plaza in front of Hotel Granvia Kyoto, and a notice dated 29 October 2026 lists another temporary point at the station. Check the dates on the Hands Free Kyoto site.</li>
 <li><strong>Prices.</strong> The Hands Free Kyoto page does not list fees, so we give none. Ask at the counter before you hand over a bag.</li>
+<li data-ps-placement="klook-kyoto-station-luggage"><strong>Book online.</strong> Klook lists an <a href="https://klook.tpo.lu/YhvjP926" target="_blank" rel="nofollow noopener sponsored">Osaka and Kyoto luggage delivery service</a>, a partner link. Check the listing for pick-up points, sizes, prices and cut-off times.</li>
 <li><strong>Have these ready:</strong> your hotel name, address and phone number, written down.</li>
 <li><strong>Keep with you:</strong> medicines, valuables, chargers and a change of clothes.</li>
 </ul>
@@ -729,7 +730,7 @@ RAIL = """<h2 id="rail">Local trains, Kintetsu and the Haruka</h2>
 <p class="ps-note">Sources: <a href="https://kyoto.travel/en/travel-inspiration/6-tips-to-keep-from-getting-lost-inside-kyoto-station/" target="_blank" rel="noopener noreferrer">Kyoto City: 6 Tips</a>, <a href="https://www.westjr.co.jp/global/tc/travel/shopping/new/kyoto_city_travel_map.pdf" target="_blank" rel="noopener noreferrer">JR West: Kyoto City Travel Map</a>, <a href="https://kyoto.travel/en/getting-around/comfortable-access-to-saga-arashiyama/" target="_blank" rel="noopener noreferrer">Kyoto City: access to Saga/Arashiyama</a>, <a href="https://narashikanko.or.jp/en/access/index.html" target="_blank" rel="noopener noreferrer">Nara City Tourism Association: Access</a>, <a href="https://www.kintetsu.co.jp/foreign/english/about/limited_express/" target="_blank" rel="noopener noreferrer">Kintetsu: Limited Express</a> and <a href="https://www.japan.travel/en/spot/ma_150/" target="_blank" rel="noopener noreferrer">JNTO: Nara Park</a>. Checked 19 November 2026. Times change, so check the operator.</p>"""
 
 CITY = """<h2 id="city">Into the city: subway, buses and taxis</h2>
-<p>Most of Kyoto's sights are a bus or subway ride from the station. Here is what we read on Kyoto City's own pages.</p>
+<p>Most of Kyoto's sights are a bus or subway ride from the station. Here is what we read on Kyoto City's own pages. For what to see, opening times, tea ceremony and day trips to Nara and Amanohashidate, see our <a href="/blog/kyoto-travel-guide">Kyoto travel guide</a>.</p>
 <div class="ps-scroll">
 <table class="checklist-table">
 <thead><tr><th>Option</th><th>Where to find it</th><th>About how much and how long</th></tr></thead>
@@ -832,6 +833,7 @@ LEAVING = """<h2 id="leaving">Leaving Kyoto by train or bus</h2>
 <ul>
 <li><strong>Know your side.</strong> Bullet trains and the airport limousine bus are on the Hachijo side. Local JR trains, the Haruka and city buses are on the Central side.</li>
 <li><strong>To Kansai Airport.</strong> The Haruka limited express takes about 75 minutes (Kansai Airport's own page) and uses platform 6, 7 or 30 (Kyoto City). The airport limousine bus leaves from stop H2 at the Hachijo Exit, takes about 1 hour 25 to 1 hour 30 minutes to Terminal 1 and costs 2,800 yen one way (bus company's fare). We have left out the discounted WEST QR HARUKA fare, because the JR West pages we read disagree on the current price. See our <a href="/blog/kansai-airport-guide">Kansai Airport guide</a>.</li>
+<li data-ps-placement="klook-kyoto-station-haruka"><strong>Haruka tickets online.</strong> Klook lists a <a href="https://klook.tpo.lu/kPxcRyJj" target="_blank" rel="nofollow noopener sponsored">JR Haruka ticket</a> (partner link) with Kyoto Station departures. It is for visitors with Temporary Visitor status, not for Japanese passport holders or permanent residents.</li>
 <li><strong>To Osaka.</strong> The JR Special Rapid takes about 30 minutes to Osaka Station (Kyoto City). The Shinkansen takes about 15 minutes to Shin-Osaka. See our <a href="/blog/osaka-station-guide">Osaka station guide</a>.</li>
 <li><strong>To Nara.</strong> The JR Miyakoji Rapid takes about 45 minutes, and the Kintetsu limited express about 35 minutes.</li>
 <li><strong>To Tokyo.</strong> The fastest Shinkansen take about 130 minutes (JR Central).</li>
@@ -1542,7 +1544,8 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Kyo-Navi:</b> 2F, 8:30 am to 7 pm, delivery.</li>'
       +'<li><b>Hachijo Gate Delivery Service:</b> 1F, 10 am to 6 pm, delivery and storage. <b>MK KYOTO TRAVEL CENTER:</b> 1F, 9 am to 7 pm, delivery and storage.</li>'
       +'<li>Write down your hotel name, address and phone number. Keep medicines, valuables and chargers with you.</li></ul>'
-      +'<p class="sm">We did not find official fees, so we give none. Ask at the counter. Hours change.</p>';
+      +'<p class="sm">We did not find official fees, so we give none. Ask at the counter. Hours change.</p>'
+      +'<p class="sm">You can also book online (partner link): <a href="https://klook.tpo.lu/YhvjP926" target="_blank" rel="sponsored nofollow noopener">Osaka and Kyoto luggage delivery</a>.</p>';
   }
   function simHTML(){
     return '<ul class="pl"><li><b>eSIM:</b> install it on your phone and switch it on when you need it. No counter, no queue.</li>'
@@ -1618,6 +1621,7 @@ POCKET_HTML = """<!DOCTYPE html>
     return '<ul class="pl"><li><b>Haruka limited express:</b> about 75 min to Kansai Airport, from platform 6, 7 or 30. It needs a limited express ticket on top of the basic fare.</li>'
       +'<li><b>Limousine bus:</b> from stop H2 at the Hachijo Exit, about 1 hr 25 to 1 hr 30 min to Terminal 1, 2,800 yen one way (bus company fare).</li>'
       +'<li>We left out the discounted WEST QR HARUKA fare, because the JR West pages we read disagree on the current price.</li></ul>'
+      +'<p class="sm">You can also book online (partner link): <a href="https://klook.tpo.lu/kPxcRyJj" target="_blank" rel="sponsored nofollow noopener">JR Haruka ticket</a>, for visitors with Temporary Visitor status.</p>'
       +'<div class="tipbox">We did not confirm last-train or first-train times. Check the timetable the day before a very early or late flight.</div>'
       +'<p class="sm">Times and prices are approximate and change. Check the operator.</p>'
       +'<p class="sm"><a href="/blog/kansai-airport-guide">Our Kansai Airport guide</a> (needs internet)</p>';

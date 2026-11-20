@@ -194,9 +194,9 @@ def gyg(pid, head, blurb, ids, cmp):
 # Klook partner links for this page. Empty until the links are generated in Travelpayouts (one Sub ID per placement).
 # Placement id -> short link. A placement with no link prints nothing.
 KLOOK = {
-    "klook-kyoto-tour-temples": "",
-    "klook-kyoto-dt-nara": "",
-    "klook-kyoto-dt-amanohashidate": "",
+    "klook-kyoto-tour-temples": "https://klook.tpo.lu/K6lURAON",
+    "klook-kyoto-dt-nara": "https://klook.tpo.lu/4h2G7ahB",
+    "klook-kyoto-dt-amanohashidate": "https://klook.tpo.lu/9Met0OeS",
 }
 
 
@@ -252,8 +252,12 @@ CAR = ("""<h2 id="private-car">Private guide and car for the day</h2>
           "Private days with a guide and vehicle. Pick-up rules differ, so read each one.",
           ["1112520", "1025571", "672799"], "packsmart-kyoto-private") + """
 <p><strong>Pick-up:</strong> one listing we saw offers pick-up from hotels and apartments only, not from stations or airports, while another meets you at the Central Exit of Kyoto Station. Confirm the meeting point before you pay.</p>""" +
-       exp("klook-kyoto-tour-temples", "Guided day tour", "Kyoto temples tour",
-           ["PLACEHOLDER"], "See dates and options (partner link)", "PLACEHOLDER"))
+       exp("klook-kyoto-tour-temples", "Guided day tour", "Fushimi Inari, Arashiyama and Kiyomizu-dera from Kyoto",
+           ["A one-day group tour that starts at Kyoto Station, by train and then bus, with an English and Japanese guide.",
+            "Stops on the listing: Fushimi Inari, Kiyomizu-dera, Kinkaku-ji and Arashiyama, with an optional Japanese lunch.",
+            "The listing offers real-time voice and text translation in up to 75 languages. Bring your own earphones."],
+           "See dates and options (partner link)",
+           "Rated 4.6 from about 342 reviews on the booking page, 20 November 2026."))
 
 # ---- 4. tea ceremony and kimono
 TEA = ("""<h2 id="tea">Tea ceremony and kimono</h2>
@@ -281,8 +285,12 @@ DAYTRIPS = ("""<h2 id="day-trips">Day trips from Kyoto</h2>
 <p>Nara is about 35 to 45 minutes from Kyoto, depending on the train. JR Nara and Kintetsu-Nara are different stations, and Visit Nara gives a 22-minute walk from Kintetsu-Nara to Todai-ji. The Great Buddha Hall opens 8:00 to 17:00 from November to March, and 7:30 to 17:30 from April to October, with an entrance fee. Todai-ji's own site calls it the largest wooden building in the world. Visit Nara says about 1,400 wild deer live around Nara Park. They are protected as natural monuments, and the special deer crackers (shika senbei) sold in the park are the only food you may give them. If you have no food, show your empty hands and they usually leave you alone. Read the """ + official("https://www.visitnara.jp/venues/S01487/", "official Nara deer page") + """ before you go.</p>
 """ + gyg("gyg-kyoto-nara-bus", "Nara, Fushimi Inari and Arashiyama day tours",
           "Bus tours that start in Kyoto or Osaka and end in either.", ["851858", "179654"], "packsmart-kyoto-nara") +
-       exp("klook-kyoto-dt-nara", "Guided day tour", "Nara and Kyoto highlights", ["PLACEHOLDER"],
-           "See dates and options (partner link)", "PLACEHOLDER") + """
+       exp("klook-kyoto-dt-nara", "Guided day tour", "Nara and Kyoto highlights",
+           ["A group bus tour of 10 to 11 hours, with an English or Mandarin guide.",
+            "Stops on the listing: Fushimi Inari, Kinkaku-ji, Arashiyama, and Nara with Todai-ji and the deer.",
+            "It leaves from Kyoto or Osaka. Lunch is not included unless you pick a meal option."],
+           "See dates and options (partner link)",
+           "Rated 4.4 from about 3,800 reviews on the booking page, 20 November 2026.") + """
 
 <h3>Amanohashidate and Ine Funaya</h3>
 <p>Amanohashidate is a pine-covered sandbar across Miyazu Bay in northern Kyoto Prefecture. JNTO calls it one of Japan's three scenic views, with Matsushima and Miyajima. The sandbar is 3.6 kilometres long, 20 metres wide at the narrowest point and 170 metres at the widest. From Amanohashidate Station it is about 6 minutes on foot to the sandbar and 12 minutes to the Amanohashidate Viewland lookout.</p>
@@ -292,7 +300,11 @@ DAYTRIPS = ("""<h2 id="day-trips">Day trips from Kyoto</h2>
           "From Kyoto or Osaka. Check the pick-up point and what the cruise or cable car adds.",
           ["1041256", "1169216", "768701"], "packsmart-kyoto-amanohashidate") +
        exp("klook-kyoto-dt-amanohashidate", "Guided day tour", "Amanohashidate and Ine Funaya",
-           ["PLACEHOLDER"], "See dates and options (partner link)", "PLACEHOLDER"))
+           ["About 10 hours by dedicated bus, with Amanohashidate, Ine Funaya and Miyama Thatched Village on the listing.",
+            "Two packages: board and finish in Kyoto, or board in Kyoto and finish in Osaka.",
+            "Tour staff speak Chinese, English and Japanese."],
+           "See dates and options (partner link)",
+           "Rated 4.8 from about 1,400 reviews on the booking page, 20 November 2026."))
 
 # ---- 6. sights
 SIGHTS = ("""<h2 id="sights">The main sights in the city</h2>
