@@ -5,6 +5,10 @@ Run from the repo root, AFTER w38 / w41 (those scripts regenerate the pages and 
 Idempotent: a page that already has its placement id is skipped.
 
  - Osaka city guide: Welcome Pickups (Kansai Airport to an Osaka hotel) + DiscoverCars (Osaka Kansai default pick-up).
+ - Station guides (added later on 20 Nov 2026): Osaka station = Welcome Pickups + DiscoverCars (Osaka Kansai default);
+   Kyoto station = DiscoverCars (Kyoto Station default); Tokyo station = Welcome Pickups (Narita/Haneda) + DiscoverCars
+   (Haneda default). Blocks go before the "Leaving ..." section (Tokyo transfer: before "Local trains, Metro and Disney").
+   Re-run this script after w36 / w39 / w42 as well, because those regenerate the station pages.
  - Kyoto city guide: DiscoverCars only (Kyoto Station default pick-up). The Welcome Pickups destination list has no
    Kyoto entry (checked on the live Kansai guide widget on 20 Nov 2026), so no transfer block is added there.
 
@@ -78,6 +82,13 @@ def cars_block(pid, heading, p1, p2, default):
     b = b.replace(old2.group(0), old2.group(1) + p2 + old2.group(3), 1)
     on_hnd = 'class="ps-dc-chip on" data-country="japan" data-city="tokyo" data-place="hnd" aria-pressed="true"'
     off_hnd = 'class="ps-dc-chip" data-country="japan" data-city="tokyo" data-place="hnd" aria-pressed="false"'
+    if default == "hnd":
+        if on_hnd not in b:
+            die("Haneda chip is not the default in the template any more")
+        init_old = init_new = None
+        if "India" in b.replace("Australia and India", ""):
+            die("India framing left in the car block")
+        return b
     b = rep(b, on_hnd, off_hnd)
     if default == "kix":
         off = 'class="ps-dc-chip" data-country="japan" data-city="osaka" data-place="kix" aria-pressed="false"'
@@ -96,13 +107,12 @@ def cars_block(pid, heading, p1, p2, default):
     return b
 
 
-def insert_before_faq(path, pid, html, marker):
+def insert_before_faq(path, pid, html, marker, anchor='<h2 id="faq">'):
     s = open(path, encoding="utf-8").read()
     if ('data-ps-placement="%s"' % pid) in s:
         return False, s
-    anchor = '<h2 id="faq">'
     if s.count(anchor) != 1:
-        die("faq anchor not unique in " + path)
+        die("anchor not unique in %s: %s" % (path, anchor))
     return True, s.replace(anchor, marker + html + "\n\n" + anchor, 1)
 
 
@@ -145,5 +155,64 @@ k_intro = ('<h3>Car rental for day trips by road</h3>\n'
 changed_k, s_k = insert_before_faq(kyoto_path, "discovercars-kyoto-city", k_cars, k_intro)
 if changed_k:
     open(kyoto_path, "w", encoding="utf-8").write(s_k)
+
+
+# ---------------------------------------------------------------- Station guides
+def add(path, pid, html, marker, anchor):
+    ch, txt = insert_before_faq(path, pid, html, marker, anchor)
+    if ch:
+        open(path, "w", encoding="utf-8").write(txt)
+    return ch
+
+
+LEAVE = '<h2 id="leaving">'
+st = {}
+p = os.path.join(BLOG, "osaka-station-guide.html")
+if not os.path.isfile(p):
+    die("osaka station page not found")
+ch1 = add(p, "pickups-osaka-station",
+          pickups_block("pickups-osaka-station", "Your Driver at Kansai Airport, to Your Osaka Hotel")
+          + "\n" + cars_block("discovercars-osaka-station",
+                              "Rent a Car near Osaka: Go Where Trains and Buses Don't",
+                              "The mountain roads and coast of Wakayama, and other places around Kansai, sit a long way from any station. "
+                              "With your own car you stop when you like, and the luggage rides with you.",
+                              "Skip the car inside Osaka and Kyoto, where trains are quicker. Choose a pick-up point, collect the car as you "
+                              "leave town, then compare prices below. Japan drives on the left.", "kix"),
+          '<h2 id="car-and-transfer">Airport transfer and car rental</h2>\n'
+          '<p>If you land at Kansai Airport, you can book a private driver to your Osaka hotel before you fly. '
+          'For day trips by road, compare self-drive rentals below.</p>\n', LEAVE)
+
+p = os.path.join(BLOG, "kyoto-station-guide.html")
+if not os.path.isfile(p):
+    die("kyoto station page not found")
+ch2 = add(p, "discovercars-kyoto-station",
+          cars_block("discovercars-kyoto-station",
+                     "Rent a Car near Kyoto: Go Where Trains and Buses Don't",
+                     "Amanohashidate and Ine, in the north of Kyoto Prefecture, are a long way from the city's main stations. "
+                     "With your own car you set your own timetable, and the luggage rides with you.",
+                     "Skip the car inside Kyoto, where trains and buses are quicker. Choose a pick-up point, collect the car as you "
+                     "leave town, then compare prices below. Japan drives on the left.", "kyoto"),
+          '<h2 id="car-rental">Car rental for day trips by road</h2>\n'
+          '<p>For trips outside the city, such as the northern coast, compare self-drive rentals below.</p>\n', LEAVE)
+
+p = os.path.join(BLOG, "tokyo-station-guide.html")
+if not os.path.isfile(p):
+    die("tokyo station page not found")
+ch3 = add(p, "pickups-tokyo-station",
+          pickups_block("pickups-tokyo-station", "Your Driver at Narita or Haneda, to Your Tokyo Hotel"),
+          '<h2 id="transfer">Private airport transfer</h2>\n'
+          '<p>If you would rather have a driver than a train after a long flight, you can book a private transfer from '
+          'Narita or Haneda to your Tokyo hotel before you fly.</p>\n', '<h2 id="rail">')
+ch4 = add(p, "discovercars-tokyo-station",
+          cars_block("discovercars-tokyo-station",
+                     "Rent a Car near Tokyo: Go Where Trains and Buses Don't",
+                     "Lakeside roads below Mount Fuji and mountain villages sit a long way from any station. "
+                     "With your own car you stop when you like, and the luggage rides with you.",
+                     "Skip the car inside Tokyo, where trains are quicker. Choose a pick-up point, collect the car as you "
+                     "leave town, then compare prices below. Japan drives on the left.", "hnd"),
+          '<h2 id="car-rental">Car rental for trips outside Tokyo</h2>\n'
+          '<p>For trips by road, compare self-drive rentals below.</p>\n', LEAVE)
+
+print("w53 stations. osaka:", ch1, "| kyoto:", ch2, "| tokyo transfer:", ch3, "| tokyo rental:", ch4)
 
 print("w53 done. osaka:", "added" if changed_o else "already applied", "| kyoto:", "added" if changed_k else "already applied")
