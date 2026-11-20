@@ -254,7 +254,8 @@ CAR = ("""<h2 id="private-car">Private car with driver</h2>
            "Drivers speak Mandarin or Japanese, with a translator device for English.",
            "Admission to sights is not included."],
           "https://klook.tpo.lu/x5X6T67m", "See dates and options (partner link)",
-          "Rated 4.6 from about 820 reviews on the booking page, 18 November 2026.")
+          "Rated 4.6 from about 820 reviews on the booking page, 18 November 2026.",
+          img=("osaka-box-car1.webp", "Kobe Port Tower, a red lattice tower, beside a tall hotel on the Kobe waterfront", "Photo: Pakutaso"))
        + "\n" +
        exp("klook-osaka-car-charter-2", "Private car with driver",
            "Kansai private chartered car: a customised day tour",
@@ -263,7 +264,8 @@ CAR = ("""<h2 id="private-car">Private car with driver</h2>
             "The driver's language (Chinese, Japanese or English) is assigned at random, with translation software if needed.",
             "A Golden Week surcharge applies from 29 April to 6 May."],
            "https://klook.tpo.lu/8KjPkooL", "See dates and options (partner link)",
-           "Rated 4.7 from about 246 reviews on the booking page, 18 November 2026.")
+           "Rated 4.7 from about 246 reviews on the booking page, 18 November 2026.",
+           img=("osaka-box-car2.webp", "Aerial view of central Osaka seen from a high tower, with rail lines and dense city blocks", "Photo: Pakutaso"))
        + """
 <p>How to choose: the first suits a fixed 10-hour day with a bigger choice of vehicle sizes. The second suits a day whose length you want to set yourself.</p>""")
 
@@ -308,7 +310,8 @@ DAYTRIPS = ("""<h2 id="day-trips">Day trips from Osaka</h2>
            "You may share a vehicle with guests who need English guidance.",
            "Times can change with weather and traffic."],
           "https://klook.tpo.lu/yWBIrbA5", "See dates and options (partner link)",
-          "Rated 4.7 from about 451 reviews on the booking page, 18 November 2026.") + """
+          "Rated 4.7 from about 451 reviews on the booking page, 18 November 2026.",
+          img=("osaka-box-himeji.webp", "Himeji Castle's white keep rising above its stone walls", "Photo: Pakutaso")) + """
 
 <h3>Koyasan and Okunoin</h3>
 <p>Koyasan is the birthplace of Shingon Buddhism, brought to Japan by the monk Kukai (also known as Kobo Daishi), and Okunoin Temple is his mausoleum. JNTO gives the route from Osaka as the Nankai Koya Line from Namba to Gokurakubashi, taking at least 90 minutes, then a 5-minute cable car up the mountain. It is a long day by train, so a guided small-group tour that handles the transfers is a common choice.</p>
@@ -318,7 +321,8 @@ DAYTRIPS = ("""<h2 id="day-trips">Day trips from Osaka</h2>
            "Small group of up to 18, with an English, Chinese or Japanese guide.",
            "Free cancellation up to 24 hours before, according to the listing."],
           "https://klook.tpo.lu/TILP1tbk", "See dates and options (partner link)",
-          "Rated 4.9 from about 188 reviews on the booking page, 18 November 2026.") + """
+          "Rated 4.9 from about 188 reviews on the booking page, 18 November 2026.",
+          img=("osaka-box-koyasan.webp", "Moss-covered stone pagodas among cedar trees at Okunoin, Koyasan", "Photo: Pakutaso")) + """
 
 <h3>Hiroshima and Miyajima</h3>
 <p>From Shin-Osaka the Shinkansen reaches Hiroshima in about 1 hour 25 minutes, according to JNTO. Hiroshima Peace Memorial Park remembers the 1945 atomic bombing, and Itsukushima Shrine on Miyajima Island is known for its torii gate standing in the sea. From Hiroshima Station a local train to Miyajimaguchi takes about 25 to 30 minutes, then the ferry takes about 10 minutes.</p>
