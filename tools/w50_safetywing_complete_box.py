@@ -1,14 +1,17 @@
 #!/usr/bin/env python3
-"""w50: add a short 'Nomad Insurance Complete' box after the SafetyWing Essential box + price widget.
+"""w50: add a short 'Nomad Insurance Complete' box right after the SafetyWing Essential box + price widget.
 
-Run from the repo root:  python3 -I tools/w50_safetywing_complete_box.py
+Run from the repo root:
+  python3 -I tools/w50_safetywing_complete_box.py            # patch
+  python3 -I tools/w50_safetywing_complete_box.py --dry-run  # report only, write nothing
+
+Pages: every public/blog/*.html that carries the SafetyWing price widget (a <div ... safetywing-price-widget ...>)
+plus its fit script (data-ps-fit="safetywing"). pricing.html is deliberately left out.
 Idempotent: skips pages that already carry data-ps-placement="safetywing-complete".
-Aborts without writing if the anchor (the SAFETYWING INSURANCE WIDGET block) is not found exactly once.
+All-or-nothing: if any page has an unexpected structure, nothing is written.
 Link: Complete product link from the SafetyWing ambassador dashboard (referenceID 26492686).
 """
-import re, sys, pathlib
-
-PAGES = ["public/blog/travel-insurance-guide.html"]
+import re, sys, glob
 
 LINK = ("https://explore.safetywing.com/nomad-insurance-complete?selectedPlan=NOMAD_INSURANCE_COMPLETE"
         "&amp;referenceID=26492686&amp;utm_source=26492686&amp;utm_medium=Ambassador")
@@ -22,27 +25,44 @@ BOX = f'''
 </div>
 '''
 
-ANCHOR = '<!-- SAFETYWING INSURANCE WIDGET -->'
-END = re.compile(r'</script>\s*</div>\s*</div>\n')
+WIDGET_DIV = re.compile(r'<div[^>]*safetywing-price-widget[^>]*>')
+FIT = 'data-ps-fit="safetywing"'
+# after the fit script: close the margin-top wrapper and the outer box, optionally followed by a closing comment
+TAIL = re.compile(r'</script>\s*</div>\s*</div>(?:[ \t]*<!--\s*closes SafetyWing outer container\s*-->)?[ \t]*\n')
+
+def plan(path):
+    h = open(path, encoding='utf-8').read()
+    if 'data-ps-placement="safetywing-complete"' in h:
+        return ('skip', None)
+    if len(WIDGET_DIV.findall(h)) == 0:
+        return ('nowidget', None)
+    if len(WIDGET_DIV.findall(h)) != 1 or h.count(FIT) != 1:
+        raise SystemExit(f'ABORT: unexpected widget/fit count in {path}')
+    j = h.index(FIT)
+    m = TAIL.search(h, j)
+    if not m or m.start() - j > 3000:
+        raise SystemExit(f'ABORT: end of SafetyWing block not found in {path}')
+    new = h[:m.end()] + BOX + h[m.end():]
+    if new.count('<div') - new.count('</div>') != h.count('<div') - h.count('</div>'):
+        raise SystemExit(f'ABORT: div balance changed in {path}')
+    return ('patch', new)
 
 def main():
-    changed = 0
-    plans = []
-    for rel in PAGES:
-        p = pathlib.Path(rel)
-        h = p.read_text(encoding='utf-8')
-        if 'data-ps-placement="safetywing-complete"' in h:
-            print('skip (already applied):', rel); continue
-        if h.count(ANCHOR) != 1:
-            sys.exit(f'ABORT: anchor count {h.count(ANCHOR)} in {rel}')
-        i = h.index(ANCHOR)
-        m = END.search(h, i)
-        if not m:
-            sys.exit(f'ABORT: end of widget block not found in {rel}')
-        plans.append((p, h[:m.end()] + BOX + h[m.end():]))
-    for p, new in plans:
-        p.write_text(new, encoding='utf-8'); changed += 1; print('patched:', p)
-    print('done, pages changed:', changed)
+    dry = '--dry-run' in sys.argv
+    pages = sorted(p for p in glob.glob('public/blog/*.html'))
+    todo, skipped, nowidget = [], [], []
+    for p in pages:
+        kind, new = plan(p)
+        if kind == 'patch': todo.append((p, new))
+        elif kind == 'skip': skipped.append(p)
+        else: nowidget.append(p)
+    print(f'to patch: {len(todo)} | already applied: {len(skipped)} | no widget: {len(nowidget)}')
+    if dry:
+        for p, _ in todo: print('  would patch:', p)
+        return
+    for p, new in todo:
+        open(p, 'w', encoding='utf-8').write(new)
+    print('done, pages changed:', len(todo))
 
 if __name__ == '__main__':
     main()
