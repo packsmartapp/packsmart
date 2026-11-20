@@ -330,6 +330,14 @@
             font-weight: 600;
         }
         .budget-breakdown tr:hover { background: #e8f5f2; }
+        .budget-breakdown { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+        @media (max-width: 600px) {
+            .budget-breakdown { padding: 14px 10px; }
+            .budget-breakdown table { font-size: 0.78rem; }
+            .budget-breakdown th, .budget-breakdown td { padding: 8px 5px; overflow-wrap: break-word; hyphens: auto; }
+            .budget-breakdown th:first-child, .budget-breakdown td:first-child { min-width: 92px; }
+            .budget-breakdown { margin-left: -6px; margin-right: -6px; }
+        }
     /* Hide Travelpayouts branding */
     a[href*="poweredby"] { display: none !important; }
 
