@@ -371,7 +371,15 @@ SIGHTS = ("""<h2 id="sights">The main sights in the city</h2>
 """ + partner_line("klook-osaka-kaiyukan", "Prefer to buy ahead?", "https://klook.tpo.lu/HUkHu5x0", "Kaiyukan tickets") + """
 <h3>Universal Studios Japan</h3>
 <p>USJ is about 10 to 11 minutes by JR train from Osaka Station to Universal City Station, with no change. Opening hours change from day to day, so check the park's official calendar for the day you plan to go.</p>
-""" + partner_line("klook-osaka-usj", "Prefer to buy ahead?", "https://klook.tpo.lu/zfzbTTzX", "USJ Studio Pass"))
+""" + exp("klook-osaka-usj", "Park ticket",
+          "Universal Studios Japan Studio Pass",
+          ["An entry ticket with a QR code. The listing suggests 1 to 2 days at the park.",
+           "Prices change by date, so check the calendar on the booking page before you choose a day.",
+           "The listing says the QR code can be scanned into the official USJ app from the day after you buy, so do not leave it to the last minute.",
+           "Super Nintendo World may need a separate timed-entry or standby ticket, depending on the day. The listing points to the park's official site and app for the rules.",
+           "Some attractions have height and health limits. Check them in advance."],
+          "https://klook.tpo.lu/zfzbTTzX", "See dates and options (partner link)",
+          "Rated 4.8 from about 91,300 reviews on the booking page, 20 November 2026."))
 
 # ---- 8. food
 FOOD = ("""<h2 id="food">What to eat</h2>
