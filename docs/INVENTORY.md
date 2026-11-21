@@ -18,7 +18,6 @@ This page says what exists and where. It does not repeat file contents, because 
 
 ## Root files
 
-- `.gitignore`
 - `BLOG_STYLE_GUIDE.md`
 - `CLAUDE.md`
 - `add-ga4-fix.sh`
@@ -26,6 +25,7 @@ This page says what exists and where. It does not repeat file contents, because 
 - `add-schema.sh`
 - `package.json`
 - `vercel.json`
+- `.gitignore`
 
 ## api/ (Vercel functions)
 
@@ -115,7 +115,7 @@ Each also has `<key>-sw.js` (service worker) and `<key>-pocket.webmanifest`.
 
 **Images:** 137 files in `public/images/`; site icons and logos in `public/`.
 
-**Other public files:** `.DS_Store`, `favicon.ico`, `packsmart-icon.svg`, `packsmart-logo-white.svg`, `packsmart-logo.svg`, `packsmart-phase1.js`, `packsmart-widgets.js`, `robots.txt`, `sitemap.xml`
+**Other public files:** `favicon.ico`, `packsmart-icon.svg`, `packsmart-logo-white.svg`, `packsmart-logo.svg`, `packsmart-phase1.js`, `packsmart-widgets.js`, `robots.txt`, `sitemap.xml`
 
 ## How to save everything to disk
 

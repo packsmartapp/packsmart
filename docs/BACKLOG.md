@@ -58,5 +58,5 @@ The repo is public, so earnings, partner conversations and outreach are tracked 
 | T8 | Git on the Mac mount leaves `HEAD.lock` and `tmp_obj_*`; `device_commit_files` sometimes writes a stale copy (check the byte size every time). | Workaround in `CLAUDE.md`. |
 | T9 | Dated clean-ups: Yesim promo copy after 28 Feb 2027; Klook footnotes after 1 Jan 2027; Klook 12% boost ends 31 Dec 2026; Klook thumbnail approval pending. | |
 | T10 | Vercel Web Analytics returns nothing, so traffic comes from GA4, Search Console and Travelpayouts. | Enable or ignore. |
-| T12 | `tools/w32_japan_sakura_block.py` had a syntax error (an unescaped apostrophe, introduced in commit 1047e5c) so it could not run. Fixed on 21 Nov; uncommitted. The live pages already carry that text, so nothing changes on the site. | Commit the fix. |
 | T11 | Docs upkeep: `PRD.md`, `DECISIONS.md`, `BACKLOG.md` and `INVENTORY.md` do not update themselves. | See the rule proposed in `CLAUDE.md`. |
+| T12 | `tools/w32_japan_sakura_block.py` had a syntax error (an unescaped apostrophe, introduced in commit 1047e5c) so it could not run. Fixed and pushed in c836d89 (21 Nov). The live pages already carried that text, so nothing changed on the site. | Done. |

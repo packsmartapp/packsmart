@@ -31,7 +31,7 @@ def ls(rel, ext=None):
     if not os.path.isdir(d):
         return []
     names = sorted(n for n in os.listdir(d) if os.path.isfile(os.path.join(d, n)))
-    return [n for n in names if ext is None or n.endswith(ext)]
+    return [n for n in names if not n.startswith(".") and (ext is None or n.endswith(ext))]
 
 
 def num_key(name):
@@ -64,9 +64,7 @@ w("")
 
 w("## Root files")
 w("")
-for n in ls("", None):
-    if n.startswith(".") and n not in (".gitignore",):
-        continue
+for n in ls("", None) + [".gitignore"]:
     w(f"- `{n}`")
 w("")
 
