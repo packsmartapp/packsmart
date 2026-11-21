@@ -243,11 +243,12 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 .nxoff{margin:8px 0 0;font-weight:700;color:#3a2400;background:#FFE7BF;border-radius:10px;padding:6px 10px}
 .nxoff[hidden]{display:none}
 .wa{position:fixed;z-index:5;right:max(14px,calc((100vw - 560px)/2 + 14px));bottom:calc(var(--tabh) + 14px);height:50px;padding:0 20px 0 12px;border-radius:25px;background:#128C7E;color:#fff;display:flex;align-items:center;gap:8px;font:800 1.05rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 3px 12px rgba(0,0,0,.35);-webkit-tap-highlight-color:transparent}.wa:active{transform:scale(.94)}.wa:focus-visible{outline:3px solid #0f0f23;outline-offset:2px}.panels{padding-bottom:84px}@media print{.wa{display:none}}
+.top .by[hidden]{display:none}.top .by.sv{color:#7FE3CF}.conn{display:flex;align-items:center;gap:12px;width:100%;box-sizing:border-box;min-height:56px;margin:0 0 12px;padding:8px 14px;border:2px solid #1a1a3e;border-radius:14px;background:#fff;color:#0f0f23;font:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}.conn:active{transform:scale(.99)}.conn .ic{font-size:1.6rem;line-height:1}.conn .tx{flex:1;min-width:0}.conn b{display:block;font-size:1.05rem;line-height:1.25}.conn small{display:block;font-size:.85rem;color:#555;line-height:1.3}.conn .go{margin-left:auto;font-size:1.5rem;font-weight:800;color:#0b6b59}.conn.slim{min-height:46px;margin:2px 0 4px}.xg2{margin:10px 2px 0;text-align:center}.xg2 a{color:#00776a;font-weight:700}
 </style>
 </head>
 <body>
 <header class="top">
-<div><strong>Narita Pocket Guide</strong><span class="by">by PackSmart &middot; Checked 16 Nov 2026</span></div>
+<div><strong>Narita Pocket Guide</strong><span class="by">by PackSmart &middot; Checked 16 Nov 2026</span><span class="by sv" id="savedOn" hidden></span></div>
 <div class="status" id="status" role="status">Checking...</div>
 </header>
 <button type="button" class="inst-strip" id="instStrip" hidden><span class="ico" aria-hidden="true">&#128242;</span><span><b>Add this to your home screen</b><br>so it works with no internet</span><span class="go">How</span></button>
@@ -255,6 +256,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <section class="panel" id="p-find" role="tabpanel" aria-labelledby="t-find">
 <p class="seg-h">Which terminal are you in?</p>
 <div class="seg" id="seg"></div>
+<button type="button" class="conn slim" id="connBtn"><span class="ic" aria-hidden="true">&#128257;</span><span class="tx"><b>I&rsquo;m connecting to another flight</b></span><span class="go" aria-hidden="true">&rsaquo;</span></button>
 <p class="seg-h" style="margin-top:14px">What do you need? <span class="small">Tap one.</span></p>
 <div class="pager" id="pager"><div class="track" id="track"><div class="tiles pane" id="tiles"></div><div class="tiles pane off" id="tiles2" aria-hidden="true"></div></div></div>
 <p class="hint">Floors can change. Ask at an information counter (? sign).</p>
@@ -275,12 +277,14 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <p class="small" style="text-align:center;margin-top:10px">Simplified, not to scale. Airlines can change terminals, so check before you go. Shuttle buses can run late in traffic. <a href="https://www.narita-airport.jp/en/access/shuttlebus" target="_blank" rel="noopener noreferrer">Official shuttle bus page</a> (needs internet).</p>
 </section>
 <section class="panel" id="p-arrive" role="tabpanel" aria-labelledby="t-arrive" hidden>
+<button type="button" class="conn" id="connBtn2"><span class="ic" aria-hidden="true">&#128257;</span><span class="tx"><b>I&rsquo;m connecting</b><small>Changing planes at Narita? Tap here</small></span><span class="go" aria-hidden="true">&rsaquo;</span></button>
 <p class="lead2">Landed? Tap a step to tick it off.</p>
 <ol class="steps" id="arrSteps"></ol>
 <button type="button" class="reset" id="arrReset" hidden>Clear ticks</button>
 <p class="sec-h">Then, once you are out</p>
 <div class="tiles" id="arrTiles"></div>
-<div class="card nx" id="nextCard"><h2>Heading into Tokyo?</h2><p class="small">Your next pocket guide. Open it while you have signal, then add it to your home screen.</p><a class="nxa" href="/tokyo-pocket?src=pk_narita" data-xg="tokyo" data-via="card"><span class="ni" aria-hidden="true">🚉</span><span class="nt"><b>Tokyo Station Pocket Guide</b><span>Marunouchi and Yaesu sides, Shinkansen platforms, lockers</span></span><span class="go">Open &rsaquo;</span></a></div>
+<div class="card nx" id="nextCard"><h2>Heading into Tokyo?</h2><p class="small">Your next pocket guide. Add it to your home screen, then open it from the icon while you have signal and wait for &ldquo;Ready offline &#10003;&rdquo;.</p><a class="nxa" href="/tokyo-pocket?src=pk_narita" data-xg="tokyo" data-via="card"><span class="ni" aria-hidden="true">🚉</span><span class="nt"><b>Tokyo Station Pocket Guide</b><span>Marunouchi and Yaesu sides, Shinkansen platforms, lockers</span></span><span class="go">Open &rsaquo;</span></a></div>
+<p class="small xg2">Flying out of another airport later? <a href="/haneda-pocket?src=pk_narita" data-xg="haneda" data-via="arrive">Haneda</a> &middot; <a href="/kix-pocket?src=pk_narita" data-xg="kix" data-via="arrive">Kansai</a></p>
 </section>
 <section class="panel" id="p-depart" role="tabpanel" aria-labelledby="t-depart" hidden>
 <div class="seg2" id="depSeg" role="group" aria-label="Departure sections"><button type="button" data-d="before" aria-pressed="true">Before you go</button><button type="button" data-d="air" aria-pressed="false">At the airport</button></div>
@@ -302,9 +306,9 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 </div>
 <div class="hpane off" id="hp2" aria-hidden="true">
 <div class="card" id="numCard"><h2>Useful phone numbers</h2><p class="small">Tap a number to call. Your phone company may charge for calls abroad.</p>
-<p class="sec-h">Emergency (free, 24 hours)</p>
+<p class="sec-h">Emergency, anywhere in Japan (free, 24 hours)</p>
 <div class="numgrid"><a class="num em" href="tel:119"><span class="ni" aria-hidden="true">&#128657;</span><span class="nt"><b>Ambulance or fire</b><span>119</span></span></a><a class="num em" href="tel:110"><span class="ni" aria-hidden="true">&#128659;</span><span class="nt"><b>Police</b><span>110</span></span></a></div>
-<p class="sec-h">At Narita Airport only</p>
+<p class="sec-h">At Narita Airport only (not for emergencies)</p>
 <a class="num air" href="tel:+81476348000"><span class="ni" aria-hidden="true">&#8505;&#65039;</span><span class="nt"><b>Narita Airport Information</b><span>+81 476-34-8000</span><small>Open 24 hours</small></span></a>
 <p class="small" style="margin-top:8px">Every terminal has information counters. Look for the <strong>?</strong> sign. Staff will help, so just ask.</p>
 <p class="sec-h">Help or travel questions</p>
@@ -505,6 +509,14 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
     var tx=document.createElement('span'); tx.className='tx'; tx.textContent=n[1]; b.appendChild(ic); b.appendChild(tx);
     b.addEventListener('click',function(){ openInfo(n[0],n[1],n[2](),b); }); at.appendChild(b);
   });
+  /* I'm connecting: official connection guidance (w56) */
+  var CONN_HTML="<p class=\"lede\">Changing planes at Narita? If your next flight is also international, you can stay inside the secure area. Follow the <b>International Connecting Flights</b> signs.</p><p class=\"sm\"><b>International to international</b></p><ul class=\"pl\"><li>You do not need immigration if you stay inside the secure area until your next flight. You are screened again (bags and a body check), except in some cases.</li><li>Check your gate on your boarding pass or the flight boards. No boarding pass? Ask your connecting airline.</li><li><b>Different terminal?</b> Take the connection shuttle bus from the bus gate. You do not need to leave the terminal. Some airlines do not let passengers use it, because of the immigration step, so ask your airline.</li></ul><ul class=\"pl\"><li><b>From Terminal 1:</b> Bus Gate 28 or 59. To Terminal 2 about 8 to 12 min, to Terminal 3 about 12 to 16 min. Buses to Terminal 3 run only at certain times.</li><li><b>From Terminal 2:</b> Bus Gate 70. To Terminal 1 about 12 to 16 min, to Terminal 3 about 4 min. Buses to Terminal 3 run only at certain times. Bus Gate 80 was closed when we checked.</li><li><b>From Terminal 3:</b> the international connection bus gate. To Terminal 1 about 24 to 28 min, to Terminal 2 about 12 min.</li></ul><p class=\"sm\"><b>Going on to a domestic flight in Japan</b></p><ul class=\"pl\"><li>Clear immigration at the terminal where you arrive. Then go to your departure terminal (shuttle bus if it is a different one), check in, and pass security again.</li><li>Shuttle bus stops: from Terminal 1, Bus Stop 6 (Terminals 2 and 3). From Terminal 2, Bus Stop 8 or 18 (Terminal 1); for Terminal 3 use the access corridor or Bus Stop 1. From Terminal 3, Bus Stop 3 (Terminal 1); for Terminal 2 use the access corridor or Bus Stop 2 or 3.</li></ul><p class=\"sm\"><b>Overnight?</b></p><ul class=\"pl\"><li>Aircraft use Narita only between 6 am and midnight, and you cannot stay in the secure area outside those hours. An overnight connection means passing immigration and customs. Some passports need a visa for that, so ask your airline first.</li></ul><p class=\"sm\">Source: Narita Airport's own pages for <a href=\"https://www.narita-airport.jp/en/airportguide/connect/inter-inter/\" target=\"_blank\" rel=\"noopener noreferrer\">international connections</a> and <a href=\"https://www.narita-airport.jp/en/airportguide/connect/inter-dom/\" target=\"_blank\" rel=\"noopener noreferrer\">international to domestic</a> (need internet), checked 21 November 2026. Gates and times can change: follow the airport signs.</p>";
+  (function(){
+    function openConn(from,btn){ try{ pgTrack('pg_connect',{from:from}); }catch(e){} openInfo('\uD83D\uDD01','Changing planes',CONN_HTML,btn); }
+    var b1=$('connBtn'), b2=$('connBtn2');
+    if(b1) b1.addEventListener('click',function(){ openConn('find',b1); });
+    if(b2) b2.addEventListener('click',function(){ openConn('arrive',b2); });
+  })();
   /* tick-off steps for arrival and departure */
   var doneA=[], doneD=[];
   function renderSteps(ol,list,done){
@@ -520,7 +532,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
     });
   }
   function syncReset(){ $('arrReset').hidden=!doneA.some(Boolean); $('depReset').hidden=!doneD.some(Boolean); }
-  var ARR=[['Health check',"Hand in the plane's health form. Feeling unwell? Tell an officer."],
+  var ARR=[['Health check',"Hand in the health form if your flight gave you one. Feeling unwell? Tell an officer."],
     ['Immigration','Show your passport. Automatic gates give no stamp: ask staff if you want one.'],
     ['Baggage claim','Find your flight on the screen and go to its carousel. Carts are nearby.'],
     ['Customs','Show your Visit Japan Web QR code or paper form. Food or plants? Declare them first.'],
@@ -619,10 +631,26 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   var st=$('status'), saved=false;
   function paint(){
     if(!navigator.onLine){ st.className='status off'; st.textContent=saved?'Offline: saved copy':'Offline'; }
-    else if(saved){ st.className='status saved'; st.textContent='Saved for offline use'; }
+    else if(saved){ st.className='status saved'; st.textContent='Ready offline \u2713'; }
     else { st.className='status'; st.textContent='Online'; }
   }
   window.addEventListener('online',paint); window.addEventListener('offline',paint); paint();
+  /* Saved on this phone: date of the last online open that refreshed the saved copy (w56) */
+  (function(){
+    var el=document.getElementById('savedOn'); if(!el||!window.caches) return;
+    var pre=location.pathname.replace(/^\//,'').replace(/\.html$/,'')+'-';
+    function fmt(d){ try{ return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }catch(e){ return d.toISOString().slice(0,10); } }
+    function show(){
+      caches.keys().then(function(ks){
+        if(!ks.some(function(k){ return k.indexOf(pre)===0; })) return;
+        var v=null; try{ v=localStorage.getItem('pgSavedOn'); }catch(e){}
+        if(navigator.onLine){ v=String(Date.now()); try{ localStorage.setItem('pgSavedOn',v); }catch(e){} }
+        var d=v?new Date(Number(v)):null; if(!d||isNaN(d.getTime())) return;
+        el.textContent='Saved on this phone: '+fmt(d); el.hidden=false;
+      }).catch(function(){});
+    }
+    show(); setTimeout(show,3000); window.addEventListener('online',function(){ setTimeout(show,3000); });
+  })();
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/narita-sw.js',{scope:'/narita-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
@@ -675,13 +703,13 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
       h+=steps([['','Tap <b>Copy link</b> below'],['','Open <b>Safari</b> and paste the link in the address bar'],['','Then add it to your home screen']]);
       h+='<button type="button" class="close" id="instCopy">Copy link</button>';
     } else if(isIOS){
-      h+='<p class="lede">Do this once, now, while you have signal. Then it opens like an app, even with no internet.</p>';
-      h+=steps([[SHARE,'Tap the <b>Share</b> button (a square with an arrow) in Safari'],[PLUS,'Scroll down and tap <b>Add to Home Screen</b>'],['','Tap <b>Add</b>']]);
+      h+='<p class="lede">Do these in order, while you have signal. On iPhone the home screen icon can keep its own saved copy, so the order matters.</p>';
+      h+=steps([[SHARE,'Tap the <b>Share</b> button (a square with an arrow) in Safari'],[PLUS,'Scroll down and tap <b>Add to Home Screen</b>'],['','Tap <b>Add</b>'],['','Open the guide <b>from the new icon</b> on your home screen, while you have signal'],['','Wait until the top right says <b>Ready offline &#10003;</b>']]);
       h+='<div class="tipbox">Cannot see Share? Tap the <b>&middot;&middot;&middot;</b> button first. Not in Safari? Open this page in <b>Safari</b> first.</div>';
       h+='<p class="small">If you skip this, your phone may clear the saved copy when you have not opened the guide for a while.</p>';
     } else if(dp){
       title='Install this guide'; one=true;
-      h+='<p class="lede">One tap. Then it opens like an app, even with no internet.</p>';
+      h+='<p class="lede">One tap. Then open the guide from its new icon while you have signal and wait for <b>Ready offline &#10003;</b>.</p>';
       h+='<button type="button" class="close" id="instGo">Install</button>';
     } else if(inApp){
       one=true;
@@ -689,8 +717,8 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
       h+=steps([['','Tap <b>Copy link</b> below'],['','Open <b>Chrome</b> and paste the link in the address bar'],['','Then tap <b>Install</b>']]);
       h+='<button type="button" class="close" id="instCopy">Copy link</button>';
     } else {
-      h+='<p class="lede">Do this once, now, while you have signal. Then it opens like an app, even with no internet.</p>';
-      h+=steps([[DOTS,'Tap the menu <b>&#8942;</b> (three dots) in your browser'],[DOWN,'Tap <b>Install app</b> or <b>Add to Home screen</b>'],['','Tap <b>Install</b> or <b>Add</b>']]);
+      h+='<p class="lede">Do this once, while you have signal.</p>';
+      h+=steps([[DOTS,'Tap the menu <b>&#8942;</b> (three dots) in your browser'],[DOWN,'Tap <b>Install app</b> or <b>Add to Home screen</b>'],['','Tap <b>Install</b> or <b>Add</b>'],['','Open the guide from the new icon and wait for <b>Ready offline &#10003;</b>']]);
       h+='<div class="tipbox">Do not see it? Open this page in Chrome and try again.</div>';
     }
     h+=one?'<div class="row2"><button type="button" class="close ghost" id="instLater">Later</button></div>':'<div class="row2"><button type="button" class="close ghost" id="instLater">Later</button><button type="button" class="close" id="instDone">I added it</button></div>';
@@ -906,7 +934,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   });
   (function(){
     var n=parseInt(flag('pgVisits')||'0',10)+1; flag('pgVisits',String(n));
-    var sp=new URLSearchParams(location.search), src=(sp.get('src')||'').replace(/[^a-z0-9_-]/gi,'').slice(0,20);
+    var sp=new URLSearchParams(location.search), src=(sp.get('src')||'').replace(/[^a-z0-9_-]/gi,'').toLowerCase().slice(0,40);
     if(src&&!flag('pgSrc')) flag('pgSrc',src);
     var ref=''; try{ if(document.referrer){ var rh=bare(new URL(document.referrer).hostname); ref=(rh===bare(location.hostname)||rh==='packsmartapp.com')?'packsmartapp.com':rh; } }catch(e){}
     pgTrack('pg_open',{os:isIOS?'ios':isAnd?'android':'desktop',src:src,src_first:flag('pgSrc')||'',ref:ref,visit:Math.min(n,20),online:navigator.onLine?1:0,lang:(navigator.language||'').slice(0,5).toLowerCase()});

@@ -243,11 +243,12 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 .nxoff{margin:8px 0 0;font-weight:700;color:#3a2400;background:#FFE7BF;border-radius:10px;padding:6px 10px}
 .nxoff[hidden]{display:none}
 .wa{position:fixed;z-index:5;right:max(14px,calc((100vw - 560px)/2 + 14px));bottom:calc(var(--tabh) + 14px);height:50px;padding:0 20px 0 12px;border-radius:25px;background:#128C7E;color:#fff;display:flex;align-items:center;gap:8px;font:800 1.05rem/1 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;text-decoration:none;white-space:nowrap;box-shadow:0 3px 12px rgba(0,0,0,.35);-webkit-tap-highlight-color:transparent}.wa:active{transform:scale(.94)}.wa:focus-visible{outline:3px solid #0f0f23;outline-offset:2px}.panels{padding-bottom:84px}@media print{.wa{display:none}}
+.top .by[hidden]{display:none}.top .by.sv{color:#7FE3CF}.conn{display:flex;align-items:center;gap:12px;width:100%;box-sizing:border-box;min-height:56px;margin:0 0 12px;padding:8px 14px;border:2px solid #1a1a3e;border-radius:14px;background:#fff;color:#0f0f23;font:inherit;text-align:left;cursor:pointer;-webkit-tap-highlight-color:transparent}.conn:active{transform:scale(.99)}.conn .ic{font-size:1.6rem;line-height:1}.conn .tx{flex:1;min-width:0}.conn b{display:block;font-size:1.05rem;line-height:1.25}.conn small{display:block;font-size:.85rem;color:#555;line-height:1.3}.conn .go{margin-left:auto;font-size:1.5rem;font-weight:800;color:#0b6b59}.conn.slim{min-height:46px;margin:2px 0 4px}.xg2{margin:10px 2px 0;text-align:center}.xg2 a{color:#00776a;font-weight:700}
 </style>
 </head>
 <body>
 <header class="top">
-<div><strong>Kyoto Station Pocket Guide</strong><span class="by">by PackSmart &middot; Checked 19 Nov 2026</span></div>
+<div><strong>Kyoto Station Pocket Guide</strong><span class="by">by PackSmart &middot; Checked 19 Nov 2026</span><span class="by sv" id="savedOn" hidden></span></div>
 <div class="status" id="status" role="status">Checking...</div>
 </header>
 <button type="button" class="inst-strip" id="instStrip" hidden><span class="ico" aria-hidden="true">&#128242;</span><span><b>Add this to your home screen</b><br>so it works with no internet</span><span class="go">How</span></button>
@@ -284,7 +285,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <div id="depBefore">
 <div class="tiles" id="depTiles"></div>
 <p class="hint">Tap one for the details. Prices and times are approximate.</p>
-<div class="card nx" id="nextCard"><h2>Heading on?</h2><p class="small">Your next pocket guides. Open it while you have signal, then add it to your home screen.</p><a class="nxa" href="/osaka-pocket?src=pk_kyoto" data-xg="osaka" data-via="card"><span class="ni" aria-hidden="true">🚉</span><span class="nt"><b>Osaka Station Pocket Guide</b><span>Shin-Osaka and Osaka/Umeda, platforms, lockers</span></span><span class="go">Open &rsaquo;</span></a><a class="nxa" href="/kix-pocket?src=pk_kyoto" data-xg="kix" data-via="card"><span class="ni" aria-hidden="true">✈️</span><span class="nt"><b>Kansai Airport Pocket Guide</b><span>Trains and buses to Osaka and Kyoto, lockers, showers</span></span><span class="go">Open &rsaquo;</span></a></div>
+<div class="card nx" id="nextCard"><h2>Heading on?</h2><p class="small">Your next pocket guides. Add it to your home screen, then open it from the icon while you have signal and wait for &ldquo;Ready offline &#10003;&rdquo;.</p><a class="nxa" href="/osaka-pocket?src=pk_kyoto" data-xg="osaka" data-via="card"><span class="ni" aria-hidden="true">🚉</span><span class="nt"><b>Osaka Station Pocket Guide</b><span>Shin-Osaka and Osaka/Umeda, platforms, lockers</span></span><span class="go">Open &rsaquo;</span></a><a class="nxa" href="/kix-pocket?src=pk_kyoto" data-xg="kix" data-via="card"><span class="ni" aria-hidden="true">✈️</span><span class="nt"><b>Kansai Airport Pocket Guide</b><span>Trains and buses to Osaka and Kyoto, lockers, showers</span></span><span class="go">Open &rsaquo;</span></a></div>
 </div>
 <div id="depAir" hidden>
 <div class="heroline"><span class="big2">11-14</span><span><b>Shinkansen platforms at Kyoto.</b><br>Your ticket and the boards show yours. Platforms can change.</span></div>
@@ -300,9 +301,9 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 </div>
 <div class="hpane off" id="hp2" aria-hidden="true">
 <div class="card" id="numCard"><h2>Useful phone numbers</h2><p class="small">Tap a number to call. Your phone company may charge for calls abroad.</p>
-<p class="sec-h">Emergency (free, 24 hours)</p>
+<p class="sec-h">Emergency, anywhere in Japan (free, 24 hours)</p>
 <div class="numgrid"><a class="num em" href="tel:119"><span class="ni" aria-hidden="true">&#128657;</span><span class="nt"><b>Ambulance or fire</b><span>119</span></span></a><a class="num em" href="tel:110"><span class="ni" aria-hidden="true">&#128659;</span><span class="nt"><b>Police</b><span>110</span></span></a></div>
-<p class="sec-h">At the station</p>
+<p class="sec-h">At the station (not for emergencies)</p>
 <p class="small" style="margin-top:0">Tourist information: Kyo-Navi, 2nd floor (8:30 am to 7 pm). Staff will help, so just ask.</p>
 <p class="sec-h">Help or travel questions</p>
 <a class="num hot" href="tel:+815038162787"><span class="ni" aria-hidden="true">&#128222;</span><span class="nt"><b>Japan Visitor Hotline</b><span>050-3816-2787</span><small>24 hours. English, Chinese, Korean</small></span></a>
@@ -604,10 +605,26 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   var st=$('status'), saved=false;
   function paint(){
     if(!navigator.onLine){ st.className='status off'; st.textContent=saved?'Offline: saved copy':'Offline'; }
-    else if(saved){ st.className='status saved'; st.textContent='Saved for offline use'; }
+    else if(saved){ st.className='status saved'; st.textContent='Ready offline \u2713'; }
     else { st.className='status'; st.textContent='Online'; }
   }
   window.addEventListener('online',paint); window.addEventListener('offline',paint); paint();
+  /* Saved on this phone: date of the last online open that refreshed the saved copy (w56) */
+  (function(){
+    var el=document.getElementById('savedOn'); if(!el||!window.caches) return;
+    var pre=location.pathname.replace(/^\//,'').replace(/\.html$/,'')+'-';
+    function fmt(d){ try{ return d.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'}); }catch(e){ return d.toISOString().slice(0,10); } }
+    function show(){
+      caches.keys().then(function(ks){
+        if(!ks.some(function(k){ return k.indexOf(pre)===0; })) return;
+        var v=null; try{ v=localStorage.getItem('pgSavedOn'); }catch(e){}
+        if(navigator.onLine){ v=String(Date.now()); try{ localStorage.setItem('pgSavedOn',v); }catch(e){} }
+        var d=v?new Date(Number(v)):null; if(!d||isNaN(d.getTime())) return;
+        el.textContent='Saved on this phone: '+fmt(d); el.hidden=false;
+      }).catch(function(){});
+    }
+    show(); setTimeout(show,3000); window.addEventListener('online',function(){ setTimeout(show,3000); });
+  })();
   if('serviceWorker' in navigator){
     navigator.serviceWorker.register('/kyoto-sw.js',{scope:'/kyoto-pocket',updateViaCache:'none'})
       .then(function(){ return navigator.serviceWorker.ready; })
@@ -660,13 +677,13 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
       h+=steps([['','Tap <b>Copy link</b> below'],['','Open <b>Safari</b> and paste the link in the address bar'],['','Then add it to your home screen']]);
       h+='<button type="button" class="close" id="instCopy">Copy link</button>';
     } else if(isIOS){
-      h+='<p class="lede">Do this once, now, while you have signal. Then it opens like an app, even with no internet.</p>';
-      h+=steps([[SHARE,'Tap the <b>Share</b> button (a square with an arrow) in Safari'],[PLUS,'Scroll down and tap <b>Add to Home Screen</b>'],['','Tap <b>Add</b>']]);
+      h+='<p class="lede">Do these in order, while you have signal. On iPhone the home screen icon can keep its own saved copy, so the order matters.</p>';
+      h+=steps([[SHARE,'Tap the <b>Share</b> button (a square with an arrow) in Safari'],[PLUS,'Scroll down and tap <b>Add to Home Screen</b>'],['','Tap <b>Add</b>'],['','Open the guide <b>from the new icon</b> on your home screen, while you have signal'],['','Wait until the top right says <b>Ready offline &#10003;</b>']]);
       h+='<div class="tipbox">Cannot see Share? Tap the <b>&middot;&middot;&middot;</b> button first. Not in Safari? Open this page in <b>Safari</b> first.</div>';
       h+='<p class="small">If you skip this, your phone may clear the saved copy when you have not opened the guide for a while.</p>';
     } else if(dp){
       title='Install this guide'; one=true;
-      h+='<p class="lede">One tap. Then it opens like an app, even with no internet.</p>';
+      h+='<p class="lede">One tap. Then open the guide from its new icon while you have signal and wait for <b>Ready offline &#10003;</b>.</p>';
       h+='<button type="button" class="close" id="instGo">Install</button>';
     } else if(inApp){
       one=true;
@@ -674,8 +691,8 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
       h+=steps([['','Tap <b>Copy link</b> below'],['','Open <b>Chrome</b> and paste the link in the address bar'],['','Then tap <b>Install</b>']]);
       h+='<button type="button" class="close" id="instCopy">Copy link</button>';
     } else {
-      h+='<p class="lede">Do this once, now, while you have signal. Then it opens like an app, even with no internet.</p>';
-      h+=steps([[DOTS,'Tap the menu <b>&#8942;</b> (three dots) in your browser'],[DOWN,'Tap <b>Install app</b> or <b>Add to Home screen</b>'],['','Tap <b>Install</b> or <b>Add</b>']]);
+      h+='<p class="lede">Do this once, while you have signal.</p>';
+      h+=steps([[DOTS,'Tap the menu <b>&#8942;</b> (three dots) in your browser'],[DOWN,'Tap <b>Install app</b> or <b>Add to Home screen</b>'],['','Tap <b>Install</b> or <b>Add</b>'],['','Open the guide from the new icon and wait for <b>Ready offline &#10003;</b>']]);
       h+='<div class="tipbox">Do not see it? Open this page in Chrome and try again.</div>';
     }
     h+=one?'<div class="row2"><button type="button" class="close ghost" id="instLater">Later</button></div>':'<div class="row2"><button type="button" class="close ghost" id="instLater">Later</button><button type="button" class="close" id="instDone">I added it</button></div>';
@@ -895,7 +912,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   });
   (function(){
     var n=parseInt(flag('pgVisits')||'0',10)+1; flag('pgVisits',String(n));
-    var sp=new URLSearchParams(location.search), src=(sp.get('src')||'').replace(/[^a-z0-9_-]/gi,'').slice(0,20);
+    var sp=new URLSearchParams(location.search), src=(sp.get('src')||'').replace(/[^a-z0-9_-]/gi,'').toLowerCase().slice(0,40);
     if(src&&!flag('pgSrc')) flag('pgSrc',src);
     var ref=''; try{ if(document.referrer){ var rh=bare(new URL(document.referrer).hostname); ref=(rh===bare(location.hostname)||rh==='packsmartapp.com')?'packsmartapp.com':rh; } }catch(e){}
     pgTrack('pg_open',{os:isIOS?'ios':isAnd?'android':'desktop',src:src,src_first:flag('pgSrc')||'',ref:ref,visit:Math.min(n,20),online:navigator.onLine?1:0,lang:(navigator.language||'').slice(0,5).toLowerCase()});
