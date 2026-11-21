@@ -1,0 +1,194 @@
+# PackSmart: decision log
+
+Status as of 21 Nov 2026. Oldest first. Each entry gives what was chosen, what it was chosen over, and why. "Not recorded" means the project notes do not say; nothing has been guessed. Later entries can replace earlier ones (marked **Superseded**).
+
+## Before August 2026
+
+**D01. Static HTML on Vercel, no framework or build step** (date not recorded)
+- Chose: plain HTML, CSS and JS, deployed from `main`; a few Vercel serverless functions in `api/`.
+- Instead of: a framework or CMS (alternatives not recorded).
+- Why: not recorded. In practice it lets one owner and Claude edit a file and push, with nothing to break in between.
+
+**D02. Clean URLs** (May 2026)
+- Chose: `cleanUrls` in `vercel.json` and a site-wide cleanup of `.html` links, canonicals and schema (1,303 links).
+- Why: not recorded (the cleanup ran alongside the SEO title and meta work). Old `.html` URLs 301 to the clean ones.
+
+**D03. No self-referral on affiliate links** (date not recorded)
+- Chose: the owner never buys through his own links.
+- Why: it breaks programme terms.
+
+## August to September 2026
+
+**D04. Fix broken affiliate formats** (Aug 2026)
+- Chose: replace the dead Yesim `p=8310` links and the hijacked Klook `affiliate.klook.com/redirect` hand-built format (it was seen redirecting to spam).
+- Why: those links earned nothing or sent readers somewhere bad.
+
+**D05. `/share` is `noindex`** (1 Aug 2026)
+- Why: shared plan pages were reported as soft 404s in Search Console.
+
+**D06. India repositioning of 15 guides** (Aug 2026) — **Superseded by D11**
+- Chose: retitle guides "{Country} from India 2026: Visa, Trip Cost in INR & Packing List".
+- Why: not recorded.
+
+**D07. Reddit: link-free answers first, linked ones after the account aged** (Aug 2026) — **Superseded by D10**
+- Why: not recorded. The plan was to post linked answers after the account had aged about a week.
+
+## November 2026
+
+**D08. Content refresh order and rule** (10 Nov)
+- Chose: refresh by Search Console impressions; bump "Last updated" only after a real fact check.
+- Instead of: bumping dates without a real update.
+- Why: the rule is recorded; the reason is not.
+
+**D09. Skip: Diwali-to-December card swap, long-weekends-2027 article** (9 Nov)
+- Chose: revert the card swap; cancel and remove the article; do not re-propose without asking.
+- Why: owner's call; the Diwali URL stays and is refreshed mid-2027.
+
+**D10. Skip: Reddit re-enable, Japan kids section** (9 Nov)
+- Chose: leave Reddit off; add any kids content to the existing Japan guide, not a new page.
+- Why: owner's call; a new page would compete with the existing Japan pages.
+
+**D11. PackSmart is global, not India-only** (10 Nov)
+- Chose: global positioning; India guides become one segment; Japan, Germany, France, Switzerland and Portugal lead the homepage strip.
+- Instead of: the India-first framing in D06.
+- Why: the owner has global plans.
+
+**D12. No sign-up, no newsletter** (10 Nov)
+- Chose: remove newsletter boxes from all 67 pages (some forms were broken, one was fake); keep `/api/subscribe` unused.
+- Instead of: fixing the forms.
+- Why: the owner does not want sign-ups, and a "Join 500+" claim had no list behind it. Any return of email capture is the owner's call (see PRD F21).
+
+**D13. Remove all FIFA 2026 content** (10 Nov)
+- Chose: delete five pages, 301 each to the closest remaining guide, strip mentions elsewhere.
+- Why: not recorded. Redirects were added so old links still land somewhere useful.
+
+**D14. SafetyWing wording follows the provider's rules** (10 Nov)
+- Chose: "travel medical insurance", price per day (about $2), no "best" or "recommended", "partnered" not "sponsored".
+- Why: stay within the provider's brand and compliance rules.
+
+**D15. Pilot the affiliate package on Germany and France** (11 Nov)
+- Chose: Welcome Pickups, Airalo tiles, GetYourGuide city pills, Tiqets, SafetyWing; measure before rolling out.
+- Then: Waves 2 to 2d rolled the same package out across the other guides.
+
+**D16. DiscoverCars as the default car rental; Localrent retired** (14 to 15 Nov)
+- Chose: DiscoverCars wherever it serves the country (approved 14 Nov), EconomyBookings where it does not.
+- Instead of: Localrent widgets (no coverage for USA or Canada; the owner retired it on 15 Nov).
+- Why: wider coverage with one provider; only one DiscoverCars widget per page works.
+
+**D17. Airalo tiles replace Yesim; Yesim only via the promo link** (15 Nov)
+- Chose: three Airalo plan tiles per page; keep the Yesim promo link (20% off first order, to 28 Feb 2027) only where a Yesim card remains.
+- Why: Yesim's old programme was broken and redirected to Airalo; the tiles name real fixed-data plans.
+
+**D18. Klook only through tracked links** (15 Nov)
+- Chose: tracked `klook.tpx.li` links; replace all plain `aid=116473` links.
+- Why: Klook's own account was deactivated, so plain links earned nothing; city deep links redirect to the Klook homepage.
+
+**D19. No two widgets back to back; car block mid-article** (15 to 16 Nov)
+- Chose: the car block sits between two H2 sections with copy on both sides.
+- Instead of: parking it at the end of the article.
+- Why: the owner's rule; the USA page was done first and the others followed. Further reasoning not recorded.
+
+**D20. One neutral click label for car widgets** (15 Nov)
+- Chose: GA4 label `Car_Rental_Widget` for all providers loaded from `tpwdg.com`.
+- Cost: GA4 cannot split DiscoverCars, EconomyBookings and Kiwitaxi; Travelpayouts has the split.
+
+**D21. Neutral articles rule** (16 Nov)
+- Chose: outside India-designed pages, no India framing anywhere, including titles, meta, Open Graph, JSON-LD and URLs. Applied to 14 blog pages, six country guides, five web stories, homepage and Pricing.
+- Instead of: leaving India callouts on global pages.
+- Why: it follows D11; a global reader should not see "Indian passport holders" on a general page.
+
+**D22. Rename six guides, drop `-from-india`** (16 Nov)
+- Chose: new URLs with 301s from both clean and `.html` forms; sitemap, index and inbound links updated.
+- Cost: the new URLs start fresh history in GA4 and Search Console.
+
+**D23. Airport pages as a traffic pilot, starting with Narita** (16 Nov)
+- Chose: one airport first; measure 8 to 12 weeks before a wider wave.
+- Why: people decide at the moment of arrival, and facility-specific searches are less crowded than generic ones. SERP checks showed merchant-heavy results at big airports.
+- Not decided: the wider airport list awaits the owner's go-ahead.
+
+**D24. Real, licensed photos only** (16 Nov, restated 20 Nov)
+- Chose: the owner's own photos or licensed ones (Pakutaso, credited), no identifiable people; never scrape Klook photos; never use photos of public figures.
+- Instead of: an AI image of a real airport. It was declined: visible generator mark, garbled signs, real brand names.
+- Why: a made-up picture of a real place misleads readers.
+
+**D25. New menu and Travel Essentials hub** (16 Nov)
+- Chose: Destinations | Travel Essentials | Flights & Hotels | Plan My Trip; move 21 non-destination articles off the blog index (39 destination cards remain).
+- Why: not stated beyond giving non-destination articles their own hub.
+
+**D26. Offline Pocket Guide as a web page, called a "Pocket Guide"** (16 to 17 Nov)
+- Chose: an installable offline web page with no accounts or notifications.
+- Instead of: a native app (only if the pages show traction) and instead of calling it an "app".
+- Why: airport Wi-Fi is uneven, so offline-first; the owner wants a light tool that avoids "the sea of apps", which is why the word "app" is not used.
+
+**D27. Analytics are first-class; anonymous taps only** (17 Nov)
+- Chose: GA4 events for every meaningful tap, offline queue, Do Not Track respected, visible off switch, `?src=` on every shared link.
+- Why: real numbers are the only thing that can be shown to brands later.
+- Also decided: no sponsor exists or is being sought ("zero downloads"); the sponsor slot stays dormant and invisible.
+
+**D28. Partner policy for airports** (17 Nov)
+- Chose: Sakura Mobile through its own programme; one provider per job (Airalo for eSIM, Sakura or NINJA for Wi-Fi); a light approved partner line inside the guide; Priority Pass on hold until there is traffic; AirHelp skipped; no new partner application or outreach without the owner's go-ahead.
+- Why: avoid two providers for one job, and do not approach partners with no numbers to show.
+
+**D29. Help tab becomes "Say it in Japanese"** (17 Nov)
+- Chose: 83 everyday phrases in eight groups with a Play button, then a second screen for phone numbers.
+- Instead of: airport-only help. Why: broader value to a first-time visitor. Needs a native check.
+
+**D30. Extend to six guides, driven by a registry** (18 to 19 Nov)
+- Chose: Haneda, Kansai, Tokyo, Kyoto, Osaka after Narita; `tools/pocket_guides.json` feeds the hub and the picker.
+- Why: adding a guide should be one registry entry and a script re-run.
+
+**D31. Install flow by device** (19 Nov)
+- Chose: Android one-tap where the browser allows; copy-link screen in in-app browsers; iPhone steps with the wording "may" about cleared storage.
+- Why: Apple gives websites no install button; the steps are the only route.
+
+**D32. Trip picker replaces the journey-line card** (19 Nov)
+- Chose: two chips (landing airport, destinations) that show the right guides; no partner links in it.
+- Instead of: a fixed route card (w48). Why: the picker asks where the reader lands and where they go next.
+
+**D33. Prefer DiscoverCars and Welcome Pickups over Klook** (20 Nov)
+- Chose: no new Klook boxes (the USJ express and private transfer ideas were not added); existing Klook links stay; skip Booking.com.
+- Why: Klook's commission is low and there are already many Klook placements.
+
+**D34. Body copy has no prices and no partner names** (20 Nov)
+- Chose: the Japan guides carry neither; blocks carry them. The Typical fares line was dropped when the blocks were copied.
+- Why: the rule is recorded; the reason is not.
+
+**D35. Show a "Published" date in the hero** (20 Nov)
+- Chose: "Japan · Published D Mon 2026 · N min read" on eight guides; "Last updated" unchanged until a fact check.
+
+**D36. Link to the guides Google crawled but did not index** (20 Nov)
+- Chose: short internal callouts on ten pages (New Zealand 3 to 6 inbound links, Canada 4 to 6, South Korea 5 to 8, Road Trip 1 to 4).
+- Why: internal links are the cheapest signal available.
+
+**D37. WhatsApp share: pill at bottom right, labelled "Share this"** (20 to 21 Nov)
+- Chose: a green pill at the usual bottom-right spot with words.
+- Instead of: a header icon (built first) and a bare icon. Why: the owner wanted the usual place and a clear label.
+
+**D38. Reviewer fixes** (21 Nov)
+- Chose: install order is add first, open from the icon online, wait for "Ready offline ✓" (iPhone keeps a separate copy for the icon); show "Saved on this phone: date" next to the checked date; an "I'm connecting" sheet that follows the airport's own pages; exact emergency labels; one `src` code per channel (up to 40 characters).
+- Instead of: the old wording "open it, then add it", which was wrong on iPhone.
+- Left as is: cross-links already existed in the Help tab; only an Arrive-tab line was added for Narita and Haneda.
+- Facts for the connecting sheet were checked against the airports' official pages on 21 Nov.
+
+**D39. Generator scripts, not hand edits** (build habit through Nov)
+- Chose: numbered idempotent scripts in `tools/`; each fix goes into the owning script and the chain is re-run; scripts never live under `public/`.
+- Why: 60+ pages must stay consistent, and regenerating a page wipes later edits.
+
+**D40. Compact `CLAUDE.md`, PRD and decision log in the repo** (21 Nov)
+- Chose: one short brief that loads every session, plus these two docs. Dated work notes stay in the Claude Project.
+- Why: the old `CLAUDE.md` was a stale 323-line template.
+
+**D41. Park the pricing page and plan limit** (21 Nov)
+- Chose: no work now on the paid plans, the pricing copy or the free plan limit.
+- Why: the owner's call ("we are not doing now"); neither is part of the current Japan and affiliate focus.
+
+## Open decisions (not made)
+
+- Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.
+- Haruka price wording on the Kansai and Osaka guides.
+- Whether to keep the Terminals tab (watch the `pg_tab` count for it).
+- Wider airport list ("Wave 1") and any airport outside Japan.
+- Whether Tripadvisor is still a partner.
+- Pricing page and the free plan limit: parked, see D41.
+- Email capture: whether and how it returns.
+- Whether to add a native-speaker check for the Japanese phrases before promoting the guides.
