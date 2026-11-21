@@ -58,7 +58,6 @@ body{margin:0;height:100%;height:100dvh;display:flex;flex-direction:column;overf
 .status{flex:none;font-size:0.8rem;font-weight:700;border-radius:20px;padding:5px 11px;background:rgba(255,255,255,.16);color:#fff;white-space:nowrap}
 .status.saved{background:#00C9A7;color:#0f0f23}
 .status.off{background:#FFB84D;color:#3a2400}
-.status{margin-left:auto}.wa{flex:none;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#25D366;box-shadow:0 1px 6px rgba(0,0,0,.3);-webkit-tap-highlight-color:transparent}.wa:active{transform:scale(.94)}.wa:focus-visible{outline:3px solid #fff;outline-offset:2px}@media(max-width:420px){.top{gap:8px}.top strong{font-size:1.02rem}.top .by{font-size:.72rem}.status{font-size:.72rem;padding:4px 8px}.wa{width:34px;height:34px}.wa svg{width:20px;height:20px}}.wa{position:relative}.wa::after{content:;position:absolute;inset:-5px}@media(max-width:420px){.top{gap:8px}.top strong{font-size:1.02rem}.top .by{font-size:.72rem}.status{font-size:.72rem;padding:4px 8px}.wa{width:34px;height:34px}.wa svg{width:20px;height:20px}}.wa{position:relative}.wa::after{content:"";position:absolute;inset:-5px}
 .panels{flex:1;min-height:0;overflow-y:auto;-webkit-overflow-scrolling:touch;padding-bottom:12px}
 .panel{max-width:560px;margin:0 auto;padding:12px 14px 4px}
 .panel[hidden]{display:none}
@@ -243,13 +242,13 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 .nxl b{flex:1}
 .nxoff{margin:8px 0 0;font-weight:700;color:#3a2400;background:#FFE7BF;border-radius:10px;padding:6px 10px}
 .nxoff[hidden]{display:none}
+.wa{position:fixed;z-index:5;right:max(14px,calc((100vw - 560px)/2 + 14px));bottom:calc(var(--tabh) + 14px);width:54px;height:54px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,.35);-webkit-tap-highlight-color:transparent}.wa:active{transform:scale(.94)}.wa:focus-visible{outline:3px solid #0f0f23;outline-offset:2px}.panels{padding-bottom:84px}@media print{.wa{display:none}}
 </style>
 </head>
 <body>
 <header class="top">
 <div><strong>Kyoto Station Pocket Guide</strong><span class="by">by PackSmart &middot; Checked 19 Nov 2026</span></div>
 <div class="status" id="status" role="status">Checking...</div>
-<a class="wa" id="waShare" href="https://wa.me/?text=Kyoto%20Station%20Pocket%20Guide%3A%20free%2C%20and%20it%20works%20with%20no%20internet%20once%20you%20open%20it.%20https%3A%2F%2Fwww.packsmartapp.com%2Fkyoto-pocket%3Fsrc%3Dwa" target="_blank" rel="noopener" aria-label="Share this guide on WhatsApp"><svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true" focusable="false"><path d="M12 2.6a9.4 9.4 0 0 0-8 14.3L2.8 21.4l4.6-1.2A9.4 9.4 0 1 0 12 2.6z" fill="none" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><path transform="translate(6.3 6.1) scale(.5)" fill="#fff" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
 </header>
 <button type="button" class="inst-strip" id="instStrip" hidden><span class="ico" aria-hidden="true">&#128242;</span><span><b>Add this to your home screen</b><br>so it works with no internet</span><span class="go">How</span></button>
 <div class="panels" id="panels">
@@ -317,6 +316,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <p class="small">Facility details come from the JR West station map and Kyoto City, Hands Free Kyoto and JNTO pages, checked 19 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask station staff or Kyo-Navi. Found something out of date? <a href="/contact">Tell us</a> (needs internet). We count anonymous taps to improve this guide: no name, no account. <a href="/privacy-policy">Privacy</a> &middot; <a href="#" id="pgOpt">Turn off counting</a>. The full guide, with platforms, buses and luggage, is at <a href="https://www.packsmartapp.com/blog/kyoto-station-guide">packsmartapp.com</a> (needs internet).</p></div>
 </section>
 </div>
+<a class="wa" id="waShare" href="https://wa.me/?text=Kyoto%20Station%20Pocket%20Guide%3A%20free%2C%20and%20it%20works%20with%20no%20internet%20once%20you%20open%20it.%20https%3A%2F%2Fwww.packsmartapp.com%2Fkyoto-pocket%3Fsrc%3Dwa" target="_blank" rel="noopener" aria-label="Share this guide on WhatsApp"><svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" focusable="false"><path d="M12 2.6a9.4 9.4 0 0 0-8 14.3L2.8 21.4l4.6-1.2A9.4 9.4 0 1 0 12 2.6z" fill="none" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><path transform="translate(6.3 6.1) scale(.5)" fill="#fff" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></a>
 <nav class="tabs" role="tablist" aria-label="Sections">
 <button type="button" role="tab" id="t-find" data-tab="find" aria-selected="true"><span aria-hidden="true">&#128269;</span>Find</button>
 <button type="button" role="tab" id="t-map" data-tab="map" aria-selected="false"><span aria-hidden="true">&#128506;&#65039;</span>Sides</button>
