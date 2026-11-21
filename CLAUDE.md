@@ -1,323 +1,136 @@
-# PackSmart Blog Article Template — Style Reference
+# PackSmart (packsmartapp.com)
 
-> **Start of every session:** read `PROJECT_CONTEXT.md` in this folder (private, gitignored) for account IDs, deploy workflow, decisions made, and open to-dos. If it's missing, ask the owner.
+Travel-prep site for a **global** audience (since 10 Nov 2026; India-specific guides are one segment, not the brand). It earns from affiliate links, not from users: free packing guides, visa and cost info, itineraries, plus offline "Pocket Guides" for airports and stations in Japan. No sign-up, no newsletter, no accounts.
 
-**Benchmark article:** `public/blog/portugal-travel-packing-guide.html`
+Owner: Ari (solo; reviews and pushes everything). The repo is **public**: never commit secrets, earnings, partner negotiations or strategy notes.
 
-Use this document as the canonical style reference for ALL new blog articles. Every article must match this template exactly in structure, colors, fonts, nav, footer, and section ordering.
+## Start of every session
+1. Read `PROJECT_CONTEXT.md` (private, gitignored, on Ari's Mac): account IDs, history, open to-dos. If missing, ask.
+2. Dated decision and fix notes (`AFFILIATE_CURRENT_STATE_15NOV2026.md`, `POCKET_REVIEW_FIXES_21NOV2026.md`, etc.) live in the Claude Project "Packsmart", not in the repo.
+3. `BLOG_STYLE_GUIDE.md` is the article template (head order, CSS, nav, footer, blocks). Its Localrent, Yesim-broken and newsletter sections are OUTDATED; where it conflicts with this file, this file wins.
+4. Unexplained scripts at the root (`add-ga4*.sh`, `add-schema.sh`): ask Ari before running.
 
----
+## Tech stack
+- Static HTML, CSS and vanilla JS. **No framework, no build step.** Edit the file, push, done.
+- Hosting: Vercel (team packsmartapps-projects, project `packsmart`), auto-deploys from `main`. `vercel.json`: `cleanUrls`, no trailing slash, 301 redirects.
+- `api/*.js`: Vercel serverless (Node, ESM). `generate-plan` (Gemini), `weather` (OpenWeather), `share-plan`, `subscribe` (unused since newsletter removal). Keys are Vercel env vars.
+- `tools/`: Python 3 scripts that generate and patch pages (see "Generator scripts").
+- Analytics: GA4 `G-0C4Z7VVGPE`. Affiliates via Travelpayouts (marker `711400`, TRS `508747`; its verification script sits in every `<head>`).
+- Fonts and colours: DM Sans; `--primary #00C9A7`, `--accent #E94560`, `--dark #0f0f23`. Never the purple `#667eea` or system font stacks.
 
-## Brand Colors & Fonts
+## Folder structure
+- `public/`: everything deployed. Top-level pages (index, blog, flights, about, pricing, legal), `<key>-pocket.html` + `<key>-sw.js` + `<key>-pocket.webmanifest` per Pocket Guide, `images/`, `web-stories/`, `sitemap.xml`.
+- `public/blog/`: ~68 articles: `<country>-travel-packing-guide`, `...-from-india` variants, itineraries, lists, and the Japan airport and station guides.
+- `tools/`: numbered scripts `wNN_*.py` and `pocket_guides.json` (guide registry). **Never put scripts or registries under `public/`** (they would be served).
+- `api/`: serverless functions. Gitignored and private: `PROJECT_CONTEXT.md`, `backlink-outreach/`, `pinterest-pins/`.
+
+## Pocket Guides (Tokyo, Narita, Haneda, Kansai/KIX, Kyoto, Osaka)
+Call them "Pocket Guides", never "app". Each is one self-contained HTML file: flex-column shell, `.panels` scroll area, bottom `.tabs`, `.sheet` info sheets via `openInfo(icon,title,html,btn)`.
+- **Offline:** per-guide service worker, cache `<key>-pocket-v7`, network-first with cache fallback. Facts refresh when online; saved copy still works in a tunnel or at immigration.
+- **Install wording matters:** on iPhone the home-screen icon keeps its own copy. Tell people to add to Home Screen first, open from the icon while online, and wait for "Ready offline ✓".
+- Header shows "Saved on this phone: date" (localStorage `pgSavedOn`, per home-screen copy) next to "checked <date>". The two dates mean different things.
+- Facts come from official sources (airport and operator sites), written as "checked 21 November 2026" with a link. Narita and Haneda have an "I'm connecting" sheet that follows the airports' own transit pages.
+- Floating bottom-right "Share this" WhatsApp pill (`id="waShare"`).
+- **GA4 events** via `pgTrack(name, params)`: `pg_open`, `pg_share` (`via`), `pg_connect` (`from`), `pg_xguide_tap`, `pg_partner`, `pg_install_view`. `via` and `from` are not registered as custom dimensions.
+- **`?src=` codes** (sanitised to `[a-z0-9_-]`, 40 chars): `bar box share wa hub qr card pk_<guide>`. Future channels: `yt-<creator>`, `agent-<name>`, `wa-<name>`.
+- Test on a phone-width viewport (390px and 360px). Ari tests on iPads (no iPhone), so say what was and was not tested on a real device.
+
+## Generator scripts (`tools/wNN_*.py`)
+Most Japan pages, the Pocket Guides and affiliate blocks are produced by scripts, not hand-edited. **Regenerating a page wipes edits made by later post-processors**, so a fix goes into the script that owns it, then re-run the chain.
+- Order: page generators (w36, w38, w39, w41, w42, w35, w25, w31, w32) → `w53` (city pickups and cars) → `w54` (airport review fixes) → pocket chain `w44`–`w49` → `w55` (WhatsApp) → `w56` (reviewer fixes, always last).
+- Post-processors must be **idempotent** (check a marker string) and use asserting substitution helpers, so a changed page fails loudly instead of silently half-patching.
+- Each script's docstring says what it does and when to run it. Read it before re-running. New guide = add it to `tools/pocket_guides.json`, then re-run w46–w48.
+
+## Conventions
+- New article: copy the structure of `public/blog/portugal-travel-packing-guide.html`; add a card to `public/blog.html` and a URL to `sitemap.xml`. Titles `{Country} Travel & Packing Guide 2026: Complete Checklist | PackSmart Blog`.
+- **Neutral by default:** no India framing outside pages designed for India. Use "from India" titles only on the India-segment guides.
+- Only bump "Last updated" after a real fact check of that page. Date bumps without content changes are not allowed.
+- Verify every Unsplash ID returns HTTP 200 before committing. Photos on Japan pages are Ari's own or licensed, with a credit line and no identifiable people. Never scrape Klook photos; never download photos of public figures.
+- Body copy carries no prices and no partner names (they go stale; the blocks carry them). Claim only what the provider itself states.
+- Hedge visa and entry rules ("check current rules") and link the official page for fees.
+- Mobile first: check pages at 390px for overflow before calling a change done.
+
+## Article template quick reference
+Full CSS, nav, footer, share row, FAQ and closing script are in `BLOG_STYLE_GUIDE.md`; match them exactly.
 
 ```css
-:root {
-    --primary: #00C9A7;     /* PackSmart green — use everywhere */
-    --accent: #E94560;       /* Red accent — tags, warnings */
-    --dark: #0f0f23;         /* Dark navy — headings, hero bg */
-    --light-gray: #f5f5f5;   /* Card backgrounds */
-    --text: #333;            /* Body text */
-}
-font-family: 'DM Sans', sans-serif;
+:root { --primary:#00C9A7; --accent:#E94560; --dark:#0f0f23; --light-gray:#f5f5f5; --text:#333; }
+font-family: 'DM Sans', sans-serif;   /* NEVER #667eea purple or -apple-system stacks */
 ```
+Table header bg is `--primary`, not `--dark`. CTA box is a green gradient with a red button, not navy.
 
-**NEVER use:** `#667eea` (purple), system font stacks (`-apple-system, BlinkMacSystemFont...`), or any other color palette.
+`<head>` order: charset, viewport, title, description (160 max), keywords, canonical, OG tags, Twitter tags, `article:author` + `article:section` (Pinterest), Google Fonts (DM Sans 400/500/700), GA4 script, Travelpayouts verification script, Article JSON-LD (`"@name"` for author/publisher), BreadcrumbList JSON-LD, `<style>`, FAQPage JSON-LD last before `</head>`. `og:image` and `twitter:image` are always `https://www.packsmartapp.com/og-default.png`, never an Unsplash URL.
 
----
+Body order: `.content` opens, affiliate disclosure, share row, sections (visa, best time, packing, cities, budget, apps), inline images, internal link callouts, share row again, FAQ (`<details>/<summary>`), CTA box, `.content` closes, car rental block, related posts, Travel Essentials grid, SafetyWing widget, footer, nav JS, GA4 placement script. No newsletter CTA.
 
-## `<head>` Section Order
-
-1. `<meta charset="UTF-8">`
-2. `<meta name="viewport">`
-3. `<title>` — format: `{Country} Travel & Packing Guide 2026: Complete Checklist | PackSmart Blog` (global audience; use "from India" titles only for the India-segment guides)
-4. `<meta name="description">` — 160 chars max
-5. `<meta name="keywords">`
-6. `<link rel="canonical">`
-7. OG tags (`og:title`, `og:description`, `og:url`, `og:type`, `og:site_name`, `og:image`)
-   - `og:image` → `https://www.packsmartapp.com/og-default.png` (NOT Unsplash URLs)
-8. Twitter Card tags (`twitter:card`, `twitter:title`, `twitter:description`, `twitter:image`)
-   - `twitter:image` → `https://www.packsmartapp.com/og-default.png`
-9. Pinterest Rich Pins: `<meta property="article:author" content="PackSmart">` + `article:section`
-10. Google Fonts: `<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">`
-11. **GA4 Script:**
-```html
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-0C4Z7VVGPE"></script>
-<script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-    gtag('config', 'G-0C4Z7VVGPE');
-</script>
-```
-12. **Travelpayouts Verification Script:**
-```html
-<script data-noptimize="1" data-cfasync="false" data-wpfc-render="false">
-  (function () {
-      var script = document.createElement("script");
-      script.async = 1;
-      script.src = 'https://emrld.ltd/NTA4NzQ3.js?t=508747';
-      document.head.appendChild(script);
-  })();
-</script>
-<script async src="https://emrld.ltd/NTA4NzQ3.js?t=508747"></script>
-```
-13. Article Schema (JSON-LD) — use `"@name"` for author/publisher
-14. BreadcrumbList Schema (JSON-LD)
-15. `<style>` block (see CSS section below)
-16. FAQPage Schema (JSON-LD) — before `</head>`
-
----
-
-## CSS Classes (Must Match Exactly)
-
-### Navigation
-```css
-.nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 0 3rem; height: 72px; display: flex; align-items: center; justify-content: space-between; background: transparent; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1); }
-.nav.scrolled { background: rgba(253,240,242,0.88); backdrop-filter: blur(20px) saturate(180%); -webkit-backdrop-filter: blur(20px) saturate(180%); border-bottom: 1px solid #eee; }
-.nav-brand { font-family: 'DM Sans', sans-serif; font-weight: 800; font-size: 1.2rem; color: #fff; text-decoration: none; letter-spacing: -0.3px; }
-.nav-brand em { font-style: normal; color: #00C9A7; }
-.nav.scrolled .nav-brand { color: #333; }
-.nav.scrolled .nav-brand em { color: #00C9A7; }
-.nav.scrolled .nav-links a { color: #666; }
-.nav.scrolled .mobile-menu-btn span { background: #333; }
-```
-
-### Hero
-```css
-.hero-blog { background: linear-gradient(135deg, #0f0f23 0%, #1a1a3e 100%); background-size: cover; background-position: center; color: white; padding: 180px 2rem; text-align: center; }
-```
-
-### Content Area
-```css
-.content { max-width: 800px; margin: 0 auto; padding: 3rem 2rem; }
-.content h2 { color: var(--dark); font-size: 1.8rem; margin-top: 2.5rem; margin-bottom: 1rem; border-left: 4px solid var(--primary); padding-left: 1rem; }
-.content h3 { color: var(--dark); font-size: 1.2rem; margin-top: 1.5rem; margin-bottom: 0.7rem; }
-```
-
-### Tables
-```css
-.checklist-table th { background: var(--primary); color: white; padding: 1rem; text-align: left; font-weight: 600; }
-```
-Table header bg is `--primary` (#00C9A7 green), NOT `--dark`.
-
-### Season/Weather Cards
-```css
-.weather-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.5rem; margin: 1.5rem 0; }
-.weather-card { background: var(--light-gray); padding: 1.5rem; border-radius: 8px; border-top: 3px solid var(--primary); }
-.weather-card h4 { color: var(--primary); margin-bottom: 0.5rem; }
-```
-
-### Tip & Warning Boxes
-```css
-.tip-box { background: #f0fef9; border-left: 4px solid var(--primary); padding: 1.5rem; margin: 1.5rem 0; border-radius: 4px; }
-.tip-box strong { color: var(--primary); }
-.warning-box { background: #fff5f5; border-left: 4px solid var(--accent); padding: 1.5rem; margin: 1.5rem 0; border-radius: 4px; }
-.warning-box strong { color: var(--accent); }
-```
-
-### CTA Box
-```css
-.cta-box { background: linear-gradient(135deg, var(--primary) 0%, #00a080 100%); color: white; padding: 2rem; border-radius: 8px; text-align: center; margin: 3rem 0; }
-.cta-box a { background: var(--accent); color: white; padding: 0.8rem 2rem; text-decoration: none; border-radius: 4px; display: inline-block; font-weight: 600; }
-```
-CTA box bg is **green gradient**, button is **red accent**. NOT dark navy.
-
-### Footer
-```css
-.footer { padding: 60px 2rem 40px; background: rgba(248,249,250,0.75); border-top: 1px solid #eee; }
-.footer-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 3rem; }
-```
-
-### Mobile Menu
-```css
-@media (max-width: 600px) {
-    .nav { padding: 0 1.5rem; }
-    .nav-links { display: none; }
-    .nav-links.open { display: flex; flex-direction: column; position: fixed; top: 72px; left: 0; right: 0; background: rgba(255,255,255,0.98); backdrop-filter: blur(20px); padding: 2rem; gap: 1.5rem; box-shadow: 0 10px 40px rgba(0,0,0,0.08); }
-    .mobile-menu-btn { display: block; }
-}
-```
-
----
-
-## Nav HTML (Exact)
-
-```html
-<nav class="nav" id="nav">
-    <a href="/" class="nav-brand">Pack<em>Smart</em></a>
-    <div class="nav-links" id="navLinks">
-        <a href="/flights.html">Flights & Hotels</a>
-        <a href="/#how">How It Works</a>
-        <a href="/#features">Features</a>
-        <a href="/blog.html">Blog</a>
-        <a href="/#plan" class="nav-cta-btn">Plan My Trip</a>
-    </div>
-    <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
-        <span></span><span></span><span></span>
-    </button>
-</nav>
-```
-
----
-
-## Hero HTML
-
+Hero (update the date on every new article; Last updated only after a fact check):
 ```html
 <div class="hero-blog" style="background: linear-gradient(rgba(15,15,35,0.7), rgba(26,26,62,0.7)), url('{HERO_IMAGE_URL}'); background-size: cover; background-position: center;">
     <h1>{Article Title}</h1>
     <div class="meta">{Date} · {Read Time}</div>
     <div class="meta">Destination Guide</div>
-    <div class="meta">Last updated: March 2026</div>
+    <div class="meta">Last updated: {Month Year}</div>
 </div>
 ```
-
----
-
-## Article Body Section Order
-
-1. `<div class="content">` opening
-2. Affiliate disclosure paragraph
-3. Share buttons row (WhatsApp, X, Facebook, LinkedIn, Copy Link)
-4. Main content sections (Visa, Best Time, Packing, City Guides, Budget, Apps, etc.)
-5. Inline images as `<figure>` with `<figcaption>`
-6. Internal link callout boxes (green left border)
-7. Share buttons row (bottom, repeated)
-8. FAQ section with `<details>/<summary>`
-9. CTA box
-10. `</div>` (close .content)
-11. Localrent widget (if applicable for that country)
-12. Related posts grid
-13. Travel Essentials affiliate grid
-14. SafetyWing widget (all destination articles — it drives most SafetyWing sales)
-15. (No newsletter CTA — removed Nov 2026; owner decision)
-16. Footer
-17. Nav scroll + mobile menu JS
-
----
-
-## Internal Link Callout Box Format
-
+Internal link callout:
 ```html
-<p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">
-    <a href="/flights.html" style="color:#00C9A7;text-decoration:underline;">Compare flight prices</a> to {Country}.
-</p>
+<p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;"><a href="/flights.html" style="color:#00C9A7;text-decoration:underline;">Compare flight prices</a> to {Country}.</p>
 ```
-
----
-
-## Inline Image Format
-
+Inline image (verify the Unsplash ID returns HTTP 200 first):
 ```html
 <figure style="margin:28px 0;text-align:center;">
     <img src="https://images.unsplash.com/{PHOTO_ID}?w=800&h=450&fit=crop&auto=format&q=75" alt="{descriptive alt}" style="width:100%;border-radius:12px;object-fit:cover;" loading="lazy">
     <figcaption style="font-size:0.82rem;color:#999;margin-top:8px;font-style:italic;">{Caption text}</figcaption>
 </figure>
 ```
-
-Always verify Unsplash image IDs return HTTP 200 before using.
-
----
-
-## Footer HTML (Exact)
-
-```html
-<footer class="footer">
-    <div class="footer-inner">
-        <div class="footer-brand-col">
-            <div class="footer-logo">Pack<em>Smart</em></div>
-            <p>Effortless travel preparation. Get personalized packing lists, visa info, and local tips for any destination in the world.</p>
-        </div>
-        <div class="footer-col"><h4>Product</h4><a href="/#how">How It Works</a><a href="/#features">Features</a><a href="/#plan">Plan a Trip</a></div>
-        <div class="footer-col"><h4>Company</h4><a href="/about.html">About</a><a href="/flights.html">Flights & Hotels</a><a href="/blog.html">Blog</a><a href="/pricing.html">Pricing</a><a href="/contact.html">Contact</a></div>
-        <div class="footer-col"><h4>Legal</h4><a href="/privacy-policy.html">Privacy Policy</a><a href="/terms.html">Terms of Service</a><a href="/affiliate-disclosure.html">Affiliate Disclosure</a></div>
-    </div>
-    <div class="footer-bottom">
-        <span>&copy; 2026 PackSmart. All rights reserved.</span>
-        <span>Made for travelers.</span>
-    </div>
-</footer>
-```
-
----
-
-## Closing JS (Exact)
-
-```html
-<script>
-const nav = document.getElementById('nav');
-window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 50));
-const menuBtn = document.getElementById('menuBtn');
-menuBtn.addEventListener('click', () => document.getElementById('navLinks').classList.toggle('open'));
-document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click', () => document.getElementById('navLinks').classList.remove('open')));
-</script>
-```
-
----
-
-## Affiliate Links (Current as of March 2026)
-
-| Partner | URL | Commission |
-|---|---|---|
-| GetYourGuide | `https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn` | 16% |
-| Yesim eSIM | `https://yesim.tpx.li/Bc6pLC09` (TP short link — old p=8310 program is BROKEN, redirects to Airalo. Always use this tpx.li short link instead) | — |
-| SafetyWing | `https://safetywing.com/?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador` | 10% |
-| Welcome Pickups | `https://tpx.li/qYFLwgZ8` | 8-9% |
-| Localrent | TP widget (country-specific `country=` param) | 7.5-12% |
-| Klook | Direct deep link + `?aid=116473` (e.g. `https://www.klook.com/en-US/city/tokyo-things-to-do/?aid=116473`). OLD `affiliate.klook.com/redirect` format is DEPRECATED — drops deep links and was observed redirecting to spam (Aug 2026). | 2-5% |
-| 12Go | Widget with `agent=15357692` (SE Asia articles only) | ~5% |
-| Tiqets | Country-specific TP short links (EU/Dubai only) | 3.5-8% |
-| Trip.com | Search-box widget `S14633845` with `Allianceid=8011242&SID=303108282` (index.html, flights.html) | — |
-
-**Priority order for placement:** GetYourGuide > Yesim > SafetyWing > Welcome Pickups > Localrent > Others
-
----
-
-## Localrent Widget Code
-
-```html
-<div style="margin: 40px 0; padding: 35px 30px; background: #f0f8f5; border-radius: 12px; border: 1px solid #e0f0ea;">
-    <h3 style="margin: 0 0 14px 0; color: #0f0f23; font-size: 1.3rem;">Rent a Car in {Country}</h3>
-    <p style="margin: 0 0 24px 0; color: #666; font-size: 0.95rem;">Compare local car rental deals — no hidden fees, free cancellation.</p>
-    <script async src="https://tpwdg.com/content?trs=508747&shmarker=711400&powered_by=true&country={COUNTRY_CODE}&lang=en&width=100&background=transparent&logo=false&header=true&gearbox=true&cars=false&border=false&footer=false&campaign_id=87&promo_id=4322" charset="utf-8"></script>
-</div>
-```
-
-Known country codes: Thailand=9, Bali=251, UAE=14, Greece=18, Italy=13, Spain=35, Portugal=17, Mexico=25, Malaysia=2, Sri Lanka=132, Costa Rica=173, Australia=1, Germany=29, France=12, Switzerland=59, South Korea=3, Vietnam=11, USA=N/A (404), Canada=N/A.
-
----
-
-## Travelpayouts IDs
-
-- Marker: `711400`
-- TRS: `508747`
-- GA4: `G-0C4Z7VVGPE`
-- 12Go agent: `15357692`
-
----
-
-## Git Workflow
-
-- Local repo on owner's Mac: `/Users/swarnaliroychowdhury/packsmart`
-- All commits: `git -c user.name="Ari" -c user.email="aricheck@gmail.com"`
-- Remote: `https://github.com/packsmartapp/packsmart.git`
-- **Do not run git in the mounted sandbox folder** (leaves undeletable lock files) — edit files, then give the owner commit/push commands to run locally
-- Vercel (team packsmartapps-projects) auto-deploys from main branch
-- Always verify Unsplash images (HTTP 200) before committing
-- Always add new articles to `public/blog.html` listing page
-
----
-
-## Blog Card Format (for blog.html)
-
+Card for `public/blog.html` (`&amp;` and `&mdash;` as entities):
 ```html
 <a href="/blog/{filename}.html" class="blog-card">
     <img class="blog-card-img" src="https://images.unsplash.com/{PHOTO_ID}?w=800&h=400&fit=crop&auto=format&q=75" alt="{Title}" loading="lazy">
     <div class="blog-card-body">
         <span class="tag">Destination Guide</span>
-        <h2>{Title with &amp; entities}</h2>
-        <p>{Short description with &mdash; entities}</p>
+        <h2>{Title}</h2>
+        <p>{Short description}</p>
         <span class="meta">{Date} &middot; {Read Time}</span>
         <br><span class="read-more">Read more &rarr;</span>
     </div>
 </a>
 ```
+
+## Affiliate rules (details: `AFFILIATE_CURRENT_STATE_15NOV2026.md` in the Project)
+- Every partner link is a Travelpayouts tracked link with a Sub ID, labelled "(partner link)" with `rel="nofollow noopener sponsored"`. Blocks carry `data-ps-placement="<slug>"` and need the GA4 placement script before `</body>`.
+- Placement order: GetYourGuide, Airalo, SafetyWing, Welcome Pickups, car rental, Radical Storage, Klook. Prefer DiscoverCars and Welcome Pickups; **avoid adding Klook placements; skip Booking.com.**
+- Car rental: DiscoverCars (campaign 117, promo 3873) where it serves the country, EconomyBookings (campaign 10, promo 4480) where it does not. One per page. Always `powered_by=false`.
+- eSIM: Airalo plan tiles (`esim-<country>-<size>`). Yesim only as the promo link `yesim.tpx.li/Bc6pLC09` (20% first order, ends 28 Feb 2027; remove the copy after).
+- SafetyWing widget on destination articles; "travel medical insurance" wording, price per day, no "best" or "recommended". Never write "no hidden fees" or "free cancellation" as our own promise.
+- Other IDs: GetYourGuide `D7IXONS`, SafetyWing ref `26492686`, 12Go agent `15357692`, Trip.com widget `S14633845` (index and flights only).
+- **No self-referral** (Ari's own purchases). **No new partner applications, outreach, or contact with SafetyWing without Ari's go-ahead.** Never store payout email, phone or address.
+
+## Key decisions and why
+- **Static site, no build:** one owner, Claude edits files directly; nothing to break between edit and deploy.
+- **Pocket Guides as web pages, not a native app:** no store, no install friction, shareable by link, works offline once saved. Airports have weak signal and roaming costs.
+- **Network-first service worker:** facts (gates, buses, hours) go stale; the cache is a fallback, not the source.
+- **Scripts over hand edits:** 60+ pages must stay consistent across waves; each wave was verified live at 390px before the next.
+- **Official sources only for transit facts,** with a visible "checked" date, because wrong gate or bus info costs the traveller real time.
+- **Global positioning:** from-India guides stay as a segment. Japan is the lead growth topic.
+- **Distribution over more articles:** Ari prefers shares, hubs and cross-links to new content that cannibalises existing pages.
+- **`?src=` on every shared link** so each channel can be measured per 100 opens before investing more.
+
+## Tried and rejected (do not re-propose without asking)
+- Newsletter and sign-up boxes: removed site-wide 10 Nov 2026 (some forms were broken or fake). Any return of email capture is Ari's call.
+- Localrent widget: retired (not in USA or Canada, unreliable). Yesim old program: broken, redirected to Airalo.
+- Klook city deep links (`klook.com/en-US/city/...`): redirect to the homepage. Klook's own `aid=116473`: deactivated. Old `affiliate.klook.com/redirect` format: deprecated.
+- All FIFA 2026 content: removed with 301s. Long-weekends-2027 article: cancelled. Japan kids section, Reddit re-enable, site redesign, Pinterest: skipped or parked.
+- WhatsApp icon in the Pocket Guide header: replaced by the labelled bottom-right pill. "Open it, then add to home screen" wording: wrong on iPhone.
+- Hand-editing generated pages: lost on the next regeneration.
+
+## Known constraints
+- **Git on Ari's Mac mount is flaky.** It leaves `tmp_obj_*` warnings and `.git/HEAD.lock`. After every commit run `mv .git/HEAD.lock .git/stale-head-lock-$(date +%s)`. `git checkout <file>` fails (no deletes); restore with `git show <commit>:path > path`. Ari pushes from Terminal.
+- Commit as `git -c user.name="Ari" -c user.email="aricheck@gmail.com"`. Always show a preview and give the push command before anything deploys.
+- The sandbox cannot reach most sites (proxy allowlist); some pages cannot be fetched at all. Say so instead of guessing.
+- Files from the sandbox to the Mac: commit via `device_commit_files`, then check the byte size on the Mac (copies can lag).
+- Vercel Web Analytics returns nothing; traffic numbers come from Ari (GA4, Search Console, Travelpayouts).
+- GA4 has 13 custom dimensions registered; adding new params needs registration to appear in reports.
+- Search Console indexes about 56 pages; ranking, not indexing, is the main problem.
+- Large files (index.html ~106 KB) are impractical to push through connectors; use Terminal.
+- Facts that expire: Malaysia visa-free rule (31 Dec 2026), Yesim promo (28 Feb 2027), Klook boost (31 Dec 2026), Radical Storage rate (30 Nov 2026).
