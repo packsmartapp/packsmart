@@ -206,7 +206,7 @@ def fix_article(path):
     s = path.read_text(encoding="utf-8")
     if "Ready offline" in s:
         print(f"  already  {path.name}"); return
-    s, k = re.subn(r"Open the ([A-Za-z ]+?) Pocket Guide once while you have signal, then add it to your home screen\. ",
+    s, k = re.subn(r"Open the ([A-Za-z -]+?) Pocket Guide once while you have signal, then add it to your home screen\. ",
                    r"Add the \1 Pocket Guide to your home screen first. Then open it from the icon while you have signal and wait for &ldquo;" + OK + "&rdquo;. ", s)
     if k != 1: sys.exit(f"{path.name}: pocket sentence not found ({k})")
     path.write_text(s, encoding="utf-8")

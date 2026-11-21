@@ -578,13 +578,13 @@ CARD = """<div class="ps-card" id="one-page">
 <li><strong>Umeda is several stations:</strong> JR Osaka, Hankyu, Hanshin and three Osaka Metro stations stand side by side. Allow extra time to find the right gate.</li>
 <li><strong>Need help?</strong> Ask station staff or a tourist information counter. In an emergency, call 119.</li>
 </ul>
-<div class="ps-qr ps-qr-screen">__QR_SCREEN__<p><strong>Want it on your phone?</strong> Point your phone camera at this code. It opens the free Osaka Station Pocket Guide, which works without internet once opened.<span class="u">packsmartapp.com/osaka-pocket</span></p></div>
-<div class="ps-qr ps-qr-print">__QR_PRINT__<p><strong>Free Osaka Station Pocket Guide.</strong> Point your phone camera at this code. Open it once with signal and it works without internet.<span class="u">packsmartapp.com/osaka-pocket</span></p></div>
+<div class="ps-qr ps-qr-screen">__QR_SCREEN__<p><strong>Want it on your phone?</strong> Point your phone camera at this code. It opens the free Shin-Osaka and Umeda Pocket Guide, which works without internet once opened.<span class="u">packsmartapp.com/osaka-pocket</span></p></div>
+<div class="ps-qr ps-qr-print">__QR_PRINT__<p><strong>Free Shin-Osaka and Umeda Pocket Guide.</strong> Point your phone camera at this code. Open it once with signal and it works without internet.<span class="u">packsmartapp.com/osaka-pocket</span></p></div>
 <button type="button" class="ps-print-btn" onclick="window.print()">Print this card</button>
 </div>"""
 # QR codes are made once for each guide address (?src=qr on screen, ?src=card on paper), with segno. For another guide ask Claude to make the two codes.
-QR_SCREEN = '<svg shape-rendering="crispEdges" viewBox="0 0 41 41" class="segno"><title>QR code: open the Osaka Station Pocket Guide</title><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#000" d="M4 4.5h7m1 0h4m1 0h4m1 0h1m4 0h1m2 0h7m-33 1h1m5 0h1m2 0h6m1 0h1m1 0h4m2 0h1m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h3m2 0h1m2 0h2m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m3 0h1m3 0h2m4 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h2m1 0h2m2 0h1m2 0h1m1 0h1m3 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h4m2 0h1m2 0h5m-22 1h1m3 0h1m1 0h4m1 0h1m3 0h1m1 0h1m3 0h2m2 0h5m2 0h1m-33 1h3m1 0h2m4 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h1m1 0h1m3 0h3m-32 1h5m1 0h2m1 0h7m2 0h1m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m-31 1h1m2 0h1m2 0h2m2 0h1m1 0h1m1 0h1m3 0h1m1 0h1m2 0h3m4 0h2m-33 1h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1m1 0h3m2 0h1m1 0h2m1 0h1m-30 1h1m1 0h2m1 0h3m1 0h2m1 0h1m3 0h3m1 0h2m1 0h1m1 0h1m2 0h1m-27 1h3m5 0h4m1 0h1m2 0h1m1 0h5m4 0h1m-31 1h1m2 0h1m2 0h1m2 0h1m3 0h4m3 0h1m3 0h5m-30 1h1m3 0h1m1 0h3m2 0h4m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-30 1h4m2 0h2m1 0h1m3 0h2m6 0h2m4 0h3m-32 1h3m3 0h1m3 0h3m1 0h2m1 0h1m2 0h6m1 0h1m1 0h1m1 0h1m-27 1h1m3 0h1m7 0h2m2 0h1m2 0h2m1 0h1m3 0h1m-32 1h4m2 0h2m1 0h2m1 0h4m2 0h5m3 0h1m1 0h2m1 0h2m-33 1h3m4 0h2m4 0h2m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m-30 1h5m2 0h2m2 0h2m1 0h2m1 0h1m2 0h4m5 0h1m-28 1h2m1 0h1m3 0h1m1 0h2m2 0h1m1 0h3m2 0h3m-27 1h5m1 0h1m3 0h2m2 0h2m1 0h2m1 0h10m1 0h2m-25 1h3m1 0h1m2 0h4m3 0h3m3 0h1m1 0h2m-32 1h7m1 0h8m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m-32 1h1m5 0h1m2 0h1m6 0h1m3 0h3m1 0h1m3 0h1m2 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m3 0h3m1 0h1m3 0h1m3 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m3 0h1m3 0h1m2 0h4m2 0h1m2 0h3m1 0h1m-31 1h1m1 0h3m1 0h1m2 0h2m1 0h1m2 0h1m2 0h1m3 0h1m2 0h5m-30 1h1m5 0h1m2 0h3m1 0h5m3 0h1m2 0h2m-26 1h7m1 0h2m2 0h1m4 0h1m1 0h4m1 0h3m5 0h1"/></svg>'
-QR_PRINT = '<svg shape-rendering="crispEdges" viewBox="0 0 41 41" class="segno"><title>QR code: open the Osaka Station Pocket Guide</title><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#000" d="M4 4.5h7m5 0h1m1 0h2m2 0h2m2 0h2m2 0h7m-33 1h1m5 0h1m2 0h2m4 0h1m1 0h1m4 0h2m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h4m1 0h2m1 0h1m2 0h1m2 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m6 0h1m3 0h1m1 0h1m3 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m5 0h1m3 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h1m1 0h2m8 0h2m4 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h1m4 0h1m2 0h5m-22 1h1m2 0h1m1 0h2m1 0h4m1 0h4m2 0h3m1 0h1m1 0h1m1 0h1m-27 1h1m2 0h2m1 0h1m1 0h1m1 0h2m1 0h1m3 0h1m1 0h1m3 0h4m3 0h2m-33 1h2m1 0h1m1 0h2m1 0h3m1 0h1m3 0h2m1 0h2m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m-33 1h1m1 0h1m4 0h1m2 0h1m3 0h4m2 0h5m3 0h2m-30 1h5m1 0h1m1 0h3m4 0h1m4 0h2m1 0h1m1 0h2m2 0h1m-30 1h3m2 0h1m1 0h1m1 0h2m4 0h3m3 0h2m1 0h1m1 0h1m1 0h2m1 0h2m-32 1h1m1 0h1m2 0h1m1 0h2m1 0h3m3 0h2m2 0h3m1 0h3m2 0h2m-32 1h2m5 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m3 0h2m1 0h1m1 0h1m-32 1h2m1 0h1m2 0h1m1 0h1m3 0h1m4 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-29 1h1m5 0h3m2 0h1m1 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h1m1 0h1m-31 1h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m3 0h1m2 0h2m2 0h2m3 0h3m-33 1h4m3 0h6m4 0h2m2 0h1m2 0h2m1 0h1m3 0h1m-32 1h1m1 0h6m1 0h3m1 0h1m1 0h4m2 0h1m1 0h1m1 0h1m-25 1h5m1 0h1m2 0h10m4 0h1m1 0h1m3 0h3m-33 1h4m2 0h3m2 0h1m3 0h1m2 0h4m4 0h5m1 0h1m-32 1h1m2 0h1m2 0h2m1 0h2m2 0h1m1 0h1m2 0h1m1 0h4m3 0h2m1 0h1m-32 1h1m1 0h1m1 0h1m1 0h5m1 0h1m1 0h5m1 0h2m1 0h7m2 0h1m-25 1h2m2 0h3m4 0h3m2 0h1m3 0h2m2 0h1m-33 1h7m2 0h1m1 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h4m-32 1h1m5 0h1m1 0h4m7 0h4m1 0h1m3 0h1m3 0h1m-33 1h1m1 0h3m1 0h1m2 0h2m2 0h2m1 0h1m3 0h3m1 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h4m1 0h1m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m3 0h2m2 0h1m2 0h6m2 0h1m1 0h1m1 0h1m-33 1h1m5 0h1m3 0h4m1 0h3m1 0h1m1 0h1m2 0h2m-26 1h7m1 0h1m2 0h1m1 0h2m1 0h1m4 0h1m1 0h2m3 0h2m1 0h1"/></svg>'
+QR_SCREEN = '<svg shape-rendering="crispEdges" viewBox="0 0 41 41" class="segno"><title>QR code: open the Shin-Osaka and Umeda Pocket Guide</title><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#000" d="M4 4.5h7m1 0h4m1 0h4m1 0h1m4 0h1m2 0h7m-33 1h1m5 0h1m2 0h6m1 0h1m1 0h4m2 0h1m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h3m2 0h1m2 0h2m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m3 0h1m3 0h2m4 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h2m1 0h2m2 0h1m2 0h1m1 0h1m3 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h4m2 0h1m2 0h5m-22 1h1m3 0h1m1 0h4m1 0h1m3 0h1m1 0h1m3 0h2m2 0h5m2 0h1m-33 1h3m1 0h2m4 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h1m1 0h1m3 0h3m-32 1h5m1 0h2m1 0h7m2 0h1m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m-31 1h1m2 0h1m2 0h2m2 0h1m1 0h1m1 0h1m3 0h1m1 0h1m2 0h3m4 0h2m-33 1h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1m1 0h3m2 0h1m1 0h2m1 0h1m-30 1h1m1 0h2m1 0h3m1 0h2m1 0h1m3 0h3m1 0h2m1 0h1m1 0h1m2 0h1m-27 1h3m5 0h4m1 0h1m2 0h1m1 0h5m4 0h1m-31 1h1m2 0h1m2 0h1m2 0h1m3 0h4m3 0h1m3 0h5m-30 1h1m3 0h1m1 0h3m2 0h4m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-30 1h4m2 0h2m1 0h1m3 0h2m6 0h2m4 0h3m-32 1h3m3 0h1m3 0h3m1 0h2m1 0h1m2 0h6m1 0h1m1 0h1m1 0h1m-27 1h1m3 0h1m7 0h2m2 0h1m2 0h2m1 0h1m3 0h1m-32 1h4m2 0h2m1 0h2m1 0h4m2 0h5m3 0h1m1 0h2m1 0h2m-33 1h3m4 0h2m4 0h2m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m-30 1h5m2 0h2m2 0h2m1 0h2m1 0h1m2 0h4m5 0h1m-28 1h2m1 0h1m3 0h1m1 0h2m2 0h1m1 0h3m2 0h3m-27 1h5m1 0h1m3 0h2m2 0h2m1 0h2m1 0h10m1 0h2m-25 1h3m1 0h1m2 0h4m3 0h3m3 0h1m1 0h2m-32 1h7m1 0h8m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m-32 1h1m5 0h1m2 0h1m6 0h1m3 0h3m1 0h1m3 0h1m2 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m3 0h3m1 0h1m3 0h1m3 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m3 0h1m3 0h1m2 0h4m2 0h1m2 0h3m1 0h1m-31 1h1m1 0h3m1 0h1m2 0h2m1 0h1m2 0h1m2 0h1m3 0h1m2 0h5m-30 1h1m5 0h1m2 0h3m1 0h5m3 0h1m2 0h2m-26 1h7m1 0h2m2 0h1m4 0h1m1 0h4m1 0h3m5 0h1"/></svg>'
+QR_PRINT = '<svg shape-rendering="crispEdges" viewBox="0 0 41 41" class="segno"><title>QR code: open the Shin-Osaka and Umeda Pocket Guide</title><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#000" d="M4 4.5h7m5 0h1m1 0h2m2 0h2m2 0h2m2 0h7m-33 1h1m5 0h1m2 0h2m4 0h1m1 0h1m4 0h2m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h4m1 0h2m1 0h1m2 0h1m2 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m6 0h1m3 0h1m1 0h1m3 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m5 0h1m3 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h1m1 0h2m8 0h2m4 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h1m4 0h1m2 0h5m-22 1h1m2 0h1m1 0h2m1 0h4m1 0h4m2 0h3m1 0h1m1 0h1m1 0h1m-27 1h1m2 0h2m1 0h1m1 0h1m1 0h2m1 0h1m3 0h1m1 0h1m3 0h4m3 0h2m-33 1h2m1 0h1m1 0h2m1 0h3m1 0h1m3 0h2m1 0h2m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m-33 1h1m1 0h1m4 0h1m2 0h1m3 0h4m2 0h5m3 0h2m-30 1h5m1 0h1m1 0h3m4 0h1m4 0h2m1 0h1m1 0h2m2 0h1m-30 1h3m2 0h1m1 0h1m1 0h2m4 0h3m3 0h2m1 0h1m1 0h1m1 0h2m1 0h2m-32 1h1m1 0h1m2 0h1m1 0h2m1 0h3m3 0h2m2 0h3m1 0h3m2 0h2m-32 1h2m5 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m3 0h2m1 0h1m1 0h1m-32 1h2m1 0h1m2 0h1m1 0h1m3 0h1m4 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-29 1h1m5 0h3m2 0h1m1 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h1m1 0h1m-31 1h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m3 0h1m2 0h2m2 0h2m3 0h3m-33 1h4m3 0h6m4 0h2m2 0h1m2 0h2m1 0h1m3 0h1m-32 1h1m1 0h6m1 0h3m1 0h1m1 0h4m2 0h1m1 0h1m1 0h1m-25 1h5m1 0h1m2 0h10m4 0h1m1 0h1m3 0h3m-33 1h4m2 0h3m2 0h1m3 0h1m2 0h4m4 0h5m1 0h1m-32 1h1m2 0h1m2 0h2m1 0h2m2 0h1m1 0h1m2 0h1m1 0h4m3 0h2m1 0h1m-32 1h1m1 0h1m1 0h1m1 0h5m1 0h1m1 0h5m1 0h2m1 0h7m2 0h1m-25 1h2m2 0h3m4 0h3m2 0h1m3 0h2m2 0h1m-33 1h7m2 0h1m1 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h4m-32 1h1m5 0h1m1 0h4m7 0h4m1 0h1m3 0h1m3 0h1m-33 1h1m1 0h3m1 0h1m2 0h2m2 0h2m1 0h1m3 0h3m1 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h4m1 0h1m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m3 0h2m2 0h1m2 0h6m2 0h1m1 0h1m1 0h1m-33 1h1m5 0h1m3 0h4m1 0h3m1 0h1m1 0h1m2 0h2m-26 1h7m1 0h1m2 0h1m1 0h2m1 0h1m4 0h1m1 0h2m3 0h2m1 0h1"/></svg>'
 CARD = CARD.replace("__QR_SCREEN__", QR_SCREEN).replace("__QR_PRINT__", QR_PRINT)
 
 WHICH = """<h2 id="which-station">Which station do you need?</h2>
@@ -767,8 +767,8 @@ html.ps-pb body{padding-bottom:84px}
 @media (prefers-reduced-motion:reduce){#psPocketBar{transition:none}}
 @media print{#psPocketBar{display:none!important}}
 </style>
-<div id="psPocketBar" role="region" aria-label="Osaka Station Pocket Guide">
-<div class="t"><b>Get the Osaka Station Pocket Guide</b><span>Free. Works offline at the station.</span></div>
+<div id="psPocketBar" role="region" aria-label="Shin-Osaka and Umeda Pocket Guide">
+<div class="t"><b>Get the Shin-Osaka and Umeda Pocket Guide</b><span>Free. Works offline at the station.</span></div>
 <a class="go" href="/osaka-pocket?src=bar">Get it</a>
 <button type="button" class="x" aria-label="Hide this message">&times;</button>
 </div>
@@ -798,7 +798,7 @@ html.ps-pb body{padding-bottom:84px}
 
 SAVE_BOX = """<div class="ps-about" id="save-offline">
 <h3 style="margin:0 0 6px;">Save the finder on your phone (works without internet)</h3>
-<p>Open the Osaka Station Pocket Guide once while you have signal, then add it to your home screen. At the station it opens like an app, even with no connection.</p>
+<p>Open the Shin-Osaka and Umeda Pocket Guide once while you have signal, then add it to your home screen. At the station it opens like an app, even with no connection.</p>
 <p><a class="ps-btn2" href="/osaka-pocket?src=box" onclick="try{window.gtag&&gtag('event','pocket_prompt',{event_category:'engagement',action:'open_box',page_path:location.pathname});}catch(e){}" style="display:inline-block;text-decoration:none;">Open the Pocket Guide</a></p>
 <ul>
 <li><strong>iPhone:</strong> open it in Safari, tap the Share button, then "Add to Home Screen".</li>
@@ -898,7 +898,7 @@ HERO_CTA = ('        <div style="margin:48px 0 0;text-align:center;">'
             'style="display:inline-flex;align-items:center;gap:12px;background:#00C9A7;color:#0f0f23;text-align:left;padding:12px 14px 12px 20px;width:340px;max-width:100%;box-sizing:border-box;border-radius:12px;text-decoration:none;min-height:44px;box-shadow:0 6px 18px rgba(0,0,0,.28);line-height:1.2;">'
             '<span style="flex:1;min-width:0;text-align:left;">'
             '<span style="display:block;font-weight:700;font-size:0.8rem;opacity:0.8;">Save to your phone</span>'
-            '<span style="display:block;font-weight:800;font-size:1.05rem;margin-top:2px;">Osaka Station Pocket Guide</span>'
+            '<span style="display:block;font-weight:800;font-size:1.05rem;margin-top:2px;">Shin-Osaka and Umeda Pocket Guide</span>'
             '<span style="display:block;font-weight:600;font-size:0.8rem;margin-top:2px;opacity:0.8;">Works offline</span></span>'
             '<span aria-hidden="true" style="flex:none;width:40px;height:40px;border-radius:50%;background:#F97316;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.18);">'
             '<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="6.5" y="2.5" width="11" height="19" rx="2.6"/><path d="M12 8.5v6M9 11.5h6"/></svg></span>'
@@ -992,7 +992,7 @@ if old != page:
     changed.append("osaka-station-guide.html (%s bytes)" % len(page.encode("utf-8")))
 
 
-# ---- Osaka Station Pocket Guide: standalone page + service worker + manifest (works offline once visited)
+# ---- Shin-Osaka and Umeda Pocket Guide: standalone page + service worker + manifest (works offline once visited)
 POCKET_PATH = "/osaka-pocket"
 # ---- Pocket Guide analytics (v47): anonymous taps only, no accounts, honours Do Not Track / GPC
 GUIDE_ID = "osaka"
@@ -1297,7 +1297,7 @@ POCKET_HTML = """<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Osaka Station Pocket Guide | PackSmart</title>
+<title>Shin-Osaka and Umeda Pocket Guide | PackSmart</title>
 <meta name="description" content="A simple Osaka station helper that works offline: Shin-Osaka and Osaka/Umeda, platforms, lockers, tourist information and more. By PackSmart.">
 <meta name="robots" content="noindex,follow">
 <link rel="canonical" href="__GUIDE_URL__">
@@ -1314,7 +1314,7 @@ POCKET_HTML = """<!DOCTYPE html>
 </head>
 <body>
 <header class="top">
-<div><strong>Osaka Station Pocket Guide</strong><span class="by">by PackSmart &middot; 19 Nov 2026</span></div>
+<div><strong>Shin-Osaka and Umeda Pocket Guide</strong><span class="by">by PackSmart &middot; 19 Nov 2026</span></div>
 <div class="status" id="status" role="status">Checking...</div>
 </header>
 <button type="button" class="inst-strip" id="instStrip" hidden><span class="ico" aria-hidden="true">&#128242;</span><span><b>Add this to your home screen</b><br>so it works with no internet</span><span class="go">How</span></button>
@@ -1331,7 +1331,7 @@ POCKET_HTML = """<!DOCTYPE html>
 <section class="panel" id="p-map" role="tabpanel" aria-labelledby="t-map" hidden>
 <p class="seg-h" style="margin-top:2px">Which station are you at?</p>
 <div class="seg" id="mseg"></div>
-<p class="lead2" id="mLead" style="margin-top:10px">Shinkansen (bullet train) passengers use Shin-Osaka.</p>
+<p class="lead2" id="mLead" style="margin-top:10px">Shin-Osaka is the Shinkansen station. Osaka/Umeda is downtown. Pick yours above.</p>
 <div class="tmap" id="tmap">
 <div class="tcard t1" data-t="T1"><div class="badge">&#128645;</div><div class="tb"><h3>Shin-Osaka</h3><p>Shinkansen (bullet trains), platforms 20 to 27</p><p class="stn"><span aria-hidden="true">&#128647;</span> Midosuji Line (M13) and JR local lines</p></div></div>
 <div class="tlink"><span aria-hidden="true">&#128646;</span><span>JR Kyoto Line, about 4 to 7 min<br>or Midosuji Line, 3 stops</span></div>
@@ -1340,20 +1340,22 @@ POCKET_HTML = """<!DOCTYPE html>
 <p class="small" style="text-align:center;margin-top:10px">Simplified, not to scale. Times are approximate and change. Check the operator.</p>
 </section>
 <section class="panel" id="p-arrive" role="tabpanel" aria-labelledby="t-arrive" hidden>
-<p class="lead2">Arrived by Shinkansen? Tap a step to tick it off.</p>
+<p class="lead2">Arrived at Shin-Osaka by Shinkansen? Tap a step to tick it off.</p>
+<p class="small" style="margin:4px 0 10px">At JR Osaka Station or Umeda instead? These steps are for Shin-Osaka. See Umeda station maze below, or pick Osaka/Umeda on the Find tab.</p>
 <ol class="steps" id="arrSteps"></ol>
 <button type="button" class="reset" id="arrReset" hidden>Clear ticks</button>
 <p class="sec-h">Then, once you are out</p>
 <div class="tiles" id="arrTiles"></div>
 </section>
 <section class="panel" id="p-depart" role="tabpanel" aria-labelledby="t-depart" hidden>
-<div class="seg2" id="depSeg" role="group" aria-label="Departure sections"><button type="button" data-d="before" aria-pressed="true">Before you go</button><button type="button" data-d="air" aria-pressed="false">At the station</button></div>
+<div class="seg2" id="depSeg" role="group" aria-label="Departure sections"><button type="button" data-d="before" aria-pressed="true">Before you go</button><button type="button" data-d="air" aria-pressed="false">At Shin-Osaka</button></div>
 <div id="depBefore">
 <div class="tiles" id="depTiles"></div>
 <p class="hint">Tap one for the details. Prices and times are approximate.</p>
 </div>
 <div id="depAir" hidden>
 <div class="heroline"><span class="big2">20-27</span><span><b>Shinkansen platforms at Shin-Osaka.</b><br>20 to 22 head west, 23 to 27 head east. Check your ticket.</span></div>
+<p class="small" style="margin:8px 0 10px">Leaving from JR Osaka Station? The Shinkansen does not stop there. Go to Shin-Osaka first: JR Kyoto Line about 4 to 7 min, or the Midosuji Line 3 stops from Umeda.</p>
 <ol class="steps" id="depSteps"></ol>
 <button type="button" class="reset" id="depReset" hidden>Clear ticks</button>
 </div>
@@ -1369,8 +1371,11 @@ POCKET_HTML = """<!DOCTYPE html>
 <p class="sec-h">Emergency (free, 24 hours)</p>
 <div class="numgrid"><a class="num em" href="tel:119"><span class="ni" aria-hidden="true">&#128657;</span><span class="nt"><b>Ambulance or fire</b><span>119</span></span></a><a class="num em" href="tel:110"><span class="ni" aria-hidden="true">&#128659;</span><span class="nt"><b>Police</b><span>110</span></span></a></div>
 <p class="sec-h">At the stations</p>
+<p class="small" style="margin:2px 0 6px"><b>At Shin-Osaka</b></p>
 <a class="num air" href="tel:+81663024538"><span class="ni" aria-hidden="true">&#129523;</span><span class="nt"><b>Crosta Shin-Osaka (luggage)</b><span>+81 6-6302-4538</span><small>9 am to 8 pm</small></span></a>
-<p class="small" style="margin-top:8px">Tourist information: Travel Service Center SHIN-OSAKA (3F concourse) and Tourist Information OSAKA (1F, by the Central Gate). Staff will help, so just ask.</p>
+<p class="small" style="margin-top:8px">Tourist information: Travel Service Center SHIN-OSAKA, 3F concourse (8 am to 10 pm).</p>
+<p class="small" style="margin:12px 0 4px"><b>At Osaka/Umeda (JR Osaka Station)</b></p>
+<p class="small">Tourist information: Tourist Information OSAKA, 1F in front of the JR Central Gate (7 am to 10 pm). Luggage: Crosta Osaka (9 am to 8 pm) or TiS Osaka Branch (10 am to 7 pm). We list no phone number here. Staff will help, so just ask.</p>
 <p class="sec-h">Help or travel questions</p>
 <a class="num hot" href="tel:+815038162787"><span class="ni" aria-hidden="true">&#128222;</span><span class="nt"><b>Japan Visitor Hotline</b><span>050-3816-2787</span><small>24 hours. English, Chinese, Korean</small></span></a>
 </div>
@@ -1423,7 +1428,7 @@ POCKET_HTML = """<!DOCTYPE html>
   function paintMap(){
     var R={T1:{T2:'JR Kyoto Line about 4 to 7 min, or Midosuji Line 3 stops'},T2:{T1:'JR Kyoto Line about 4 to 7 min, or Midosuji Line 3 stops'}};
     var personal=(term==='T1'||term==='T2');
-    $('mLead').textContent=personal?('You are at '+(term==='T1'?'Shin-Osaka':'Osaka/Umeda')+'. Here is how to reach the other station.'):'Shinkansen (bullet train) passengers use Shin-Osaka.';
+    $('mLead').textContent=personal?('You are at '+(term==='T1'?'Shin-Osaka':'Osaka/Umeda')+'. Here is how to reach the other station.'):'Shin-Osaka is the Shinkansen station. Osaka/Umeda is downtown. Pick yours above.';
     [].forEach.call(document.querySelectorAll('#tmap .tlink'),function(e){ e.hidden=personal; });
     [].forEach.call(document.querySelectorAll('#tmap .tcard'),function(c){
       var id=c.getAttribute('data-t'), tb=c.querySelector('.tb');
@@ -1864,7 +1869,7 @@ POCKET_HTML = """<!DOCTYPE html>
   /* send this guide */
   if(navigator.share){
     $('shareCard').hidden=false;
-    $('shareBtn').addEventListener('click',function(){ try{ navigator.share({title:'Osaka Station Pocket Guide',url:location.origin+location.pathname+'?src=share'}); }catch(e){} });
+    $('shareBtn').addEventListener('click',function(){ try{ navigator.share({title:'Shin-Osaka and Umeda Pocket Guide',url:location.origin+location.pathname+'?src=share'}); }catch(e){} });
   }
   window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; });
   window.addEventListener('appinstalled',function(){ pgTrack('pg_installed',{via:'browser'}); markInstalled(); if(!inst.hidden) closeSheet(); });
@@ -1881,7 +1886,7 @@ POCKET_HTML = (POCKET_HTML.replace("__CSS__", POCKET_CSS).replace("__FINDER_JSON
 if re.search(r"\b(India|Indian|INR|Rs\.?|rupee|lakh|Aadhaar|UPI|VFS|BLS)\b|₹", re.sub(r"<script[^>]*>.*?</script>", "", POCKET_HTML, flags=re.S)):
     die("neutral-rule violation in the pocket guide")
 
-POCKET_SW = """/* Osaka Station Pocket Guide service worker. Bump V when the page changes shape. */
+POCKET_SW = """/* Shin-Osaka and Umeda Pocket Guide service worker. Bump V when the page changes shape. */
 var V='osaka-pocket-v1';
 var PAGE='/osaka-pocket';
 var SHELL=[PAGE,'/osaka-pocket.webmanifest','/favicon-32.png','/images/osaka-icon-192.png','/images/osaka-icon-512.png','/images/osaka-icon-maskable-512.png'];
@@ -1923,7 +1928,7 @@ self.addEventListener('fetch',function(e){
 });
 """
 POCKET_MANIFEST = json.dumps({
-    "name": "Osaka Station Pocket Guide",
+    "name": "Shin-Osaka and Umeda Pocket Guide",
     "short_name": "Osaka",
     "description": "A simple Osaka station helper that works offline.",
     "start_url": POCKET_PATH,

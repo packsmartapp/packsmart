@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Osaka Station Pocket Guide | PackSmart</title>
+<title>Shin-Osaka and Umeda Pocket Guide | PackSmart</title>
 <meta name="description" content="A simple Osaka station helper that works offline: Shin-Osaka and Osaka/Umeda, platforms, lockers, tourist information and more. By PackSmart.">
 <meta name="robots" content="noindex,follow">
 <link rel="canonical" href="https://www.packsmartapp.com/blog/osaka-station-guide">
@@ -248,7 +248,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 </head>
 <body>
 <header class="top">
-<div><strong>Osaka Station Pocket Guide</strong><span class="by">by PackSmart &middot; Checked 19 Nov 2026</span><span class="by sv" id="savedOn" hidden></span></div>
+<div><strong>Shin-Osaka and Umeda Pocket Guide</strong><span class="by">by PackSmart &middot; Checked 19 Nov 2026</span><span class="by sv" id="savedOn" hidden></span></div>
 <div class="status" id="status" role="status">Checking...</div>
 </header>
 <button type="button" class="inst-strip" id="instStrip" hidden><span class="ico" aria-hidden="true">&#128242;</span><span><b>Add this to your home screen</b><br>so it works with no internet</span><span class="go">How</span></button>
@@ -265,7 +265,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <section class="panel" id="p-map" role="tabpanel" aria-labelledby="t-map" hidden>
 <p class="seg-h" style="margin-top:2px">Which station are you at?</p>
 <div class="seg" id="mseg"></div>
-<p class="lead2" id="mLead" style="margin-top:10px">Shinkansen (bullet train) passengers use Shin-Osaka.</p>
+<p class="lead2" id="mLead" style="margin-top:10px">Shin-Osaka is the Shinkansen station. Osaka/Umeda is downtown. Pick yours above.</p>
 <div class="tmap" id="tmap">
 <div class="tcard t1" data-t="T1"><div class="badge">&#128645;</div><div class="tb"><h3>Shin-Osaka</h3><p>Shinkansen (bullet trains), platforms 20 to 27</p><p class="stn"><span aria-hidden="true">&#128647;</span> Midosuji Line (M13) and JR local lines</p></div></div>
 <div class="tlink"><span aria-hidden="true">&#128646;</span><span>JR Kyoto Line, about 4 to 7 min<br>or Midosuji Line, 3 stops</span></div>
@@ -274,14 +274,15 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <p class="small" style="text-align:center;margin-top:10px">Simplified, not to scale. Times are approximate and change. Check the operator.</p>
 </section>
 <section class="panel" id="p-arrive" role="tabpanel" aria-labelledby="t-arrive" hidden>
-<p class="lead2">Arrived by Shinkansen? Tap a step to tick it off.</p>
+<p class="lead2">Arrived at Shin-Osaka by Shinkansen? Tap a step to tick it off.</p>
+<p class="small" style="margin:4px 0 10px">At JR Osaka Station or Umeda instead? These steps are for Shin-Osaka. See Umeda station maze below, or pick Osaka/Umeda on the Find tab.</p>
 <ol class="steps" id="arrSteps"></ol>
 <button type="button" class="reset" id="arrReset" hidden>Clear ticks</button>
 <p class="sec-h">Then, once you are out</p>
 <div class="tiles" id="arrTiles"></div>
 </section>
 <section class="panel" id="p-depart" role="tabpanel" aria-labelledby="t-depart" hidden>
-<div class="seg2" id="depSeg" role="group" aria-label="Departure sections"><button type="button" data-d="before" aria-pressed="true">Before you go</button><button type="button" data-d="air" aria-pressed="false">At the station</button></div>
+<div class="seg2" id="depSeg" role="group" aria-label="Departure sections"><button type="button" data-d="before" aria-pressed="true">Before you go</button><button type="button" data-d="air" aria-pressed="false">At Shin-Osaka</button></div>
 <div id="depBefore">
 <div class="tiles" id="depTiles"></div>
 <p class="hint">Tap one for the details. Prices and times are approximate.</p>
@@ -289,6 +290,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 </div>
 <div id="depAir" hidden>
 <div class="heroline"><span class="big2">20-27</span><span><b>Shinkansen platforms at Shin-Osaka.</b><br>20 to 22 head west, 23 to 27 head east. Check your ticket.</span></div>
+<p class="small" style="margin:8px 0 10px">Leaving from JR Osaka Station? The Shinkansen does not stop there. Go to Shin-Osaka first: JR Kyoto Line about 4 to 7 min, or the Midosuji Line 3 stops from Umeda.</p>
 <ol class="steps" id="depSteps"></ol>
 <button type="button" class="reset" id="depReset" hidden>Clear ticks</button>
 </div>
@@ -304,8 +306,11 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <p class="sec-h">Emergency, anywhere in Japan (free, 24 hours)</p>
 <div class="numgrid"><a class="num em" href="tel:119"><span class="ni" aria-hidden="true">&#128657;</span><span class="nt"><b>Ambulance or fire</b><span>119</span></span></a><a class="num em" href="tel:110"><span class="ni" aria-hidden="true">&#128659;</span><span class="nt"><b>Police</b><span>110</span></span></a></div>
 <p class="sec-h">At the stations (not for emergencies)</p>
+<p class="small" style="margin:2px 0 6px"><b>At Shin-Osaka</b></p>
 <a class="num air" href="tel:+81663024538"><span class="ni" aria-hidden="true">&#129523;</span><span class="nt"><b>Crosta Shin-Osaka (luggage)</b><span>+81 6-6302-4538</span><small>9 am to 8 pm</small></span></a>
-<p class="small" style="margin-top:8px">Tourist information: Travel Service Center SHIN-OSAKA (3F concourse) and Tourist Information OSAKA (1F, by the Central Gate). Staff will help, so just ask.</p>
+<p class="small" style="margin-top:8px">Tourist information: Travel Service Center SHIN-OSAKA, 3F concourse (8 am to 10 pm).</p>
+<p class="small" style="margin:12px 0 4px"><b>At Osaka/Umeda (JR Osaka Station)</b></p>
+<p class="small">Tourist information: Tourist Information OSAKA, 1F in front of the JR Central Gate (7 am to 10 pm). Luggage: Crosta Osaka (9 am to 8 pm) or TiS Osaka Branch (10 am to 7 pm). We list no phone number here. Staff will help, so just ask.</p>
 <p class="sec-h">Help or travel questions</p>
 <a class="num hot" href="tel:+815038162787"><span class="ni" aria-hidden="true">&#128222;</span><span class="nt"><b>Japan Visitor Hotline</b><span>050-3816-2787</span><small>24 hours. English, Chinese, Korean</small></span></a>
 </div>
@@ -318,7 +323,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
 <p class="small">Facility details come from JR West station maps and Osaka Metro, JNTO and Osaka tourism board pages, checked 19 November 2026. Floors, opening hours and counters can change. If you cannot find something, ask station staff or a tourist information counter. Found something out of date? <a href="/contact">Tell us</a> (needs internet). We count anonymous taps to improve this guide: no name, no account. <a href="/privacy-policy">Privacy</a> &middot; <a href="#" id="pgOpt">Turn off counting</a>. The full guide, with platforms, Umeda exits and luggage, is at <a href="https://www.packsmartapp.com/blog/osaka-station-guide">packsmartapp.com</a> (needs internet).</p></div>
 </section>
 </div>
-<a class="wa" id="waShare" href="https://wa.me/?text=Osaka%20Station%20Pocket%20Guide%3A%20free%2C%20and%20it%20works%20with%20no%20internet%20once%20you%20open%20it.%20https%3A%2F%2Fwww.packsmartapp.com%2Fosaka-pocket%3Fsrc%3Dwa" target="_blank" rel="noopener" aria-label="Share this guide on WhatsApp"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path d="M12 2.6a9.4 9.4 0 0 0-8 14.3L2.8 21.4l4.6-1.2A9.4 9.4 0 1 0 12 2.6z" fill="none" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><path transform="translate(6.3 6.1) scale(.5)" fill="#fff" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Share this</span></a>
+<a class="wa" id="waShare" href="https://wa.me/?text=Shin-Osaka%20and%20Umeda%20Pocket%20Guide%3A%20free%2C%20and%20it%20works%20with%20no%20internet%20once%20you%20open%20it.%20https%3A%2F%2Fwww.packsmartapp.com%2Fosaka-pocket%3Fsrc%3Dwa" target="_blank" rel="noopener" aria-label="Share this guide on WhatsApp"><svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false"><path d="M12 2.6a9.4 9.4 0 0 0-8 14.3L2.8 21.4l4.6-1.2A9.4 9.4 0 1 0 12 2.6z" fill="none" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/><path transform="translate(6.3 6.1) scale(.5)" fill="#fff" d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg><span>Share this</span></a>
 <nav class="tabs" role="tablist" aria-label="Sections">
 <button type="button" role="tab" id="t-find" data-tab="find" aria-selected="true"><span aria-hidden="true">&#128269;</span>Find</button>
 <button type="button" role="tab" id="t-map" data-tab="map" aria-selected="false"><span aria-hidden="true">&#128506;&#65039;</span>Stations</button>
@@ -360,7 +365,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   function paintMap(){
     var R={T1:{T2:'JR Kyoto Line about 4 to 7 min, or Midosuji Line 3 stops'},T2:{T1:'JR Kyoto Line about 4 to 7 min, or Midosuji Line 3 stops'}};
     var personal=(term==='T1'||term==='T2');
-    $('mLead').textContent=personal?('You are at '+(term==='T1'?'Shin-Osaka':'Osaka/Umeda')+'. Here is how to reach the other station.'):'Shinkansen (bullet train) passengers use Shin-Osaka.';
+    $('mLead').textContent=personal?('You are at '+(term==='T1'?'Shin-Osaka':'Osaka/Umeda')+'. Here is how to reach the other station.'):'Shin-Osaka is the Shinkansen station. Osaka/Umeda is downtown. Pick yours above.';
     [].forEach.call(document.querySelectorAll('#tmap .tlink'),function(e){ e.hidden=personal; });
     [].forEach.call(document.querySelectorAll('#tmap .tcard'),function(c){
       var id=c.getAttribute('data-t'), tb=c.querySelector('.tb');
@@ -853,7 +858,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
   /* send this guide */
   if(navigator.share){
     $('shareCard').hidden=false;
-    $('shareBtn').addEventListener('click',function(){ try{ navigator.share({title:'Osaka Station Pocket Guide',url:location.origin+location.pathname+'?src=share'}); }catch(e){} });
+    $('shareBtn').addEventListener('click',function(){ try{ navigator.share({title:'Shin-Osaka and Umeda Pocket Guide',url:location.origin+location.pathname+'?src=share'}); }catch(e){} });
   }
   window.addEventListener('beforeinstallprompt',function(e){ e.preventDefault(); dp=e; updateStrip();
     if(!inst.hidden&&!isIOS&&!inApp&&!$('instGo')) openInst(true); });

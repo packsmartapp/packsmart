@@ -1,4 +1,4 @@
-/* Osaka Station Pocket Guide service worker. Bump V when the page changes shape. */
+/* Shin-Osaka and Umeda Pocket Guide service worker. Bump V when the page changes shape. */
 var V='osaka-pocket-v4';
 var PAGE='/osaka-pocket';
 var SHELL=[PAGE,'/osaka-pocket.webmanifest','/favicon-32.png','/images/osaka-icon-192.png','/images/osaka-icon-512.png','/images/osaka-icon-maskable-512.png'];

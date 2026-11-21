@@ -28,7 +28,7 @@ G = {
     "haneda": ("Haneda Airport", "✈️", "Terminals, prayer rooms, nursing rooms, lockers", "air"),
     "narita": ("Narita Airport", "✈️", "Terminals, prayer rooms, baby rooms, lockers", "air"),
     "kix": ("Kansai Airport", "✈️", "Trains and buses to Osaka and Kyoto, lockers, showers", "air"),
-    "osaka": ("Osaka Station", "\U0001F689", "Shin-Osaka and Osaka/Umeda, platforms, lockers", "stn"),
+    "osaka": ("Shin-Osaka and Umeda", "\U0001F689", "Shin-Osaka and Osaka/Umeda, platforms, lockers", "stn"),
     "kyoto": ("Kyoto Station", "\U0001F689", "Central and Hachijo sides, platforms, buses, lockers", "stn"),
     "tokyo": ("Tokyo Station", "\U0001F689", "Marunouchi and Yaesu sides, Shinkansen platforms, lockers", "stn"),
 }
