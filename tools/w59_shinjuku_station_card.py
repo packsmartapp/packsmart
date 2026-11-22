@@ -22,7 +22,7 @@ CARD = '''        <a href="/blog/shinjuku-station-guide" class="blog-card">
                 <span class="tag">Station Guide</span>
                 <h2>Shinjuku Station Guide 2026: West vs East Exits, Platforms and Luggage</h2>
                 <p>West or East side, which exit for where, the last Narita Express, airport buses from Busta Shinjuku, ATMs, lockers and luggage, and help in English.</p>
-                <div class="pg-meta"><span class="meta">November 22, 2026 &middot; 8 min read</span><span class="read-more">Read more &rarr;</span></div>
+                <div class="pg-meta"><span class="meta">November 22, 2026 &middot; 9 min read</span><span class="read-more">Read more &rarr;</span></div>
                 <span class="pg-strip"><b>Shinjuku Station Pocket Guide Inside</b><i>Works offline</i></span>
             </div>
         </a>

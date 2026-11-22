@@ -564,19 +564,11 @@ def prepare_hero():
                            check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             note = "kyoto-station-hero-1600.jpg (optimised from your photo)"
         except Exception:
-            # no sips (Linux): resize with Pillow, else keep an existing optimised copy (T14)
-            try:
-                from PIL import Image
-                _im = Image.open(src).convert("RGB")
-                _im.thumbnail((1600, 1600))
-                if not os.path.isfile(dst):  # keep an existing optimised copy as is
-                    _im.save(dst, "JPEG", quality=72, optimize=True, progressive=True)
-                    note = os.path.basename(dst) + " (optimised from your photo)"
-            except Exception:
-                if not os.path.isfile(dst):
-                    if src.lower().endswith(".jpg"):
-                        return "/images/" + os.path.basename(src), "using the original photo (could not optimise it here)"
-                    return None, None
+            # no sips (Linux, e.g. a cloud session): keep an existing optimised copy, else use the original (T14)
+            if not os.path.isfile(dst):
+                if src.lower().endswith(".jpg"):
+                    return "/images/" + os.path.basename(src), "using the original photo (could not optimise it here)"
+                return None, None
     return "/images/kyoto-station-hero-1600.jpg", note
 
 HERO_URL, HERO_NOTE = prepare_hero()
@@ -1986,7 +1978,7 @@ if ("/blog/%s</loc>" % SLUG) not in sm:
 rx = re.compile(r"(<loc>%s/blog/japan-travel-packing-guide</loc>\s*<lastmod>)[^<]*(</lastmod>)" % re.escape(SITE))
 if not rx.search(sm):
     die("sitemap entry for the Japan guide not found")
-sm = rx.sub(r"\g<1>%s\g<2>" % TODAY, sm, count=1)
+sm = rx.sub(lambda _m: _m.group(0) if re.search(r"<lastmod>([^<]*)", _m.group(0)).group(1) >= TODAY else _m.group(1) + TODAY + _m.group(2), sm, count=1)  # only move the date forward
 if sm != orig:
     open(SITEMAP, "w", encoding="utf-8").write(sm)
     changed.append("sitemap.xml")

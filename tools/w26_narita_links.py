@@ -82,7 +82,7 @@ for slug in ("japan-travel-packing-guide", "japan-travel-packing-guide-from-indi
     if not rx.search(sm):
         die("sitemap entry missing: " + slug)
     if any(slug + ".html" in os.path.basename(p) for p in pending):
-        sm = rx.sub(r"\g<1>%s\g<2>" % TODAY, sm, count=1)
+        sm = rx.sub(lambda _m: _m.group(0) if re.search(r"<lastmod>([^<]*)", _m.group(0)).group(1) >= TODAY else _m.group(1) + TODAY + _m.group(2), sm, count=1)  # only move the date forward
 
 for path, s in pending.items():
     open(path, "w", encoding="utf-8").write(s)

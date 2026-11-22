@@ -323,7 +323,7 @@ if ("/%s</loc>" % SLUG) not in sm:
     sm = sm.replace("</urlset>", entry + "</urlset>", 1)
 rx = re.compile(r"(<loc>%s/blog</loc>\s*<lastmod>)[^<]*(</lastmod>)" % re.escape(SITE))
 if rx.search(sm):
-    sm = rx.sub(r"\g<1>%s\g<2>" % TODAY, sm, count=1)
+    sm = rx.sub(lambda _m: _m.group(0) if re.search(r"<lastmod>([^<]*)", _m.group(0)).group(1) >= TODAY else _m.group(1) + TODAY + _m.group(2), sm, count=1)  # only move the date forward
 if sm != sm0:
     writes[SM] = sm
 

@@ -100,3 +100,11 @@ Walking times stated on the map:
 - Hero: "JR新宿駅南口の駅前広場と周辺商業施設の都市風景" (JR Shinjuku Station South exit), https://www.pakutaso.com/20160517149jr-6.html, saved as `public/images/shinjuku-station-hero.jpg`. People are small and distant (not identifiable). Taken 2016: illustrative, not current.
 - Card: "新宿大ガードと上を走る緑色の電車" (Shinjuku Ōgādo bridge with a Yamanote train), https://www.pakutaso.com/20260701211post-58057.html, saved as `public/images/shinjuku-station-card-680.webp`. No people.
 - Rejected: South exit street photo (identifiable pedestrians close to camera).
+
+## Added by the w58 build (fetched from the cloud environment, 22 Nov 2026)
+- Odakyū Sightseeing Service Center, Shinjuku West (`https://odakyu-global.com/services/odakyu-sightseeing-service-center-west/`): telephone **+81-3-5909-0211**; also sells SIM cards and eSIMs; location confirmed as "Odakyu Line Shinjuku Station B1, West Underground Exit", with the note that stairs and escalators have moved because of major construction at Shinjuku station. (There is also a "Shinjuku South" center; not used.)
+- Odakyū Romancecar (`https://odakyu-global.com/passes/romancecar/`): limited express with direct service from Shinjuku to Hakone (and Enoshima); Shinjuku to Hakone-Yumoto about 80 min; all seats reserved; a regular fare ticket is needed as well as the limited express ticket. (The page also lists a ¥1,200 surcharge; not used on the pages.)
+- Keiō (`https://www.keio.co.jp/english/`, redirects to `/global/?lang=en`, line map description): the Keiō Line runs from Shinjuku via Chōfu to Takaosanguchi, for Mount Takao.
+- Busta Shinjuku access (`https://shinjuku-busterminal.co.jp/en/access/`): directly connected to the JR New South Gate ("just 2 mins"); New South Gate open 5:45 to 24:00, otherwise use the South Gate (4 min walk).
+- Busta Shinjuku services (`https://shinjuku-busterminal.co.jp/en/service/`): free Wi-Fi needs an email registration; coin-operated phone chargers beside the automated ticket machines on the north side, ¥100 per 20 min. The page says the Seven Bank ATM and information counter are "in the waiting room" but does not give the waiting room's floor in text, so the pages do not say "4F" for the ATM.
+- JR East N'EX timetable (`https://timetables.jreast.co.jp/en/2612/timetable/tt0866/0866120.html`): re-read, first 5:55 and the hourly pattern confirmed.
