@@ -1,6 +1,6 @@
 # PackSmart: backlog
 
-Status as of 21 Nov 2026. Known bugs, open questions, tech debt and next features, highest priority first. "Owner" means it needs Ari (a decision, a real device, an account or a photo). Parked by the owner: the pricing page, its copy and the free plan limit (see `DECISIONS.md` D41).
+Status as of 22 Nov 2026. Known bugs, open questions, tech debt and next features, highest priority first. "Owner" means it needs Ari (a decision, a real device, an account or a photo). Parked by the owner: the pricing page, its copy and the free plan limit (see `DECISIONS.md` D41).
 
 The repo is public, so earnings, partner conversations and outreach are tracked privately, not here.
 
@@ -26,12 +26,16 @@ The repo is public, so earnings, partner conversations and outreach are tracked 
 | B11 | **January re-checks:** South Korea K-ETA exemption (to 31 Dec 2026), UK ETA and Standard Visitor fee, Sri Lanka free-ETA list (40 countries), Thailand 30-day rule. Re-read Airalo tile prices every few weeks. | |
 | B12 | Search Console: request indexing and watch the "crawled, not indexed" guides (New Zealand, Canada, South Korea, Road Trip, Mexico, cruise). Baseline about 56 indexed. | Owner clicks in GSC. |
 | B13 | Real-phone check of the Greece budget tables and the GetYourGuide widgets. | Owner. |
+| B26 | **Fix the Plan My Trip links in `api/generate-plan.js`.** The Asia Klook block still uses the plain `klook.com/en-US/?aid=116473` link (that Klook account is deactivated, so the clicks earn nothing; see D18). Replace with a tracked `klook.tpx.li` link or drop the block, in line with D33. | Found 22 Nov. Claude, after the owner's yes. |
+| B27 | **Does the SafetyWing widget's on-page detail drive the clicks?** Compare GA4 placement events with Travelpayouts clicks per Sub ID for the SafetyWing widget against the plain links. If the visible price and options are what works, give car rental, Tiqets and the other partners the same "see it, then decide" format (B28). | Owner's question, 21 Nov. Fold into the B8 pilot review. |
 | B14 | Small checks: Costa Rica Pickups widget wording ("San Jose" is unconfirmed, the widget also lists San Jose, CA); whether Tripadvisor is still a partner (on `/about`, not on the disclosure list). | Owner. |
 
 ## P2: next features and content
 
 | # | Item | Notes |
 |---|---|---|
+| B28 | **Affiliate restructure: contextual offers instead of the generic grid.** Replace the identical Travel Essentials grid at the bottom of all 68 articles with 2 to 3 offers that fit each page, placed in the relevant section. | Agreed 21 Nov ("step 3"). Scheduled to start 23 Nov. |
+| B29 | **GetYourGuide deep links.** 79 of 83 GetYourGuide links on articles go to the homepage (`getyourguide.com?...cmp=share_to_earn`), even next to specific activities. Point them at the city or activity page. | Part of B28. |
 | B15 | `/pocket-guides` index page. The hub's "See all N pocket guides" button needs it before it can appear. | Build before adding more guides. |
 | B16 | Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`, currently `True` in the Narita and Haneda generators; recommended `False`). | Owner's yes, then re-run the chain. |
 | B17 | Kansai "I'm connecting" sheet. | Needs Kansai Airport's own connection pages first. |
@@ -55,8 +59,10 @@ The repo is public, so earnings, partner conversations and outreach are tracked 
 | T5 | Unused code: `/api/subscribe.js`, the dormant sponsor slot (`SPONSOR = None`), superseded `w48`, the `.price-alt` CSS class. | Delete when sure. |
 | T6 | Root scripts `add-ga4.sh`, `add-ga4-fix.sh`, `add-schema.sh` are unexplained. | Ask the owner before use. |
 | T7 | Breadcrumb JSON-LD on older articles says "Blog" while the visible menu says Destinations. | Invisible; low value. |
-| T8 | Git on the Mac mount leaves `HEAD.lock` and `tmp_obj_*`; `device_commit_files` sometimes writes a stale copy (check the byte size every time). | Workaround in `CLAUDE.md`. |
+| T8 | Git on the Project-mounted folder leaves `HEAD.lock` and `tmp_obj_*`; `device_commit_files` sometimes writes a stale copy (check the byte size every time). | Mostly avoided since 21 Nov: work in the `~/packsmart` SSH clone or a cloud session (see `CLAUDE.md`). |
 | T9 | Dated clean-ups: Yesim promo copy after 28 Feb 2027; Klook footnotes after 1 Jan 2027; Klook 12% boost ends 31 Dec 2026; Klook thumbnail approval pending. | |
 | T10 | Vercel Web Analytics returns nothing, so traffic comes from GA4, Search Console and Travelpayouts. | Enable or ignore. |
-| T11 | Docs upkeep: `PRD.md`, `DECISIONS.md`, `BACKLOG.md` and `INVENTORY.md` do not update themselves. | See the rule proposed in `CLAUDE.md`. |
+| T11 | Docs upkeep: `PRD.md`, `DECISIONS.md`, `BACKLOG.md` and `INVENTORY.md` do not update themselves. | Done 22 Nov: rule added to `CLAUDE.md` ("Docs upkeep"). |
+| T13 | **Compiled Python files are deployed.** `public/images/__pycache__/*.pyc` (w22, w23, w25) are committed under `public/`, so the site serves them. | Delete them and add `__pycache__/` checks; `.gitignore` already lists it, the files predate that. |
+| T14 | **`tools/w31_haneda_airport_page.py` is behind the live Haneda article.** A full regeneration brings back `haneda-airport-hero.jpg` (live uses `haneda-airport-hero-1600.jpg` in og:image, twitter:image, the hero and the Pinterest link) and an older sitemap `lastmod`. | Fix the script before the next full chain run. |
 | T12 | `tools/w32_japan_sakura_block.py` had a syntax error (an unescaped apostrophe, introduced in commit 1047e5c) so it could not run. Fixed and pushed in c836d89 (21 Nov). The live pages already carried that text, so nothing changed on the site. | Done. |

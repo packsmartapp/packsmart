@@ -124,13 +124,28 @@ Card for `public/blog.html` (`&amp;` and `&mdash;` as entities):
 - WhatsApp icon in the Pocket Guide header: replaced by the labelled bottom-right pill. "Open it, then add to home screen" wording: wrong on iPhone.
 - Hand-editing generated pages: lost on the next regeneration.
 
+## How changes reach the live site (since 21 Nov 2026)
+- **Ari's Mac:** the working clone is `~/packsmart` (a real git clone, not the Project mount). Its remote is `git@github.com-packsmart:packsmartapp/packsmart.git` (SSH alias with its own key, pushes as `packsmartapp`). Run `git pull` before editing there, because Claude may have pushed from elsewhere.
+- **Claude Code cloud session:** clones `packsmartapp/packsmart` with push access, edits, checks pages at 390px and 360px in a headless browser, shows the diff, and pushes only after Ari's OK. It can also push a side branch for a Vercel preview URL first. The sandbox cannot open packsmartapp.com or Unsplash, so the final look at the live page is Ari's; Vercel deploy status is checked through the Vercel connector.
+- **Claude chat with the Project:** the GitHub and Vercel connectors act as `packsmartapp` and the `packsmartapps-projects` team. Otherwise the chat prepares the change and gives Ari the commit and push commands.
+- **Project-mounted folder (legacy):** git there is flaky. It leaves `tmp_obj_*` warnings and `.git/HEAD.lock` (after a commit run `mv .git/HEAD.lock .git/stale-head-lock-$(date +%s)`); `git checkout <file>` fails (restore with `git show <commit>:path > path`); `device_commit_files` copies can lag, so check the byte size on the Mac. Prefer `~/packsmart` or a cloud session.
+- Other projects (CareerTalks, TPG, AITT) have their own SSH aliases and accounts. Never point a PackSmart remote at them or theirs at PackSmart.
+
+## Search Console notes
+- Indexed about 56 pages; ranking, not indexing, is the main problem.
+- **Ignore "Blocked by robots.txt"** URLs on `book.packsmartapp.com` (the 12Go booking subdomain; its own robots.txt blocks crawlers, which is what we want). The main site's robots.txt blocks nothing. Do not validate those rows.
+- Ignore old `.html` duplicates (`cleanUrls` 301s them; canonicals are clean), FIFA redirect URLs and `favicon.ico` in "Crawled, not indexed". "Page with redirect" is expected.
+- For real "Crawled, not indexed" pages: request indexing only after a real refresh (quota about 10 a day), and add internal links from indexed pages. Generic evergreen topics need something distinctive (original checklist, real trip data).
+- After adding URLs to `sitemap.xml`, resubmit it in Search Console. `share.html` (noindex) and `book.html` are left out of the sitemap on purpose.
+
+## Docs upkeep
+- `docs/PRD.md`, `docs/DECISIONS.md` and `docs/BACKLOG.md` do not update themselves. When a session changes a feature, makes or reverses a decision, or finishes or finds an open item, it updates the matching doc **in the same commit**. Regenerate `docs/INVENTORY.md` with `python3 -I tools/make_inventory.py` when files are added or removed.
+- The repo is public: earnings, traffic numbers, partner talks and outreach stay in the private Project notes, never in these docs.
+
 ## Known constraints
-- **Git on Ari's Mac mount is flaky.** It leaves `tmp_obj_*` warnings and `.git/HEAD.lock`. After every commit run `mv .git/HEAD.lock .git/stale-head-lock-$(date +%s)`. `git checkout <file>` fails (no deletes); restore with `git show <commit>:path > path`. Ari pushes from Terminal.
-- Commit as `git -c user.name="Ari" -c user.email="aricheck@gmail.com"`. Always show a preview and give the push command before anything deploys.
+- Commit as `git -c user.name="Ari" -c user.email="aricheck@gmail.com"`. Always show a preview (diff summary, what goes live) and wait for Ari's OK before anything is pushed to `main`, because `main` deploys to the live site.
 - The sandbox cannot reach most sites (proxy allowlist); some pages cannot be fetched at all. Say so instead of guessing.
-- Files from the sandbox to the Mac: commit via `device_commit_files`, then check the byte size on the Mac (copies can lag).
 - Vercel Web Analytics returns nothing; traffic numbers come from Ari (GA4, Search Console, Travelpayouts).
 - GA4 has 13 custom dimensions registered; adding new params needs registration to appear in reports.
-- Search Console indexes about 56 pages; ranking, not indexing, is the main problem.
-- Large files (index.html ~106 KB) are impractical to push through connectors; use Terminal.
+- Large files (index.html ~106 KB) are impractical to push through the GitHub connector; use git (Terminal or a cloud session).
 - Facts that expire: Malaysia visa-free rule (31 Dec 2026), Yesim promo (28 Feb 2027), Klook boost (31 Dec 2026), Radical Storage rate (30 Nov 2026).

@@ -1,6 +1,6 @@
 # PackSmart: decision log
 
-Status as of 21 Nov 2026. Oldest first. Each entry gives what was chosen, what it was chosen over, and why. "Not recorded" means the project notes do not say; nothing has been guessed. Later entries can replace earlier ones (marked **Superseded**).
+Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what it was chosen over, and why. "Not recorded" means the project notes do not say; nothing has been guessed. Later entries can replace earlier ones (marked **Superseded**).
 
 ## Before August 2026
 
@@ -181,6 +181,11 @@ Status as of 21 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 **D41. Park the pricing page and plan limit** (21 Nov)
 - Chose: no work now on the paid plans, the pricing copy or the free plan limit.
 - Why: the owner's call ("we are not doing now"); neither is part of the current Japan and affiliate focus.
+
+**D42. Osaka Pocket Guide renamed "Shin-Osaka and Umeda"** (21 to 22 Nov)
+- Chose: keep one guide covering both stations, rename it, label the Shin-Osaka-only screens (Arrival, "At Shin-Osaka" on Leaving) and split the phone numbers by station. The `/osaka-pocket` URL stays, so shared links and QR codes still work. Post-processor `w57` carries the name into pages already patched by earlier scripts.
+- Instead of: splitting it into two guides (twice the pages and facts to keep current).
+- Why: a reviewer pointed out that "Osaka Station" means JR Osaka at Umeda, while several screens were about Shin-Osaka, which could send a traveller to the wrong station.
 
 ## Open decisions (not made)
 
