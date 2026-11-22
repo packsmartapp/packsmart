@@ -7,7 +7,7 @@ Idempotent: a page that already has its placement id is skipped.
  - Osaka city guide: Welcome Pickups (Kansai Airport to an Osaka hotel) + DiscoverCars (Osaka Kansai default pick-up).
  - Station guides (added later on 20 Nov 2026): Osaka station = Welcome Pickups + DiscoverCars (Osaka Kansai default);
    Kyoto station = DiscoverCars (Kyoto Station default); Tokyo station = Welcome Pickups (Narita/Haneda) + DiscoverCars
-   (Haneda default). Blocks go before the "Leaving ..." section (Tokyo transfer: before "Local trains, Metro and Disney").
+   (Haneda default); Shinjuku station (22 Nov 2026) = the same pair as Tokyo. Blocks go before the "Leaving ..." section (Tokyo transfer: before "Local trains, Metro and Disney").
    Re-run this script after w36 / w39 / w42 as well, because those regenerate the station pages.
  - Kyoto city guide: DiscoverCars only (Kyoto Station default pick-up). The Welcome Pickups destination list has no
    Kyoto entry (checked on the live Kansai guide widget on 20 Nov 2026), so no transfer block is added there.
@@ -213,6 +213,25 @@ ch4 = add(p, "discovercars-tokyo-station",
           '<h2 id="car-rental">Car rental for trips outside Tokyo</h2>\n'
           '<p>For trips by road, compare self-drive rentals below.</p>\n', LEAVE)
 
-print("w53 stations. osaka:", ch1, "| kyoto:", ch2, "| tokyo transfer:", ch3, "| tokyo rental:", ch4)
+p = os.path.join(BLOG, "shinjuku-station-guide.html")
+if not os.path.isfile(p):
+    die("shinjuku station page not found")
+ch5 = add(p, "pickups-shinjuku-station",
+          pickups_block("pickups-shinjuku-station", "Your Driver at Narita or Haneda, to Your Shinjuku Hotel"),
+          '<h2 id="transfer">Private airport transfer</h2>\n'
+          '<p>If you would rather have a driver than a train or bus after a long flight, you can book a private transfer from '
+          'Narita or Haneda to your hotel in Shinjuku before you fly.</p>\n', '<h2 id="lines">')
+ch6 = add(p, "discovercars-shinjuku-station",
+          cars_block("discovercars-shinjuku-station",
+                     "Rent a Car near Tokyo: Go Where Trains and Buses Don't",
+                     "Lakeside roads below Mount Fuji and mountain villages sit a long way from any station. "
+                     "With your own car you stop when you like, and the luggage rides with you.",
+                     "Skip the car inside Tokyo, where trains are quicker. Choose a pick-up point, collect the car as you "
+                     "leave town, then compare prices below. Japan drives on the left.", "hnd"),
+          '<h2 id="car-rental">Car rental for trips outside Tokyo</h2>\n'
+          '<p>For trips by road, compare self-drive rentals below.</p>\n', LEAVE)
+
+print("w53 stations. osaka:", ch1, "| kyoto:", ch2, "| tokyo transfer:", ch3, "| tokyo rental:", ch4,
+      "| shinjuku transfer:", ch5, "| shinjuku rental:", ch6)
 
 print("w53 done. osaka:", "added" if changed_o else "already applied", "| kyoto:", "added" if changed_k else "already applied")
