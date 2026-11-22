@@ -876,6 +876,55 @@ JB_SHINKANSEN = (
 )
 
 
+# ---- GetYourGuide day-trip widget (same widget and tour IDs as the "Mt Fuji" tab of the Japan 7-day itinerary,
+#      partner D7IXONS, its own cmp so clicks can be told apart). Hides itself if the widget does not load.
+GYG_PARTNER = "D7IXONS"
+GYG_CSS = """<style>
+.ps-gyg{margin:24px 0;font-family:"DM Sans",sans-serif}
+.ps-gyg-h{display:block;text-align:center;font-size:1.05rem;font-weight:700;color:#0f0f23;margin:0 0 4px}
+.ps-gyg-s{text-align:center;font-size:.85rem;color:#3f7f70;margin:0 0 14px}
+.ps-gyg-w{min-height:495px;margin-bottom:-30px}
+@media(max-width:600px){.ps-gyg-w{min-height:772px;margin-bottom:0}}
+</style>"""
+GYG_HEAD = ('<script async defer src="https://widget.getyourguide.com/dist/pa.umd.production.min.js" data-gyg-partner-id="%s"></script>\n'
+            '<style>[data-gyg-widget]{overflow:hidden!important} [data-gyg-widget]>span{display:none!important} '
+            '[data-gyg-widget] iframe{clip-path:inset(0 0 35px 0)!important;margin-bottom:-35px!important}</style>' % GYG_PARTNER)
+
+GYG_TPL = """<div class="ps-gyg" data-ps-placement="__PID__">
+<strong class="ps-gyg-h">__HEAD__</strong>
+<p class="ps-gyg-s">__BLURB__</p>
+<div class="ps-gyg-w"><div class="ps-gyg-slot" data-gyg-href="https://widget.getyourguide.com/default/activities.frame" data-gyg-locale-code="en-US" data-gyg-number-of-items="__N__" data-gyg-partner-id="__PARTNER__"></div></div>
+<script>
+(function(){
+var root=document.currentScript.parentNode;
+var ids='__IDS__',cmp='__CMP__';
+var slot=root.querySelector('.ps-gyg-slot'),phone=window.matchMedia('(max-width:600px)'),started=false;
+function render(){
+var a=ids.split(',');
+slot.setAttribute('data-gyg-widget','activities');
+slot.setAttribute('data-gyg-number-of-items',String(phone.matches?Math.min(2,a.length):a.length));
+slot.setAttribute('data-gyg-tour-ids',(phone.matches?a.slice(0,2):a).join(','));
+slot.setAttribute('data-gyg-cmp',cmp);
+var t=0;(function go(){if(window.GYG&&window.GYG.refresh){window.GYG.refresh()}else if(t++<50){setTimeout(go,200)}})();}
+function start(){if(started)return;started=true;render();var n=0;(function watch(){if(slot.querySelector('iframe'))return;if(++n>15){root.style.display='none';return}setTimeout(watch,1000)})()}
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();start()}},{rootMargin:'400px 0px'});io.observe(root)}else{start()}
+if(phone.addEventListener){phone.addEventListener('change',function(){if(started)render()})}
+})();
+</script>
+</div>"""
+
+
+def gyg(pid, head, blurb, ids, cmp):
+    return (GYG_TPL.replace("__PID__", pid).replace("__HEAD__", esc(head)).replace("__BLURB__", esc(blurb))
+            .replace("__N__", str(len(ids))).replace("__PARTNER__", GYG_PARTNER)
+            .replace("__IDS__", ",".join(ids)).replace("__CMP__", cmp))
+
+
+GYG_DAYTRIPS = gyg("gyg-shinjuku-daytrips", "Mt Fuji and Hakone day tours from Tokyo",
+                   "Guided day trips you can book ahead, as listed by GetYourGuide.",
+                   ["792363", "668266", "1226194"], "packsmart-shinjuku-daytrips")
+
+
 DAYTRIPS = """<h2 id="daytrips">Day trips from Shinjuku</h2>
 <ul>
 <li><strong>Hakone by Romancecar (Odakyū).</strong> Odakyū says the Romancecar limited express runs direct from Shinjuku to Hakone-Yumoto in about 80 minutes. All seats are reserved, and you need a limited express ticket as well as a regular fare ticket. The Odakyū Sightseeing Service Center (B1, West Underground Exit, 8:00 to 16:00) sells Romancecar tickets and the Hakone Freepass, Hakone-Kamakura Pass and Fuji Hakone Pass.</li>
@@ -942,6 +991,7 @@ BODY = "\n\n".join([
     FACILITIES,
     HELP,
     DAYTRIPS,
+    GYG_DAYTRIPS,
     JB_SHINKANSEN,
     LEAVING,
     '<div class="tip-box">\n    <strong>Planning more of Japan?</strong> Our <a href="/blog/japan-travel-packing-guide">Japan travel and packing guide</a> covers what to pack, rail passes, etiquette and a budget breakdown, and the <a href="/blog/japan-7-day-itinerary-budget">7-day Japan itinerary</a> shows how a first week can look. Flying out? See our <a href="/blog/narita-airport-guide">Narita Airport guide</a> or <a href="/blog/haneda-airport-guide">Haneda Airport guide</a>.\n</div>',
@@ -993,6 +1043,8 @@ head = "\n".join([
     ld(ld_faq),
     "\n".join(t[84:454]),
     line(462),
+    GYG_HEAD,
+    GYG_CSS,
     "</head>",
     "<body>",
     "\n".join(t[NAV0:NAV1 + 1]),
