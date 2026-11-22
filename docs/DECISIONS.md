@@ -197,6 +197,16 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Instead of: the 19 Nov reviewer's idea of Indian airport guides, and an "Indian passport holders" box on every Japan guide.
 - Why: large and growing Japan demand, including from India in cherry blossom season; neutral pages follow D21.
 
+**D45. Shinjuku is the next Pocket Guide; the rest wait for data** (22 Nov)
+- Chose: build Shinjuku Station (article + Pocket Guide) now, aiming to be live by mid-January before cherry blossom season.
+- Instead of: the reviewers' longer list (Shibuya, Namba, Fukuoka, Sapporo, Hiroshima, Nagoya), bus or JR Pass pocket guides, or a Hindi phrase layer.
+- Why: Shinjuku has the most confusion and footfall; the article needs time to be indexed; other guides wait for the pilot numbers (D23, B8). Hindi was declined under D44.
+
+**D46. New partner links go through Travelpayouts** (22 Nov)
+- Chose: every new partner link uses a Travelpayouts programme, which pays by PayPal.
+- Instead of: Klook's direct affiliate account (ID 116473) and Trip.com's direct programme, which pay only by bank transfer to an Indian bank (Trip.com also has a US$200 minimum and pays after the trip is completed).
+- Note: the direct Klook account is not deleted; it still records clicks but has no payout set up, so no new links go through it and the old one in `api/generate-plan.js` is replaced (B26). Existing direct Trip.com links stay for now. Hotels: use whichever Travelpayouts programme covers them (owner to confirm).
+
 ## Open decisions (not made)
 
 - Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.

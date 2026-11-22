@@ -37,6 +37,10 @@ The repo is public, so earnings, partner conversations and outreach are tracked 
 |---|---|---|
 | B28 | **Affiliate restructure: contextual offers instead of the generic grid.** Replace the identical Travel Essentials grid at the bottom of all 68 articles with 2 to 3 offers that fit each page, placed in the relevant section. | Agreed 21 Nov ("step 3"). Scheduled to start 23 Nov. |
 | B29 | **GetYourGuide deep links.** 79 of 83 GetYourGuide links on articles go to the homepage (`getyourguide.com?...cmp=share_to_earn`), even next to specific activities. Point them at the city or activity page. | Part of B28. |
+| B31 | **Shinjuku Station guide (article + Pocket Guide).** Highest confusion and footfall on the Golden Route; target live by mid-January so the article can be indexed before cherry blossom season (late March). Started 22 Nov (owner's go-ahead, D45). Other new guides wait for pilot data (B8). | In progress. |
+| B32 | **Station Pocket Guides: add a Money and ATM tile** (Tokyo, Kyoto, Shin-Osaka and Umeda; the airports already have one) and a **"Which exit?"** lookup for the big stations (Tokyo, Umeda, Shinjuku). | From the 15 Nov review template. Official sources only. |
+| B33 | **Install wording: "Open it again the day before you fly."** iPhone can clear saved site data for guides not opened for a while. Add to the install sheet and the "Ready offline" note on all guides (w44 or w56). | Small. |
+| B34 | **Freshness tracking:** store each guide's "checked" date in `tools/pocket_guides.json` and list guides older than 90 days (for example in `make_inventory.py`). Optionally count "Tell us" corrections. | Small. |
 | B15 | `/pocket-guides` index page. The hub's "See all N pocket guides" button needs it before it can appear. | Build before adding more guides. |
 | B16 | Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`, currently `True` in the Narita and Haneda generators; recommended `False`). | Owner's yes, then re-run the chain. |
 | B17 | Kansai "I'm connecting" sheet. | Needs Kansai Airport's own connection pages first. |

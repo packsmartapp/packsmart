@@ -103,6 +103,7 @@ Card for `public/blog.html` (`&amp;` and `&mdash;` as entities):
 - Car rental: DiscoverCars (campaign 117, promo 3873) where it serves the country, EconomyBookings (campaign 10, promo 4480) where it does not. One per page. Always `powered_by=false`.
 - eSIM: Airalo plan tiles (`esim-<country>-<size>`). Yesim only as the promo link `yesim.tpx.li/Bc6pLC09` (20% first order, ends 28 Feb 2027; remove the copy after).
 - SafetyWing widget on destination articles; "travel medical insurance" wording, price per day, no "best" or "recommended". Never write "no hidden fees" or "free cancellation" as our own promise.
+- **New partner links go through Travelpayouts** (pays by PayPal). Klook's direct account (`aid=116473`) still tracks clicks but has no payout set up, and Trip.com's direct programme pays only by bank transfer: add no new links through either (D46).
 - Other IDs: GetYourGuide `D7IXONS`, SafetyWing ref `26492686`, 12Go agent `15357692`, Trip.com widget `S14633845` (index and flights only).
 - **No self-referral** (Ari's own purchases). **No new partner applications, outreach, or contact with SafetyWing without Ari's go-ahead.** Never store payout email, phone or address.
 
@@ -119,7 +120,7 @@ Card for `public/blog.html` (`&amp;` and `&mdash;` as entities):
 ## Tried and rejected (do not re-propose without asking)
 - Newsletter and sign-up boxes: removed site-wide 10 Nov 2026 (some forms were broken or fake). Any return of email capture is Ari's call.
 - Localrent widget: retired (not in USA or Canada, unreliable). Yesim old program: broken, redirected to Airalo.
-- Klook city deep links (`klook.com/en-US/city/...`): redirect to the homepage. Klook's own `aid=116473`: deactivated. Old `affiliate.klook.com/redirect` format: deprecated.
+- Klook city deep links (`klook.com/en-US/city/...`): redirect to the homepage. Klook's own `aid=116473`: no payout set up (see D46). Old `affiliate.klook.com/redirect` format: deprecated.
 - All FIFA 2026 content: removed with 301s. Long-weekends-2027 article: cancelled. Japan kids section, Reddit re-enable, site redesign, Pinterest: skipped or parked.
 - WhatsApp icon in the Pocket Guide header: replaced by the labelled bottom-right pill. "Open it, then add to home screen" wording: wrong on iPhone.
 - Hand-editing generated pages: lost on the next regeneration.
