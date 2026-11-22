@@ -649,9 +649,19 @@ def prepare_hero():
                            check=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
             note = "haneda-airport-hero-1600.jpg (optimised from your photo)"
         except Exception:
-            if src.lower().endswith(".jpg"):
-                return "/images/" + os.path.basename(src), "using the original photo (could not optimise it here)"
-            return None, None
+            # no sips (Linux): resize with Pillow, else keep an existing optimised copy (T14)
+            try:
+                from PIL import Image
+                _im = Image.open(src).convert("RGB")
+                _im.thumbnail((1600, 1600))
+                if not os.path.isfile(dst):  # keep an existing optimised copy as is
+                    _im.save(dst, "JPEG", quality=72, optimize=True, progressive=True)
+                    note = os.path.basename(dst) + " (optimised from your photo)"
+            except Exception:
+                if not os.path.isfile(dst):
+                    if src.lower().endswith(".jpg"):
+                        return "/images/" + os.path.basename(src), "using the original photo (could not optimise it here)"
+                    return None, None
     return "/images/haneda-airport-hero-1600.jpg", note
 
 HERO_URL, HERO_NOTE = prepare_hero()

@@ -31,19 +31,22 @@ G = {
     "osaka": ("Shin-Osaka and Umeda", "\U0001F689", "Shin-Osaka and Osaka/Umeda, platforms, lockers", "stn"),
     "kyoto": ("Kyoto Station", "\U0001F689", "Central and Hachijo sides, platforms, buses, lockers", "stn"),
     "tokyo": ("Tokyo Station", "\U0001F689", "Marunouchi and Yaesu sides, Shinkansen platforms, lockers", "stn"),
+    "shinjuku": ("Shinjuku Station", "\U0001F689", "West and East sides, Narita Express, airport buses, lockers", "stn"),
 }
-ORDER = ["haneda", "narita", "kix", "tokyo", "kyoto", "osaka"]
+ORDER = ["haneda", "narita", "kix", "tokyo", "shinjuku", "kyoto", "osaka"]
 NEXT = {
-    "narita": ["tokyo"], "haneda": ["tokyo"], "kix": ["osaka", "kyoto"],
+    "narita": ["tokyo", "shinjuku"], "haneda": ["tokyo", "shinjuku"], "kix": ["osaka", "kyoto"],
     "tokyo": ["kyoto", "osaka"], "kyoto": ["osaka", "kix"], "osaka": ["kyoto", "kix"],
+    "shinjuku": ["narita", "haneda"],
 }
 HEAD = {
-    "narita": ("Heading into Tokyo?", "Your next pocket guide."),
-    "haneda": ("Heading into Tokyo?", "Your next pocket guide."),
+    "narita": ("Heading into Tokyo?", "Your next pocket guides."),
+    "haneda": ("Heading into Tokyo?", "Your next pocket guides."),
     "kix": ("Heading into the city?", "Your next pocket guides."),
     "tokyo": ("Heading on by Shinkansen?", "Your next pocket guides."),
     "kyoto": ("Heading on?", "Your next pocket guides."),
     "osaka": ("Heading on?", "Your next pocket guides."),
+    "shinjuku": ("Flying out?", "Your airport pocket guides."),
 }
 SAVE_LINE = " Open it while you have signal, then add it to your home screen."
 

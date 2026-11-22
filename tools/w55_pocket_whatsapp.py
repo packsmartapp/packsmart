@@ -16,7 +16,7 @@ import pathlib, re, sys
 from urllib.parse import quote
 
 PUB = pathlib.Path(__file__).resolve().parent.parent / "public"
-PAGES = ["narita", "haneda", "kix", "kyoto", "osaka", "tokyo"]
+PAGES = ["narita", "haneda", "kix", "kyoto", "osaka", "tokyo", "shinjuku"]
 
 ICON = ('<svg viewBox="0 0 24 24" width="28" height="28" aria-hidden="true" focusable="false">'
         '<path d="M12 2.6a9.4 9.4 0 0 0-8 14.3L2.8 21.4l4.6-1.2A9.4 9.4 0 1 0 12 2.6z" fill="none" stroke="#fff" stroke-width="1.7" stroke-linejoin="round"/>'

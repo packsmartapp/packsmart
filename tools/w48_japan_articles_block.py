@@ -73,9 +73,9 @@ ARTICLES = {
                            "Arriving in Osaka? Get the airport and station guides on your phone.", SUB,
                            "before", '<h2 id="areas">'),
     # airport and station guides: card right after the "on one page" box and its QR code; the page's own guide is left out; the next stops lead
-    "narita-airport-guide": ("narita-airport", ["tokyo"], "Heading into Tokyo? Get the next guides on your phone.", SUB_NEXT,
+    "narita-airport-guide": ("narita-airport", ["tokyo", "shinjuku"], "Heading into Tokyo? Get the next guides on your phone.", SUB_NEXT,
                              "before", '<h2 id="terminals">', ["narita"]),
-    "haneda-airport-guide": ("haneda-airport", ["tokyo"], "Heading into Tokyo? Get the next guides on your phone.", SUB_NEXT,
+    "haneda-airport-guide": ("haneda-airport", ["tokyo", "shinjuku"], "Heading into Tokyo? Get the next guides on your phone.", SUB_NEXT,
                              "before", '<h2 id="terminals">', ["haneda"]),
     "kansai-airport-guide": ("kansai-airport", ["osaka", "kyoto"], "Heading into the city? Get the next guides on your phone.", SUB_NEXT,
                              "before", '<h2 id="terminals">', ["kix"]),
@@ -85,6 +85,8 @@ ARTICLES = {
                             "before", '<h2 id="which-side">', ["kyoto"]),
     "osaka-station-guide": ("osaka-station", ["kyoto", "kix"], "Heading on? Get the next guides on your phone.", SUB_NEXT,
                             "before", '<h2 id="which-station">', ["osaka"]),
+    "shinjuku-station-guide": ("shinjuku-station", ["narita", "haneda"], "Flying out or heading on? Get the next guides on your phone.", SUB_NEXT,
+                               "before", '<h2 id="which-side">', ["shinjuku"]),
 }
 
 CSS = """<style id="pga-css">

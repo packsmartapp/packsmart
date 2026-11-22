@@ -75,6 +75,8 @@ PAGES = {
                                 title="Heading on? Get the next guides on your phone."),
     "osaka-station-guide": dict(tag="osaka-station", pre=["Kyoto"], exclude=["osaka"],
                                 title="Heading on? Get the next guides on your phone."),
+    "shinjuku-station-guide": dict(tag="shinjuku-station", pre=["Kyoto"], exclude=["shinjuku"],
+                                   title="Heading on? Get the next guides on your phone."),
 }
 
 CSS = """<style id="pga-css">

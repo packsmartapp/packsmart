@@ -5,7 +5,7 @@ pocket guide is, a 3-step "how to save it", and an iPhone-style home screen show
 Replaces the w46 block. Reads tools/pocket_guides.json (optional "short" per guide; default is the first word of the name).
 
 Run from the repo root, after w46:  python3 tools/w47_hub_phone.py
-Idempotent (marker pocket-hub-v3). The section keeps the old pocket-hub-v2 marker too, so re-running w46 will not bring the old block back.
+Idempotent: rebuilds the block from the registry and writes only if it changed (22 Nov 2026: was marker-only). The section keeps the old pocket-hub-v2 marker too, so re-running w46 will not bring the old block back.
 The phone has one "home screen page" per country (switch with the country buttons or the dots), each showing at most PAGE_MAX icons.
 A "See all N pocket guides" button (-> ALL_URL, create that page FIRST) appears if any country has more than PAGE_MAX guides or there are more than MAX_COUNTRIES countries.
 With one country it looks exactly like the single-country version (a "Japan . 6 guides" label, no buttons).
@@ -155,14 +155,15 @@ def build_section():
 
 
 hub = open(HUB, encoding="utf-8").read()
-if MARK in hub:
-    print("nothing to do (already applied)")
-    sys.exit(0)
+# v3 already applied: rebuild from the registry anyway (a new guide must appear); write only if something changed
 if 'id="pocket-hub"' not in hub or 'id="pocket-hub-css"' not in hub:
     die("hub block not found; run w45 and w46 first")
 h2, n1 = re.subn(r'<style id="pocket-hub-css">.*?</style>\n', lambda m: CSS, hub, count=1, flags=re.S)
 h2, n2 = re.subn(r'<section class="pocket-hub" id="pocket-hub".*?</section>', lambda m: build_section(), h2, count=1, flags=re.S)
 if n1 != 1 or n2 != 1:
     die("could not replace the hub block cleanly")
+if h2 == hub:
+    print("nothing to do (already up to date)")
+    sys.exit(0)
 open(HUB, "w", encoding="utf-8").write(h2)
-print("changed:\n  - public/travel-essentials.html (pocket guides block v3)")
+print("changed:\n  - public/travel-essentials.html (pocket guides block v3, rebuilt from the registry)")

@@ -50,6 +50,15 @@
       "stop": "Tokyo"
     },
     {
+      "key": "shinjuku",
+      "name": "Shinjuku Station",
+      "country": "Japan",
+      "type": "Station",
+      "icon": "shinjuku-icon-192.png",
+      "blurb": "West and East sides, Narita Express, airport buses, lockers",
+      "stop": "Tokyo"
+    },
+    {
       "key": "kyoto",
       "name": "Kyoto Station",
       "country": "Japan",
@@ -65,7 +74,8 @@
       "type": "Station",
       "icon": "osaka-icon-192.png",
       "blurb": "Shin-Osaka and Osaka/Umeda, platforms, lockers",
-      "stop": "Osaka"
+      "stop": "Osaka",
+      "short": "Osaka"
     }
   ],
   "stop_order": {
