@@ -187,6 +187,16 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Instead of: splitting it into two guides (twice the pages and facts to keep current).
 - Why: a reviewer pointed out that "Osaka Station" means JR Osaka at Umeda, while several screens were about Shin-Osaka, which could send a traveller to the wrong station.
 
+**D43. No paid plan: everything on PackSmart is free** (22 Nov)
+- Chose: remove the Pro and Travel Agent plans, the Lifetime and trial mentions and the plan limits from every page; the planner, guides and Pocket Guides stay open to all.
+- Instead of: keeping the parked pricing page (D41), whose limits and payment claims contradicted the Terms, Privacy Policy and homepage.
+- Later, owner's call: an email list for premium travel offers (trips above about ¥50,000). Not built yet; it reverses D12 only when the owner says so.
+
+**D44. Japan is the focus; neutral pages stay free of India framing** (22 Nov)
+- Chose: Japan leads (Pocket Guides, Japan articles); Indian-passport detail lives only in the India-segment guides such as `japan-travel-packing-guide-from-india`, not as boxes on neutral pages.
+- Instead of: the 19 Nov reviewer's idea of Indian airport guides, and an "Indian passport holders" box on every Japan guide.
+- Why: large and growing Japan demand, including from India in cherry blossom season; neutral pages follow D21.
+
 ## Open decisions (not made)
 
 - Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.
