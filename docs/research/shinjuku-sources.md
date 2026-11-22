@@ -95,3 +95,8 @@ Walking times stated on the map:
 - Shinjuku-specific same-day luggage delivery from JR (only the Busta tourist center's "delivery of parcels" is verified)
 - Toei station pages (blocked); Toei codes used only as shown on Tokyo Metro's map (E01)
 - Keiō station facilities beyond the official Keiō map PDF
+
+## Photos (PAKUTASO, free licence; credit line "Photo: PAKUTASO", as on the other Japan guides)
+- Hero: "JR新宿駅南口の駅前広場と周辺商業施設の都市風景" (JR Shinjuku Station South exit), https://www.pakutaso.com/20160517149jr-6.html, saved as `public/images/shinjuku-station-hero.jpg`. People are small and distant (not identifiable). Taken 2016: illustrative, not current.
+- Card: "新宿大ガードと上を走る緑色の電車" (Shinjuku Ōgādo bridge with a Yamanote train), https://www.pakutaso.com/20260701211post-58057.html, saved as `public/images/shinjuku-station-card-680.webp`. No people.
+- Rejected: South exit street photo (identifiable pedestrians close to camera).
