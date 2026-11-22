@@ -42,7 +42,7 @@ Status as of 21 Nov 2026. Source of truth for what the site does today and what 
 | F16 | SEO and indexing | Built, indexing work in progress |
 | F17 | Web stories | Built |
 | F18 | Content freshness process | In progress |
-| F19 | Pricing page and paid plans | Page built, plans not built; parked |
+| F19 | Pricing page and paid plans | Removed 22 Nov (D43) |
 | F20 | More Pocket Guides (Japan extras, other countries) | Planned |
 | F21 | Email capture | Planned, owner decision |
 
@@ -70,7 +70,7 @@ Status as of 21 Nov 2026. Source of truth for what the site does today and what 
 - A destination is required; otherwise a clear error shows and nothing is sent.
 - The result renders without a page reload and survives a refresh (stored in the browser as `ps_plan`).
 - If the API key is missing or the call fails, the user sees an error, not a blank page.
-**Parked (owner, 21 Nov):** the "3 plans per month" limit on the pricing page is not enforced anywhere in the repo that I found (there are no accounts). No action for now.
+**Resolved 22 Nov:** there is no plan limit; the pricing page is gone (D43).
 
 ### F5 Shareable plan link (Built, limited)
 **Flow:** result → share → `POST /api/share-plan` returns an ID → `/share?id=...` shows the plan. `/share` is `noindex`.
@@ -161,8 +161,8 @@ Five stories (Vietnam, Thailand, Sri Lanka, Malaysia, Bali) in `public/web-stori
 **Criteria:** a page's "Last updated" changes only after its volatile facts (visa, fees, passes, transit) are checked against an official source. Refresh order is by Search Console impressions.
 **Dated follow-ups:** Malaysia visa-free rule (31 Dec 2026), South Korea K-ETA exemption (31 Dec 2026), UK ETA and visa fee, Sri Lanka ETA list, Thailand 30-day rule (all January), Yesim promo (28 Feb 2027), Radical Storage rate (early December).
 
-### F19 Pricing page and paid plans (page built, plans not built)
-`/pricing` lists Free, Pro and Travel Agent plans (unlimited plans, PDF export, offline access, white label, client CRM and so on). The repo has no accounts, checkout or entitlement code, and the site's stance is no sign-up. **Parked (owner, 21 Nov):** no work on the plans, the page copy or the plan limit for now. Revisit if paid plans are ever back on the table.
+### F19 Pricing page and paid plans (Removed 22 Nov)
+PackSmart is free: no paid plans, accounts or payments (D43). `/pricing` was deleted and 301s to the homepage; the footer Pricing link and the "Try PackSmart Pro" prompts were removed from every page; Terms, Privacy, Contact and About were rewritten to match. A future email list for premium offers is the owner's call (D43).
 
 ### F20 More Pocket Guides (Planned)
 Candidates: other Japan stops; airports outside Japan (Heathrow, Mumbai, Dubai, Frankfurt and others). **Criteria for any new guide:** an entry in `tools/pocket_guides.json`; facts from that operator's own pages; the same analytics event names; re-run the hub and picker scripts. **Owner decision:** no new airport, partner application or outreach without the owner's go-ahead.

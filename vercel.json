@@ -4,6 +4,16 @@
   "trailingSlash": false,
   "redirects": [
     {
+      "source": "/pricing",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/pricing.html",
+      "destination": "/",
+      "permanent": true
+    },
+    {
       "source": "/",
       "has": [
         {

@@ -178,7 +178,7 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Chose: one short brief that loads every session, plus these two docs. Dated work notes stay in the Claude Project.
 - Why: the old `CLAUDE.md` was a stale 323-line template.
 
-**D41. Park the pricing page and plan limit** (21 Nov)
+**D41. Park the pricing page and plan limit** (21 Nov) — **Superseded by D43**
 - Chose: no work now on the paid plans, the pricing copy or the free plan limit.
 - Why: the owner's call ("we are not doing now"); neither is part of the current Japan and affiliate focus.
 
@@ -204,6 +204,5 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Whether to keep the Terminals tab (watch the `pg_tab` count for it).
 - Wider airport list ("Wave 1") and any airport outside Japan.
 - Whether Tripadvisor is still a partner.
-- Pricing page and the free plan limit: parked, see D41.
 - Email capture: whether and how it returns.
 - Whether to add a native-speaker check for the Japanese phrases before promoting the guides.

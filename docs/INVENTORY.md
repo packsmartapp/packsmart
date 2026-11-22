@@ -1,6 +1,6 @@
 # PackSmart: file inventory
 
-Generated 21 Nov 2026 by `tools/make_inventory.py` (re-run it after adding scripts, pages or docs).
+Generated 22 Nov 2026 by `tools/make_inventory.py` (re-run it after adding scripts, pages or docs).
 Every file below is already saved in git (`packsmartapp/packsmart`, branch `main`); `git clone` is the full backup.
 This page says what exists and where. It does not repeat file contents, because git always has the latest version.
 
@@ -99,12 +99,13 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w54_airport_review_fixes.py` | w54: fixes from the 20 Nov 2026 reviewer feedback on the airport guides. |
 | `w55_pocket_whatsapp.py` | w55: a WhatsApp share button, always visible at the bottom right of every Pocket Guide. |
 | `w56_pocket_review_fixes.py` | w56: fixes from the reviewer's Pocket Guide feedback (21 Nov 2026). |
+| `w57_osaka_guide_rename.py` | w57: rename the "Osaka Station" Pocket Guide to "Shin-Osaka and Umeda" on pages that earlier scripts |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `pocket_guides.json` | data file read by the scripts above |
 
 ## public/ pages
 
-**Top-level pages (13):** `about.html`, `affiliate-disclosure.html`, `blog.html`, `book.html`, `contact.html`, `flights.html`, `gyg-preview.html`, `index.html`, `pricing.html`, `privacy-policy.html`, `share.html`, `terms.html`, `travel-essentials.html`
+**Top-level pages (12):** `about.html`, `affiliate-disclosure.html`, `blog.html`, `book.html`, `contact.html`, `flights.html`, `gyg-preview.html`, `index.html`, `privacy-policy.html`, `share.html`, `terms.html`, `travel-essentials.html`
 
 **Pocket Guides (6):** `haneda-pocket.html`, `kix-pocket.html`, `kyoto-pocket.html`, `narita-pocket.html`, `osaka-pocket.html`, `tokyo-pocket.html`
 Each also has `<key>-sw.js` (service worker) and `<key>-pocket.webmanifest`.

@@ -1,6 +1,6 @@
 # PackSmart: backlog
 
-Status as of 22 Nov 2026. Known bugs, open questions, tech debt and next features, highest priority first. "Owner" means it needs Ari (a decision, a real device, an account or a photo). Parked by the owner: the pricing page, its copy and the free plan limit (see `DECISIONS.md` D41).
+Status as of 22 Nov 2026. Known bugs, open questions, tech debt and next features, highest priority first. "Owner" means it needs Ari (a decision, a real device, an account or a photo). Paid plans were removed on 22 Nov (`DECISIONS.md` D43).
 
 The repo is public, so earnings, partner conversations and outreach are tracked privately, not here.
 
@@ -19,7 +19,7 @@ The repo is public, so earnings, partner conversations and outreach are tracked 
 | # | Item | Notes |
 |---|---|---|
 | B6 | GA4: mark key events (`pg_call`, `pg_partner`, `pg_first_app_open`, `pg_installed`, `pg_install_claimed`); optionally register `via`; confirm `pg_share`, `pg_connect` and `src=wa` opens look sane. | Owner in GA4. |
-| B7 | Privacy policy: one sentence on the Pocket Guide's anonymous counting and the off switch. | Claude can draft; owner approves. |
+| B7 | Privacy policy: one sentence on the Pocket Guide's anonymous counting and the off switch. | Done 22 Nov (with the paid-plan removal). |
 | B8 | **Pilot review around 3 Dec:** GA4 Placement against Travelpayouts clicks per Sub ID (including `klook-browse-*`), car-block position (USA mid-article vs others), Airalo test (Germany vs France), real DiscoverCars payouts, Radical Storage rate (15% ends 30 Nov). | GA4 groups all car widgets as `Car_Rental_Widget`; use Travelpayouts for the provider split. |
 | B9 | Volatile-fact fixes: Malaysia visa-free rule (ends 31 Dec 2026) and its budget total (may include the old eVisa fee); Thailand itinerary USD prices at about 33.5 baht per US$; Singapore visa fee against the official ICA page; international-travel-checklist wording on Singapore; visa-free page rows beyond the five re-checked; line-by-line check of the 41 re-dated pages. | Source: `GEMINI_REVIEW_FIXES_15NOV2026.md` in the Project. |
 | B30 | **Leftovers from the 15 Nov LLM review (not yet verified or fixed).** Maldives visa stay (30 vs 90 days on the same page); Sri Lanka ETA fee ($35 vs $50 on the same page, and whether Indians now get a free ETA); Nepal rule on Indian ₹500 notes; Kansai last-train times (the guide says "we did not confirm"); Vietnam FAQ ($25 single/multiple entry); Spain Mallorca driving side; Greece passport-validity and ETIAS wording; itinerary "under $X" headlines below their own table totals (Italy, Spain, Bali, Vietnam); Mexico Day 1 timing (Tulum at 8 am after an early flight); Vietnam Day 4/5 arrival repeated; travel-insurance pre-existing-condition wording. | Fixed 22 Nov: summer destinations (Iceland, Scotland, Bali visa), Nepal (Aadhaar, INR peg and budget table), Switzerland (Matterhorn, Douro, ETIAS URL), Sri Lanka malaria, Spain "Gracias", toiletries aerosol limits, eSIM "80%", solo "70%", Hyperdia (2 Japan guides), MeinFernbus. Needs official sites the sandbox cannot reach, or the owner. |
@@ -47,7 +47,7 @@ The repo is public, so earnings, partner conversations and outreach are tracked 
 | B22 | Wave 1 airport list and any airport outside Japan; backlink outreach (not started). | **No work without the owner's go-ahead.** |
 | B23 | Add NINJA WiFi as a second Wi-Fi provider when approved. | Waiting on approval. |
 | B24 | Permanent shared-plan links (needs a store such as Vercel KV). | Only if people use sharing. |
-| B25 | Email capture, country-scoped. | Owner decision (PRD F21). |
+| B25 | Email capture, country-scoped. Owner's plan (22 Nov): a list for premium travel offers, trips above about ¥50,000. Needs a provider, a consent line and a Privacy Policy section before it goes live. | Owner decision (PRD F21, D43). Later. |
 
 ## P3: tech debt
 
@@ -64,6 +64,7 @@ The repo is public, so earnings, partner conversations and outreach are tracked 
 | T9 | Dated clean-ups: Yesim promo copy after 28 Feb 2027; Klook footnotes after 1 Jan 2027; Klook 12% boost ends 31 Dec 2026; Klook thumbnail approval pending. | |
 | T10 | Vercel Web Analytics returns nothing, so traffic comes from GA4, Search Console and Travelpayouts. | Enable or ignore. |
 | T11 | Docs upkeep: `PRD.md`, `DECISIONS.md`, `BACKLOG.md` and `INVENTORY.md` do not update themselves. | Done 22 Nov: rule added to `CLAUDE.md` ("Docs upkeep"). |
+| T15 | `tools/w24_mobile_safetywing_footer.py` reads `public/pricing.html`, which no longer exists. It was a one-off; do not re-run it. | Note added here; add a docstring line if the script is touched. |
 | T13 | **Compiled Python files are deployed.** `public/images/__pycache__/*.pyc` (w22, w23, w25) are committed under `public/`, so the site serves them. | Delete them and add `__pycache__/` checks; `.gitignore` already lists it, the files predate that. |
 | T14 | **`tools/w31_haneda_airport_page.py` is behind the live Haneda article.** A full regeneration brings back `haneda-airport-hero.jpg` (live uses `haneda-airport-hero-1600.jpg` in og:image, twitter:image, the hero and the Pinterest link) and an older sitemap `lastmod`. | Fix the script before the next full chain run. |
 | T12 | `tools/w32_japan_sakura_block.py` had a syntax error (an unescaped apostrophe, introduced in commit 1047e5c) so it could not run. Fixed and pushed in c836d89 (21 Nov). The live pages already carried that text, so nothing changed on the site. | Done. |
