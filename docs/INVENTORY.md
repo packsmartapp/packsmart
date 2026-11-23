@@ -109,6 +109,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w64_safetywing_everywhere.py` | w64: the SafetyWing travel medical insurance block on every article, and a check that keeps it there (23 Nov 2026). |
 | `w65_no_partner_names_japan.py` | w65: no partner names in our own words on the Japan pages (D47, stage 2; 23 Nov 2026). |
 | `w66_no_partner_names_articles.py` | w66: no partner names in our own words on the other articles and top-level pages (D47, stage 3; 23 Nov 2026). |
+| `w67_disclosure_partners.py` | w67: keep the Affiliate Disclosure page and the About page's partner pills in step with the partners we link to |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `pocket_guides.json` | data file read by the scripts above |
 | `w62_photo_fixes.json` | data file read by the scripts above |
