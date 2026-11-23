@@ -184,10 +184,12 @@ TOC = [
     ("shinkansen", "Shin-Osaka: the bullet train station"),
     ("between", "Getting between Shin-Osaka and Umeda"),
     ("umeda", "Osaka and Umeda: the station maze"),
+    ("exits", "Which exit for where?"),
     ("ic-card", "A train card (ICOCA)"),
+    ("money", "Money and ATMs"),
     ("connected", "Getting online: eSIM and Wi-Fi"),
     ("luggage", "Lockers and luggage delivery"),
-    ("finder", "Find it fast: lockers, toilets, tourist information"),
+    ("finder", "Find it fast: ATMs, lockers, toilets, information"),
     ("facilities", "Facilities at both stations"),
     ("help", "Help for older travellers and anyone who needs assistance"),
     ("leaving", "Leaving Osaka by train"),
@@ -196,8 +198,8 @@ TOC = [
 ]
 # ---- v71: "What do you need first?" tiles + a quick-jump bar that appears once you scroll
 TOC_SHORT = {
-    "one-page": "On one page", "which-station": "Which station", "shinkansen": "Bullet trains", "between": "To Umeda", "umeda": "Umeda maze",
-    "ic-card": "Train card", "connected": "Get online", "luggage": "Luggage", "finder": "Find it fast",
+    "one-page": "On one page", "which-station": "Which station", "shinkansen": "Bullet trains", "between": "To Umeda", "umeda": "Umeda maze", "exits": "Which exit",
+    "ic-card": "Train card", "money": "Money", "connected": "Get online", "luggage": "Luggage", "finder": "Find it fast",
     "facilities": "Facilities", "help": "Help", "leaving": "Leaving", "faq": "FAQ", "about-this-guide": "About",
 }
 TOC_TILES = [
@@ -205,8 +207,10 @@ TOC_TILES = [
     ("shinkansen", "&#128645;", "Bullet trains", "Platforms 20 to 27"),
     ("between", "&#128647;", "Shin-Osaka to Umeda", "Train or subway"),
     ("umeda", "&#129517;", "Umeda station maze", "Exits and gates"),
+    ("exits", "&#128682;", "Which exit?", "Grand Front, Hankyu, buses"),
     ("luggage", "&#129523;", "Luggage and lockers", "Hands-free"),
     ("ic-card", "&#128179;", "Train card", "ICOCA"),
+    ("money", "&#128180;", "Money and ATMs", "Yen, cards, exchange"),
     ("help", "&#129309;", "Help and assistance", "For older travellers"),
 ]
 TOC_CSS = """<style>
@@ -395,6 +399,9 @@ _NONE = "We did not find this on the official station pages. Please ask station 
 FINDER_DATA = {
     "terms": [["T1", "Shin-Osaka"], ["T2", "Osaka/Umeda"]],
     "items": [
+        ["money", "Money and ATMs", {
+            "T1": "Seven Bank ATMs: 3F, on the concourse outside the Shinkansen South gate (5:00 to 23:45); inside the Shinkansen Central and Transfer gates (5:40 to 23:50); arde Shin-Osaka, 2F (5:00 to 24:00); and in the Midosuji subway station near North entrance No. 2 (5:00 to 23:00). Seven Bank says its ATMs take many cards issued outside Japan, but some may not work. We did not find a currency exchange counter at Shin-Osaka on the official pages we read.",
+            "T2": "Seven Bank ATMs: one inside JR Osaka Station (4:30 to 25:30, that is 1:30 am; ask at Tourist Information OSAKA, in front of the Central Gate, for the exact spot), Eki Marché Osaka beside the ticket gate (6:30 to 23:30) and the North Gate Building, 11F (7:00 to 23:00). Seven Bank says its ATMs take many cards issued outside Japan, but some may not work. Hotel Granvia Osaka, on the right after the Central Gate, lists a currency exchange machine."}],
         ["toilet", "Toilets", {
             "T1": "JR West's station map marks toilets on the Shinkansen concourse, next to the waiting room and the coin lockers. Follow the toilet signs, or ask station staff.",
             "T2": "JR West's Osaka Station map marks toilets, including wheelchair-accessible toilets. Follow the signs, or ask at Tourist Information OSAKA in front of the Central Gate."}],
@@ -424,7 +431,7 @@ FINDER_DATA = {
             "T2": "Tell station staff, or go to Tourist Information OSAKA in front of the Central Gate. In an emergency, call 119."}],
     ],
 }
-_ORDER = ["toilet", "lockers", "info", "tickets", "help", "baby", "wifi", "food", "unwell"]
+_ORDER = ["money", "toilet", "lockers", "info", "tickets", "help", "baby", "wifi", "food", "unwell"]
 assert sorted(_ORDER) == sorted(i[0] for i in FINDER_DATA["items"])
 FINDER_DATA["items"].sort(key=lambda i: _ORDER.index(i[0]))
 FINDER = """<section class="ps-finder" id="finder">
@@ -528,6 +535,7 @@ ABOUT = """<div class="ps-about" id="about-this-guide">
 <p>Written by PackSmart. Station details were checked against JR West and JR Central pages, Osaka Metro, the Japan National Tourism Organization (JNTO) and the Osaka tourism board on 19 November 2026. We give fares only where we read them on an official page, so some fares are left out and point to the operator's own fare tool. Spotted something out of date? <a href="/contact">Tell us</a> and we will fix it.</p>
 <ul>
 <li><strong>19 Nov 2026:</strong> first version, with the which-station chooser, the diagram, Shin-Osaka platforms, getting between the stations, the Umeda station maze, the train card, lockers and luggage delivery, the find-it tool and help.</li>
+<li><strong>23 Nov 2026:</strong> added which exit for where, and money and ATMs (sources checked 23 November 2026), with matching buttons in the Pocket Guide.</li>
 </ul>
 </div>"""
 def _card(title, text, slug, tag):
@@ -588,6 +596,52 @@ CARD = """<div class="ps-card" id="one-page">
 QR_SCREEN = '<svg shape-rendering="crispEdges" viewBox="0 0 41 41" class="segno"><title>QR code: open the Shin-Osaka and Umeda Pocket Guide</title><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#000" d="M4 4.5h7m1 0h4m1 0h4m1 0h1m4 0h1m2 0h7m-33 1h1m5 0h1m2 0h6m1 0h1m1 0h4m2 0h1m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h3m2 0h1m2 0h2m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m3 0h1m3 0h2m4 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m1 0h1m3 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h2m1 0h2m2 0h1m2 0h1m1 0h1m3 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h4m2 0h1m2 0h5m-22 1h1m3 0h1m1 0h4m1 0h1m3 0h1m1 0h1m3 0h2m2 0h5m2 0h1m-33 1h3m1 0h2m4 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h1m1 0h1m3 0h3m-32 1h5m1 0h2m1 0h7m2 0h1m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m-31 1h1m2 0h1m2 0h2m2 0h1m1 0h1m1 0h1m3 0h1m1 0h1m2 0h3m4 0h2m-33 1h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1m1 0h3m2 0h1m1 0h2m1 0h1m-30 1h1m1 0h2m1 0h3m1 0h2m1 0h1m3 0h3m1 0h2m1 0h1m1 0h1m2 0h1m-27 1h3m5 0h4m1 0h1m2 0h1m1 0h5m4 0h1m-31 1h1m2 0h1m2 0h1m2 0h1m3 0h4m3 0h1m3 0h5m-30 1h1m3 0h1m1 0h3m2 0h4m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-30 1h4m2 0h2m1 0h1m3 0h2m6 0h2m4 0h3m-32 1h3m3 0h1m3 0h3m1 0h2m1 0h1m2 0h6m1 0h1m1 0h1m1 0h1m-27 1h1m3 0h1m7 0h2m2 0h1m2 0h2m1 0h1m3 0h1m-32 1h4m2 0h2m1 0h2m1 0h4m2 0h5m3 0h1m1 0h2m1 0h2m-33 1h3m4 0h2m4 0h2m1 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m-30 1h5m2 0h2m2 0h2m1 0h2m1 0h1m2 0h4m5 0h1m-28 1h2m1 0h1m3 0h1m1 0h2m2 0h1m1 0h3m2 0h3m-27 1h5m1 0h1m3 0h2m2 0h2m1 0h2m1 0h10m1 0h2m-25 1h3m1 0h1m2 0h4m3 0h3m3 0h1m1 0h2m-32 1h7m1 0h8m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m-32 1h1m5 0h1m2 0h1m6 0h1m3 0h3m1 0h1m3 0h1m2 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m3 0h3m1 0h1m3 0h1m3 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m3 0h1m3 0h1m2 0h4m2 0h1m2 0h3m1 0h1m-31 1h1m1 0h3m1 0h1m2 0h2m1 0h1m2 0h1m2 0h1m3 0h1m2 0h5m-30 1h1m5 0h1m2 0h3m1 0h5m3 0h1m2 0h2m-26 1h7m1 0h2m2 0h1m4 0h1m1 0h4m1 0h3m5 0h1"/></svg>'
 QR_PRINT = '<svg shape-rendering="crispEdges" viewBox="0 0 41 41" class="segno"><title>QR code: open the Shin-Osaka and Umeda Pocket Guide</title><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#000" d="M4 4.5h7m5 0h1m1 0h2m2 0h2m2 0h2m2 0h7m-33 1h1m5 0h1m2 0h2m4 0h1m1 0h1m4 0h2m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h4m1 0h2m1 0h1m2 0h1m2 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m6 0h1m3 0h1m1 0h1m3 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m5 0h1m3 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h1m1 0h2m8 0h2m4 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h1m4 0h1m2 0h5m-22 1h1m2 0h1m1 0h2m1 0h4m1 0h4m2 0h3m1 0h1m1 0h1m1 0h1m-27 1h1m2 0h2m1 0h1m1 0h1m1 0h2m1 0h1m3 0h1m1 0h1m3 0h4m3 0h2m-33 1h2m1 0h1m1 0h2m1 0h3m1 0h1m3 0h2m1 0h2m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m-33 1h1m1 0h1m4 0h1m2 0h1m3 0h4m2 0h5m3 0h2m-30 1h5m1 0h1m1 0h3m4 0h1m4 0h2m1 0h1m1 0h2m2 0h1m-30 1h3m2 0h1m1 0h1m1 0h2m4 0h3m3 0h2m1 0h1m1 0h1m1 0h2m1 0h2m-32 1h1m1 0h1m2 0h1m1 0h2m1 0h3m3 0h2m2 0h3m1 0h3m2 0h2m-32 1h2m5 0h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m3 0h2m1 0h1m1 0h1m-32 1h2m1 0h1m2 0h1m1 0h1m3 0h1m4 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-29 1h1m5 0h3m2 0h1m1 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h1m1 0h1m-31 1h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m3 0h1m2 0h2m2 0h2m3 0h3m-33 1h4m3 0h6m4 0h2m2 0h1m2 0h2m1 0h1m3 0h1m-32 1h1m1 0h6m1 0h3m1 0h1m1 0h4m2 0h1m1 0h1m1 0h1m-25 1h5m1 0h1m2 0h10m4 0h1m1 0h1m3 0h3m-33 1h4m2 0h3m2 0h1m3 0h1m2 0h4m4 0h5m1 0h1m-32 1h1m2 0h1m2 0h2m1 0h2m2 0h1m1 0h1m2 0h1m1 0h4m3 0h2m1 0h1m-32 1h1m1 0h1m1 0h1m1 0h5m1 0h1m1 0h5m1 0h2m1 0h7m2 0h1m-25 1h2m2 0h3m4 0h3m2 0h1m3 0h2m2 0h1m-33 1h7m2 0h1m1 0h1m1 0h1m6 0h1m1 0h1m1 0h1m1 0h1m1 0h4m-32 1h1m5 0h1m1 0h4m7 0h4m1 0h1m3 0h1m3 0h1m-33 1h1m1 0h3m1 0h1m2 0h2m2 0h2m1 0h1m3 0h3m1 0h6m1 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m3 0h4m1 0h1m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m3 0h2m2 0h1m2 0h6m2 0h1m1 0h1m1 0h1m-33 1h1m5 0h1m3 0h4m1 0h3m1 0h1m1 0h1m2 0h2m-26 1h7m1 0h1m2 0h1m1 0h2m1 0h1m4 0h1m1 0h2m3 0h2m1 0h1"/></svg>'
 CARD = CARD.replace("__QR_SCREEN__", QR_SCREEN).replace("__QR_PRINT__", QR_PRINT)
+
+EXITS = """<h2 id="exits">Which exit for where?</h2>
+<p>Gate names are from JR West&rsquo;s station maps for Shin-Osaka (as of 1 October 2026) and Osaka (as of 14 January 2026). Walking times are given only where an official page states one.</p>
+<h3>Shin-Osaka</h3>
+<div class="ps-scroll">
+<table class="checklist-table">
+<thead><tr><th>Going to</th><th>Use</th><th>Good to know</th></tr></thead>
+<tbody>
+<tr><td><strong>Bullet trains (Shinkansen)</strong></td><td>Shinkansen gates, 3F</td><td>The Central Gate, the South Gate and the arde Shin-Osaka Gate, plus a Transfer Gate from the local lines.</td></tr>
+<tr><td><strong>Travel Service Center and Tourist Information SHIN-OSAKA</strong></td><td>3F concourse</td><td>Opposite the Shinkansen Central Exit (OSAKA-INFO).</td></tr>
+<tr><td><strong>Local JR lines</strong></td><td>Local-line gates</td><td>JR West&rsquo;s map names the East Gates, the North Gate (to the Shin-Osaka Hankyu Building) and the West Gate (towards arde Shin-Osaka).</td></tr>
+<tr><td><strong>Buses to Osaka (Itami) Airport, city buses and taxis</strong></td><td>1F</td><td>JR West&rsquo;s map marks the Itami Airport bus stop, the Shinki Bus (arrivals only), City Bus and Seni City bus stops, and taxis on 1F.</td></tr>
+<tr><td><strong>Midosuji subway line</strong></td><td>Follow the signs</td><td>The Osaka tourism board puts the subway on the 2nd floor level.</td></tr>
+</tbody>
+</table>
+</div>
+<h3>Osaka Station and Umeda</h3>
+<div class="ps-scroll">
+<table class="checklist-table">
+<thead><tr><th>Going to</th><th>Use</th><th>Good to know</th></tr></thead>
+<tbody>
+<tr><td><strong>Grand Front Osaka</strong></td><td>North Central Gate, 3F</td><td>Through Atrium Plaza, then follow the signs north. We did not find an official walking time.</td></tr>
+<tr><td><strong>Hankyu Osaka-Umeda Station</strong></td><td>Midosuji North Gate side</td><td>JR West&rsquo;s map also signs a way on 3F, through Carillon Plaza.</td></tr>
+<tr><td><strong>Airport bus stop</strong></td><td>Midosuji North Gate side</td><td>JR West&rsquo;s map points &ldquo;To the airport bus stop / Hankyu Osaka-Umeda Station&rdquo; from there.</td></tr>
+<tr><td><strong>HEP FIVE</strong></td><td>Midosuji Exit</td><td>About 4 minutes on foot to the east (OSAKA-INFO).</td></tr>
+<tr><td><strong>Umeda Sky Building</strong></td><td>Follow the signs</td><td>About 7 minutes on foot from JR Osaka Station (OSAKA-INFO). JR West&rsquo;s map does not name a gate for it.</td></tr>
+<tr><td><strong>Hanshin Osaka-Umeda, Kitashinchi (JR Tozai Line), and the Yotsubashi and Tanimachi subway lines</strong></td><td>South Central Gate or Sakurabashi Gate</td><td>Take the stairs down from the South Gate Plaza, or beside the Sakurabashi Gate. The Crost shops (B1F) are on the same route.</td></tr>
+<tr><td><strong>Midosuji subway line (Umeda, M16)</strong></td><td>Midosuji Gate or South Gate side</td><td>See the Umeda subway exit numbers above.</td></tr>
+<tr><td><strong>Hotel Granvia Osaka</strong></td><td>Central Gate</td><td>Turn right straight after the gate (OSAKA-INFO).</td></tr>
+<tr><td><strong>Osaka City Bus</strong></td><td>Midosuji Gate (east) or South Gate</td><td>JR West&rsquo;s map marks bus stops outside both.</td></tr>
+<tr><td><strong>Hankyu Umeda Main Store</strong></td><td>Next to the stations</td><td>OSAKA-INFO: right by JR Osaka Station, the Midosuji Line&rsquo;s Umeda Station and Hankyu and Hanshin Osaka-Umeda.</td></tr>
+<tr><td><strong>Umekita platforms 21 to 24 (B2F)</strong></td><td>Umekita Underground Gate, B1F</td><td>JR West: the walkway inside the ticket gates links only the Umekita Underground Gate and the West Gate.</td></tr>
+</tbody>
+</table>
+</div>
+<p class="ps-note">Sources: <a href="https://www.westjr.co.jp/global/en/timetable/pdf/station_shin-osaka.pdf" target="_blank" rel="noopener noreferrer">JR West: Shin-Osaka Station map</a>, <a href="https://www.westjr.co.jp/global/en/timetable/pdf/station_osaka.pdf" target="_blank" rel="noopener noreferrer">Osaka Station map</a>, <a href="https://osaka-info.jp/en/spot/tourist-information-shin-osaka/" target="_blank" rel="noopener noreferrer">OSAKA-INFO: Tourist Information SHIN-OSAKA</a>, <a href="https://osaka-info.jp/en/spot/hep-five/" target="_blank" rel="noopener noreferrer">HEP FIVE</a>, <a href="https://osaka-info.jp/en/spot/umeda-sky-building/" target="_blank" rel="noopener noreferrer">Umeda Sky Building</a>, <a href="https://osaka-info.jp/en/spot/hotel-granvia-osaka/" target="_blank" rel="noopener noreferrer">Hotel Granvia Osaka</a> and <a href="https://osaka-info.jp/en/spot/hankyu-umeda-main-store/" target="_blank" rel="noopener noreferrer">Hankyu Umeda Main Store</a>. Checked 23 November 2026. Routes change, so follow the signs.</p>"""
+
+MONEY = """<h2 id="money">Money and ATMs</h2>
+<p>Seven Bank's ATM finder lists the hours below and says hours may differ. The 7-Eleven shops in both stations also have Seven Bank ATMs, but they are not open 24 hours.</p>
+<ul>
+<li><strong>Shin-Osaka.</strong> Seven Bank ATMs on 3F, on the concourse outside the Shinkansen South gate, 5:00 to 23:45; inside the Shinkansen Central and Transfer gates, 5:40 to 23:50; in Eki March&eacute; Shin-Osaka, inside the ticket gates, 6:30 to 23:00; in arde Shin-Osaka, 2F, 5:00 to 24:00; and in the Osaka Metro Midosuji Line station, near North entrance No. 2, 5:00 to 23:00.</li>
+<li><strong>Osaka Station.</strong> A Seven Bank ATM inside JR Osaka Station, 4:30 to 25:30 (1:30 am). The listings we read do not agree on its floor, so ask at Tourist Information OSAKA, in front of the Central Gate on 1F. Also Eki March&eacute; Osaka, beside the ticket gate (outside the gates), 6:30 to 23:30, closed on the mall&rsquo;s closing days; and the North Gate Building, 11F ATM corner, 7:00 to 23:00.</li>
+<li><strong>Cards from abroad.</strong> Seven Bank says its ATMs accept cards issued outside Japan with the Visa, Mastercard, UnionPay, American Express, JCB, Discover and Diners Club marks, but some cards with these marks may not be accepted, and fees vary by card brand. You choose the language, including English, after you insert the card. Visa and Mastercard users are asked whether to be charged in their home currency or in yen. Visa and Mastercard work round the clock; the other brands stop for a few minutes around midnight. With a card from abroad you can take out up to 100,000 yen at a time (30,000 yen for magnetic-stripe transactions).</li>
+<li><strong>Currency exchange.</strong> Hotel Granvia Osaka, on the right straight after the JR Osaka Central Gate, lists a foreign currency exchange machine (OSAKA-INFO). We did not find a currency exchange counter at Shin-Osaka or Osaka Station on the official pages we read.</li>
+</ul>
+<p class="ps-note">Sources: Seven Bank ATM finder (<a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000024971&amp;lang=en" target="_blank" rel="noopener noreferrer">Shin-Osaka</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000037309&amp;lang=en" target="_blank" rel="noopener noreferrer">Shin-Osaka Shinkansen gates</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000032076&amp;lang=en" target="_blank" rel="noopener noreferrer">arde Shin-Osaka</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000026262&amp;lang=en" target="_blank" rel="noopener noreferrer">Midosuji Line Shin-Osaka</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000015044&amp;lang=en" target="_blank" rel="noopener noreferrer">JR Osaka Station</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000039958&amp;lang=en" target="_blank" rel="noopener noreferrer">Eki March&eacute; Osaka</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000021412&amp;lang=en" target="_blank" rel="noopener noreferrer">North Gate Building</a>), <a href="https://www.sevenbank.co.jp/intlcard/card2.html" target="_blank" rel="noopener noreferrer">Seven Bank: cards issued overseas</a>, <a href="https://www.sevenbank.co.jp/intlcard/service2.html" target="_blank" rel="noopener noreferrer">how to use the ATM</a>, <a href="https://osaka-info.jp/en/spot/hotel-granvia-osaka/" target="_blank" rel="noopener noreferrer">OSAKA-INFO: Hotel Granvia Osaka</a>, <a href="https://osaka-info.jp/en/spot/tourist-information-osaka/" target="_blank" rel="noopener noreferrer">Tourist Information OSAKA</a> and <a href="https://www.japan.travel/en/plan/currency/" target="_blank" rel="noopener noreferrer">JNTO: currency</a>. Checked 23 November 2026. Hours change, so check before you go.</p>"""
 
 WHICH = """<h2 id="which-station">Which station do you need?</h2>
 <p>North Osaka has several big stations with similar names. JNTO says they confuse locals and visitors alike. The short version: <strong>Shin-Osaka</strong> is where the Shinkansen (bullet trains) stop. <strong>Osaka Station</strong> and <strong>Umeda</strong>, to the south, are the downtown hub for local trains, subways and private railways. If you arrive by bullet train, you get off at Shin-Osaka and then take a local train or the subway into the city.</p>
@@ -878,7 +932,9 @@ BODY = "\n\n".join([
     SHINKANSEN,
     BETWEEN,
     UMEDA,
+    EXITS,
     IC_CARD,
+    MONEY,
     CONNECTED,
     airalo,
     LUGGAGE,
@@ -1409,8 +1465,8 @@ POCKET_HTML = """<!DOCTYPE html>
 <script>
 (function(){
   var D=__FINDER_JSON__;
-  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8',smoking:'\\uD83D\\uDEAC',toilet:'\\uD83D\\uDEBB',food:'\\uD83C\\uDF5C',money:'\\uD83D\\uDCB4',unwell:'\\uD83C\\uDFE5',pharmacy:'\\uD83D\\uDC8A',trains:'\\uD83D\\uDE86',tickets:'\\uD83C\\uDFAB',phone:'\\uD83D\\uDCF6',charge:'\\uD83D\\uDD0B',more:'\\u2795'};
-  var SHORT={prayer:'Prayer room',baby:'Nursing room',quiet:'Quiet space',info:'Information counter',help:'Wheelchair and help',lockers:'Luggage',wifi:'Wi-Fi rental',shower:'Showers',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets',food:'Food and drink',money:'Money and ATMs',unwell:'Feeling unwell',pharmacy:'Pharmacy',trains:'Between stations',tickets:'Tickets and passes',phone:'Phone and Wi-Fi',charge:'Phone charging',more:'More places'};
+  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8',smoking:'\\uD83D\\uDEAC',toilet:'\\uD83D\\uDEBB',food:'\\uD83C\\uDF5C',money:'\\uD83D\\uDCB4',unwell:'\\uD83C\\uDFE5',pharmacy:'\\uD83D\\uDC8A',trains:'\\uD83D\\uDE86',tickets:'\\uD83C\\uDFAB',phone:'\\uD83D\\uDCF6',charge:'\\uD83D\\uDD0B',exits:'\\uD83D\\uDEAA',more:'\\u2795'};
+  var SHORT={prayer:'Prayer room',baby:'Nursing room',quiet:'Quiet space',info:'Information counter',help:'Wheelchair and help',lockers:'Luggage',wifi:'Wi-Fi rental',shower:'Showers',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets',food:'Food and drink',money:'Money and ATMs',unwell:'Feeling unwell',pharmacy:'Pharmacy',trains:'Between stations',tickets:'Tickets and passes',phone:'Phone and Wi-Fi',charge:'Phone charging',exits:'Which exit?',more:'More places'};
   var term='ALL', lastTile=null;
   try{ var s=localStorage.getItem('oskTerm'); if(s&&/^(ALL|T1|T2)$/.test(s)) term=s; }catch(e){}
   function $(id){return document.getElementById(id);}
@@ -1465,18 +1521,19 @@ POCKET_HTML = """<!DOCTYPE html>
   var phoneIt=['phone','Phone and Wi-Fi',{}];
   D.terms.forEach(function(t){ phoneIt[2][t[0]]=item('wifi')[2][t[0]]; });
   var trainsIt=['trains','Between the stations',{}];
+  var exitsIt=['exits','Which exit?',{}];
   var LIST=[];
-  ['toilet','lockers','info','tickets','trains','help','baby','phone','food','unwell'].forEach(function(id){
-    LIST.push(id==='trains'?trainsIt:id==='phone'?phoneIt:item(id));
+  ['exits','money','toilet','lockers','info','tickets','trains','help','baby','phone','food','unwell'].forEach(function(id){
+    LIST.push(id==='trains'?trainsIt:id==='exits'?exitsIt:id==='phone'?phoneIt:item(id));
   });
   LIST.forEach(function(it,n){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n%3); b.setAttribute('data-id',it[0]);
     var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=ICON[it[0]]||'\\u2022';
     var tx=document.createElement('span'); tx.className='tx'; tx.textContent=SHORT[it[0]]||it[1];
     b.appendChild(ic); b.appendChild(tx);
-    b.addEventListener('click',function(){ if(it[0]==='trains'){ openInfo(ICON.trains,it[1],trainHTML(),b); } else { openSheet(it,b); } });
+    b.addEventListener('click',function(){ if(it[0]==='trains'){ openInfo(ICON.trains,it[1],trainHTML(),b); } else if(it[0]==='exits'){ openInfo(ICON.exits,it[1],exitHTML(),b); } else { openSheet(it,b); } });
     (n<MAIN?tiles:tiles2).appendChild(b);
-    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u2192','More','Food and drink, feeling unwell',function(){ slideTo(1); })); }
+    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u2192','More','Nursing room, Wi-Fi, food, feeling unwell',function(){ slideTo(1); })); }
   });
   tiles2.appendChild(pill('pgback','\\u2190','Back','Main places',function(){ slideTo(0); }));
   /* swipe between the two screens */
@@ -1527,6 +1584,22 @@ POCKET_HTML = """<!DOCTYPE html>
     h+='<p class="sm">Riding the subway a lot? Partner link: <a href="https://klook.tpo.lu/cgJhxL5B" target="_blank" rel="sponsored nofollow noopener">Osaka Metro Pass</a>. It covers Osaka Metro lines, not JR trains.</p>';
     return h;
   }
+  function exitHTML(){
+    return '<p class="n2"><b>Shin-Osaka</b></p><ul class="pl">'
+      +'<li><b>Bullet trains:</b> Shinkansen gates on 3F: Central, South and arde Shin-Osaka, plus the Transfer Gate from local lines.</li>'
+      +'<li><b>Travel Service Center and Tourist Information:</b> 3F concourse, opposite the Shinkansen Central Exit.</li>'
+      +'<li><b>Local JR lines:</b> the East Gates, the North Gate (Shin-Osaka Hankyu Building) and the West Gate (towards arde).</li>'
+      +'<li><b>Itami Airport buses, city buses and taxis:</b> 1F.</li></ul>'
+      +'<p class="n2"><b>Osaka Station and Umeda</b></p><ul class="pl">'
+      +'<li><b>Grand Front Osaka:</b> North Central Gate, 3F, through Atrium Plaza.</li>'
+      +'<li><b>Hankyu Osaka-Umeda and the airport bus stop:</b> Midosuji North Gate side. Hankyu also through Carillon Plaza on 3F.</li>'
+      +'<li><b>HEP FIVE:</b> Midosuji Exit, about 4 min on foot to the east.</li>'
+      +'<li><b>Umeda Sky Building:</b> about 7 min on foot from JR Osaka Station.</li>'
+      +'<li><b>Hanshin, Kitashinchi (JR Tozai Line), Yotsubashi and Tanimachi subway lines:</b> stairs down from the South Gate Plaza (South Central Gate), or beside the Sakurabashi Gate.</li>'
+      +'<li><b>Hotel Granvia Osaka:</b> Central Gate, turn right.</li>'
+      +'<li><b>Umekita platforms (B2F):</b> Umekita Underground Gate. Inside the gates, its walkway links only to the West Gate.</li></ul>'
+      +'<p class="sm">Source: JR West station maps and OSAKA-INFO, checked 23 November 2026. Routes change. Follow the signs.</p>';
+  }
   function umedaHTML(){
     var h='<p class="n2">Osaka Station (JR), Hankyu, Hanshin and three Osaka Metro stations stand side by side. About 2.3 million people use the complex each day (JNTO, 2017).</p>';
     h+='<ul class="pl"><li><b>Names differ:</b> JR says <b>Osaka</b>. Hankyu and Hanshin say <b>Osaka-Umeda</b>. The Midosuji subway says <b>Umeda</b> (M16).</li>'
@@ -1565,7 +1638,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<p class="sm">Times and prices are approximate and change. Check the operator.</p>'
       +'<p class="sm"><a href="/blog/kansai-airport-guide">Our Kansai Airport guide</a> (needs internet)</p>';
   }
-  var NEXT=[['🚇','Between the stations',trainHTML],['🧭','Umeda station maze',umedaHTML],['💳','Train card (ICOCA)',cardHTML],['🧳','Luggage',bagsHTML],['📱','Phone data',simHTML],['🗺️','Onward trips',onwardHTML]];
+  var NEXT=[['🚇','Between the stations',trainHTML],['🚪','Which exit?',exitHTML],['🧭','Umeda station maze',umedaHTML],['💳','Train card (ICOCA)',cardHTML],['🧳','Luggage',bagsHTML],['📱','Phone data',simHTML],['🗺️','Onward trips',onwardHTML]];
   var at=$('arrTiles');
   NEXT.forEach(function(n,k){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);

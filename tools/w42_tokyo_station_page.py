@@ -188,14 +188,16 @@ def ld(obj):
 TOC = [
     ("one-page", "Tokyo Station on one page"),
     ("which-side", "Which side: Marunouchi or Yaesu?"),
+    ("exits", "Which exit for where?"),
     ("shinkansen", "Bullet trains at Tokyo Station"),
     ("narita", "Narita Express and the airports"),
     ("rail", "Local trains, Metro and Disney"),
+    ("money", "Money and ATMs"),
     ("connected", "Getting online: eSIM and Wi-Fi"),
     ("cards", "Paying for trains: IC cards"),
     ("luggage", "Lockers and luggage"),
     ("food", "Eating in the station"),
-    ("finder", "Find it fast: lockers, information, tickets"),
+    ("finder", "Find it fast: ATMs, lockers, information"),
     ("facilities", "Facilities in the station"),
     ("help", "Help for older travellers and anyone who needs assistance"),
     ("leaving", "Leaving Tokyo by train or bus"),
@@ -204,15 +206,17 @@ TOC = [
 ]
 # ---- v71: "What do you need first?" tiles + a quick-jump bar that appears once you scroll
 TOC_SHORT = {
-    "one-page": "On one page", "which-side": "Which side", "shinkansen": "Bullet trains", "narita": "Narita Express", "rail": "Local trains",
+    "one-page": "On one page", "which-side": "Which side", "exits": "Which exit", "shinkansen": "Bullet trains", "narita": "Narita Express", "rail": "Local trains", "money": "Money",
     "connected": "Get online", "cards": "IC cards", "luggage": "Luggage", "food": "Eating", "finder": "Find it fast",
     "facilities": "Facilities", "help": "Help", "leaving": "Leaving", "faq": "FAQ", "about-this-guide": "About",
 }
 TOC_TILES = [
     ("which-side", "&#129517;", "Which side?", "Marunouchi or Yaesu"),
+    ("exits", "&#128682;", "Which exit?", "Palace, buses, Ramen Street"),
     ("shinkansen", "&#128645;", "Bullet trains", "Platforms 14 to 23"),
     ("narita", "&#9992;&#65039;", "Narita Express", "Underground platforms"),
     ("rail", "&#128646;", "Local trains", "Yamanote, Metro, Disney"),
+    ("money", "&#128180;", "Money and ATMs", "Yen, cards, exchange"),
     ("luggage", "&#129523;", "Luggage and lockers", "Hands-free"),
     ("finder", "&#128269;", "Find it fast", "Lockers, info, tickets"),
     ("help", "&#129309;", "Help and assistance", "For older travellers"),
@@ -403,6 +407,9 @@ _NONE = "We did not find this on the official station pages. Please ask station 
 FINDER_DATA = {
     "terms": [["T1", "Marunouchi"], ["T2", "Yaesu"]],
     "items": [
+        ["money", "Money and ATMs", {
+            "T1": "Tokyo Station City lists a Seven Bank ATM outside the 1F Marunouchi North Gate (we did not find its hours). The Tokyo Metro Marunouchi Line station has two Seven Bank ATMs, 5:00 to 24:00. Seven Bank says its ATMs take many cards issued outside Japan, but some may not work. Currency exchange: the JR EAST Travel Service Center, outside the 1F Marunouchi North Gate. Tokyo Station City lists 11:00 to 19:00, but JR East and JNTO print other hours, so check JR East's page. GO TOKYO's map also shows an exchange machine on 1F of the Marunouchi Building.",
+            "T2": "Seven Bank ATMs outside the ticket gates: at the Yaesu Central and South gates (5:00 to 24:00), in First Avenue Tokyo Station, 1F and B1 (6:00 to 24:00), in GRANROOF, B1 (4:00 to 24:30), and at the 1F Nihombashi Gate. Inside the Shinkansen Central and South gates: 5:30 to 23:50. Seven Bank says its ATMs take many cards issued outside Japan, but some may not work. Hours may differ. Currency exchange: the JR EAST Travel Service Center, on the Marunouchi side (1F Marunouchi North Gate)."}],
         ["toilet", "Toilets", {
             "T1": "We did not find an official list of toilet locations for the Marunouchi side. Follow the toilet signs, or ask at the JR East Information Center (1F Marunouchi Central Exit, 10 am to 6 pm).",
             "T2": "We did not find an official list of toilet locations for the Yaesu side. Follow the toilet signs, or ask station staff."}],
@@ -432,7 +439,7 @@ FINDER_DATA = {
             "T2": "Tell station staff. In an emergency, call 119."}],
     ],
 }
-_ORDER = ["toilet", "lockers", "info", "tickets", "help", "baby", "wifi", "food", "unwell"]
+_ORDER = ["money", "toilet", "lockers", "info", "tickets", "help", "baby", "wifi", "food", "unwell"]
 assert sorted(_ORDER) == sorted(i[0] for i in FINDER_DATA["items"])
 FINDER_DATA["items"].sort(key=lambda i: _ORDER.index(i[0]))
 FINDER = """<section class="ps-finder" id="finder">
@@ -536,6 +543,7 @@ ABOUT = """<div class="ps-about" id="about-this-guide">
 <p>Written by PackSmart. Station details were checked against Tokyo Station City, JR East and JR Central pages, First Avenue Tokyo Station, Tokyo Disney Resort, Tokyo Monorail, the Tokyo Station Hotel and the Japan National Tourism Organization (JNTO) on 19 November 2026. We give fares only where we read them on an official page, so most fares are left out and point to the operator's own fare tool. Where official pages disagree, for example on the opening hours of the JR East Travel Service Center, we say so instead of picking one. Spotted something out of date? <a href="/contact">Tell us</a> and we will fix it.</p>
 <ul>
 <li><strong>19 Nov 2026:</strong> first version, with the which-side chooser, the diagram, Shinkansen and Narita Express platforms, local trains, Metro and Disney, IC cards, lockers and luggage, food, the find-it tool and help.</li>
+<li><strong>23 Nov 2026:</strong> added which exit for where, and money and ATMs (sources checked 23 November 2026), with matching buttons in the Pocket Guide.</li>
 </ul>
 </div>"""
 def _card(title, text, slug, tag):
@@ -596,6 +604,44 @@ CARD = """<div class="ps-card" id="one-page">
 QR_SCREEN = '<svg shape-rendering="crispEdges" viewBox="0 0 41 41" class="segno"><title>QR code: open the Tokyo Station Pocket Guide</title><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#000" d="M4 4.5h7m1 0h3m2 0h1m1 0h2m1 0h1m4 0h1m2 0h7m-33 1h1m5 0h1m2 0h3m1 0h2m1 0h1m1 0h4m2 0h1m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m5 0h1m1 0h1m2 0h2m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m3 0h1m3 0h2m4 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m4 0h1m2 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h3m2 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m2 0h1m5 0h5m-22 1h1m3 0h1m1 0h5m1 0h1m2 0h1m1 0h1m3 0h2m2 0h5m2 0h1m-31 1h2m5 0h2m1 0h1m1 0h2m1 0h1m3 0h1m1 0h1m1 0h1m3 0h3m-32 1h1m2 0h1m1 0h2m3 0h1m2 0h3m2 0h1m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m-30 1h1m1 0h1m2 0h2m4 0h1m1 0h1m3 0h1m1 0h1m2 0h3m4 0h1m-31 1h2m1 0h1m1 0h4m3 0h1m1 0h2m2 0h1m1 0h3m2 0h1m1 0h2m1 0h1m-30 1h1m1 0h2m3 0h1m1 0h4m3 0h3m1 0h2m1 0h1m1 0h1m1 0h1m-28 1h5m2 0h7m1 0h1m2 0h1m1 0h5m3 0h2m-32 1h2m1 0h3m2 0h2m2 0h2m1 0h3m3 0h1m3 0h5m-30 1h1m2 0h1m1 0h2m1 0h1m2 0h1m2 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-32 1h3m1 0h2m1 0h1m1 0h1m1 0h1m2 0h3m6 0h2m4 0h2m-30 1h2m3 0h1m2 0h4m1 0h2m1 0h1m2 0h6m1 0h1m1 0h1m1 0h1m-32 1h3m1 0h2m4 0h2m1 0h2m2 0h2m2 0h1m2 0h2m1 0h1m3 0h2m-33 1h3m1 0h3m1 0h3m1 0h2m1 0h1m2 0h5m3 0h1m1 0h2m1 0h1m-32 1h2m1 0h1m1 0h1m4 0h1m1 0h2m2 0h1m2 0h1m1 0h3m3 0h1m1 0h1m1 0h1m-30 1h3m1 0h4m2 0h1m1 0h1m1 0h2m1 0h1m2 0h4m5 0h1m-29 1h1m1 0h1m2 0h2m7 0h1m1 0h3m2 0h3m-27 1h8m4 0h4m1 0h2m1 0h10m1 0h2m-25 1h1m2 0h2m1 0h5m3 0h3m3 0h1m1 0h2m-32 1h7m1 0h4m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m-32 1h1m5 0h1m3 0h1m1 0h2m2 0h1m3 0h3m1 0h1m3 0h1m2 0h2m-33 1h1m1 0h3m1 0h1m1 0h2m6 0h1m3 0h1m3 0h6m-30 1h1m1 0h3m1 0h1m2 0h4m1 0h1m2 0h4m2 0h1m2 0h3m1 0h1m-31 1h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h2m2 0h1m3 0h1m2 0h5m-30 1h1m5 0h1m4 0h1m2 0h4m3 0h1m2 0h2m-26 1h7m1 0h2m2 0h1m1 0h1m2 0h1m1 0h4m1 0h3m5 0h1"/></svg>'
 QR_PRINT = '<svg shape-rendering="crispEdges" viewBox="0 0 41 41" class="segno"><title>QR code: open the Tokyo Station Pocket Guide</title><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#000" d="M4 4.5h7m1 0h1m1 0h4m1 0h2m1 0h1m4 0h1m2 0h7m-33 1h1m5 0h1m4 0h1m1 0h2m1 0h1m1 0h4m2 0h1m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h1m2 0h2m1 0h2m1 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h1m5 0h2m4 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m2 0h1m2 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h2m3 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h1m1 0h1m6 0h5m-22 1h1m3 0h1m1 0h7m2 0h1m1 0h1m3 0h2m2 0h5m2 0h1m-31 1h1m2 0h1m1 0h3m4 0h2m1 0h1m3 0h1m1 0h1m1 0h1m3 0h3m-31 1h1m3 0h2m2 0h1m2 0h4m2 0h1m2 0h1m1 0h1m2 0h1m2 0h1m1 0h1m-32 1h1m1 0h1m1 0h2m2 0h1m4 0h1m1 0h1m3 0h1m1 0h1m2 0h3m4 0h1m-31 1h1m1 0h1m2 0h1m1 0h2m1 0h1m1 0h1m1 0h2m2 0h5m2 0h1m1 0h2m1 0h1m-29 1h2m2 0h1m3 0h2m1 0h1m3 0h3m2 0h1m1 0h1m1 0h1m1 0h1m-30 1h4m2 0h1m1 0h3m2 0h1m1 0h1m1 0h1m4 0h5m3 0h2m-29 1h3m1 0h2m1 0h8m3 0h1m3 0h5m-30 1h2m2 0h5m4 0h1m3 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-31 1h1m1 0h1m3 0h2m1 0h3m2 0h2m6 0h2m4 0h2m-30 1h2m1 0h3m1 0h1m1 0h2m3 0h1m1 0h1m2 0h1m1 0h4m1 0h1m1 0h1m1 0h1m-29 1h2m2 0h2m3 0h3m2 0h2m2 0h1m2 0h2m1 0h1m3 0h2m-33 1h2m2 0h4m1 0h1m5 0h1m2 0h5m3 0h1m1 0h2m1 0h1m-32 1h6m3 0h1m2 0h3m1 0h1m2 0h3m1 0h1m3 0h1m1 0h1m1 0h1m-28 1h1m1 0h4m4 0h1m1 0h2m4 0h4m5 0h1m-30 1h4m1 0h3m1 0h1m2 0h1m2 0h1m2 0h2m2 0h3m5 0h1m-33 1h3m2 0h7m2 0h2m1 0h13m1 0h2m-25 1h2m4 0h5m3 0h3m3 0h1m1 0h2m-32 1h7m1 0h1m2 0h1m1 0h3m2 0h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h1m-32 1h1m5 0h1m3 0h3m3 0h1m3 0h2m2 0h1m3 0h1m2 0h2m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m3 0h3m1 0h6m-30 1h1m1 0h3m1 0h1m3 0h2m1 0h1m3 0h2m3 0h2m2 0h3m1 0h1m-31 1h1m1 0h3m1 0h1m3 0h1m1 0h4m2 0h1m3 0h1m2 0h5m-30 1h1m5 0h1m2 0h1m1 0h2m2 0h3m1 0h1m1 0h1m2 0h2m-26 1h7m1 0h1m1 0h1m3 0h1m2 0h1m1 0h4m1 0h3m5 0h1"/></svg>'
 CARD = CARD.replace("__QR_SCREEN__", QR_SCREEN).replace("__QR_PRINT__", QR_PRINT)
+
+EXITS = """<h2 id="exits">Which exit for where?</h2>
+<p>Both sides of Tokyo Station have a North, a Central and a South gate, so check the side as well as the name. Walking times are the ones printed by GO TOKYO and JNTO. Where we did not find an official time, we give none.</p>
+<div class="ps-scroll">
+<table class="checklist-table">
+<thead><tr><th>Going to</th><th>Use</th><th>Good to know</th></tr></thead>
+<tbody>
+<tr><td><strong>Imperial Palace</strong></td><td>Marunouchi side (west)</td><td>GO TOKYO gives about 10 minutes on foot: from the main entrance of the Tokyo Station Hotel, follow the broad promenade and cross Hibiya Street to the moat. JNTO gives about 15 minutes to the Ote-mon gate of the East Gardens and 20 minutes to the Sakashita-mon Gate.</td></tr>
+<tr><td><strong>Marunouchi Building and Shin-Marunouchi Building</strong></td><td>Marunouchi side (west)</td><td>About 1 minute from the station (GO TOKYO).</td></tr>
+<tr><td><strong>Tokyo Station Hotel (red-brick building)</strong></td><td>Marunouchi South Gate</td><td>The hotel entrance is on the ground floor, direct from the gate.</td></tr>
+<tr><td><strong>JR EAST Travel Service Center</strong></td><td>Marunouchi North Gate, 1F</td><td>Outside the ticket gates. Rail passes, tickets and currency exchange.</td></tr>
+<tr><td><strong>Narita Express</strong></td><td>Marunouchi Central Gate</td><td>Then down to B1, B4 and the B5 platforms. Tokyo Station City's 1F map (August 2026) marks the Marunouchi Central Gate &ldquo;9:30 to 17:00, IC card only&rdquo;. If it is closed to you, ask station staff.</td></tr>
+<tr><td><strong>Bullet trains (Shinkansen)</strong></td><td>Yaesu side (east)</td><td>Tokyo Station City recommends the Yaesu side for Smart EX tickets.</td></tr>
+<tr><td><strong>JR Expressway Bus and Tokyo Station Yaesu Gate buses</strong></td><td>Yaesu South Gate, 1F</td><td>JR Expressway Bus: directly in front of the ticket gates. Yaesu Gate buses: go straight on from the gate.</td></tr>
+<tr><td><strong>Bus Terminal Tokyo Yaesu</strong></td><td>Yaesu side (east)</td><td>In Tokyo Midtown Yaesu, B1 and B2F. GO TOKYO says it is connected to the Yaesu central gate. We did not find an official walking time.</td></tr>
+<tr><td><strong>Tokyo Tourist Information Center Yaesu</strong></td><td>Yaesu side (east)</td><td>TOFROM YAESU TOWER, bus terminal floor (BF), 6:30 to 21:00, every day (GO TOKYO).</td></tr>
+<tr><td><strong>Airport Limousine Bus</strong></td><td>Yaesu North Exit</td><td>The bus company lists the stop at the Tekko Building.</td></tr>
+<tr><td><strong>Tokyo Ramen Street and Tokyo Character Street</strong></td><td>Yaesu side, underground</td><td>In First Avenue Tokyo Station. JNTO: take the stairs down at the Yaesu North Exit.</td></tr>
+<tr><td><strong>Hato Bus sightseeing tours</strong></td><td>Marunouchi South Gate, 1F</td><td>Turn left after the gate (Tokyo Station City).</td></tr>
+<tr><td><strong>City buses</strong></td><td>Marunouchi North or South Gate</td><td>Directly in front of the ticket gates (Tokyo Station City).</td></tr>
+<tr><td><strong>Ginza</strong></td><td>Follow the signs</td><td>The official guides disagree on the side. GO TOKYO points to the Yaesu side, a few minutes&rsquo; walk from Ginza and Nihonbashi. JNTO describes a walk from the Marunouchi side, past the Tokyo International Forum.</td></tr>
+</tbody>
+</table>
+</div>
+<p class="ps-note">Sources: <a href="https://www.tokyostationcity.com/en/information/pdf/stationyard_1fb1.pdf" target="_blank" rel="noopener noreferrer">Tokyo Station City: station map (as of 1 August 2026)</a>, <a href="https://www.tokyostationcity.com/en/information/bus_taxi.html" target="_blank" rel="noopener noreferrer">buses and taxis</a>, <a href="https://www.gotokyo.org/en/story/walks-and-tours/for-the-first-timer/index.html" target="_blank" rel="noopener noreferrer">GO TOKYO: for the first-timer</a>, <a href="https://www.gotokyo.org/en/story/walks-and-tours/tokyo-architecture-tokyo-station/index.html" target="_blank" rel="noopener noreferrer">Tokyo Station architecture walk</a>, <a href="https://www.gotokyo.org/en/new-and-now/new-and-trending/230213/topics.html" target="_blank" rel="noopener noreferrer">Tokyo Midtown Yaesu</a>, <a href="https://www.gotokyo.org/en/plan/tourist-info-center/index.html" target="_blank" rel="noopener noreferrer">Tourist Information Centers</a>, <a href="https://www.gotokyo.org/en/destinations/central-tokyo/tokyo-station-and-marunouchi/index.html" target="_blank" rel="noopener noreferrer">Tokyo Station and Marunouchi</a>, <a href="https://www.japan.travel/en/spot/1726/" target="_blank" rel="noopener noreferrer">JNTO: Imperial Palace East Gardens</a>, <a href="https://www.japan.travel/en/spot/1710/" target="_blank" rel="noopener noreferrer">Tokyo Station and Marunouchi</a> and <a href="https://www.japan.travel/en/spot/1727/" target="_blank" rel="noopener noreferrer">the Imperial Palace</a>. Checked 23 November 2026. The hotel, Narita Express, limousine bus and First Avenue rows repeat facts from the sections above, checked 19 November 2026. Gates and routes change, so follow the signs.</p>"""
+
+MONEY = """<h2 id="money">Money and ATMs</h2>
+<p>Seven Bank's ATM finder lists the hours below and says hours may differ. Seven Bank ATMs are also in 7-Eleven shops, but the shop ATMs here are not open 24 hours.</p>
+<ul>
+<li><strong>Seven Bank ATMs, Yaesu side.</strong> Outside the ticket gates: at the Yaesu Central and South gates, 5:00 to 24:00; in First Avenue Tokyo Station, 1F and B1 (two of them in Tokyo Ramen Street), 6:00 to 24:00; in GRANROOF, B1, 4:00 to 24:30. Tokyo Station City also lists one at the 1F Nihombashi Gate.</li>
+<li><strong>Seven Bank ATMs inside the Shinkansen gates.</strong> Inside the Shinkansen Central and South gates, 5:30 to 23:50.</li>
+<li><strong>Marunouchi side.</strong> Tokyo Station City lists a Seven Bank ATM outside the 1F Marunouchi North Gate. We did not find its hours. The Tokyo Metro Marunouchi Line station (M17) has two Seven Bank ATMs, 5:00 to 24:00: one on B1 outside the Metro gates toward exit 4a, and one near the Metro station&rsquo;s north ticket gate.</li>
+<li><strong>More Seven Bank ATMs.</strong> GRANSTA Yaekita (Seven Bank says &ldquo;inside Tokyo Station&rdquo;), 7:00 to 24:00, and GRANROOF FRONT, 6:00 to 23:00.</li>
+<li><strong>Other ATMs.</strong> Tokyo Station City also lists Japan Post Bank ATMs (1F Yaesu South Gate, 1F Nihombashi Gate, B1 GRANROOF), JR East&rsquo;s VIEW ALTTE machines, and Mizuho, MUFG, Resona and SMBC ATMs. It does not say which take cards issued outside Japan, and we did not check them. JNTO lists Japan Post Bank and Seven Bank ATMs as ones that take international cards.</li>
+<li><strong>Cards from abroad.</strong> Seven Bank says its ATMs accept cards issued outside Japan with the Visa, Mastercard, UnionPay, American Express, JCB, Discover and Diners Club marks, but some cards with these marks may not be accepted, and fees vary by card brand. You choose the language, including English, after you insert the card. Visa and Mastercard users are asked whether to be charged in their home currency or in yen. Visa and Mastercard work round the clock; the other brands stop for a few minutes around midnight. With a card from abroad you can take out up to 100,000 yen at a time (30,000 yen for magnetic-stripe transactions).</li>
+<li><strong>Currency exchange.</strong> The JR EAST Travel Service Center, outside the 1F Marunouchi North Gate. Tokyo Station City lists 11:00 to 19:00 and 31 currencies, but JR East and JNTO print other hours, so check JR East&rsquo;s page before you go. GO TOKYO&rsquo;s Marunouchi map also shows a foreign currency exchange machine on 1F of the Marunouchi Building, about 1 minute from the station.</li>
+</ul>
+<p class="ps-note">Sources: <a href="https://www.tokyostationcity.com/en/information/" target="_blank" rel="noopener noreferrer">Tokyo Station City: ATM and money exchange</a>, Seven Bank ATM finder (<a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000035736&amp;lang=en" target="_blank" rel="noopener noreferrer">Yaesu</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000036073&amp;lang=en" target="_blank" rel="noopener noreferrer">Shinkansen gates</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000000519&amp;lang=en" target="_blank" rel="noopener noreferrer">First Avenue</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000019339&amp;lang=en" target="_blank" rel="noopener noreferrer">GRANROOF</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000014868&amp;lang=en" target="_blank" rel="noopener noreferrer">Metro Marunouchi Line</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000011164&amp;lang=en" target="_blank" rel="noopener noreferrer">GRANSTA Yaekita</a>), <a href="https://www.sevenbank.co.jp/intlcard/card2.html" target="_blank" rel="noopener noreferrer">Seven Bank: cards issued overseas</a>, <a href="https://www.sevenbank.co.jp/intlcard/service2.html" target="_blank" rel="noopener noreferrer">how to use the ATM</a>, <a href="https://www.japan.travel/en/plan/currency/" target="_blank" rel="noopener noreferrer">JNTO: currency</a> and <a href="https://www.gotokyo.org/book/wp-content/uploads/2024/10/2410_marunouchi_EN_low.pdf" target="_blank" rel="noopener noreferrer">GO TOKYO: Marunouchi map (PDF)</a>. Checked 23 November 2026. Hours change, so check before you go.</p>"""
 
 WHICH = """<h2 id="which-side">Which side: Marunouchi or Yaesu?</h2>
 <p>Tokyo Station is one huge building with two main sides, joined by a central passage on the 1st floor. The <strong>Marunouchi side</strong> is to the west, and it is the one with the red-brick station building. The <strong>Yaesu side</strong> is to the east. Tokyo Station City tells people using Smart EX bullet train tickets to use the Yaesu side, and says the Marunouchi side is about a 10-minute walk from it.</p>
@@ -895,9 +941,11 @@ BODY = "\n\n".join([
     CARD,
     WHICH,
     DIAGRAM,
+    EXITS,
     SHINKANSEN,
     NARITA,
     RAIL,
+    MONEY,
     CONNECTED,
     airalo,
     CARDS,
@@ -1425,8 +1473,8 @@ POCKET_HTML = """<!DOCTYPE html>
 <script>
 (function(){
   var D=__FINDER_JSON__;
-  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8',smoking:'\\uD83D\\uDEAC',toilet:'\\uD83D\\uDEBB',food:'\\uD83C\\uDF5C',money:'\\uD83D\\uDCB4',unwell:'\\uD83C\\uDFE5',pharmacy:'\\uD83D\\uDC8A',trains:'\\uD83D\\uDE86',tickets:'\\uD83C\\uDFAB',phone:'\\uD83D\\uDCF6',charge:'\\uD83D\\uDD0B',more:'\\u2795'};
-  var SHORT={prayer:'Prayer room',baby:'Nursing room',quiet:'Quiet space',info:'Information counter',help:'Wheelchair and help',lockers:'Luggage',wifi:'Wi-Fi rental',shower:'Showers',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets',food:'Food and drink',money:'Money and ATMs',unwell:'Feeling unwell',pharmacy:'Pharmacy',trains:'Trains and buses',tickets:'Tickets and passes',phone:'Phone and Wi-Fi',charge:'Phone charging',more:'More places'};
+  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8',smoking:'\\uD83D\\uDEAC',toilet:'\\uD83D\\uDEBB',food:'\\uD83C\\uDF5C',money:'\\uD83D\\uDCB4',unwell:'\\uD83C\\uDFE5',pharmacy:'\\uD83D\\uDC8A',trains:'\\uD83D\\uDE86',tickets:'\\uD83C\\uDFAB',phone:'\\uD83D\\uDCF6',charge:'\\uD83D\\uDD0B',exits:'\\uD83D\\uDEAA',more:'\\u2795'};
+  var SHORT={prayer:'Prayer room',baby:'Nursing room',quiet:'Quiet space',info:'Information counter',help:'Wheelchair and help',lockers:'Luggage',wifi:'Wi-Fi rental',shower:'Showers',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets',food:'Food and drink',money:'Money and ATMs',unwell:'Feeling unwell',pharmacy:'Pharmacy',trains:'Trains and buses',tickets:'Tickets and passes',phone:'Phone and Wi-Fi',charge:'Phone charging',exits:'Which exit?',more:'More places'};
   var term='ALL', lastTile=null;
   try{ var s=localStorage.getItem('tokTerm'); if(s&&/^(ALL|T1|T2)$/.test(s)) term=s; }catch(e){}
   function $(id){return document.getElementById(id);}
@@ -1482,18 +1530,19 @@ POCKET_HTML = """<!DOCTYPE html>
   var phoneIt=['phone','Phone and Wi-Fi',{}];
   D.terms.forEach(function(t){ phoneIt[2][t[0]]=item('wifi')[2][t[0]]; });
   var trainsIt=['trains','Subway and buses',{}];
+  var exitsIt=['exits','Which exit?',{}];
   var LIST=[];
-  ['toilet','lockers','info','tickets','trains','help','baby','phone','food','unwell'].forEach(function(id){
-    LIST.push(id==='trains'?trainsIt:id==='phone'?phoneIt:item(id));
+  ['exits','money','toilet','lockers','info','tickets','trains','help','baby','phone','food','unwell'].forEach(function(id){
+    LIST.push(id==='trains'?trainsIt:id==='exits'?exitsIt:id==='phone'?phoneIt:item(id));
   });
   LIST.forEach(function(it,n){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n%3); b.setAttribute('data-id',it[0]);
     var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=ICON[it[0]]||'\\u2022';
     var tx=document.createElement('span'); tx.className='tx'; tx.textContent=SHORT[it[0]]||it[1];
     b.appendChild(ic); b.appendChild(tx);
-    b.addEventListener('click',function(){ if(it[0]==='trains'){ openInfo(ICON.trains,it[1],trainHTML(),b); } else { openSheet(it,b); } });
+    b.addEventListener('click',function(){ if(it[0]==='trains'){ openInfo(ICON.trains,it[1],trainHTML(),b); } else if(it[0]==='exits'){ openInfo(ICON.exits,it[1],exitHTML(),b); } else { openSheet(it,b); } });
     (n<MAIN?tiles:tiles2).appendChild(b);
-    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u2192','More','Food and drink, feeling unwell',function(){ slideTo(1); })); }
+    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u2192','More','Nursing room, Wi-Fi, food, feeling unwell',function(){ slideTo(1); })); }
   });
   tiles2.appendChild(pill('pgback','\\u2190','Back','Main places',function(){ slideTo(0); }));
   /* swipe between the two screens */
@@ -1548,6 +1597,21 @@ POCKET_HTML = """<!DOCTYPE html>
     h+='<p class="sm">Source: JR East, JNTO and Tokyo Station City, checked 19 November 2026. Routes change. Check the operator.</p>';
     return h;
   }
+  function exitHTML(){
+    return '<ul class="pl"><li><b>Imperial Palace:</b> Marunouchi side. About 10 min on foot from the Tokyo Station Hotel entrance (GO TOKYO). 15 to 20 min to the East Gardens gates (JNTO).</li>'
+      +'<li><b>Marunouchi Building:</b> Marunouchi side, about 1 min.</li>'
+      +'<li><b>Tokyo Station Hotel (red-brick building):</b> Marunouchi South Gate.</li>'
+      +'<li><b>Travel Service Center (passes, currency exchange):</b> outside the 1F Marunouchi North Gate.</li>'
+      +'<li><b>Narita Express:</b> Marunouchi Central Gate, then down to B5. The map marks this gate 9:30 to 17:00, IC card only.</li>'
+      +'<li><b>Bullet trains:</b> Yaesu side.</li>'
+      +'<li><b>JR Expressway Bus and Yaesu Gate buses:</b> 1F Yaesu South Gate.</li>'
+      +'<li><b>Bus Terminal Tokyo Yaesu:</b> Tokyo Midtown Yaesu, B1 and B2F, connected to the Yaesu central gate.</li>'
+      +'<li><b>Airport Limousine Bus:</b> Yaesu North Exit (Tekko Building).</li>'
+      +'<li><b>Ramen Street and Character Street:</b> First Avenue, Yaesu side, underground. Stairs down at the Yaesu North Exit.</li>'
+      +'<li><b>Hato Bus:</b> Marunouchi South Gate, turn left. <b>City buses:</b> in front of the Marunouchi North and South gates.</li>'
+      +'<li><b>Ginza:</b> official guides disagree on the side. Follow the signs.</li></ul>'
+      +'<p class="sm">Source: Tokyo Station City, GO TOKYO, JNTO and the bus company, checked 23 November 2026. Gates and routes change. Follow the signs.</p>';
+  }
   function sidesHTML(){
     return '<p class="n2">Tokyo Station has two main sides, joined by a central passage on the 1st floor. Both have North, Central and South gates, so say which side too.</p>'
       +'<ul class="pl"><li><b>Marunouchi side (west):</b> the red-brick building. The Narita Express route starts at the Marunouchi Central Gate. The JR East Travel Service Center is on your left after the Marunouchi North ticket gate. The Tokyo Station Hotel and Tokyo Station Gallery are here.</li>'
@@ -1588,7 +1652,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<p class="sm">Times are approximate and change. Check the operator.</p>'
       +'<p class="sm"><a href="/blog/narita-airport-guide">Our Narita Airport guide</a> and <a href="/blog/haneda-airport-guide">Haneda Airport guide</a> (need internet)</p>';
   }
-  var NEXT=[['🚆','Trains and Metro',trainHTML],['🧭','Marunouchi or Yaesu?',sidesHTML],['🎫','Passes and paying',cardHTML],['🧳','Luggage',bagsHTML],['📱','Phone data',simHTML],['🗺️','Onward trips',onwardHTML]];
+  var NEXT=[['🚆','Trains and Metro',trainHTML],['🚪','Which exit?',exitHTML],['🧭','Marunouchi or Yaesu?',sidesHTML],['🎫','Passes and paying',cardHTML],['🧳','Luggage',bagsHTML],['📱','Phone data',simHTML],['🗺️','Onward trips',onwardHTML]];
   var at=$('arrTiles');
   NEXT.forEach(function(n,k){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);

@@ -184,12 +184,14 @@ def ld(obj):
 TOC = [
     ("one-page", "Kyoto Station on one page"),
     ("which-side", "Which side: Central or Hachijo?"),
+    ("exits", "Which exit for where?"),
     ("shinkansen", "Bullet trains at Kyoto Station"),
     ("rail", "Local trains, Kintetsu and the Haruka"),
     ("city", "Into the city: subway, buses and taxis"),
+    ("money", "Money and ATMs"),
     ("connected", "Getting online: eSIM and Wi-Fi"),
     ("luggage", "Lockers and luggage delivery"),
-    ("finder", "Find it fast: lockers, toilets, tourist information"),
+    ("finder", "Find it fast: ATMs, lockers, toilets, information"),
     ("facilities", "Facilities in the station"),
     ("help", "Help for older travellers and anyone who needs assistance"),
     ("leaving", "Leaving Kyoto by train or bus"),
@@ -198,15 +200,17 @@ TOC = [
 ]
 # ---- v71: "What do you need first?" tiles + a quick-jump bar that appears once you scroll
 TOC_SHORT = {
-    "one-page": "On one page", "which-side": "Which exit", "shinkansen": "Bullet trains", "rail": "Local trains", "city": "Subway and buses",
+    "one-page": "On one page", "which-side": "Which side", "exits": "Which exit", "shinkansen": "Bullet trains", "rail": "Local trains", "city": "Subway and buses", "money": "Money",
     "connected": "Get online", "luggage": "Luggage", "finder": "Find it fast",
     "facilities": "Facilities", "help": "Help", "leaving": "Leaving", "faq": "FAQ", "about-this-guide": "About",
 }
 TOC_TILES = [
-    ("which-side", "&#129517;", "Which exit?", "Central or Hachijo"),
+    ("which-side", "&#129517;", "Which side?", "Central or Hachijo"),
+    ("exits", "&#128682;", "Which exit?", "Tower, buses, temples"),
     ("shinkansen", "&#128645;", "Bullet trains", "Platforms 11 to 14"),
     ("rail", "&#128646;", "Local trains", "Nara, Osaka, Arashiyama"),
     ("city", "&#128652;", "Subway and buses", "Into the city"),
+    ("money", "&#128180;", "Money and ATMs", "Yen, cards, exchange"),
     ("luggage", "&#129523;", "Luggage and lockers", "Hands-free"),
     ("finder", "&#128269;", "Find it fast", "Lockers, toilets, info"),
     ("help", "&#129309;", "Help and assistance", "For older travellers"),
@@ -397,6 +401,9 @@ _NONE = "We did not find this on the official station pages. Please ask station 
 FINDER_DATA = {
     "terms": [["T1", "Central side"], ["T2", "Hachijo side"]],
     "items": [
+        ["money", "Money and ATMs", {
+            "T1": "Seven Bank ATMs: next to the Kyoto Station Building information (5:00 to 25:30, that is 1:30 am), on the 2F north-south free passage (weekdays 7:00 to 23:00, weekends and holidays 7:00 to 21:00) and in JR Kyoto Isetan, 2F (10:00 to 20:00). Seven Bank says its ATMs take many cards issued outside Japan, but some may not work. Currency exchange: Ctrip, 1F in front of the Central ticket gate (9:00 to 19:00), and Travelex on the 2F north-south free passage (8:00 to 19:00).",
+            "T2": "Inside the Shinkansen Central and Transfer gates: two Seven Bank ATMs, 5:45 to 23:40. Outside the gates, go up to the 2F north-south free passage, which links both sides: a Seven Bank ATM (weekdays 7:00 to 23:00, weekends and holidays 7:00 to 21:00) and Travelex currency exchange (8:00 to 19:00). Seven Bank says its ATMs take many cards issued outside Japan, but some may not work."}],
         ["toilet", "Toilets", {
             "T1": "JR West's Kyoto Station map marks toilets, including wheelchair-accessible toilets. Kyoto City's tourism site says a multipurpose restroom is just outside the Shinkansen Central Transfer exit, with escalators and lifts. Follow the signs, or ask at Kyo-Navi on the 2nd floor.",
             "T2": "JR West's Kyoto Station map marks toilets, including wheelchair-accessible toilets, but we did not find which ones are on the Hachijo side. Follow the toilet signs, or ask station staff."}],
@@ -426,7 +433,7 @@ FINDER_DATA = {
             "T2": "Tell station staff. JR West's map marks an AED. In an emergency, call 119."}],
     ],
 }
-_ORDER = ["toilet", "lockers", "info", "tickets", "help", "baby", "wifi", "food", "unwell"]
+_ORDER = ["money", "toilet", "lockers", "info", "tickets", "help", "baby", "wifi", "food", "unwell"]
 assert sorted(_ORDER) == sorted(i[0] for i in FINDER_DATA["items"])
 FINDER_DATA["items"].sort(key=lambda i: _ORDER.index(i[0]))
 FINDER = """<section class="ps-finder" id="finder">
@@ -533,6 +540,7 @@ ABOUT = """<div class="ps-about" id="about-this-guide">
 <p>Written by PackSmart. Station details were checked against JR West and JR Central pages, Kyoto City's tourism and transportation pages, Hands Free Kyoto, Kintetsu, the Japan National Tourism Organization (JNTO) and the Nara City Tourism Association on 19 November 2026. We give fares only where we read them on an official page, so some fares are left out and point to the operator's own fare tool. Spotted something out of date? <a href="/contact">Tell us</a> and we will fix it.</p>
 <ul>
 <li><strong>19 Nov 2026:</strong> first version, with the which-side chooser, the diagram, Shinkansen and local platforms, Kintetsu, the subway, city buses and taxis, lockers and luggage delivery, the find-it tool and help.</li>
+<li><strong>23 Nov 2026:</strong> added which exit for where, and money and ATMs (sources checked 23 November 2026), with matching buttons in the Pocket Guide.</li>
 </ul>
 </div>"""
 def _card(title, text, slug, tag):
@@ -593,6 +601,43 @@ CARD = """<div class="ps-card" id="one-page">
 QR_SCREEN = '<svg shape-rendering="crispEdges" viewBox="0 0 41 41" class="segno"><title>QR code: open the Kyoto Station Pocket Guide</title><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#000" d="M4 4.5h7m2 0h1m2 0h1m3 0h1m1 0h4m1 0h1m2 0h7m-33 1h1m5 0h1m2 0h3m3 0h2m1 0h1m5 0h1m1 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h3m1 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h1m7 0h1m5 0h1m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m1 0h3m1 0h5m3 0h4m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h6m4 0h2m1 0h1m2 0h1m1 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-25 1h2m4 0h1m1 0h1m2 0h6m-25 1h1m1 0h5m2 0h1m3 0h2m2 0h1m1 0h2m1 0h1m3 0h5m-27 1h2m1 0h3m2 0h3m2 0h1m1 0h2m2 0h1m2 0h2m1 0h2m1 0h1m-33 1h4m1 0h2m2 0h1m1 0h1m1 0h5m3 0h2m1 0h1m1 0h1m1 0h1m1 0h2m-32 1h1m2 0h2m2 0h3m2 0h2m1 0h5m1 0h3m1 0h2m1 0h3m-31 1h1m1 0h2m1 0h4m1 0h1m3 0h1m1 0h1m3 0h1m1 0h2m1 0h1m1 0h3m1 0h1m-31 1h2m1 0h2m1 0h1m1 0h2m1 0h2m1 0h1m2 0h1m2 0h3m2 0h1m2 0h1m1 0h2m-32 1h1m1 0h2m1 0h1m6 0h1m1 0h2m1 0h1m1 0h1m4 0h2m1 0h2m1 0h1m-32 1h1m1 0h1m7 0h1m1 0h1m1 0h2m2 0h1m2 0h7m2 0h1m-30 1h2m2 0h2m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h2m1 0h2m3 0h1m-30 1h2m2 0h1m4 0h2m2 0h1m2 0h3m1 0h5m1 0h4m-33 1h2m3 0h4m2 0h1m3 0h2m1 0h1m1 0h2m3 0h1m1 0h2m1 0h2m-32 1h2m5 0h1m2 0h1m1 0h1m1 0h1m1 0h1m4 0h3m1 0h1m1 0h6m-28 1h2m2 0h4m1 0h1m3 0h1m3 0h1m2 0h1m1 0h3m1 0h2m-33 1h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m2 0h2m3 0h1m1 0h2m1 0h2m2 0h1m2 0h1m-33 1h1m1 0h1m1 0h6m1 0h1m2 0h1m3 0h2m5 0h1m2 0h4m-32 1h1m1 0h3m4 0h1m1 0h1m2 0h1m1 0h1m1 0h6m1 0h2m1 0h3m-31 1h1m3 0h1m1 0h1m2 0h6m2 0h3m2 0h8m-22 1h1m3 0h3m1 0h9m3 0h1m1 0h1m1 0h1m-33 1h7m3 0h1m1 0h1m2 0h3m2 0h1m2 0h2m1 0h1m1 0h1m1 0h2m-32 1h1m5 0h1m1 0h2m1 0h4m2 0h2m1 0h2m1 0h2m3 0h4m-32 1h1m1 0h3m1 0h1m1 0h2m3 0h1m1 0h2m2 0h1m1 0h1m2 0h6m2 0h1m-33 1h1m1 0h3m1 0h1m1 0h1m1 0h1m3 0h2m1 0h2m2 0h1m1 0h1m1 0h1m2 0h1m1 0h3m-33 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h4m5 0h5m2 0h1m-31 1h1m5 0h1m2 0h2m2 0h3m2 0h1m2 0h3m1 0h1m2 0h3m-31 1h7m1 0h5m2 0h1m1 0h1m4 0h1m1 0h1m2 0h1m3 0h1"/></svg>'
 QR_PRINT = '<svg shape-rendering="crispEdges" viewBox="0 0 41 41" class="segno"><title>QR code: open the Kyoto Station Pocket Guide</title><path fill="#fff" d="M0 0h41v41h-41z"/><path class="qrline" stroke="#000" d="M4 4.5h7m2 0h3m2 0h2m2 0h2m2 0h2m2 0h7m-33 1h1m5 0h1m3 0h1m1 0h1m2 0h1m1 0h1m4 0h2m2 0h1m5 0h1m-33 1h1m1 0h3m1 0h1m4 0h2m1 0h2m1 0h1m2 0h1m2 0h2m1 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m4 0h1m1 0h1m3 0h1m1 0h1m3 0h1m2 0h1m1 0h3m1 0h1m-33 1h1m1 0h3m1 0h1m2 0h1m2 0h1m3 0h1m2 0h1m2 0h2m2 0h1m1 0h3m1 0h1m-33 1h1m5 0h1m1 0h2m1 0h1m2 0h1m5 0h2m4 0h1m5 0h1m-33 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-24 1h1m2 0h1m1 0h1m2 0h5m-22 1h1m2 0h1m1 0h2m1 0h1m1 0h1m2 0h4m2 0h3m1 0h1m1 0h1m1 0h1m-28 1h2m1 0h3m1 0h1m1 0h4m1 0h1m3 0h1m1 0h1m3 0h4m3 0h2m-32 1h1m1 0h1m1 0h8m3 0h2m1 0h2m1 0h1m1 0h2m1 0h2m1 0h1m1 0h1m-33 1h6m1 0h1m1 0h1m4 0h4m2 0h5m3 0h2m1 0h2m-33 1h1m1 0h2m1 0h2m2 0h1m1 0h1m3 0h1m4 0h2m1 0h1m1 0h2m2 0h1m1 0h2m-33 1h2m1 0h1m1 0h1m5 0h1m3 0h3m3 0h2m1 0h1m1 0h1m1 0h1m1 0h3m-33 1h1m3 0h1m1 0h1m1 0h3m1 0h3m2 0h2m2 0h3m1 0h3m3 0h1m-32 1h1m1 0h1m2 0h1m3 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h2m3 0h2m1 0h1m1 0h1m-31 1h1m2 0h3m2 0h4m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1m1 0h1m2 0h1m-31 1h1m3 0h1m3 0h2m1 0h1m3 0h1m1 0h1m2 0h1m1 0h1m3 0h1m1 0h1m-30 1h4m2 0h3m1 0h3m5 0h1m2 0h2m2 0h2m3 0h3m-33 1h1m1 0h3m3 0h1m1 0h1m1 0h1m1 0h1m2 0h2m2 0h1m2 0h2m1 0h1m3 0h2m-31 1h3m1 0h3m1 0h1m2 0h6m2 0h1m1 0h1m1 0h1m5 0h2m-32 1h1m3 0h1m4 0h1m2 0h7m4 0h1m1 0h1m3 0h3m-33 1h3m1 0h3m4 0h3m1 0h1m2 0h4m4 0h5m1 0h1m-32 1h3m4 0h2m2 0h3m1 0h1m2 0h1m1 0h4m3 0h2m1 0h1m-32 1h1m1 0h1m1 0h1m1 0h1m2 0h2m4 0h4m1 0h2m1 0h7m2 0h1m-25 1h3m1 0h3m4 0h3m2 0h1m3 0h2m2 0h1m-33 1h7m3 0h3m1 0h1m5 0h1m1 0h1m1 0h1m1 0h1m1 0h4m-32 1h1m5 0h1m1 0h2m1 0h1m1 0h2m4 0h4m1 0h1m3 0h1m-29 1h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m3 0h3m1 0h6m1 0h1m-32 1h1m1 0h3m1 0h1m1 0h3m3 0h2m1 0h1m3 0h4m1 0h1m1 0h1m-29 1h1m1 0h3m1 0h1m5 0h2m3 0h1m2 0h6m2 0h1m1 0h1m1 0h1m-33 1h1m5 0h1m4 0h1m1 0h1m1 0h3m1 0h1m1 0h1m2 0h2m-26 1h7m1 0h3m5 0h1m4 0h1m1 0h2m3 0h2m1 0h1"/></svg>'
 CARD = CARD.replace("__QR_SCREEN__", QR_SCREEN).replace("__QR_PRINT__", QR_PRINT)
+
+EXITS = """<h2 id="exits">Which exit for where?</h2>
+<p>Kyoto Station has two exits to the outside: the Central Exit on the north side, which the Kyoto Station Building calls the Karasuma Central Exit, and the Hachijo Exit on the south side. The routes below are from the Kyoto Station Building&rsquo;s directions page and Kyoto City&rsquo;s tourism site. Walking times are given only where an official page states one.</p>
+<div class="ps-scroll">
+<table class="checklist-table">
+<thead><tr><th>Going to</th><th>Use</th><th>Good to know</th></tr></thead>
+<tbody>
+<tr><td><strong>Kyoto Tower</strong></td><td>Central Exit (north)</td><td>Kyoto City: the tower is at the Central Exit, but you cannot see it from inside the station. We did not find an official walking time.</td></tr>
+<tr><td><strong>Kyoto City Bus terminal</strong></td><td>Central ticket gate, then the Karasuma Central Exit</td><td>Go straight out to the bus terminal. The JR highway bus and Keihan bus stops are to the left (west).</td></tr>
+<tr><td><strong>Taxis (north side)</strong></td><td>Karasuma Central Exit</td><td>Turn right, towards Kyoto Theater and Hotel Granvia Kyoto.</td></tr>
+<tr><td><strong>Subway (Karasuma Line)</strong></td><td>Central concourse, down to B2F</td><td>Take the escalator down to B2F and go right through the south area of Kyoto Porta. From the Underground East gate, the subway gates are straight ahead or to the right.</td></tr>
+<tr><td><strong>Bullet trains (Shinkansen)</strong></td><td>Hachijo side (south)</td><td>JNTO says the Shinkansen Hachijo entrance is the most convenient. Kyoto City: the Shinkansen Central Exit leads to the Hachijo Exit, not to the Central Exit.</td></tr>
+<tr><td><strong>Airport limousine bus to Kansai Airport</strong></td><td>Hachijo side (south)</td><td>From the Central gate, take the escalator to 2F and follow the north-south free passage south to the end. Go down by the Hachijo West Exit to 1F and cross Hachijo-dori. The stop is on the left.</td></tr>
+<tr><td><strong>Higashi Honganji</strong></td><td>Central side (north)</td><td>Walk north along Karasuma-dori. Kyoto City gives about 5 to 7 minutes on foot.</td></tr>
+<tr><td><strong>Sanjusangen-do</strong></td><td>Central side (north)</td><td>About 18 minutes on foot, by Karasuma-dori and Shichijo-dori (Kyoto City).</td></tr>
+<tr><td><strong>To-ji</strong></td><td>Hachijo Exit (south)</td><td>Walk west along Hachijo-dori, or take the Kintetsu line one stop to Toji Station, then about 7 minutes on foot (Kyoto City).</td></tr>
+<tr><td><strong>JR Kyoto Isetan and Kyoto Ramen Koji</strong></td><td>Central ticket gate</td><td>Isetan&rsquo;s 1F entrance is on the left after the gate, and its 2F entrance is on the north-south passage. For Kyoto Ramen Koji, take Isetan&rsquo;s south lift to 10F.</td></tr>
+<tr><td><strong>Hotel Granvia Kyoto and Kyoto Theater</strong></td><td>Central ticket gate</td><td>Kyoto Theater is on the right after the gate. For the hotel&rsquo;s 2F lobby, take the escalator on the right after the gate, then turn right.</td></tr>
+<tr><td><strong>Kintetsu line</strong></td><td>Kintetsu gate</td><td>From the Shinkansen, leave by the Shinkansen Central Exit. From local JR lines, leave by the West Exit and turn left (Kyoto City).</td></tr>
+<tr><td><strong>Kyoto Central Post Office</strong></td><td>Central Exit (north)</td><td>Leave by the Central Exit (Kyoto Tower side) and turn left.</td></tr>
+</tbody>
+</table>
+</div>
+<p class="ps-note">Sources: <a href="https://www.kyoto-station-building.co.jp/directions/" target="_blank" rel="noopener noreferrer">Kyoto Station Building: directions (Japanese)</a>, <a href="https://www.kyoto-station-building.co.jp/qa/" target="_blank" rel="noopener noreferrer">FAQ (Japanese)</a>, <a href="https://kyoto.travel/en/travel-inspiration/6-tips-to-keep-from-getting-lost-inside-kyoto-station/" target="_blank" rel="noopener noreferrer">Kyoto City: 6 Tips</a>, <a href="https://kyoto.travel/en/travel-inspiration/winter-openings/" target="_blank" rel="noopener noreferrer">Higashi Honganji</a>, <a href="https://kyoto.travel/en/getting-around/comfortable-access-to-higashiyama-sanjusangen-do/" target="_blank" rel="noopener noreferrer">Sanjusangen-do</a>, <a href="https://kyoto.travel/en/getting-around/comfortable-access-to-around-kyoto-station-to-ji-temple/" target="_blank" rel="noopener noreferrer">To-ji</a>, <a href="https://www.japan.travel/en/spot/1188/" target="_blank" rel="noopener noreferrer">JNTO: Kyoto Station</a> and <a href="https://www.westjr.co.jp/global/en/timetable/pdf/station_kyoto.pdf" target="_blank" rel="noopener noreferrer">JR West: Kyoto Station map</a>. Checked 23 November 2026. Routes change, so follow the signs.</p>"""
+
+MONEY = """<h2 id="money">Money and ATMs</h2>
+<p>Seven Bank's ATM finder lists the hours below and says hours may differ.</p>
+<ul>
+<li><strong>Seven Bank ATMs.</strong> Next to the Kyoto Station Building information, 5:00 to 25:30 (1:30 am). Along the 2F north-south free passage, 7:00 to 23:00 on weekdays and 7:00 to 21:00 on weekends and holidays. ASTY KYOTO, 1F Omotenashi Koji, 5:30 to 23:45. JR Kyoto Isetan, 2F ATM corner, 10:00 to 20:00 (closed on 1 January and on the store&rsquo;s closing days).</li>
+<li><strong>Inside the Shinkansen gates.</strong> Two Seven Bank ATMs, inside the Shinkansen Central and Transfer gates, 5:45 to 23:40.</li>
+<li><strong>7-Eleven shops.</strong> The Heart-in shops at the Central Gate, the West Exit, inside the East Exit and at the Underground East Exit, and the Antre March&eacute; inside the West ticket gate, also have Seven Bank ATMs. They are not open 24 hours.</li>
+<li><strong>Other ATM corners.</strong> JR West&rsquo;s station map marks an ATM Corner on 1F just west of the Central Gate, and one on the 2F north-south passage near the Shinkansen Central Gate and the Kintetsu gate. It gives no hours or bank names.</li>
+<li><strong>Cards from abroad.</strong> Seven Bank says its ATMs accept cards issued outside Japan with the Visa, Mastercard, UnionPay, American Express, JCB, Discover and Diners Club marks, but some cards with these marks may not be accepted, and fees vary by card brand. You choose the language, including English, after you insert the card. Visa and Mastercard users are asked whether to be charged in their home currency or in yen. Visa and Mastercard work round the clock; the other brands stop for a few minutes around midnight. With a card from abroad you can take out up to 100,000 yen at a time (30,000 yen for magnetic-stripe transactions).</li>
+<li><strong>Currency exchange.</strong> Travelex Kyoto West Exit store, on the 2F north-south free passage, 8:00 to 19:00, open every day. Ctrip foreign currency exchange, 1F in front of the Central ticket gate, inside the Nippon Travel Agency TiS Kyoto branch, 9:00 to 19:00 (closed over the New Year). The Kyoto Station Building also lists automatic exchange machines at JR Kyoto Isetan and Hotel Granvia Kyoto. These hours are from the station building&rsquo;s FAQ. We could not check Travelex&rsquo;s own site.</li>
+<li><strong>Post office.</strong> Kyoto Central Post Office: leave by the Central Exit (Kyoto Tower side) and turn left. JNTO says Japan Post Bank ATMs, most of them in post offices, take international cards. We did not check this one.</li>
+</ul>
+<p class="ps-note">Sources: Seven Bank ATM finder (<a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000027347&amp;lang=en" target="_blank" rel="noopener noreferrer">station building</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000036177&amp;lang=en" target="_blank" rel="noopener noreferrer">free passage</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000037305&amp;lang=en" target="_blank" rel="noopener noreferrer">Shinkansen gates</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000032815&amp;lang=en" target="_blank" rel="noopener noreferrer">ASTY KYOTO</a>, <a href="https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000032616&amp;lang=en" target="_blank" rel="noopener noreferrer">JR Kyoto Isetan</a>), <a href="https://www.sevenbank.co.jp/intlcard/card2.html" target="_blank" rel="noopener noreferrer">Seven Bank: cards issued overseas</a>, <a href="https://www.sevenbank.co.jp/intlcard/service2.html" target="_blank" rel="noopener noreferrer">how to use the ATM</a>, <a href="https://www.westjr.co.jp/global/en/timetable/pdf/station_kyoto.pdf" target="_blank" rel="noopener noreferrer">JR West: Kyoto Station map (as of 1 September 2025)</a>, <a href="https://www.kyoto-station-building.co.jp/qa/" target="_blank" rel="noopener noreferrer">Kyoto Station Building FAQ (Japanese)</a> and <a href="https://www.japan.travel/en/plan/currency/" target="_blank" rel="noopener noreferrer">JNTO: currency</a>. Checked 23 November 2026. Hours change, so check before you go.</p>"""
 
 WHICH = """<h2 id="which-side">Which side: Central or Hachijo?</h2>
 <p>Kyoto Station is one huge building with two main exits to the outside. The <strong>Central Exit</strong> is on the north side, by Kyoto Tower. The <strong>Hachijo Exit</strong> is on the south side. Kyoto City's tourism site compares them with the Marunouchi and Yaesu exits at Tokyo Station. JNTO's tip: the Shinkansen Hachijo entrance on the south is the most convenient for the Shinkansen, and the Central Gate on the north is the most convenient for JR lines and the Haruka Express to Kansai Airport.</p>
@@ -876,9 +921,11 @@ BODY = "\n\n".join([
     CARD,
     WHICH,
     DIAGRAM,
+    EXITS,
     SHINKANSEN,
     RAIL,
     CITY,
+    MONEY,
     CONNECTED,
     airalo,
     LUGGAGE,
@@ -1403,8 +1450,8 @@ POCKET_HTML = """<!DOCTYPE html>
 <script>
 (function(){
   var D=__FINDER_JSON__;
-  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8',smoking:'\\uD83D\\uDEAC',toilet:'\\uD83D\\uDEBB',food:'\\uD83C\\uDF5C',money:'\\uD83D\\uDCB4',unwell:'\\uD83C\\uDFE5',pharmacy:'\\uD83D\\uDC8A',trains:'\\uD83D\\uDE86',tickets:'\\uD83C\\uDFAB',phone:'\\uD83D\\uDCF6',charge:'\\uD83D\\uDD0B',more:'\\u2795'};
-  var SHORT={prayer:'Prayer room',baby:'Nursing room',quiet:'Quiet space',info:'Information counter',help:'Wheelchair and help',lockers:'Luggage',wifi:'Wi-Fi rental',shower:'Showers',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets',food:'Food and drink',money:'Money and ATMs',unwell:'Feeling unwell',pharmacy:'Pharmacy',trains:'Trains and buses',tickets:'Tickets and passes',phone:'Phone and Wi-Fi',charge:'Phone charging',more:'More places'};
+  var ICON={prayer:'\\uD83D\\uDE4F',baby:'\\uD83C\\uDF7C',quiet:'\\uD83E\\uDD2B',info:'\\u2139\\uFE0F',help:'\\u267F',lockers:'\\uD83E\\uDDF3',wifi:'\\uD83D\\uDCF6',shower:'\\uD83D\\uDEBF',internet:'\\uD83D\\uDCBB',play:'\\uD83E\\uDDF8',smoking:'\\uD83D\\uDEAC',toilet:'\\uD83D\\uDEBB',food:'\\uD83C\\uDF5C',money:'\\uD83D\\uDCB4',unwell:'\\uD83C\\uDFE5',pharmacy:'\\uD83D\\uDC8A',trains:'\\uD83D\\uDE86',tickets:'\\uD83C\\uDFAB',phone:'\\uD83D\\uDCF6',charge:'\\uD83D\\uDD0B',exits:'\\uD83D\\uDEAA',more:'\\u2795'};
+  var SHORT={prayer:'Prayer room',baby:'Nursing room',quiet:'Quiet space',info:'Information counter',help:'Wheelchair and help',lockers:'Luggage',wifi:'Wi-Fi rental',shower:'Showers',internet:'Free internet',play:'Kids play area',smoking:'Smoking room',toilet:'Toilets',food:'Food and drink',money:'Money and ATMs',unwell:'Feeling unwell',pharmacy:'Pharmacy',trains:'Trains and buses',tickets:'Tickets and passes',phone:'Phone and Wi-Fi',charge:'Phone charging',exits:'Which exit?',more:'More places'};
   var term='ALL', lastTile=null;
   try{ var s=localStorage.getItem('kyoTerm'); if(s&&/^(ALL|T1|T2)$/.test(s)) term=s; }catch(e){}
   function $(id){return document.getElementById(id);}
@@ -1460,18 +1507,19 @@ POCKET_HTML = """<!DOCTYPE html>
   var phoneIt=['phone','Phone and Wi-Fi',{}];
   D.terms.forEach(function(t){ phoneIt[2][t[0]]=item('wifi')[2][t[0]]; });
   var trainsIt=['trains','Subway and buses',{}];
+  var exitsIt=['exits','Which exit?',{}];
   var LIST=[];
-  ['toilet','lockers','info','tickets','trains','help','baby','phone','food','unwell'].forEach(function(id){
-    LIST.push(id==='trains'?trainsIt:id==='phone'?phoneIt:item(id));
+  ['exits','money','toilet','lockers','info','tickets','trains','help','baby','phone','food','unwell'].forEach(function(id){
+    LIST.push(id==='trains'?trainsIt:id==='exits'?exitsIt:id==='phone'?phoneIt:item(id));
   });
   LIST.forEach(function(it,n){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(n%3); b.setAttribute('data-id',it[0]);
     var ic=document.createElement('span'); ic.className='ic'; ic.setAttribute('aria-hidden','true'); ic.textContent=ICON[it[0]]||'\\u2022';
     var tx=document.createElement('span'); tx.className='tx'; tx.textContent=SHORT[it[0]]||it[1];
     b.appendChild(ic); b.appendChild(tx);
-    b.addEventListener('click',function(){ if(it[0]==='trains'){ openInfo(ICON.trains,it[1],trainHTML(),b); } else { openSheet(it,b); } });
+    b.addEventListener('click',function(){ if(it[0]==='trains'){ openInfo(ICON.trains,it[1],trainHTML(),b); } else if(it[0]==='exits'){ openInfo(ICON.exits,it[1],exitHTML(),b); } else { openSheet(it,b); } });
     (n<MAIN?tiles:tiles2).appendChild(b);
-    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u2192','More','Food and drink, feeling unwell',function(){ slideTo(1); })); }
+    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u2192','More','Nursing room, Wi-Fi, food, feeling unwell',function(){ slideTo(1); })); }
   });
   tiles2.appendChild(pill('pgback','\\u2190','Back','Main places',function(){ slideTo(0); }));
   /* swipe between the two screens */
@@ -1524,6 +1572,21 @@ POCKET_HTML = """<!DOCTYPE html>
     h+='<p class="sm">Source: Kyoto City, checked 19 November 2026. Fares and routes change. Check the operator.</p>';
     return h;
   }
+  function exitHTML(){
+    return '<ul class="pl"><li><b>Kyoto Tower:</b> Central Exit (north side), also called the Karasuma Central Exit. You cannot see the tower from inside the station.</li>'
+      +'<li><b>City buses:</b> out of the Central ticket gate and the Karasuma Central Exit, straight on to the bus terminal. JR highway and Keihan buses: to the left (west).</li>'
+      +'<li><b>Taxis (north):</b> out of the Karasuma Central Exit, turn right.</li>'
+      +'<li><b>Subway (Karasuma Line):</b> escalator down to B2F from the central concourse, then right through Kyoto Porta.</li>'
+      +'<li><b>Bullet trains:</b> Hachijo side (south). The Shinkansen Central Exit leads to the Hachijo Exit, not the Central Exit.</li>'
+      +'<li><b>Airport bus to Kansai Airport:</b> 2F north-south passage south to the end, down by the Hachijo West Exit, cross Hachijo-dori. The stop is on the left.</li>'
+      +'<li><b>Higashi Honganji:</b> Central side, north along Karasuma-dori, about 5 to 7 min.</li>'
+      +'<li><b>Sanjusangen-do:</b> Central side, about 18 min on foot by Karasuma-dori and Shichijo-dori.</li>'
+      +'<li><b>To-ji:</b> Hachijo Exit, then west along Hachijo-dori. Or Kintetsu one stop to Toji, then about 7 min.</li>'
+      +'<li><b>JR Kyoto Isetan:</b> left after the Central gate. <b>Ramen Koji:</b> Isetan south lift to 10F.</li>'
+      +'<li><b>Hotel Granvia Kyoto:</b> escalator on the right after the Central gate, to the 2F lobby.</li>'
+      +'<li><b>Kintetsu line:</b> from the Shinkansen, leave by the Shinkansen Central Exit. From local JR lines, leave by the West Exit and turn left.</li></ul>'
+      +'<p class="sm">Source: Kyoto Station Building, Kyoto City tourism site and JNTO, checked 23 November 2026. Routes change. Follow the signs.</p>';
+  }
   function sidesHTML(){
     return '<p class="n2">Kyoto Station has two main exits. They are not the same as the exits inside the Shinkansen concourse.</p>'
       +'<ul class="pl"><li><b>Central Exit (north):</b> by Kyoto Tower. City buses, taxis and the JR local lines. JNTO says the Central Gate is the most convenient for JR lines and the Haruka to Kansai Airport.</li>'
@@ -1563,7 +1626,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<p class="sm">Times and prices are approximate and change. Check the operator.</p>'
       +'<p class="sm"><a href="/blog/kansai-airport-guide">Our Kansai Airport guide</a> (needs internet)</p>';
   }
-  var NEXT=[['🚌','Subway and buses',trainHTML],['🧭','Central or Hachijo?',sidesHTML],['🎫','Passes and paying',cardHTML],['🧳','Luggage',bagsHTML],['📱','Phone data',simHTML],['🗺️','Onward trips',onwardHTML]];
+  var NEXT=[['🚌','Subway and buses',trainHTML],['🚪','Which exit?',exitHTML],['🧭','Central or Hachijo?',sidesHTML],['🎫','Passes and paying',cardHTML],['🧳','Luggage',bagsHTML],['📱','Phone data',simHTML],['🗺️','Onward trips',onwardHTML]];
   var at=$('arrTiles');
   NEXT.forEach(function(n,k){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);
