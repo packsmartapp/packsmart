@@ -205,7 +205,7 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 **D46. New partner links go through Travelpayouts** (22 Nov)
 - Chose: every new partner link uses a Travelpayouts programme, which pays by PayPal.
 - Instead of: Klook's direct affiliate account (ID 116473) and Trip.com's direct programme, which pay only by bank transfer to an Indian bank (Trip.com also has a US$200 minimum and pays after the trip is completed).
-- Note: the direct Klook account is not deleted; it still records clicks but has no payout set up, so no new links go through it and the old one in `api/generate-plan.js` is replaced (B26). Existing direct Trip.com links stay for now. Hotels and flights: Trip.com's direct programme stays in use for PackSmart hotels and flights (its links and the index/flights widget). The owner's hotel programmes on Travelpayouts are Klook and KKday (23 Nov). Which one carries the five airport-hotel links is open (see Open decisions).
+- Note: the direct Klook account is not deleted; it still records clicks but has no payout set up, so no new links go through it and the old one in `api/generate-plan.js` is replaced (B26). Existing direct Trip.com links stay for now. Hotels and flights: Trip.com's direct programme stays in use for PackSmart hotels and flights (its links and the index/flights widget). The owner's hotel programmes on Travelpayouts are Klook and KKday (23 Nov). The five airport-hotel links (Narita, Haneda T1/T2/T3, Kansai) go through Klook via Travelpayouts (owner, 23 Nov), in line with this decision.
 
 **D47. Readers never see partner names in our own words** (23 Nov)
 - Chose: headings, captions, buttons, labels and body text say what a thing is ("airport transfer", "tours and tickets", "eSIM") plus "(partner link)", never the partner's name. Order: the Shinjuku guide first (with its source notes gathered into one Sources list before the FAQ), then the Japan guides and Pocket Guides through their generators, then the other articles. SafetyWing last, after checking its brand guidelines.
@@ -220,6 +220,5 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Whether to keep the Terminals tab (watch the `pg_tab` count for it).
 - Wider airport list ("Wave 1") and any airport outside Japan.
 - Whether Tripadvisor is still a partner.
-- Airport-hotel links (Narita, Haneda x3, Kansai): Trip.com direct (already used for hotels) or Klook via Travelpayouts (PayPal)?
 - Email capture: whether and how it returns.
 - Whether to add a native-speaker check for the Japanese phrases before promoting the guides.
