@@ -5,6 +5,8 @@ Portugal guides. Germany and France already had this layout (no grid, a GetYourG
 November pilot, so they serve as the comparison pages.
 
 On each pilot page:
+  0. Removes the older bottom GetYourGuide widget ("Top <Country> Tours & Activities", after Related posts),
+     which the city box replaces, so the page has one GetYourGuide box.
   1. Removes the generic "Travel Essentials for Your <Country> Trip" grid (SafetyWing, GetYourGuide, Radical
      Storage cards). Each of those partners already has its own block in the right section of the page.
   2. Adds a GetYourGuide "Tours and tickets" box at the end of the city section, with one button per city
@@ -85,33 +87,49 @@ for key, (country, cities) in PAGES.items():
         die("missing " + path)
     s = open(path, encoding="utf-8").read()
     pid = "gyg-%s-cities" % key
-    if pid in s and "Travel Essentials for Your" not in s:
+    if pid in s and "Travel Essentials for Your" not in s and "<!-- GYG ACTIVITY WIDGET" not in s:
         done.append(slug)
         continue
-    # 1. remove the grid
+    # 0. remove the older bottom GetYourGuide widget (after Related posts), which the city box replaces
+    w = s.find("<!-- GYG ACTIVITY WIDGET")
+    if w >= 0:
+        d = s.find("<div", w)
+        depth, we = 0, None
+        for t in re.finditer(r"<(/?)div\b[^>]*>", s[d:]):
+            depth += -1 if t.group(1) else 1
+            if depth == 0:
+                we = d + t.end()
+                break
+        if we is None or "data-gyg-widget" not in s[d:we]:
+            die(slug + ": bottom GetYourGuide widget not found as expected")
+        s = s[:w] + s[we:].lstrip("\n")
+        s = s.replace("<!-- TRAVEL ESSENTIALS - AFFILIATE LINKS -->\n", "", 1)
+    # 1. remove the grid (skip if already gone)
     m = GRID_START.search(s)
-    if not m:
+    if not m and "Travel Essentials for Your" in s:
         die(slug + ": grid start not found")
-    depth, e = 0, None
-    for t in re.finditer(r"<(/?)div\b[^>]*>", s[m.start():]):
-        depth += -1 if t.group(1) else 1
-        if depth == 0:
-            e = m.start() + t.end()
-            break
-    if e is None:
-        die(slug + ": grid end not found")
-    grid = s[m.start():e]
-    links = re.findall(r'href="([^"]+)"', grid)
-    if len(links) != 3 or not all(any(k in l for k in ("safetywing.com", "getyourguide.com", "radicalstorage")) for l in links):
-        die(slug + ": grid does not hold exactly the SafetyWing, GetYourGuide and Radical Storage cards: %r" % links)
-    if s[e:].lstrip().startswith(GRID_END):
-        e = s.index(GRID_END, e) + len(GRID_END)
-    s = s[:m.start()] + s[e:]
+    if m:
+        depth, e = 0, None
+        for t in re.finditer(r"<(/?)div\b[^>]*>", s[m.start():]):
+            depth += -1 if t.group(1) else 1
+            if depth == 0:
+                e = m.start() + t.end()
+                break
+        if e is None:
+            die(slug + ": grid end not found")
+        grid = s[m.start():e]
+        links = re.findall(r'href="([^"]+)"', grid)
+        if len(links) != 3 or not all(any(k in l for k in ("safetywing.com", "getyourguide.com", "radicalstorage")) for l in links):
+            die(slug + ": grid does not hold exactly the SafetyWing, GetYourGuide and Radical Storage cards: %r" % links)
+        if s[e:].lstrip().startswith(GRID_END):
+            e = s.index(GRID_END, e) + len(GRID_END)
+        s = s[:m.start()] + s[e:]
     # 2. add the city box at the end of the city section (just before the next h2, which is Cultural Etiquette)
-    anchor = re.search(r'<h2[^>]*>\s*Cultural Etiquette &(?:amp;)? Dress Codes\s*</h2>', s)
-    if not anchor:
-        die(slug + ": Cultural Etiquette heading not found")
-    s = s[:anchor.start()] + box(key, country, cities, slug) + "\n" + s[anchor.start():]
+    if pid not in s:
+        anchor = re.search(r'<h2[^>]*>\s*Cultural Etiquette &(?:amp;)? Dress Codes\s*</h2>', s)
+        if not anchor:
+            die(slug + ": Cultural Etiquette heading not found")
+        s = s[:anchor.start()] + box(key, country, cities, slug) + "\n" + s[anchor.start():]
     plans[path] = s
 
 for path, s in plans.items():
