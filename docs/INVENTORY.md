@@ -1,6 +1,6 @@
 # PackSmart: file inventory
 
-Generated 22 Nov 2026 by `tools/make_inventory.py` (re-run it after adding scripts, pages or docs).
+Generated 23 Nov 2026 by `tools/make_inventory.py` (re-run it after adding scripts, pages or docs).
 Every file below is already saved in git (`packsmartapp/packsmart`, branch `main`); `git clone` is the full backup.
 This page says what exists and where. It does not repeat file contents, because git always has the latest version.
 
@@ -102,6 +102,8 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w57_osaka_guide_rename.py` | w57: rename the "Osaka Station" Pocket Guide to "Shin-Osaka and Umeda" on pages that earlier scripts |
 | `w58_shinjuku_station_page.py` | w58: new page /blog/shinjuku-station-guide + offline /shinjuku-pocket (neutral, plain-English station guide for Shinjuku Station). |
 | `w59_shinjuku_station_card.py` | w59: Travel Essentials hub: add the Shinjuku Station card to the Stations section (after the last station card). |
+| `w60_gyg_deep_links.py` | w60: GetYourGuide deep links (backlog B29, 23 Nov 2026). |
+| `w61_b28_city_tours_pilot.py` | w61: backlog B28 pilot (23 Nov 2026): contextual offers instead of the generic grid, on the Italy, Spain and |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `pocket_guides.json` | data file read by the scripts above |
 

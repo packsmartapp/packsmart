@@ -740,6 +740,37 @@ html{scroll-behavior:smooth}
 <li><strong>Timing:</strong> Go early to beat crowds; Sintra can feel crowded by mid-morning in summer</li>
 </ul>
 
+<div class="ps-gyg" data-ps-placement="gyg-portugal-cities">
+<style>
+.ps-gyg{margin:28px 0;font-family:"DM Sans",sans-serif}
+.ps-gyg-h{display:block;text-align:center;font-size:1.05rem;font-weight:700;color:#0f0f23;margin:0 0 4px}
+.ps-gyg-s{text-align:center;font-size:.85rem;color:#3f7f70;margin:0 0 14px}
+.ps-gyg-pills{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;margin:0 0 16px}
+.ps-gyg-pills button{font:inherit;font-size:.85rem;font-weight:600;color:#0f0f23;background:#fff;border:1px solid #cdeee5;border-radius:999px;padding:7px 15px;cursor:pointer}
+.ps-gyg-pills button[aria-pressed="true"]{background:#e8faf6;border-color:#00c9a7}
+.ps-gyg-w{min-height:495px;margin-bottom:-30px}
+@media(max-width:600px){.ps-gyg-pills{flex-wrap:nowrap;justify-content:flex-start;overflow-x:auto;padding:2px 2px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.ps-gyg-pills::-webkit-scrollbar{display:none}.ps-gyg-pills button{flex:0 0 auto}.ps-gyg-w{min-height:772px;margin-bottom:0}}
+</style>
+<strong class="ps-gyg-h">Tours and tickets in Portugal</strong>
+<p class="ps-gyg-s ps-gyg-blurb">Pick a city to see popular tours, as listed by our partner.</p>
+<div class="ps-gyg-pills" role="group" aria-label="Choose a city in Portugal"></div>
+<div class="ps-gyg-w"><div class="ps-gyg-slot" data-gyg-href="https://widget.getyourguide.com/default/activities.frame" data-gyg-locale-code="en-US" data-gyg-number-of-items="3" data-gyg-partner-id="D7IXONS"></div></div>
+<script>
+(function(){
+var root=document.currentScript.parentNode;
+var cities=[['Lisbon','Lisbon','ps-portugal-travel-packing-guide-gyg-lisbon'],['Porto','Porto','ps-portugal-travel-packing-guide-gyg-porto'],['Sintra','Sintra','ps-portugal-travel-packing-guide-gyg-sintra'],['Algarve','Algarve','ps-portugal-travel-packing-guide-gyg-algarve'],['Madeira','Madeira','ps-portugal-travel-packing-guide-gyg-madeira']];
+var pills=root.querySelector(".ps-gyg-pills"),slot=root.querySelector(".ps-gyg-slot");
+var phone=window.matchMedia("(max-width:600px)"),cur=0,started=false;
+cities.forEach(function(c,i){var b=document.createElement("button");b.type="button";b.textContent=c[0];b.setAttribute("aria-pressed",i===0?"true":"false");b.addEventListener("click",function(){pick(i)});pills.appendChild(b);});
+function render(){var c=cities[cur];slot.setAttribute("data-gyg-widget","activities");slot.setAttribute("data-gyg-number-of-items",phone.matches?"2":"3");slot.setAttribute("data-gyg-q",c[1]);slot.setAttribute("data-gyg-cmp",c[2]);var t=0;(function go(){if(window.GYG&&window.GYG.refresh){window.GYG.refresh()}else if(t++<50){setTimeout(go,200)}})();}
+function pick(i){cur=i;[].forEach.call(pills.children,function(b,j){b.setAttribute("aria-pressed",j===i?"true":"false")});try{window.gtag&&gtag("event","gyg_city",{event_category:"affiliate",placement:"gyg-portugal-cities",city:cities[i][0]})}catch(e){}render();}
+function start(){if(started)return;started=true;render();var n=0;(function watch(){if(slot.querySelector("iframe"))return;if(++n>15){root.style.display="none";return}setTimeout(watch,1000)})()}
+if("IntersectionObserver" in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();start()}},{rootMargin:"400px 0px"});io.observe(root)}else{start()}
+if(phone.addEventListener){phone.addEventListener("change",function(){if(started)render()})}
+})();
+</script>
+</div>
+
 <h2 id="cultural-etiquette">Cultural Etiquette & Dress Codes</h2>
 
 <h3>Religious Sites (Churches, Basilicas, Monasteries)</h3>
@@ -1358,35 +1389,7 @@ html{scroll-behavior:smooth}
 </div>
 
 <!-- TRAVEL ESSENTIALS - AFFILIATE LINKS -->
-<div style="background:linear-gradient(135deg,#F0FAF7,#E8FFF9);border:2px solid rgba(0,201,167,0.2);border-radius:16px;padding:28px;margin:40px 0;">
-    <h3 style="font-size:1.3rem;margin-bottom:4px;color:#212529;">Travel Essentials for Your Portugal Trip</h3>
-    <p style="color:#6C757D;font-size:0.88rem;margin-bottom:18px;">Hand-picked tools our readers love. Affiliate links — we may earn a commission at no extra cost.</p>
 
-<div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(250px,1fr));gap:12px;">
-        <a href="https://safetywing.com/?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-            <span style="font-size:1.5rem;">🛡️</span>
-            <div>
-                <strong style="font-size:0.9rem;">SafetyWing</strong>
-                <div style="font-size:0.78rem;color:#6C757D;">Travel medical insurance from ~$2/day</div>
-            </div>
-        </a>
-
-        <a href="https://www.getyourguide.com/s/?q=Portugal&partner_id=D7IXONS&cmp=ps-portugal-travel-packing-guide" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-            <span style="font-size:1.5rem;">🎯</span>
-            <div>
-                <strong style="font-size:0.9rem;">GetYourGuide</strong>
-                <div style="font-size:0.78rem;color:#6C757D;">Skip-the-line tours & activities</div>
-            </div>
-        </a>
-        <a href="https://radicalstorage.tpx.li/w3878VAY" target="_blank" rel="nofollow noopener sponsored" style="display:flex;align-items:center;gap:12px;background:#fff;border:1px solid #E9ECEF;border-radius:12px;padding:14px;text-decoration:none;color:#212529;transition:transform 0.2s,box-shadow 0.2s;" onmouseover="this.style.transform='translateY(-2px)';this.style.boxShadow='0 4px 12px rgba(0,0,0,0.08)'" onmouseout="this.style.transform='';this.style.boxShadow=''">
-            <span style="font-size:1.5rem;">🧳</span>
-            <div>
-                <strong style="font-size:0.9rem;">Radical Storage</strong>
-                <div style="font-size:0.78rem;color:#6C757D;">Luggage storage in 70+ countries</div>
-            </div>
-        </a>
-        </div>
-</div>
 
 <!-- SAFETYWING INSURANCE WIDGET -->
 <div style="background:linear-gradient(135deg,#F0FAF7 0%,#E8F8F5 100%);border-radius:16px;padding:24px;margin:30px 0;text-align:center;border:1px solid #C8E6DC;">
