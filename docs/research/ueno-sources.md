@@ -74,3 +74,28 @@ Source: https://www.tokyometro.jp/lang_en/station/ueno/index.html
   Pass offices are for commuter passes; whether they sell visitor tickets is not stated on this map.
 - Decision 23 Nov: the guide goes ahead without Tokyo Metro exit numbers; it routes people by the JR exits (Park Gate and Panda Bridge
   for Ueno Park). Add Metro exits later only if the owner finds Tokyo Metro's exit list.
+
+## Ueno Park, official site (Tokyo Metropolitan Government, Bureau of Construction; fetched 23 Nov 2026)
+- Access page https://www.kensetsu.metro.tokyo.lg.jp/jimusho/toubuk/ueno/access : JR Yamanote, Keihin-Tohoku, Takasaki and Utsunomiya lines
+  "Ueno", 2 minutes' walk; Tokyo Metro Ginza and Hibiya lines "Ueno", 4 minutes; Toei Oedo Line "Ueno-okachimachi", 5 minutes;
+  Keisei Main Line "Keisei Ueno", 1 minute. Address: Ueno Park and Ikenohata 3-chome, Taito-ku.
+- About the park https://www.kensetsu.metro.tokyo.lg.jp/jimusho/toubuk/ueno/kouenannai : open 5:00 to 23:00 (no entry outside these hours);
+  about 1,200 cherry trees among the main plants; opened 1873; one of Japan's first designated parks. Park map PDF linked there.
+- Highlights https://www.kensetsu.metro.tokyo.lg.jp/jimusho/toubuk/ueno/midokoro : "one of Japan's best-known cherry blossom spots";
+  cherry blossoms for about two months, from early-flowering kanzakura to Somei-yoshino; lotus on Shinobazu Pond at its best in late July.
+- Rules https://www.kensetsu.metro.tokyo.lg.jp/jimusho/toubuk/ueno/rules : no fireworks, no catch-ball (general rules page).
+
+## Keisei, Ueno and Nippori (fetched 23 Nov 2026)
+- https://www.keisei.co.jp/keisei/tetudou/skyliner/us/directions/ueno.php : Skyliner Narita Airport Terminal 2·3 to Keisei Ueno, 41 min
+  (total travel time; Keisei lists Ueno Park, Ueno Zoo, Tokyo National Museum, Kaneiji Temple, National Science Museum, Shinobazu Pond, Ameyoko).
+  Fare shown on that page; body copy carries no prices.
+- https://www.keisei.co.jp/keisei/tetudou/skyliner/us/traffic/nippori_transfer.php : with the "Skyliner & Tokyo Subway Ticket" or
+  "Greater Tokyo Pass" you cannot transfer at Nippori; use Ueno. JR transfer at Nippori needs a JR ticket.
+- Station maps (Keisei-Ueno, Nippori) listed at https://www.keisei.co.jp/keisei/tetudou/skyliner/us/traffic/station.php (to read for the exit to JR Ueno).
+
+## Photos (PAKUTASO, free licence; credit line "Photo: PAKUTASO", as on the other Japan guides). Checked by eye 23 Nov 2026.
+- Hero: "上野駅の駅舎全景" (JR Ueno Station main building, "上野駅 UENO STATION" sign), https://www.pakutaso.com/20170227040ueno-station.html,
+  saved as `public/images/ueno-station-hero.jpg`. People are small and far away; no identifiable faces. Photo from 2017: caption it as illustrative.
+- Cherry blossom section: "上野恩賜公園の満開の桜" (Ueno Park avenue of cherry trees in full bloom, lanterns, no people),
+  https://www.pakutaso.com/20130348087post-2579.html, saved as `public/images/ueno-park-sakura.jpg`.
+- Not used: JR Ueno Park Exit crossing at rush hour (crowd), old Hakubutsukan-dobutsuen station (closed, would confuse).
