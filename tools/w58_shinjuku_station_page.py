@@ -138,7 +138,7 @@ airalo = airalo.replace(_a, "Install it on your phone and switch it on when you 
 # no partner names in our own words (D47): neutral labels on the eSIM tiles
 for _o, _n in ((", opens Airalo", ", opens our eSIM partner"),
                ("Airalo asks you to verify your ID before you buy.", "The provider asks you to verify your ID before you buy.")):
-    if _o not in airalo:
+    if _o not in airalo and _n not in airalo:   # the Japan guide may already carry the neutral wording (w65)
         die("eSIM block text not found: " + _o)
     airalo = airalo.replace(_o, _n)
 # ---------------------------------------------------------------- body content
