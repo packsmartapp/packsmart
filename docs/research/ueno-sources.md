@@ -59,3 +59,13 @@ Source: https://www.tokyo-park.or.jp/park/ueno/index.html (Tokyo Metropolitan Pa
 - Tokyo Metro Ueno exit map (owner's screenshot): exit numbers for Ginza G16 and Hibiya H18, and which exit for Ueno Park.
 - Keisei Ueno station page: location and walk to JR Ueno; Skyliner first and last trains.
 - Ueno Park cherry blossom page from the Bureau of Construction.
+
+## Tokyo Metro Ueno Station page (owner's screenshots, 23 Nov 2026)
+Source: https://www.tokyometro.jp/lang_en/station/ueno/index.html
+- Ginza Line G16, Hibiya Line H18. Address: 3-19-6 Higashiueno, Taito-ku, Tokyo. Station office 03-3832-6629.
+- Transfers listed: East Japan Railway (JR East) and Keisei Electric Railway.
+- Lost items: same day, ask the station office where the item was lost; next day or later, the Lost and Found at Iidabashi Station
+  (Namboku Line) or the Tokyo Metro Customer Relations Center.
+- Multi-functional ticket machines at all ticket offices, first train to last train.
+- Daily average passengers 2025: 191,804 (10th of 130 stations), excluding passengers on directly connected lines.
+- The page screenshots do not include the exit list.
