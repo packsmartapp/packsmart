@@ -214,12 +214,18 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Instead of: naming partners in copy ("as listed by GetYourGuide", "Airalo asks you to verify your ID").
 - Why: readers do not need the names; names in copy read as adverts and go stale when a partner changes.
 
+**D48. Japan only until after cherry blossom 2027** (23 Nov)
+- Chose: no new countries before spring 2027. Build more Japan stations and airports, then work on traffic, aiming at the cherry blossom crowd (Tokyo peak about late March, Kyoto and Osaka about early April; searches start in January, so pages must be live by about mid-January).
+- Order: Ueno Station, then Shinagawa, then Shibuya (article + Pocket Guide each, PAKUTASO photos). Then "cherry blossoms near this station" sections in every station guide and one Cherry Blossom 2027 page built from them, with dates from the official forecasts. Airports after that, New Chitose and Fukuoka under consideration.
+- Instead of: other countries' airports (Bangkok, Bali, Singapore, Seoul), or competing for "cherry blossom forecast" searches, which the big Japan sites own.
+- Why: the station and airport guides answer practical questions with official facts and work offline; that crowd has booked and is about to spend on bullet-train tickets, eSIMs, transfers, hotels, tours and luggage storage.
+
 ## Open decisions (not made)
 
 - Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.
 - Haruka price wording on the Kansai and Osaka guides.
 - Whether to keep the Terminals tab (watch the `pg_tab` count for it).
-- Wider airport list ("Wave 1") and any airport outside Japan.
+- Wider airport list: New Chitose and Fukuoka next? No airport outside Japan before spring 2027 (D48).
 - Whether Tripadvisor is still a partner.
 - Email capture: whether and how it returns.
 - Whether to add a native-speaker check for the Japanese phrases before promoting the guides.
