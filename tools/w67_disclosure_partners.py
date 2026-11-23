@@ -45,7 +45,7 @@ PARTNERS = [
     ("Kiwi.com", "flights"),
 ]
 FOOT = "Plus flight and hotel price search powered by Travelpayouts"
-KEEP_PILLS = ["Tripadvisor"]   # on the About page before this script; whether it is still a partner is an open decision
+KEEP_PILLS = []   # Tripadvisor pill removed 23 Nov 2026 (owner): nothing on the site links to Tripadvisor
 
 DOMAIN_TO_PARTNER = {
     "safetywing.com": "SafetyWing", "getyourguide.com": "GetYourGuide", "klook.tpx.li": "Klook", "klook.tpo.lu": "Klook",
