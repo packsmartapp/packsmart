@@ -69,3 +69,8 @@ Source: https://www.tokyometro.jp/lang_en/station/ueno/index.html
 - Multi-functional ticket machines at all ticket offices, first train to last train.
 - Daily average passengers 2025: 191,804 (10th of 130 stations), excluding passengers on directly connected lines.
 - The page screenshots do not include the exit list.
+- Metro Pass Office locations (owner's screenshot, 23 Nov 2026): Ueno is one of the stations with a Tokyo Metro Pass Office
+  (others on the map: Oji, Ayase, Kotake-mukaihara, Ikebukuro, Takadanobaba, Iidabashi, Otemachi, Kinshicho, Urayasu, Shinjuku, Ginza, Toyosu).
+  Pass offices are for commuter passes; whether they sell visitor tickets is not stated on this map.
+- Decision 23 Nov: the guide goes ahead without Tokyo Metro exit numbers; it routes people by the JR exits (Park Gate and Panda Bridge
+  for Ueno Park). Add Metro exits later only if the owner finds Tokyo Metro's exit list.
