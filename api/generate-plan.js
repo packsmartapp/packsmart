@@ -225,8 +225,7 @@ Based on their travel dates, generate:
             let plan = data.candidates[0].content.parts[0].text;
 
             // Append affiliate recommendations section
-            const isAsia = /\b(thailand|vietnam|japan|tokyo|osaka|kyoto|bali|indonesia|singapore|malaysia|kuala lumpur|korea|seoul|china|beijing|shanghai|hong kong|macau|taiwan|taipei|philippines|manila|cebu|cambodia|laos|myanmar|sri lanka|nepal|maldives|bangkok|phuket|chiang mai|hanoi|ho chi minh|saigon|da nang|krabi|langkawi|penang)\b/i.test(destination);
-            const klookBlock = isAsia ? `**🎟️ Tours, Tickets & Activities in Asia**\nBook discounted attraction tickets, day trips, and experiences across Southeast Asia.\n[👉 Browse on Klook](https://www.klook.com/en-US/?aid=116473) — Up to 50% off activities\n\n` : '';
+            // Klook block removed 23 Nov 2026 (B26): its direct link (aid=116473) has no payout set up (D46); GetYourGuide below covers activities.
             const affiliateSection = `
 
 ---
@@ -249,9 +248,9 @@ Compare hotel deals from Trip.com — great rates on hotels, hostels, and apartm
 
 **🎯 Book Activities & Tours**
 Skip the line tickets, guided tours, and unique local experiences.
-[👉 Browse Activities on GetYourGuide](https://www.getyourguide.com?partner_id=D7IXONS&cmp=share_to_earn) — Best price guaranteed
+[👉 Browse Activities on GetYourGuide](https://www.getyourguide.com/s/?q=${encodeURIComponent(destination.split(',')[0].trim())}&partner_id=D7IXONS&cmp=ps-plan) — Tours and day trips
 
-${klookBlock}**🚐 Airport Transfers — Skip the Taxi Queue**
+**🚐 Airport Transfers — Skip the Taxi Queue**
 Pre-book reliable airport pickups in 350+ destinations worldwide.
 [👉 Book on Welcome Pickups](https://tp.media/r?marker=711400&trs=508747&p=8919&u=https%3A%2F%2Fwelcomepickups.com&campaign_id=627) — Trusted drivers, fixed prices
 
