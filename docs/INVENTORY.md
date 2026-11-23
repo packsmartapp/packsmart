@@ -104,8 +104,10 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w59_shinjuku_station_card.py` | w59: Travel Essentials hub: add the Shinjuku Station card to the Stations section (after the last station card). |
 | `w60_gyg_deep_links.py` | w60: GetYourGuide deep links (backlog B29, 23 Nov 2026). |
 | `w61_b28_city_tours_pilot.py` | w61: backlog B28 pilot (23 Nov 2026): contextual offers instead of the generic grid, on the Italy, Spain and |
+| `w62_fix_article_photos.py` | w62: fix article photos that do not show what they say, and move out-of-place cross-links (23 Nov 2026). |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `pocket_guides.json` | data file read by the scripts above |
+| `w62_photo_fixes.json` | data file read by the scripts above |
 
 ## public/ pages
 

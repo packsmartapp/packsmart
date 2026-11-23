@@ -1,0 +1,741 @@
+[
+ {
+  "page": "bali-10-day-itinerary-mid-range.html",
+  "alt": "Waterfall in lush tropical jungle in Bali",
+  "cap": "Bali’s waterfalls are hidden all over the island — most cost less than $2 to enter",
+  "shows": "Pura Ulun Danu Bratan lake temple (Bali), no waterfall",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "bali-10-day-itinerary-mid-range.html",
+  "alt": "Sunset at a Bali beach with surfers and palm trees",
+  "cap": "Bali sunsets from Seminyak Beach — every evening feels like an event",
+  "shows": "Tanah Lot sea temple at sunset (Bali); no surfers/palms",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "bali-10-day-itinerary-mid-range.html",
+  "alt": "Uluwatu Temple perched on dramatic cliffs above the ocean in Bali",
+  "cap": "Uluwatu Temple — perched on a 70-meter cliff above the Indian Ocean",
+  "shows": "Diamond Beach cliffs, Nusa Penida (Bali); no temple",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "bali-10-day-itinerary-mid-range.html",
+  "alt": "Kelingking Beach T-Rex cliff viewpoint on Nusa Penida",
+  "cap": "Kelingking Beach — the famous T-Rex cliff on Nusa Penida",
+  "shows": "Diamond/Atuh Beach rock stacks, Nusa Penida; not the Kelingking T-Rex headland",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "bali-10-day-itinerary-mid-range.html",
+  "alt": "Crystal clear turquoise water at a Nusa Penida beach in Bali",
+  "cap": "The crystal-clear waters around Nusa Penida are perfect for snorkeling",
+  "shows": "Pura Ulun Danu Bratan lake temple (Bali highlands); not a beach",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "bali-10-day-itinerary-mid-range.html",
+  "alt": "Colorful Balinese dishes at a traditional warung",
+  "cap": "A traditional nasi campur plate — the best meal in Bali for under $3",
+  "shows": "aerial view of rice terraces and palms; no food",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "bali-travel-packing-guide-from-india.html",
+  "alt": "Bali temple in Ubud",
+  "cap": "Beautiful Balinese temple architecture — essential to see during your visit",
+  "shows": "seafood paella in a pan (Spanish dish)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "beach-vacation-packing-list.html",
+  "alt": "Tropical beach with palm trees",
+  "cap": "Santorini's iconic beauty — pack layers for variable Mediterranean temperatures",
+  "shows": "white-washed steps down to the sea, Santorini-style (Greece); not tropical",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "beach-vacation-packing-list.html",
+  "alt": "Snorkelling in clear ocean water",
+  "cap": "Reef-safe sunscreen is essential for protecting marine life",
+  "shows": "sunset over the sea; no snorkelling",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "best-summer-travel-destinations-india-2026.html",
+  "alt": "Hill station mountain view",
+  "cap": "Hill stations provide cool relief from summer heat",
+  "shows": "\"That Wanaka Tree\", Lake Wanaka, New Zealand",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "budget-travel-destinations-2026.html",
+  "alt": "Budget travel planning with map",
+  "cap": "Book flights midweek and use fare comparison tools for the best deals",
+  "shows": "hiker with backpack in an alpine meadow (no map)",
+  "verdict": "WRONG SECTION (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "budget-travel-destinations-2026.html",
+  "alt": "Budget traveller at local cafe",
+  "cap": "Eat where locals eat — street food and local cafes save money and taste better",
+  "shows": "Ploenlein, Rothenburg ob der Tauber, Germany (half-timbered street)",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "carry-on-packing-list.html",
+  "alt": "Packing cubes in carry-on bag",
+  "cap": "Packing cubes are the secret to maximising carry-on space",
+  "shows": "outdoor bed on a deck above a mountain lake; no luggage/packing cubes",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "carry-on-packing-list.html",
+  "alt": "Traveller at airport with carry-on bag",
+  "cap": "Wear your bulkiest items on the plane to save luggage space",
+  "shows": "hiker with backpack in an alpine meadow (no map)",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "costa-rica-packing-list.html",
+  "alt": "Zip-lining through Costa Rica jungle",
+  "cap": "Adventure gear like quick-dry clothing is essential for zip-lining",
+  "shows": "tent at sunset; no zip-line",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "costa-rica-packing-list.html",
+  "alt": "Costa Rica wildlife and nature",
+  "cap": "Exotic Costa Rica wildlife and pristine natural landscapes await",
+  "shows": "rowing boat on Lago di Braies, Dolomites, Italy",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "costa-rica-packing-list.html",
+  "alt": "Costa Rica toucan in rainforest",
+  "cap": "Costa Rica's biodiversity is staggering — pack a good camera",
+  "shows": "raccoon on grass; no toucan",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "europe-travel-packing-list.html",
+  "alt": "Organised travel packing layout",
+  "cap": "Pack versatile layers that mix and match for European weather",
+  "shows": "Pont Alexandre III, Paris at dusk; no packing",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "europe-travel-packing-list.html",
+  "alt": "European cafe terrace",
+  "cap": "Budget tip: eat where locals eat, not in tourist squares",
+  "shows": "Ploenlein, Rothenburg ob der Tauber, Germany (half-timbered street)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "family-summer-vacation-packing-list.html",
+  "alt": "Family packing organisation",
+  "cap": "Colour-coded packing cubes make family luggage manageable",
+  "shows": "outdoor bed on a deck above a mountain lake; no luggage/packing cubes",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "family-summer-vacation-packing-list.html",
+  "alt": "Family enjoying a summer pool vacation",
+  "cap": "Family memories at the pool — pack extra of everything for babies",
+  "shows": "freight locomotive on rails",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "family-travel-tips-with-kids.html",
+  "alt": "Children traveling comfortably by airplane",
+  "cap": "Kids on planes need comfort items — pack familiar favorites",
+  "shows": "Tanah Lot sea temple at sunset (Bali); no surfers/palms",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "family-travel-tips-with-kids.html",
+  "alt": "Family exploring a new city",
+  "cap": "Let kids help plan activities — they'll be more engaged",
+  "shows": "view out of a tent into a forest",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "first-time-flying.html",
+  "alt": "Airport terminal departure area",
+  "cap": "Airport terminals can be overwhelming — arrive 2-3 hours early to adjust",
+  "shows": "longtail boats in Pileh Lagoon-style bay, Phi Phi (Thailand)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "first-time-flying.html",
+  "alt": "Airport terminal departure gates",
+  "cap": "Follow signs for your gate and listen for boarding announcements",
+  "shows": "floodlit football pitch at night",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "first-time-flying.html",
+  "alt": "Airplane cabin interior",
+  "cap": "Stay hydrated, move around periodically, and enjoy the views",
+  "shows": "coach bus at night with snowy mountains",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "germany-travel-packing-guide.html",
+  "alt": "Neuschwanstein Castle in Bavaria",
+  "cap": "Neuschwanstein Castle, Germany's most iconic landmark",
+  "shows": "Neuschwanstein Castle",
+  "verdict": "WRONG SECTION (minor)",
+  "action": "move",
+  "to_h3": "Bavaria / Black Forest Region"
+ },
+ {
+  "page": "greece-travel-packing-guide.html",
+  "alt": "Mykonos Greece island beauty",
+  "cap": "Mykonos Island charm — visit in spring for perfect weather",
+  "shows": "snowy Alpine peaks above a sea of clouds (Swiss Alps)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "greece-travel-packing-guide.html",
+  "alt": "Athens Acropolis at golden hour",
+  "cap": "The Acropolis — pack comfortable walking shoes for ancient sites",
+  "shows": "Parthenon, Athens",
+  "verdict": "WRONG SECTION",
+  "action": "move",
+  "to_h3": "Athens Packing Specifics"
+ },
+ {
+  "page": "honeymoon-packing-list.html",
+  "alt": "Romantic luxury hotel bedroom suite",
+  "cap": "Romantic stays await — pack elegant evening wear for special dinners",
+  "shows": "honey jar with dipper",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "honeymoon-packing-list.html",
+  "alt": "Romantic dinner setup on beach",
+  "cap": "Plan at least one special dinner outfit for a memorable evening",
+  "shows": "spa back massage; woman's face visible",
+  "verdict": "WRONG PLACE + PEOPLE",
+  "action": "remove"
+ },
+ {
+  "page": "international-travel-checklist.html",
+  "alt": "Airport departure information board",
+  "cap": "Check airport departure boards — verify passport validity before travel",
+  "shows": "sushi platter in a wooden boat",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "international-travel-checklist.html",
+  "alt": "International travel packing checklist",
+  "cap": "Start your packing list 2 weeks before departure",
+  "shows": "airliner parked at a terminal",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "italy-7-day-itinerary-mid-range.html",
+  "alt": "Narrow cobblestone street in Rome's Trastevere neighbourhood",
+  "cap": "Rome’s back streets are just as beautiful as the famous landmarks",
+  "shows": "St Peter's dome and Ponte Sant'Angelo over the Tiber, Rome",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "italy-7-day-itinerary-mid-range.html",
+  "alt": "Florence Cathedral Duomo and cityscape at sunset",
+  "cap": "Florence’s Duomo dominates a skyline that has barely changed in 500 years",
+  "shows": "Vernazza, Cinque Terre (cliff-top coastal village)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "italy-7-day-itinerary-mid-range.html",
+  "alt": "Colourful houses along the canal in Burano, Venice",
+  "cap": "Burano island — rainbow houses and fresh seafood, a 45-minute boat ride from Venice",
+  "shows": "Manarola, Cinque Terre",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "italy-7-day-itinerary-mid-range.html",
+  "alt": "Italian pasta dish at a Roman trattoria",
+  "cap": "Italian food is simple, seasonal, and extraordinary — eat where the locals eat",
+  "shows": "Florence skyline with the Duomo; no food",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "italy-travel-packing-guide.html",
+  "alt": "Venice canal streets in Italy",
+  "cap": "Venice canals beckon — spring and autumn offer ideal weather and fewer crowds",
+  "shows": "Lago di Braies, Dolomites (lake with rowing boat)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "italy-travel-packing-guide.html",
+  "alt": "Venice canal with gondolas",
+  "cap": "Venice's iconic canals are best explored on foot and by gondola",
+  "shows": "Vernazza, Cinque Terre (cliff-top coastal village)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "italy-travel-packing-guide.html",
+  "alt": "Italian piazza with outdoor dining",
+  "cap": "Dress smart-casual for Italian restaurants — no flip-flops or beachwear",
+  "shows": "two hikers on a mountain trail (Patagonia-like, unsure)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "malaysia-travel-packing-guide-from-india.html",
+  "alt": "Malaysian street food delights",
+  "cap": "Malaysian street food is legendary — try satay and laksa at night markets",
+  "shows": "Seville Cathedral and Giralda, Spain",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "malaysia-travel-packing-guide-from-india.html",
+  "alt": "Langkawi beach paradise",
+  "cap": "Langkawi's beaches are stunning — pack reef-safe sunscreen for swimming",
+  "shows": "Tibetan prayer wheels (Himalayan Buddhist)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "maldives-travel-packing-guide-from-india.html",
+  "alt": "Maldives underwater coral reef",
+  "cap": "Maldives coral reefs are world-class — dry season runs November to April",
+  "shows": "(image does not load: HTTP 404)",
+  "verdict": "BROKEN",
+  "action": "remove"
+ },
+ {
+  "page": "mexico-7-day-itinerary-mid-range.html",
+  "alt": "Colourful colonial architecture in Oaxaca's historic centre",
+  "cap": "Oaxaca’s colonial centre — colourful, walkable, and arguably Mexico’s culinary capital",
+  "shows": "anime figure / figurine on a red background",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "mexico-7-day-itinerary-mid-range.html",
+  "alt": "Traditional Mexican mezcal served in a clay cup",
+  "cap": "Oaxacan mezcal — the smokier, more complex cousin of tequila. Always sip, never shoot.",
+  "shows": "raw steak with rosemary",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "mexico-7-day-itinerary-mid-range.html",
+  "alt": "Crystal-clear cenote with natural rock formations near Tulum",
+  "cap": "Yucatan cenotes — crystal-clear freshwater sinkholes perfect for swimming and snorkelling",
+  "shows": "rocky mountain valley; no cenote",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "mexico-7-day-itinerary-mid-range.html",
+  "alt": "Turquoise Caribbean Sea at Tulum beach with white sand",
+  "cap": "Tulum’s Caribbean coast — white sand, turquoise water, and bohemian beach clubs",
+  "shows": "coffee cup flat-lay with leaves; no beach",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "mexico-travel-packing-guide.html",
+  "alt": "Cancun turquoise beach",
+  "cap": "Cancun's Caribbean waters — pack reef-safe sunscreen for cenotes",
+  "shows": "papel picado flags over a building; no beach",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "minimalist-packing-guide.html",
+  "alt": "Compact packing with rolling technique",
+  "cap": "Roll, don't fold — you'll fit 30% more in the same space",
+  "shows": "snowy Alpine peaks above a sea of clouds (Swiss Alps)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "minimalist-packing-guide.html",
+  "alt": "Capsule wardrobe travel essentials",
+  "cap": "Capsule wardrobe essentials — everything you need for two weeks",
+  "shows": "man operating a machine, face visible",
+  "verdict": "WRONG PLACE + PEOPLE",
+  "action": "remove"
+ },
+ {
+  "page": "new-zealand-travel-packing-guide.html",
+  "alt": "Milford Sound - Fiordland, New Zealand",
+  "cap": "Milford Sound: One of the world's most spectacular fjords. Accessible by scenic road or cruise from Queenstown.",
+  "shows": "Fjadrargljufur canyon, Iceland",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "portugal-travel-packing-guide.html",
+  "alt": "Lisbon tram on steep street",
+  "cap": "Lisbon's iconic yellow trams navigate the city's steep hills",
+  "shows": "Porto Ribeira riverfront with rabelo boats",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "portugal-travel-packing-guide.html",
+  "alt": "Porto riverside with colourful buildings",
+  "cap": "Porto's Ribeira district along the Douro River",
+  "shows": "Porto Ribeira riverfront with rabelo boats",
+  "verdict": "WRONG SECTION",
+  "action": "move",
+  "to_h3": "Porto"
+ },
+ {
+  "page": "portugal-travel-packing-guide.html",
+  "alt": "Portuguese azulejo tiles",
+  "cap": "Azulejo tiles are everywhere — Portugal's signature blue-and-white art",
+  "shows": "Praca do Comercio arch, Lisbon; no tiles",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "road-trip-packing-checklist.html",
+  "alt": "Mountain road trip adventure",
+  "cap": "Mountain drives await — keep essentials within reach in your car",
+  "shows": "Sydney Opera House and harbour",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "ship-cruise-travel-tips.html",
+  "alt": "Cruise deck ocean view",
+  "cap": "Pack a lanyard for your cruise card — you'll use it constantly",
+  "shows": "scuba diver among fish",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "solo-travel-tips-beginners.html",
+  "alt": "Solo traveller journaling at sunset",
+  "cap": "Keep a travel journal — solo trips create the most reflective memories",
+  "shows": "Lago di Braies, Dolomites (lake with rowing boat)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "solo-travel-tips-beginners.html",
+  "alt": "Solo traveller in a bustling market",
+  "cap": "Stay aware in crowded places — keep valuables in a front pocket or crossbody bag",
+  "shows": "silhouette of man with suitcase at airport window",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "south-korea-travel-packing-guide.html",
+  "alt": "Bukchon Hanok Village traditional Korean architecture in Seoul",
+  "cap": "Bukchon Hanok Village — traditional Korean architecture meets modern Seoul",
+  "shows": "neon shopping street at night, Seoul",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "spain-10-day-itinerary-mid-range.html",
+  "alt": "Colourful mosaic architecture at Park Guell in Barcelona",
+  "cap": "Park Güell — Gaudí’s mosaic wonderland overlooking Barcelona",
+  "shows": "aerial Eixample grid, Barcelona; no Park Guell",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "spain-10-day-itinerary-mid-range.html",
+  "alt": "Royal Palace of Madrid with clear blue sky",
+  "cap": "Madrid’s Royal Palace — the largest in Western Europe, with 3,418 rooms",
+  "shows": "Gran Via and Metropolis building, Madrid",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "spain-10-day-itinerary-mid-range.html",
+  "alt": "Vibrant tapas spread at a Madrid bar",
+  "cap": "Spanish tapas culture — small plates, big flavours, and the social heart of every evening",
+  "shows": "seafood paella in a pan (Spanish dish)",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "spain-10-day-itinerary-mid-range.html",
+  "alt": "Plaza de Espana in Seville with its dramatic semicircular arcade",
+  "cap": "Plaza de España — Seville’s most photogenic spot, with tiled alcoves representing every Spanish province",
+  "shows": "snowy Alpine peaks above a sea of clouds (Swiss Alps)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "spain-10-day-itinerary-mid-range.html",
+  "alt": "Flamenco dancer performing in Seville",
+  "cap": "Flamenco in Seville — raw, passionate, and absolutely unmissable",
+  "shows": "four friends hugging at sunset (from behind)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "spain-10-day-itinerary-mid-range.html",
+  "alt": "White-washed houses of the Albaicin quarter in Granada with Alhambra in background",
+  "cap": "Granada’s Albaicín quarter — UNESCO-listed lanes with the Alhambra as a backdrop",
+  "shows": "Machu Picchu, Peru",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "spain-10-day-itinerary-mid-range.html",
+  "alt": "Granada Cathedral and cityscape view",
+  "cap": "Granada — where Moorish, Christian, and Roma cultures have blended for centuries",
+  "shows": "red hatchback car",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "spain-travel-packing-guide.html",
+  "alt": "Barcelona Sagrada Familia exterior",
+  "cap": "Barcelona's Sagrada Familia — book tickets well in advance",
+  "shows": "narrow Spanish town street (city unsure); no Sagrada Familia",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "spain-travel-packing-guide.html",
+  "alt": "Madrid Royal Palace",
+  "cap": "Madrid's grand architecture rewards those who explore on foot",
+  "shows": "honey jar with dipper",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "spain-travel-packing-guide.html",
+  "alt": "Spanish flamenco dancer",
+  "cap": "Flamenco shows are a must — dress respectfully for performances",
+  "shows": "Seville Cathedral and Giralda, Spain",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "spain-travel-packing-guide.html",
+  "alt": "Spanish tapas spread",
+  "cap": "Tapas culture means eating late — dinner rarely starts before 9pm",
+  "shows": "seafood paella in a pan (Spanish dish)",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "sri-lanka-travel-packing-guide-from-india.html",
+  "alt": "Sri Lanka Sigiriya rock fortress",
+  "cap": "Pack sturdy shoes for climbing Sigiriya — the views are worth the effort",
+  "shows": "antelopes (eland) on savanna",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "summer-vacation-packing-list.html",
+  "alt": "Summer pool vacation relaxation",
+  "cap": "Summer poolside relaxation — pack versatile pieces for all activities",
+  "shows": "doctor with stethoscope holding a phone",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "summer-vacation-packing-list.html",
+  "alt": "Summer travel suitcase packing",
+  "cap": "Roll your clothes to save space and reduce wrinkles",
+  "shows": "snowy Alpine peaks above a sea of clouds (Swiss Alps)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "switzerland-travel-packing-guide.html",
+  "alt": "Alpine meadow with spring flowers in Switzerland",
+  "cap": "Swiss Alpine meadows burst with wildflowers in spring",
+  "shows": "snowy Alpine peaks above a sea of clouds (Swiss Alps)",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "thailand-7-day-itinerary-mid-range.html",
+  "alt": "Longtail boats at Railay Beach with limestone cliffs in Krabi",
+  "cap": "Railay Beach — limestone cliffs, turquoise water, and longtail boats",
+  "shows": "longtail boats in Pileh Lagoon-style bay, Phi Phi (Thailand)",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "train-travel-tips-beginners.html",
+  "alt": "Train window scenic view",
+  "cap": "Window seats offer the best views — book early for popular routes",
+  "shows": "snowy Alpine peaks above a sea of clouds (Swiss Alps)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "travel-insurance-guide.html",
+  "alt": "Travel insurance and protection",
+  "cap": "Travel protection is essential — the one thing you hope to never use",
+  "shows": "narrow Spanish town street (city unsure); no Sagrada Familia",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "travel-toiletries-checklist.html",
+  "alt": "Travel size toiletries set",
+  "cap": "Invest in reusable silicone bottles — they save money and reduce waste",
+  "shows": "woman getting a facial mask, face close-up",
+  "verdict": "WRONG PLACE + PEOPLE",
+  "action": "remove"
+ },
+ {
+  "page": "travel-toiletries-checklist.html",
+  "alt": "Complete travel toiletries kit",
+  "cap": "Travel kit essentials — TSA-approved bags keep everything organised",
+  "shows": "Vidhana Soudha, Bengaluru, India",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "travel-toiletries-checklist.html",
+  "alt": "Organised dopp kit travel bag",
+  "cap": "A good dopp kit keeps toiletries accessible without taking up too much space",
+  "shows": "stethoscope (black and white)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "usa-travel-packing-guide.html",
+  "alt": "Golden Gate Bridge San Francisco",
+  "cap": "Golden Gate Bridge in San Francisco - a must-see for first-time visitors",
+  "shows": "Manhattan skyline with Empire State Building, New York",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "vietnam-10-day-itinerary-mid-range.html",
+  "alt": "Busy street scene in Hanoi Old Quarter with motorbikes and vendors",
+  "cap": "Hanoi’s Old Quarter — controlled chaos, incredible food, and 1,000 years of history",
+  "shows": "Golden Bridge (giant hands), Ba Na Hills, Da Nang",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "vietnam-10-day-itinerary-mid-range.html",
+  "alt": "Vietnamese street food stall with pho and fresh herbs",
+  "cap": "Vietnamese street food — world-class flavours for under $2 a meal",
+  "shows": "Ho Chi Minh City skyline at dusk",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "vietnam-10-day-itinerary-mid-range.html",
+  "alt": "Limestone karsts rising from emerald waters in Ha Long Bay",
+  "cap": "Ha Long Bay — nearly 2,000 limestone islands rising from emerald water",
+  "shows": "Diamond Beach cliffs, Nusa Penida (Bali); no temple",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "vietnam-10-day-itinerary-mid-range.html",
+  "alt": "Colourful silk lanterns hanging in Hoi An Ancient Town at night",
+  "cap": "Hoi An at night — silk lanterns, candlelit streets, and floating river candles",
+  "shows": "empty modern cafeteria",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "vietnam-10-day-itinerary-mid-range.html",
+  "alt": "Colourful Vietnamese dishes served family style",
+  "cap": "Vietnamese cuisine — fresh, herbaceous, and endlessly varied from north to south",
+  "shows": "salad/poke bowl (not Vietnamese)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "vietnam-10-day-itinerary-mid-range.html",
+  "alt": "Ho Chi Minh City skyline with motorbikes and modern buildings",
+  "cap": "Ho Chi Minh City — 10 million people, 8 million motorbikes, and boundless energy",
+  "shows": "pavilion on water among karsts, Trang An / Ninh Binh",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "visa-free-countries-indian-passport.html",
+  "alt": "World travel destinations map",
+  "cap": "Explore the world — keep blank passport pages ready for stamps",
+  "shows": "Ploenlein, Rothenburg ob der Tauber, Germany (half-timbered street)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "weekend-trip-packing-list.html",
+  "alt": "Organised weekend bag packing",
+  "cap": "A well-packed weekender bag is all you need for a short trip",
+  "shows": "hands typing on a laptop",
+  "verdict": "WRONG PLACE (minor)",
+  "action": "remove"
+ },
+ {
+  "page": "weekend-trip-packing-list.html",
+  "alt": "City weekend break street scene",
+  "cap": "Versatile outfits that work for day exploring and evening dining",
+  "shows": "VW camper van on a road through red rocks (US Southwest)",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "weekend-trip-packing-list.html",
+  "alt": "Compact travel packing cubes",
+  "cap": "Packing cubes keep your weekender bag organised and efficient",
+  "shows": "hands typing on a laptop",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ },
+ {
+  "page": "winter-travel-packing-list.html",
+  "alt": "Winter clothing and packing",
+  "cap": "Layering is essential — good base layers make all the difference",
+  "shows": "scuba diver among fish",
+  "verdict": "WRONG PLACE",
+  "action": "remove"
+ }
+]
