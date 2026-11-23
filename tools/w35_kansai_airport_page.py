@@ -575,7 +575,8 @@ HELP = """<h2 id="help">Help for older travellers and anyone who needs assistanc
 
 LATE = """<h3>Landing late or leaving very early?</h3>
 <p>Aeroplaza, the building joined to the station, has Hotel Nikko Kansai Airport and Cafe Lounge NODOKA, which is open 24 hours and has showers. Kansai Airport also keeps a page for late-night and early-morning passengers: see <a href="https://www.kansai-airport.or.jp/en/morning-midnight" target="_blank" rel="noopener noreferrer">its information for late-night and early-morning flights</a>. Check each hotel's own site for prices and check-in times.</p>
-<p data-ps-placement="hotel-kix-nikko" style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">&#127976; Want a bed booked before you land? See rooms at <a href="https://klook.tpo.lu/R6WXWTRf" target="_blank" rel="nofollow noopener sponsored" style="color:#00C9A7;text-decoration:underline;">Hotel Nikko Kansai Airport</a> (partner link).</p>"""
+<div data-ps-placement="hotel-kix-nikko" style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">&#127976; <strong>Good for:</strong> families, groups and anyone on an early flight who wants an ordinary hotel room; the hotel says it is connected on foot to the terminal building. See rooms at <a href="https://klook.tpo.lu/R6WXWTRf" target="_blank" rel="nofollow noopener sponsored" style="color:#00C9A7;text-decoration:underline;">Hotel Nikko Kansai Airport</a> (partner link).</div>
+<p class="ps-note">Hotel details from the hotels&rsquo; own websites: <a href="https://www.nikkokix.com/" target="_blank" rel="noopener noreferrer">Hotel Nikko Kansai Airport</a>. Checked 23 November 2026; rules and times change, so check before you book.</p>"""
 
 ABOUT = """<div class="ps-about" id="about-this-guide">
 <h2>About this guide</h2>
