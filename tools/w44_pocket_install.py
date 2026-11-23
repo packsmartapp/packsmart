@@ -68,7 +68,7 @@ NEW_BLOCK = r'''var strip=$('instStrip'), dp=null;
       h+='<p class="lede">Do this once, now, while you have signal. Then it opens like an app, even with no internet.</p>';
       h+=steps([[SHARE,'Tap the <b>Share</b> button (a square with an arrow) in Safari'],[PLUS,'Scroll down and tap <b>Add to Home Screen</b>'],['','Tap <b>Add</b>']]);
       h+='<div class="tipbox">Cannot see Share? Tap the <b>&middot;&middot;&middot;</b> button first. Not in Safari? Open this page in <b>Safari</b> first.</div>';
-      h+='<p class="small">If you skip this, your phone may clear the saved copy when you have not opened the guide for a while.</p>';
+      h+='<p class="small">Your phone may clear a saved copy you have not opened for a while, so open the guide again the day before you fly.</p>';
     } else if(dp){
       title='Install this guide'; one=true;
       h+='<p class="lede">One tap. Then it opens like an app, even with no internet.</p>';
@@ -81,7 +81,7 @@ NEW_BLOCK = r'''var strip=$('instStrip'), dp=null;
     } else {
       h+='<p class="lede">Do this once, now, while you have signal. Then it opens like an app, even with no internet.</p>';
       h+=steps([[DOTS,'Tap the menu <b>&#8942;</b> (three dots) in your browser'],[DOWN,'Tap <b>Install app</b> or <b>Add to Home screen</b>'],['','Tap <b>Install</b> or <b>Add</b>']]);
-      h+='<div class="tipbox">Do not see it? Open this page in Chrome and try again.</div>';
+      h+='<div class="tipbox">Do not see it? Open this page in Chrome and try again.</div><p class="small">Open the guide again the day before you fly, so the saved copy is fresh.</p>';
     }
     h+=one?'<div class="row2"><button type="button" class="close ghost" id="instLater">Later</button></div>':'<div class="row2"><button type="button" class="close ghost" id="instLater">Later</button><button type="button" class="close" id="instDone">I added it</button></div>';
     $('instT').innerHTML='<span aria-hidden="true">&#128242;</span>'+title;
