@@ -135,6 +135,12 @@ _a = "Install it before you fly, switch it on when you land. No airport SIM queu
 if _a not in airalo:
     die("airalo tagline not found")
 airalo = airalo.replace(_a, "Install it on your phone and switch it on when you need it. No counter, no queue.")
+# no partner names in our own words (D47): neutral labels on the eSIM tiles
+for _o, _n in ((", opens Airalo", ", opens our eSIM partner"),
+               ("Airalo asks you to verify your ID before you buy.", "The provider asks you to verify your ID before you buy.")):
+    if _o not in airalo:
+        die("eSIM block text not found: " + _o)
+    airalo = airalo.replace(_o, _n)
 # ---------------------------------------------------------------- body content
 def esc(s):
     return html.escape(s, quote=False)
@@ -329,6 +335,7 @@ PRINT_CSS = """<style>
 .ps-print-btn{font:inherit;font-size:1rem;font-weight:700;color:#fff;background:#00C9A7;border:0;border-radius:10px;padding:12px 20px;cursor:pointer;}
 .ps-print-btn:hover,.ps-print-btn:focus-visible{background:#00b396;}
 .ps-note{font-size:0.82rem;color:#777;line-height:1.5;margin:6px 0 18px;}
+.ps-sources{font-size:0.9rem;line-height:1.6;}
 .ps-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 20px;}
 .ps-scroll table{min-width:560px;}
 @media(max-width:600px){
@@ -870,7 +877,7 @@ JB_SHINKANSEN = (
     '<div class="jb-row"><div class="jb-tx">'
     '<p style="margin:0 0 8px;font-size:0.95rem;line-height:1.5;color:#333;">There is no Shinkansen at Shinjuku: JR East&rsquo;s platform list for the station has none. For Kyoto and Osaka, take the JR Chūō Line (Rapid) from platform 7 or 8 to Tokyo Station (about 14 minutes, according to GO TOKYO), where Shinkansen run west to Nagoya, Kyoto and Shin-Osaka. If you want your tickets sorted before you travel, you can book them online. The company says its tickets cover the JR East, JR West, JR Central and JR Kyushu Shinkansen lines and are collected with a QR code.</p>'
     '</div><div class="jb-bt">'
-    '<a class="ps-jb-btn" href="' + JB_LINK + '" target="_blank" rel="nofollow noopener sponsored" style="display:block;box-sizing:border-box;text-decoration:none;"><span class="ps-jb-ghost" style="display:block;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;text-align:center;font-weight:700;font-size:1rem;border-radius:12px;padding:11px 14px;min-height:46px;line-height:1.25;">Book Shinkansen tickets &rarr;</span><span style="display:block;text-align:center;font-size:0.76rem;color:#777;margin-top:6px;">Japan Bullet Train &middot; partner link</span></a>'
+    '<a class="ps-jb-btn" href="' + JB_LINK + '" target="_blank" rel="nofollow noopener sponsored" style="display:block;box-sizing:border-box;text-decoration:none;"><span class="ps-jb-ghost" style="display:block;border:1.5px solid #00C9A7;background:#fff;color:#0a8f78;text-align:center;font-weight:700;font-size:1rem;border-radius:12px;padding:11px 14px;min-height:46px;line-height:1.25;">Book Shinkansen tickets &rarr;</span><span style="display:block;text-align:center;font-size:0.76rem;color:#777;margin-top:6px;">Partner link</span></a>'
     '<p style="margin:10px 0 0;font-size:0.85rem;line-height:1.5;color:#555;">You can also buy at a station on the day, so check the price and the change and cancellation rules before you pay.</p>'
     '</div></div></div>'
 )
@@ -921,7 +928,7 @@ def gyg(pid, head, blurb, ids, cmp):
 
 
 GYG_DAYTRIPS = gyg("gyg-shinjuku-daytrips", "Mt Fuji and Hakone day tours from Tokyo",
-                   "Guided day trips you can book ahead, as listed by GetYourGuide.",
+                   "Guided day trips you can book ahead.",
                    ["792363", "668266", "1226194"], "packsmart-shinjuku-daytrips")
 
 
@@ -1001,6 +1008,33 @@ BODY = "\n\n".join([
     RELATED,
     POCKET_BAR,
 ])
+# one Sources list before the FAQ instead of a note under each section (Ari, 23 Nov 2026).
+# A section keeps only its caution ("Times change, so check the operator.") as a short note.
+_src_links = []
+def _gather(m):
+    body = m.group(1)
+    for a in re.findall(r'<a [^>]*>.*?</a>', body):
+        if a not in _src_links:
+            _src_links.append(a)
+    for plain in re.findall(r'(?:^|, |and )([A-Z][^,<]*\([a-z0-9.-]+\.[a-z]{2,}\))', body):
+        if plain not in _src_links:
+            _src_links.append(plain)
+    rest = body.split(CHECKED, 1)[1].strip() if CHECKED in body else ""
+    return '<p class="ps-note">%s</p>' % rest if rest else ""
+BODY = re.sub(r'<p class="ps-note">Sources: (.*?)</p>\n?', _gather, BODY, flags=re.S)
+if "Sources: " in BODY or len(_src_links) < 10:
+    die("source notes not gathered (%d links)" % len(_src_links))
+SOURCES = ('<h2 id="sources">Sources</h2>\n<p>Every station fact on this page comes from the official sites below, '
+           'checked on 22 November 2026. Stations change, so follow the signs on the day.</p>\n<ul class="ps-sources">\n'
+           + "".join("<li>%s</li>\n" % a for a in _src_links) + "</ul>")
+for _o, _n in ((">Saturdays and holidays</a>", ">JR East Narita Express timetable (Saturdays and holidays)</a>"),
+               (">Narita timetable</a>", ">Airport Limousine Bus timetable, Shinjuku to Narita</a>"),
+               (">Haneda timetable</a>", ">Airport Limousine Bus timetable, Shinjuku to Haneda</a>")):
+    if _o not in SOURCES:
+        die("source label not found: " + _o)
+    SOURCES = SOURCES.replace(_o, _n)
+_faq = BODY.index('<h2 id="faq">')
+BODY = BODY[:_faq] + SOURCES + "\n\n" + BODY[_faq:]
 # hero button: a quiet way into the Pocket Guide from the top of the article (as w42)
 HERO_CTA = ('        <div style="margin:48px 0 0;text-align:center;">'
             '<a href="/shinjuku-pocket?src=hero" onclick="try{window.gtag&&gtag(\'event\',\'pocket_prompt\',{event_category:\'engagement\',action:\'open_hero\',page_path:location.pathname});}catch(e){}" '

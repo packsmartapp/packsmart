@@ -205,7 +205,13 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 **D46. New partner links go through Travelpayouts** (22 Nov)
 - Chose: every new partner link uses a Travelpayouts programme, which pays by PayPal.
 - Instead of: Klook's direct affiliate account (ID 116473) and Trip.com's direct programme, which pay only by bank transfer to an Indian bank (Trip.com also has a US$200 minimum and pays after the trip is completed).
-- Note: the direct Klook account is not deleted; it still records clicks but has no payout set up, so no new links go through it and the old one in `api/generate-plan.js` is replaced (B26). Existing direct Trip.com links stay for now. Hotels: use whichever Travelpayouts programme covers them (owner to confirm).
+- Note: the direct Klook account is not deleted; it still records clicks but has no payout set up, so no new links go through it and the old one in `api/generate-plan.js` is replaced (B26). Existing direct Trip.com links stay for now. Hotels: use whichever Travelpayouts programme covers them; the owner's hotel programmes there are Klook and KKday (23 Nov), so the airport-hotel links go through Klook via Travelpayouts, not the direct account.
+
+**D47. Readers never see partner names in our own words** (23 Nov)
+- Chose: headings, captions, buttons, labels and body text say what a thing is ("airport transfer", "tours and tickets", "eSIM") plus "(partner link)", never the partner's name. Order: the Shinjuku guide first (with its source notes gathered into one Sources list before the FAQ), then the Japan guides and Pocket Guides through their generators, then the other articles. SafetyWing last, after checking its brand guidelines.
+- Exceptions: the Affiliate Disclosure page, the eSIM comparison article, and names a traveller needs to find something on the spot (a pick-up counter, for example).
+- Instead of: naming partners in copy ("as listed by GetYourGuide", "Airalo asks you to verify your ID").
+- Why: readers do not need the names; names in copy read as adverts and go stale when a partner changes.
 
 ## Open decisions (not made)
 

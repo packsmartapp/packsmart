@@ -48,6 +48,7 @@ Most Japan pages, the Pocket Guides and affiliate blocks are produced by scripts
 - **Look at every photo before it goes in** (download it and view it): it must show what its alt text and caption say, sit under a heading it belongs to (a Rome photo under Rome), have no identifiable faces in close-up, and not be reused elsewhere with a different caption. On 23 Nov 2026 about 90 of 162 stock photos failed this and were removed (`tools/w62_fix_article_photos.py`, list in `tools/w62_photo_fixes.json`). A link to another country's guide ("Also visiting Greece?") goes in the cross-link line before the FAQ, not inside a city, weather or etiquette section.
 - Verify every Unsplash ID returns HTTP 200 before committing. Photos on Japan pages are Ari's own or licensed, with a credit line and no identifiable people. Never scrape Klook photos; never download photos of public figures.
 - Body copy carries no prices and no partner names (they go stale; the blocks carry them). Claim only what the provider itself states.
+- **Our own words never name a partner** (D47): headings, captions, buttons, aria-labels and body text say what it is ("airport transfer", "tours and tickets", "eSIM"), plus "(partner link)". Exceptions: the Affiliate Disclosure page, the eSIM comparison article, and names a traveller needs to find something (a pick-up counter). Code (click maps, comments) may name them.
 - Hedge visa and entry rules ("check current rules") and link the official page for fees.
 - Mobile first: check pages at 390px for overflow before calling a change done.
 
