@@ -19,7 +19,7 @@ ROOT = os.getcwd()
 PUB = os.path.join(ROOT, "public")
 AFF = re.compile(r"tpx\.li|tpo\.lu|tp\.media|travelpayouts|safetywing\.com|getyourguide\.com|klook\.com|welcomepickups|"
                  r"discovercars|airalo|yesim|tiqets|radicalstorage|p\.sakuramobile|japan-bullettrain|trip\.com/t/|12go")
-SKIP_PAGES = ("japan-", "narita-", "haneda-", "kansai-", "tokyo-", "kyoto-", "osaka-", "shinjuku-")
+SKIP_PAGES = ("japan-", "narita-", "haneda-", "kansai-", "tokyo-", "kyoto-", "osaka-", "shinjuku-", "ueno-")
 
 OLD_PT = ('🚕 <a href="https://tpx.li/qYFLwgZ8" target="_blank" rel="noopener" style="color:#00C9A7;text-decoration:underline;font-weight:600;">'
           'Pre-book a Welcome Pickups airport transfer</a> — no surge pricing, English-speaking drivers, fixed rates.')

@@ -1,0 +1,31 @@
+{
+  "name": "Ueno Station Pocket Guide",
+  "short_name": "Ueno",
+  "description": "A simple Ueno Station helper that works offline.",
+  "start_url": "/ueno-pocket",
+  "scope": "/ueno-pocket",
+  "display": "standalone",
+  "background_color": "#b8306a",
+  "theme_color": "#1a1a3e",
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/images/ueno-icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/ueno-icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/ueno-icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}

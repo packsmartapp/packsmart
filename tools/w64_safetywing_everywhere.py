@@ -26,7 +26,7 @@ MARK = "<!-- SAFETYWING INSURANCE WIDGET -->"
 HAS = 'class="safetywing-price-widget" data-safetywingaffiliateid'   # the widget itself (some pages lack the comment)
 TARGETS = [
     "narita-airport-guide", "haneda-airport-guide", "kansai-airport-guide",
-    "tokyo-station-guide", "shinjuku-station-guide", "kyoto-station-guide", "osaka-station-guide",
+    "tokyo-station-guide", "shinjuku-station-guide", "ueno-station-guide", "kyoto-station-guide", "osaka-station-guide",
     "kyoto-travel-guide", "osaka-travel-guide",
     "budget-travel-destinations-2026", "carry-on-packing-list",
 ]

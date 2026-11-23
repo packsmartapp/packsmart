@@ -59,6 +59,15 @@
       "stop": "Tokyo"
     },
     {
+      "key": "ueno",
+      "name": "Ueno Station",
+      "country": "Japan",
+      "type": "Station",
+      "icon": "ueno-icon-192.png",
+      "blurb": "Ueno Park gates, Skyliner to Narita, platforms by floor, lockers",
+      "stop": "Tokyo"
+    },
+    {
       "key": "kyoto",
       "name": "Kyoto Station",
       "country": "Japan",

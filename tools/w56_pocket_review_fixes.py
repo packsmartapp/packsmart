@@ -22,7 +22,7 @@ What it does
 import json, pathlib, re, sys
 
 PUB = pathlib.Path(__file__).resolve().parent.parent / "public"
-PAGES = ["narita", "haneda", "kix", "kyoto", "osaka", "tokyo", "shinjuku"]
+PAGES = ["narita", "haneda", "kix", "kyoto", "osaka", "tokyo", "shinjuku", "ueno"]
 CHECKED = "21 November 2026"
 OK = "Ready offline &#10003;"
 
@@ -215,5 +215,5 @@ def fix_article(path):
 
 for key in PAGES:
     fix_pocket(key)
-for art in ["narita-airport-guide", "haneda-airport-guide", "kansai-airport-guide", "tokyo-station-guide", "kyoto-station-guide", "osaka-station-guide", "shinjuku-station-guide"]:
+for art in ["narita-airport-guide", "haneda-airport-guide", "kansai-airport-guide", "tokyo-station-guide", "kyoto-station-guide", "osaka-station-guide", "shinjuku-station-guide", "ueno-station-guide"]:
     fix_article(PUB / "blog" / f"{art}.html")

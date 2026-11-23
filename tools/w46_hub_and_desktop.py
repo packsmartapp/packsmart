@@ -21,7 +21,7 @@ REG = os.path.join(ROOT, "tools", "pocket_guides.json")
 HUB = os.path.join(PUB, "travel-essentials.html")
 MARK = "pocket-hub-v2"
 MAX_ON_HUB, PER_COUNTRY, ALL_URL = 12, 6, "/pocket-guides"
-GUIDES_WITH_PAGE = ["haneda", "narita", "kix", "osaka", "kyoto", "tokyo", "shinjuku"]  # guides that have their own pocket page today
+GUIDES_WITH_PAGE = ["haneda", "narita", "kix", "osaka", "kyoto", "tokyo", "shinjuku", "ueno"]  # guides that have their own pocket page today
 
 
 def die(msg):

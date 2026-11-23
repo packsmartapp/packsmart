@@ -24,7 +24,7 @@ import html, os, re, sys
 ROOT = os.getcwd()
 BLOG = os.path.join(ROOT, "public", "blog")
 PAGES = ["narita-airport-guide", "haneda-airport-guide", "kansai-airport-guide",
-         "tokyo-station-guide", "shinjuku-station-guide", "kyoto-station-guide", "osaka-station-guide",
+         "tokyo-station-guide", "shinjuku-station-guide", "ueno-station-guide", "kyoto-station-guide", "osaka-station-guide",
          "kyoto-travel-guide", "osaka-travel-guide", "japan-travel-packing-guide", "japan-7-day-itinerary-budget"]
 
 # (old, new, is_regex). New text must not contain a partner name.

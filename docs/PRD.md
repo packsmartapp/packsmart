@@ -32,7 +32,7 @@ Status as of 21 Nov 2026. Source of truth for what the site does today and what 
 | F6 | Flights, hotels and ground transport | Built |
 | F7 | Navigation and Travel Essentials hub | Built |
 | F8 | Japan airport, station and city guides | Built |
-| F9 | Pocket Guides (six) | Built |
+| F9 | Pocket Guides (eight) | Built |
 | F10 | Pocket Guide install and offline flow | Built, real-device checks in progress |
 | F11 | Pocket Guide hub block and trip picker | Built |
 | F12 | Pocket Guide sharing (WhatsApp) | Built |
@@ -96,7 +96,7 @@ Status as of 21 Nov 2026. Source of truth for what the site does today and what 
 **Open:** Haruka price wording awaits the owner; Kyoto city-bus fare wording check; optional own USJ photo.
 
 ### F9 Pocket Guides (Built)
-**Guides:** Tokyo Station, Narita, Haneda, Kansai (KIX), Kyoto Station, Osaka Station at `/<key>-pocket`. Registry: `tools/pocket_guides.json`.
+**Guides:** Tokyo Station, Shinjuku Station, Ueno Station, Narita, Haneda, Kansai (KIX), Kyoto Station, Shin-Osaka and Umeda at `/<key>-pocket`. Registry: `tools/pocket_guides.json`.
 **User:** a traveller on a phone at the airport or station, possibly with no signal. **Shell (all guides)**
 - Single-file page with a bottom tab bar and info sheets; works at 360px and 390px with no horizontal scroll.
 - Airport guides: Find (tiles, slide with More/Back), Terminals, Arrive and Depart checklists (tick-off steps), Help (everyday Japanese phrases with a Play button, then phone numbers).

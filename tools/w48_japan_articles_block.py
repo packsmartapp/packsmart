@@ -87,6 +87,8 @@ ARTICLES = {
                             "before", '<h2 id="which-station">', ["osaka"]),
     "shinjuku-station-guide": ("shinjuku-station", ["narita", "haneda"], "Flying out or heading on? Get the next guides on your phone.", SUB_NEXT,
                                "before", '<h2 id="which-side">', ["shinjuku"]),
+    "ueno-station-guide": ("ueno-station", ["narita", "haneda"], "Flying out or heading on? Get the next guides on your phone.", SUB_NEXT,
+                           "before", '<h2 id="narita">', ["ueno"]),
 }
 
 CSS = """<style id="pga-css">
