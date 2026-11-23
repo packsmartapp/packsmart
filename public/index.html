@@ -392,9 +392,16 @@
             color: var(--action); border-color: var(--action); background: var(--teal-tint);
         }
 
-        .hero-steps { list-style: none; display: flex; flex-wrap: wrap; justify-content: center; gap: 0.6rem 1.4rem; padding: 0; margin: 0 auto 1.8rem; font-size: 0.95rem; font-weight: 500; }
-        .hero-steps li { display: flex; align-items: center; gap: 0.5rem; }
-        .hero-steps .hs-n { display: inline-flex; align-items: center; justify-content: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--action); color: #fff; font-size: 0.8rem; font-weight: 700; flex: 0 0 auto; }
+        .hero-dest-label { font-weight: 700; font-size: 0.95rem; margin: 0 0 0.7rem; }
+        .hero-dests { display: flex; flex-wrap: wrap; justify-content: center; gap: 0.5rem; margin: 0 auto 1.6rem; max-width: 640px; }
+        .hero-dest { display: inline-block; padding: 0.5rem 1rem; border: 1px solid var(--border, #E1E8EB); border-radius: 999px; background: #fff; color: var(--text, #333); font-size: 0.9rem; font-weight: 500; text-decoration: none; transition: border-color .15s, background .15s; }
+        .hero-dest:hover { border-color: var(--action, #00C9A7); background: #f0faf7; }
+        .hero-dest-all { border-color: var(--action, #00C9A7); color: #0a8f78; font-weight: 700; }
+        .hero-pocket { display: flex; align-items: center; gap: 0.8rem; max-width: 640px; margin: 1.6rem auto 0; padding: 0.9rem 1.1rem; background: #0f0f23; color: #fff; border-radius: 16px; text-align: left; text-decoration: none; font-size: 0.88rem; line-height: 1.45; }
+        .hero-pocket strong { color: #fff; }
+        .hero-pocket .hp-tag { flex: 0 0 auto; background: var(--action, #00C9A7); color: #0f0f23; font-weight: 700; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.04em; padding: 0.25rem 0.55rem; border-radius: 999px; }
+        .hero-pocket .hp-text { flex: 1 1 auto; color: rgba(255,255,255,0.85); }
+        .hero-pocket .hp-go { flex: 0 0 auto; font-size: 1.2rem; color: var(--action, #00C9A7); }
         .hero-note { font-size: 0.85rem; opacity: 0.8; margin: 1rem auto 0; max-width: 560px; text-align: center; }
         .hero-proof {
             display: flex; justify-content: center; gap: 4rem;
@@ -934,39 +941,51 @@
     <div class="hero-content">
         <div class="hero-pill">
             Free &middot; No sign-up
-            <span class="pill-tag">Not a booking site</span>
+            <span class="pill-tag">Independent</span>
         </div>
-        <h1>Know before you go.<br><span class="serif-italic">Even offline.</span></h1>
-        <p class="hero-sub">Free packing lists, visa and cost notes and itineraries for 25+ countries, plus a trip planner for anywhere. Flying into Japan? Save a Pocket Guide to your phone: gates, trains and exits from official sources, and it still works when you have no signal.</p>
-        <ol class="hero-steps" aria-label="How PackSmart works">
-            <li><span class="hs-n">1</span>Pick your trip</li>
-            <li><span class="hs-n">2</span>Get your plan and packing list</li>
-            <li><span class="hs-n">3</span>Save the Pocket Guide for the airport</li>
-        </ol>
+        <h1>Know before you go.<br><span class="serif-italic">Pack once. Travel easy.</span></h1>
+        <p class="hero-sub">Visa and entry notes, budgets, what to pack and day-by-day itineraries for 25+ countries, plus a free trip planner for anywhere you&rsquo;re going.</p>
+        <p class="hero-dest-label">Where are you going?</p>
+        <nav class="hero-dests" aria-label="Popular destinations">
+            <a href="/blog/japan-travel-packing-guide" class="hero-dest" data-home-dest="japan">Japan</a>
+            <a href="/blog/thailand-7-day-itinerary-mid-range" class="hero-dest" data-home-dest="thailand">Thailand</a>
+            <a href="/blog/bali-10-day-itinerary-mid-range" class="hero-dest" data-home-dest="bali">Bali</a>
+            <a href="/blog/italy-travel-packing-guide" class="hero-dest" data-home-dest="italy">Italy</a>
+            <a href="/blog/spain-travel-packing-guide" class="hero-dest" data-home-dest="spain">Spain</a>
+            <a href="/blog/usa-travel-packing-guide" class="hero-dest" data-home-dest="usa">USA</a>
+            <a href="/blog/australia-travel-packing-guide" class="hero-dest" data-home-dest="australia">Australia</a>
+            <a href="/blog/south-korea-travel-packing-guide" class="hero-dest" data-home-dest="south-korea">South Korea</a>
+            <a href="/blog" class="hero-dest hero-dest-all" data-home-dest="all">All 25+ countries &rarr;</a>
+        </nav>
+        <script>document.addEventListener('click',function(e){var a=e.target.closest&&e.target.closest('[data-home-dest]');if(a&&typeof gtag==='function'){gtag('event','home_dest',{event_category:'navigation',placement:'home-'+a.getAttribute('data-home-dest')});}});</script>
         <div class="hero-actions">
             <a href="#plan" class="btn-primary">
-                Start Planning
+                Plan my trip
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
-            <a href="/travel-essentials#pocket-hub" class="btn-ghost">Japan Pocket Guides</a>
         </div>
         <p class="hero-note">We don&rsquo;t sell tickets. Some links go to partners; they are always labelled, and you pay the same price.</p>
+        <a href="/travel-essentials#pocket-hub" class="hero-pocket" data-home-dest="pocket-guides">
+            <span class="hp-tag">New</span>
+            <span class="hp-text"><strong>Offline Pocket Guides</strong> for airports and stations: gates, trains and exits that still work with no signal. Japan first: Narita, Haneda, Kansai, Tokyo, Shinjuku, Kyoto and Osaka.</span>
+            <span class="hp-go" aria-hidden="true">&rarr;</span>
+        </a>
         <div class="hero-proof">
             <div class="hero-proof-item">
                 <div class="val"><em>69</em></div>
                 <div class="lbl">Free guides</div>
             </div>
             <div class="hero-proof-item">
+                <div class="val"><em>25+</em></div>
+                <div class="lbl">Countries</div>
+            </div>
+            <div class="hero-proof-item">
                 <div class="val"><em>7</em></div>
-                <div class="lbl">Japan Pocket Guides</div>
+                <div class="lbl">Offline Pocket Guides</div>
             </div>
             <div class="hero-proof-item">
-                <div class="val"><em>Offline</em></div>
-                <div class="lbl">Works without signal</div>
-            </div>
-            <div class="hero-proof-item">
-                <div class="val"><em>Dated</em></div>
-                <div class="lbl">Facts from official sources</div>
+                <div class="val"><em>No</em></div>
+                <div class="lbl">Sign-up needed</div>
             </div>
         </div>
     </div>
