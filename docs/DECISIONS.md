@@ -210,6 +210,7 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 **D47. Readers never see partner names in our own words** (23 Nov)
 - Chose: headings, captions, buttons, labels and body text say what a thing is ("airport transfer", "tours and tickets", "eSIM") plus "(partner link)", never the partner's name. Order: the Shinjuku guide first (with its source notes gathered into one Sources list before the FAQ), then the Japan guides and Pocket Guides through their generators, then the other articles. SafetyWing last, after checking its brand guidelines.
 - Exceptions: the Affiliate Disclosure page, the eSIM comparison article, and names a traveller needs to find something on the spot (a pick-up counter, for example).
+- SafetyWing keeps its name (box, card and text): the owner decided on 23 Nov that it is fine as it is. Stages 1 to 3 done 23 Nov (w58, w65, w66).
 - Instead of: naming partners in copy ("as listed by GetYourGuide", "Airalo asks you to verify your ID").
 - Why: readers do not need the names; names in copy read as adverts and go stale when a partner changes.
 
