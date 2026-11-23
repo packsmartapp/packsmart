@@ -104,6 +104,7 @@ Card for `public/blog.html` (`&amp;` and `&mdash;` as entities):
 - eSIM: Airalo plan tiles (`esim-<country>-<size>`). Yesim only as the promo link `yesim.tpx.li/Bc6pLC09` (20% first order, ends 28 Feb 2027; remove the copy after).
 - SafetyWing widget on destination articles; "travel medical insurance" wording, price per day, no "best" or "recommended". Never write "no hidden fees" or "free cancellation" as our own promise.
 - **New partner links go through Travelpayouts** (pays by PayPal). Klook's direct account (`aid=116473`) still tracks clicks but has no payout set up, and Trip.com's direct programme pays only by bank transfer: add no new links through either (D46).
+- GetYourGuide links: a search for what the link names (`getyourguide.com/s/?q=...&partner_id=D7IXONS&cmp=ps-<page>[-n]`), never the bare homepage on a destination page (w60, 23 Nov). New articles follow the same pattern.
 - Other IDs: GetYourGuide `D7IXONS`, SafetyWing ref `26492686`, 12Go agent `15357692`, Trip.com widget `S14633845` (index and flights only).
 - **No self-referral** (Ari's own purchases). **No new partner applications, outreach, or contact with SafetyWing without Ari's go-ahead.** Never store payout email, phone or address.
 
