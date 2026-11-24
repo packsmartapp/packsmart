@@ -60,7 +60,7 @@
     '.pk-beta{background:#E94560}' +
     '.pk-hb{margin-left:auto;display:flex;gap:2px}' +
     '.pk-hb button{width:38px;height:38px;border:0;background:none;color:#C9D1F0;font-size:20px;line-height:1;cursor:pointer;border-radius:10px}.pk-hb button:hover{background:rgba(255,255,255,.1);color:#fff}' +
-    '.pk-body{flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:10px}' +
+    '.pk-body{position:relative;flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:10px}' +
     '.pk-row{display:flex;gap:8px;align-items:flex-end;animation:pkIn .25s ease}' +
     '.pk-row .pk-face{width:28px;height:28px}' +
     '.pk-msg{max-width:86%;padding:10px 13px;font-size:15px;line-height:1.5}' +
@@ -137,7 +137,7 @@
   var history = load(), started = false, busy = false;
 
   function botRow(html, cls) { var r = el('div', 'pk-row'); r.innerHTML = '<span class="pk-face">' + FACE + '</span>'; var m = el('div', 'pk-msg pk-bot' + (cls ? ' ' + cls : ''), html); r.appendChild(m); body.appendChild(r); return r; }
-  function meRow(q) { body.appendChild(el('div', 'pk-msg pk-me', esc(q))); }
+  function meRow(q) { var m = el('div', 'pk-msg pk-me', esc(q)); body.appendChild(m); return m; }
   function offerHtml(o) {
     if (!o || !o.url || !/^(https:\/\/|\/)/.test(o.url)) return '';
     var ext = /^https:/.test(o.url);
@@ -163,11 +163,13 @@
     chips(last && last.next && last.next.length ? last.next : STARTERS, last ? 'Ask next' : 'Try one of these');
   }
   function scrollDown() { body.scrollTop = body.scrollHeight; }
+  // show a new answer from its start: the traveller's question at the top, the answer below it, the next questions last
+  function scrollToQ(m) { if (!m) return scrollDown(); var top = m.offsetTop - 10; if (still) body.scrollTop = top; else try { body.scrollTo({ top: top, behavior: 'smooth' }); } catch (e) { body.scrollTop = top; } }
   function ask(q) {
     q = (q || '').trim(); if (q.length < 5 || busy) { input.focus(); return; }
     open(true); busy = true;
     var c = body.querySelector('.pk-chips'); if (c) c.remove();
-    meRow(q); var wait = botRow('<span class="pk-dots" aria-label="Packy is checking the official sources"><i></i><i></i><i></i></span>'); scrollDown();
+    var mine = meRow(q); var wait = botRow('<span class="pk-dots" aria-label="Packy is checking the official sources"><i></i><i></i><i></i></span>'); scrollDown();
     send.disabled = true; input.value = '';
     fetch('/api/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, prev: history.length ? history[history.length - 1].q : '', country: country, topic: topic }) })
       .then(function (r) { return r.json().then(function (d) { return [r.ok, d]; }); })
@@ -180,12 +182,12 @@
         history.push({ q: q, a: d.answer, guide: d.guide, offer: d.offer || null, next: d.next || [] }); save(history); track('answered');
       })
       .catch(function () { wait.remove(); botRow('Packy needs an internet connection 📶 Please try again when you are online.', 'pk-err'); track('offline'); })
-      .then(function () { busy = false; send.disabled = false; scrollDown(); });
+      .then(function () { busy = false; send.disabled = false; scrollToQ(mine); });
   }
   function open(fromAsk) {
     hideTip(); start();
     if (panel.hidden) { panel.hidden = false; fab.hidden = true; fab.setAttribute('aria-expanded', 'true'); track('open'); }
-    scrollDown(); if (!fromAsk) setTimeout(function () { input.focus(); }, 60);
+    if (!fromAsk) { var qs = body.querySelectorAll('.pk-me'); scrollToQ(qs[qs.length - 1]); setTimeout(function () { input.focus({ preventScroll: true }); }, 60); }
   }
   function close() { panel.hidden = true; fab.setAttribute('aria-expanded', 'false'); syncFab(); fab.focus(); }
   function reset() { history = []; save(history); body.innerHTML = ''; started = false; start(); input.focus(); track('new_chat'); }
