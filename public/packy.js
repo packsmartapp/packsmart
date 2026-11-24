@@ -67,6 +67,14 @@
     '.pk-msg p{margin:.2rem 0}.pk-msg ul{margin:.2rem 0 .2rem 1.1rem;padding:0}.pk-msg li{margin:.15rem 0}.pk-msg a{color:#0a8f78;font-weight:700}' +
     '.pk-bot{background:#fff;border-radius:18px 18px 18px 6px;box-shadow:0 2px 8px rgba(15,15,35,.07)}' +
     '.pk-me{margin-left:auto;background:linear-gradient(135deg,#00C9A7,#00A88C);color:#fff;border-radius:18px 18px 6px 18px;box-shadow:0 4px 12px rgba(0,168,140,.3);animation:pkIn .2s ease}' +
+    '.pk-card{background:linear-gradient(135deg,#E6FAF5,#F4FFFC);border:1.5px solid #BFEDE3;border-radius:16px;padding:12px 14px;font-size:14.5px;line-height:1.45}' +
+    '.pk-card b{display:block;font-size:15.5px;margin-bottom:3px}.pk-card p{margin:0 0 8px;color:#3f4a5c}' +
+    '.pk-card .pk-go{display:inline-block;background:#0f0f23;color:#fff!important;text-decoration:none;font-weight:800;border-radius:999px;padding:9px 16px}' +
+    '.pk-mail{background:linear-gradient(135deg,#FFF1F4,#FFF8FA);border-color:#F7B9C6}' +
+    '.pk-mail input[type=email],.pk-mail select{width:100%;box-sizing:border-box;font:inherit;font-size:16px;border:1.5px solid #E3E8EC;border-radius:12px;padding:10px 12px;margin:4px 0 8px;background:#fff}' +
+    '.pk-mail label{display:block;font-size:13px;font-weight:700;color:#3f4a5c}.pk-mail .pk-tick{display:flex;gap:8px;align-items:flex-start;font-weight:500;margin:2px 0 10px}.pk-mail .pk-tick input{margin-top:3px;width:18px;height:18px;flex:none}' +
+    '.pk-mail button{font:inherit;font-weight:800;font-size:15px;border:0;border-radius:999px;padding:10px 18px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;cursor:pointer}.pk-mail button[disabled]{opacity:.6}' +
+    '.pk-mail small{display:block;font-size:11.5px;color:#8a93a6;margin-top:8px}' +
     '.pk-offer{display:flex;align-items:center;gap:8px;margin:10px 0 2px;padding:10px 12px;border-radius:14px;background:linear-gradient(135deg,#FFF1F4,#FFE4EA);border:1.5px solid #F7B9C6;color:#0f0f23!important;text-decoration:none;font-weight:700!important;transition:transform .15s}' +
     '.pk-offer:hover{transform:translateY(-1px);border-color:#E94560}.pk-offer b{flex:1;font-size:14.5px}.pk-offer small{font-size:11px;font-weight:600;color:#8a5563;white-space:nowrap}' +
     '.pk-more{font-size:13px;border-top:1px dashed #D5DCE0;margin-top:8px!important;padding-top:6px}' +
@@ -128,7 +136,7 @@
   var panel = el('div', 'pk-panel');
   panel.hidden = true; panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-labelledby', 'pkT');
   panel.innerHTML = '<div class="pk-head"><span class="pk-face">' + FACE + '</span><div><b id="pkT">Packy</b><span class="pk-tag">' + C.flag + ' ' + esc(C.name) + '</span><span class="pk-tag pk-beta">Beta</span><small>Your ' + esc(C.name) + ' travel buddy</small></div>' +
-    '<div class="pk-hb"><button type="button" class="pk-new" aria-label="Start a new chat" title="New chat">&#8635;</button><button type="button" class="pk-x" aria-label="Close Packy" title="Close">&times;</button></div></div>' +
+    '<div class="pk-hb"><button type="button" class="pk-mailbtn" aria-label="Email me this chat" title="Email me this chat">&#9993;&#65039;</button><button type="button" class="pk-new" aria-label="Start a new chat" title="New chat">&#8635;</button><button type="button" class="pk-x" aria-label="Close Packy" title="Close">&times;</button></div></div>' +
     '<div class="pk-body" aria-live="polite"></div>' +
     '<form class="pk-form" autocomplete="off"><label class="pk-sr" for="pkQ">Your question</label><input id="pkQ" type="text" maxlength="300" placeholder="Ask Packy about ' + esc(C.name) + '…"><button type="submit" class="pk-send" aria-label="Send">&#10148;</button></form>' +
     '<div class="pk-note">Answers come from official sources. Prices and times change, so check before you travel. Booking buttons may be partner links (<a href="/affiliate-disclosure">disclosure</a>). Please don’t type personal details. <a href="/privacy-policy">Privacy</a></div>';
@@ -162,6 +170,55 @@
     var last = history[history.length - 1];
     chips(last && last.next && last.next.length ? last.next : STARTERS, last ? 'Ask next' : 'Try one of these');
   }
+
+  // the Pocket Guide that matches the conversation (from the guide Packy linked last, else the page's topic)
+  var POCKET = { 'sapporo-station-guide': ['sapporo', 'Sapporo Station'], 'new-chitose-airport-guide': ['new-chitose', 'New Chitose Airport'],
+    'ueno-station-guide': ['ueno', 'Ueno Station'], 'shinjuku-station-guide': ['shinjuku', 'Shinjuku Station'], 'tokyo-station-guide': ['tokyo', 'Tokyo Station'],
+    'kyoto-station-guide': ['kyoto', 'Kyoto Station'], 'osaka-station-guide': ['osaka', 'Shin-Osaka and Umeda'], 'narita-airport-guide': ['narita', 'Narita Airport'],
+    'haneda-airport-guide': ['haneda', 'Haneda Airport'], 'kansai-airport-guide': ['kix', 'Kansai Airport'] };
+  var TOPIC_POCKET = { sapporo: 'sapporo-station-guide', 'new-chitose': 'new-chitose-airport-guide', ueno: 'ueno-station-guide', shinjuku: 'shinjuku-station-guide',
+    tokyo: 'tokyo-station-guide', kyoto: 'kyoto-station-guide', osaka: 'osaka-station-guide' };
+  function once(k) { try { if (sessionStorage.getItem('packy_' + k)) return false; sessionStorage.setItem('packy_' + k, '1'); } catch (e) {} return true; }
+  function pocketCard(guide) {
+    var slug = guide && guide.url ? guide.url.split('/').pop().split('#')[0] : '';
+    var p = POCKET[slug] || POCKET[TOPIC_POCKET[topic]];
+    var html = p
+      ? '<div class="pk-card"><b>📱 Save the free ' + esc(p[1]) + ' Pocket Guide</b><p>Exits, platforms, lockers and ATMs a tap away, and it works offline at the station.</p><a class="pk-go" href="/' + p[0] + '-pocket?src=packy">Open the Pocket Guide</a></div>'
+      : '<div class="pk-card"><b>📱 Free Pocket Guides for ' + esc(C.name) + '</b><p>Airports and stations on your phone, working offline.</p><a class="pk-go" href="/japan?src=packy#pocket-hub">See the Pocket Guides</a></div>';
+    botRow(html).querySelector('.pk-msg').style.background = 'transparent';
+    track('pocket_card');
+  }
+  function months() {
+    var o = '<option value="">Not sure yet</option>', d = new Date(); d.setDate(1);
+    for (var i = 0; i < 13; i++) { var v = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2); o += '<option value="' + v + '">' + d.toLocaleString('en', { month: 'long', year: 'numeric' }) + '</option>'; d.setMonth(d.getMonth() + 1); }
+    return o;
+  }
+  function emailCard() {
+    if (!history.length) { botRow('Ask me something first, then I can email you the whole chat ✉️'); scrollDown(); return; }
+    var old = body.querySelector('.pk-mail'); if (old) { old.scrollIntoView({ block: 'center' }); return; }
+    var r = botRow('<form class="pk-card pk-mail" novalidate><b>✉️ Want this chat in your inbox?</b><p>I’ll email you everything we talked about, with the official links, so you have it on your trip.</p>' +
+      '<label>Your email<input type="email" name="email" autocomplete="email" required placeholder="you@example.com"></label>' +
+      '<label>When is your trip? (optional)<select name="trip">' + months() + '</select></label>' +
+      '<label class="pk-tick"><input type="checkbox" name="tips"> <span>Also send me trip tips for ' + esc(C.name) + ' before I go. Unsubscribe any time.</span></label>' +
+      '<button type="submit">Email me this chat</button><small>We only use your email for this. <a href="/privacy-policy">Privacy</a></small></form>');
+    r.querySelector('.pk-msg').style.background = 'transparent';
+    var f = r.querySelector('form'), btn = f.querySelector('button');
+    f.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var em = f.email.value.trim(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { f.email.focus(); f.email.style.borderColor = '#E94560'; return; }
+      btn.disabled = true; btn.textContent = 'Sending…';
+      fetch('/api/email-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: em, tips: f.tips.checked, trip: f.trip.value, country: country, page: location.pathname,
+        items: history.map(function (h) { return { q: h.q, a: h.a }; }) }) })
+        .then(function (x) { return x.json().then(function (d) { return [x.ok, d]; }); })
+        .then(function (x) {
+          if (!x[0] || !x[1].ok) { btn.disabled = false; btn.textContent = 'Email me this chat'; botRow(esc((x[1] && x[1].error) || 'Sorry, that did not work.'), 'pk-err'); track('email_error'); scrollDown(); return; }
+          f.outerHTML = '<div class="pk-card"><b>✅ Sent!</b><p>Check your inbox at ' + esc(em) + ' (and the spam folder, just in case). Safe travels! 🇯🇵</p></div>';
+          track(f.tips && f.tips.checked ? 'email_sent_tips' : 'email_sent');
+        })
+        .catch(function () { btn.disabled = false; btn.textContent = 'Email me this chat'; botRow('Packy needs an internet connection to send the email.', 'pk-err'); });
+    });
+    track('email_card'); return r;
+  }
   function scrollDown() { body.scrollTop = body.scrollHeight; }
   // show a new answer from its start: the traveller's question at the top, the answer below it, the next questions last
   function scrollToQ(m) { if (!m) return scrollDown(); var top = m.offsetTop - 10; if (still) body.scrollTop = top; else try { body.scrollTo({ top: top, behavior: 'smooth' }); } catch (e) { body.scrollTop = top; } }
@@ -177,6 +234,9 @@
         var ok = x[0], d = x[1]; wait.remove();
         if (!ok || !d.ok) { botRow(esc((d && d.error) || 'Sorry, something went wrong. Please try again.'), 'pk-err'); chips(STARTERS, 'Or try one of these'); track('error'); return; }
         botRow(answerHtml(d.answer, d.guide, d.offer));
+        var n = history.length + 1;
+        if (n === 2 && once('pocket')) pocketCard(d.guide);
+        if (n === 3 && once('email')) emailCard();
         var next = (d.next && d.next.length) ? d.next : STARTERS.filter(function (s) { return s !== q; });
         chips(next, 'Ask next');
         history.push({ q: q, a: d.answer, guide: d.guide, offer: d.offer || null, next: d.next || [] }); save(history); track('answered');
@@ -194,6 +254,7 @@
   fab.addEventListener('click', function () { open(false); });
   panel.querySelector('.pk-x').addEventListener('click', close);
   panel.querySelector('.pk-new').addEventListener('click', reset);
+  panel.querySelector('.pk-mailbtn').addEventListener('click', function () { emailCard(); var m = body.querySelector('.pk-mail'); if (m) setTimeout(function () { m.scrollIntoView({ block: 'center' }); }, 50); });
   panel.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   body.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('.pk-offer'); if (a) { try { if (window.gtag) gtag('event', 'ask_' + country, { event_category: 'engagement', status: 'offer_click', offer: a.getAttribute('data-offer'), page_path: location.pathname }); } catch (x) {} } });
   form.addEventListener('submit', function (e) { e.preventDefault(); ask(input.value); });

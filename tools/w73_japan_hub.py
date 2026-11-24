@@ -314,6 +314,20 @@ if 'id="ask-japan-privacy"' not in pv:
     open(PRIV, "w", encoding="utf-8").write(pv)
     print("w73: privacy policy updated")
 
+# ---- privacy policy: emails from Packy (marker: id="packy-email-privacy")
+pv = open(PRIV, encoding="utf-8").read()
+if 'id="packy-email-privacy"' not in pv:
+    a = '    <h3>Payment Information</h3>'
+    if pv.count(a) != 1:
+        die("privacy policy anchor for Packy emails not found")
+    pv = pv.replace(a, '    <h3 id="packy-email-privacy">Emails from Packy</h3>\n'
+                    '    <p>If you ask Packy to email you your chat, we use your email address to send that one email from hello@packsmartapp.com, '
+                    'and we keep a record of the request (your email address, the trip month if you chose one, and whether you ticked the box for trip tips) in our mailbox. '
+                    'We send trip tips only if you ticked that box, and you can stop them at any time by replying "stop". '
+                    'We do not sell or share your email address. If we move this list to an email service, it will be used for the same purpose only.</p>\n\n' + a, 1)
+    open(PRIV, "w", encoding="utf-8").write(pv)
+    print("w73: privacy policy: Packy emails")
+
 if changed:
     open(OUT, "w", encoding="utf-8").write(page)
 open(SITEMAP, "w", encoding="utf-8").write(sm)

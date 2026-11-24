@@ -258,6 +258,10 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Chose: Packy answers cost questions with an approximate price or range from official sources, what it covers, the checked date, and a short "prices change, check the latest on [official page]". When a partner sells the thing asked about (Skyliner or Narita Express tickets, Shinkansen tickets, a JR Pass, airport transfers, eSIM, travel medical insurance, bag storage, guided tours), a "Book online" button labelled "partner link" appears under the answer, using the same tracked links as the guides; hotels and car hire open the guide section that carries those offers. The server picks the button from the question; the AI never writes booking links or partner names.
 - Why: travellers ask "how much?" constantly, and "prices change" alone is a weak answer. One price lives in one fact sheet with its date, so it is updated once. The guides' own text keeps the no-prices rule, because 70 pages of typed prices go stale.
 
+**D58. Email capture returns, inside Packy only; Pocket Guide nudge in the chat** (24 Nov)
+- Chose: after Packy's 3rd answer (and from a header button at any time) a card offers "Email me this chat": email, optional trip month, and a separate unticked box "Also send me trip tips" (marketing consent). `api/email-chat.js` sends the chat from hello@packsmartapp.com through the existing Hostinger mailbox and sends hello@ a copy of the signup; that mailbox is the list until MailerLite or Kit is chosen. After the 2nd answer a card offers the matching free Pocket Guide (`?src=packy`).
+- Why: owner's call. Travellers who buy one thing and leave cannot be reached again; an email they ask for, tied to their trip, is the honest way in. Site-only, rate-limited and chat-only, so it cannot be used to send arbitrary mail.
+
 ## Open decisions (not made)
 
 - Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.
