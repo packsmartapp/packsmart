@@ -511,3 +511,32 @@ www3.jrhokkaido.co.jp was allowed in the sandbox on 24 Nov 2026. Each time cell 
   not the South Hokkaido Railway, streetcar or subway). "All non-Japanese passport holders can use the rail passes"; show a valid passport (no copies).
   Reserved and non-reserved seats in ordinary cars. "Please insert only your rail pass into the automatic ticket gate"; a lost pass "cannot be reissued".
   Prices are on the page; body copy carries none.
+
+## JR Hokkaido traveller guides (owner-supplied PDFs, 24 Nov 2026; same files on JR's site)
+**Manner and user guide (English/Chinese)**, https://www.jrhokkaido.co.jp/global/pdf/e-cn-mannerguide.pdf
+- Tickets: a basic fare ticket is always needed. Limited express trains also need a limited express ticket (reserved seats);
+  "Passengers without a seat number will have to stand", though you can sit temporarily in empty seats (ordinary cars only).
+  A local or rapid train's reserved seats need a reserved seat ticket; the Airport Train has five of six cars non-reserved, so the basic fare is enough.
+- IC cards: "can be used only in limited areas of Hokkaido"; both the boarding and the alighting station must be inside the same IC card area.
+  Q: IC card to Biei, Furano, Noboribetsu and Toya? A: "IC cards cannot be used", even if you board inside the area.
+  Q: New Chitose Airport to Sapporo and Otaru? A: yes, non-reserved seating "with just your IC card". "Some IC cards cannot be used, such as SAPICA."
+- Ticket gates: insert the ticket or tap the IC card; up to three tickets at once; with a rail pass insert only the pass.
+  At stations without automatic gates, show your ticket to staff. Do not keep tickets in a smartphone case (magnetic malfunction).
+- One-man-operated trains (one or two cars, no conductor): doors do not open automatically, press the button.
+  Without a ticket, take a numbered ticket when boarding and pay the fare in cash to the driver (no credit cards, no IC cards). May vary by station and time.
+- Luggage on board: length + width + height 250 cm or less (length up to 2 m), up to 30 kg each, up to 2 pieces; skis, snowboards and bicycles fully in their bags;
+  large suitcases in the luggage storage area; same-day luggage delivery from New Chitose Airport to partnering hotels (conditions apply).
+- Lost and found: "find chat", an English/Chinese AI chat to search for items lost on JR Hokkaido trains or in stations (register via the QR code in the guide).
+- On the train: wait for passengers to get off first; phones on silent, no calls (limited expresses: between cars); priority seats; no sitting on the floor;
+  no selfie sticks or phones pointed at the tracks; do not stand at the bottom of escalators.
+**Accessibility**, https://www.jrhokkaido.co.jp/global/pdf/e-accessibility2025.pdf
+- Wheelchair users: contact station staff (ramp); "especially" in winter, as platforms are slippery with snow. Many stations are unmanned or have no lift,
+  and staff may be absent even at manned ones, so JR recommends requesting assistance in advance with its inquiry form (date, station, time, wheelchair,
+  caregiver, help needed); replies 9:00 to 17:50 JST on weekdays (not over New Year).
+- Assistance dogs travel free with a Temporary Certificate of Overseas Assistance Dog Users (apply beforehand).
+- Mobility scooters: up to 70 cm wide and 120 cm long and high (with further conditions), driven slowly (2 km/h) following staff.
+**Train Operation Information user guide**, https://www.jrhokkaido.co.jp/global/pdf/e-userguide.pdf (summarised earlier in these notes).
+**JR Hokkaido group hotels** (owner's screenshot of JR's English hotel page, 24 Nov 2026): JR Tower Hotel Nikko Sapporo ("36 story hotel with natural hot springs",
+  adjacent to Sapporo Station); JR Inn Sapporo ("4 minutes' walk from the West Ticket Gate of Sapporo Station"); JR Inn Sapporo N2; JR Inn Sapporo South;
+  JR Inn Chitose; JR Inn Asahikawa ("directly connected to Asahikawa Station"); JR Inn Hakodate ("right by JR Hakodate Station"); Hotel Nikko Northland Obihiro.
+  Owner's call whether to list these, and whether to link them through a partner.
