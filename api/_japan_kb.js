@@ -303,7 +303,14 @@ export default [
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
-"x": "- **Using it:** \"tap it on the ticket gate to enter, and do the same again when you leave the gate at your destination\"; if the gate does not open, the reader \"missed your card or your card funds are insufficient\" (top up at a ticket machine or a fare adjustment machine). On buses, \"tap it once when you get on the bus, and tap it again when you get off\". Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.\n- **Where IC cards do not work:** \"Some areas of Japan do not accept IC cards, as well as certain forms of transport, such as highway buses. Keep an eye out for the IC logo\"; they also pay \"for items from many vending machines, stores, and lockers in train stations\". Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.",
+"x": "- **Using it:** \"tap it on the ticket gate to enter, and do the same again when you leave the gate at your destination\"; if the gate does not open, the reader \"missed your card or your card funds are insufficient\" (top up at a ticket machine or a fare adjustment machine). On buses, \"tap it once when you get on the bus, and tap it again when you get off\". Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.",
+"u": [
+"https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
+"x": "- **Fares and paper tickets (where to find the cost):** \"Even if you don't have an IC card, you can still buy tickets manually from machines at the station. The fares will differ depending on your destination, so be sure to check the fare chart at the station. Find out where you're going and how much it will cost, and buy a ticket accordingly.\" Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.\n- **Where IC cards do not work:** \"Some areas of Japan do not accept IC cards, as well as certain forms of transport, such as highway buses. Keep an eye out for the IC logo\"; they also pay \"for items from many vending machines, stores, and lockers in train stations\". Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.",
 "u": [
 "https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/"
 ]
