@@ -34,14 +34,17 @@ const DF = new Map();
 DOCS.forEach(set => set.forEach(w => DF.set(w, (DF.get(w) || 0) + 1)));
 
 // a few place names travellers use for the same thing
-const ALIAS = { kansai: ['osaka', 'kyoto', 'kix'], kix: ['kansai'], kanto: ['tokyo'], hakata: ['fukuoka'], fukuoka: ['hakata'], chitose: ['new-chitose', 'cts'], cts: ['chitose'], kasai: ['kansai', 'osaka', 'kyoto'], shinkansen: ['bullet'], bullet: ['shinkansen'], airport: ['international'], osaka: ['kansai', 'itami'], kyoto: ['kansai'] };
+const ALIAS = { kansai: ['osaka', 'kyoto', 'kix'], kix: ['kansai'], kanto: ['tokyo'], hakata: ['fukuoka'], fukuoka: ['hakata'], chitose: ['new-chitose', 'cts'], cts: ['chitose'], kasai: ['kansai', 'osaka', 'kyoto'], shinkansen: ['bullet'], bullet: ['shinkansen'], suitcase: ['baggage', 'luggage'], luggage: ['baggage'], bag: ['baggage'], bags: ['baggage'], big: ['oversized'], large: ['oversized'], alcohol: ['alcoholic'], cigarette: ['cigarettes', 'tobacco'], phone: ['sim', 'wi-fi'], sim: ['esim'], money: ['cash', 'atm'], weather: ['season'], rain: ['rainy'], airport: ['international'], osaka: ['kansai', 'itami'], kyoto: ['kansai'] };
 function search(q, n) {
   const base = words(q);
   const qs = [...new Set(base.concat(...base.map(w => ALIAS[w] || [])).map(stem))];
   const routeWords = base.concat(...base.map(w => ALIAS[w] || []));
   const scored = KB.map((p, i) => {
     let s = 0;
-    for (const w of qs) if (DOCS[i].has(w)) s += Math.log(1 + KB.length / (DF.get(w) || 1));
+    for (const w of qs) {
+      if (DOCS[i].has(w)) s += Math.log(1 + KB.length / (DF.get(w) || 1));
+      else if (w.length >= 5 && LOW[i].includes(w)) s += Math.log(1 + KB.length / 8);   // word start, e.g. alcohol -> alcoholic
+    }
     // a route named as "A to B" (either way) is the strongest sign the piece answers the question
     const low = LOW[i];
     for (const a of routeWords) for (const b of routeWords) if (a !== b && (low.includes(a + ' to ' + b) || low.includes(a + '\u2013' + b) || low.includes(a + '-' + b))) s += 6;

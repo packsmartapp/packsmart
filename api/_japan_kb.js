@@ -74,19 +74,27 @@ export default [
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 2. Distances and travel times between major cities",
-"x": "Shinkansen lines (JNTO): Tokaido: Tokyo, Shin-Yokohama, Nagoya, Kyoto, Shin-Osaka. Sanyo: Shin-Osaka, Hiroshima, Hakata. Kyushu: Hakata to Kagoshima-Chuo. Nishi Kyushu: Takeo-Onsen to Nagasaki. Tohoku: Tokyo to Shin-Aomori via Sendai and Morioka. Hokkaido: Shin-Aomori to Shin-Hakodate-Hokuto. Hokuriku: Tokyo to Nagano, Kanazawa and Tsuruga. Joetsu: Tokyo to Niigata. Akita: Tokyo to Akita. Yamagata: Tokyo to Shinjo. Source: https://www.japan.travel/en/plan/getting-around/shinkansen/, checked 24 Nov 2026.\n- **Tokyo to Kyoto** (Tokaido Shinkansen): \"approximately 130 minutes ... on the Nozomi bullet train, or 170 minutes on the Hikari bullet train\", no transfer. Source: https://kyoto.travel/en/getting-to/, checked 24 Nov 2026. **Differs:** JNTO FAQ says \"roughly 2 hours from Tokyo to Kyoto\". Source: https://www.japan.travel/en/faq/, checked 24 Nov 2026.",
+"x": "Shinkansen lines (JNTO): Tokaido: Tokyo, Shin-Yokohama, Nagoya, Kyoto, Shin-Osaka. Sanyo: Shin-Osaka, Hiroshima, Hakata. Kyushu: Hakata to Kagoshima-Chuo. Nishi Kyushu: Takeo-Onsen to Nagasaki. Tohoku: Tokyo to Shin-Aomori via Sendai and Morioka. Hokkaido: Shin-Aomori to Shin-Hakodate-Hokuto. Hokuriku: Tokyo to Nagano, Kanazawa and Tsuruga. Joetsu: Tokyo to Niigata. Akita: Tokyo to Akita. Yamagata: Tokyo to Shinjo. Source: https://www.japan.travel/en/plan/getting-around/shinkansen/, checked 24 Nov 2026.",
 "u": [
-"https://www.japan.travel/en/plan/getting-around/shinkansen/",
+"https://www.japan.travel/en/plan/getting-around/shinkansen/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 2. Distances and travel times between major cities",
+"x": "- **Tokyo to Kyoto** (Tokaido Shinkansen): \"approximately 130 minutes ... on the Nozomi bullet train, or 170 minutes on the Hikari bullet train\", no transfer. Source: https://kyoto.travel/en/getting-to/, checked 24 Nov 2026. **Differs (minor):** JNTO FAQ rounds this to \"roughly 2 hours from Tokyo to Kyoto\" (https://www.japan.travel/en/faq/). Use the Kyoto City figures. **Gap:** JR Central's English pages give no Tokyo–Kyoto time and no Kodama times (its timetable PDFs are images).",
+"u": [
 "https://kyoto.travel/en/getting-to/",
 "https://www.japan.travel/en/faq/"
 ]
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 2. Distances and travel times between major cities",
-"x": "- **Tokyo to Osaka (Shin-Osaka)** (Tokaido Shinkansen): \"approximately two and a half hours\", then JR local line to Osaka Station. Source: https://www.japan.travel/en/destinations/kansai/osaka/, checked 24 Nov 2026. Osaka's tourism bureau also gives Tokyo to Shin-Osaka \"Shinkansen (2 hours 30 minutes)\" and says JR and Osaka Metro run between Shin-Osaka and Osaka stations \"every 5 to 10 minutes\". Source: https://osaka-info.jp/en/information/to-osaka/, checked 24 Nov 2026. **Differs:** JNTO FAQ says \"3 hours to Osaka\". Source: https://www.japan.travel/en/faq/, checked 24 Nov 2026.",
+"x": "- **Tokyo to Osaka (Shin-Osaka)** (Tokaido Shinkansen): \"approximately two and a half hours\", then JR local line to Osaka Station. Source: https://www.japan.travel/en/destinations/kansai/osaka/, checked 24 Nov 2026. Osaka's tourism bureau also gives Tokyo to Shin-Osaka \"Shinkansen (2 hours 30 minutes)\" and says JR and Osaka Metro run between Shin-Osaka and Osaka stations \"every 5 to 10 minutes\". Source: https://osaka-info.jp/en/information/to-osaka/, checked 24 Nov 2026. JR Central, the operator: \"Travel from Tokyo Station to Shin-Osaka in just 2 hours 21 minutes\" (the fastest Nozomi); \"A maximum of 12 NOZOMI trains run between Tokyo and Shin-Osaka per hour\" (https://japanrailpass.net/en/). Source: https://global.jr-central.co.jp/en/goldenroute/shinkansen/, checked 24 Nov 2026. **Differs:** JNTO FAQ says \"3 hours to Osaka\" (https://www.japan.travel/en/faq/); treat that as a rough figure and give \"about 2 hours 21 minutes by the fastest Nozomi, about 2.5 hours typically\".",
 "u": [
 "https://www.japan.travel/en/destinations/kansai/osaka/",
 "https://osaka-info.jp/en/information/to-osaka/",
+"https://japanrailpass.net/en/",
+"https://global.jr-central.co.jp/en/goldenroute/shinkansen/",
 "https://www.japan.travel/en/faq/"
 ]
 },
@@ -162,16 +170,17 @@ export default [
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 2. Distances and travel times between major cities",
-"x": "- Distances in km: only a few official figures were reachable. Narita Airport is \"about 60 kilometers east of central Tokyo in Chiba Prefecture\" (https://www.japan.travel/en/plan/airport-access/narita-airport/); the Ogasawara Islands lie \"1,000 kilometers south of Tokyo\" (https://www.japan.travel/en/plan/weather/); JR West runs \"Shinkansen: 937.7 km (2 line segments)\" (https://www.westjr.co.jp/global/en/about-us/overview/). All checked 24 Nov 2026.\n- **Gap:** no reachable official page gives city-to-city km (e.g. Tokyo to Shin-Osaka, Tokyo to Hakata). JR Central (global.jr-central.co.jp) and JR East pages would be the source but are blocked. Answer \"how far\" with travel time and say the km is not on our sources.",
+"x": "- Distances in km: only a few official figures were reachable. Narita Airport is \"about 60 kilometers east of central Tokyo in Chiba Prefecture\" (https://www.japan.travel/en/plan/airport-access/narita-airport/); the Ogasawara Islands lie \"1,000 kilometers south of Tokyo\" (https://www.japan.travel/en/plan/weather/); JR West runs \"Shinkansen: 937.7 km (2 line segments)\" (https://www.westjr.co.jp/global/en/about-us/overview/). All checked 24 Nov 2026.\n- The JR network as a whole: \"The length of JR train lines in Japan amount to a total of over 19,000 km\". Source: https://japanrailpass.net/en/, checked 24 Nov 2026.",
 "u": [
 "https://www.japan.travel/en/plan/airport-access/narita-airport/",
 "https://www.japan.travel/en/plan/weather/",
-"https://www.westjr.co.jp/global/en/about-us/overview/"
+"https://www.westjr.co.jp/global/en/about-us/overview/",
+"https://japanrailpass.net/en/"
 ]
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 2. Distances and travel times between major cities",
-"x": "- **Gap:** Tokyo to Kyoto or Kanazawa by plane: not stated on a reachable official page (Kyoto has no airport; nearest are Itami and Kansai, \"between 1 hour and 1.5 hours away\", https://www.japan.travel/en/destinations/kansai/kyoto/).",
+"x": "- **Gap:** no reachable official English page gives city-to-city km (e.g. Tokyo to Shin-Osaka, Tokyo to Hakata). JR Central's English site (now reachable) does not state operating km for Tokyo, Nagoya, Kyoto or Shin-Osaka. Answer \"how far\" with travel time and say the km is not on our sources.\n- **Gap:** Tokyo to Kyoto or Kanazawa by plane: not stated on a reachable official page (Kyoto has no airport; nearest are Itami and Kansai, \"between 1 hour and 1.5 hours away\", https://www.japan.travel/en/destinations/kansai/kyoto/).",
 "u": [
 "https://www.japan.travel/en/destinations/kansai/kyoto/"
 ]
@@ -239,99 +248,155 @@ export default [
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
-"x": "- Wrong train: \"move to the non-reserved seating area (if there is one) and inform the train staff\". Eating and drinking \"are generally allowed on Shinkansen trains\". Same source.\n- Fastest trains such as \"the Hayabusa (Tohoku Shinkansen), and Kagayaki (Hokuriku Shinkansen) ... don't offer non-reserved seats, so seat reservations are mandatory\". Source: https://www.japan.travel/en/guide/jr-rail-pass/, checked 24 Nov 2026.\n- In holiday seasons (Golden Week, summer, New Year) Shinkansen \"are expected to be crowded and many of them will only offer reserved seating\". Source: https://www.japan.travel/en/faq/, checked 24 Nov 2026.\n- JR West: a limited express ticket (reserved or non-reserved) \"is required in addition to the basic fare ticket\" for Shinkansen and limited expresses. Source: https://www.westjr.co.jp/travel-information/en/train-usage-guide/howto/basics/, checked 24 Nov 2026.",
+"x": "- JR Central rule: bags of 160 cm or less (length + width + height) go at your feet or on the overhead rack; \"Oversized baggage with a total of three dimensions between 161 and 250 cm (64 and 98 inches) must be placed in the baggage space located behind seats with an oversized baggage space ... a reservation is required when purchasing your ticket\"; \"Baggage with a total of three dimensions exceeding 250 cm (98 inches) cannot be brought on board\"; carrying oversized baggage without that reservation incurs a baggage fee. Non-reserved cars have no such seats. Source: https://global.jr-central.co.jp/en/info/oversized-baggage/, checked 24 Nov 2026.",
 "u": [
-"https://www.japan.travel/en/guide/jr-rail-pass/",
+"https://global.jr-central.co.jp/en/info/oversized-baggage/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
+"x": "- Non-reserved cars (Tokaido Shinkansen, typical): \"Nozomi: Cars 1–2; Hikari: Cars 1–5; Kodama: Cars 1–6 & 13–16 (subject to change)\"; non-reserved seats are \"first-come, first-served\". If you miss your train you \"can board the Non-Reserved section of any subsequent train on the same day, as long as it is for the same route\". To ride you need \"a 'Basic Fare Ticket' and a 'Super Express Ticket'\"; paper tickets are stacked and inserted together at the gate. No smoking anywhere on board; free Wi-Fi on all Tokaido Shinkansen trains; for Mt. Fuji views \"choose Seat E in Standard Class or Seat D in Green Class\". Source: https://global.jr-central.co.jp/en/goldenroute/shinkansen/, checked 24 Nov 2026.",
+"u": [
+"https://global.jr-central.co.jp/en/goldenroute/shinkansen/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
+"x": "- Peak periods: \"All seats on Nozomi trains on the Tokaido and Sanyo Shinkansen are reserved seats during the major peak periods\"; \"Hikari, Kodama, Mizuho, Sakura, and Tsubame trains have non-reserved seats as usual\". JR Central's online reservation allows booking \"Up to one year prior to departure\" for some products. Source: https://global.jr-central.co.jp/en/nozomi/, checked 24 Nov 2026.\n- Wrong train: \"move to the non-reserved seating area (if there is one) and inform the train staff\". Eating and drinking \"are generally allowed on Shinkansen trains\". Same source.\n- Fastest trains such as \"the Hayabusa (Tohoku Shinkansen), and Kagayaki (Hokuriku Shinkansen) ... don't offer non-reserved seats, so seat reservations are mandatory\". Source: https://www.japan.travel/en/guide/jr-rail-pass/, checked 24 Nov 2026.",
+"u": [
+"https://global.jr-central.co.jp/en/nozomi/",
+"https://www.japan.travel/en/guide/jr-rail-pass/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
+"x": "- In holiday seasons (Golden Week, summer, New Year) Shinkansen \"are expected to be crowded and many of them will only offer reserved seating\". Source: https://www.japan.travel/en/faq/, checked 24 Nov 2026.\n- JR West: a limited express ticket (reserved or non-reserved) \"is required in addition to the basic fare ticket\" for Shinkansen and limited expresses. Source: https://www.westjr.co.jp/travel-information/en/train-usage-guide/howto/basics/, checked 24 Nov 2026.\n- Sanyo, Kyushu, Nishi Kyushu and Hokuriku Shinkansen seats can be booked online with JR West; \"Reservations are accepted up to one month (same day of preceding month) in advance of departure, beginning at 10:00 am (JST)\". Source: https://www.westjr.co.jp/travel-information/en/tickets-passes/route-search/, checked 24 Nov 2026.\n\n**IC cards (Suica, PASMO, ICOCA and others)**",
+"u": [
 "https://www.japan.travel/en/faq/",
-"https://www.westjr.co.jp/travel-information/en/train-usage-guide/howto/basics/"
+"https://www.westjr.co.jp/travel-information/en/train-usage-guide/howto/basics/",
+"https://www.westjr.co.jp/travel-information/en/tickets-passes/route-search/"
 ]
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
-"x": "- Sanyo, Kyushu, Nishi Kyushu and Hokuriku Shinkansen seats can be booked online with JR West; \"Reservations are accepted up to one month (same day of preceding month) in advance of departure, beginning at 10:00 am (JST)\". Source: https://www.westjr.co.jp/travel-information/en/tickets-passes/route-search/, checked 24 Nov 2026.\n\n**IC cards (Suica, PASMO, ICOCA and others)**\n- \"Most regions have their own IC card ... These cards can be used nationwide\"; most need a deposit; \"Welcome Suica and TOURIST PASMO, are available without a deposit\". Source: https://www.japan.travel/en/plan/ic-card/, checked 24 Nov 2026.",
+"x": "- \"Most regions have their own IC card ... These cards can be used nationwide\"; most need a deposit; \"Welcome Suica and TOURIST PASMO, are available without a deposit\". Source: https://www.japan.travel/en/plan/ic-card/, checked 24 Nov 2026.\n- Welcome Suica is \"a deposit-free card for tourists at certain places in the Kanto area, which is valid for up to 28 days\"; ICOCA and TOICA are used in other areas; some areas and \"highway buses\" do not take IC cards. Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.\n- ICOCA (JR West) works in the Kitaca, PASMO, Suica, manaca, TOICA, PiTaPa, Hayakaken, nimoca and SUGOCA areas; \"With some exceptions, ICOCA cannot be used for traveling between two different areas\"; \"ICOCA cannot be used on Shinkansen trains.\" Source: https://www.westjr.co.jp/global/en/howto/icoca/area/, checked 24 Nov 2026.",
 "u": [
-"https://www.westjr.co.jp/travel-information/en/tickets-passes/route-search/",
-"https://www.japan.travel/en/plan/ic-card/"
-]
-},
-{
-"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
-"x": "- Welcome Suica is \"a deposit-free card for tourists at certain places in the Kanto area, which is valid for up to 28 days\"; ICOCA and TOICA are used in other areas; some areas and \"highway buses\" do not take IC cards. Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.\n- ICOCA (JR West) works in the Kitaca, PASMO, Suica, manaca, TOICA, PiTaPa, Hayakaken, nimoca and SUGOCA areas; \"With some exceptions, ICOCA cannot be used for traveling between two different areas\"; \"ICOCA cannot be used on Shinkansen trains.\" Source: https://www.westjr.co.jp/global/en/howto/icoca/area/, checked 24 Nov 2026.\n- ICOCA can be added to Apple Pay on \"iPhone 8 or later with iOS 16.0 or later\". Source: https://www.westjr.co.jp/global/en/howto/icoca/applepay/, checked 24 Nov 2026.",
-"u": [
+"https://www.japan.travel/en/plan/ic-card/",
 "https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/",
-"https://www.westjr.co.jp/global/en/howto/icoca/area/",
-"https://www.westjr.co.jp/global/en/howto/icoca/applepay/"
+"https://www.westjr.co.jp/global/en/howto/icoca/area/"
 ]
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
-"x": "- Mobile Suica/PASMO \"may not work on all smartphones\". Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.\n\n**Japan Rail Pass**\n- \"offered exclusively to foreign visitors traveling in Japan under temporary visitor status\"; covers \"JR train lines countrywide, with very few exceptions\", most Shinkansen, rapid, express and local JR trains, some JR buses and the JR West Miyajima ferry. Source: https://www.japan.travel/en/guide/jr-rail-pass/, checked 24 Nov 2026.\n- Not covered: Nozomi and Mizuho (need an extra ticket), subways and private lines, some \"liner\" trains. Same source; also https://www.japan.travel/en/plan/getting-around/shinkansen/.",
+"x": "- ICOCA can be added to Apple Pay on \"iPhone 8 or later with iOS 16.0 or later\". Source: https://www.westjr.co.jp/global/en/howto/icoca/applepay/, checked 24 Nov 2026.\n- Mobile Suica/PASMO \"may not work on all smartphones\". Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.\n\n**Japan Rail Pass**\n- Official site: \"a joint offering of the six companies comprising the Japan Railways Group\"; \"There are two types of PASSes: PASS for Green Cars and PASS for Standard Cars. Each type can be purchased for 7 days, 14 days or 21 days.\" Source: https://japanrailpass.net/en/about_jrp/, checked 24 Nov 2026.",
 "u": [
+"https://www.westjr.co.jp/global/en/howto/icoca/applepay/",
 "https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/",
-"https://www.japan.travel/en/guide/jr-rail-pass/",
-"https://www.japan.travel/en/plan/getting-around/shinkansen/"
+"https://japanrailpass.net/en/about_jrp/"
 ]
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
-"x": "- \"As of October 1, 2026, the Japan Rail Pass can be purchased either through the official website or through an authorized overseas distributor.\" Seat reservations on most Shinkansen are free with the pass. Source: https://www.japan.travel/en/guide/jr-rail-pass/, checked 24 Nov 2026. Official site: https://japanrailpass.net/en/ (blocked, not checked).\n- It is \"jointly offered by six JR Group companies\"; regional passes (JR EAST PASS, JR-West Rail Passes, Hokkaido Rail Pass, ALL SHIKOKU, JR KYUSHU RAIL PASS and others) may suit one area better. Source: https://www.japan.travel/en/plan/jr-rail-passes/, checked 24 Nov 2026.\n\n**Other trains and subways**",
+"x": "- Who is eligible: \"a special ticket that can only be purchased by tourists who visit Japan from overseas\"; you must be \"a foreign tourist visiting Japan from abroad for sight-seeing, under the entry status of 'temporary visitor'\", with that stamp or sticker in your passport. Automated immigration gates give no stamp, so \"you need to either use a manned automated gate or ask a clerk to apply a stamp/sticker\". Some Japanese nationals living abroad qualify under separate conditions (overseas purchase only). Source: https://japanrailpass.net/en/about_jrp/riyou/, checked 24 Nov 2026.",
 "u": [
-"https://www.japan.travel/en/guide/jr-rail-pass/",
-"https://japanrailpass.net/en/",
-"https://www.japan.travel/en/plan/jr-rail-passes/"
+"https://japanrailpass.net/en/about_jrp/riyou/"
 ]
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
-"x": "- Subways: \"your JR Rail Pass is not valid. However, it is possible to use your Suica Card\"; if unsure of the fare \"purchase the cheapest one and adjust the fare when you exit\". Source: https://www.japan.travel/en/plan/getting-around/subways/, checked 24 Nov 2026.\n- Route and fare tools named by JNTO: Japan Transit Planner (Jorudan) and NAVITIME. Source: https://www.japan.travel/en/guide/traveling-by-rail/, checked 24 Nov 2026.\n\n**Domestic flights**\n- \"With some 90 airports serving domestic and overseas flights, air travel within Japan is very convenient\"; JAL and ANA offer visitor fares; LCCs restrict luggage; flights \"can be delayed by typhoons and even volcanic activity\". Source: https://www.japan.travel/en/plan/getting-around/domestic-air-travel/, checked 24 Nov 2026.\n\n**Highway buses**",
+"x": "- What it covers: \"All JR Group Railways-Shinkansen 'bullet trains' (except any reserved or non-reserved seat on 'NOZOMI' and 'MIZUHO' trains) limited express trains, express trains, and rapid or local trains, and the BRT (With some exceptions)\"; also the Tokyo Monorail, some short third-sector sections, JR Bus local lines (not JR express bus routes) and \"Only the JR-WEST Miyajima ferry\". Private railway sections, Gran Class and the Hakata–Busan ferry are extra or not covered. Source: https://japanrailpass.net/en/about_jrp/route/, checked 24 Nov 2026.",
 "u": [
-"https://www.japan.travel/en/plan/getting-around/subways/",
+"https://japanrailpass.net/en/about_jrp/route/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
+"x": "- Nozomi/Mizuho rule as stated now: \"'NOZOMI' and 'MIZUHO' trains on the Tokaido and Sanyo Shinkansen Lines are not covered by the JAPAN RAIL PASS. However, if a JAPAN RAIL PASS holder additionally purchases an [ONLY WITH JAPAN RAIL PASS] NOZOMI MIZUHO Ticket before boarding the train, the PASS holder may use a 'NOZOMI' or 'MIZUHO'\"; buy one \"each time\"; sold at reserved-seat ticket machines and JR ticket offices from one month before travel. Source: https://japanrailpass.net/en/use/special-ticket/, checked 24 Nov 2026. Otherwise \"Please use 'HIKARI,' 'SAKURA,' 'KODAMA' and 'TSUBAME' trains.\" Source: https://japanrailpass.net/en/about_jrp/route/, checked 24 Nov 2026.",
+"u": [
+"https://japanrailpass.net/en/use/special-ticket/",
+"https://japanrailpass.net/en/about_jrp/route/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
+"x": "- How to buy and collect: two ways, \"Purchase online\" (official site) or \"Purchase at a travel agency overseas\". Source: https://japanrailpass.net/en/purchase/, checked 24 Nov 2026. Online needs your passport and a credit card in the buyer's name; up to 6 companions; \"Only when purchasing a JAPAN RAIL PASS online from the official website can reserved seats be booked prior to picking up your ticket\". In Japan, \"pick up the JAPAN RAIL PASS at the JR-designated ticket office counter or at the reserved seat ticket vending machine\" (machines only at some JR East and JR West stations), showing the passport with the \"Temporary Visitor\" stamp. Source: https://japanrailpass.net/en/purchase/online/, checked 24 Nov 2026. JNTO adds that from 1 Oct 2026 it is sold \"either through the official website or through an authorized overseas distributor\" (https://www.japan.travel/en/guide/jr-rail-pass/).",
+"u": [
+"https://japanrailpass.net/en/purchase/",
+"https://japanrailpass.net/en/purchase/online/",
+"https://www.japan.travel/en/guide/jr-rail-pass/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
+"x": "- Also on JNTO: covers \"JR train lines countrywide, with very few exceptions\"; not subways or private lines, and not some \"liner\" trains. Source: https://www.japan.travel/en/guide/jr-rail-pass/, checked 24 Nov 2026.\n- It is \"jointly offered by six JR Group companies\"; regional passes (JR EAST PASS, JR-West Rail Passes, Hokkaido Rail Pass, ALL SHIKOKU, JR KYUSHU RAIL PASS and others) may suit one area better. Source: https://www.japan.travel/en/plan/jr-rail-passes/, checked 24 Nov 2026.\n\n**Other trains and subways**\n- Subways: \"your JR Rail Pass is not valid. However, it is possible to use your Suica Card\"; if unsure of the fare \"purchase the cheapest one and adjust the fare when you exit\". Source: https://www.japan.travel/en/plan/getting-around/subways/, checked 24 Nov 2026.",
+"u": [
+"https://www.japan.travel/en/guide/jr-rail-pass/",
+"https://www.japan.travel/en/plan/jr-rail-passes/",
+"https://www.japan.travel/en/plan/getting-around/subways/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
+"x": "- Route and fare tools named by JNTO: Japan Transit Planner (Jorudan) and NAVITIME. Source: https://www.japan.travel/en/guide/traveling-by-rail/, checked 24 Nov 2026.\n\n**Domestic flights**\n- \"With some 90 airports serving domestic and overseas flights, air travel within Japan is very convenient\"; JAL and ANA offer visitor fares; LCCs restrict luggage; flights \"can be delayed by typhoons and even volcanic activity\". Source: https://www.japan.travel/en/plan/getting-around/domestic-air-travel/, checked 24 Nov 2026.\n\n**Highway buses**\n- \"generally less expensive than traveling by airplane or railway and run both day and night\"; \"the Shinjuku Expressway Bus Terminal is a hub for country-wide travel\"; \"weather and traffic can cause significant delays\". Source: https://www.japan.travel/en/plan/getting-around/buses/, checked 24 Nov 2026.\n\n**Taxis**",
+"u": [
 "https://www.japan.travel/en/guide/traveling-by-rail/",
-"https://www.japan.travel/en/plan/getting-around/domestic-air-travel/"
+"https://www.japan.travel/en/plan/getting-around/domestic-air-travel/",
+"https://www.japan.travel/en/plan/getting-around/buses/"
 ]
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
-"x": "- \"generally less expensive than traveling by airplane or railway and run both day and night\"; \"the Shinjuku Expressway Bus Terminal is a hub for country-wide travel\"; \"weather and traffic can cause significant delays\". Source: https://www.japan.travel/en/plan/getting-around/buses/, checked 24 Nov 2026.\n\n**Taxis**\n- \"fares are calculated by the running meter\"; \"A late-night surcharge is added between 10 p.m. and 5 a.m.\"; red sign means available, green occupied; \"Doors open and close automatically\"; drivers \"do not expect or accept tips\"; cards generally accepted in big-city taxis but \"cash might be your only option in countryside cabs\". Narita and Haneda have flat-rate fares to central Tokyo. Source: https://www.japan.travel/en/plan/getting-around/taxis/, checked 24 Nov 2026.\n\n**Driving**",
+"x": "- \"fares are calculated by the running meter\"; \"A late-night surcharge is added between 10 p.m. and 5 a.m.\"; red sign means available, green occupied; \"Doors open and close automatically\"; drivers \"do not expect or accept tips\"; cards generally accepted in big-city taxis but \"cash might be your only option in countryside cabs\". Narita and Haneda have flat-rate fares to central Tokyo. Source: https://www.japan.travel/en/plan/getting-around/taxis/, checked 24 Nov 2026.\n\n**Driving**\n- \"Cars drive on the left side of the road\"; a booklet-type paper International Driving Permit is valid, card or smartphone IDPs are not. Source: https://www.japan.travel/en/plan/getting-around/cars/, checked 24 Nov 2026. Licences from France, Switzerland, Germany, Belgium, Monaco and Taiwan need a Japanese translation instead of an IDP. Source: https://www.japan.travel/en/faq/, checked 24 Nov 2026.",
 "u": [
-"https://www.japan.travel/en/plan/getting-around/buses/",
-"https://www.japan.travel/en/plan/getting-around/taxis/"
-]
-},
-{
-"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
-"x": "- \"Cars drive on the left side of the road\"; a booklet-type paper International Driving Permit is valid, card or smartphone IDPs are not. Source: https://www.japan.travel/en/plan/getting-around/cars/, checked 24 Nov 2026. Licences from France, Switzerland, Germany, Belgium, Monaco and Taiwan need a Japanese translation instead of an IDP. Source: https://www.japan.travel/en/faq/, checked 24 Nov 2026.",
-"u": [
+"https://www.japan.travel/en/plan/getting-around/taxis/",
 "https://www.japan.travel/en/plan/getting-around/cars/",
 "https://www.japan.travel/en/faq/"
 ]
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 5. Entry basics (hedge: rules change; always link the official page)",
-"x": "- Visa: \"All foreign visitors must have a valid passport. Passport holders of some countries (and some regions) do not need a visa if their period of stay in Japan is 90 days or less and they are only engaging in tourism activities.\" List: https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html. Source: https://www.japan.travel/en/plan/visa-info/, checked 24 Nov 2026. The MOFA page itself is blocked here, so the country list was not read.\n- JNTO: \"This page is intended to provide general tourist information only and does not constitute legal advice. Visa regulations are subject to change at any time.\" \"Most short-term stays allow up to 90 days. Some nationalities may be granted 15, 30, or 180 days.\" Embassies: https://www.mofa.go.jp/about/emb_cons/mofaserv.html. Same source.",
+"x": "- JNTO: \"This page is intended to provide general tourist information only and does not constitute legal advice. Visa regulations are subject to change at any time.\" \"Most short-term stays allow up to 90 days. Some nationalities may be granted 15, 30, or 180 days.\" Embassies: https://www.mofa.go.jp/about/emb_cons/mofaserv.html. Same source.\n- Visit Japan Web: \"Registration is not required, but advance registration makes procedures like tax-free shopping more convenient\" (https://services.digital.go.jp/en/visit-japan-web/). Source: https://www.japan.travel/en/plan/visa-info/, checked 24 Nov 2026. It lets you \"pre-register necessary information for arrival procedures 'Immigration,' 'Customs,' and 'Tax-Free Shopping' online\" and generate a QR code. Source: https://www.japan.travel/en/plan/customs-and-duty/, checked 24 Nov 2026.",
 "u": [
-"https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html",
+"https://www.mofa.go.jp/about/emb_cons/mofaserv.html",
+"https://services.digital.go.jp/en/visit-japan-web/",
 "https://www.japan.travel/en/plan/visa-info/",
-"https://www.mofa.go.jp/about/emb_cons/mofaserv.html"
+"https://www.japan.travel/en/plan/customs-and-duty/"
 ]
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 5. Entry basics (hedge: rules change; always link the official page)",
-"x": "- Visit Japan Web: \"Registration is not required, but advance registration makes procedures like tax-free shopping more convenient\" (https://services.digital.go.jp/en/visit-japan-web/). Source: https://www.japan.travel/en/plan/visa-info/, checked 24 Nov 2026. It lets you \"pre-register necessary information for arrival procedures 'Immigration,' 'Customs,' and 'Tax-Free Shopping' online\" and generate a QR code. Source: https://www.japan.travel/en/plan/customs-and-duty/, checked 24 Nov 2026.\n- Customs: a Customs Declaration is handed in on arrival (paper or \"e-filing via web page or QR code\"); \"Bringing meat, meat products, plants and plant products into Japan is strictly prohibited.\" Official page: https://www.customs.go.jp/english/summary/passenger.htm. Source: https://www.japan.travel/en/plan/customs-and-duty/, checked 24 Nov 2026.",
+"x": "- Customs: \"All passengers entering Japan are required to declare about your belongings\"; forms are on the plane, the ship or at Customs, and \"Japan Customs recommends submitting declarations electronically via the 'Visit Japan Web'\". Green channel if you have nothing dutiable, prohibited or restricted; red channel for everyone else. Source: https://www.customs.go.jp/english/summary/passenger.htm, checked 24 Nov 2026.",
 "u": [
-"https://services.digital.go.jp/en/visit-japan-web/",
-"https://www.japan.travel/en/plan/visa-info/",
-"https://www.japan.travel/en/plan/customs-and-duty/",
 "https://www.customs.go.jp/english/summary/passenger.htm"
 ]
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 5. Entry basics (hedge: rules change; always link the official page)",
-"x": "- A customs declaration is required when carrying \"more than one million yen in cash, checks, traveler's checks, securities, etc.\" Source: https://www.japan.travel/en/plan/currency/, checked 24 Nov 2026.\n- Drugs: \"cannabis is treated in the same way as other drugs ... please don't bring cannabis into the country; even if it is prescribed in your country of origin.\" Carry your passport \"at all times\". Source: https://www.japan.travel/en/plan/local-laws/, checked 24 Nov 2026.\n- Medicines: JNTO points to the Ministry of Health, Labour and Welfare. Source: https://www.japan.travel/en/faq/, checked 24 Nov 2026. **Gap:** the MHLW page was not fetched.\n- A departure tax (International Tourist Tax) is charged on leaving Japan; see https://www.japan.travel/en/plan/international-tourist-tax/ (fee not repeated here), checked 24 Nov 2026.",
+"x": "- Duty-free allowance (per adult; rules can change, check the page): alcoholic beverages \"3 bottles\" (about 760 cc each); cigarettes \"200 cigarettes\" or cigars \"50 cigars\" or heat-not-burn \"10 individual packages\" or other tobacco \"250 grams\"; perfume \"2 ounces\" (about 28 ml per ounce); other goods up to a total overseas market value set on the page. Personal clothes and toiletries are duty-free \"if they are considered quantitatively appropriate and are not for sale\". Same source.\n- Cash: \"If you are carrying cash or other means of payment exceeding 1 million yen ... you are required to declare to Customs\" (cash including foreign currency, checks, traveller's checks, promissory notes, securities; gold bullion over 1 kg). Same source. JNTO says the same: https://www.japan.travel/en/plan/currency/.",
 "u": [
-"https://www.japan.travel/en/plan/currency/",
+"https://www.japan.travel/en/plan/currency/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 5. Entry basics (hedge: rules change; always link the official page)",
+"x": "- Prohibited (headline): narcotics including \"cannabis\", firearms and ammunition, explosives, counterfeit money and forged cards, obscene material and child pornography, and goods that infringe intellectual property. Same source. \"Bringing meat, meat products, plants and plant products into Japan is strictly prohibited.\" Source: https://www.japan.travel/en/plan/customs-and-duty/, checked 24 Nov 2026.",
+"u": [
+"https://www.japan.travel/en/plan/customs-and-duty/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 5. Entry basics (hedge: rules change; always link the official page)",
+"x": "- Medicines: \"There are quantity restrictions on the import of medicine and cosmetics (e.g., for pharmaceutical products: amount for use for a period of 2 months ...)\", with a link to the Ministry of Health, Labour and Welfare: https://www.mhlw.go.jp/english/policy/health-medical/pharmaceuticals/01.html. Source: https://www.customs.go.jp/english/summary/passenger.htm, checked 24 Nov 2026. **Gap:** the MHLW page (where the import certificate, \"Yakkan Shoumei\", would be explained) was not fetched; the customs page does not use that term.\n- Tax-free goods must leave Japan with you; \"When leaving Japan, at the airport or seaport of departure, please present your passport at customs.\" Same source.",
+"u": [
+"https://www.mhlw.go.jp/english/policy/health-medical/pharmaceuticals/01.html",
+"https://www.customs.go.jp/english/summary/passenger.htm"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 5. Entry basics (hedge: rules change; always link the official page)",
+"x": "- Drugs: \"cannabis is treated in the same way as other drugs ... please don't bring cannabis into the country; even if it is prescribed in your country of origin.\" Carry your passport \"at all times\". Source: https://www.japan.travel/en/plan/local-laws/, checked 24 Nov 2026.\n- A departure tax (International Tourist Tax) is charged on leaving Japan; see https://www.japan.travel/en/plan/international-tourist-tax/ (fee not repeated here), checked 24 Nov 2026.",
+"u": [
 "https://www.japan.travel/en/plan/local-laws/",
-"https://www.japan.travel/en/faq/",
 "https://www.japan.travel/en/plan/international-tourist-tax/"
 ]
 },
@@ -431,10 +496,31 @@ export default [
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 7. Seasons and weather",
-"x": "- Earthquakes and volcanoes: \"Japan has over 100 active volcanos\"; \"Small earthquakes happen on a daily basis\". Source: https://www.japan.travel/en/plan/weather/, checked 24 Nov 2026.\n- **Gap:** JMA (jma.go.jp) pages on rainy-season onset by region, typhoon climatology and snowfall were blocked. Regional rainy-season dates for mainland Japan are only \"May to June\" (JNTO).",
+"x": "- Earthquakes and volcanoes: \"Japan has over 100 active volcanos\"; \"Small earthquakes happen on a daily basis\". Source: https://www.japan.travel/en/plan/weather/, checked 24 Nov 2026.",
 "u": [
 "https://www.japan.travel/en/plan/weather/"
 ]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 7. Seasons and weather",
+"x": "- Rainy season (tsuyu), JMA normals (1991–2020 average; JMA says each start/end has about a five-day transition): Okinawa about 10 May to 21 Jun; Amami 12 May to 29 Jun; southern Kyushu 30 May to 15 Jul; northern Kyushu (incl. Yamaguchi) 4 Jun to 19 Jul; Shikoku 5 Jun to 17 Jul; Chugoku 6 Jun to 19 Jul; Kinki (Kansai) 6 Jun to 19 Jul; Tokai 6 Jun to 19 Jul; Kanto-Koshin (incl. Tokyo) 7 Jun to 19 Jul; Hokuriku 11 Jun to 23 Jul; southern Tohoku 12 Jun to 24 Jul; northern Tohoku 15 Jun to 28 Jul. Hokkaido is not in JMA's rainy-season list. Source: https://www.data.jma.go.jp/cpd/baiu/ (region pages kako_baiu01.html to kako_baiu12.html, e.g. https://www.data.jma.go.jp/cpd/baiu/kako_baiu09.html), checked 24 Nov 2026. **Differs:** JNTO's \"May to June\" is the start only; JMA shows the season lasting to mid or late July on the main islands.",
+"u": [
+"https://www.data.jma.go.jp/cpd/baiu/",
+"https://www.data.jma.go.jp/cpd/baiu/kako_baiu09.html"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 7. Seasons and weather",
+"x": "- Typhoons, JMA normals (1991–2020): about 25.1 form per year, 11.7 come within 300 km of Japan and 3.0 make landfall on Hokkaido, Honshu, Shikoku or Kyushu; approaches peak in August and September (3.3 each), landfalls peak in August (0.9) and September (1.0). Okinawa and Amami see about 7.9 approaches a year, most in July to September. Source: https://www.data.jma.go.jp/typhoon/statistics/average/average.html, checked 24 Nov 2026.\n- Sakura first-bloom normals (JMA \"平年値\"): Naha 16 Jan (hikanzakura); Fukuoka 22 Mar; Kochi 22 Mar; Tokyo 24 Mar; Nagoya 24 Mar; Hiroshima 25 Mar; Kyoto 26 Mar; Kagoshima 26 Mar; Osaka 27 Mar; Nara 28 Mar; Kanazawa 3 Apr; Sendai 8 Apr; Niigata 8 Apr; Nagano 11 Apr; Aomori 22 Apr; Sapporo 1 May; Kushiro 16 May. Source: https://www.data.jma.go.jp/sakura/data/sakura003_07.html, checked 24 Nov 2026. These match the averages in JNTO's table above.",
+"u": [
+"https://www.data.jma.go.jp/typhoon/statistics/average/average.html",
+"https://www.data.jma.go.jp/sakura/data/sakura003_07.html"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 7. Seasons and weather",
+"x": "- **Gap:** JMA snowfall by region not added (no single short normals page found).",
+"u": []
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 8. Etiquette",
