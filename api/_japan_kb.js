@@ -288,10 +288,31 @@ export default [
 },
 {
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
-"x": "- ICOCA can be added to Apple Pay on \"iPhone 8 or later with iOS 16.0 or later\". Source: https://www.westjr.co.jp/global/en/howto/icoca/applepay/, checked 24 Nov 2026.\n- Mobile Suica/PASMO \"may not work on all smartphones\". Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.\n\n**Japan Rail Pass**\n- Official site: \"a joint offering of the six companies comprising the Japan Railways Group\"; \"There are two types of PASSes: PASS for Green Cars and PASS for Standard Cars. Each type can be purchased for 7 days, 14 days or 21 days.\" Source: https://japanrailpass.net/en/about_jrp/, checked 24 Nov 2026.",
+"x": "- ICOCA can be added to Apple Pay on \"iPhone 8 or later with iOS 16.0 or later\". Source: https://www.westjr.co.jp/global/en/howto/icoca/applepay/, checked 24 Nov 2026.\n- Mobile Suica/PASMO \"may not work on all smartphones\". Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.\n- **Buying an IC card (Suica, PASMO, ICOCA...):** \"purchase it from a ticket machine or counter that you will be able to find at most train stations\"; most cards need a deposit, and \"you can get your money back if you return the card to the ticket counter at the end of your stay\". Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.",
 "u": [
 "https://www.westjr.co.jp/global/en/howto/icoca/applepay/",
-"https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/",
+"https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
+"x": "- **Recharging (topping up / adding money):** \"You can add money to your card at almost all train stations in Japan at the automatic ticket machines. You just need to insert your card into the machine, follow the instructions, select and insert the desired amount of money you'd like to add, and your card will come back out charged and ready to go.\" A mobile Suica or PASMO is charged \"using your phone's wallet\". Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.",
+"u": [
+"https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
+"x": "- **Using it:** \"tap it on the ticket gate to enter, and do the same again when you leave the gate at your destination\"; if the gate does not open, the reader \"missed your card or your card funds are insufficient\" (top up at a ticket machine or a fare adjustment machine). On buses, \"tap it once when you get on the bus, and tap it again when you get off\". Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.\n- **Where IC cards do not work:** \"Some areas of Japan do not accept IC cards, as well as certain forms of transport, such as highway buses. Keep an eye out for the IC logo\"; they also pay \"for items from many vending machines, stores, and lockers in train stations\". Source: https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/, checked 24 Nov 2026.",
+"u": [
+"https://www.japan.travel/en/guide/how-to-travel-by-train-and-bus-in-japan/"
+]
+},
+{
+"t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant > 4. Getting around",
+"x": "- JNTO's IC card page: use it \"at a number of vending machines and convenience stores, some taxis and for other services\"; \"special IC cards for international visitors, such as Welcome Suica and TOURIST PASMO, are available without a deposit\". Source: https://www.japan.travel/en/plan/ic-card/, checked 24 Nov 2026.\n\n**Japan Rail Pass**\n- Official site: \"a joint offering of the six companies comprising the Japan Railways Group\"; \"There are two types of PASSes: PASS for Green Cars and PASS for Standard Cars. Each type can be purchased for 7 days, 14 days or 21 days.\" Source: https://japanrailpass.net/en/about_jrp/, checked 24 Nov 2026.",
+"u": [
+"https://www.japan.travel/en/plan/ic-card/",
 "https://japanrailpass.net/en/about_jrp/"
 ]
 },
