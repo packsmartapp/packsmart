@@ -662,7 +662,7 @@ NARITA = """<h2 id="narita">To Narita Airport: the Skyliner, not JR's Narita Lin
 <ul>
 <li><strong>How long.</strong> Keisei gives 41 minutes on the Skyliner from Narita Airport Terminal 2&middot;3 to Keisei Ueno. Its Skyliner page also says &ldquo;in as little as 41 minutes&rdquo; from Narita Airport to Keisei Ueno; the &ldquo;as little as 36 minutes&rdquo; figure on the same page is to Nippori.</li>
 <li><strong>Where to board.</strong> At Keisei Ueno, not in the JR station. We did not find an official walking route between JR Ueno and Keisei Ueno, so follow the signs or ask station staff. Keisei links its station maps for Keisei Ueno and Nippori from its station page.</li>
-<li><strong>Tickets.</strong> Keisei sells a Skyliner discount ticket between Narita Airport Station and Ueno Station, and a Skyliner and Tokyo Subway Ticket set. Fares are on Keisei's own pages, and they change.</li>
+<li data-ps-placement="klook-skyliner-ueno"><strong>Tickets.</strong> Keisei sells a Skyliner discount ticket between Narita Airport Station and Ueno Station, and a Skyliner and Tokyo Subway Ticket set. Fares are on Keisei's own pages, and they change. You can also <a href="https://klook.tpx.li/gIYih1CY" target="_blank" rel="nofollow noopener sponsored">book Skyliner tickets online</a> (partner link); before you pay, read the listing's change and cancellation rules.</li>
 <li><strong>Holding the &ldquo;Skyliner &amp; Tokyo Subway Ticket&rdquo; or the &ldquo;Greater Tokyo Pass&rdquo;?</strong> Keisei says you cannot transfer at Nippori with these, so use Ueno.</li>
 <li><strong>Changing to JR at Nippori?</strong> Keisei says the JR transfer at Nippori needs a JR ticket.</li>
 <li><strong>First and last Skyliner.</strong> We did not find them on the pages we read. Check Keisei's timetable before a very early or late trip.</li>
@@ -1715,6 +1715,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Passport Reader &amp; Reserved Seat Ticket Vending Machine:</b> 1F, by the Central Gate tickets.</li>'
       +'<li><b>Ticket and fare adjustment machines:</b> beside the Park Gate, 3F.</li>'
       +'<li><b>Skyliner tickets:</b> Keisei sells a Skyliner discount ticket between Narita Airport and Ueno, and a Skyliner and Tokyo Subway Ticket set.</li></ul>'
+      +'<p class="sm">You can book tickets here (partner link): <a href="https://klook.tpx.li/gIYih1CY" target="_blank" rel="sponsored nofollow noopener">Skyliner</a>. Read the change and cancellation rules before you pay.</p>'
       +'<p class="sm">Source: JR East station map and Keisei, checked 23 November 2026. Rules and prices change. Check before you buy.</p>';
   }
   function bagsHTML(){

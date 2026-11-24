@@ -1,6 +1,6 @@
 # PackSmart: file inventory
 
-Generated 23 Nov 2026 by `tools/make_inventory.py` (re-run it after adding scripts, pages or docs).
+Generated 24 Nov 2026 by `tools/make_inventory.py` (re-run it after adding scripts, pages or docs).
 Every file below is already saved in git (`packsmartapp/packsmart`, branch `main`); `git clone` is the full backup.
 This page says what exists and where. It does not repeat file contents, because git always has the latest version.
 
@@ -111,6 +111,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w66_no_partner_names_articles.py` | w66: no partner names in our own words on the other articles and top-level pages (D47, stage 3; 23 Nov 2026). |
 | `w67_disclosure_partners.py` | w67: keep the Affiliate Disclosure page and the About page's partner pills in step with the partners we link to |
 | `w68_ueno_station_page.py` | w68: new page /blog/ueno-station-guide + offline /ueno-pocket (neutral, plain-English station guide for Ueno Station). |
+| `w69_read_times.py` | w69: honest read times (24 Nov 2026, owner's request). |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `pocket_guides.json` | data file read by the scripts above |
 | `w62_photo_fixes.json` | data file read by the scripts above |
