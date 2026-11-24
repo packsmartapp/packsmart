@@ -29,6 +29,8 @@ This page says what exists and where. It does not repeat file contents, because 
 
 ## api/ (Vercel functions)
 
+- `api/_japan_kb.js`
+- `api/ask.js`
 - `api/generate-plan.js`
 - `api/share-plan.js`
 - `api/subscribe.js`
@@ -116,6 +118,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w71_sapporo_station_page.py` | w71: new page /blog/sapporo-station-guide + offline /sapporo-pocket (neutral, plain-English station guide for JR Sapporo |
 | `w72_partner_link_rel.py` | w72: partner links tell the partner where the click came from (24 Nov 2026, D54). |
 | `w73_japan_hub.py` | w73: the Japan hub page /japan, and a "Welcome to Japan" banner on /blog when the Japan chip is picked (24 Nov 2026). |
+| `w74_japan_ask_kb.py` | w74: the knowledge for "Ask about Japan" (/api/ask), built from the official-source research notes (24 Nov 2026). |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `pocket_guides.json` | data file read by the scripts above |
 | `w62_photo_fixes.json` | data file read by the scripts above |

@@ -91,6 +91,34 @@ HUB_CSS = """<style id="jp-hub-css">
 .jp-links li small{display:block;font-weight:500;color:#5a6378}
 .jp-two{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
 @media (max-width:760px){.jp-two{grid-template-columns:1fr}.jp-links{padding:1.1rem 1rem}}
+.jp-other{display:flex;align-items:center;gap:10px;max-width:860px;margin:-.4rem auto 1.4rem;font-size:.92rem}
+.jp-other>span{flex:none;font-weight:700;color:#0f0f23}
+.jp-other-row{display:flex;gap:8px;overflow-x:auto;-webkit-overflow-scrolling:touch;padding:4px 2px;scrollbar-width:thin}
+.jp-other-row a{flex:none;padding:7px 14px;min-height:38px;display:flex;align-items:center;border:1.5px solid #D5DCE0;border-radius:999px;background:#fff;color:#0f0f23;text-decoration:none;font-weight:600}
+.jp-other-row a:hover{border-color:#00C9A7}
+.jp-other-row a.all{border-color:#00C9A7;color:#0a8f78}
+@media (max-width:600px){.jp-other{flex-direction:column;align-items:stretch;gap:6px}.jp-other>span{text-align:center}}
+.jp-ask{max-width:860px;margin:0 auto 2rem;background:#0f0f23;color:#fff;border-radius:26px;padding:1.6rem 1.7rem;box-shadow:0 10px 30px rgba(15,15,35,.18)}
+.jp-ask-kick{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:#00C9A7;color:#0f0f23;border-radius:999px;padding:4px 10px}
+.jp-ask h2{color:#fff;font-size:2rem;margin:.5rem 0 .3rem}
+.jp-ask h2 em{font-family:var(--font-display);color:#00C9A7}
+.jp-ask-head p{color:#C9D1F0;margin:0 0 1rem;line-height:1.55}
+.jp-ask-try{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 .9rem}
+.jp-ask-try button{font:inherit;font-size:.88rem;text-align:left;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:8px 12px;min-height:40px;cursor:pointer}
+.jp-ask-try button:hover{border-color:#00C9A7}
+.jp-ask-form{display:flex;gap:10px;align-items:stretch}
+.jp-ask-form textarea{flex:1;font:inherit;font-size:1rem;border-radius:14px;border:0;padding:12px 14px;resize:vertical;min-height:52px;color:#0f0f23}
+.jp-ask-form button{font:inherit;font-weight:800;font-size:1rem;background:#E94560;color:#fff;border:0;border-radius:14px;padding:0 22px;min-height:52px;cursor:pointer}
+.jp-ask-form button[disabled]{opacity:.6;cursor:wait}
+.jp-ask-out{margin-top:1rem;background:#fff;color:#0f0f23;border-radius:16px;padding:1rem 1.1rem;line-height:1.55}
+.jp-ask-out p{margin:.3rem 0}.jp-ask-out ul{margin:.3rem 0 .3rem 1.1rem;padding:0}.jp-ask-out li{margin:.2rem 0}
+.jp-ask-out a{color:#0a8f78;font-weight:700}
+.jp-ask-out.busy{color:#5a6378}.jp-ask-out.err{background:#fff3f5}
+.jp-ask-q{font-weight:700;border-bottom:1px solid #E3E8EC;padding-bottom:.5rem;margin-bottom:.6rem!important}
+.jp-ask-more{border-top:1px solid #E3E8EC;padding-top:.6rem;margin-top:.7rem!important}
+.jp-ask-note{font-size:.82rem;color:#9aa3c0;margin:.9rem 0 0;line-height:1.5}.jp-ask-note a{color:#C9D1F0}
+.jp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+@media (max-width:600px){.jp-ask{padding:1.2rem 1rem;border-radius:20px}.jp-ask h2{font-size:1.6rem}.jp-ask-form{flex-direction:column}.jp-ask-form button{min-height:48px}}
 </style>
 """
 head = head + HUB_CSS
@@ -133,11 +161,71 @@ SEASONS = links("By season", "When you go changes what you pack and what you boo
     ("/blog/japan-travel-packing-guide#jr-pass", "&#128645;", "Is a JR Pass worth it?", "How to decide"),
 ])
 
+# ---- "Going somewhere else?" row: every other country on /blog, plus the regions without a country bar
+_ctys = re.findall(r'<button type="button" class="cty-btn" data-country="([a-z-]+)" data-reg="([A-Za-z ]+)">([^<]+)</button>', blog)
+if len(_ctys) < 10:
+    die("country buttons not found on blog.html")
+OTHER = ('<nav class="jp-other" aria-label="Other destinations"><span>Going somewhere else?</span><div class="jp-other-row">'
+         + "".join('<a href="/blog?region=%s&amp;country=%s">%s</a>' % (r.replace(" ", "%20"), c, n) for c, r, n in _ctys if c != "japan")
+         + "".join('<a href="/blog?region=%s">%s</a>' % (r.replace(" ", "%20"), r) for r in ("Americas", "Middle East", "Pacific"))
+         + '<a href="/blog" class="all">All destinations &rarr;</a></div></nav>')
+
+# ---- "Ask about Japan" (answers from /api/ask, which uses only official-source notes; see api/ask.js and w74)
+ASK = """<!-- ask-japan-slot -->
+<section class="jp-ask" id="ask" aria-labelledby="askT">
+<div class="jp-ask-head"><span class="jp-ask-kick">New &middot; trial</span><h2 id="askT">Ask about <em>Japan</em></h2>
+<p>Ask a practical question about getting around. Answers come only from official sources we have checked (JR, the airports, bus companies, JNTO), with a link to the source. If it does not know, it will say so.</p></div>
+<div class="jp-ask-try" role="group" aria-label="Example questions">
+<button type="button">How do I get from New Chitose Airport to Sapporo?</button>
+<button type="button">Is there a ski bus from the airport to Niseko?</button>
+<button type="button">Where are the ATMs at Sapporo Station?</button>
+<button type="button">How do I get from Ueno to Narita Airport?</button>
+</div>
+<form class="jp-ask-form" id="askForm" autocomplete="off">
+<label for="askQ" class="jp-sr">Your question</label>
+<textarea id="askQ" maxlength="300" rows="2" placeholder="For example: how do I get to Otaru from Sapporo?"></textarea>
+<button type="submit" id="askBtn">Ask</button>
+</form>
+<div class="jp-ask-out" id="askOut" aria-live="polite" hidden></div>
+<p class="jp-ask-note">It knows most about Hokkaido (New Chitose Airport, Sapporo and day trips), Ueno, Shinjuku, and money and exits at Tokyo, Kyoto and Osaka stations; more is coming. Times change, so check the official page before you travel. Please do not type personal details. <a href="/privacy-policy">Privacy</a></p>
+</section>
+<script>
+(function(){
+var f=document.getElementById('askForm'),q=document.getElementById('askQ'),b=document.getElementById('askBtn'),out=document.getElementById('askOut');
+function esc(s){return s.replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function fmt(t){
+  var h=esc(t).replace(/\\*\\*([^*]+)\\*\\*/g,'<b>$1</b>').replace(/\\[([^\\]]+)\\]\\(((?:https?:\\/\\/|\\/)[^\\s)]+)\\)/g,function(m,x,u){var ext=/^https?:/.test(u);return '<a href="'+u+'"'+(ext?' target="_blank" rel="noopener"':'')+'>'+x+'</a>';});
+  var lines=h.split(/\\n+/),html='',inList=false;
+  lines.forEach(function(l){var m=l.match(/^\\s*[-*\\u2022]\\s+(.*)/);if(m){if(!inList){html+='<ul>';inList=true;}html+='<li>'+m[1]+'</li>';}else{if(inList){html+='</ul>';inList=false;}if(l.trim())html+='<p>'+l+'</p>';}});
+  return html+(inList?'</ul>':'');
+}
+function track(s){try{if(window.gtag)gtag('event','ask_japan',{event_category:'engagement',status:s,page_path:location.pathname});}catch(e){}}
+function ask(text){
+  text=(text||'').trim(); if(text.length<5){q.focus();return;}
+  b.disabled=true; out.hidden=false; out.className='jp-ask-out busy'; out.innerHTML='<p>Checking the official sources&hellip;</p>';
+  fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:text})})
+   .then(function(r){return r.json().then(function(d){return [r.ok,d];});})
+   .then(function(x){var ok=x[0],d=x[1];
+     if(!ok||!d.ok){out.className='jp-ask-out err';out.innerHTML='<p>'+esc((d&&d.error)||'Sorry, something went wrong.')+'</p>';track('error');return;}
+     out.className='jp-ask-out';
+     out.innerHTML='<p class="jp-ask-q">'+esc(text)+'</p>'+fmt(d.answer)+(d.guide?'<p class="jp-ask-more">More in our <a href="'+esc(d.guide.url)+'">'+esc(d.guide.title)+'</a></p>':'');
+     track('answered');})
+   .catch(function(){out.className='jp-ask-out err';out.innerHTML='<p>No connection. Please try again when you are online.</p>';track('offline');})
+   .then(function(){b.disabled=false;});
+}
+f.addEventListener('submit',function(e){e.preventDefault();ask(q.value);});
+q.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask(q.value);}});
+[].forEach.call(document.querySelectorAll('.jp-ask-try button'),function(btn){btn.addEventListener('click',function(){q.value=btn.textContent;ask(btn.textContent);});});
+})();
+</script>"""
+
 body = """<div class="page-wrapper">
     <div class="page-header">
         <h1>Welcome to <em style="font-family:var(--font-display);font-style:italic;">Japan</em></h1>
         <p>Every PackSmart guide for Japan in one place. Plan the trip, then save the free Pocket Guides for the airports and stations you will use: they work offline. Station and airport facts come from official sources, with the date we checked them.</p>
     </div>
+    """ + OTHER + """
+    """ + ASK + """
 """ + "    " + pocket + """
     <div class="filter-wrap te-filter" id="teFilter">
         <div class="filter-label" id="teFilterLabel">What do you need?</div>
@@ -155,7 +243,6 @@ body = """<div class="page-wrapper">
         """ + HOKKAIDO + """
         """ + SEASONS + """
     </div>
-    <!-- ask-japan-slot -->
     <p class="te-back">Travelling from India? See our <a href="/blog/japan-travel-packing-guide-from-india">Japan guide for travellers from India</a>, with visa and cost details. Need help that is not about Japan? See <a href="/travel-essentials">Travel Essentials</a>.</p>
 </div>
 
@@ -187,14 +274,40 @@ BANNER = ('<div class="jp-hub-banner" id="jpHubBanner" hidden><b>Welcome to Japa
           '.jp-hub-banner a{color:#0a8f78;font-weight:700;white-space:nowrap}</style>\n'
           "<script>(function(){var bar=document.getElementById('countryBar'),b=document.getElementById('jpHubBanner');if(!bar||!b)return;"
           "function sync(){var on=!bar.hidden&&!!bar.querySelector('.cty-btn.active[data-country=\"japan\"]');b.hidden=!on;}"
-          "new MutationObserver(sync).observe(bar,{attributes:true,subtree:true,attributeFilter:['class','hidden']});sync();})();</script>\n")
-if 'id="jpHubBanner"' not in blog:
-    m = re.search(r'<div class="country-bar" id="countryBar".*?</div>\n', blog, re.S)
-    if not m:
-        die("country bar not found on blog.html")
-    blog = blog[:m.end()] + BANNER + blog[m.end():]
+          "new MutationObserver(sync).observe(bar,{attributes:true,subtree:true,attributeFilter:['class','hidden']});sync();"
+          # /blog?region=Asia&country=vietnam opens that region and country (links from the Japan hub's "somewhere else" row)
+          "document.addEventListener('DOMContentLoaded',function(){var p=new URLSearchParams(location.search),r=p.get('region'),c=p.get('country');"
+          "if(!r)return;var rb=document.querySelector('.filter-btn[data-region=\"'+r.replace(/[^A-Za-z ]/g,'')+'\"]');if(!rb)return;rb.click();"
+          "if(c){var cb=document.querySelector('.cty-btn[data-country=\"'+c.replace(/[^a-z-]/g,'')+'\"]');if(cb)cb.click();}"
+          "var f=document.querySelector('.filter-wrap')||rb;f.scrollIntoView({block:'start'});});"
+          "})();</script>\n")
+BANNER = "<!-- jp-hub-banner -->\n" + BANNER + "<!-- /jp-hub-banner -->\n"
+_b = re.sub(r"<!-- jp-hub-banner -->\n.*?<!-- /jp-hub-banner -->\n", "", blog, flags=re.S)
+_b = re.sub(r'<div class="jp-hub-banner" id="jpHubBanner".*?</script>\n', "", _b, flags=re.S)   # first version, no markers
+m = re.search(r'<div class="country-bar" id="countryBar".*?</div>\n', _b, re.S)
+if not m:
+    die("country bar not found on blog.html")
+_b = _b[:m.end()] + BANNER + _b[m.end():]
+if _b != blog:
+    blog = _b
     open(BLOG, "w", encoding="utf-8").write(blog)
-    print("w73: banner added to blog.html")
+    print("w73: banner updated on blog.html")
+
+# ---- privacy policy: say what "Ask about Japan" does with a question (marker: id="ask-japan-privacy")
+PRIV = os.path.join(PUB, "privacy-policy.html")
+pv = open(PRIV, encoding="utf-8").read()
+if 'id="ask-japan-privacy"' not in pv:
+    a = '    <h3>Payment Information</h3>'
+    if pv.count(a) != 1 or pv.count("<p>Last updated: November 22, 2026</p>") != 1:
+        die("privacy policy anchors not found")
+    pv = pv.replace(a, '    <h3 id="ask-japan-privacy">Questions to "Ask about Japan"</h3>\n'
+                    '    <p>When you type a question into "Ask about Japan" on our Japan page, the question is sent to Google\'s Gemini service, together with '
+                    'the official-source notes it may answer from, to write the answer. We keep a log of the questions without your IP address, and with any '
+                    'email address or phone number in the question removed, so we can see what travellers ask and improve our guides. Please do not type '
+                    'personal details into it. We do not store the answers.</p>\n\n' + a, 1)
+    pv = pv.replace("<p>Last updated: November 22, 2026</p>", "<p>Last updated: November 24, 2026</p>", 1)
+    open(PRIV, "w", encoding="utf-8").write(pv)
+    print("w73: privacy policy updated")
 
 if changed:
     open(OUT, "w", encoding="utf-8").write(page)
