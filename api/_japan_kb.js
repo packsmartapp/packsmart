@@ -617,10 +617,23 @@ export default [
 },
 {
 "t": "japan prices > Japan prices: official sources (for Packy) > Airport to city: Narita",
-"x": "- Narita fixed-fare taxi to Tokyo (fare plus expressway tolls; \"Late night and early morning surcharges apply (22:00-5:00)\"): Zone A (Edogawa, Katsushika, Adachi) 23,500 JPY via Keiyo Road, 26,500 JPY via Bayshore; Zone B (Koto, Sumida, Daiba, Higashi-yashio) 28,000 / 28,000; Zone C (Chuo, Chiyoda, Taito, Bunkyo, Arakawa) 29,000 / 31,000; Zone D (Shinjuku, Toshima, Nakano, Shibuya, Meguro, Minato, Shinagawa, Ota) 31,500 / 32,500; Zone E (Itabashi, Kita, Nerima) 34,000 / 36,000; Zone F (Setagaya, Suginami, Mitaka, Musashino) 35,500 / 38,500 JPY. Source: https://www.narita-airport.jp/en/access/taxi/, checked 24 Nov 2026.\n- Gap: Narita Express (N'EX) fare. JR East (www.jreast.co.jp) returns 403; JNTO's Narita page names N'EX but gives no price (https://www.japan.travel/en/plan/airport-access/narita-airport/).",
+"x": "- Narita fixed-fare taxi to Tokyo (fare plus expressway tolls; \"Late night and early morning surcharges apply (22:00-5:00)\"): Zone A (Edogawa, Katsushika, Adachi) 23,500 JPY via Keiyo Road, 26,500 JPY via Bayshore; Zone B (Koto, Sumida, Daiba, Higashi-yashio) 28,000 / 28,000; Zone C (Chuo, Chiyoda, Taito, Bunkyo, Arakawa) 29,000 / 31,000; Zone D (Shinjuku, Toshima, Nakano, Shibuya, Meguro, Minato, Shinagawa, Ota) 31,500 / 32,500; Zone E (Itabashi, Kita, Nerima) 34,000 / 36,000; Zone F (Setagaya, Suginami, Mitaka, Musashino) 35,500 / 38,500 JPY. Source: https://www.narita-airport.jp/en/access/taxi/, checked 24 Nov 2026.\n- Gap: the one-way Narita Express (N'EX) fare (JR East's pages were not readable directly). JR East's N'EX TOKYO Round Trip Ticket price is below: give that, and say the one-way fare is shown on JR East's site and at the station.",
 "u": [
-"https://www.narita-airport.jp/en/access/taxi/",
-"https://www.japan.travel/en/plan/airport-access/narita-airport/"
+"https://www.narita-airport.jp/en/access/taxi/"
+]
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > Airport to city: Narita",
+"x": "- N'EX TOKYO Round Trip Ticket (JR East): adult (12 and older) ¥5,200, child (6 to 11) ¥2,600; children aged 5 and under riding on a lap need no ticket. Valid 14 days for one outbound ride (Narita Airport to the Tokyo area) and one return ride (Tokyo area to Narita Airport), in that order only; departure and arrival stations need not be the same both ways. After getting off the Narita Express you can change to other JR East trains at no extra cost as long as you do not leave the ticket gates; once you exit the gates the ticket cannot be used again for that ride. Source: JR East's English pass and N'EX pages, read from screenshots, https://www.jreast.co.jp/multi/en/, checked 24 Nov 2026.",
+"u": [
+"https://www.jreast.co.jp/multi/en/"
+]
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > Airport to city: Narita",
+"x": "- Narita Express (N'EX) stops (JR East): towards Shinjuku: Narita Airport Terminal 1, Terminal 2·3, Tōkyō, Shinagawa, Shibuya, Shinjuku. Towards Ōfuna: Narita Airport Terminal 1, Terminal 2·3, Tōkyō, Shinagawa, Musashi-Kosugi, Yokohama, Totsuka, Ōfuna. On board: large luggage spaces, free Wi-Fi, power outlets at every seat; no changes of train to these stations. Source: JR East's English pass and N'EX pages, read from screenshots, https://www.jreast.co.jp/multi/en/, checked 24 Nov 2026.",
+"u": [
+"https://www.jreast.co.jp/multi/en/"
 ]
 },
 {
@@ -735,6 +748,20 @@ export default [
 "x": "- JR Hokkaido example, Sapporo to Asahikawa by Limited Express Lilac/Kamui, one adult one way: basic fare \"3,080 yen\" plus reserved seat limited express ticket \"2,360 yen\", total \"5,440 yen\". Source: https://www.jrhokkaido.co.jp/global/english/ticket/kitaca/index.html, checked 24 Nov 2026.",
 "u": [
 "https://www.jrhokkaido.co.jp/global/english/ticket/kitaca/index.html"
+]
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > Rail passes",
+"x": "- JR EAST PASS (Tohoku area), JR East: 5 days adult ¥35,000, child (6 to 11) ¥17,500; 10 days adult ¥50,000, child ¥25,000. \"Foreigners living in Japan can also purchase this product.\" JR East's example: Narita Express (Narita Airport Terminal 1 to Tōkyō) plus the Tōhoku Shinkansen Tōkyō to Sendai and Sendai to Shin-Aomori, ordinary reserved seats, costs ¥52,000 at regular fares, against ¥35,000 (5 days) or ¥50,000 (10 days) with the pass, which also gives unlimited JR rides in the Tokyo, Sendai and Aomori areas (\"during regular periods\"; \"see the timetable, etc. for the exact fare\"). Source: JR East's English pass and N'EX pages, read from screenshots, https://www.jreast.co.jp/multi/en/, checked 24 Nov 2026.",
+"u": [
+"https://www.jreast.co.jp/multi/en/"
+]
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > Rail passes",
+"x": "- Passes on JR East's pass selection page: JR EAST PASS (5 days, 10 days), JR TOKYO Wide Pass, JR Tohoku-South Hokkaido Rail Pass, JR East-South Hokkaido Rail Pass, Hokuriku Arch Pass, N'EX TOKYO Round Trip Ticket, HOKKAIDO RAIL PASS (5, 7, 10 days), Sapporo-Noboribetsu Area Pass, Sapporo-Furano Area Pass. Source: JR East's English pass and N'EX pages, read from screenshots, https://www.jreast.co.jp/multi/en/, checked 24 Nov 2026.",
+"u": [
+"https://www.jreast.co.jp/multi/en/"
 ]
 },
 {
