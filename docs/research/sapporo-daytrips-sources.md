@@ -244,6 +244,8 @@ Source for all bullets: https://www.jrhokkaido.co.jp/global/english/ticket/railp
 ---
 
 ## Gaps
+_Update 24 Nov 2026: the Niseko ski bus, Noboribetsu bus and Asahiyama Zoo rows are filled in Part 3 below. Hokkaido Bus (Furano) is allowed but still unreachable; Rusutsu times are still missing._
+
 | Item | Why | Where it would be |
 |---|---|---|
 | Niseko Bus ski bus from CTS stop 12: dates, times, journey time, booking | host blocked | https://www.nisekobus.co.jp/timetable/ |
@@ -276,3 +278,59 @@ Ask Ari to approve the ones that matter (first three are the ski-bus timetables)
   `www.asahikawabus.co.jp`, `www.dohokubus.com`, `www.jhb.jp`, `resortliner.com`.
 Reachable: www.jrhokkaido.co.jp, www3.jrhokkaido.co.jp, www.chuo-bus.co.jp, www.sapporo.travel, www.japan.travel,
 www.hokkaido-airports.com, www.snowfes.com.
+
+---
+
+## PART 3: FETCHED 24 NOV 2026 AFTER THE HOSTS WERE ALLOWED
+
+### Niseko ski bus (Chuo Bus and Niseko Bus), reservation required
+- Timetable PDF "2026-2027 冬ダイヤ ニセコスキーバス（予約制）", revised 12 Dec 2026 (令和8年12月12日改正): runs **Sat 12 Dec 2026 – Mon 22 Mar 2027**;
+  "運行開始日・終了日は降雪状況等により変動します" (start and end dates depend on snow). Bookings: Chuo Bus Sapporo Terminal
+  0570-200-600 (7:30–18:00). Source: https://www.nisekobus.co.jp/uploads/2026冬-スキーバス.pdf (linked from
+  https://www.nisekobus.co.jp/timetable/), checked 24 Nov 2026. [ski.pdf, rendered and read as an image]
+- **New Chitose Airport (domestic terminal, boarding only) → Niseko:** dep 10:00, 13:40, 14:40, 15:30; JR Chitose Station 12 min later;
+  rest stop at Kinoko Okoku Otaki; Niseko Hirafu (Welcome Center) arr 13:33, 17:13, 18:13, 19:03. Also stops View Plaza, Hon-dori,
+  Iroha, Northern Resort Annupuri, Annupuri, Green Leaf, Hilton Niseko Village, Higashiyama Pension Village.
+- **Niseko → New Chitose Airport:** Hirafu dep 8:00, 9:00, 10:00, 15:30 → airport domestic terminal 11:28, 12:28, 13:28, 18:58.
+- **Sapporo → Niseko (all by Sapporo Daiichi Kanko Bus):** Sapporo Station North Exit (札幌駅北口) 7:50, 9:20 → Hirafu 10:56, 12:26
+  (then other Niseko stops to Iroha 11:35, 13:05). Also boards at Sapporo Grand Hotel, Sapporo View Hotel Odori Koen, Sapporo Prince
+  Hotel, Makomanai subway, Jozankei Hotel Milione. Rest stop at Nakayama Pass.
+- **Niseko → Sapporo:** Iroha 14:00, 15:20; Hirafu 14:39, 15:59 → Sapporo Station (札幌駅前) 17:45, 19:05.
+- Chuo Bus course page (English): "Reservation is required for boarding this bus." "Seats are unreserved." Durations: "New Chitose
+  Airport - Niseko Hirafu Welcome Center/ outbound 3 hr and 33 min・inbound 3 hr and 28 min"; "Sapporo Station - Niseko Hirafu
+  Welcome Center/ 3 hr and 06 min". "Buses may be delayed depending on the weather or traffic." "Buses may or may not have restroom
+  facilities on board." "Ski and snowboard boots are not permitted on board. If you bring skis or snowboards, please put them in a
+  special case (sole guards are fine for snowboards)." English booking form: https://teikan.chuo-bus.co.jp/multi/skibus.html?lang=en
+  Source: https://teikan.chuo-bus.co.jp/en/course/18958, checked 24 Nov 2026. [chuo_en_18958.html]
+- Japanese page adds: bookings online or by phone **until 18:00 the day before**; online booking has **no online payment**: buy the
+  ticket at a counter on the day or pay cash on the bus. Source: https://teikan.chuo-bus.co.jp/course/18958. [chuo_18958.html]
+- Rusutsu: the course page lists a "New Chitose Airport - Rusutsu Resort Hotel" fare only; no times. Still a gap.
+- The Niseko Bus English page (https://www.nisekobus.co.jp/lang/eng/) is out of date (2022–23 notices). Do not cite it.
+
+### Sapporo Kokusai ski area bus (reservation required)
+- Runs 20 Nov 2026 – 5 May 2027 (from the ski area's opening; dates depend on snow). Sapporo Station → ski area about 1 h 37 min;
+  boards at Sapporo Station North Exit, taxi-pool side (return to the South Exit). "満席の場合はご乗車できません" (no boarding when full);
+  no ski boots on board. The timetable on the page on 24 Nov covers only 20–30 Nov and the spring period. Internet booking link on the page.
+  Source: https://teikan.chuo-bus.co.jp/course/16756, checked 24 Nov 2026. [chuo_16756.html]
+
+### Hokkaido Bus (Furano) - still unreachable
+- www.hokkaidoubus-newstar.jp: allowed, but no connection (curl 000) on 24 Nov 2026. Gap stays.
+
+### Noboribetsu (Donan Bus)
+- **Noboribetsu Station → Noboribetsu Onsen** (routes NA/NB/NC/ND): "Journey time 27min."; "kitaca・suica or other IC cards cannot be
+  used."; "Visa Touch can only be used on NA and NB." Weekday timetable as read: first 6:52, last 20:04 from the station.
+  Back, from the Noboribetsu Onsen stop: first 6:40, last 20:35. Source: https://www.donanbus.co.jp/map/noboribetsu_ashiyu/?hp_lang=en
+  and https://www.donanbus.co.jp/map/noboribetsu_ashiyu2/?hp_lang=en, checked 24 Nov 2026.
+- **New Chitose Airport → Noboribetsu Onsen direct** ("Express Noboribetsu Onsen Airport-go"): "Reserved seats only"; "Journey time
+  1 hr(s). 15 min."; "Booking up to 120 min prior to departure OK!". Dep international terminal No.86 13:20, 14:10, 15:10, domestic
+  terminal No.29 a minute or two later, then domestic No.2; Noboribetsu Onsen 14:30, 15:18, 16:20. Back from Noboribetsu Onsen 9:55,
+  10:30, 11:45 → domestic terminal 11:02–12:52. The page still carries a 2025–26 extra-bus note, so check before relying on it.
+  Source: https://www.donanbus.co.jp/map/newchitose_airport/?hp_lang=en and .../noboribetsu_airport/?hp_lang=en, checked 24 Nov 2026.
+
+### Asahiyama Zoo (City of Asahikawa)
+- Winter opening: **11 Nov 2026 – 7 Apr 2027, 10:30–15:30 (last entry 15:00)**; closed 30 Dec 2026 – 1 Jan 2027. Penguin walk:
+  "12月下旬頃から3月中旬頃までの積雪期", at 11:00 and 14:30 (March: 11:00 only), start announced on the zoo's social media; can be
+  cancelled for weather. Slopes are slippery: wear shoes with grip. (The notice's "雪あかりの動物園" dates read 令和8年 Feb, likely a typo; not used.)
+  Source: https://www.city.asahikawa.hokkaido.jp/asahiyamazoo/news-blog/osirase/d082799.html, checked 24 Nov 2026. [zoo_winter.html]
+- Access: Asahikawa Station → zoo by Asahikawa Denki Kido bus, routes 41 and 47, from stand 6 at the station-front bus area; about
+  every 30 min; about 40 min. Source: https://www.city.asahikawa.hokkaido.jp/asahiyamazoo/generalinformation/d053767.html, checked 24 Nov 2026.

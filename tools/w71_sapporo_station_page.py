@@ -15,6 +15,9 @@ The station is being rebuilt for the Hokkaido Shinkansen: JR shows its map "as o
 change. Left out on purpose: the platform for the Airport Train at Sapporo (only a 2022 press release names one), the
 (first and last Airport Trains added 24 Nov 2026 from JR's station timetables), locker locations and prices, the length and hours of the underground
 walkway to Odori, Snow Festival opening hours and the Premist Dome site's dates, and toilets. (ATMs added 24 Nov 2026 from Seven Bank's locator.)
+Day trips and ski buses (section day-trips, Pocket Guide sheets dayHTML and skiHTML) come from docs/research/sapporo-daytrips-sources.md
+(JR Hokkaido, Donan Bus, Asahiyama Zoo, Hokkaido Chuo Bus and Niseko Bus; checked 24 November 2026), with one tours link
+(placement gyg-sapporo-daytrips, cmp ps-sapporo-station-daytrips).
 
 Partner blocks (no new programmes, no Klook, no hotel links): the eSIM tiles copied from the Japan guide (placement
 id airalo-sapporo-station) and a tours-and-tickets box with a search for Sapporo (gyg-sapporo-station,
@@ -93,6 +96,28 @@ SRC = {
     "sbapia": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000009330", "Seven Bank ATM: JR Tower APIA"),
     "sbodori": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000026672", "Seven Bank ATM: subway Odori station"),
     "jrpass": ("https://www.jrhokkaido.co.jp/global/english/ticket/railpass/index.html", "JR Hokkaido: rail passes for visitors"),
+    "jrallres": ("https://www.jrhokkaido.co.jp/CM/Info/notice_en/pdf/all_reserved_202602_en.pdf", "JR Hokkaido: all limited expresses reserved from 14 March 2026 (PDF)"),
+    "jrusage": ("https://www.jrhokkaido.co.jp/global/english/ticket/usage/usage03.html", "JR Hokkaido: reserved seats with a rail pass"),
+    "jrmanner": ("https://www.jrhokkaido.co.jp/global/pdf/e-cn-mannerguide.pdf", "JR Hokkaido: manner and user guide (PDF)"),
+    "jracc": ("https://www.jrhokkaido.co.jp/global/pdf/e-accessibility2025.pdf", "JR Hokkaido: accessibility guide (PDF)"),
+    "jretix": ("https://www.jrhokkaido.co.jp/CM/Info/news_en/pdf/ltdexp_eticket_202611_en.pdf", "JR Hokkaido: limited express e-tickets, Sapporo to Asahikawa (PDF)"),
+    "jrmodnob": ("https://www.jrhokkaido.co.jp/global/english/travel/model/noboribetsu.html", "JR Hokkaido: Otaru, Noboribetsu and Upopoy routes"),
+    "jrmodfur": ("https://www.jrhokkaido.co.jp/global/english/travel/model/furano.html", "JR Hokkaido: Asahikawa, Biei and Furano routes"),
+    "jrfaq9": ("https://www.jrhokkaido.co.jp/global/english/faq/faq09.html", "JR Hokkaido: FAQ on Furano and Biei"),
+    "jrfbtrain": ("https://www.jrhokkaido.co.jp/global/english/travel/furanobiei/train/index.html", "JR Hokkaido: Furano Lavender Express (June to September)"),
+    "ttotaru": ("https://www3.jrhokkaido.co.jp/webunkou/timetable_en.html?id=076", "JR Hokkaido: Otaru departures, 24 Nov 2026"),
+    "ttnob": ("https://www3.jrhokkaido.co.jp/webunkou/timetable_en.html?id=205", "JR Hokkaido: Noboribetsu departures, 24 Nov 2026"),
+    "ttasa": ("https://www3.jrhokkaido.co.jp/webunkou/timetable_en.html?id=118", "JR Hokkaido: Asahikawa departures, 24 Nov 2026"),
+    "ttbiei": ("https://www3.jrhokkaido.co.jp/webunkou/timetable_en.html?id=507", "JR Hokkaido: Biei departures, 24 Nov 2026"),
+    "jtnob": ("https://www.japan.travel/en/destinations/hokkaido/hokkaido/noboribetsu-upopoy-and-around/", "Japan National Tourism Organization: Noboribetsu and Upopoy"),
+    "donanstn": ("https://www.donanbus.co.jp/map/noboribetsu_ashiyu/?hp_lang=en", "Donan Bus: Noboribetsu Station to Noboribetsu Onsen"),
+    "donanback": ("https://www.donanbus.co.jp/map/noboribetsu_ashiyu2/?hp_lang=en", "Donan Bus: Noboribetsu Onsen to Noboribetsu Station"),
+    "zoowin": ("https://www.city.asahikawa.hokkaido.jp/asahiyamazoo/news-blog/osirase/d082799.html", "Asahiyama Zoo: winter opening 2026-27 (Japanese)"),
+    "zooacc": ("https://www.city.asahikawa.hokkaido.jp/asahiyamazoo/generalinformation/d053767.html", "Asahiyama Zoo: access (Japanese)"),
+    "skibus": ("https://teikan.chuo-bus.co.jp/en/course/18958", "Hokkaido Chuo Bus: Niseko ski bus (English)"),
+    "skipdf": ("https://www.nisekobus.co.jp/uploads/2026冬-スキーバス.pdf", "Niseko Bus: ski bus timetable 2026-27 (PDF, Japanese)"),
+    "skibook": ("https://teikan.chuo-bus.co.jp/multi/skibus.html?lang=en", "Hokkaido Chuo Bus: ski bus booking (English)"),
+    "skikok": ("https://teikan.chuo-bus.co.jp/course/16756", "Hokkaido Chuo Bus: Sapporo Kokusai ski area bus (Japanese)"),
 }
 
 def a_src(k, label=None):
@@ -203,6 +228,9 @@ FAQ = [
     ("Where is the tourist information at Sapporo Station?",
      "The Hokkaido-Sapporo Tourist Information Center is in the JR Sapporo West Concourse, open 8:30 to 20:00 all year, in Japanese, English, Chinese and Korean. "
      "JR's own Information Desk for visitors is at the West Exit."),
+    ("Can I do a day trip from Sapporo by train?",
+     "Yes. On JR Hokkaido's timetable for 24 November 2026, Otaru is 34 to 46 minutes by the Rapid Airport, Noboribetsu 70 to 82 minutes and Asahikawa 85 minutes by limited express. "
+     "All seats on limited expresses are reserved, so book a seat, and JR says IC cards cannot be used to Noboribetsu, Biei or Furano. For Niseko, the booked ski bus from the North Exit takes about 3 hours."),
     ("Is the subway station called Sapporo too?",
      "Yes, but the subway writes it in hiragana, さっぽろ, while JR writes 札幌. Both are read Sapporo."),
 ]
@@ -258,6 +286,7 @@ TOC = [
     ("snow-festival", "Sapporo Snow Festival 2027"),
     ("airport", "To New Chitose Airport: the Airport Train"),
     ("long-distance", "Hakodate, Asahikawa, Otaru and the Shinkansen"),
+    ("day-trips", "Day trips by train, and ski buses"),
     ("connected", "Getting online: eSIM"),
     ("money", "Money and ATMs"),
     ("luggage", "Lockers and luggage"),
@@ -269,7 +298,7 @@ TOC = [
 # ---- "What do you need first?" tiles + a quick-jump bar that appears once you scroll (as w42)
 TOC_SHORT = {
     "one-page": "On one page", "construction": "Construction", "gates": "Gates", "desks": "Help desks", "subway": "Subway",
-    "snow-festival": "Snow Festival", "airport": "To the airport", "long-distance": "Other trains", "connected": "Get online",
+    "snow-festival": "Snow Festival", "airport": "To the airport", "long-distance": "Other trains", "day-trips": "Day trips", "connected": "Get online",
     "money": "ATMs", "luggage": "Lockers", "finder": "Find it fast", "leaving": "Leaving", "faq": "FAQ", "about-this-guide": "About",
 }
 TOC_TILES = [
@@ -280,7 +309,7 @@ TOC_TILES = [
     ("construction", "&#128679;", "Construction", "Lifts, map changes"),
     ("luggage", "&#129523;", "Lockers", "About 800, ski lockers"),
     ("desks", "&#8505;&#65039;", "Help desks", "JR and tourist info"),
-    ("long-distance", "&#128646;", "Other trains", "Hakodate, Asahikawa"),
+    ("day-trips", "&#127956;&#65039;", "Day trips", "Otaru, onsen, ski bus"),
 ]
 TOC_CSS = """<style>
 html{scroll-behavior:smooth}
@@ -659,6 +688,71 @@ LONG = """<h2 id="long-distance">Hakodate, Asahikawa, Otaru and the Shinkansen</
 </ul>
 """ + sources(["jrconst", "jrshin", "jrhak", "jrasa", "sttrans", "jrair", "jrhome"], "Times change, so check JR Hokkaido.")
 
+DAYTRIPS = """<h2 id="day-trips">Day trips by train, and ski buses</h2>
+<p>Sapporo is a good base: Otaru, Noboribetsu and Asahikawa are all easy day trips by train. Train times below are from JR Hokkaido&rsquo;s timetables for Tuesday 24 November 2026 (a weekday). They change, so check JR&rsquo;s departures the day before.</p>
+<h3>Before you go: four JR rules</h3>
+<ul>
+<li><strong>Limited expresses: book a seat.</strong> All seats on all limited expresses in Hokkaido are reserved: you need a reserved-seat ticket as well as the fare, and JR says passengers without a seat number may have to stand. With a rail pass, get your seat ticket before you board: seats cannot be given on the train.</li>
+<li><strong>IC cards work only near Sapporo.</strong> Suica, Kitaca and the other IC cards work to Otaru and the airport. JR says they cannot be used to Noboribetsu, Biei, Furano or Toya, even if you board inside the IC area, nor beyond Otaru to Kutchan and Niseko. Buy a paper ticket. JR also says some IC cards, such as SAPICA, cannot be used on its trains.</li>
+<li><strong>One-man trains</strong> (one or two cars, no conductor, as on the local lines to Biei and Furano): the doors do not open by themselves, so press the button. With no ticket, take a numbered ticket when you board and pay the driver in cash: no credit cards, no IC cards.</li>
+<li><strong>Tickets and bags.</strong> Do not keep paper tickets in a phone case: JR warns they can stop working. Skis and snowboards must be fully in their bags. Each bag within 250 cm in total (2 m long at most), up to 30 kg, and up to 2 bags.</li>
+</ul>
+<div class="table-wrapper"><table>
+<thead><tr><th>Day trip</th><th>Train from Sapporo</th><th>Time</th><th>Area pass</th></tr></thead>
+<tbody>
+<tr><td>Otaru</td><td>Rapid Airport (no seat ticket needed)</td><td>34 to 46 min</td><td>Either area pass</td></tr>
+<tr><td>Upopoy (Shiraoi)</td><td>Limited Express Suzuran (some trains)</td><td>about 1 h</td><td>Sapporo-Noboribetsu</td></tr>
+<tr><td>Noboribetsu</td><td>Limited Express Suzuran or Hokuto</td><td>70 to 82 min</td><td>Sapporo-Noboribetsu</td></tr>
+<tr><td>Asahikawa</td><td>Limited Express Lilac or Kamui</td><td>85 min</td><td>Sapporo-Furano</td></tr>
+<tr><td>Biei, Furano</td><td>Via Asahikawa, then local trains</td><td>2 h or more</td><td>Sapporo-Furano</td></tr>
+<tr><td>Niseko</td><td>Ski bus (see below)</td><td>about 3 h</td><td>No</td></tr>
+</tbody></table></div>
+<p>The Hokkaido Rail Pass covers all the JR trains above. The area passes do not cover local buses.</p>
+<h3>Otaru</h3>
+<ul>
+<li><strong>Train.</strong> The Rapid and Special Rapid Airport run through to Otaru about every 30 minutes in the daytime, 34 to 46 minutes. The last Rapid Airport leaves Sapporo at 22:53, and local trains run until 23:50. Back from Otaru, Rapid trains run until 19:56, then local trains.</li>
+<li><strong>IC cards work</strong> to Otaru, and the Airport Train&rsquo;s non-reserved cars need no seat ticket.</li>
+<li><strong>Winter.</strong> JR lists the Otaru Snow Light Path in early to mid February.</li>
+<li><strong>If trains stop,</strong> JR lists a bus between Sapporo and Otaru, about 60 to 80 minutes.</li>
+</ul>
+<h3>Noboribetsu hot springs (and Upopoy on the way)</h3>
+<ul>
+<li><strong>Train.</strong> Limited Express Suzuran or Hokuto to Noboribetsu Station, 70 to 82 minutes. First 6:53, last 21:12. Back: the last limited express leaves Noboribetsu at 21:21. The 6:00 Hokuto does not stop at Noboribetsu.</li>
+<li><strong>To the hot-spring town.</strong> Noboribetsu Onsen is about 8 km from the station (JNTO). Donan Bus runs a bus from the station, 27 minutes. IC cards cannot be used on it. On its weekday timetable the first bus leaves the station at 6:52 and the last at 20:04; back from Noboribetsu Onsen, first 6:40, last 20:35.</li>
+<li><strong>Upopoy</strong> (National Ainu Museum and Park): get off at Shiraoi, about 1 hour from Sapporo; it is about a 10-minute walk from the North Exit. Not every limited express stops at Shiraoi.</li>
+<li><strong>No IC cards</strong> to Noboribetsu: buy a paper ticket.</li>
+</ul>
+<h3>Asahikawa and Asahiyama Zoo</h3>
+<ul>
+<li><strong>Train.</strong> Limited Express Lilac or Kamui, 85 minutes. First 6:29, last 22:00; back, last 22:00 too. From 1 December 2026 JR sells e-tickets for these two trains: you tap your IC card at the gate.</li>
+<li><strong>To the zoo.</strong> Asahikawa Denki Kido bus routes 41 and 47, from stop 6 in front of Asahikawa Station: about every 30 minutes, about 40 minutes.</li>
+<li><strong>Winter opening.</strong> 11 November 2026 to 7 April 2027, 10:30 to 15:30 (last entry 15:00). Closed 30 December to 1 January.</li>
+<li><strong>Penguin walk.</strong> In the snowy season, from about late December to mid-March, at 11:00 and 14:30 (March: 11:00 only). The zoo announces the first day on its social media, and the walk is called off in bad weather. The paths are steep: wear shoes that grip on snow.</li>
+</ul>
+<h3>Biei and Furano in winter</h3>
+<ul>
+<li><strong>No direct train in winter.</strong> The Furano Lavender Express runs June to September only. JR&rsquo;s winter route goes via Asahikawa, then local trains: about 35 minutes to Biei, and 66 to 83 minutes from Asahikawa to Furano.</li>
+<li><strong>Few trains.</strong> On 24 November there were up to 2 hours between local trains in the morning (Biei to Furano: none between 10:14 and 12:09). Plan your way back before you go.</li>
+<li><strong>Farm Tomita</strong> in winter: from Naka-Furano Station, about 25 minutes on foot (JR). JR marks its Blue Pond trip as one for the season without snow.</li>
+<li><strong>No IC cards</strong> on these lines, and the trains are one-man: see the rules above.</li>
+</ul>
+<h3>Niseko: take the ski bus</h3>
+<ul>
+<li><strong>Why not the train?</strong> No direct daytime train: you change at Otaru, often at Kutchan too, and IC cards do not work.</li>
+<li><strong>Ski bus</strong> (Hokkaido Chuo Bus with Niseko Bus), <strong>booking required</strong>, 12 December 2026 to 22 March 2027 (the first and last days depend on the snow). From the Sapporo Station North Exit at 7:50 and 9:20, at Niseko Hirafu (Welcome Center) at 10:56 and 12:26: about 3 hours. Back from Hirafu at 14:39 and 15:59, at Sapporo Station at 17:45 and 19:05.</li>
+<li><strong>How to book.</strong> Online in English, or by phone at the Chuo Bus Sapporo Terminal, 0570-200-600 (7:30 to 18:00), by 18:00 the day before. Seats are not numbered. Online bookings are not paid online: buy the ticket at a counter on the day, or pay cash on the bus.</li>
+<li><strong>Ski gear.</strong> No ski or snowboard boots on board. Put skis and snowboards in a case (sole guards are fine for snowboards).</li>
+<li><strong>Closer slopes.</strong> A booked bus runs from the Sapporo Station North Exit (taxi-pool side) to the Sapporo Kokusai ski area, about 1 hour 37 minutes, from the ski area&rsquo;s opening (from 20 November 2026) to 5 May 2027. It does not take you if it is full. Check its winter times on the bus company&rsquo;s page.</li>
+</ul>
+<h3>If something goes wrong</h3>
+<ul>
+<li><strong>Lost something on a JR train?</strong> JR Hokkaido&rsquo;s &ldquo;find chat&rdquo; is an English and Chinese chat for items lost on its trains or in its stations; the QR code is in JR&rsquo;s manner guide.</li>
+<li><strong>Need help with a wheelchair?</strong> Many stations have no staff or no lift, so JR recommends asking for help in advance with its inquiry form. Platforms are slippery with snow in winter.</li>
+<li><strong>Snow.</strong> Check JR Hokkaido&rsquo;s <a href="https://www3.jrhokkaido.co.jp/webunkou/index_en.html" target="_blank" rel="noopener noreferrer">Train Operation Information (English)</a> before you set off, and keep a little cash for a bus or a taxi.</li>
+</ul>
+<p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Rather not plan the trains? <a href="https://www.getyourguide.com/s/?q=Sapporo%20day%20trip&amp;partner_id=D7IXONS&amp;cmp=ps-sapporo-station-daytrips" target="_blank" rel="nofollow noopener sponsored" data-ps-placement="gyg-sapporo-daytrips" style="color:#00C9A7;text-decoration:underline;">Compare guided day tours from Sapporo</a> (partner link). Check what is included, and the meeting point, before you book.</p>
+""" + sources(["jrallres", "jrusage", "jrmanner", "jracc", "jretix", "jrpass", "jrttspk", "ttotaru", "ttnob", "ttasa", "ttbiei", "jrmodnob", "jrmodfur", "jrfaq9", "jrfbtrain", "jrdis", "jtnob", "donanstn", "donanback", "zoowin", "zooacc", "skibus", "skibook", "skipdf", "skikok"], "Times change, so check the operator.")
+
 CONNECTED = """<h2 id="connected">Getting online: eSIM</h2>
 <p>You will want a connection for maps, messages and the festival pages.</p>
 <ul>
@@ -705,9 +799,10 @@ LEAVING = """<h2 id="leaving">Leaving Sapporo: a checklist</h2>
 
 ABOUT = """<div class="ps-about" id="about-this-guide">
 <h2>About this guide</h2>
-<p>Written by PackSmart. Station details were checked on 24 November 2026 against JR Hokkaido (including its construction map as of 21 October 2026), the Sapporo City Transportation Bureau, the Sapporo Snow Festival's Japanese site and the Sapporo Tourist Association. Where an official page did not tell us something, for example the Airport Train's platform at Sapporo, its first and last trains, locker locations or the festival's opening hours, we say so instead of guessing. Spotted something out of date? <a href="/contact">Tell us</a> and we will fix it.</p>
+<p>Written by PackSmart. Station details were checked on 24 November 2026 against JR Hokkaido (including its construction map as of 21 October 2026), the Sapporo City Transportation Bureau, the Sapporo Snow Festival's Japanese site and the Sapporo Tourist Association. Where an official page did not tell us something, for example the Airport Train's platform at Sapporo, locker locations or the festival's opening hours, we say so instead of guessing. Spotted something out of date? <a href="/contact">Tell us</a> and we will fix it.</p>
 <ul>
 <li><strong>24 Nov 2026:</strong> first version, with the one-page card, the construction notice, the West and East gates, help desks, the subway to Odori and Susukino, the Snow Festival 2027 dates, the Airport Train, long-distance trains, lockers, the find-it tool and a leaving checklist.</li>
+<li><strong>24 Nov 2026, update:</strong> ATMs, the first and last Airport Trains, rail passes, and a new section on day trips by train (Otaru, Noboribetsu, Asahikawa, Biei and Furano), JR&rsquo;s rules for trains beyond Sapporo and the Niseko ski bus.</li>
 </ul>
 </div>"""
 
@@ -940,6 +1035,7 @@ BODY = "\n\n".join([
     GYG_BOX,
     AIRPORT,
     LONG,
+    DAYTRIPS,
     CONNECTED,
     airalo,
     MONEY,
@@ -1643,7 +1739,7 @@ POCKET_HTML = """<!DOCTYPE html>
     return '<ul class="pl"><li><b>eSIM:</b> install it on your phone and switch it on when you need it. No counter, no queue.</li>'
       +'<li><b>JR Wi-Fi</b> at stations and on the Airport Train cars (JR Hokkaido).</li></ul>';
   }
-  var NEXT=[['🚇','Subway to Odori',subwayHTML],['🚪','Gates and exits',gatesHTML],['❄️','Snow Festival',snowHTML],['ℹ️','Help desks',deskHTML],['🧳','Lockers',bagsHTML],['✈️','To the airport',airportHTML],['📱','Phone data',simHTML]];
+  var NEXT=[['🚇','Subway to Odori',subwayHTML],['🚪','Gates and exits',gatesHTML],['❄️','Snow Festival',snowHTML],['ℹ️','Help desks',deskHTML],['🧳','Lockers',bagsHTML],['✈️','To the airport',airportHTML],['🏔️','Day trips',dayHTML],['📱','Phone data',simHTML]];
   var at=$('arrTiles');
   NEXT.forEach(function(n,k){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);
@@ -1693,6 +1789,28 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Beyond Otaru</b> (Yoichi, Kutchan, Niseko): no IC cards. Buy a ticket first.</li></ul>'
       +'<p class="sm">Source: JR Hokkaido and the Sapporo Tourist Association, checked 24 November 2026.</p>'+more('#long-distance');
   }
+  function dayHTML(){
+    return '<p class="n2">Day trips by train. JR timetable, 24 Nov 2026 (a weekday). Times change.</p>'
+      +'<ul class="pl"><li><b>Otaru:</b> Rapid Airport, 34 to 46 min, about every 30 min. IC cards work.</li>'
+      +'<li><b>Noboribetsu:</b> Ltd. Exp. Suzuran or Hokuto, 70 to 82 min. Last back 21:21. Then the bus to the hot springs, 27 min (no IC cards on it).</li>'
+      +'<li><b>Upopoy:</b> Shiraoi Station, North Exit, about 10 min on foot. Not every train stops.</li>'
+      +'<li><b>Asahikawa:</b> Ltd. Exp. Lilac or Kamui, 85 min. Zoo: bus 41 or 47 from stop 6, about 40 min. Zoo open 10:30 to 15:30 in winter (closed 30 Dec to 1 Jan).</li>'
+      +'<li><b>Biei, Furano:</b> no direct train in winter. Go via Asahikawa; local trains are few.</li>'
+      +'<li><b>Limited expresses:</b> all seats reserved. Book a seat.</li>'
+      +'<li><b>No IC cards</b> to Noboribetsu, Biei, Furano, Toya or beyond Otaru. SAPICA does not work on JR. Buy a paper ticket.</li>'
+      +'<li><b>One-man trains:</b> press the door button. No ticket? Take a numbered ticket and pay the driver in cash.</li>'
+      +'<li>Keep paper tickets out of phone cases.</li></ul>'
+      +'<p class="sm">Source: JR Hokkaido, Donan Bus and Asahiyama Zoo, checked 24 November 2026.</p>'+more('#day-trips');
+  }
+  function skiHTML(){
+    return '<p class="n2">Niseko ski bus. <b>Booking required</b>, 12 Dec 2026 to 22 Mar 2027 (dates depend on snow).</p>'
+      +'<ul class="pl"><li><b>From Sapporo Station North Exit:</b> 7:50 and 9:20. At Niseko Hirafu 10:56 and 12:26.</li>'
+      +'<li><b>Back from Hirafu:</b> 14:39 and 15:59. At Sapporo Station 17:45 and 19:05.</li>'
+      +'<li><b>Book</b> by 18:00 the day before: online, or Chuo Bus Sapporo Terminal <a href="tel:0570200600">0570-200-600</a> (7:30 to 18:00). Pay at a counter on the day, or cash on the bus.</li>'
+      +'<li>No ski boots on board. Skis and boards in a case.</li>'
+      +'<li><b>Sapporo Kokusai ski area:</b> booked bus from the North Exit (taxi-pool side), about 1 h 37 min.</li></ul>'
+      +'<p class="sm">Source: Hokkaido Chuo Bus and Niseko Bus, checked 24 November 2026.</p>'+more('#day-trips');
+  }
   function allowHTML(){
     return '<p class="n2">Sapporo Station is being rebuilt for the Shinkansen. Add a buffer for walking, gates and luggage.</p>'
       +'<ul class="pl"><li>JR&rsquo;s map (21 October 2026) may change as the work goes on.</li>'
@@ -1700,7 +1818,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li>We did not find official walking times inside the station, so we give none.</li></ul>'
       +'<p class="sm">Times are approximate and change. Check the operator.</p>';
   }
-  var BEFORE=[['✈️','To the airport',airportHTML],['🚆','Hakodate and beyond',longHTML],['🚇','Subway',subwayHTML],['⏱️','Allow time',allowHTML]];
+  var BEFORE=[['✈️','To the airport',airportHTML],['🏔️','Day trips',dayHTML],['⛷️','Ski bus to Niseko',skiHTML],['🚆','Hakodate and beyond',longHTML],['🚇','Subway',subwayHTML],['⏱️','Allow time',allowHTML]];
   var dtl=$('depTiles');
   BEFORE.forEach(function(n,k){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);

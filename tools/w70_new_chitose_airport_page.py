@@ -13,7 +13,8 @@ Hokkaido Chuo Bus and the Sapporo Tourist Association; checked 24 November 2026)
 out, or written as "We did not find this on the airport's pages. Please ask at an information center." (_NONE).
 Where sources disagree the operator wins: JR's 33 / 37 / 43 minutes for the Airport Train, and about 70 minutes for
 the bus (the bus timetables), not the airport's "about 1 hour 50 minutes". (first and last Airport Trains added 24 Nov 2026 from JR's station timetables),
-ski-bus times, the walking time between terminals and toilet locations are not stated.
+the walking time between terminals and toilet locations are not stated. Ski-bus and Noboribetsu bus times added 24 Nov 2026
+from docs/research/sapporo-daytrips-sources.md (Hokkaido Chuo Bus, Niseko Bus, Donan Bus).
 
 Partner blocks (no new programmes, no Klook, no hotel links): the eSIM tiles copied from the Japan guide (placement
 id airalo-new-chitose) and a tours-and-tickets box with a search for Niseko skiing (gyg-new-chitose,
@@ -64,6 +65,13 @@ SRC = {
     "hours": (_A + "service/", "New Chitose Airport: services and building opening hours"),
     "ajr": (_A + "access/jr/", "New Chitose Airport: access by JR"),
     "abus": (_A + "access/bus/", "New Chitose Airport: access by bus"),
+    "skibus": ("https://teikan.chuo-bus.co.jp/en/course/18958", "Hokkaido Chuo Bus: Niseko ski bus (English)"),
+    "skipdf": ("https://www.nisekobus.co.jp/uploads/2026冬-スキーバス.pdf", "Niseko Bus: ski bus timetable 2026-27 (PDF, Japanese)"),
+    "skibook": ("https://teikan.chuo-bus.co.jp/multi/skibus.html?lang=en", "Hokkaido Chuo Bus: ski bus booking (English)"),
+    "jrmanner": ("https://www.jrhokkaido.co.jp/global/pdf/e-cn-mannerguide.pdf", "JR Hokkaido: manner and user guide (PDF)"),
+    "jracc": ("https://www.jrhokkaido.co.jp/global/pdf/e-accessibility2025.pdf", "JR Hokkaido: accessibility guide (PDF)"),
+    "donanair": ("https://www.donanbus.co.jp/map/newchitose_airport/?hp_lang=en", "Donan Bus: New Chitose Airport to Noboribetsu Onsen"),
+    "donanairb": ("https://www.donanbus.co.jp/map/noboribetsu_airport/?hp_lang=en", "Donan Bus: Noboribetsu Onsen to New Chitose Airport"),
     "infoc": (_A + "service/information/info-center/", "New Chitose Airport: information centers"),
     "tic": (_A + "service/information/tourist-info/", "New Chitose Airport: Hokkaido Foreign Tourist Information Center"),
     "fx": (_A + "service/money/currency-exchange/", "New Chitose Airport: currency exchange"),
@@ -200,8 +208,8 @@ FAQ = [
      "On the JR Airport Train to Sapporo, yes: JR Hokkaido lists Suica, PASMO, Kitaca and other IC cards. Not beyond Otaru, for Yoichi, Kutchan or Niseko. "
      "On the airport buses, Hokkaido Chuo Bus says transport IC cards work on its own buses only, not on Hokuto Kotsu buses."),
     ("Is there a bus from New Chitose Airport to Niseko or Furano?",
-     "The airport's bus page lists a ski bus to Niseko and Rusutsu from domestic stop 12, in winter only, and a bus to Furano from domestic stop 23. "
-     "We could not read the timetables, so check the bus company's own page before you travel."),
+     "Yes. The Niseko ski bus (booking required) runs from 12 December 2026 to 22 March 2027 from domestic stop 12: on its 2026-27 timetable it leaves at 10:00, 13:40, 14:40 and 15:30 and takes about 3 hours 30 minutes to Niseko Hirafu. "
+     "Book by 18:00 the day before. The airport lists a bus to Furano from domestic stop 23; we could not read its timetable, so check the bus company's own page."),
     ("Can I stay overnight at New Chitose Airport?",
      "The airport says you may not stay in the terminal after it closes, except in the accommodation facilities. "
      "The Domestic Terminal is open 5:00 to 23:30 and the International Terminal 5:00 to 21:00. "
@@ -593,9 +601,10 @@ HELP = """<h2 id="help">Information and help</h2>
 
 ABOUT = """<div class="ps-about" id="about-this-guide">
 <h2>About this guide</h2>
-<p>Written by PackSmart. Airport details were checked on 24 November 2026 against the New Chitose Airport website and its floor guides, JR Hokkaido, Hokkaido Chuo Bus and the Sapporo Tourist Association. Where an official page did not tell us something, for example the first and last Airport Train, the ski-bus times, the walking time between the terminals or where the toilets are, we say so instead of guessing. The bus times come from the summer 2026 timetable, which was still the current one on 24 November 2026. Spotted something out of date? <a href="/contact">Tell us</a> and we will fix it.</p>
+<p>Written by PackSmart. Airport details were checked on 24 November 2026 against the New Chitose Airport website and its floor guides, JR Hokkaido, Hokkaido Chuo Bus and the Sapporo Tourist Association. Where an official page did not tell us something, for example the Furano bus times, the walking time between the terminals or where the toilets are, we say so instead of guessing. The bus times come from the summer 2026 timetable, which was still the current one on 24 November 2026. Spotted something out of date? <a href="/contact">Tell us</a> and we will fix it.</p>
 <ul>
 <li><strong>24 Nov 2026:</strong> first version, with the one-page card, the terminals floor by floor, the 3F corridor closure, the Airport Train and the buses to Sapporo, ski buses, money, getting online, lockers and hotel delivery, the find-it tool, opening hours, winter and delays, help and a leaving checklist.</li>
+<li><strong>24 Nov 2026, update:</strong> the first and last Airport Trains, rail passes, ATMs, the Niseko ski-bus times and booking for 2026-27, the direct bus to Noboribetsu Onsen, and JR&rsquo;s rules for trains beyond Sapporo.</li>
 </ul>
 </div>"""
 
@@ -689,11 +698,13 @@ TRAIN = """<h2 id="train">To Sapporo by train: the Airport Train</h2>
 <li><strong>First and last trains.</strong> JR Hokkaido&rsquo;s timetable for 24 November 2026 (a weekday): from New Chitose Airport, the first train to Sapporo is the Rapid Airport at 6:38 (Sapporo 7:18), and the last is the Special Rapid Airport at 23:21 (Sapporo 23:59). From Sapporo to the airport, the first is the Rapid Airport at 5:50 (airport 6:28), and the last is a local train at 22:25, which stops everywhere and reaches the airport at 23:12. Timetables change, so check JR&rsquo;s departures the day before.</li>
 <li><strong>Rail passes for visitors.</strong> JR Hokkaido&rsquo;s Sapporo&ndash;Noboribetsu Area Pass and Sapporo&ndash;Furano Area Pass (4 consecutive days each) include New Chitose Airport, and the Hokkaido Rail Pass (5, 7 or 10 days) covers all JR Hokkaido lines except the Hokkaido Shinkansen. JR says all non-Japanese passport holders can use them; show your passport itself when you buy or exchange one (a copy is not accepted). With a pass you can sit in the reserved car or the non-reserved cars. Put only the pass into the ticket gate and take it back: JR does not reissue a lost pass. The passes do not cover the subway.</li>
 <li><strong>Going on to Hakodate, Noboribetsu, Tomamu or Kushiro?</strong> Change at Minami-Chitose, where the limited express trains leave from the same platform. JR says all seats on those limited expresses are reserved.</li>
+<li><strong>Going beyond Sapporo?</strong> JR says IC cards cannot be used to Noboribetsu, Biei, Furano or Toya, and some cards, such as SAPICA, do not work on its trains. On one-man trains (one or two cars, no conductor) press the button to open the door; with no ticket, take a numbered ticket and pay the driver in cash. Skis and snowboards must be fully in their bags, and JR warns that paper tickets kept in a phone case can stop working. Lost something? JR&rsquo;s &ldquo;find chat&rdquo; searches for items lost on its trains, in English and Chinese.</li>
+<li><strong>Need help with a wheelchair?</strong> Many JR stations have no staff or no lift, so JR recommends asking for help in advance with its inquiry form. Platforms are slippery with snow in winter.</li>
 <li><strong>Going on to Otaru from Sapporo?</strong> JR says trains for &ldquo;Teine&rdquo; or &ldquo;Hoshimi&rdquo; do not continue to Otaru.</li>
 </ul>
 <div class="tip-box"><strong>If the trains stop.</strong> JR asks you to check the boards and announcements (some are only in Japanese, so use a translation app) and to consider other transport: the airport bus (about 70 to 90 minutes) or a taxi (about 60 minutes). It warns that buses can get extremely crowded when trains are cancelled, and that times grow or services stop in bad weather. With a paper ticket, a cancelled trip is refunded in full, and the station can give you a delay certificate. JR says it does not pay for meals, other transport or hotels when trains are late or stopped.</div>
 <p>Arriving in Sapporo? Our <a href="/blog/sapporo-station-guide">Sapporo Station guide</a> covers the gates during the Shinkansen works, the subway to Odori and Susukino, and the lockers.</p>
-""" + sources(["jrair", "jrttcts", "jrttspk", "jrops", "jrpass", "jrpdf", "jrstn", "jrdis", "jrfaq", "ajr", "jrhome", "jrwifi"], "Times change, so check JR Hokkaido.")
+""" + sources(["jrair", "jrttcts", "jrttspk", "jrops", "jrpass", "jrmanner", "jracc", "jrpdf", "jrstn", "jrdis", "jrfaq", "ajr", "jrhome", "jrwifi"], "Times change, so check JR Hokkaido.")
 
 BUS = """<h2 id="bus">To Sapporo by bus</h2>
 <p>Two companies, Hokkaido Chuo Bus and Hokuto Kotsu, run the airport buses to Sapporo city centre on one shared timetable, taking turns. Hokkaido Chuo Bus says no booking is needed and gives about every 10 minutes.</p>
@@ -721,15 +732,20 @@ BUS = """<h2 id="bus">To Sapporo by bus</h2>
 """ + sources(["abus", "chuo", "chuofeat", "chuobeg", "chuobag", "stv", "fmdom"], "Timetables change with the season, so check the bus company.")
 
 SKI = """<h2 id="ski">Ski buses: Niseko, Rusutsu and Furano</h2>
-<p>The airport's bus page lists these, from the Domestic Terminal:</p>
+<p>Going straight to the snow? These leave from the Domestic Terminal.</p>
 <ul>
-<li><strong>Ski Bus to Niseko and Rusutsu</strong> (Niseko Bus): domestic stop 12. No international stop is listed. The airport says the ski bus runs in winter only.</li>
-<li><strong>Furano</strong> (HOKKAIDO BUS): domestic stop 23. No international stop is listed.</li>
-<li><strong>Times, fares and booking.</strong> We could not read the bus companies' timetable pages, so we give none. Check Niseko Bus and HOKKAIDO BUS before you travel, and plan a back-up in case snow delays your flight.</li>
+<li><strong>Niseko ski bus</strong> (Hokkaido Chuo Bus with Niseko Bus), <strong>booking required</strong>. It runs from 12 December 2026 to 22 March 2027; the bus companies say the first and last days depend on the snow. It boards at the Domestic Terminal only: the airport lists stop 12.</li>
+<li><strong>Times (2026-27 timetable).</strong> From the airport at 10:00, 13:40, 14:40 and 15:30, at Niseko Hirafu (Welcome Center) at 13:33, 17:13, 18:13 and 19:03, after stops at Niseko View Plaza, Hon-dori, Annupuri, Niseko Village and Higashiyama. Back from Hirafu at 8:00, 9:00, 10:00 and 15:30, at the airport at 11:28, 12:28, 13:28 and 18:58. About 3 hours 30 minutes, with a rest stop.</li>
+<li><strong>How to book.</strong> Online in English, or by phone at the Chuo Bus Sapporo Terminal, 0570-200-600 (7:30 to 18:00), by 18:00 the day before. Seats are not numbered. Online bookings are not paid online: buy the ticket at a counter on the day, or pay cash on the bus.</li>
+<li><strong>Late or delayed flight?</strong> The last bus to Niseko leaves at 15:30, and the bus company says buses can be late in bad weather. Have a back-up: the Airport Train to Sapporo, then the morning ski bus from Sapporo Station (7:50 and 9:20; see our <a href="/blog/sapporo-station-guide#day-trips">Sapporo Station guide</a>).</li>
+<li><strong>Ski gear.</strong> No ski or snowboard boots on board. Put skis and snowboards in a case (sole guards are fine for snowboards).</li>
+<li><strong>Rusutsu.</strong> The airport lists Rusutsu with the ski bus at stop 12. The bus company lists a fare from New Chitose Airport to Rusutsu Resort Hotel but no times, so ask it before you rely on it.</li>
+<li><strong>Furano</strong> (HOKKAIDO BUS): domestic stop 23. We could not open the bus company&rsquo;s site, so we give no times. In winter, JR also reaches Furano by train via Asahikawa.</li>
+<li><strong>Noboribetsu Onsen</strong> (hot springs, not skiing): Donan Bus runs a direct bus, booking required (up to 2 hours before), about 1 hour 15 minutes. On 24 November 2026 its page listed departures at 13:20, 14:10 and 15:10 from International Terminal stop 86, then Domestic Terminal stops 29 and 2 a few minutes later. Back from Noboribetsu Onsen at 9:55, 10:30 and 11:45.</li>
 <li><strong>Landed at the International Terminal?</strong> Walk the 2F corridor to the Domestic Terminal; the domestic bus stops are on 1F.</li>
 <li><strong>Skis and snowboards</strong> count as large items at the baggage counters (Domestic 1F, 7:00 to 20:00).</li>
 </ul>
-""" + sources(["abus", "bagroom"], "Ski-bus dates and times change every season.")
+""" + sources(["abus", "skibus", "skibook", "skipdf", "donanair", "donanairb", "bagroom"], "Ski-bus dates and times change every season.")
 
 MONEY = """<h2 id="money">Money: currency exchange and ATMs</h2>
 <p>The airport says its currency exchange opens in line with the flights. These are the counters, machines and ATMs it lists.</p>
@@ -1617,7 +1633,8 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Tickets:</b> bus counters on Domestic 1F (near Arrival Gates 2 and 4), ticket machines in the International 1F Main Entrance Lobby.</li>'
       +'<li>The bus <b>leaves on time even if your flight is late</b>. Snow and traffic can slow it.</li>'
       +'<li>Summer 2026 timetable: first 8:40, last 22:55 from the ANA stop. A winter timetable may replace it.</li>'
-      +'<li><b>Ski bus</b> to Niseko and Rusutsu: domestic stop 12, winter only. <b>Furano:</b> domestic stop 23. We did not find their times.</li></ul>'
+      +'<li><b>Niseko ski bus</b> (booking required, 12 Dec to 22 Mar): domestic stop 12 at 10:00, 13:40, 14:40, 15:30; about 3 h 30 min. Book by 18:00 the day before: Chuo Bus <a href="tel:0570200600">0570-200-600</a>. <b>Furano:</b> domestic stop 23.</li>'
+      +'<li><b>Noboribetsu Onsen</b> direct bus (booking required): 13:20, 14:10, 15:10 from International stop 86, about 1 h 15 min.</li></ul>'
       +'<p class="sm">Source: New Chitose Airport bus page and Hokkaido Chuo Bus, checked 24 November 2026.</p>'+more('#bus');
   }
   function betweenHTML(){
