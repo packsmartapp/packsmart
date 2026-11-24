@@ -24,7 +24,7 @@ SKIP_HEAD = re.compile(r"photo|gap|blocked|pakutaso|how the timetable facts were
 SKIP_LINE = re.compile(r"\bowner\b|TODO|PAKUTASO|sips|sandbox|proxy|curl|Playwright", re.I)
 LOCAL_FILE = re.compile(r"\s*\[[^\]\n]*\.(?:html|pdf|json|png|jpe?g|webp)[^\]\n]*\]")
 URL = re.compile(r"https?://[^\s)\]>\"'`,]+")
-MAX = 1800
+MAX = 900
 
 
 def clean(text):
