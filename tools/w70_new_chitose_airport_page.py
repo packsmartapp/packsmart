@@ -65,6 +65,7 @@ SRC = {
     "hours": (_A + "service/", "New Chitose Airport: services and building opening hours"),
     "ajr": (_A + "access/jr/", "New Chitose Airport: access by JR"),
     "abus": (_A + "access/bus/", "New Chitose Airport: access by bus"),
+    "jrhotels": ("https://www.jrhokkaido.co.jp/global/english/travel/link.html#lnk03", "JR Hokkaido: JR Hokkaido Group Hotels"),
     "skibus": ("https://teikan.chuo-bus.co.jp/en/course/18958", "Hokkaido Chuo Bus: Niseko ski bus (English)"),
     "skipdf": ("https://www.nisekobus.co.jp/uploads/2026冬-スキーバス.pdf", "Niseko Bus: ski bus timetable 2026-27 (PDF, Japanese)"),
     "skibook": ("https://teikan.chuo-bus.co.jp/multi/skibus.html?lang=en", "Hokkaido Chuo Bus: ski bus booking (English)"),
@@ -604,7 +605,7 @@ ABOUT = """<div class="ps-about" id="about-this-guide">
 <p>Written by PackSmart. Airport details were checked on 24 November 2026 against the New Chitose Airport website and its floor guides, JR Hokkaido, Hokkaido Chuo Bus and the Sapporo Tourist Association. Where an official page did not tell us something, for example the Furano bus times, the walking time between the terminals or where the toilets are, we say so instead of guessing. The bus times come from the summer 2026 timetable, which was still the current one on 24 November 2026. Spotted something out of date? <a href="/contact">Tell us</a> and we will fix it.</p>
 <ul>
 <li><strong>24 Nov 2026:</strong> first version, with the one-page card, the terminals floor by floor, the 3F corridor closure, the Airport Train and the buses to Sapporo, ski buses, money, getting online, lockers and hotel delivery, the find-it tool, opening hours, winter and delays, help and a leaving checklist.</li>
-<li><strong>24 Nov 2026, update:</strong> the first and last Airport Trains, rail passes, ATMs, the Niseko ski-bus times and booking for 2026-27, the direct bus to Noboribetsu Onsen, and JR&rsquo;s rules for trains beyond Sapporo.</li>
+<li><strong>24 Nov 2026, update:</strong> the first and last Airport Trains, rail passes, ATMs, the Niseko ski-bus times and booking for 2026-27, the direct bus to Noboribetsu Onsen, and JR&rsquo;s rules for trains beyond Sapporo. Later: JR Inn Chitose (partner link).</li>
 </ul>
 </div>"""
 
@@ -771,10 +772,11 @@ HOURS = """<h2 id="hours">Opening hours, hotels, onsen and the observation deck<
 <li><strong>Building hours.</strong> Domestic Terminal 5:00 to 23:30. International Terminal 5:00 to 21:00. Connecting corridor 5:00 to 23:30. The airport says hours can change with flight delays, and on days with late-night domestic flights only some areas stay open later.</li>
 <li><strong>No staying overnight.</strong> After closing you may not rest in the airport, except in the accommodation facilities.</li>
 <li><strong>Airport hotels.</strong> Air Terminal Hotel, in the Domestic Terminal by Arrival Gate 5 (its own lift, 1F to 5F). Portom International Hokkaido, on International 4F: enter by the escalator on the 3F departure lobby side, or by the hotel lift from 1F to 3F.</li>
+<li><strong>In Chitose city.</strong> JR Hokkaido lists JR Inn Chitose among its group hotels; the Rapid and Semi-Rapid Airport Trains stop at Chitose (H13). <a href="https://klook.tpo.lu/0vzLRCYJ" target="_blank" rel="nofollow noopener sponsored" data-ps-placement="hotel-jr-inn-chitose" style="color:#0a8f78;font-weight:700;">Rooms and prices</a> (partner link)</li>
 <li><strong>New Chitose Airport Onsen.</strong> Domestic 4F. The airport describes it as a relaxation facility using natural hot spring water, where you can stay a long time. Open 23 hours, 10:00 to 9:00 the next morning (last entry 7:30). A late-night surcharge applies after 1:00. Between 23:00 and 5:00, when the terminal is closed, use the 24-hour lift from 1F to 4F.</li>
 <li><strong>Observation deck.</strong> Domestic 4F, entered from the 3F food area, beside the Airport History Museum. Open 1 April to 30 November, 8:00 to 20:00; <strong>closed December to March</strong>. It may also close in strong wind or heavy snow.</li>
 </ul>
-""" + sources(["hours", "fmdom", "fmint", "deck"], "Hours can change, so check the airport's pages.")
+""" + sources(["hours", "fmdom", "fmint", "deck", "jrhotels"], "Hours can change, so check the airport's pages.")
 
 WINTER = """<h2 id="winter">Snow, delays and cancelled flights</h2>
 <p>Hokkaido winters are cold and snowy. The Sapporo Tourist Association recommends warm clothing and shoes with good grip on snowy roads. This is what the official pages say to do when the weather gets in the way.</p>

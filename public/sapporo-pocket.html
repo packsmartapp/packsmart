@@ -499,7 +499,7 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
     return '<ul class="pl"><li><b>eSIM:</b> install it on your phone and switch it on when you need it. No counter, no queue.</li>'
       +'<li><b>JR Wi-Fi</b> at stations and on the Airport Train cars (JR Hokkaido).</li></ul>';
   }
-  var NEXT=[['🚇','Subway to Odori',subwayHTML],['🚪','Gates and exits',gatesHTML],['❄️','Snow Festival',snowHTML],['ℹ️','Help desks',deskHTML],['🧳','Lockers',bagsHTML],['✈️','To the airport',airportHTML],['🏔️','Day trips',dayHTML],['📱','Phone data',simHTML]];
+  var NEXT=[['🚇','Subway to Odori',subwayHTML],['🚪','Gates and exits',gatesHTML],['❄️','Snow Festival',snowHTML],['ℹ️','Help desks',deskHTML],['🧳','Lockers',bagsHTML],['✈️','To the airport',airportHTML],['🏔️','Day trips',dayHTML],['🏨','Hotels by the station',hotelHTML],['📱','Phone data',simHTML]];
   var at=$('arrTiles');
   NEXT.forEach(function(n,k){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);
@@ -570,6 +570,14 @@ button.big{font:inherit;font-weight:700;font-size:1.05rem;background:#fff;border
       +'<li>No ski boots on board. Skis and boards in a case.</li>'
       +'<li><b>Sapporo Kokusai ski area:</b> booked bus from the North Exit (taxi-pool side), about 1 h 37 min.</li></ul>'
       +'<p class="sm">Source: Hokkaido Chuo Bus and Niseko Bus, checked 24 November 2026.</p>'+more('#day-trips');
+  }
+  function hotelHTML(){
+    return '<p class="n2">JR Hokkaido&rsquo;s group hotels at or near Sapporo Station.</p>'
+      +'<ul class="pl"><li><b>JR Tower Hotel Nikko Sapporo:</b> next to the station, natural hot springs. <a href="https://klook.tpo.lu/zjYrWP25" target="_blank" rel="nofollow noopener sponsored">Rooms and prices</a> (partner link, needs internet)</li>'
+      +'<li><b>JR Inn Sapporo:</b> 4 min walk from the West Ticket Gate. <a href="https://klook.tpo.lu/DdKj1ncR" target="_blank" rel="nofollow noopener sponsored">Rooms and prices</a> (partner link, needs internet)</li>'
+      +'<li><b>JR Inn Sapporo N2:</b> near the station, the Clock Tower and Odori Park. <a href="https://klook.tpo.lu/Qn866IDt" target="_blank" rel="nofollow noopener sponsored">Rooms and prices</a> (partner link, needs internet)</li>'
+      +'<li><b>JR Inn Sapporo South:</b> near Odori Park, easy to reach from Sapporo and Odori stations. <a href="https://klook.tpo.lu/vzyGqBYK" target="_blank" rel="nofollow noopener sponsored">Rooms and prices</a> (partner link, needs internet)</li></ul>'
+      +'<p class="sm">Source: JR Hokkaido, checked 24 November 2026.</p>'+more('#hotels');
   }
   function allowHTML(){
     return '<p class="n2">Sapporo Station is being rebuilt for the Shinkansen. Add a buffer for walking, gates and luggage.</p>'

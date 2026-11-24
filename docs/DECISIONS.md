@@ -232,6 +232,11 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Chose: a guide must first answer what a traveller needs on the spot (ATMs and cash, exits, platforms, lockers, help, first and last trains), from official sources with a date. Partner blocks come after that and never replace a missing fact. A gap a traveller would hit (for example ATMs) is filled before the guide is called done.
 - Why: travellers save and share a guide that works when they are stuck; that trust is what makes the partner links worth anything.
 
+**D52. JR Hokkaido's own hotels get tracked hotel links, through Travelpayouts** (24 Nov)
+- Chose: the JR Hokkaido group hotels by Sapporo, Chitose, Asahikawa and Hakodate stations are listed with "Rooms and prices (partner link)" links made by the owner in Travelpayouts (Klook hotel pages). An owner-approved exception to "avoid adding Klook placements", for these hotels only. Hotel descriptions come only from JR's own hotel list. Hotel Nikko Northland Obihiro and JR Inn Obihiro wait for an eastern Hokkaido page.
+- Rejected: a direct JR hotel programme (JR Hotel Group has none, owner checked); a hotel chain's own programme until its network and payout method are known.
+- Why: a traveller arriving by train wants a bed next to the station, and Travelpayouts pays the way the site is already paid (D46).
+
 ## Open decisions (not made)
 
 - Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.

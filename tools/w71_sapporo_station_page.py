@@ -15,6 +15,8 @@ The station is being rebuilt for the Hokkaido Shinkansen: JR shows its map "as o
 change. Left out on purpose: the platform for the Airport Train at Sapporo (only a 2022 press release names one), the
 (first and last Airport Trains added 24 Nov 2026 from JR's station timetables), locker locations and prices, the length and hours of the underground
 walkway to Odori, Snow Festival opening hours and the Premist Dome site's dates, and toilets. (ATMs added 24 Nov 2026 from Seven Bank's locator.)
+JR Hokkaido group hotels (section hotels, Pocket Guide sheet hotelHTML; placements hotels-sapporo-station, hotel-jr-inn-asahikawa,
+hotel-jr-inn-hakodate): tracked hotel links made by the owner (D52); descriptions only from JR's own hotel list.
 Day trips and ski buses (section day-trips, Pocket Guide sheets dayHTML and skiHTML) come from docs/research/sapporo-daytrips-sources.md
 (JR Hokkaido, Donan Bus, Asahiyama Zoo, Hokkaido Chuo Bus and Niseko Bus; checked 24 November 2026), with one tours link
 (placement gyg-sapporo-daytrips, cmp ps-sapporo-station-daytrips).
@@ -96,6 +98,7 @@ SRC = {
     "sbapia": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000009330", "Seven Bank ATM: JR Tower APIA"),
     "sbodori": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000026672", "Seven Bank ATM: subway Odori station"),
     "jrpass": ("https://www.jrhokkaido.co.jp/global/english/ticket/railpass/index.html", "JR Hokkaido: rail passes for visitors"),
+    "jrhotels": ("https://www.jrhokkaido.co.jp/global/english/travel/link.html#lnk03", "JR Hokkaido: JR Hokkaido Group Hotels"),
     "jrallres": ("https://www.jrhokkaido.co.jp/CM/Info/notice_en/pdf/all_reserved_202602_en.pdf", "JR Hokkaido: all limited expresses reserved from 14 March 2026 (PDF)"),
     "jrusage": ("https://www.jrhokkaido.co.jp/global/english/ticket/usage/usage03.html", "JR Hokkaido: reserved seats with a rail pass"),
     "jrmanner": ("https://www.jrhokkaido.co.jp/global/pdf/e-cn-mannerguide.pdf", "JR Hokkaido: manner and user guide (PDF)"),
@@ -291,6 +294,7 @@ TOC = [
     ("money", "Money and ATMs"),
     ("luggage", "Lockers and luggage"),
     ("finder", "Find it fast: by side"),
+    ("hotels", "Staying by the station: JR Hokkaido's hotels"),
     ("leaving", "Leaving Sapporo: a checklist"),
     ("faq", "FAQ"),
     ("about-this-guide", "About this guide and change log"),
@@ -299,7 +303,7 @@ TOC = [
 TOC_SHORT = {
     "one-page": "On one page", "construction": "Construction", "gates": "Gates", "desks": "Help desks", "subway": "Subway",
     "snow-festival": "Snow Festival", "airport": "To the airport", "long-distance": "Other trains", "day-trips": "Day trips", "connected": "Get online",
-    "money": "ATMs", "luggage": "Lockers", "finder": "Find it fast", "leaving": "Leaving", "faq": "FAQ", "about-this-guide": "About",
+    "money": "ATMs", "luggage": "Lockers", "finder": "Find it fast", "hotels": "Hotels", "leaving": "Leaving", "faq": "FAQ", "about-this-guide": "About",
 }
 TOC_TILES = [
     ("subway", "&#128647;", "Subway to Odori", "Namboku N06, 2 min"),
@@ -679,14 +683,14 @@ AIRPORT = """<h2 id="airport">To New Chitose Airport: the Airport Train</h2>
 LONG = """<h2 id="long-distance">Hakodate, Asahikawa, Otaru and the Shinkansen</h2>
 <ul>
 <li><strong>The Shinkansen does not reach Sapporo yet.</strong> JR Hokkaido's construction page describes its work as towards the opening of the Hokkaido Shinkansen's Sapporo station, and JR lists the Hokkaido Shinkansen stations as Shin-Hakodate-Hokuto, Kikonai and Okutsugaru-Imabetsu. We did not find an opening date on those pages.</li>
-<li><strong>To Hakodate and the Shinkansen.</strong> JR: the Limited Express Hokuto connects Sapporo and Hakodate, and is used as a connecting train to and from the Hokkaido Shinkansen. The Sapporo Tourist Association gives about 3 hours 30 minutes to Hakodate.</li>
+<li><strong>To Hakodate and the Shinkansen.</strong> JR: the Limited Express Hokuto connects Sapporo and Hakodate, and is used as a connecting train to and from the Hokkaido Shinkansen. The Sapporo Tourist Association gives about 3 hours 30 minutes to Hakodate. Staying there? JR says JR Inn Hakodate is right by JR Hakodate Station. <a href="https://klook.tpo.lu/NtExmdmD" target="_blank" rel="nofollow noopener sponsored" data-ps-placement="hotel-jr-inn-hakodate" style="color:#0a8f78;font-weight:700;">Rooms and prices</a> (partner link)</li>
 <li><strong>Book a seat on limited expresses.</strong> JR Hokkaido: &ldquo;From March 14, 2026, all seats will be reserved on all limited express trains in Hokkaido.&rdquo; That includes the Hokuto, Kamui, Lilac and Ozora. The Airport Train is not a limited express: it keeps its non-reserved cars.</li>
 <li><strong>To Asahikawa.</strong> The Limited Express Kamui and Lilac. The Sapporo Tourist Association gives 1 hour 25 minutes at the quickest, with over 20 round trips a day.</li>
 <li><strong>To Kushiro.</strong> The Limited Express Ozora, about 4 hours 11 minutes (Sapporo Tourist Association).</li>
 <li><strong>To Otaru.</strong> Some Airport Trains run on to Otaru. JR says trains bound for &ldquo;Teine&rdquo; or &ldquo;Hoshimi&rdquo; do not continue to Otaru.</li>
 <li><strong>Going beyond Otaru</strong> to Yoichi, Kutchan or Niseko? JR says IC cards such as Suica cannot be used beyond Otaru: buy a ticket at the station before you board. JR&rsquo;s English home page also notes that IC cards work only at some stations.</li>
 </ul>
-""" + sources(["jrconst", "jrshin", "jrhak", "jrasa", "sttrans", "jrair", "jrhome"], "Times change, so check JR Hokkaido.")
+""" + sources(["jrconst", "jrshin", "jrhak", "jrasa", "sttrans", "jrair", "jrhome", "jrhotels"], "Times change, so check JR Hokkaido.")
 
 DAYTRIPS = """<h2 id="day-trips">Day trips by train, and ski buses</h2>
 <p>Sapporo is a good base: Otaru, Noboribetsu and Asahikawa are all easy day trips by train. Train times below are from JR Hokkaido&rsquo;s timetables for Tuesday 24 November 2026 (a weekday). They change, so check JR&rsquo;s departures the day before.</p>
@@ -728,6 +732,7 @@ DAYTRIPS = """<h2 id="day-trips">Day trips by train, and ski buses</h2>
 <li><strong>To the zoo.</strong> Asahikawa Denki Kido bus routes 41 and 47, from stop 6 in front of Asahikawa Station: about every 30 minutes, about 40 minutes.</li>
 <li><strong>Winter opening.</strong> 11 November 2026 to 7 April 2027, 10:30 to 15:30 (last entry 15:00). Closed 30 December to 1 January.</li>
 <li><strong>Penguin walk.</strong> In the snowy season, from about late December to mid-March, at 11:00 and 14:30 (March: 11:00 only). The zoo announces the first day on its social media, and the walk is called off in bad weather. The paths are steep: wear shoes that grip on snow.</li>
+<li><strong>Staying the night?</strong> JR says JR Inn Asahikawa is directly connected to Asahikawa Station. <a href="https://klook.tpo.lu/lpyq58s7" target="_blank" rel="nofollow noopener sponsored" data-ps-placement="hotel-jr-inn-asahikawa" style="color:#0a8f78;font-weight:700;">Rooms and prices</a> (partner link)</li>
 </ul>
 <h3>Biei and Furano in winter</h3>
 <ul>
@@ -751,7 +756,7 @@ DAYTRIPS = """<h2 id="day-trips">Day trips by train, and ski buses</h2>
 <li><strong>Snow.</strong> Check JR Hokkaido&rsquo;s <a href="https://www3.jrhokkaido.co.jp/webunkou/index_en.html" target="_blank" rel="noopener noreferrer">Train Operation Information (English)</a> before you set off, and keep a little cash for a bus or a taxi.</li>
 </ul>
 <p style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">Rather not plan the trains? <a href="https://www.getyourguide.com/s/?q=Sapporo%20day%20trip&amp;partner_id=D7IXONS&amp;cmp=ps-sapporo-station-daytrips" target="_blank" rel="nofollow noopener sponsored" data-ps-placement="gyg-sapporo-daytrips" style="color:#00C9A7;text-decoration:underline;">Compare guided day tours from Sapporo</a> (partner link). Check what is included, and the meeting point, before you book.</p>
-""" + sources(["jrallres", "jrusage", "jrmanner", "jracc", "jretix", "jrpass", "jrttspk", "ttotaru", "ttnob", "ttasa", "ttbiei", "jrmodnob", "jrmodfur", "jrfaq9", "jrfbtrain", "jrdis", "jtnob", "donanstn", "donanback", "zoowin", "zooacc", "skibus", "skibook", "skipdf", "skikok"], "Times change, so check the operator.")
+""" + sources(["jrallres", "jrusage", "jrmanner", "jracc", "jretix", "jrpass", "jrttspk", "ttotaru", "ttnob", "ttasa", "ttbiei", "jrmodnob", "jrmodfur", "jrfaq9", "jrfbtrain", "jrdis", "jtnob", "donanstn", "donanback", "zoowin", "zooacc", "jrhotels", "skibus", "skibook", "skipdf", "skikok"], "Times change, so check the operator.")
 
 CONNECTED = """<h2 id="connected">Getting online: eSIM</h2>
 <p>You will want a connection for maps, messages and the festival pages.</p>
@@ -786,6 +791,19 @@ LUGGAGE = """<h2 id="luggage">Lockers and luggage</h2>
 </ul>
 """ + sources(["jrlock", "stlock", "jrfaq7"], "Locker numbers change with the construction.")
 
+HOTELS = """<div data-ps-placement="hotels-sapporo-station">
+<h2 id="hotels">Staying by the station: JR Hokkaido&rsquo;s hotels</h2>
+<p>Want to be close to the trains and the airport? JR Hokkaido lists these group hotels at or near Sapporo Station. This is what JR says about where each one is:</p>
+<ul>
+<li><strong>JR Tower Hotel Nikko Sapporo:</strong> next to Sapporo Station, a 36-storey hotel with natural hot springs. <a href="https://klook.tpo.lu/zjYrWP25" target="_blank" rel="nofollow noopener sponsored" style="color:#0a8f78;font-weight:700;">Rooms and prices</a> (partner link)</li>
+<li><strong>JR Inn Sapporo:</strong> 4 minutes&rsquo; walk from the West Ticket Gate. <a href="https://klook.tpo.lu/DdKj1ncR" target="_blank" rel="nofollow noopener sponsored" style="color:#0a8f78;font-weight:700;">Rooms and prices</a> (partner link)</li>
+<li><strong>JR Inn Sapporo N2:</strong> close to Sapporo Station, the Clock Tower and Odori Park. <a href="https://klook.tpo.lu/Qn866IDt" target="_blank" rel="nofollow noopener sponsored" style="color:#0a8f78;font-weight:700;">Rooms and prices</a> (partner link)</li>
+<li><strong>JR Inn Sapporo South:</strong> close to the Former Hokkaido Government Office Building and Odori Park, with good access to Sapporo and Odori stations. <a href="https://klook.tpo.lu/vzyGqBYK" target="_blank" rel="nofollow noopener sponsored" style="color:#0a8f78;font-weight:700;">Rooms and prices</a> (partner link)</li>
+</ul>
+<p>Going further? JR also lists <strong>JR Inn Asahikawa</strong>, connected to Asahikawa Station, and <strong>JR Inn Hakodate</strong>, right by JR Hakodate Station: see <a href="#day-trips">day trips</a> and <a href="#long-distance">other trains</a>.</p>
+<p>Check the room, the total price and the cancellation terms on the booking page before you book.</p>
+""" + sources(["jrhotels"]) + "\n</div>"
+
 LEAVING = """<h2 id="leaving">Leaving Sapporo: a checklist</h2>
 <ul>
 <li><strong>Flying from New Chitose?</strong> Take JR's Airport Train (fastest 33 minutes). The first leaves at 5:50 and the last at 22:25 (a local train, at the airport 23:12), on JR&rsquo;s timetable for 24 November 2026. Check the departure boards for the platform, and JR&rsquo;s departures the day before an early flight. See our <a href="/blog/new-chitose-airport-guide">New Chitose Airport guide</a>.</li>
@@ -803,6 +821,7 @@ ABOUT = """<div class="ps-about" id="about-this-guide">
 <ul>
 <li><strong>24 Nov 2026:</strong> first version, with the one-page card, the construction notice, the West and East gates, help desks, the subway to Odori and Susukino, the Snow Festival 2027 dates, the Airport Train, long-distance trains, lockers, the find-it tool and a leaving checklist.</li>
 <li><strong>24 Nov 2026, update:</strong> ATMs, the first and last Airport Trains, rail passes, and a new section on day trips by train (Otaru, Noboribetsu, Asahikawa, Biei and Furano), JR&rsquo;s rules for trains beyond Sapporo and the Niseko ski bus.</li>
+<li><strong>24 Nov 2026, update:</strong> JR Hokkaido&rsquo;s hotels by the station, Asahikawa and Hakodate.</li>
 </ul>
 </div>"""
 
@@ -1042,6 +1061,7 @@ BODY = "\n\n".join([
     LUGGAGE,
     FINDER,
     SAVE_BOX,
+    HOTELS,
     LEAVING,
     '<div class="tip-box">\n    <strong>Planning more of Japan?</strong> Our <a href="/blog/japan-travel-packing-guide">Japan travel and packing guide</a> covers what to pack, rail passes, etiquette and a budget breakdown. '
     'Flying in or out? See our <a href="/blog/new-chitose-airport-guide">New Chitose Airport guide</a>.\n</div>',
@@ -1739,7 +1759,7 @@ POCKET_HTML = """<!DOCTYPE html>
     return '<ul class="pl"><li><b>eSIM:</b> install it on your phone and switch it on when you need it. No counter, no queue.</li>'
       +'<li><b>JR Wi-Fi</b> at stations and on the Airport Train cars (JR Hokkaido).</li></ul>';
   }
-  var NEXT=[['🚇','Subway to Odori',subwayHTML],['🚪','Gates and exits',gatesHTML],['❄️','Snow Festival',snowHTML],['ℹ️','Help desks',deskHTML],['🧳','Lockers',bagsHTML],['✈️','To the airport',airportHTML],['🏔️','Day trips',dayHTML],['📱','Phone data',simHTML]];
+  var NEXT=[['🚇','Subway to Odori',subwayHTML],['🚪','Gates and exits',gatesHTML],['❄️','Snow Festival',snowHTML],['ℹ️','Help desks',deskHTML],['🧳','Lockers',bagsHTML],['✈️','To the airport',airportHTML],['🏔️','Day trips',dayHTML],['🏨','Hotels by the station',hotelHTML],['📱','Phone data',simHTML]];
   var at=$('arrTiles');
   NEXT.forEach(function(n,k){
     var b=document.createElement('button'); b.type='button'; b.className='tile c'+(k%3);
@@ -1810,6 +1830,14 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li>No ski boots on board. Skis and boards in a case.</li>'
       +'<li><b>Sapporo Kokusai ski area:</b> booked bus from the North Exit (taxi-pool side), about 1 h 37 min.</li></ul>'
       +'<p class="sm">Source: Hokkaido Chuo Bus and Niseko Bus, checked 24 November 2026.</p>'+more('#day-trips');
+  }
+  function hotelHTML(){
+    return '<p class="n2">JR Hokkaido&rsquo;s group hotels at or near Sapporo Station.</p>'
+      +'<ul class="pl"><li><b>JR Tower Hotel Nikko Sapporo:</b> next to the station, natural hot springs. <a href="https://klook.tpo.lu/zjYrWP25" target="_blank" rel="nofollow noopener sponsored">Rooms and prices</a> (partner link, needs internet)</li>'
+      +'<li><b>JR Inn Sapporo:</b> 4 min walk from the West Ticket Gate. <a href="https://klook.tpo.lu/DdKj1ncR" target="_blank" rel="nofollow noopener sponsored">Rooms and prices</a> (partner link, needs internet)</li>'
+      +'<li><b>JR Inn Sapporo N2:</b> near the station, the Clock Tower and Odori Park. <a href="https://klook.tpo.lu/Qn866IDt" target="_blank" rel="nofollow noopener sponsored">Rooms and prices</a> (partner link, needs internet)</li>'
+      +'<li><b>JR Inn Sapporo South:</b> near Odori Park, easy to reach from Sapporo and Odori stations. <a href="https://klook.tpo.lu/vzyGqBYK" target="_blank" rel="nofollow noopener sponsored">Rooms and prices</a> (partner link, needs internet)</li></ul>'
+      +'<p class="sm">Source: JR Hokkaido, checked 24 November 2026.</p>'+more('#hotels');
   }
   function allowHTML(){
     return '<p class="n2">Sapporo Station is being rebuilt for the Shinkansen. Add a buffer for walking, gates and luggage.</p>'
