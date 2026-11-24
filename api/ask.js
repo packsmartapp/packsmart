@@ -12,7 +12,7 @@ const KBS = { japan: JAPAN_KB };
 const KB = JAPAN_KB;   // the only country so far; search() below uses it
 
 const GUIDES = [
-  ['New Chitose Airport guide', '/blog/new-chitose-airport-guide', 'new chitose cts airport sapporo bus ski niseko noboribetsu'],
+  ['New Chitose Airport guide', '/blog/new-chitose-airport-guide', 'new chitose cts airport sapporo bus ski niseko noboribetsu rental rent car hire'],
   ['Sapporo Station guide', '/blog/sapporo-station-guide', 'sapporo station odori susukino snow festival day trips otaru asahikawa furano biei hotels hokkaido zoo asahiyama upopoy shiraoi noboribetsu'],
   ['Ueno Station guide', '/blog/ueno-station-guide', 'ueno skyliner keisei park cherry blossom ginza hibiya'],
   ['Shinjuku Station guide', '/blog/shinjuku-station-guide', 'shinjuku narita express busta odakyu keio'],
@@ -39,7 +39,7 @@ const DF = new Map();
 DOCS.forEach(set => set.forEach(w => DF.set(w, (DF.get(w) || 0) + 1)));
 
 // a few place names travellers use for the same thing
-const ALIAS = { kansai: ['osaka', 'kyoto', 'kix'], kix: ['kansai'], kanto: ['tokyo'], hakata: ['fukuoka'], fukuoka: ['hakata'], chitose: ['new-chitose', 'cts'], cts: ['chitose'], kasai: ['kansai', 'osaka', 'kyoto'], shinkansen: ['bullet'], bullet: ['shinkansen'], suitcase: ['baggage', 'luggage'], luggage: ['baggage'], bag: ['baggage'], bags: ['baggage'], big: ['oversized'], large: ['oversized'], alcohol: ['alcoholic'], cigarette: ['cigarettes', 'tobacco'], phone: ['sim', 'wi-fi'], sim: ['esim'], money: ['cash', 'atm'], weather: ['season'], rain: ['rainy'], recharge: ['charge', 'add money', 'top'], topup: ['charge'], top: ['charge'], suica: ['ic', 'pasmo', 'icoca'], pasmo: ['suica', 'ic'], icoca: ['ic', 'suica'], airport: ['international'], osaka: ['kansai', 'itami'], kyoto: ['kansai'] };
+const ALIAS = { rent: ['rental'], hire: ['rental'], car: ['rental'], kansai: ['osaka', 'kyoto', 'kix'], kix: ['kansai'], kanto: ['tokyo'], hakata: ['fukuoka'], fukuoka: ['hakata'], chitose: ['new-chitose', 'cts'], cts: ['chitose'], kasai: ['kansai', 'osaka', 'kyoto'], shinkansen: ['bullet'], bullet: ['shinkansen'], suitcase: ['baggage', 'luggage'], luggage: ['baggage'], bag: ['baggage'], bags: ['baggage'], big: ['oversized'], large: ['oversized'], alcohol: ['alcoholic'], cigarette: ['cigarettes', 'tobacco'], phone: ['sim', 'wi-fi'], sim: ['esim'], money: ['cash', 'atm'], weather: ['season'], rain: ['rainy'], recharge: ['charge', 'add money', 'top'], topup: ['charge'], top: ['charge'], suica: ['ic', 'pasmo', 'icoca'], pasmo: ['suica', 'ic'], icoca: ['ic', 'suica'], airport: ['international'], osaka: ['kansai', 'itami'], kyoto: ['kansai'] };
 function search(q, n, topicWords) {
   const base = words(q);
   const tw = (topicWords || []).map(stem).filter(w => !base.includes(w));
@@ -80,7 +80,8 @@ function limited(ip) {
   return '';
 }
 
-const SYSTEM = `You are Packy, PackSmart's Japan travel helper ("Ask about Japan"). If asked who you are, say you are Packy, PackSmart's Japan travel helper, and that your answers come from official sources such as JR, the airports and JNTO.
+const SYSTEM = `You are Packy, PackSmart's Japan travel buddy. The chat window has already greeted the traveller, so never greet them and never introduce yourself; start directly with the answer. Only if the question itself asks who or what you are, say in one sentence that you are Packy, PackSmart's Japan travel buddy, and that your answers come from official sources such as JR, the airports and JNTO.
+If a PREVIOUS QUESTION is given, use it only to understand words like "there", "it" or "that" in the new question.
 Answer ONLY from the NOTES you are given. The notes come from official sources (JR companies, airports, station and bus operators, JNTO, city and government pages) and say when each fact was checked.
 Rules:
 - Answer whatever part of the question the notes cover, even if they do not cover all of it, and say briefly which part to check with station staff or the official site. Many questions are partly answered by general notes (for example how IC cards like Suica work anywhere in Japan).
@@ -112,6 +113,7 @@ export default async function handler(req, res) {
   if (!KBS[country]) return res.status(400).json({ ok: false, error: 'Packy does not cover that country yet.' });
   const topic = String((req.body && req.body.topic) || '').toLowerCase().replace(/[^a-z-]/g, '').slice(0, 30);
   const q = String((req.body && req.body.q) || '').trim();
+  const prev = String((req.body && req.body.prev) || '').trim().slice(0, MAX_Q);   // the traveller's previous question, for follow-ups like "there"
   if (q.length < 5) return res.status(400).json({ ok: false, error: 'Please type a question.' });
   if (q.length > MAX_Q) return res.status(400).json({ ok: false, error: 'Please keep it under 300 characters.' });
 
@@ -120,8 +122,8 @@ export default async function handler(req, res) {
   if (lim) return res.status(429).json({ ok: false, error: lim === 'daily' ? 'The assistant is busy today. Please try again tomorrow.' : 'That is a lot of questions in a short time. Please try again in a few minutes.' });
 
   const t0 = Date.now();
-  const notes = search(q, 9, TOPIC_WORDS[topic]);
-  const guide = guideFor(q, topic);
+  const notes = search(q, 9, (TOPIC_WORDS[topic] || []).concat(words(prev)));
+  const guide = guideFor(q + ' ' + prev, topic);
   const log = { ev: 'ask_' + country, topic, q: redact(q), pieces: notes.length, guide: guide[0] };
   if (!notes.length) {
     console.log(JSON.stringify({ ...log, answered: 'no_notes' }));
@@ -133,7 +135,7 @@ export default async function handler(req, res) {
   const notesText = notes.map((p, i) => `NOTE ${i + 1} (${p.t})\n${p.x}`).join('\n\n---\n\n');
   const body = {
     systemInstruction: { parts: [{ text: SYSTEM }] },
-    contents: [{ role: 'user', parts: [{ text: `NOTES:\n\n${notesText}\n\nQUESTION: ${q}` }] }],
+    contents: [{ role: 'user', parts: [{ text: `NOTES:\n\n${notesText}\n\n${prev ? 'PREVIOUS QUESTION: ' + prev + '\n\n' : ''}QUESTION: ${q}` }] }],
     generationConfig: { temperature: 0.2, maxOutputTokens: 700, thinkingConfig: { thinkingBudget: 0 } },
   };
   try {
@@ -148,7 +150,7 @@ export default async function handler(req, res) {
       return res.status(502).json({ ok: false, error: 'Sorry, something went wrong. Please try again.' });
     }
     console.log(JSON.stringify({ ...log, answered: 'yes', ms: Date.now() - t0 }));
-    let text = answer, next = [];
+    let text = answer.replace(/^\s*(?:(?:hi|hello|konnichiwa)[!,.]?\s*)?(?:i(?:'|\u2019)?m|i am)\s+packy\b[^.\n]*[.!]\s*(?:my answers come from[^.\n]*[.!]\s*)?/i, '').trim(), next = [];
     const m = text.match(/\n?\s*NEXT:\s*(.*)\s*$/i);
     if (m) { text = text.slice(0, m.index).trim(); next = m[1].split('|').map(x => x.trim().replace(/^[-*\d.\s]+/, '')).filter(x => x.length > 4 && x.length < 90).slice(0, 3); }
     return res.status(200).json({ ok: true, answer: text, next, guide: { title: guide[0], url: guide[1] } });
