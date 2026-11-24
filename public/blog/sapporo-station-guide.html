@@ -465,7 +465,7 @@
 .ps-print-btn{font:inherit;font-size:1rem;font-weight:700;color:#fff;background:#00C9A7;border:0;border-radius:10px;padding:12px 20px;cursor:pointer;}
 .ps-print-btn:hover,.ps-print-btn:focus-visible{background:#00b396;}
 .ps-note{font-size:0.82rem;color:#777;line-height:1.5;margin:6px 0 18px;}
-.ps-sources{font-size:0.9rem;line-height:1.6;}
+.ps-sources{font-size:0.9rem;line-height:1.6;}.ps-srcbox{margin:0 0 24px}.ps-srcbox summary{cursor:pointer;color:#0a8f78;font-weight:700;padding:8px 0;min-height:44px;display:flex;align-items:center}
 .ps-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 20px;}
 .ps-scroll table{min-width:560px;}
 @media(max-width:600px){
@@ -898,16 +898,19 @@ if(phone.addEventListener){phone.addEventListener('change',function(){if(started
 <li><strong>One-man trains</strong> (one or two cars, no conductor, as on the local lines to Biei and Furano): the doors do not open by themselves, so press the button. With no ticket, take a numbered ticket when you board and pay the driver in cash: no credit cards, no IC cards.</li>
 <li><strong>Tickets and bags.</strong> Do not keep paper tickets in a phone case: JR warns they can stop working. Skis and snowboards must be fully in their bags. Each bag within 250 cm in total (2 m long at most), up to 30 kg, and up to 2 bags.</li>
 </ul>
-<div class="table-wrapper"><table>
+<div class="ps-scroll">
+<table class="checklist-table">
 <thead><tr><th>Day trip</th><th>Train from Sapporo</th><th>Time</th><th>Area pass</th></tr></thead>
 <tbody>
-<tr><td>Otaru</td><td>Rapid Airport (no seat ticket needed)</td><td>34 to 46 min</td><td>Either area pass</td></tr>
-<tr><td>Upopoy (Shiraoi)</td><td>Limited Express Suzuran (some trains)</td><td>about 1 h</td><td>Sapporo-Noboribetsu</td></tr>
-<tr><td>Noboribetsu</td><td>Limited Express Suzuran or Hokuto</td><td>70 to 82 min</td><td>Sapporo-Noboribetsu</td></tr>
-<tr><td>Asahikawa</td><td>Limited Express Lilac or Kamui</td><td>85 min</td><td>Sapporo-Furano</td></tr>
-<tr><td>Biei, Furano</td><td>Via Asahikawa, then local trains</td><td>2 h or more</td><td>Sapporo-Furano</td></tr>
-<tr><td>Niseko</td><td>Ski bus (see below)</td><td>about 3 h</td><td>No</td></tr>
-</tbody></table></div>
+<tr><td data-label="Day trip">Otaru</td><td data-label="Train from Sapporo">Rapid Airport (no seat ticket needed)</td><td data-label="Time">34 to 46 min</td><td data-label="Area pass">Either area pass</td></tr>
+<tr><td data-label="Day trip">Upopoy (Shiraoi)</td><td data-label="Train from Sapporo">Limited Express Suzuran (some trains)</td><td data-label="Time">about 1 h</td><td data-label="Area pass">Sapporo-Noboribetsu</td></tr>
+<tr><td data-label="Day trip">Noboribetsu</td><td data-label="Train from Sapporo">Limited Express Suzuran or Hokuto</td><td data-label="Time">70 to 82 min</td><td data-label="Area pass">Sapporo-Noboribetsu</td></tr>
+<tr><td data-label="Day trip">Asahikawa</td><td data-label="Train from Sapporo">Limited Express Lilac or Kamui</td><td data-label="Time">85 min</td><td data-label="Area pass">Sapporo-Furano</td></tr>
+<tr><td data-label="Day trip">Biei, Furano</td><td data-label="Train from Sapporo">Via Asahikawa, then local trains</td><td data-label="Time">2 h or more</td><td data-label="Area pass">Sapporo-Furano</td></tr>
+<tr><td data-label="Day trip">Niseko</td><td data-label="Train from Sapporo">Ski bus (see below)</td><td data-label="Time">about 3 h</td><td data-label="Area pass">No</td></tr>
+</tbody>
+</table>
+</div>
 <p>The Hokkaido Rail Pass covers all the JR trains above. The area passes do not cover local buses.</p>
 <h3>Otaru</h3>
 <ul>
@@ -1108,6 +1111,7 @@ if(phone.addEventListener){phone.addEventListener('change',function(){if(started
 
 <h2 id="sources">Sources</h2>
 <p>Every station fact on this page comes from the official sites below, checked on 24 November 2026. Stations change, so follow the signs on the day.</p>
+<details class="ps-srcbox"><summary>Show all 57 official pages</summary>
 <ul class="ps-sources">
 <li><a href="https://www.jrhokkaido.co.jp/construction/" target="_blank" rel="noopener noreferrer">JR Hokkaido: Sapporo Station construction and station map (as of 21 October 2026)</a></li>
 <li><a href="https://www.jrhokkaido.co.jp/network/station/station.html" target="_blank" rel="noopener noreferrer">JR Hokkaido: station search (Sapporo)</a></li>
@@ -1166,7 +1170,7 @@ if(phone.addEventListener){phone.addEventListener('change',function(){if(started
 <li><a href="https://www.jrhokkaido.co.jp/network/locker/locker.pdf" target="_blank" rel="noopener noreferrer">JR Hokkaido: coin locker list (PDF, July 2026)</a></li>
 <li><a href="https://www.sapporo.travel/useful_information/how_to_use_coin-operated_lockers_in_japan/?lang=en" target="_blank" rel="noopener noreferrer">Sapporo Tourist Association: how to use coin lockers</a></li>
 <li><a href="https://www.jrhokkaido.co.jp/global/english/faq/faq07.html" target="_blank" rel="noopener noreferrer">JR Hokkaido: FAQ on coin lockers</a></li>
-</ul>
+</ul></details>
 
 <h2 id="faq">Frequently Asked Questions</h2>
 <h3>How do I get from Sapporo Station to Odori Park?</h3>

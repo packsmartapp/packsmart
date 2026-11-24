@@ -343,7 +343,7 @@ PRINT_CSS = """<style>
 .ps-print-btn{font:inherit;font-size:1rem;font-weight:700;color:#fff;background:#00C9A7;border:0;border-radius:10px;padding:12px 20px;cursor:pointer;}
 .ps-print-btn:hover,.ps-print-btn:focus-visible{background:#00b396;}
 .ps-note{font-size:0.82rem;color:#777;line-height:1.5;margin:6px 0 18px;}
-.ps-sources{font-size:0.9rem;line-height:1.6;}
+.ps-sources{font-size:0.9rem;line-height:1.6;}.ps-srcbox{margin:0 0 24px}.ps-srcbox summary{cursor:pointer;color:#0a8f78;font-weight:700;padding:8px 0;min-height:44px;display:flex;align-items:center}
 .ps-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 20px;}
 .ps-scroll table{min-width:560px;}
 @media(max-width:600px){
@@ -1058,8 +1058,9 @@ BODY = re.sub(r'<p class="ps-note">Sources: (.*?)</p>\n?', _gather, BODY, flags=
 if "Sources: " in BODY or len(_src_links) < 10:
     die("source notes not gathered (%d links)" % len(_src_links))
 SOURCES = ('<h2 id="sources">Sources</h2>\n<p>Every station fact on this page comes from the official sites below, '
-           'checked on 23 November 2026. Stations change, so follow the signs on the day.</p>\n<ul class="ps-sources">\n'
-           + "".join("<li>%s</li>\n" % a for a in _src_links) + "</ul>")
+           'checked on 23 November 2026. Stations change, so follow the signs on the day.</p>\n'
+           + '<details class="ps-srcbox"><summary>Show all %d official pages</summary>\n<ul class="ps-sources">\n' % len(_src_links)
+           + "".join("<li>%s</li>\n" % a for a in _src_links) + "</ul></details>")
 _faq = BODY.index('<h2 id="faq">')
 BODY = BODY[:_faq] + SOURCES + "\n\n" + BODY[_faq:]
 # hero button: a quiet way into the Pocket Guide from the top of the article (as w42)

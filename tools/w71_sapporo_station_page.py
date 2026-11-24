@@ -394,7 +394,7 @@ PRINT_CSS = """<style>
 .ps-print-btn{font:inherit;font-size:1rem;font-weight:700;color:#fff;background:#00C9A7;border:0;border-radius:10px;padding:12px 20px;cursor:pointer;}
 .ps-print-btn:hover,.ps-print-btn:focus-visible{background:#00b396;}
 .ps-note{font-size:0.82rem;color:#777;line-height:1.5;margin:6px 0 18px;}
-.ps-sources{font-size:0.9rem;line-height:1.6;}
+.ps-sources{font-size:0.9rem;line-height:1.6;}.ps-srcbox{margin:0 0 24px}.ps-srcbox summary{cursor:pointer;color:#0a8f78;font-weight:700;padding:8px 0;min-height:44px;display:flex;align-items:center}
 .ps-scroll{overflow-x:auto;-webkit-overflow-scrolling:touch;margin:0 0 20px;}
 .ps-scroll table{min-width:560px;}
 @media(max-width:600px){
@@ -703,7 +703,8 @@ DAYTRIPS = """<h2 id="day-trips">Day trips by train, and ski buses</h2>
 <li><strong>One-man trains</strong> (one or two cars, no conductor, as on the local lines to Biei and Furano): the doors do not open by themselves, so press the button. With no ticket, take a numbered ticket when you board and pay the driver in cash: no credit cards, no IC cards.</li>
 <li><strong>Tickets and bags.</strong> Do not keep paper tickets in a phone case: JR warns they can stop working. Skis and snowboards must be fully in their bags. Each bag within 250 cm in total (2 m long at most), up to 30 kg, and up to 2 bags.</li>
 </ul>
-<div class="table-wrapper"><table>
+<div class="ps-scroll">
+<table class="checklist-table">
 <thead><tr><th>Day trip</th><th>Train from Sapporo</th><th>Time</th><th>Area pass</th></tr></thead>
 <tbody>
 <tr><td>Otaru</td><td>Rapid Airport (no seat ticket needed)</td><td>34 to 46 min</td><td>Either area pass</td></tr>
@@ -712,7 +713,9 @@ DAYTRIPS = """<h2 id="day-trips">Day trips by train, and ski buses</h2>
 <tr><td>Asahikawa</td><td>Limited Express Lilac or Kamui</td><td>85 min</td><td>Sapporo-Furano</td></tr>
 <tr><td>Biei, Furano</td><td>Via Asahikawa, then local trains</td><td>2 h or more</td><td>Sapporo-Furano</td></tr>
 <tr><td>Niseko</td><td>Ski bus (see below)</td><td>about 3 h</td><td>No</td></tr>
-</tbody></table></div>
+</tbody>
+</table>
+</div>
 <p>The Hokkaido Rail Pass covers all the JR trains above. The area passes do not cover local buses.</p>
 <h3>Otaru</h3>
 <ul>
@@ -1090,8 +1093,9 @@ BODY = re.sub(r'<p class="ps-note">Sources: (.*?)</p>\n?', _gather, BODY, flags=
 if "Sources: " in BODY or len(_src_links) < 10:
     die("source notes not gathered (%d links)" % len(_src_links))
 SOURCES = ('<h2 id="sources">Sources</h2>\n<p>Every station fact on this page comes from the official sites below, '
-           'checked on 24 November 2026. Stations change, so follow the signs on the day.</p>\n<ul class="ps-sources">\n'
-           + "".join("<li>%s</li>\n" % a for a in _src_links) + "</ul>")
+           'checked on 24 November 2026. Stations change, so follow the signs on the day.</p>\n'
+           + '<details class="ps-srcbox"><summary>Show all %d official pages</summary>\n<ul class="ps-sources">\n' % len(_src_links)
+           + "".join("<li>%s</li>\n" % a for a in _src_links) + "</ul></details>")
 _faq = BODY.index('<h2 id="faq">')
 BODY = BODY[:_faq] + SOURCES + "\n\n" + BODY[_faq:]
 # hero button: a quiet way into the Pocket Guide from the top of the article (as w42)

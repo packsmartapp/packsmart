@@ -237,6 +237,10 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Rejected: a direct JR hotel programme (JR Hotel Group has none, owner checked); a hotel chain's own programme until its network and payout method are known.
 - Why: a traveller arriving by train wants a bed next to the station, and Travelpayouts pays the way the site is already paid (D46).
 
+**D53. The Sources list on station and airport guides folds away** (24 Nov)
+- Chose: every fact keeps its official source, but the gathered list under the Sources heading opens only on tap ("Show all N official pages"). Applies to the Shinjuku, Ueno, New Chitose and Sapporo guides (w58, w68, w70, w71).
+- Why: the owner found the 46 to 57-link lists too long to scroll past on a phone; readers want the guide, and the sources stay one tap away for anyone checking.
+
 ## Open decisions (not made)
 
 - Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.
