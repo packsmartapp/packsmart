@@ -241,6 +241,10 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Chose: every fact keeps its official source, but the gathered list under the Sources heading opens only on tap ("Show all N official pages"). Applies to the Shinjuku, Ueno, New Chitose and Sapporo guides (w58, w68, w70, w71).
 - Why: the owner found the 46 to 57-link lists too long to scroll past on a phone; readers want the guide, and the sources stay one tap away for anyone checking.
 
+**D54. Partner links send the referrer (no `noreferrer`)** (24 Nov)
+- Chose: every partner link has `rel="nofollow noopener sponsored"` and never `noreferrer`; `w72` fixes and checks it at the end of the chain.
+- Why: the SafetyWing box's main buttons and the Airalo tiles carried `noreferrer` from an old template, so partners saw clicks from the site as coming from nowhere; SafetyWing's review asked why buyers did not seem to come through the website. Commission is unaffected either way (it comes from the ID in the link); `noopener` already covers security.
+
 ## Open decisions (not made)
 
 - Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.

@@ -22,7 +22,7 @@ OLD_BOX = f'''
 <div data-ps-placement="safetywing-complete" style="background:#fff;border-radius:16px;padding:22px 24px;margin:0 0 30px;border:1px solid #C8E6DC;border-left:4px solid #00C9A7;">
     <h3 style="font-size:1.1rem;margin:0 0 8px;color:#212529;">Staying abroad longer? See Nomad Insurance Complete</h3>
     <p style="color:#495057;font-size:0.92rem;line-height:1.6;margin:0 0 14px;">Full health insurance for nomads, expats and families abroad. Renewable, with cover up to US$1,500,000 and year-round home country cover. It costs more than Essential, has a 12-month commitment, and does not cover pre-existing conditions.</p>
-    <a href="{LINK}" target="_blank" rel="noopener noreferrer sponsored" style="display:inline-block;background:#00C9A7;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.92rem;">See Nomad Insurance Complete &rarr;</a>
+    <a href="{LINK}" target="_blank" rel="nofollow noopener sponsored" style="display:inline-block;background:#00C9A7;color:#fff;padding:12px 26px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.92rem;">See Nomad Insurance Complete &rarr;</a>
 </div>
 '''
 
@@ -30,7 +30,7 @@ BOX = f'''<!-- SAFETYWING COMPLETE v2 -->
 <div data-ps-placement="safetywing-complete" style="background:#fff;border-radius:12px;padding:20px 22px;margin:22px auto 0;max-width:640px;text-align:left;border:1px solid #C8E6DC;border-left:4px solid #00C9A7;">
     <h3 style="font-size:1.05rem;margin:0 0 8px;color:#212529;">Staying abroad longer? See Nomad Insurance Complete</h3>
     <p style="color:#495057;font-size:0.92rem;line-height:1.6;margin:0 0 14px;">Full health insurance for nomads, expats and families abroad. Renewable, with cover up to US$1,500,000 and year-round home country cover. It costs more than Essential, has a 12-month commitment, and does not cover pre-existing conditions.</p>
-    <a href="{LINK}" target="_blank" rel="noopener noreferrer sponsored" style="display:inline-block;background:#00C9A7;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.92rem;">See the Complete plan &rarr;</a>
+    <a href="{LINK}" target="_blank" rel="nofollow noopener sponsored" style="display:inline-block;background:#00C9A7;color:#fff;padding:12px 22px;border-radius:8px;text-decoration:none;font-weight:600;font-size:0.92rem;">See the Complete plan &rarr;</a>
 </div>
 '''
 

@@ -114,6 +114,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w69_read_times.py` | w69: honest read times (24 Nov 2026, owner's request). |
 | `w70_new_chitose_airport_page.py` | w70: new page /blog/new-chitose-airport-guide + offline /new-chitose-pocket (neutral, plain-English airport guide for |
 | `w71_sapporo_station_page.py` | w71: new page /blog/sapporo-station-guide + offline /sapporo-pocket (neutral, plain-English station guide for JR Sapporo |
+| `w72_partner_link_rel.py` | w72: partner links tell the partner where the click came from (24 Nov 2026, D54). |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `pocket_guides.json` | data file read by the scripts above |
 | `w62_photo_fixes.json` | data file read by the scripts above |
