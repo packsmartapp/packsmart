@@ -264,7 +264,7 @@
 <div class="jp-ask-top"><span class="jp-ask-av" aria-hidden="true">P</span><b>Ask Packy</b><span class="jp-ask-sub">your Japan travel helper</span><span class="jp-ask-kick">Beta</span></div>
 <form class="jp-ask-form" id="askForm" autocomplete="off">
 <label for="askQ" class="jp-sr">Your question about travel in Japan</label>
-<input id="askQ" type="text" maxlength="300" placeholder="e.g. How do I get from New Chitose Airport to Sapporo?">
+<input id="askQ" type="text" maxlength="300" placeholder="Ask Packy anything about getting around Japan…">
 <button type="submit" id="askBtn">Ask</button>
 </form>
 <div class="jp-ask-try" role="group" aria-label="Example questions">
@@ -289,6 +289,7 @@ function fmt(t){
 function track(s){try{if(window.gtag)gtag('event','ask_japan',{event_category:'engagement',status:s,page_path:location.pathname});}catch(e){}}
 function ask(text){
   text=(text||'').trim(); if(text.length<5){q.focus();return;}
+  if(window.Packy){window.Packy.ask(text);q.value='';return;}   // the shared Packy chat (packy.js) answers, with follow-up questions
   b.disabled=true; out.hidden=false; out.className='jp-ask-out busy'; out.innerHTML='<p>Checking the official sources&hellip;</p>';
   fetch('/api/ask',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({q:text})})
    .then(function(r){return r.json().then(function(d){return [r.ok,d];});})
