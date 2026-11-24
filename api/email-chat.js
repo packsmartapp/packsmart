@@ -9,7 +9,7 @@
 import nodemailer from 'nodemailer';
 
 const ORIGIN_OK = /^https:\/\/(www\.)?packsmartapp\.com$|^https:\/\/packsmart-[a-z0-9-]+-packsmartapps-projects\.vercel\.app$|^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
-const PER_IP = 3, WINDOW_MS = 60 * 60 * 1000, DAILY_CAP = 100;
+const PER_IP = 5, WINDOW_MS = 60 * 60 * 1000, DAILY_CAP = 100;
 const COUNTRIES = { japan: 'Japan' };
 const hits = new Map();
 let day = '', dayCount = 0;
@@ -52,6 +52,27 @@ export default async function handler(req, res) {
   if (!/^[^\s@<>"]{1,64}@[^\s@<>"]{1,190}\.[a-z]{2,}$/i.test(email)) return res.status(400).json({ ok: false, error: 'Please check your email address.' });
   const country = COUNTRIES[String(b.country || 'japan').toLowerCase()] ? String(b.country || 'japan').toLowerCase() : null;
   if (!country) return res.status(400).json({ ok: false, error: 'Not available.' });
+  // step 2 in the chat: the traveller said "yes" to trip tips (and maybe picked a trip month) after the chat was sent.
+  // Only hello@ gets a note; nothing is sent to the traveller.
+  if (b.update === true) {
+    const trip2 = /^\d{4}-\d{2}$/.test(String(b.trip || '')) ? String(b.trip) : '';
+    if (b.tips !== true) return res.status(400).json({ ok: false, error: 'Nothing to update.' });
+    const ip2 = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
+    if (limited(ip2)) return res.status(429).json({ ok: false, error: 'Too many requests for now. Please try again later.' });
+    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) return res.status(500).json({ ok: false, error: 'Email is not set up yet.' });
+    try {
+      const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
+      await t.sendMail({ from: '"Packy signups" <hello@packsmartapp.com>', to: 'hello@packsmartapp.com',
+        subject: '[Packy signup] TRIP TIPS: YES | ' + COUNTRIES[country] + (trip2 ? ' | trip ' + trip2 : ''),
+        text: 'Email: ' + email + '\nTrip tips (marketing consent): YES (tapped "Yes please" after the chat was emailed)\nTrip month: ' + (trip2 || 'not sure') +
+          '\nCountry: ' + COUNTRIES[country] + '\nTime (UTC): ' + new Date().toISOString() + '\n\nImport to the email marketing service later.' });
+      console.log(JSON.stringify({ ev: 'email_tips', country, trip: !!trip2, ok: true }));
+      return res.status(200).json({ ok: true });
+    } catch (e) {
+      console.log(JSON.stringify({ ev: 'email_tips', country, ok: false }));
+      return res.status(502).json({ ok: false, error: 'Sorry, that did not work. Please try again.' });
+    }
+  }
   const items = (Array.isArray(b.items) ? b.items : []).slice(-10)
     .map(x => ({ q: String((x && x.q) || '').slice(0, 300), a: String((x && x.a) || '').slice(0, 4000) }))
     .filter(x => x.q && x.a);

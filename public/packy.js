@@ -59,7 +59,7 @@
     '.pk-tag{display:inline-block;font-size:11px;font-weight:800;background:rgba(255,255,255,.12);border-radius:999px;padding:3px 8px;margin-left:6px;vertical-align:2px}' +
     '.pk-beta{background:#E94560}' +
     '.pk-hb{margin-left:auto;display:flex;gap:2px}' +
-    '.pk-hb button{width:38px;height:38px;border:0;background:none;color:#C9D1F0;font-size:20px;line-height:1;cursor:pointer;border-radius:10px}.pk-hb button:hover{background:rgba(255,255,255,.1);color:#fff}' +
+    '.pk-hb button{width:38px;height:38px;border:0;background:none;color:#C9D1F0;cursor:pointer;border-radius:10px;display:inline-flex;align-items:center;justify-content:center;padding:0}.pk-hb button:hover{background:rgba(255,255,255,.12);color:#fff}' +
     '.pk-body{position:relative;flex:1;overflow-y:auto;padding:14px 12px;display:flex;flex-direction:column;gap:10px}' +
     '.pk-row{display:flex;gap:8px;align-items:flex-end;animation:pkIn .25s ease}' +
     '.pk-row .pk-face{width:28px;height:28px}' +
@@ -71,10 +71,10 @@
     '.pk-card b{display:block;font-size:15.5px;margin-bottom:3px}.pk-card p{margin:0 0 8px;color:#3f4a5c}' +
     '.pk-card .pk-go{display:inline-block;background:#0f0f23;color:#fff!important;text-decoration:none;font-weight:800;border-radius:999px;padding:9px 16px}' +
     '.pk-mail{background:linear-gradient(135deg,#FFF1F4,#FFF8FA);border-color:#F7B9C6}' +
-    '.pk-mail input[type=email],.pk-mail select{width:100%;box-sizing:border-box;font:inherit;font-size:16px;border:1.5px solid #E3E8EC;border-radius:12px;padding:10px 12px;margin:4px 0 8px;background:#fff}' +
-    '.pk-mail label{display:block;font-size:13px;font-weight:700;color:#3f4a5c}.pk-mail .pk-tick{display:flex;gap:8px;align-items:flex-start;font-weight:500;margin:2px 0 10px}.pk-mail .pk-tick input{margin-top:3px;width:18px;height:18px;flex:none}' +
-    '.pk-mail button{font:inherit;font-weight:800;font-size:15px;border:0;border-radius:999px;padding:10px 18px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;cursor:pointer}.pk-mail button[disabled]{opacity:.6}' +
-    '.pk-mail small{display:block;font-size:11.5px;color:#8a93a6;margin-top:8px}' +
+    '.pk-quick{display:flex;gap:6px;margin-top:6px}.pk-quick input{flex:1;min-width:0;font:inherit;font-size:16px;border:1.5px solid #F2C4CF;border-radius:999px;padding:9px 14px;background:#fff;outline:none}.pk-quick input:focus{border-color:#E94560}' +
+    '.pk-quick button,.pk-yes{flex:none;font:inherit;font-weight:800;font-size:14.5px;border:0;border-radius:999px;padding:9px 16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;cursor:pointer}.pk-quick button[disabled]{opacity:.6}' +
+    '.pk-row2{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.pk-no,.pk-mo{font:inherit;font-size:13.5px;font-weight:700;border:1.5px solid #E3E8EC;background:#fff;color:#3f4a5c;border-radius:999px;padding:7px 12px;cursor:pointer}.pk-mo:hover,.pk-no:hover{border-color:#E94560}' +
+    '.pk-fine{display:block;font-size:11px;color:#8a93a6;margin-top:6px}.pk-fine a{color:#8a93a6}' +
     '.pk-offer{display:flex;align-items:center;gap:8px;margin:10px 0 2px;padding:10px 12px;border-radius:14px;background:linear-gradient(135deg,#FFF1F4,#FFE4EA);border:1.5px solid #F7B9C6;color:#0f0f23!important;text-decoration:none;font-weight:700!important;transition:transform .15s}' +
     '.pk-offer:hover{transform:translateY(-1px);border-color:#E94560}.pk-offer b{flex:1;font-size:14.5px}.pk-offer small{font-size:11px;font-weight:600;color:#8a5563;white-space:nowrap}' +
     '.pk-more{font-size:13px;border-top:1px dashed #D5DCE0;margin-top:8px!important;padding-top:6px}' +
@@ -136,7 +136,7 @@
   var panel = el('div', 'pk-panel');
   panel.hidden = true; panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-labelledby', 'pkT');
   panel.innerHTML = '<div class="pk-head"><span class="pk-face">' + FACE + '</span><div><b id="pkT">Packy</b><span class="pk-tag">' + C.flag + ' ' + esc(C.name) + '</span><span class="pk-tag pk-beta">Beta</span><small>Your ' + esc(C.name) + ' travel buddy</small></div>' +
-    '<div class="pk-hb"><button type="button" class="pk-mailbtn" aria-label="Email me this chat" title="Email me this chat">&#9993;&#65039;</button><button type="button" class="pk-new" aria-label="Start a new chat" title="New chat">&#8635;</button><button type="button" class="pk-x" aria-label="Close Packy" title="Close">&times;</button></div></div>' +
+    '<div class="pk-hb"><button type="button" class="pk-mailbtn" aria-label="Email me this chat" title="Email me this chat"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg></button><button type="button" class="pk-new" aria-label="Start a new chat" title="New chat"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg></button><button type="button" class="pk-x" aria-label="Close Packy" title="Close"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>' +
     '<div class="pk-body" aria-live="polite"></div>' +
     '<form class="pk-form" autocomplete="off"><label class="pk-sr" for="pkQ">Your question</label><input id="pkQ" type="text" maxlength="300" placeholder="Ask Packy about ' + esc(C.name) + '…"><button type="submit" class="pk-send" aria-label="Send">&#10148;</button></form>' +
     '<div class="pk-note">Answers come from official sources. Prices and times change, so check before you travel. Booking buttons may be partner links (<a href="/affiliate-disclosure">disclosure</a>). Please don’t type personal details. <a href="/privacy-policy">Privacy</a></div>';
@@ -188,34 +188,49 @@
     botRow(html).querySelector('.pk-msg').style.background = 'transparent';
     track('pocket_card');
   }
-  function months() {
-    var o = '<option value="">Not sure yet</option>', d = new Date(); d.setDate(1);
-    for (var i = 0; i < 13; i++) { var v = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2); o += '<option value="' + v + '">' + d.toLocaleString('en', { month: 'long', year: 'numeric' }) + '</option>'; d.setMonth(d.getMonth() + 1); }
-    return o;
-  }
   function emailCard() {
-    if (!history.length) { botRow('Ask me something first, then I can email you the whole chat ✉️'); scrollDown(); return; }
-    var old = body.querySelector('.pk-mail'); if (old) { old.scrollIntoView({ block: 'center' }); return; }
-    var r = botRow('<form class="pk-card pk-mail" novalidate><b>✉️ Want this chat in your inbox?</b><p>I’ll email you everything we talked about, with the official links, so you have it on your trip.</p>' +
-      '<label>Your email<input type="email" name="email" autocomplete="email" required placeholder="you@example.com"></label>' +
-      '<label>When is your trip? (optional)<select name="trip">' + months() + '</select></label>' +
-      '<label class="pk-tick"><input type="checkbox" name="tips"> <span>Also send me trip tips for ' + esc(C.name) + ' before I go. Unsubscribe any time.</span></label>' +
-      '<button type="submit">Email me this chat</button><small>We only use your email for this. <a href="/privacy-policy">Privacy</a></small></form>');
+    if (!history.length) { botRow('Ask me something first, then I can email you the whole chat.'); scrollDown(); return; }
+    var old = body.querySelector('.pk-mail'); if (old) { var i0 = old.querySelector('input'); if (i0) i0.focus(); old.scrollIntoView({ block: 'center' }); return; }
+    var r = botRow('<form class="pk-card pk-mail" novalidate><b>📩 Get this chat by email</b>' +
+      '<div class="pk-quick"><input type="email" name="email" autocomplete="email" inputmode="email" required placeholder="Your email" aria-label="Your email"><button type="submit">Send</button></div>' +
+      '<span class="pk-fine">Just this chat, with the official links. <a href="/privacy-policy">Privacy</a></span></form>');
     r.querySelector('.pk-msg').style.background = 'transparent';
-    var f = r.querySelector('form'), btn = f.querySelector('button');
-    f.addEventListener('submit', function (e) {
+    var card = r.querySelector('form'), btn = card.querySelector('button'), inp = card.querySelector('input');
+    function post(body2) {
+      return fetch('/api/email-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body2) })
+        .then(function (x) { return x.json().then(function (d) { return [x.ok, d]; }); });
+    }
+    card.addEventListener('submit', function (e) {
       e.preventDefault();
-      var em = f.email.value.trim(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { f.email.focus(); f.email.style.borderColor = '#E94560'; return; }
-      btn.disabled = true; btn.textContent = 'Sending…';
-      fetch('/api/email-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ email: em, tips: f.tips.checked, trip: f.trip.value, country: country, page: location.pathname,
-        items: history.map(function (h) { return { q: h.q, a: h.a }; }) }) })
-        .then(function (x) { return x.json().then(function (d) { return [x.ok, d]; }); })
+      var em = inp.value.trim(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { inp.focus(); inp.style.borderColor = '#E94560'; return; }
+      btn.disabled = true; btn.textContent = '…';
+      post({ email: em, tips: false, country: country, page: location.pathname, items: history.map(function (h) { return { q: h.q, a: h.a }; }) })
         .then(function (x) {
-          if (!x[0] || !x[1].ok) { btn.disabled = false; btn.textContent = 'Email me this chat'; botRow(esc((x[1] && x[1].error) || 'Sorry, that did not work.'), 'pk-err'); track('email_error'); scrollDown(); return; }
-          f.outerHTML = '<div class="pk-card"><b>✅ Sent!</b><p>Check your inbox at ' + esc(em) + ' (and the spam folder, just in case). Safe travels! 🇯🇵</p></div>';
-          track(f.tips && f.tips.checked ? 'email_sent_tips' : 'email_sent');
+          if (!x[0] || !x[1].ok) { btn.disabled = false; btn.textContent = 'Send'; botRow(esc((x[1] && x[1].error) || 'Sorry, that did not work.'), 'pk-err'); track('email_error'); return; }
+          track('email_sent');
+          // step 2: trip tips, a clear separate yes
+          card.outerHTML = '<div class="pk-card pk-mail"><b>✅ Sent to ' + esc(em) + '</b><p>Want trip tips for ' + esc(C.name) + ' before you go?</p>' +
+            '<div class="pk-row2"><button type="button" class="pk-yes">Yes please</button><button type="button" class="pk-no">No thanks</button></div></div>';
+          var c2 = r.querySelector('.pk-mail');
+          c2.querySelector('.pk-no').addEventListener('click', function () { c2.innerHTML = '<b>✅ Sent to ' + esc(em) + '</b><p>Check your inbox (and spam, just in case). Safe travels! 🇯🇵</p>'; track('tips_no'); });
+          c2.querySelector('.pk-yes').addEventListener('click', function () {
+            // step 3: the trip month, one tap
+            var d = new Date(); d.setDate(1); var chips = '';
+            for (var i = 0; i < 8; i++) { var v = d.getFullYear() + '-' + ('0' + (d.getMonth() + 1)).slice(-2); chips += '<button type="button" class="pk-mo" data-m="' + v + '">' + d.toLocaleString('en', { month: 'short' }) + (d.getMonth() === 0 || i === 0 ? ' ' + d.getFullYear() : '') + '</button>'; d.setMonth(d.getMonth() + 1); }
+            c2.innerHTML = '<b>Great! When is your trip?</b><div class="pk-row2">' + chips + '<button type="button" class="pk-mo" data-m="">Not sure</button></div><span class="pk-fine">You can unsubscribe any time.</span>';
+            [].forEach.call(c2.querySelectorAll('.pk-mo'), function (m) {
+              m.addEventListener('click', function () {
+                var trip = m.getAttribute('data-m'); [].forEach.call(c2.querySelectorAll('.pk-mo'), function (z) { z.disabled = true; });
+                post({ update: true, email: em, tips: true, trip: trip, country: country }).then(function (x) {
+                  c2.innerHTML = x[0] && x[1].ok ? '<b>🎉 You’re on the list</b><p>We’ll send a few useful tips before your trip. Check your inbox for your chat now.</p>'
+                    : '<b>Your chat is on its way</b><p>' + esc((x[1] && x[1].error) || 'We could not save the trip tips, sorry.') + '</p>';
+                  track(x[0] && x[1].ok ? 'tips_yes' : 'tips_error');
+                }).catch(function () { c2.innerHTML = '<b>Your chat is on its way</b><p>We could not save the trip tips without a connection.</p>'; });
+              });
+            });
+          });
         })
-        .catch(function () { btn.disabled = false; btn.textContent = 'Email me this chat'; botRow('Packy needs an internet connection to send the email.', 'pk-err'); });
+        .catch(function () { btn.disabled = false; btn.textContent = 'Send'; botRow('Packy needs an internet connection to send the email.', 'pk-err'); });
     });
     track('email_card'); return r;
   }
