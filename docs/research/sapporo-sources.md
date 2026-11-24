@@ -490,3 +490,17 @@ Each listing: https://location.sevenbank.co.jp/sevenbank/spot/detail?code=<code>
 - 0000026672 Sapporo subway Odori: 2 ATMs, 6:00-24:00, "B2 outside the gates by the East gate (Toho Line) / B1 outside the gates by exit 4 (Tozai Line)".
 - 7-Eleven Sapporo Stellar Place (0000023033) and 7-Eleven by the Sapporo Station bus terminal (0000020067): 2 ATMs each, not open 24 hours (hours not listed).
 - No currency exchange found at the station.
+
+
+## JR Hokkaido station timetables and Train Operation Information (checked 24 Nov 2026 in a browser)
+www3.jrhokkaido.co.jp was allowed in the sandbox on 24 Nov 2026. Each time cell carries the train name and destination; the detail view gives each stop's scheduled time.
+- Train Operation Information (English): https://www3.jrhokkaido.co.jp/webunkou/index_en.html (affected area map);
+  each station: https://www3.jrhokkaido.co.jp/webunkou/stationlist_en.html ; train location: https://www3.jrhokkaido.co.jp/trainlocation/index_en.html
+- New Chitose Airport departures (Chitose Line for Sapporo, Otaru), timetable for 24 Nov 2026 (Tuesday):
+  https://www3.jrhokkaido.co.jp/webunkou/timetable_en.html?id=246
+  First: 6:38 Rapid Airport No.11 for Sapporo (6 cars), Sapporo 7:18 arr. Last: 23:21 Special Rapid Airport No.195 for Teine, Sapporo 23:59.
+- Sapporo departures, Chitose Line tab (for Tomakomai, New Chitose Airport): https://www3.jrhokkaido.co.jp/webunkou/timetable_en.html?id=091
+  First to the airport: 5:50 Rapid Airport No.10 (from Teine 5:28), New Chitose Airport 6:28 arr.
+  Last to the airport: 22:25 Local train (stops at every station), New Chitose Airport 23:12 arr.
+- Platform at Sapporo for the Airport Train: not shown on these pages. Still unconfirmed.
+- JR's MajorTrainTimetable.pdf (linked from the English home page) is dated June 2022: not used.

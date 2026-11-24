@@ -12,7 +12,7 @@ Facts: ONLY from docs/research/sapporo-sources.md (the airport's own site www.ho
 Hokkaido Chuo Bus and the Sapporo Tourist Association; checked 24 November 2026). Anything not in that file is left
 out, or written as "We did not find this on the airport's pages. Please ask at an information center." (_NONE).
 Where sources disagree the operator wins: JR's 33 / 37 / 43 minutes for the Airport Train, and about 70 minutes for
-the bus (the bus timetables), not the airport's "about 1 hour 50 minutes". Rapid Airport first and last trains,
+the bus (the bus timetables), not the airport's "about 1 hour 50 minutes". (first and last Airport Trains added 24 Nov 2026 from JR's station timetables),
 ski-bus times, the walking time between terminals and toilet locations are not stated.
 
 Partner blocks (no new programmes, no Klook, no hotel links): the eSIM tiles copied from the Japan guide (placement
@@ -75,8 +75,10 @@ SRC = {
     "bagroom": (_A + "service/baggage/baggage-checkroom/", "New Chitose Airport: baggage storage and delivery"),
     "deck": (_A + "service/other/deck/", "New Chitose Airport: observation deck"),
     "qa": (_A + "contact/qa/", "New Chitose Airport: FAQ"),
-    # TODO owner: Train Operation Information URL (the "jrhome" link stands in for it until then)
-    "jrhome": ("https://www.jrhokkaido.co.jp/global/index.html", "JR Hokkaido: English home page (notices and Train Operation Information)"),
+    "jrhome": ("https://www.jrhokkaido.co.jp/global/index.html", "JR Hokkaido: English home page (notices)"),
+    "jrops": ("https://www3.jrhokkaido.co.jp/webunkou/index_en.html", "JR Hokkaido: Train Operation Information (English)"),
+    "jrttcts": ("https://www3.jrhokkaido.co.jp/webunkou/timetable_en.html?id=246", "JR Hokkaido: New Chitose Airport departures, 24 Nov 2026"),
+    "jrttspk": ("https://www3.jrhokkaido.co.jp/webunkou/timetable_en.html?id=091", "JR Hokkaido: Sapporo departures, Chitose Line, 24 Nov 2026"),
     "jrwifi": ("https://www.jrhokkaido.co.jp/global/english/travel/wifi.html", "JR Hokkaido: Wi-Fi guide"),
     "jrair": ("https://www.jrhokkaido.co.jp/global/english/travel/airport.html", "JR Hokkaido: Airport Train (New Chitose Airport, Sapporo, Otaru)"),
     "jrdis": ("https://www.jrhokkaido.co.jp/global/english/travel/airport_disruption.html", "JR Hokkaido: when train services are disrupted"),
@@ -683,13 +685,13 @@ TRAIN = """<h2 id="train">To Sapporo by train: the Airport Train</h2>
 <li><strong>Booked a reserved seat online?</strong> JR says reserved-seat e-tickets do not open the gates: go through with an IC card or a paper fare ticket.</li>
 <li><strong>Luggage.</strong> Within 250 cm in total (2 m at most in length), up to 2 items, each up to 30 kg.</li>
 <li><strong>Ticket office.</strong> 6:30 to 22:00. Reserved-seat machines from 6:30 until the last train. Tour counter 9:00 to 17:30.</li>
-<li><strong>First and last trains.</strong> We did not find them on the JR pages we could read. Check JR Hokkaido's timetable before a very early or late trip.</li>
+<li><strong>First and last trains.</strong> JR Hokkaido&rsquo;s timetable for 24 November 2026 (a weekday): from New Chitose Airport, the first train to Sapporo is the Rapid Airport at 6:38 (Sapporo 7:18), and the last is the Special Rapid Airport at 23:21 (Sapporo 23:59). From Sapporo to the airport, the first is the Rapid Airport at 5:50 (airport 6:28), and the last is a local train at 22:25, which stops everywhere and reaches the airport at 23:12. Timetables change, so check JR&rsquo;s departures the day before.</li>
 <li><strong>Going on to Hakodate, Noboribetsu, Tomamu or Kushiro?</strong> Change at Minami-Chitose, where the limited express trains leave from the same platform. JR says all seats on those limited expresses are reserved.</li>
 <li><strong>Going on to Otaru from Sapporo?</strong> JR says trains for &ldquo;Teine&rdquo; or &ldquo;Hoshimi&rdquo; do not continue to Otaru.</li>
 </ul>
 <div class="tip-box"><strong>If the trains stop.</strong> JR asks you to check the boards and announcements (some are only in Japanese, so use a translation app) and to consider other transport: the airport bus (about 70 to 90 minutes) or a taxi (about 60 minutes). It warns that buses can get extremely crowded when trains are cancelled, and that times grow or services stop in bad weather. With a paper ticket, a cancelled trip is refunded in full, and the station can give you a delay certificate. JR says it does not pay for meals, other transport or hotels when trains are late or stopped.</div>
 <p>Arriving in Sapporo? Our <a href="/blog/sapporo-station-guide">Sapporo Station guide</a> covers the gates during the Shinkansen works, the subway to Odori and Susukino, and the lockers.</p>
-""" + sources(["jrair", "jrpdf", "jrstn", "jrdis", "jrfaq", "ajr", "jrhome", "jrwifi"], "Times change, so check JR Hokkaido.")
+""" + sources(["jrair", "jrttcts", "jrttspk", "jrops", "jrpdf", "jrstn", "jrdis", "jrfaq", "ajr", "jrhome", "jrwifi"], "Times change, so check JR Hokkaido.")
 
 BUS = """<h2 id="bus">To Sapporo by bus</h2>
 <p>Two companies, Hokkaido Chuo Bus and Hokuto Kotsu, run the airport buses to Sapporo city centre on one shared timetable, taking turns. Hokkaido Chuo Bus says no booking is needed and gives about every 10 minutes.</p>
@@ -761,7 +763,7 @@ WINTER = """<h2 id="winter">Snow, delays and cancelled flights</h2>
 <ul>
 <li><strong>Your flight.</strong> The airport's FAQ: for seat availability, bookings, cancellations and missed flights, contact the airline you are flying with.</li>
 <li><strong>Delays and transport.</strong> The airport points you to the airlines' and transport companies' own websites, and to the Hokkaido District Transport Bureau's <a href="https://hokkaido-safe-travel.mlit.go.jp/" target="_blank" rel="noopener noreferrer">Hokkaido travel safety information</a>.</li>
-<li><strong>Live train information.</strong> Check JR Hokkaido&rsquo;s Train Operation Information (English), from its <a href="https://www.jrhokkaido.co.jp/global/index.html" target="_blank" rel="noopener noreferrer">English home page</a>. JR&rsquo;s guide to it describes delays of 5 minutes or more by station (5:00 to 25:00), a map of cancellations and delays of 30 minutes or more by line, including the Chitose Line (Sapporo, New Chitose Airport, Tomakomai), 5:00 to 24:00, and train locations with delays of 1 minute or more (5:00 to 25:00).</li>
+<li><strong>Live train information.</strong> Check JR Hokkaido&rsquo;s <a href="https://www3.jrhokkaido.co.jp/webunkou/index_en.html" target="_blank" rel="noopener noreferrer">Train Operation Information (English)</a>, or its <a href="https://www3.jrhokkaido.co.jp/webunkou/stationlist_en.html" target="_blank" rel="noopener noreferrer">information for each station</a>, which also shows that day&rsquo;s departures. JR&rsquo;s guide to it describes delays of 5 minutes or more by station (5:00 to 25:00), a map of cancellations and delays of 30 minutes or more by line, including the Chitose Line (Sapporo, New Chitose Airport, Tomakomai), 5:00 to 24:00, and train locations with delays of 1 minute or more (5:00 to 25:00).</li>
 <li><strong>Trains stopped?</strong> JR Hokkaido lists the airport bus (about 70 to 90 minutes) and taxis (about 60 minutes) as alternatives, and warns they can get extremely crowded.</li>
 <li><strong>Buses in snow.</strong> Hokkaido Chuo Bus says weather and traffic can delay the bus, and that it leaves on time even when flights are late.</li>
 <li><strong>Stuck late at night?</strong> The terminals close (Domestic 23:30, International 21:00) and you may not stay inside after closing, except in the accommodation facilities. There is a hotel in each terminal, and the New Chitose Airport Onsen (Domestic 4F) is open 23 hours, 10:00 to 9:00 the next morning.</li>
@@ -774,7 +776,7 @@ LEAVING = """<h2 id="leaving">Leaving from New Chitose: a checklist</h2>
 <ul>
 <li><strong>Which terminal?</strong> International departures are on International 3F; domestic departures on Domestic 2F.</li>
 <li><strong>Coming by train?</strong> You arrive at B1F under the Domestic Terminal. For an international flight, go up to 2F and walk the 2F corridor (the 3F passage is closed until about the end of June 2027), then up to 3F.</li>
-<li><strong>Early flight?</strong> We did not find the first Airport Train, and the first bus from Sapporo was not on the timetable we read. Check JR Hokkaido and the bus companies the day before. The terminals open at 5:00.</li>
+<li><strong>Early flight?</strong> The first Airport Train from Sapporo leaves at 5:50 and reaches the airport at 6:28 (JR&rsquo;s timetable for 24 November 2026). The first bus from Sapporo was not on the timetable we read. Check JR and the bus companies the day before. The terminals open at 5:00.</li>
 <li><strong>Snow forecast?</strong> Contact your airline, check Hokkaido travel safety information, and leave earlier: trains and buses can be delayed and crowded.</li>
 <li><strong>Collect your bags.</strong> Lockers hold bags for up to 3 days; check the counter hours if you left bags at a baggage counter.</li>
 <li><strong>Leftover yen?</strong> The International 3F exchange counter (north) is open 9:30 to 16:00.</li>
@@ -1602,7 +1604,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Ticket machines:</b> cash only. Ticket counter and reserved-seat machine: cash or credit card. No QR payments.</li>'
       +'<li><b>Luggage:</b> within 250 cm in total, up to 2 items, each up to 30 kg.</li>'
       +'<li><b>From the International Terminal:</b> walk the 2F corridor to the Domestic Terminal, then go down to B1F.</li>'
-      +'<li>We did not find the first and last trains. Check JR Hokkaido.</li></ul>'
+      +'<li>First to Sapporo 6:38, last 23:21 (JR timetable, 24 Nov 2026). Timetables change.</li></ul>'
       +'<p class="sm">Source: JR Hokkaido, checked 24 November 2026. Times change.</p>'+more('#train');
   }
   function busHTML(){
@@ -1691,7 +1693,7 @@ POCKET_HTML = """<!DOCTYPE html>
   function winterHTML(){
     return '<div class="tipbox"><b>Snow, a delay or a cancelled flight?</b> The airport says: contact the airline you are flying with.</div>'
       +'<ul class="pl"><li>For delays and transport, it points to the airlines, the transport companies and <a href="https://hokkaido-safe-travel.mlit.go.jp/" target="_blank" rel="noopener">Hokkaido travel safety information</a> (needs internet).</li>'
-      +'<li>Live trains: JR Hokkaido&rsquo;s Train Operation Information (English), from its English home page. It maps cancellations and delays of 30 min or more on the Chitose Line.</li>'
+      +'<li>Live trains: JR Hokkaido&rsquo;s Train Operation Information (English). It maps cancellations and delays of 30 min or more on the Chitose Line.</li>'
       +'<li>Trains stopped? JR lists the airport bus (about 70 to 90 min) and taxis (about 60 min), and warns they can get extremely crowded.</li>'
       +'<li>The terminals close at night (Domestic 23:30, International 21:00). No staying overnight, except in the accommodation facilities.</li>'
       +'<li>With a paper JR ticket, a cancelled trip is refunded in full. The station can give you a delay certificate.</li></ul>'
@@ -1700,7 +1702,7 @@ POCKET_HTML = """<!DOCTYPE html>
   function leaveHTML(){
     return '<ul class="pl"><li><b>Airport Train</b> between Sapporo and the airport: fastest 33 min (Special Rapid, JR). You arrive at B1F under the Domestic Terminal.</li>'
       +'<li><b>International flight?</b> From B1F go up to Domestic 2F, walk the 2F corridor, then up to International 3F. The 3F passage is closed.</li>'
-      +'<li>We did not find the first Airport Train. Check JR Hokkaido the day before an early flight.</li>'
+      +'<li>First Airport Train from Sapporo: 5:50, at the airport 6:28 (JR timetable, 24 Nov 2026). Check JR the day before.</li>'
       +'<li>The terminals open at 5:00.</li></ul>'
       +'<p class="sm">Source: JR Hokkaido and New Chitose Airport, checked 24 November 2026.</p>';
   }
