@@ -15,7 +15,7 @@ stops, guides) when someone answers, and pg_article_tap (to, article, page_path)
 no storage, no partner links. Without JavaScript the pre-picked guides are plain links.
 
 Run from the repo root, after w48:   python3 tools/w49_trip_picker.py
-Idempotent (marker data-pga="japan-v3"). Writes nothing at all if any page is not ready (needs the w48 card, which it
+Idempotent (marker data-pga="japan-v4"; replaces a v3 picker in place). Writes nothing at all if any page is not ready (needs the w48 card, which it
 replaces in place, or is missing).
 
 To change the colours: edit the block below and re-run on a clean checkout (or replace the <style id="pga-css"> block).
@@ -30,8 +30,8 @@ PUB = os.path.join(ROOT, "public")
 BLOG = os.path.join(PUB, "blog")
 IMG = os.path.join(PUB, "images")
 REG = os.path.join(ROOT, "tools", "pocket_guides.json")
-OLD = 'data-pga="japan-v2"'
-MARK = 'data-pga="japan-v3"'
+OLDS = ('data-pga="japan-v2"', 'data-pga="japan-v3"')   # w48 card, or the v3 picker (one station per city; fixed 24 Nov 2026)
+MARK = 'data-pga="japan-v4"'
 COUNTRY = "Japan"
 
 # ---- colours (one place to change) -------------------------------------------------------------------------
@@ -175,7 +175,10 @@ for g in guides:
         die("missing icon public/images/" + g["icon"])
     if not os.path.isfile(os.path.join(PUB, g["key"] + "-pocket.html")):
         die("no pocket page for " + g["key"])
-stations = {g["stop"]: g for g in guides if g["type"] == "Station"}
+stations = {}   # stop -> every station guide in that city (Tokyo has several: Tokyo Station, Shinjuku, Ueno)
+for g in guides:
+    if g["type"] == "Station":
+        stations.setdefault(g["stop"], []).append(g)
 
 
 def esc(s):
@@ -200,7 +203,7 @@ def block(slug, cfg):
             die("%s: pre-picked stop %r is not in stop_order" % (slug, s))
     airports = sorted([g for g in guides if g["type"] == "Airport" and g["key"] not in exclude
                        and (not cfg.get("arrivals") or g["key"] in cfg["arrivals"])], key=lambda g: g.get("chip_rank", 99))
-    cities = [s for s in order if s in stations and stations[s]["key"] not in exclude]
+    cities = [s for s in order if any(g["key"] not in exclude for g in stations.get(s, []))]
     pre = [s for s in pre if s in cities]
     pool = [{"k": g["key"], "n": g["name"], "d": g["blurb"], "i": g["icon"], "t": g["type"], "s": g["stop"]}
             for g in guides if g["key"] not in exclude]
@@ -208,7 +211,7 @@ def block(slug, cfg):
     c2 = "".join('<button type="button" class="pgp-chip" data-q="2" data-v="%s" aria-pressed="%s">%s</button>'
                  % (esc(s), "true" if s in pre else "false", esc(s)) for s in cities)
     q2note = ' <span>Pre-picked</span>' if pre else ' <span>Pick any</span>'
-    shown = [stations[s] for s in cities if s in pre]
+    shown = [g for s in cities if s in pre for g in stations[s] if g["key"] not in exclude]
     if shown:
         res = ('<p class="pgp-h">Your %d guide%s</p><div class="pgp-grid">%s</div><p class="pga-foot">%s</p>'
                % (len(shown), "s" if len(shown) > 1 else "", "".join(tile(g, tag, False) for g in shown), FOOT))
@@ -242,7 +245,8 @@ for slug, cfg in PAGES.items():
     a = s.find('<style id="pga-css">')
     e = s.find("</aside>")
     j = s.find("</script>\n", e)
-    if OLD not in s or a < 0 or e < 0 or j < 0 or not a < s.find(OLD) < e < j:
+    OLD = next((o for o in OLDS if o in s), None)
+    if OLD is None or a < 0 or e < 0 or j < 0 or not a < s.find(OLD) < e < j:
         die("%s: the w48 card (css + aside + script) was not found in one piece; run w48 first" % slug)
     if s.count('<style id="pga-css">') != 1 or s.count(OLD) != 1:
         die("%s: expected exactly one w48 card" % slug)

@@ -211,7 +211,7 @@ for slug, spec in ARTICLES.items():
     if not os.path.isfile(path):
         die("missing article " + os.path.relpath(path, ROOT))
     s = open(path, encoding="utf-8").read()
-    if MARK in s or 'data-pga="japan-v3"' in s:
+    if MARK in s or 'data-pga="japan-v3"' in s or 'data-pga="japan-v4"' in s:
         plans.append((path, None, slug))
         continue
     if s.count(anchor) != 1:
