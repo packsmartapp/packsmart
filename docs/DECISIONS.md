@@ -245,6 +245,10 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Chose: every partner link has `rel="nofollow noopener sponsored"` and never `noreferrer`; `w72` fixes and checks it at the end of the chain.
 - Why: the SafetyWing box's main buttons and the Airalo tiles carried `noreferrer` from an old template, so partners saw clicks from the site as coming from nowhere; SafetyWing's review asked why buyers did not seem to come through the website. Commission is unaffected either way (it comes from the ID in the link); `noopener` already covers security.
 
+**D55. A Japan hub page, `/japan`** (24 Nov)
+- Chose: one page with every Japan guide (trip planning, airports, stations), the ten Pocket Guides, Hokkaido-this-winter and by-season links; on `/blog`, picking the Japan chip shows a banner to it. Built by `w73` from the cards on `/blog` and `/travel-essentials`, so titles and read times stay in step. A slot is kept for the planned "Ask about Japan" assistant.
+- Why: owner's mock-up; Japan is the lead topic (D48) and its guides were spread over two pages. Hubs and cross-links before new articles.
+
 ## Open decisions (not made)
 
 - Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.
