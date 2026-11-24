@@ -634,9 +634,30 @@ export default [
 },
 {
 "t": "japan prices > Japan prices: official sources (for Packy) > Airport to city: Haneda",
-"x": "- Gap: Tokyo Monorail and Keikyu fares. www.tokyo-monorail.co.jp, www.keikyu.co.jp and www.haneda-tokyo-access.com are blocked; Haneda's own train page says \"Please refer to each company's website for details on schedules and fares\" (https://tokyo-haneda.com/en/access/train/index.html).",
+"x": "- Gap: Tokyo Monorail fares (Keikyu fares and times are below, from Keikyu's own access guide). www.tokyo-monorail.co.jp, www.keikyu.co.jp and www.haneda-tokyo-access.com are blocked; Haneda's own train page says \"Please refer to each company's website for details on schedules and fares\" (https://tokyo-haneda.com/en/access/train/index.html).",
 "u": [
 "https://tokyo-haneda.com/en/access/train/index.html"
+]
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > Airport to city: Haneda",
+"x": "- Keikyu Haneda Airport Access Guide, \"Estimated Travel Time\" by Keikyu train (Haneda Airport Terminal 3 / Terminal 1-2): Shinagawa Station 11 / 14 minutes; Yokohama Station 23 / 28; Shimbashi 21 / 24; Higashi-ginza 23 / 26; Asakusa 34 / 37; Oshiage (SKYTREE) Station, Toei Asakusa Line, 38 / 41; Tokyo Station 20 / 23; Shibuya Station 23 / 26; Shinjuku Station 30 / 33; Ikebukuro Station 38 / 41; Narita Airport Station (Narita SKY ACCESS Line) 92 / 95 minutes. Source: Keikyu's official \"Haneda Airport Access Guide\" (KEIKYU WEB, English), read from screenshots of Keikyu's pages, https://www.keikyu.co.jp/, checked 24 Nov 2026.",
+"u": [
+"https://www.keikyu.co.jp/"
+]
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > Airport to city: Haneda",
+"x": "- Keikyu fares (route search, adult): Haneda Airport Terminal 3 to Shinagawa by Keikyu 330 yen (IC fare 327 yen); Haneda Airport Terminal 3 to Keikyu Kamata 230 yen (IC 230 yen); Keikyu Kamata to Shinagawa 230 yen (IC 228 yen). Source: Keikyu's official \"Haneda Airport Access Guide\" (KEIKYU WEB, English), read from screenshots of Keikyu's pages, https://www.keikyu.co.jp/, checked 24 Nov 2026.",
+"u": [
+"https://www.keikyu.co.jp/"
+]
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > Airport to city: Haneda",
+"x": "- Example, Haneda Airport Terminal 3 to Ginza (route search for a 22:02 departure): Keikyu to Sengakuji, Toei Asakusa Line to Higashi Ginza, Tokyo Metro Hibiya Line to Ginza, 39 minutes, 1 transfer, 620 yen (IC 613 yen); or Keikyu to Shinagawa, JR Keihin-Tohoku or Yamanote Line to Yurakucho, 8 minutes' walk to Ginza, 44-48 minutes, 530 yen (IC 526 yen). JR Shinagawa to Yurakucho 200 yen (IC 199 yen). Times and fares depend on the train and the time of day. Source: Keikyu's official \"Haneda Airport Access Guide\" (KEIKYU WEB, English), read from screenshots of Keikyu's pages, https://www.keikyu.co.jp/, checked 24 Nov 2026.",
+"u": [
+"https://www.keikyu.co.jp/"
 ]
 },
 {
