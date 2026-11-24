@@ -7,7 +7,8 @@ Idempotent: a page that already has its placement id is skipped.
  - Osaka city guide: Welcome Pickups (Kansai Airport to an Osaka hotel) + DiscoverCars (Osaka Kansai default pick-up).
  - Station guides (added later on 20 Nov 2026): Osaka station = Welcome Pickups + DiscoverCars (Osaka Kansai default);
    Kyoto station = DiscoverCars (Kyoto Station default); Tokyo station = Welcome Pickups (Narita/Haneda) + DiscoverCars
-   (Haneda default); Shinjuku station (22 Nov 2026) and Ueno station (23 Nov 2026) = the same pair as Tokyo. Blocks go before the "Leaving ..." section (Tokyo transfer: before "Local trains, Metro and Disney").
+   (Haneda default); Shinjuku station (22 Nov 2026) and Ueno station (23 Nov 2026) = the same pair as Tokyo. New Chitose Airport and
+   Sapporo Station (24 Nov 2026) = transfer to a Sapporo hotel + DiscoverCars (New Chitose / Sapporo Station default). Blocks go before the "Leaving ..." section (Tokyo transfer: before "Local trains, Metro and Disney").
    Re-run this script after w36 / w39 / w42 as well, because those regenerate the station pages.
  - Kyoto city guide: DiscoverCars only (Kyoto Station default pick-up). The Welcome Pickups destination list has no
    Kyoto entry (checked on the live Kansai guide widget on 20 Nov 2026), so no transfer block is added there.
@@ -53,9 +54,14 @@ def rep(s, old, new, count=1):
     return s.replace(old, new, count) if count else s.replace(old, new)
 
 
-def pickups_block(pid, heading):
+def pickups_block(pid, heading, local=None):
     b = block("pickups-japan")
     b = b.replace("pickups-japan", pid)
+    if local:
+        old = "var LOCAL=['Tokyo','Osaka','Sapporo']"
+        if b.count(old) != 1:
+            die("pickups LOCAL list not found")
+        b = b.replace(old, "var LOCAL=[%s]" % ",".join("'%s'" % c for c in local), 1)
     m = re.search(r'<p data-ps-anchor="pickups"[^>]*>Typical fares[^<]*</p>\n?', b)
     if not m:
         die("pickups fare line not found")
@@ -69,7 +75,9 @@ def pickups_block(pid, heading):
 
 
 def cars_block(pid, heading, p1, p2, default):
-    """default: 'kix' or 'kyoto'"""
+    """default: 'hnd', 'kix', 'kyoto', or a (city, place, label) tuple for a pick-up place the template has no chip for.
+    Tuple places must be checked in the DiscoverCars widget first: widget.discovercars.com/locations/japan/<city>/<place>
+    must show that place, not just the city (a wrong place silently falls back to the whole city)."""
     b = block("discovercars-japan-guide").replace("discovercars-japan-guide", pid)
     b = rep(b, '<div id="rent-a-car" data-ps-placement="%s"' % pid,
             '<div id="rent-a-car" data-ps-placement="%s"' % pid)
@@ -90,6 +98,22 @@ def cars_block(pid, heading, p1, p2, default):
             die("India framing left in the car block")
         return b
     b = rep(b, on_hnd, off_hnd)
+    if isinstance(default, tuple):
+        city, place, label = default
+        first = 'class="ps-dc-chip" data-country="japan" data-city="tokyo" data-place="hnd" aria-pressed="false">'
+        i = b.find('<button type="button" ' + first)
+        if i < 0:
+            die("Haneda chip not found for inserting " + label)
+        chip = ('<button type="button" class="ps-dc-chip on" data-country="japan" data-city="%s" data-place="%s" '
+                'aria-pressed="true">%s</button>\n        ' % (city, place, label))
+        b = b[:i] + chip + b[i:]
+        init_old, init_new = "&city=tokyo&place=hnd&locale=en", "&city=%s&place=%s&locale=en" % (city, place)
+        if b.count(init_old) != 1:
+            die("initial widget place not found exactly once")
+        b = b.replace(init_old, init_new, 1)
+        if "India" in b:
+            die("India framing left in the car block")
+        return b
     if default == "kix":
         off = 'class="ps-dc-chip" data-country="japan" data-city="osaka" data-place="kix" aria-pressed="false"'
         on = 'class="ps-dc-chip on" data-country="japan" data-city="osaka" data-place="kix" aria-pressed="true"'
@@ -249,7 +273,45 @@ ch8 = add(p, "discovercars-ueno-station",
           '<h2 id="car-rental">Car rental for trips outside Tokyo</h2>\n'
           '<p>For trips by road, compare self-drive rentals below.</p>\n', LEAVE)
 
+# New Chitose Airport and Sapporo Station (24 Nov 2026, owner's request). Pick-up places checked in the DiscoverCars
+# widget on 24 Nov 2026: chitose/cts shows "Chitose Airport, Chitose, Japan"; sapporo/sapporo-railway-station shows
+# "Sapporo Train Station, Sapporo, Japan" (sapporo/cts is NOT a place; it falls back to the whole city). The transfer
+# widget's suggested cities include Sapporo (checked on the live widget on 20 Nov 2026), so Sapporo goes first here.
+HOK_P1 = ("Ski resorts, lakes and the open country of Hokkaido sit a long way from the train lines. "
+          "With your own car you stop when you like, and the skis and luggage ride with you.")
+HOK_P2 = ("Skip the car inside Sapporo, where the subway is quicker. In winter, ask the rental company about winter tyres "
+          "and driving on snow before you book. Choose a pick-up point, then compare prices below. Japan drives on the left.")
+CTS_PLACE = ('chitose', 'cts', 'New Chitose Airport (CTS)')
+SPK_PLACE = ('sapporo', 'sapporo-railway-station', 'Sapporo Station')
+p = os.path.join(BLOG, "new-chitose-airport-guide.html")
+if not os.path.isfile(p):
+    die("new chitose page not found (run w70 first)")
+ch9 = add(p, "pickups-new-chitose",
+          pickups_block("pickups-new-chitose", "Your Driver at New Chitose Airport, to Your Sapporo Hotel",
+                        ["Sapporo", "Tokyo", "Osaka"])
+          + "\n" + cars_block("discovercars-new-chitose", "Rent a Car at New Chitose: Go Where Trains and Buses Don't",
+                              HOK_P1, HOK_P2, CTS_PLACE),
+          '<h2 id="transfer-car">Private transfer and car hire</h2>\n'
+          '<p>If you would rather have a driver than a train or bus after a long flight, you can book a private transfer '
+          'to your hotel in Sapporo before you fly. For ski resorts and the countryside, compare self-drive rentals below.</p>\n',
+          '<h2 id="money">')
+p = os.path.join(BLOG, "sapporo-station-guide.html")
+if not os.path.isfile(p):
+    die("sapporo station page not found (run w71 first)")
+ch10 = add(p, "pickups-sapporo-station",
+           pickups_block("pickups-sapporo-station", "Your Driver at New Chitose Airport, to Your Sapporo Hotel",
+                         ["Sapporo", "Tokyo", "Osaka"]),
+           '<h2 id="transfer">Private airport transfer</h2>\n'
+           '<p>If you would rather have a driver than the Airport train after a long flight, you can book a private transfer '
+           'from New Chitose Airport to your hotel in Sapporo before you fly.</p>\n', '<h2 id="long-distance">')
+ch11 = add(p, "discovercars-sapporo-station",
+           cars_block("discovercars-sapporo-station", "Rent a Car in Sapporo: Go Where Trains and Buses Don't",
+                      HOK_P1, HOK_P2, SPK_PLACE),
+           '<h2 id="car-rental">Car rental for trips outside Sapporo</h2>\n'
+           '<p>For ski resorts and trips by road, compare self-drive rentals below.</p>\n', LEAVE)
+
 print("w53 stations. osaka:", ch1, "| kyoto:", ch2, "| tokyo transfer:", ch3, "| tokyo rental:", ch4,
-      "| shinjuku transfer:", ch5, "| shinjuku rental:", ch6, "| ueno transfer:", ch7, "| ueno rental:", ch8)
+      "| shinjuku transfer:", ch5, "| shinjuku rental:", ch6, "| ueno transfer:", ch7, "| ueno rental:", ch8,
+      "| new chitose transfer+rental:", ch9, "| sapporo transfer:", ch10, "| sapporo rental:", ch11)
 
 print("w53 done. osaka:", "added" if changed_o else "already applied", "| kyoto:", "added" if changed_k else "already applied")
