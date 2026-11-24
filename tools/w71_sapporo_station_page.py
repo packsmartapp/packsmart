@@ -98,6 +98,7 @@ SRC = {
     "sbapia": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000009330", "Seven Bank ATM: JR Tower APIA"),
     "sbodori": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000026672", "Seven Bank ATM: subway Odori station"),
     "jrpass": ("https://www.jrhokkaido.co.jp/global/english/ticket/railpass/index.html", "JR Hokkaido: rail passes for visitors"),
+    "chuoair": ("https://www.chuo-bus.co.jp/feature/airport/", "Hokkaido Chuo Bus and Hokuto Kotsu: airport buses from 11 December 2026"),
     "jrhotels": ("https://www.jrhokkaido.co.jp/global/english/travel/link.html#lnk03", "JR Hokkaido: JR Hokkaido Group Hotels"),
     "jrallres": ("https://www.jrhokkaido.co.jp/CM/Info/notice_en/pdf/all_reserved_202602_en.pdf", "JR Hokkaido: all limited expresses reserved from 14 March 2026 (PDF)"),
     "jrusage": ("https://www.jrhokkaido.co.jp/global/english/ticket/usage/usage03.html", "JR Hokkaido: reserved seats with a rail pass"),
@@ -675,10 +676,11 @@ AIRPORT = """<h2 id="airport">To New Chitose Airport: the Airport Train</h2>
 <li><strong>Luggage.</strong> Within 250 cm in total (2 m at most in length), up to 2 items, each up to 30 kg.</li>
 <li><strong>Passport-reader ticket machines.</strong> JR has posted a notice (8 October 2026) with important notes on its ticket machines with passport readers at Sapporo and New Chitose Airport stations. We did not read it, so check it on JR&rsquo;s English home page.</li>
 <li><strong>Live train information.</strong> Check JR Hokkaido&rsquo;s <a href="https://www3.jrhokkaido.co.jp/webunkou/index_en.html" target="_blank" rel="noopener noreferrer">Train Operation Information (English)</a>, or its <a href="https://www3.jrhokkaido.co.jp/webunkou/stationlist_en.html" target="_blank" rel="noopener noreferrer">information for each station</a>, which also shows that day&rsquo;s departures. JR&rsquo;s guide to it describes delays of 5 minutes or more by station (5:00 to 25:00), a map of cancellations and delays of 30 minutes or more by line, including the Chitose Line (Sapporo, New Chitose Airport, Tomakomai), 5:00 to 24:00, and train locations with delays of 1 minute or more (5:00 to 25:00).</li>
+<li><strong>By bus instead.</strong> From 11 December 2026 the airport bus leaves the Sapporo Station stop (Sapporo Ekimae) from 5:25 to 18:15, 68 a day, and takes about 77 minutes. No booking needed. The bus companies show the stop on their route map. Until 10 December the summer timetable applies.</li>
 <li><strong>At the airport.</strong> The train arrives at B1F under the Domestic Terminal. For an international flight, go up to 2F and walk the 2F corridor: the 3F passage is closed until about the end of June 2027.</li>
 </ul>
 <p>More detail: our <a href="/blog/new-chitose-airport-guide">New Chitose Airport guide</a> covers the terminals, the corridor, buses, money and what to do in snow.</p>
-""" + sources(["jrair", "jrttspk", "jrttcts", "jrops", "jrpass", "jrdis", "ctsjr", "jrhome", "jrwifi"], "Times change, so check JR Hokkaido.")
+""" + sources(["jrair", "jrttspk", "jrttcts", "chuoair", "jrops", "jrpass", "jrdis", "ctsjr", "jrhome", "jrwifi"], "Times change, so check JR Hokkaido.")
 
 LONG = """<h2 id="long-distance">Hakodate, Asahikawa, Otaru and the Shinkansen</h2>
 <ul>
@@ -1732,6 +1734,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Luggage:</b> within 250 cm in total, up to 2 items, each up to 30 kg.</li>'
       +'<li>To the airport: first 5:50, last 22:25 (a local train, at the airport 23:12). JR timetable, 24 Nov 2026.</li>'
       +'<li>Rail passes for visitors (Sapporo area passes, Hokkaido Rail Pass) cover the Airport Train. Show your passport to buy one; put only the pass in the gate and take it back.</li>'
+      +'<li><b>Bus instead:</b> from 11 Dec, Sapporo Station stop 5:25 to 18:15, about 77 min, no booking.</li>'
       +'<li><b>At the airport:</b> you arrive at B1F under the Domestic Terminal. International flight: walk the 2F corridor (3F closed).</li></ul>'
       +'<p class="sm">Source: JR Hokkaido and New Chitose Airport, checked 24 November 2026.</p>'+more('#airport');
   }

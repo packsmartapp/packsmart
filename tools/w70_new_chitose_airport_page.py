@@ -97,7 +97,7 @@ SRC = {
     "jrlock": ("https://www.jrhokkaido.co.jp/network/locker/locker.pdf", "JR Hokkaido: coin locker list (PDF, July 2026)"),
     "jrstn": ("https://www.jrhokkaido.co.jp/network/station/station.html", "JR Hokkaido: station search (New Chitose Airport station, map as of September 2026)"),
     "chuo": ("https://www.chuo-bus.co.jp/airport/timetable/?ope=det&n=34&o=2&t=14", "Hokkaido Chuo Bus: airport bus timetable, Chitose to Sapporo (summer timetable, updated 1 April 2026)"),
-    "chuofeat": ("https://www.chuo-bus.co.jp/feature/airport/", "Hokkaido Chuo Bus: the airport bus (payment and frequency)"),
+    "chuofeat": ("https://www.chuo-bus.co.jp/feature/airport/", "Hokkaido Chuo Bus and Hokuto Kotsu: Sapporo city-centre airport buses, routes and timetables from 11 December 2026"),
     "chuobeg": ("https://www.chuo-bus.co.jp/airport/beginner", "Hokkaido Chuo Bus: how to use the airport bus"),
     "chuobag": ("https://www.chuo-bus.co.jp/airport/baggage", "Hokkaido Chuo Bus: baggage on the airport bus"),
     "stv": ("https://www.sapporo.travel/en/info/about/transportation/", "Sapporo Tourist Association: transportation"),
@@ -602,7 +602,7 @@ HELP = """<h2 id="help">Information and help</h2>
 
 ABOUT = """<div class="ps-about" id="about-this-guide">
 <h2>About this guide</h2>
-<p>Written by PackSmart. Airport details were checked on 24 November 2026 against the New Chitose Airport website and its floor guides, JR Hokkaido, Hokkaido Chuo Bus and the Sapporo Tourist Association. Where an official page did not tell us something, for example the Furano bus times, the walking time between the terminals or where the toilets are, we say so instead of guessing. The bus times come from the summer 2026 timetable, which was still the current one on 24 November 2026. Spotted something out of date? <a href="/contact">Tell us</a> and we will fix it.</p>
+<p>Written by PackSmart. Airport details were checked on 24 November 2026 against the New Chitose Airport website and its floor guides, JR Hokkaido, Hokkaido Chuo Bus and the Sapporo Tourist Association. Where an official page did not tell us something, for example the Furano bus times, the walking time between the terminals or where the toilets are, we say so instead of guessing. The bus times come from the summer 2026 timetable, which was still the current one on 24 November 2026, and from the bus companies&rsquo; timetables for the new routes from 11 December 2026. Spotted something out of date? <a href="/contact">Tell us</a> and we will fix it.</p>
 <ul>
 <li><strong>24 Nov 2026:</strong> first version, with the one-page card, the terminals floor by floor, the 3F corridor closure, the Airport Train and the buses to Sapporo, ski buses, money, getting online, lockers and hotel delivery, the find-it tool, opening hours, winter and delays, help and a leaving checklist.</li>
 <li><strong>24 Nov 2026, update:</strong> the first and last Airport Trains, rail passes, ATMs, the Niseko ski-bus times and booking for 2026-27, the direct bus to Noboribetsu Onsen, and JR&rsquo;s rules for trains beyond Sapporo. Later: JR Inn Chitose (partner link).</li>
@@ -723,8 +723,9 @@ BUS = """<h2 id="bus">To Sapporo by bus</h2>
 </table>
 </div>
 <ul>
-<li><strong>How long.</strong> On the bus company's summer 2026 timetable, about 70 minutes from the International Terminal to Sapporo Station (68 to 70 minutes) and 74 minutes from the ANA stop, and 62 to 64 minutes from the International Terminal to Odori Park. The Sapporo stops include Susukino, Odori Park and Sapporo Station.</li>
-<li><strong>First and last bus.</strong> On that timetable, from the ANA stop 8:40 to 22:55, and from the International Terminal 8:46 to 22:59, with 76 departures a day. A winter timetable may replace it from December, so check before you travel.</li>
+<li><strong>New routes from 11 December 2026.</strong> The two companies are reorganising the Sapporo city-centre buses into three routes. From the airport, two of them go to Sapporo:<ul><li><strong>&ldquo;Sapporo Station and Susukino&rdquo;</strong> (the main one): from the ANA stop 8:40 to 22:55 and the International Terminal 8:46 to 23:01, 72 a day. It stops at Minami-Chitose Station, Sapporo Dome, Fukuzumi Station, Susukino (Minami 3-jo), Odori Park and the Clock Tower before Sapporo Station: about 71 minutes from the ANA stop, 65 from the International Terminal.</li><li><strong>&ldquo;City hotels loop&rdquo;:</strong> 11 a day, from the ANA stop 12:30 to 19:30, via Nakajima Park to hotels around Odori Park, ending at the Keio Plaza Hotel (about 81 minutes).</li></ul></li>
+<li><strong>Back to the airport (from 11 December).</strong> From Sapporo Station 5:25 to 18:15, 68 a day, about 77 minutes, also stopping at Susukino. A morning direct bus leaves Susukino 5:20 to 10:30 (11 a day) and takes about 62 minutes. The hotels loop leaves the Keio Plaza Hotel 9:30 to 17:30.</li>
+<li><strong>Until 10 December</strong> the summer 2026 timetable applies: about 70 minutes from the International Terminal to Sapporo Station, first and last bus from the ANA stop 8:40 and 22:55.</li>
 <li><strong>Tickets and payment.</strong> Cash, contactless credit cards, return and coupon tickets work on both companies' buses. Transport IC cards (SAPICA, Kitaca, Suica and others) work only on Hokkaido Chuo Bus buses; PayPay only on Hokuto Kotsu buses. Tickets from the bus counters or ticket machines are good on buses of both companies (Sapporo Tourist Association).</li>
 <li><strong>Where to buy.</strong> Domestic 1F: the Hokkaido Chuo Bus counter near Arrival Gate 4, and the Hokuto Kotsu and Donan Bus counter near Arrival Gate 2. International: ticket machines in the 1F Main Entrance Lobby (not for every route).</li>
 <li><strong>The bus leaves on time.</strong> Hokkaido Chuo Bus says its buses leave on schedule even if flights are delayed, and that weather and traffic can make them late, so allow time before a flight.</li>
@@ -1634,7 +1635,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Pay:</b> cash or contactless credit card on both. IC cards (SAPICA, Kitaca, Suica) on Hokkaido Chuo Bus only.</li>'
       +'<li><b>Tickets:</b> bus counters on Domestic 1F (near Arrival Gates 2 and 4), ticket machines in the International 1F Main Entrance Lobby.</li>'
       +'<li>The bus <b>leaves on time even if your flight is late</b>. Snow and traffic can slow it.</li>'
-      +'<li>Summer 2026 timetable: first 8:40, last 22:55 from the ANA stop. A winter timetable may replace it.</li>'
+      +'<li>From 11 Dec: to Sapporo Station 8:40 to 22:55 from the ANA stop (about 71 min). To the airport from Sapporo Station 5:25 to 18:15 (about 77 min). Until 10 Dec the summer timetable applies.</li>'
       +'<li><b>Niseko ski bus</b> (booking required, 12 Dec to 22 Mar): domestic stop 12 at 10:00, 13:40, 14:40, 15:30; about 3 h 30 min. Book by 18:00 the day before: Chuo Bus <a href="tel:0570200600">0570-200-600</a>. <b>Furano:</b> domestic stop 23.</li>'
       +'<li><b>Noboribetsu Onsen</b> direct bus (booking required): 13:20, 14:10, 15:10 from International stop 86, about 1 h 15 min.</li></ul>'
       +'<p class="sm">Source: New Chitose Airport bus page and Hokkaido Chuo Bus, checked 24 November 2026.</p>'+more('#bus');

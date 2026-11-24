@@ -540,3 +540,17 @@ www3.jrhokkaido.co.jp was allowed in the sandbox on 24 Nov 2026. Each time cell 
   adjacent to Sapporo Station); JR Inn Sapporo ("4 minutes' walk from the West Ticket Gate of Sapporo Station"); JR Inn Sapporo N2; JR Inn Sapporo South;
   JR Inn Chitose; JR Inn Asahikawa ("directly connected to Asahikawa Station"); JR Inn Hakodate ("right by JR Hakodate Station"); Hotel Nikko Northland Obihiro.
   Owner's call whether to list these, and whether to link them through a partner.
+
+## Airport buses, Sapporo city centre, from 11 Dec 2026 (Hokkaido Chuo Bus and Hokuto Kotsu; checked 24 Nov 2026)
+Source: https://www.chuo-bus.co.jp/feature/airport/ ("2026年12月11日より新千歳空港連絡バス「札幌都心便」の路線を再編します"; timetables read from
+the page's five tables). "予約なしでOK". Payment: cash, contactless credit cards, return and coupon tickets on both; IC cards (SAPICA, Kitaca, Suica)
+on Chuo Bus only; PayPay on Hokuto Kotsu only. Contacts: Chuo Bus 0570-200-600, Hokuto Kotsu 011-375-6000.
+- Sapporo to airport, "札幌駅前・すすきの": 68 a day, Sapporo Ekimae 5:25 to 18:15 (also ANA Crowne Plaza 7:20 to 15:20, 16 a day), Susukino 5:34 to 18:24;
+  Minami-Chitose Station, New Chitose Airport 6:42 to 19:32. Sapporo Ekimae to the airport 77 min.
+- "札幌都心ホテル回り" (to the airport): Keio Plaza Hotel 9:30 to 17:30, 9 a day, via Odori-area hotels and Nakajima Park, 86 min.
+- "すすきの発空港ダイレクト": Susukino 5:20 to 10:30, 11 a day, stops Wattsu and Eniwa only, 62 min.
+- Airport to Sapporo, "札幌駅前・すすきの": 72 a day, ANA stop 8:40 to 22:55, JAL stop 8:42 to 22:57, International Terminal 8:46 to 23:01,
+  via Minami-Chitose Station, Sapporo Dome, Fukuzumi, Minami 3-jo Susukino, Odori Park, Clock Tower, Sapporo Ekimae (9:51 to 24:06). ANA stop to Sapporo Ekimae 71 min.
+- Airport to Sapporo, hotels loop: 11 a day, ANA stop 12:30 to 19:30, via Nakajima Park and hotels to Keio Plaza Hotel, 81 min.
+- Stop numbers at the airport are not on this page (the airport's bus page lists 14, 22 and 84).
+
