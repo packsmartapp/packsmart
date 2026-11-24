@@ -65,6 +65,9 @@ SRC = {
     "jrinfo": ("https://www.jrhokkaido.co.jp/global/english/travel/info.html", "JR Hokkaido: JR Information Desk"),
     "jrlock": ("https://www.jrhokkaido.co.jp/network/locker/locker.pdf", "JR Hokkaido: coin locker list (PDF, July 2026)"),
     "jrfaq7": ("https://www.jrhokkaido.co.jp/global/english/faq/faq07.html", "JR Hokkaido: FAQ on coin lockers"),
+    # TODO owner: Train Operation Information URL (the "jrhome" link stands in for it until then)
+    "jrhome": ("https://www.jrhokkaido.co.jp/global/index.html", "JR Hokkaido: English home page (notices and Train Operation Information)"),
+    "jrwifi": ("https://www.jrhokkaido.co.jp/global/english/travel/wifi.html", "JR Hokkaido: Wi-Fi guide"),
     "jrair": ("https://www.jrhokkaido.co.jp/global/english/travel/airport.html", "JR Hokkaido: Airport Train (New Chitose Airport, Sapporo, Otaru)"),
     "jrdis": ("https://www.jrhokkaido.co.jp/global/english/travel/airport_disruption.html", "JR Hokkaido: when train services are disrupted"),
     "jrhak": ("https://www.jrhokkaido.co.jp/global/english/train/guide/hakodate.html", "JR Hokkaido: Sapporo to Hakodate (Limited Express Hokuto)"),
@@ -624,28 +627,32 @@ AIRPORT = """<h2 id="airport">To New Chitose Airport: the Airport Train</h2>
 <li><strong>Seats.</strong> Cars 1 to 3 and 5 to 6 are non-reserved. Car 4 is the reserved &ldquo;U seat&rdquo; car: you need a reserved-seat ticket as well as the fare.</li>
 <li><strong>IC cards work</strong> (Suica, Kitaca and others). Ticket machines take cash only; the reserved-seat machine and the ticket office take cash and credit cards.</li>
 <li><strong>Luggage.</strong> Within 250 cm in total (2 m at most in length), up to 2 items, each up to 30 kg.</li>
+<li><strong>Passport-reader ticket machines.</strong> JR has posted a notice (8 October 2026) with important notes on its ticket machines with passport readers at Sapporo and New Chitose Airport stations. We did not read it, so check it on JR&rsquo;s English home page.</li>
+<li><strong>Live train information.</strong> Check JR Hokkaido&rsquo;s Train Operation Information (English), from its <a href="https://www.jrhokkaido.co.jp/global/index.html" target="_blank" rel="noopener noreferrer">English home page</a>. JR&rsquo;s guide to it describes delays of 5 minutes or more by station (5:00 to 25:00), a map of cancellations and delays of 30 minutes or more by line, including the Chitose Line (Sapporo, New Chitose Airport, Tomakomai), 5:00 to 24:00, and train locations with delays of 1 minute or more (5:00 to 25:00).</li>
 <li><strong>At the airport.</strong> The train arrives at B1F under the Domestic Terminal. For an international flight, go up to 2F and walk the 2F corridor: the 3F passage is closed until about the end of June 2027.</li>
 </ul>
 <p>More detail: our <a href="/blog/new-chitose-airport-guide">New Chitose Airport guide</a> covers the terminals, the corridor, buses, money and what to do in snow.</p>
-""" + sources(["jrair", "jrdis", "ctsjr"], "Times change, so check JR Hokkaido.")
+""" + sources(["jrair", "jrdis", "ctsjr", "jrhome", "jrwifi"], "Times change, so check JR Hokkaido.")
 
 LONG = """<h2 id="long-distance">Hakodate, Asahikawa, Otaru and the Shinkansen</h2>
 <ul>
 <li><strong>The Shinkansen does not reach Sapporo yet.</strong> JR Hokkaido's construction page describes its work as towards the opening of the Hokkaido Shinkansen's Sapporo station, and JR lists the Hokkaido Shinkansen stations as Shin-Hakodate-Hokuto, Kikonai and Okutsugaru-Imabetsu. We did not find an opening date on those pages.</li>
 <li><strong>To Hakodate and the Shinkansen.</strong> JR: the Limited Express Hokuto connects Sapporo and Hakodate, and is used as a connecting train to and from the Hokkaido Shinkansen. The Sapporo Tourist Association gives about 3 hours 30 minutes to Hakodate.</li>
+<li><strong>Book a seat on limited expresses.</strong> JR Hokkaido: &ldquo;From March 14, 2026, all seats will be reserved on all limited express trains in Hokkaido.&rdquo; That includes the Hokuto, Kamui, Lilac and Ozora. The Airport Train is not a limited express: it keeps its non-reserved cars.</li>
 <li><strong>To Asahikawa.</strong> The Limited Express Kamui and Lilac. The Sapporo Tourist Association gives 1 hour 25 minutes at the quickest, with over 20 round trips a day.</li>
 <li><strong>To Kushiro.</strong> The Limited Express Ozora, about 4 hours 11 minutes (Sapporo Tourist Association).</li>
 <li><strong>To Otaru.</strong> Some Airport Trains run on to Otaru. JR says trains bound for &ldquo;Teine&rdquo; or &ldquo;Hoshimi&rdquo; do not continue to Otaru.</li>
-<li><strong>Going beyond Otaru</strong> to Yoichi, Kutchan or Niseko? JR says IC cards such as Suica cannot be used beyond Otaru: buy a ticket at the station before you board.</li>
+<li><strong>Going beyond Otaru</strong> to Yoichi, Kutchan or Niseko? JR says IC cards such as Suica cannot be used beyond Otaru: buy a ticket at the station before you board. JR&rsquo;s English home page also notes that IC cards work only at some stations.</li>
 </ul>
-""" + sources(["jrconst", "jrshin", "jrhak", "jrasa", "sttrans", "jrair"], "Times change, so check JR Hokkaido.")
+""" + sources(["jrconst", "jrshin", "jrhak", "jrasa", "sttrans", "jrair", "jrhome"], "Times change, so check JR Hokkaido.")
 
 CONNECTED = """<h2 id="connected">Getting online: eSIM</h2>
-<p>You will want a connection for maps, messages and the festival pages. We did not find official free Wi-Fi or SIM counters on the Sapporo station pages we read, so an eSIM installed before you arrive is the simplest choice.</p>
+<p>You will want a connection for maps, messages and the festival pages.</p>
 <ul>
+<li><strong>JR Wi-Fi.</strong> JR Hokkaido says it provides Wi-Fi at its stations, on the Airport Train cars and on Hokkaido Shinkansen cars. We did not find SIM counters on the Sapporo station pages we read.</li>
 <li><strong>eSIM:</strong> install it on your phone and switch it on when you need it. It needs an eSIM-ready, unlocked phone.</li>
 </ul>
-"""
+""" + sources(["jrwifi"])
 
 LUGGAGE = """<h2 id="luggage">Lockers and luggage</h2>
 <p>Sort your bags out before you head to Odori or the ski slopes.</p>
@@ -663,12 +670,12 @@ LEAVING = """<h2 id="leaving">Leaving Sapporo: a checklist</h2>
 <ul>
 <li><strong>Flying from New Chitose?</strong> Take JR's Airport Train (fastest 33 minutes). Check the departure boards for the platform, and JR's timetable the day before an early flight. See our <a href="/blog/new-chitose-airport-guide">New Chitose Airport guide</a>.</li>
 <li><strong>International flight?</strong> At the airport, walk the 2F corridor from the Domestic Terminal; the 3F passage is closed until about the end of June 2027.</li>
-<li><strong>Snow forecast?</strong> Leave earlier. If trains stop, JR lists the airport bus and taxis as alternatives and warns they get very crowded.</li>
-<li><strong>Heading to Hakodate or the Shinkansen?</strong> The Limited Express Hokuto. JR says all seats on the limited expresses you can join at Minami-Chitose (for Hakodate or Kushiro) are reserved.</li>
+<li><strong>Snow forecast?</strong> Leave earlier, and check JR Hokkaido&rsquo;s Train Operation Information (English) from its English home page. If trains stop, JR lists the airport bus and taxis as alternatives and warns they get very crowded.</li>
+<li><strong>Heading to Hakodate or the Shinkansen?</strong> The Limited Express Hokuto. Since 14 March 2026 all seats on all limited expresses in Hokkaido are reserved (JR), so book a seat.</li>
 <li><strong>Collect your bags.</strong> Lockers hold bags for up to 3 days, and the station is under construction, so leave time to find your locker again.</li>
 <li><strong>Allow time for the station itself.</strong> Routes change with the works, and some lifts and escalators by the East gate are out of use.</li>
 </ul>
-""" + sources(["jrair", "jrdis", "ctsjr", "jrhak", "jrlock", "jrconst"], "Times change, so check the operator.")
+""" + sources(["jrair", "jrdis", "ctsjr", "jrhak", "jrlock", "jrconst", "jrhome"], "Times change, so check the operator.")
 
 ABOUT = """<div class="ps-about" id="about-this-guide">
 <h2>About this guide</h2>
@@ -1606,7 +1613,7 @@ POCKET_HTML = """<!DOCTYPE html>
   }
   function simHTML(){
     return '<ul class="pl"><li><b>eSIM:</b> install it on your phone and switch it on when you need it. No counter, no queue.</li>'
-      +'<li>We did not find official free Wi-Fi or SIM counters on the Sapporo station pages we read.</li></ul>';
+      +'<li><b>JR Wi-Fi</b> at stations and on the Airport Train cars (JR Hokkaido).</li></ul>';
   }
   var NEXT=[['🚇','Subway to Odori',subwayHTML],['🚪','Gates and exits',gatesHTML],['❄️','Snow Festival',snowHTML],['ℹ️','Help desks',deskHTML],['🧳','Lockers',bagsHTML],['✈️','To the airport',airportHTML],['📱','Phone data',simHTML]];
   var at=$('arrTiles');
@@ -1638,7 +1645,7 @@ POCKET_HTML = """<!DOCTYPE html>
     ['Lockers','About 800 lockers, 5 for skis and snowboards. Up to 3 days.']];
   var DEP=[['Flying from New Chitose?','JR Airport Train, fastest 33 min. Check the departure boards for the platform.'],
     ['Early flight?','We did not find the first train. Check JR Hokkaido the day before.'],
-    ['Snow forecast?','Leave earlier. If trains stop, JR lists buses and taxis, which can get very crowded.'],
+    ['Snow forecast?','Leave earlier. Check JR Hokkaido Train Operation Information (English). If trains stop, JR lists buses and taxis, which can get very crowded.'],
     ['Bags','Collect them from the locker. Remember which side you used.'],
     ['Go to your platform','Check the display for your train, and your ticket for your car and seat.']];
   function renderDep(){ renderSteps($('depSteps'),DEP,doneD); }
@@ -1650,6 +1657,7 @@ POCKET_HTML = """<!DOCTYPE html>
   function more(a){ return '<p class="sm"><a href="'+GUIDE+a+'">More in the full guide</a> (needs internet)</p>'; }
   function longHTML(){
     return '<ul class="pl"><li><b>Shinkansen:</b> not in Sapporo yet. The Hokkaido Shinkansen stations are Shin-Hakodate-Hokuto, Kikonai and Okutsugaru-Imabetsu.</li>'
+      +'<li><b>Limited expresses:</b> all seats reserved since 14 March 2026 (JR). Book a seat.</li>'
       +'<li><b>Hakodate:</b> Limited Express Hokuto, about 3 h 30 min. It connects with the Shinkansen.</li>'
       +'<li><b>Asahikawa:</b> Limited Express Kamui and Lilac, 1 h 25 min at the quickest.</li>'
       +'<li><b>Kushiro:</b> Limited Express Ozora, about 4 h 11 min.</li>'

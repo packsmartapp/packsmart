@@ -75,6 +75,9 @@ SRC = {
     "bagroom": (_A + "service/baggage/baggage-checkroom/", "New Chitose Airport: baggage storage and delivery"),
     "deck": (_A + "service/other/deck/", "New Chitose Airport: observation deck"),
     "qa": (_A + "contact/qa/", "New Chitose Airport: FAQ"),
+    # TODO owner: Train Operation Information URL (the "jrhome" link stands in for it until then)
+    "jrhome": ("https://www.jrhokkaido.co.jp/global/index.html", "JR Hokkaido: English home page (notices and Train Operation Information)"),
+    "jrwifi": ("https://www.jrhokkaido.co.jp/global/english/travel/wifi.html", "JR Hokkaido: Wi-Fi guide"),
     "jrair": ("https://www.jrhokkaido.co.jp/global/english/travel/airport.html", "JR Hokkaido: Airport Train (New Chitose Airport, Sapporo, Otaru)"),
     "jrdis": ("https://www.jrhokkaido.co.jp/global/english/travel/airport_disruption.html", "JR Hokkaido: when train services are disrupted"),
     "jrfaq": ("https://www.jrhokkaido.co.jp/global/english/faq/faq10.html", "JR Hokkaido: FAQ on delays"),
@@ -674,6 +677,9 @@ TRAIN = """<h2 id="train">To Sapporo by train: the Airport Train</h2>
 <li><strong>Seats.</strong> Cars 1 to 3 and 5 to 6 are non-reserved: no booking needed, and you can board any Airport Train that day. Car 4 is the reserved &ldquo;U seat&rdquo; car (43 seats): you need a reserved-seat ticket as well as the fare, and you cannot enter car 4 without one.</li>
 <li><strong>IC cards work.</strong> JR lists Suica, PASMO, TOICA, manaca, ICOCA, PiTaPa, SUGOCA, nimoca, Hayakaken and Kitaca. Not for Yoichi, Kutchan or Niseko: buy a ticket at the station first.</li>
 <li><strong>Paper tickets.</strong> The ticket machines take cash only; the reserved-seat machine and the ticket counter take cash and credit cards. No QR code payments. A ticket is for one ride: leave the gates on the way and you need a new one.</li>
+<li><strong>Passport-reader ticket machines.</strong> JR Hokkaido has posted a notice (8 October 2026) with important notes on its ticket machines with passport readers at Sapporo and New Chitose Airport stations. We did not read it, so check it on JR&rsquo;s English home page before you rely on those machines.</li>
+<li><strong>IC cards elsewhere.</strong> JR&rsquo;s English home page also notes that IC cards can be used only at some stations, so check before travelling beyond the Airport Train route.</li>
+<li><strong>Wi-Fi on board.</strong> JR Hokkaido says it provides Wi-Fi on the Airport Train cars and at stations.</li>
 <li><strong>Booked a reserved seat online?</strong> JR says reserved-seat e-tickets do not open the gates: go through with an IC card or a paper fare ticket.</li>
 <li><strong>Luggage.</strong> Within 250 cm in total (2 m at most in length), up to 2 items, each up to 30 kg.</li>
 <li><strong>Ticket office.</strong> 6:30 to 22:00. Reserved-seat machines from 6:30 until the last train. Tour counter 9:00 to 17:30.</li>
@@ -683,7 +689,7 @@ TRAIN = """<h2 id="train">To Sapporo by train: the Airport Train</h2>
 </ul>
 <div class="tip-box"><strong>If the trains stop.</strong> JR asks you to check the boards and announcements (some are only in Japanese, so use a translation app) and to consider other transport: the airport bus (about 70 to 90 minutes) or a taxi (about 60 minutes). It warns that buses can get extremely crowded when trains are cancelled, and that times grow or services stop in bad weather. With a paper ticket, a cancelled trip is refunded in full, and the station can give you a delay certificate. JR says it does not pay for meals, other transport or hotels when trains are late or stopped.</div>
 <p>Arriving in Sapporo? Our <a href="/blog/sapporo-station-guide">Sapporo Station guide</a> covers the gates during the Shinkansen works, the subway to Odori and Susukino, and the lockers.</p>
-""" + sources(["jrair", "jrpdf", "jrstn", "jrdis", "jrfaq", "ajr"], "Times change, so check JR Hokkaido.")
+""" + sources(["jrair", "jrpdf", "jrstn", "jrdis", "jrfaq", "ajr", "jrhome", "jrwifi"], "Times change, so check JR Hokkaido.")
 
 BUS = """<h2 id="bus">To Sapporo by bus</h2>
 <p>Two companies, Hokkaido Chuo Bus and Hokuto Kotsu, run the airport buses to Sapporo city centre on one shared timetable, taking turns. Hokkaido Chuo Bus says no booking is needed and gives about every 10 minutes.</p>
@@ -733,12 +739,12 @@ MONEY = """<h2 id="money">Money: currency exchange and ATMs</h2>
 
 CONNECTED = """<h2 id="connected">Getting online: SIM machines, Wi-Fi and eSIM</h2>
 <ul>
-<li><strong>Free Wi-Fi.</strong> In both terminal buildings, but not in the connecting corridor.</li>
+<li><strong>Free Wi-Fi.</strong> In both terminal buildings, but not in the connecting corridor. JR Hokkaido also provides Wi-Fi at its stations and on the Airport Train cars.</li>
 <li><strong>Prepaid SIM vending machines.</strong> Domestic 1F, and International 2F and 3F. The airport lists data-only SIMs for Japan and an eSIM option, and says to check the price at the machine.</li>
 <li><strong>Mobile Wi-Fi and phone rental counters.</strong> Domestic 1F and International 2F, and one on International 3F. Hours differ by counter: for example 9:00 to 19:00 and 9:00 to 17:00 at International 2F, and 9:00 to 18:00 at Domestic 1F (closed 13:00 to 14:00). Pick-up and return machines follow the building hours.</li>
 <li><strong>eSIM:</strong> install it on your phone before you fly and switch it on when you land. It needs an eSIM-ready, unlocked phone.</li>
 </ul>
-""" + sources(["sim", "wifi", "lan", "qa"])
+""" + sources(["sim", "wifi", "lan", "qa", "jrwifi"])
 
 HOURS = """<h2 id="hours">Opening hours, hotels, onsen and the observation deck</h2>
 <ul>
@@ -755,13 +761,14 @@ WINTER = """<h2 id="winter">Snow, delays and cancelled flights</h2>
 <ul>
 <li><strong>Your flight.</strong> The airport's FAQ: for seat availability, bookings, cancellations and missed flights, contact the airline you are flying with.</li>
 <li><strong>Delays and transport.</strong> The airport points you to the airlines' and transport companies' own websites, and to the Hokkaido District Transport Bureau's <a href="https://hokkaido-safe-travel.mlit.go.jp/" target="_blank" rel="noopener noreferrer">Hokkaido travel safety information</a>.</li>
+<li><strong>Live train information.</strong> Check JR Hokkaido&rsquo;s Train Operation Information (English), from its <a href="https://www.jrhokkaido.co.jp/global/index.html" target="_blank" rel="noopener noreferrer">English home page</a>. JR&rsquo;s guide to it describes delays of 5 minutes or more by station (5:00 to 25:00), a map of cancellations and delays of 30 minutes or more by line, including the Chitose Line (Sapporo, New Chitose Airport, Tomakomai), 5:00 to 24:00, and train locations with delays of 1 minute or more (5:00 to 25:00).</li>
 <li><strong>Trains stopped?</strong> JR Hokkaido lists the airport bus (about 70 to 90 minutes) and taxis (about 60 minutes) as alternatives, and warns they can get extremely crowded.</li>
 <li><strong>Buses in snow.</strong> Hokkaido Chuo Bus says weather and traffic can delay the bus, and that it leaves on time even when flights are late.</li>
 <li><strong>Stuck late at night?</strong> The terminals close (Domestic 23:30, International 21:00) and you may not stay inside after closing, except in the accommodation facilities. There is a hotel in each terminal, and the New Chitose Airport Onsen (Domestic 4F) is open 23 hours, 10:00 to 9:00 the next morning.</li>
 <li><strong>Observation deck</strong> is closed December to March.</li>
 </ul>
 <p>We did not find airport pages about snow clearing or what the airport provides on a snowbound night, so we give no advice on that. Ask your airline and the information centers.</p>
-""" + sources(["qa", "safe", "jrdis", "chuobeg", "hours", "deck", "stvnews"], "Rules can change, so check your airline.")
+""" + sources(["qa", "safe", "jrdis", "jrhome", "chuobeg", "hours", "deck", "stvnews"], "Rules can change, so check your airline.")
 
 LEAVING = """<h2 id="leaving">Leaving from New Chitose: a checklist</h2>
 <ul>
@@ -1623,7 +1630,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Domestic ATMs</b> (north and south): Seven Bank 6:20 to 23:00 and Japan Post Bank take overseas cards.</li></ul>'+SRCL;
   }
   function simHTML(){
-    return '<ul class="pl"><li><b>Free Wi-Fi</b> in both terminals, not in the connecting corridor.</li>'
+    return '<ul class="pl"><li><b>Free Wi-Fi</b> in both terminals, not in the connecting corridor. JR Wi-Fi at the station and on the Airport Train.</li>'
       +'<li><b>SIM vending machines:</b> Domestic 1F, International 2F and 3F.</li>'
       +'<li><b>Wi-Fi rental counters:</b> Domestic 1F, International 2F (and one on 3F). Hours differ by counter.</li>'
       +'<li><b>eSIM:</b> install it on your phone and switch it on when you need it. No counter, no queue.</li></ul>'+SRCL;
@@ -1671,7 +1678,7 @@ POCKET_HTML = """<!DOCTYPE html>
     ['Or the bus','Sapporo city centre: Domestic 1F stops 14 and 22, International stop 84. About 70 min to Sapporo Station.']];
   var DEP=[['Check your terminal','International departures: International 3F. Domestic departures: Domestic 2F.'],
     ['Came by train?','JR arrives at B1F under the Domestic Terminal. International flight: go up to 2F and walk the 2F corridor, then up to 3F.'],
-    ['Snow or a delay?','Ask your airline about your flight. Check Hokkaido travel safety information. Leave earlier: trains and buses can be slow and crowded.'],
+    ['Snow or a delay?','Ask your airline about your flight. Check Hokkaido travel safety information and JR Hokkaido Train Operation Information. Leave earlier: trains and buses can be slow and crowded.'],
     ['Bags','Collect bags from lockers or the baggage counter before it closes.'],
     ['Building hours','Domestic 5:00 to 23:30, International 5:00 to 21:00. No staying overnight except in the hotels.']];
   function renderDep(){ renderSteps($('depSteps'),DEP,doneD); }
@@ -1684,6 +1691,7 @@ POCKET_HTML = """<!DOCTYPE html>
   function winterHTML(){
     return '<div class="tipbox"><b>Snow, a delay or a cancelled flight?</b> The airport says: contact the airline you are flying with.</div>'
       +'<ul class="pl"><li>For delays and transport, it points to the airlines, the transport companies and <a href="https://hokkaido-safe-travel.mlit.go.jp/" target="_blank" rel="noopener">Hokkaido travel safety information</a> (needs internet).</li>'
+      +'<li>Live trains: JR Hokkaido&rsquo;s Train Operation Information (English), from its English home page. It maps cancellations and delays of 30 min or more on the Chitose Line.</li>'
       +'<li>Trains stopped? JR lists the airport bus (about 70 to 90 min) and taxis (about 60 min), and warns they can get extremely crowded.</li>'
       +'<li>The terminals close at night (Domestic 23:30, International 21:00). No staying overnight, except in the accommodation facilities.</li>'
       +'<li>With a paper JR ticket, a cancelled trip is refunded in full. The station can give you a delay certificate.</li></ul>'

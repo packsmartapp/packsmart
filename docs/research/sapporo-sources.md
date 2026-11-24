@@ -458,3 +458,22 @@ whether ski and Furano buses are listed (they are).
 - New Chitose Airport guide: no suitable photo exists on PAKUTASO and the owner has none; use a plain colour hero.
 - Not used: 2017 night view of the old Sapporo Station bus terminal (building since closed), Odori at ground level (passers-by),
   Susukino at night (loan and pachinko adverts).
+
+---
+
+## JR Hokkaido notices and services (24 Nov 2026)
+Supplied by the owner and the coordinating session on 24 Nov 2026.
+- JR Hokkaido English home page https://www.jrhokkaido.co.jp/global/index.html (owner's screenshot, 24 Nov 2026), notices:
+  - "From March 14, 2026, all seats will be reserved on all limited express trains in Hokkaido." (notice dated 2026.02.05).
+    Applies to limited expresses such as the Hokuto; the Airport Train (Rapid Airport) is not a limited express and keeps its own seat rules (above).
+  - "IC Card Valid Area: Available for use only at some stations" (2026.04.01).
+  - "Important Notes for Using Ticket Vending Machines with Passport Readers (Sapporo Station/New Chitose Airport Station)" (2026.10.08).
+    Content not read: say only that the notice exists.
+- JR Hokkaido Wi-Fi Guide https://www.jrhokkaido.co.jp/global/english/travel/wifi.html (fetched 24 Nov 2026): JR Hokkaido provides
+  Wi-Fi service at stations, on Rapid Airport train cars and on Hokkaido Shinkansen cars.
+- JR Hokkaido "Train Operation Information" (English; owner-supplied user guide PDF, 24 Nov 2026): Operation Information for Each
+  Station (5:00–25:00) shows delays of 5 minutes or more; the Affected Area Map (5:00–24:00) shows cancellations and delays of
+  30 minutes or more by line, including the Chitose Line (Sapporo – New Chitose Airport – Tomakomai); Train Location Information
+  (5:00–25:00) shows delays of 1 minute or more. Exact URL not known yet: link the English home page for now (TODO owner).
+- JR's MajorTrainTimetable.pdf is dated June 2022: do not use its times. First and last Airport Trains and the Airport Train's
+  platform at Sapporo remain unknown.
