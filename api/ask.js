@@ -34,13 +34,15 @@ const words = s => (s.toLowerCase().normalize('NFKD').match(/[a-z0-9]+(?:-[a-z0-
 const stem = w => w.replace(/(ings?|ed|es|s)$/, '');
 // document frequency for weighting rare words higher
 const DOCS = KB.map(p => { const set = new Set(words(p.t + ' ' + p.x).map(stem)); return set; });
+const PRICEQ = /how much|\bcost|price|\bfare|\byen\b|expensive|cheap|\u00a5/;
 const LOW = KB.map(p => (p.t + ' ' + p.x).toLowerCase());
 const DF = new Map();
 DOCS.forEach(set => set.forEach(w => DF.set(w, (DF.get(w) || 0) + 1)));
 
 // a few place names travellers use for the same thing
-const ALIAS = { rent: ['rental'], hire: ['rental'], car: ['rental'], kansai: ['osaka', 'kyoto', 'kix'], kix: ['kansai'], kanto: ['tokyo'], hakata: ['fukuoka'], fukuoka: ['hakata'], chitose: ['new-chitose', 'cts'], cts: ['chitose'], kasai: ['kansai', 'osaka', 'kyoto'], shinkansen: ['bullet'], bullet: ['shinkansen'], suitcase: ['baggage', 'luggage'], luggage: ['baggage'], bag: ['baggage'], bags: ['baggage'], big: ['oversized'], large: ['oversized'], alcohol: ['alcoholic'], cigarette: ['cigarettes', 'tobacco'], phone: ['sim', 'wi-fi'], sim: ['esim'], money: ['cash', 'atm'], weather: ['season'], rain: ['rainy'], recharge: ['charge', 'add money', 'top'], topup: ['charge'], top: ['charge'], suica: ['ic', 'pasmo', 'icoca'], pasmo: ['suica', 'ic'], icoca: ['ic', 'suica'], airport: ['international'], osaka: ['kansai', 'itami'], kyoto: ['kansai'] };
+const ALIAS = { pass: ['rail', 'japan'], rent: ['rental'], hire: ['rental'], car: ['rental'], kansai: ['osaka', 'kyoto', 'kix'], kix: ['kansai'], kanto: ['tokyo'], hakata: ['fukuoka'], fukuoka: ['hakata'], chitose: ['new-chitose', 'cts'], cts: ['chitose'], kasai: ['kansai', 'osaka', 'kyoto'], shinkansen: ['bullet'], bullet: ['shinkansen'], suitcase: ['baggage', 'luggage'], luggage: ['baggage'], bag: ['baggage'], bags: ['baggage'], big: ['oversized'], large: ['oversized'], alcohol: ['alcoholic'], cigarette: ['cigarettes', 'tobacco'], phone: ['sim', 'wi-fi'], sim: ['esim'], money: ['cash', 'atm'], weather: ['season'], rain: ['rainy'], recharge: ['charge', 'add money', 'top'], topup: ['charge'], top: ['charge'], suica: ['ic', 'pasmo', 'icoca'], pasmo: ['suica', 'ic'], icoca: ['ic', 'suica'], airport: ['international'], osaka: ['kansai', 'itami'], kyoto: ['kansai'] };
 function search(q, n, topicWords) {
+  const qLow = q.toLowerCase();
   const base = words(q);
   const tw = (topicWords || []).map(stem).filter(w => !base.includes(w));
   const qs = [...new Set(base.concat(...base.map(w => ALIAS[w] || [])).map(stem))];
@@ -51,12 +53,19 @@ function search(q, n, topicWords) {
       if (DOCS[i].has(w)) s += Math.log(1 + KB.length / (DF.get(w) || 1));
       else if (w.length >= 5 && LOW[i].includes(w)) s += Math.log(1 + KB.length / 8);   // word start, e.g. alcohol -> alcoholic
     }
+    if (PRICEQ.test(qLow) && KB[i].t.startsWith('japan prices') && s > 0) s += 4;   // cost questions: prefer the official price sheet
     for (const w of tw) if (DOCS[i].has(w)) s += 0.5 * Math.log(1 + KB.length / (DF.get(w) || 1));   // the page's own topic, a light nudge
     // a route named as "A to B" (either way) is the strongest sign the piece answers the question
     const low = LOW[i];
     for (const a of routeWords) for (const b of routeWords) if (a !== b && (low.includes(a + ' to ' + b) || low.includes(a + '\u2013' + b) || low.includes(a + '-' + b))) s += 6;
     return [s, i];
   }).filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]);
+  // cost questions: always include the best few pieces from the official price sheet
+  if (PRICEQ.test(qLow)) {
+    const prices = scored.filter(x => KB[x[1]].t.startsWith('japan prices')).slice(0, 3);
+    const rest = scored.filter(x => !prices.includes(x));
+    return prices.concat(rest).slice(0, n).map(x => KB[x[1]]);
+  }
   return scored.slice(0, n).map(x => KB[x[1]]);
 }
 const TOPIC_GUIDE = { sapporo: 'Sapporo Station guide', 'new-chitose': 'New Chitose Airport guide', ueno: 'Ueno Station guide', shinjuku: 'Shinjuku Station guide',
@@ -71,36 +80,62 @@ function guideFor(q, topic) {
 // Booking button under an answer (D57). The server picks it from the question, so labels stay honest and the AI never
 // names partners. Partner links are the same tracked links the guides use; "internal" ones open the guide section that
 // carries the partner offers. Order = priority; at most one offer per answer.
-const GYG = (q, tag) => 'https://www.getyourguide.com/s/?q=' + encodeURIComponent(q) + '&partner_id=D7IXONS&cmp=ps-packy-' + tag;
+// Which part of Japan the conversation is about: the question first, then the previous question, then the page.
+const REGION_WORDS = {
+  hokkaido: /hokkaido|sapporo|chitose|\bcts\b|otaru|niseko|rusutsu|furano|biei|asahikawa|noboribetsu|hakodate|kushiro|obihiro|area pass/,
+  tokyo: /tokyo|ueno|shinjuku|shibuya|ginza|asakusa|narita|haneda|ikebukuro|akihabara|kanto|yokohama|disney/,
+  kansai: /kansai|\bkix\b|osaka|kyoto|nara|kobe|umeda|namba|universal studios|\busj\b/,
+};
+const TOPIC_REGION = { sapporo: 'hokkaido', 'new-chitose': 'hokkaido', ueno: 'tokyo', shinjuku: 'tokyo', tokyo: 'tokyo', narita: 'tokyo', haneda: 'tokyo', kyoto: 'kansai', osaka: 'kansai', kansai: 'kansai' };
+function regionOf(text) { for (const r in REGION_WORDS) if (REGION_WORDS[r].test(text)) return r; return ''; }
+function regionFor(q, prev, topic) { return regionOf(q.toLowerCase()) || regionOf(prev.toLowerCase()) || TOPIC_REGION[topic] || ''; }
+
+// Each offer: rx = what the question is about; regions = where it applies ('' = anywhere); by = a different button per region.
 const OFFERS = [
-  { id: 'skyliner', rx: /skyliner|keisei|ueno.{0,40}narita|narita.{0,40}ueno|nippori/, label: 'Book Skyliner tickets online', url: 'https://klook.tpx.li/gIYih1CY', partner: true },
-  { id: 'nex', rx: /narita express|\bn'?ex\b/, label: 'Book Narita Express tickets online', url: 'https://klook.tpx.li/tX4jclRv', partner: true },
-  { id: 'limousine', rx: /limousine/, label: 'Book an airport limousine bus online', url: 'https://klook.tpx.li/SISnlOYP', partner: true },
-  { id: 'jrpass', rx: /japan rail pass|\bjr pass\b/, label: 'Book a Japan Rail Pass online', url: 'https://klook.tpx.li/vRbZKSsT', partner: true },
-  { id: 'shinkansen', rx: /shinkansen|bullet train|nozomi|hikari|kodama/, label: 'Book Shinkansen tickets online', url: 'https://www.japan-bullettrain.com/?via=packsmart', partner: true },
-  { id: 'transfer', rx: /transfer|private car|pick ?up|taxi from|door.to.door/, label: 'Book a private airport transfer', url: 'https://tpx.li/qYFLwgZ8', partner: true },
-  { id: 'car', rx: /rent(al)?[ -]?a?[ -]?car|car (hire|rental)|\bdrive\b|driving/, label: 'Compare car hire in our guide', url: '/blog/new-chitose-airport-guide#transfer-car', partner: false, topics: { sapporo: '/blog/sapporo-station-guide#car-rental', ueno: '/blog/ueno-station-guide#car-rental' } },
-  { id: 'esim', rx: /\besim\b|\bsim\b|mobile data|internet|wi-?fi|phone data|roaming/, label: 'See eSIM data plans for Japan', url: 'https://airalo.tpx.li/4TNBGGOO', partner: true },
-  { id: 'insurance', rx: /insurance|hospital|doctor|medical/, label: 'Get a SafetyWing travel medical insurance quote', url: 'https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador', partner: true },
-  { id: 'bags', rx: /luggage storage|store (my )?(bags|luggage)|leave (my )?(bags|luggage)/, label: 'Store your bags in Tokyo', url: 'https://radicalstorage.tpx.li/d0Eds67a', partner: true, cities: { kyoto: ['Store your bags in Kyoto', 'https://radicalstorage.tpx.li/x1dvLMVu'], osaka: ['Store your bags in Osaka', 'https://radicalstorage.tpx.li/pDtmtRB2'] } },
-  { id: 'hotel', rx: /hotel|stay|accommodation|where to sleep/, label: 'Hotels by Sapporo Station', url: '/blog/sapporo-station-guide#hotels', partner: false, only: /sapporo|asahikawa|hakodate|chitose|hokkaido/ },
-  { id: 'tour', rx: /\btours?\b|day trip|guided|excursion|ski (lesson|tour|pass)|lift ticket/, label: 'Compare guided tours', partner: true, gyg: true },
+  { id: 'skyliner', rx: /skyliner|keisei|ueno.{0,40}narita|narita.{0,40}ueno|nippori/, regions: ['tokyo', ''], label: 'Book Skyliner tickets online', url: 'https://klook.tpx.li/gIYih1CY', partner: true },
+  { id: 'nex', rx: /narita express|\bn'?ex\b/, regions: ['tokyo', ''], label: 'Book Narita Express tickets online', url: 'https://klook.tpx.li/tX4jclRv', partner: true },
+  { id: 'limousine', rx: /limousine/, regions: ['tokyo', ''], label: 'Book an airport limousine bus online', url: 'https://klook.tpx.li/SISnlOYP', partner: true },
+  // the nationwide pass only: not for the Hokkaido or area passes (no partner sells those through us)
+  { id: 'jrpass', rx: /japan rail pass|\bjr pass\b/, not: /hokkaido rail pass|area pass|hokkaido pass/, regions: ['tokyo', 'kansai', ''], label: 'Book a Japan Rail Pass online', url: 'https://klook.tpx.li/vRbZKSsT', partner: true },
+  { id: 'shinkansen', rx: /shinkansen|bullet train|nozomi|hikari|kodama/, regions: ['tokyo', 'kansai', ''], label: 'Book Shinkansen tickets online', url: 'https://www.japan-bullettrain.com/?via=packsmart', partner: true },
+  { id: 'transfer', rx: /\btransfer\b|private car|pick ?up|taxi from|door.to.door/, regions: ['tokyo', 'kansai', 'hokkaido', ''], label: 'Book a private airport transfer', url: 'https://tpx.li/qYFLwgZ8', partner: true },
+  { id: 'car', rx: /rent(al)?[ -]?a?[ -]?car|car (hire|rental)|\bdrive\b|driving/, regions: ['hokkaido', 'tokyo', 'kansai', ''], by: {
+      hokkaido: ['Compare car hire in our guide', '/blog/new-chitose-airport-guide#transfer-car', false],
+      tokyo: ['Compare car hire in our guide', '/blog/ueno-station-guide#car-rental', false] }, label: 'Compare car hire in our guide', url: '/blog/new-chitose-airport-guide#transfer-car', partner: false },
+  { id: 'esim', rx: /\besim\b|\bsim\b|mobile data|internet|wi-?fi|phone data|roaming/, regions: ['tokyo', 'kansai', 'hokkaido', ''], label: 'See eSIM data plans for Japan', url: 'https://airalo.tpx.li/4TNBGGOO', partner: true },
+  { id: 'insurance', rx: /insurance|hospital|doctor|medical/, regions: ['tokyo', 'kansai', 'hokkaido', ''], label: 'Get a SafetyWing travel medical insurance quote', url: 'https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador', partner: true },
+  // bag storage partner covers Tokyo, Kyoto and Osaka only; in Hokkaido point to our locker sections instead
+  { id: 'bags', rx: /luggage|\bbags?\b|suitcase|locker/, regions: ['tokyo', 'kansai', 'hokkaido'], by: {
+      tokyo: ['Store your bags in Tokyo', 'https://radicalstorage.tpx.li/d0Eds67a', true],
+      kansai: ['Store your bags in Osaka', 'https://radicalstorage.tpx.li/pDtmtRB2', true],
+      kyoto: ['Store your bags in Kyoto', 'https://radicalstorage.tpx.li/x1dvLMVu', true],
+      hokkaido: ['Lockers and luggage at Sapporo Station', '/blog/sapporo-station-guide#luggage', false],
+      'hokkaido-airport': ['Lockers and bag delivery at New Chitose', '/blog/new-chitose-airport-guide#luggage', false] } },
+  { id: 'hotel', rx: /hotel|\bstay\b|accommodation|where to sleep/, regions: ['hokkaido'], label: 'Hotels by Sapporo Station', url: '/blog/sapporo-station-guide#hotels', partner: false },
+  { id: 'tour', rx: /\btours?\b|day trip|guided|excursion|ski (lesson|tour|pass)|lift ticket/, regions: ['tokyo', 'kansai', 'hokkaido', ''], partner: true, gyg: true },
 ];
 const TOUR_PLACES = ['niseko', 'otaru', 'noboribetsu', 'furano', 'biei', 'asahikawa', 'sapporo', 'hakodate', 'kyoto', 'osaka', 'nara', 'tokyo', 'hakone', 'fuji', 'nikko', 'hiroshima'];
 function offerFor(q, prev, topic) {
-  const t = (q + ' ' + prev).toLowerCase();
+  const now = q.toLowerCase(), t = (q + ' ' + prev).toLowerCase(), region = regionFor(q, prev, topic);
   for (const o of OFFERS) {
-    if (!o.rx.test(t) || (o.only && !o.only.test(t + ' ' + topic))) continue;
-    let label = o.label, url = o.url;
-    if (o.topics && o.topics[topic]) url = o.topics[topic];
-    if (o.cities) for (const c in o.cities) if (t.includes(c) || topic === c) { label = o.cities[c][0]; url = o.cities[c][1]; }
-    if (o.gyg) {
-      const place = TOUR_PLACES.find(p => t.includes(p)) || (topic && topic !== 'japan' ? topic.replace('new-chitose', 'sapporo') : 'japan');
-      const what = /ski/.test(t) ? ' ski' : (/day trip/.test(t) ? ' day trip' : ' tours');
-      label = 'Compare ' + (what === ' ski' ? 'ski tours and lessons' : 'guided' + what) + ' from ' + place.charAt(0).toUpperCase() + place.slice(1);
-      url = GYG(place + what, place);
+    if (!o.rx.test(now) && !(o.rx.test(t) && !regionOf(now))) continue;   // follow-ups like "how much is it?" keep the earlier topic
+    if (o.not && o.not.test(t)) continue;
+    if (o.regions && !o.regions.includes(region)) continue;
+    let label = o.label, url = o.url, partner = !!o.partner;
+    if (o.by) {
+      let key = region;
+      if (o.id === 'bags' && region === 'kansai' && /kyoto/.test(t + ' ' + topic)) key = 'kyoto';
+      if (o.id === 'bags' && region === 'hokkaido' && /airport|chitose|\bcts\b/.test(t + ' ' + topic)) key = 'hokkaido-airport';
+      const pick = o.by[key];
+      if (pick) { label = pick[0]; url = pick[1]; partner = pick[2]; } else if (!url) continue;
     }
-    return { id: o.id, label, url, partner: !!o.partner };
+    if (o.gyg) {
+      const place = TOUR_PLACES.find(p => t.includes(p)) || ({ hokkaido: 'sapporo', tokyo: 'tokyo', kansai: 'kyoto' })[region] || 'japan';
+      const what = /ski/.test(t) ? ' ski' : (/day trip/.test(t) ? ' day trip' : ' tours');
+      label = 'Compare ' + (what === ' ski' ? 'ski tours and lessons' : 'guided' + what + 's').replace('tourss', 'tours') + ' from ' + place.charAt(0).toUpperCase() + place.slice(1);
+      url = 'https://www.getyourguide.com/s/?q=' + encodeURIComponent(place + what) + '&partner_id=D7IXONS&cmp=ps-packy-' + place;
+    }
+    return { id: o.id, label, url, partner };
   }
   return null;
 }
