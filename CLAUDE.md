@@ -2,7 +2,7 @@
 
 Travel-prep site for a **global** audience (since 10 Nov 2026; India-specific guides are one segment, not the brand). It earns from affiliate links, not from users: free packing guides, visa and cost info, itineraries, plus offline "Pocket Guides" for airports and stations in Japan. No sign-up, no newsletter, no accounts.
 
-Owner: Ari (solo; reviews and pushes everything). The repo is **public**: never commit secrets, earnings, partner negotiations or strategy notes.
+Owner: Ari (solo; reviews and pushes everything). Site email: `hello@packsmartapp.com` (contact, privacy, terms, affiliate disclosure; also the sender for the planned "Ask about Japan" emails). The repo is **public**: never commit secrets, earnings, partner negotiations or strategy notes.
 
 ## Start of every session
 1. Read `PROJECT_CONTEXT.md` (private, gitignored, on Ari's Mac): account IDs, history, open to-dos. If missing, ask.
