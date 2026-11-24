@@ -67,6 +67,8 @@
     '.pk-msg p{margin:.2rem 0}.pk-msg ul{margin:.2rem 0 .2rem 1.1rem;padding:0}.pk-msg li{margin:.15rem 0}.pk-msg a{color:#0a8f78;font-weight:700}' +
     '.pk-bot{background:#fff;border-radius:18px 18px 18px 6px;box-shadow:0 2px 8px rgba(15,15,35,.07)}' +
     '.pk-me{margin-left:auto;background:linear-gradient(135deg,#00C9A7,#00A88C);color:#fff;border-radius:18px 18px 6px 18px;box-shadow:0 4px 12px rgba(0,168,140,.3);animation:pkIn .2s ease}' +
+    '.pk-offer{display:flex;align-items:center;gap:8px;margin:10px 0 2px;padding:10px 12px;border-radius:14px;background:linear-gradient(135deg,#FFF1F4,#FFE4EA);border:1.5px solid #F7B9C6;color:#0f0f23!important;text-decoration:none;font-weight:700!important;transition:transform .15s}' +
+    '.pk-offer:hover{transform:translateY(-1px);border-color:#E94560}.pk-offer b{flex:1;font-size:14.5px}.pk-offer small{font-size:11px;font-weight:600;color:#8a5563;white-space:nowrap}' +
     '.pk-more{font-size:13px;border-top:1px dashed #D5DCE0;margin-top:8px!important;padding-top:6px}' +
     '.pk-err{background:#FFF1F4}' +
     '.pk-dots{display:inline-flex;gap:4px;padding:4px 2px}.pk-dots i{width:8px;height:8px;border-radius:50%;background:#00C9A7;animation:pkDot 1s infinite ease-in-out}.pk-dots i:nth-child(2){animation-delay:.15s;background:#7FE3D0}.pk-dots i:nth-child(3){animation-delay:.3s;background:#E94560}' +
@@ -129,14 +131,20 @@
     '<div class="pk-hb"><button type="button" class="pk-new" aria-label="Start a new chat" title="New chat">&#8635;</button><button type="button" class="pk-x" aria-label="Close Packy" title="Close">&times;</button></div></div>' +
     '<div class="pk-body" aria-live="polite"></div>' +
     '<form class="pk-form" autocomplete="off"><label class="pk-sr" for="pkQ">Your question</label><input id="pkQ" type="text" maxlength="300" placeholder="Ask Packy about ' + esc(C.name) + '…"><button type="submit" class="pk-send" aria-label="Send">&#10148;</button></form>' +
-    '<div class="pk-note">Answers come from official sources. Times change, so check before you travel. Please don’t type personal details. <a href="/privacy-policy">Privacy</a></div>';
+    '<div class="pk-note">Answers come from official sources. Prices and times change, so check before you travel. Booking buttons may be partner links (<a href="/affiliate-disclosure">disclosure</a>). Please don’t type personal details. <a href="/privacy-policy">Privacy</a></div>';
   document.body.appendChild(fab); document.body.appendChild(panel);
   var body = panel.querySelector('.pk-body'), form = panel.querySelector('.pk-form'), input = panel.querySelector('#pkQ'), send = form.querySelector('.pk-send');
   var history = load(), started = false, busy = false;
 
   function botRow(html, cls) { var r = el('div', 'pk-row'); r.innerHTML = '<span class="pk-face">' + FACE + '</span>'; var m = el('div', 'pk-msg pk-bot' + (cls ? ' ' + cls : ''), html); r.appendChild(m); body.appendChild(r); return r; }
   function meRow(q) { body.appendChild(el('div', 'pk-msg pk-me', esc(q))); }
-  function answerHtml(a, guide) { return fmt(a) + (guide ? '<p class="pk-more">📖 More in our <a href="' + esc(guide.url) + '">' + esc(guide.title) + '</a></p>' : ''); }
+  function offerHtml(o) {
+    if (!o || !o.url || !/^(https:\/\/|\/)/.test(o.url)) return '';
+    var ext = /^https:/.test(o.url);
+    return '<a class="pk-offer" data-offer="' + esc(o.id || '') + '" href="' + esc(o.url) + '"' + (ext ? ' target="_blank" rel="nofollow noopener sponsored"' : '') + '>' +
+      '<span aria-hidden="true">' + (o.partner ? '🎟️' : '👉') + '</span><b>' + esc(o.label) + '</b>' + (o.partner ? '<small>partner link</small>' : '') + '</a>';
+  }
+  function answerHtml(a, guide, offer) { return fmt(a) + offerHtml(offer) + (guide ? '<p class="pk-more">📖 More in our <a href="' + esc(guide.url) + '">' + esc(guide.title) + '</a></p>' : ''); }
   function chips(list, label) {
     var old = body.querySelector('.pk-chips'); if (old) old.remove();
     if (!list || !list.length) return;
@@ -150,7 +158,7 @@
   function start() {
     if (started) return; started = true;
     botRow(fmt(C.hello));
-    history.forEach(function (h) { meRow(h.q); botRow(answerHtml(h.a, h.guide)); });
+    history.forEach(function (h) { meRow(h.q); botRow(answerHtml(h.a, h.guide, h.offer)); });
     var last = history[history.length - 1];
     chips(last && last.next && last.next.length ? last.next : STARTERS, last ? 'Ask next' : 'Try one of these');
   }
@@ -166,10 +174,10 @@
       .then(function (x) {
         var ok = x[0], d = x[1]; wait.remove();
         if (!ok || !d.ok) { botRow(esc((d && d.error) || 'Sorry, something went wrong. Please try again.'), 'pk-err'); chips(STARTERS, 'Or try one of these'); track('error'); return; }
-        botRow(answerHtml(d.answer, d.guide));
+        botRow(answerHtml(d.answer, d.guide, d.offer));
         var next = (d.next && d.next.length) ? d.next : STARTERS.filter(function (s) { return s !== q; });
         chips(next, 'Ask next');
-        history.push({ q: q, a: d.answer, guide: d.guide, next: d.next || [] }); save(history); track('answered');
+        history.push({ q: q, a: d.answer, guide: d.guide, offer: d.offer || null, next: d.next || [] }); save(history); track('answered');
       })
       .catch(function () { wait.remove(); botRow('Packy needs an internet connection 📶 Please try again when you are online.', 'pk-err'); track('offline'); })
       .then(function () { busy = false; send.disabled = false; scrollDown(); });
@@ -185,6 +193,7 @@
   panel.querySelector('.pk-x').addEventListener('click', close);
   panel.querySelector('.pk-new').addEventListener('click', reset);
   panel.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
+  body.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('.pk-offer'); if (a) { try { if (window.gtag) gtag('event', 'ask_' + country, { event_category: 'engagement', status: 'offer_click', offer: a.getAttribute('data-offer'), page_path: location.pathname }); } catch (x) {} } });
   form.addEventListener('submit', function (e) { e.preventDefault(); ask(input.value); });
 
   // a one-time hello bubble next to the button, once per visit

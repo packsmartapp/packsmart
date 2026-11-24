@@ -254,6 +254,10 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Rollout: stage 1 is `/japan` and the guides with solid knowledge (Japan guide, Sapporo, New Chitose, Ueno, Shinjuku, Tokyo, Kyoto, Osaka stations); Narita, Haneda and Kansai after their research notes; Pocket Guides after real questions are reviewed (they are offline-first).
 - Why: Packy's edge is trust and precision, not breadth; an open box everywhere invites questions it cannot answer and compares it with search engines. Fixes to the one engine reach every page at once.
 
+**D57. Packy gives approximate prices, and a booking button where a partner sells it** (24 Nov)
+- Chose: Packy answers cost questions with an approximate price or range from official sources, what it covers, the checked date, and a short "prices change, check the latest on [official page]". When a partner sells the thing asked about (Skyliner or Narita Express tickets, Shinkansen tickets, a JR Pass, airport transfers, eSIM, travel medical insurance, bag storage, guided tours), a "Book online" button labelled "partner link" appears under the answer, using the same tracked links as the guides; hotels and car hire open the guide section that carries those offers. The server picks the button from the question; the AI never writes booking links or partner names.
+- Why: travellers ask "how much?" constantly, and "prices change" alone is a weak answer. One price lives in one fact sheet with its date, so it is updated once. The guides' own text keeps the no-prices rule, because 70 pages of typed prices go stale.
+
 ## Open decisions (not made)
 
 - Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.
