@@ -14,7 +14,7 @@ is left out, or written as "We did not find this on the official pages. Please a
 The station is being rebuilt for the Hokkaido Shinkansen: JR shows its map "as of 21 October 2026" and says it may
 change. Left out on purpose: the platform for the Airport Train at Sapporo (only a 2022 press release names one), the
 first and last Airport Trains (not found), locker locations and prices, the length and hours of the underground
-walkway to Odori, Snow Festival opening hours and the Premist Dome site's dates, ATMs and toilets.
+walkway to Odori, Snow Festival opening hours and the Premist Dome site's dates, and toilets. (ATMs added 24 Nov 2026 from Seven Bank's locator.)
 
 Partner blocks (no new programmes, no Klook, no hotel links): the eSIM tiles copied from the Japan guide (placement
 id airalo-sapporo-station) and a tours-and-tickets box with a search for Sapporo (gyg-sapporo-station,
@@ -84,6 +84,12 @@ SRC = {
     "subxfer": (_C + "st/s110/127449.html", "Sapporo City Transportation Bureau: changing lines at Sapporo Station"),
     "snow": ("https://www.snowfes.com/", "Sapporo Snow Festival (official site, Japanese)"),
     "ctsjr": ("https://www.hokkaido-airports.com/en/new-chitose/access/jr/", "New Chitose Airport: access by JR"),
+    "sbintl": ("https://www.sevenbank.co.jp/intlcard/index2.html", "Seven Bank: cards issued outside Japan"),
+    "sbjrspk": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000038030", "Seven Bank ATM: JR Hokkaido Sapporo Station"),
+    "sbnamboku": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000029337", "Seven Bank ATM: subway Namboku Line, Sapporo"),
+    "sbtoho": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000027385", "Seven Bank ATM: subway Toho Line, Sapporo"),
+    "sbapia": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000009330", "Seven Bank ATM: JR Tower APIA"),
+    "sbodori": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000026672", "Seven Bank ATM: subway Odori station"),
 }
 
 def a_src(k, label=None):
@@ -250,6 +256,7 @@ TOC = [
     ("airport", "To New Chitose Airport: the Airport Train"),
     ("long-distance", "Hakodate, Asahikawa, Otaru and the Shinkansen"),
     ("connected", "Getting online: eSIM"),
+    ("money", "Money and ATMs"),
     ("luggage", "Lockers and luggage"),
     ("finder", "Find it fast: by side"),
     ("leaving", "Leaving Sapporo: a checklist"),
@@ -260,7 +267,7 @@ TOC = [
 TOC_SHORT = {
     "one-page": "On one page", "construction": "Construction", "gates": "Gates", "desks": "Help desks", "subway": "Subway",
     "snow-festival": "Snow Festival", "airport": "To the airport", "long-distance": "Other trains", "connected": "Get online",
-    "luggage": "Lockers", "finder": "Find it fast", "leaving": "Leaving", "faq": "FAQ", "about-this-guide": "About",
+    "money": "ATMs", "luggage": "Lockers", "finder": "Find it fast", "leaving": "Leaving", "faq": "FAQ", "about-this-guide": "About",
 }
 TOC_TILES = [
     ("subway", "&#128647;", "Subway to Odori", "Namboku N06, 2 min"),
@@ -487,7 +494,9 @@ FINDER_DATA = {
         ["food", "Shops and food", {
             "T1": "Daimaru Sapporo, to the south-west, and Sapporo Stellar Place (Center), south of the gates (JR's map).",
             "T2": "Sapporo Stellar Place (East), to the south-east (JR's map)."}],
-        ["money", "Money and ATMs", _BOTH("We did not find ATMs or currency exchange on the official station pages. Please ask station staff or the tourist information center.")],
+        ["money", "Money and ATMs", {
+            "T1": "JR Sapporo Station has a Seven Bank ATM on the West gate side, 5:10 to 24:00. More in the Namboku Line subway concourse (N06), outside the gates, 6:00 to 24:00. Seven Bank ATMs take cards issued abroad.",
+            "T2": "Toho Line subway (H07): a Seven Bank ATM on B1 near the South gate, 6:00 to 24:00. JR's own Seven Bank ATM is on the West gate side, 5:10 to 24:00. They take cards issued abroad."}],
         ["toilet", "Toilets", _BOTH("We did not find toilet locations in words on the official pages. Follow the signs, or ask station staff.")],
         ["unwell", "Feeling unwell", _BOTH("Tell station staff. In an emergency, call 119.")],
     ],
@@ -653,6 +662,19 @@ CONNECTED = """<h2 id="connected">Getting online: eSIM</h2>
 <li><strong>eSIM:</strong> install it on your phone and switch it on when you need it. It needs an eSIM-ready, unlocked phone.</li>
 </ul>
 """ + sources(["jrwifi"])
+
+MONEY = """<h2 id="money">Money and ATMs</h2>
+<p>Seven Bank ATMs take cards issued outside Japan with the Visa, Mastercard, UnionPay, American Express, JCB, Discover and Diners Club marks, though Seven Bank says some cards with these marks may not be accepted. These are the Seven Bank ATMs its locator lists at Sapporo Station:</p>
+<ul>
+<li><strong>JR Sapporo Station, West gate side:</strong> 1 ATM, 5:10 to 24:00.</li>
+<li><strong>Subway, Namboku Line Sapporo (N06):</strong> 2 ATMs in the concourse outside the ticket gates, 6:00 to 24:00.</li>
+<li><strong>Subway, Toho Line Sapporo (H07):</strong> 1 ATM on B1, in the gate concourse near the South gate, 6:00 to 24:00.</li>
+<li><strong>JR Tower APIA:</strong> 1 ATM in the cash service corner (Floral Galleria), 8:00 to 21:00.</li>
+<li><strong>At the Snow Festival:</strong> Odori subway station has 2 ATMs outside the ticket gates, 6:00 to 24:00: on B2 by the East gate (Toho Line) and on B1 by exit 4 (Tozai Line).</li>
+<li><strong>Currency exchange:</strong> we did not find a counter at the station on the official pages we read.</li>
+</ul>
+<p>Seven Bank says the hours can differ on the day, so carry a little cash before a late train.</p>
+""" + sources(["sbintl", "sbjrspk", "sbnamboku", "sbtoho", "sbapia", "sbodori"], "Hours can change.")
 
 LUGGAGE = """<h2 id="luggage">Lockers and luggage</h2>
 <p>Sort your bags out before you head to Odori or the ski slopes.</p>
@@ -916,6 +938,7 @@ BODY = "\n\n".join([
     LONG,
     CONNECTED,
     airalo,
+    MONEY,
     LUGGAGE,
     FINDER,
     SAVE_BOX,
@@ -1510,7 +1533,7 @@ POCKET_HTML = """<!DOCTYPE html>
   var snowIt=['snow','Snow Festival',{}];
   var airIt=['airport','To the airport',{}];
   var LIST=[];
-  ['subway','snow','airport','info','tickets','lockers','help','taxi','food','money','toilet','unwell'].forEach(function(id){
+  ['subway','snow','airport','info','tickets','lockers','money','help','taxi','food','toilet','unwell'].forEach(function(id){
     LIST.push(id==='subway'?subwayIt:id==='snow'?snowIt:id==='airport'?airIt:item(id));
   });
   LIST.forEach(function(it,n){
@@ -1520,7 +1543,7 @@ POCKET_HTML = """<!DOCTYPE html>
     b.appendChild(ic); b.appendChild(tx);
     b.addEventListener('click',function(){ if(it[0]==='subway'){ openInfo(ICON.subway,it[1],subwayHTML(),b); } else if(it[0]==='snow'){ openInfo(ICON.snow,it[1],snowHTML(),b); } else if(it[0]==='airport'){ openInfo(ICON.airport,it[1],airportHTML(),b); } else { openSheet(it,b); } });
     (n<MAIN?tiles:tiles2).appendChild(b);
-    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u2192','More','Taxis, shops, money, toilets, feeling unwell',function(){ slideTo(1); })); }
+    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u2192','More','Taxis, shops, toilets, feeling unwell',function(){ slideTo(1); })); }
   });
   tiles2.appendChild(pill('pgback','\\u2190','Back','Main places',function(){ slideTo(0); }));
   /* swipe between the two screens */

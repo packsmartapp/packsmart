@@ -99,3 +99,14 @@ Source: https://www.tokyometro.jp/lang_en/station/ueno/index.html
 - Cherry blossom section: "上野恩賜公園の満開の桜" (Ueno Park avenue of cherry trees in full bloom, lanterns, no people),
   https://www.pakutaso.com/20130348087post-2579.html, saved as `public/images/ueno-park-sakura.jpg`.
 - Not used: JR Ueno Park Exit crossing at rush hour (crowd), old Hakubutsukan-dobutsuen station (closed, would confuse).
+
+
+## ATMs (Seven Bank ATM locator, checked 24 Nov 2026 in a browser; Japanese pages, "その他" = location note)
+Seven Bank ATMs take cards issued outside Japan (Visa, Mastercard, UnionPay, American Express, JCB, Discover, Diners Club;
+"some cards with these marks may not be accepted"): https://www.sevenbank.co.jp/intlcard/index2.html
+Each listing: https://location.sevenbank.co.jp/sevenbank/spot/detail?code=<code>
+- 0000020485 Tokyo Metro Ginza Line, Ueno: 1 ATM, 5:00-24:00, "B1 outside the ticket gates, concourse" (地下1階 改札外 コンコース).
+- 0000031234 Tokyo Metro Hibiya Line, Ueno: 1 ATM, 5:00-24:00, "B1 outside the ticket gates" (地下1階 改札外).
+- 0000008310 Keisei Ueno station (Keisei Main Line): 2 ATMs, 5:00-24:00, "B1 ATM corner" (地下1階 ATMコーナー); about 1 min from Keisei Ueno main exit.
+- 0000026243 7-Eleven Ueno Ekimae-dori (上野駅前通り店), Ueno 6-14-4: 2 ATMs, open 24 hours.
+- Searches for atre Ueno and ecute Ueno found no Seven Bank ATM. No ATM inside JR's gates found on the pages read. No currency exchange found.

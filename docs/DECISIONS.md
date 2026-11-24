@@ -228,6 +228,10 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Chose: the existing Klook Skyliner link (through Travelpayouts) on the Ueno article and Pocket Guide (placement `klook-skyliner-ueno`), an exception to "avoid adding Klook placements", because Skyliner tickets are what a reader at Ueno is about to buy. Every "N min read" label is now set by `tools/w69_read_times.py` from the article's word count (230 words a minute), on the articles and their cards.
 - Why: the Skyliner is the main purchase at Ueno; hand-typed read times were far off (Ueno said 10 minutes for about 4,700 words).
 
+**D51. Pocket Guides and station guides are utility first, partner offers second** (24 Nov)
+- Chose: a guide must first answer what a traveller needs on the spot (ATMs and cash, exits, platforms, lockers, help, first and last trains), from official sources with a date. Partner blocks come after that and never replace a missing fact. A gap a traveller would hit (for example ATMs) is filled before the guide is called done.
+- Why: travellers save and share a guide that works when they are stuck; that trust is what makes the partner links worth anything.
+
 ## Open decisions (not made)
 
 - Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.

@@ -65,6 +65,11 @@ SRC = {
     "parkhi": ("https://www.kensetsu.metro.tokyo.lg.jp/jimusho/toubuk/ueno/midokoro", "Ueno Park highlights (Tokyo Metropolitan Government)"),
     "parkrules": ("https://www.kensetsu.metro.tokyo.lg.jp/jimusho/toubuk/ueno/rules", "Ueno Park rules (Tokyo Metropolitan Government)"),
     "tpa": ("https://www.tokyo-park.or.jp/park/ueno/index.html", "Tokyo Metropolitan Park Association: Ueno Park"),
+    "sbintl": ("https://www.sevenbank.co.jp/intlcard/index2.html", "Seven Bank: cards issued outside Japan"),
+    "sbginza": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000020485", "Seven Bank ATM: Tokyo Metro Ginza Line, Ueno"),
+    "sbhibiya": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000031234", "Seven Bank ATM: Tokyo Metro Hibiya Line, Ueno"),
+    "sbkeisei": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000008310", "Seven Bank ATM: Keisei Ueno station"),
+    "sb711u": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000026243", "Seven Bank ATM: 7-Eleven Ueno Ekimae-dori"),
 }
 
 
@@ -236,6 +241,7 @@ TOC = [
     ("metro", "Tokyo Metro: Ginza and Hibiya lines"),
     ("park", "Ueno Park and the cherry blossoms"),
     ("connected", "Getting online: eSIM"),
+    ("money", "Money and ATMs"),
     ("luggage", "Lockers and luggage"),
     ("finder", "Find it fast: lockers, tickets, lifts"),
     ("facilities", "Facilities in the station"),
@@ -247,7 +253,7 @@ TOC = [
 # ---- "What do you need first?" tiles + a quick-jump bar that appears once you scroll (as w42)
 TOC_SHORT = {
     "one-page": "On one page", "narita": "Narita", "exits": "Which exit", "platforms": "Platforms", "metro": "Metro",
-    "park": "Ueno Park", "connected": "Get online", "luggage": "Luggage", "finder": "Find it fast",
+    "park": "Ueno Park", "connected": "Get online", "money": "ATMs", "luggage": "Luggage", "finder": "Find it fast",
     "facilities": "Facilities", "help": "Help", "leaving": "Leaving", "faq": "FAQ", "about-this-guide": "About",
 }
 TOC_TILES = [
@@ -466,8 +472,8 @@ FINDER_DATA = {
             "T1": "JR Lost & Found is on 2F, near the stairs to the Panda Bridge Exit (JR East map). Lost it on the Tokyo Metro? Same day: ask the Metro station office. From the next day: Tokyo Metro's Lost and Found at Iidabashi Station or its Customer Relations Center.",
             "T2": "JR Lost & Found is on 2F, near the stairs to the Panda Bridge Exit (JR East map). Lost it on the Tokyo Metro? Same day: ask the Metro station office. From the next day: Tokyo Metro's Lost and Found at Iidabashi Station or its Customer Relations Center."}],
         ["money", "Money and ATMs", {
-            "T1": "We did not find ATMs on the official station pages we read. Please ask station staff.",
-            "T2": "We did not find ATMs on the official station pages we read. Please ask station staff."}],
+            "T1": "Nearest from the park side: Keisei Ueno, 2 Seven Bank ATMs in the B1 ATM corner, 5:00 to 24:00. Seven Bank ATMs take cards issued abroad. We did not find an ATM inside JR's gates.",
+            "T2": "Go down to the Tokyo Metro concourse (B1, outside the ticket gates): Seven Bank ATMs at the Ginza Line and the Hibiya Line, 5:00 to 24:00. They take cards issued abroad. Open 24 hours: the 7-Eleven on Ueno Ekimae-dori."}],
         ["toilet", "Toilets", {
             "T1": "We did not find toilet locations in words on the official pages. Follow the signs, or ask station staff.",
             "T2": "We did not find toilet locations in words on the official pages. Follow the signs, or ask station staff."}],
@@ -529,6 +535,18 @@ BAGS_LINK = "https://radicalstorage.tpx.li/d0Eds67a"
 BAGS = ('<p data-ps-placement="bags-ueno-station" style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">'
         '&#129523; No locker free, or a bag too big for one? <a href="' + BAGS_LINK + '" target="_blank" rel="nofollow noopener sponsored" '
         'style="color:#00C9A7;text-decoration:underline;">Store your bags in Tokyo</a> (partner link) and explore hands-free.</p>')
+
+MONEY = """<h2 id="money">Money and ATMs</h2>
+<p>Seven Bank ATMs take cards issued outside Japan with the Visa, Mastercard, UnionPay, American Express, JCB, Discover and Diners Club marks, though Seven Bank says some cards with these marks may not be accepted. These are the Seven Bank ATMs its locator lists at Ueno:</p>
+<ul>
+<li><strong>Tokyo Metro, under the station.</strong> Ginza Line Ueno: 1 ATM on B1, outside the ticket gates, in the concourse. Hibiya Line Ueno: 1 ATM on B1, outside the ticket gates. Both open 5:00 to 24:00.</li>
+<li><strong>Keisei Ueno</strong> (the Skyliner station by Ueno Park): 2 ATMs in the B1 ATM corner, 5:00 to 24:00.</li>
+<li><strong>Open 24 hours:</strong> the 7-Eleven on Ueno Ekimae-dori, 2 ATMs.</li>
+<li><strong>Inside JR&rsquo;s ticket gates:</strong> we did not find an ATM on the official pages we read.</li>
+<li><strong>Currency exchange:</strong> we did not find a counter at the station on the official pages we read.</li>
+</ul>
+<p>Seven Bank says the hours can differ on the day, so carry a little cash before a late arrival.</p>
+""" + sources(["sbintl", "sbginza", "sbhibiya", "sbkeisei", "sb711u"], "Hours can change.")
 
 LUGGAGE = """<h2 id="luggage">Lockers and luggage</h2>
 <p>Sort your bags out before you head into the park or the museums. JR East's station map shows coin lockers on three floors.</p>
@@ -858,7 +876,8 @@ FACILITIES = """<h2 id="facilities">Facilities in the station</h2>
 <tr><td><strong>Shops</strong></td><td>atre Ueno (outside the gates, 1F and 2F), ecute Ueno (inside the gates, 3F), NewDays kiosks</td></tr>
 <tr><td><strong>Statue of Panda</strong></td><td>3F, marked on JR East's map</td></tr>
 <tr><td><strong>Tokyo Metro ticket machines</strong></td><td>Multi-functional machines at all ticket offices, first train to last (Tokyo Metro)</td></tr>
-<tr><td><strong>ATMs, currency exchange, toilets</strong></td><td>-</td></tr>
+<tr><td><strong>ATMs</strong></td><td>Seven Bank, cards issued abroad: Tokyo Metro concourse B1, outside the gates (Ginza and Hibiya lines), 5:00 to 24:00; Keisei Ueno B1, 5:00 to 24:00. See <a href="#money">Money and ATMs</a></td></tr>
+<tr><td><strong>Currency exchange, toilets</strong></td><td>-</td></tr>
 </tbody>
 </table>
 </div>
@@ -1008,6 +1027,7 @@ BODY = "\n\n".join([
     GYG_UENO,
     CONNECTED,
     airalo,
+    MONEY,
     LUGGAGE,
     FINDER,
     SAVE_BOX,
@@ -1605,7 +1625,7 @@ POCKET_HTML = """<!DOCTYPE html>
   var exitsIt=['exits','Which exit?',{}];
   var parkIt=['park','Ueno Park',{}];
   var LIST=[];
-  ['exits','park','lockers','info','tickets','trains','help','lost','money','toilet','food','unwell'].forEach(function(id){
+  ['exits','park','lockers','info','tickets','trains','money','help','lost','toilet','food','unwell'].forEach(function(id){
     LIST.push(id==='trains'?trainsIt:id==='exits'?exitsIt:id==='park'?parkIt:item(id));
   });
   LIST.forEach(function(it,n){
@@ -1615,7 +1635,7 @@ POCKET_HTML = """<!DOCTYPE html>
     b.appendChild(ic); b.appendChild(tx);
     b.addEventListener('click',function(){ if(it[0]==='trains'){ openInfo(ICON.trains,it[1],trainHTML(),b); } else if(it[0]==='exits'){ openInfo(ICON.exits,it[1],exitHTML(),b); } else if(it[0]==='park'){ openInfo(ICON.park,it[1],parkHTML(),b); } else { openSheet(it,b); } });
     (n<MAIN?tiles:tiles2).appendChild(b);
-    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u2192','More','Money, toilets, shops, feeling unwell',function(){ slideTo(1); })); }
+    if(n===MAIN-1){ tiles.appendChild(pill('pgnext','\\u2192','More','Lost and found, toilets, shops, feeling unwell',function(){ slideTo(1); })); }
   });
   tiles2.appendChild(pill('pgback','\\u2190','Back','Main places',function(){ slideTo(0); }));
   /* swipe between the two screens */

@@ -25,7 +25,7 @@ Owner: Ari (solo; reviews and pushes everything). The repo is **public**: never 
 - `api/`: serverless functions. Gitignored and private: `PROJECT_CONTEXT.md`, `backlink-outreach/`, `pinterest-pins/`.
 
 ## Pocket Guides (Tokyo, Shinjuku, Ueno, Narita, Haneda, Kansai/KIX, Kyoto, Osaka, New Chitose, Sapporo)
-Call them "Pocket Guides", never "app". Each is one self-contained HTML file: flex-column shell, `.panels` scroll area, bottom `.tabs`, `.sheet` info sheets via `openInfo(icon,title,html,btn)`.
+Call them "Pocket Guides", never "app". **Utility first, partner offers second (D51):** a guide answers what a traveller needs on the spot (ATMs and cash, exits, platforms, lockers, help, first and last trains) before any partner block; fill those gaps before calling a guide done. Each is one self-contained HTML file: flex-column shell, `.panels` scroll area, bottom `.tabs`, `.sheet` info sheets via `openInfo(icon,title,html,btn)`.
 - **Offline:** per-guide service worker, cache `<key>-pocket-v7`, network-first with cache fallback. Facts refresh when online; saved copy still works in a tunnel or at immigration.
 - **Install wording matters:** on iPhone the home-screen icon keeps its own copy. Tell people to add to Home Screen first, open from the icon while online, and wait for "Ready offline ✓".
 - Header shows "Saved on this phone: date" (localStorage `pgSavedOn`, per home-screen copy) next to "checked <date>". The two dates mean different things.

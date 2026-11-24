@@ -477,3 +477,16 @@ Supplied by the owner and the coordinating session on 24 Nov 2026.
   (5:00–25:00) shows delays of 1 minute or more. Exact URL not known yet: link the English home page for now (TODO owner).
 - JR's MajorTrainTimetable.pdf is dated June 2022: do not use its times. First and last Airport Trains and the Airport Train's
   platform at Sapporo remain unknown.
+
+
+## ATMs (Seven Bank ATM locator, checked 24 Nov 2026 in a browser; Japanese pages, "その他" = location note)
+Seven Bank ATMs take cards issued outside Japan (Visa, Mastercard, UnionPay, American Express, JCB, Discover, Diners Club;
+"some cards with these marks may not be accepted"): https://www.sevenbank.co.jp/intlcard/index2.html
+Each listing: https://location.sevenbank.co.jp/sevenbank/spot/detail?code=<code>
+- 0000038030 JR Hokkaido Sapporo Station: 1 ATM, 5:10-24:00, "West gate side" (西口改札側).
+- 0000029337 Sapporo subway Namboku Line, Sapporo: 2 ATMs, 6:00-24:00, "concourse outside the ticket gates" (改札外コンコース).
+- 0000027385 Sapporo subway Toho Line, Sapporo: 1 ATM, 6:00-24:00, "B1, gate concourse near the South gate" (地下1階 改札コンコース南改札口付近).
+- 0000009330 JR Tower APIA: 1 ATM, 8:00-21:00, "cash service corner (Floral Galleria)".
+- 0000026672 Sapporo subway Odori: 2 ATMs, 6:00-24:00, "B2 outside the gates by the East gate (Toho Line) / B1 outside the gates by exit 4 (Tozai Line)".
+- 7-Eleven Sapporo Stellar Place (0000023033) and 7-Eleven by the Sapporo Station bus terminal (0000020067): 2 ATMs each, not open 24 hours (hours not listed).
+- No currency exchange found at the station.
