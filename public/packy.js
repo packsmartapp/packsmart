@@ -83,6 +83,7 @@
     '.pk-chips{display:flex;flex-wrap:wrap;gap:6px;margin-left:36px}' +
     '.pk-chips .pk-lbl{width:100%;font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#5a6378;margin:2px 0 0}' +
     '.pk-chips button{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:13.5px;font-weight:600;text-align:left;background:#fff;color:#0f0f23;border:1.5px solid #BFEDE3;border-radius:999px;padding:7px 12px;cursor:pointer;animation:pkIn .3s ease both;transition:border-color .15s,transform .15s}' +
+    '.pk-chips .pk-mailchip{border-color:#F7B9C6;background:#FFF5F7}' +
     '.pk-chips button:hover{border-color:#00C9A7;transform:translateY(-1px)}' +
     '.pk-form{display:flex;gap:8px;align-items:center;padding:10px 12px 8px;background:#fff;border-top:1px solid #E6EEF0}' +
     '.pk-form input{flex:1;min-width:0;font:inherit;font-size:16px;border:1.5px solid #E3E8EC;background:#F7F9FA;border-radius:999px;padding:11px 16px;outline:none}.pk-form input:focus{border-color:#00C9A7;background:#fff}' +
@@ -136,7 +137,7 @@
   var panel = el('div', 'pk-panel');
   panel.hidden = true; panel.setAttribute('role', 'dialog'); panel.setAttribute('aria-labelledby', 'pkT');
   panel.innerHTML = '<div class="pk-head"><span class="pk-face">' + FACE + '</span><div><b id="pkT">Packy</b><span class="pk-tag">' + C.flag + ' ' + esc(C.name) + '</span><span class="pk-tag pk-beta">Beta</span><small>Your ' + esc(C.name) + ' travel buddy</small></div>' +
-    '<div class="pk-hb"><button type="button" class="pk-mailbtn" aria-label="Email me this chat" title="Email me this chat"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2.5"/><path d="M4 7l8 6 8-6"/></svg></button><button type="button" class="pk-new" aria-label="Start a new chat" title="New chat"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg></button><button type="button" class="pk-x" aria-label="Close Packy" title="Close"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>' +
+    '<div class="pk-hb"><button type="button" class="pk-new" aria-label="Start a new chat" title="New chat"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 12a8 8 0 1 1-2.34-5.66"/><path d="M20 4v5h-5"/></svg></button><button type="button" class="pk-x" aria-label="Close Packy" title="Close"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div></div>' +
     '<div class="pk-body" aria-live="polite"></div>' +
     '<form class="pk-form" autocomplete="off"><label class="pk-sr" for="pkQ">Your question</label><input id="pkQ" type="text" maxlength="300" placeholder="Ask Packy about ' + esc(C.name) + '…"><button type="submit" class="pk-send" aria-label="Send">&#10148;</button></form>' +
     '<div class="pk-note">Answers come from official sources. Prices and times change, so check before you travel. Booking buttons may be partner links (<a href="/affiliate-disclosure">disclosure</a>). Please don’t type personal details. <a href="/privacy-policy">Privacy</a></div>';
@@ -157,10 +158,16 @@
     var old = body.querySelector('.pk-chips'); if (old) old.remove();
     if (!list || !list.length) return;
     var box = el('div', 'pk-chips'); box.appendChild(el('p', 'pk-lbl', label));
+    var mailChip = history.length >= 1 && !sentOnce() && !body.querySelector('.pk-mail');
     list.forEach(function (q, i) {
       var b = el('button', '', '<span aria-hidden="true">' + icon(q) + '</span>' + esc(q)); b.type = 'button'; b.style.animationDelay = (i * 0.07) + 's';
       b.addEventListener('click', function () { track('chip'); ask(q); }); box.appendChild(b);
     });
+    if (mailChip) {
+      var m = el('button', 'pk-mailchip', '<span aria-hidden="true">\uD83D\uDCE9</span>Email me this chat'); m.type = 'button'; m.style.animationDelay = (list.length * 0.07) + 's';
+      m.addEventListener('click', function () { track('email_chip'); m.remove(); var c = emailCard(); if (c) setTimeout(function () { c.scrollIntoView({ block: 'center' }); var i = c.querySelector('input'); if (i) i.focus({ preventScroll: true }); }, 60); });
+      box.appendChild(m);
+    }
     body.appendChild(box);
   }
   function start() {
@@ -178,6 +185,7 @@
     'haneda-airport-guide': ['haneda', 'Haneda Airport'], 'kansai-airport-guide': ['kix', 'Kansai Airport'] };
   var TOPIC_POCKET = { sapporo: 'sapporo-station-guide', 'new-chitose': 'new-chitose-airport-guide', ueno: 'ueno-station-guide', shinjuku: 'shinjuku-station-guide',
     tokyo: 'tokyo-station-guide', kyoto: 'kyoto-station-guide', osaka: 'osaka-station-guide' };
+  function sentOnce() { try { return sessionStorage.getItem('packy_sent') === '1'; } catch (e) { return false; } }
   function once(k) { try { if (sessionStorage.getItem('packy_' + k)) return false; sessionStorage.setItem('packy_' + k, '1'); } catch (e) {} return true; }
   function pocketCard(guide) {
     var slug = guide && guide.url ? guide.url.split('/').pop().split('#')[0] : '';
@@ -207,7 +215,8 @@
       post({ email: em, tips: false, country: country, page: location.pathname, items: history.map(function (h) { return { q: h.q, a: h.a }; }) })
         .then(function (x) {
           if (!x[0] || !x[1].ok) { btn.disabled = false; btn.textContent = 'Send'; botRow(esc((x[1] && x[1].error) || 'Sorry, that did not work.'), 'pk-err'); track('email_error'); return; }
-          track('email_sent');
+          track('email_sent'); try { sessionStorage.setItem('packy_sent', '1'); } catch (z) {}
+          var mc = body.querySelector('.pk-mailchip'); if (mc) mc.remove();
           // step 2: trip tips, a clear separate yes
           card.outerHTML = '<div class="pk-card pk-mail"><b>✅ Sent to ' + esc(em) + '</b><p>Want trip tips for ' + esc(C.name) + ' before you go?</p>' +
             '<div class="pk-row2"><button type="button" class="pk-yes">Yes please</button><button type="button" class="pk-no">No thanks</button></div></div>';
@@ -269,7 +278,6 @@
   fab.addEventListener('click', function () { open(false); });
   panel.querySelector('.pk-x').addEventListener('click', close);
   panel.querySelector('.pk-new').addEventListener('click', reset);
-  panel.querySelector('.pk-mailbtn').addEventListener('click', function () { emailCard(); var m = body.querySelector('.pk-mail'); if (m) setTimeout(function () { m.scrollIntoView({ block: 'center' }); }, 50); });
   panel.addEventListener('keydown', function (e) { if (e.key === 'Escape') close(); });
   body.addEventListener('click', function (e) { var a = e.target.closest && e.target.closest('.pk-offer'); if (a) { try { if (window.gtag) gtag('event', 'ask_' + country, { event_category: 'engagement', status: 'offer_click', offer: a.getAttribute('data-offer'), page_path: location.pathname }); } catch (x) {} } });
   form.addEventListener('submit', function (e) { e.preventDefault(); ask(input.value); });
