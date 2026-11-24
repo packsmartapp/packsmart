@@ -772,6 +772,13 @@ export default [
 ]
 },
 {
+"t": "japan prices > Japan prices: official sources (for Packy) > Rail passes",
+"x": "- JR TOKYO Wide Pass (JR East): adult (12 and older) ¥16,000, child (6 to 11) ¥8,000; valid for three days, \"so you can stay overnight during your trip\". JR East's example: Tokyo Station to GALA Yuzawa (seasonal station) by Joetsu Shinkansen and back to Omiya, then the Nikko limited express Omiya to Tobu-nikko and Tobu-nikko to Shinjuku, reserved seats, costs about ¥21,500 at regular fares, against ¥16,000 with the pass (\"during regular periods\"; \"see the timetable, etc. for the exact fare\"). Source: JR East, https://www.jreast.co.jp/en/multi/pass/tokyowidepass.html (read from a screenshot), checked 24 Nov 2026.",
+"u": [
+"https://www.jreast.co.jp/en/multi/pass/tokyowidepass.html"
+]
+},
+{
 "t": "japan prices > Japan prices: official sources (for Packy) > IC cards",
 "x": "- JNTO: \"Most IC cards require a security deposit of 500 yen when purchasing the card. In addition, special IC cards for international visitors, such as Welcome Suica and TOURIST PASMO, are available without a deposit.\" Source: https://www.japan.travel/en/plan/ic-card/, checked 24 Nov 2026.\n- Toei Transportation, IC card in Tokyo: \"Starts from ¥1,000 (deposit ¥500 + charge from ¥500)\". Source: https://www.kotsu.metro.tokyo.jp/eng/tickets/, checked 24 Nov 2026.\n- Kitaca (JR Hokkaido): 2,000 yen, \"Breakdown: 1,500 yen (SF) + a deposit of 500 yen\"; balance limit 20,000 yen; refund handling fee 220 yen. Source: https://www.jrhokkaido.co.jp/global/english/ticket/kitaca/kitaca01.html, checked 24 Nov 2026.\n- SAPICA (Sapporo): 2,000円 (usable balance 1,500円, deposit 500円). Source: https://www.city.sapporo.jp/st/s109/23564.html (updated 29 Oct 2026), checked 24 Nov 2026.",
 "u": [
