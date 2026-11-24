@@ -101,6 +101,12 @@ HUB_CSS = """<style id="jp-hub-css">
 .jp-ask{max-width:760px;margin:0 auto 1.8rem;background:#fff;border:1.5px solid #BFEDE3;border-radius:18px;padding:14px 16px;box-shadow:0 2px 12px rgba(15,15,35,.05)}
 .jp-ask-top{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-size:.95rem;color:#0f0f23}
 .jp-ask-top b{font-weight:800}
+.jp-ask-av{width:26px;height:26px;border-radius:50%;background:#00C9A7;color:#fff;font-weight:800;font-size:.85rem;display:inline-flex;align-items:center;justify-content:center}
+.jp-ask-sub{color:#5a6378;font-size:.85rem}
+.jp-packy-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:80;display:flex;align-items:center;gap:8px;background:#0f0f23;color:#fff;border:0;border-radius:999px;padding:8px 16px 8px 8px;min-height:48px;font:inherit;font-weight:800;font-size:.95rem;box-shadow:0 8px 24px rgba(15,15,35,.25);cursor:pointer;transition:opacity .2s,transform .2s}
+.jp-packy-fab .jp-ask-av{width:32px;height:32px}
+.jp-packy-fab[hidden]{display:none}
+@media print{.jp-packy-fab{display:none!important}}
 .jp-ask-kick{font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:#E6FAF5;color:#0a8f78;border-radius:999px;padding:2px 8px}
 .jp-ask-form{display:flex;gap:8px;align-items:center;background:#F5F7F9;border:1.5px solid #E3E8EC;border-radius:14px;padding:4px 4px 4px 12px}
 .jp-ask-form:focus-within{border-color:#00C9A7;background:#fff}
@@ -171,10 +177,10 @@ OTHER = ('<nav class="jp-other" aria-label="Other destinations"><span>Going some
          + "".join('<a href="/blog?region=%s">%s</a>' % (r.replace(" ", "%20"), r) for r in ("Americas", "Middle East", "Pacific"))
          + '<a href="/blog" class="all">All destinations &rarr;</a></div></nav>')
 
-# ---- "Ask about Japan" (answers from /api/ask, which uses only official-source notes; see api/ask.js and w74)
+# ---- Packy, "Ask about Japan" (answers from /api/ask, which uses only official-source notes; see api/ask.js and w74)
 ASK = """<!-- ask-japan-slot -->
-<section class="jp-ask" id="ask" aria-label="Ask about Japan">
-<div class="jp-ask-top"><span aria-hidden="true">&#128172;</span><b>Ask about Japan</b><span class="jp-ask-kick">Beta</span></div>
+<section class="jp-ask" id="ask" aria-label="Ask Packy, your Japan travel helper">
+<div class="jp-ask-top"><span class="jp-ask-av" aria-hidden="true">P</span><b>Ask Packy</b><span class="jp-ask-sub">your Japan travel helper</span><span class="jp-ask-kick">Beta</span></div>
 <form class="jp-ask-form" id="askForm" autocomplete="off">
 <label for="askQ" class="jp-sr">Your question about travel in Japan</label>
 <input id="askQ" type="text" maxlength="300" placeholder="e.g. How do I get from New Chitose Airport to Sapporo?">
@@ -208,7 +214,7 @@ function ask(text){
    .then(function(x){var ok=x[0],d=x[1];
      if(!ok||!d.ok){out.className='jp-ask-out err';out.innerHTML='<p>'+esc((d&&d.error)||'Sorry, something went wrong.')+'</p>';track('error');return;}
      out.className='jp-ask-out';
-     out.innerHTML='<p class="jp-ask-q"><span>You asked</span>'+esc(text)+'</p><div class="jp-ask-a"><span class="jp-ask-by">Answer</span>'+fmt(d.answer)+'</div>'+(d.guide?'<p class="jp-ask-more">More in our <a href="'+esc(d.guide.url)+'">'+esc(d.guide.title)+'</a></p>':'');
+     out.innerHTML='<p class="jp-ask-q"><span>You asked</span>'+esc(text)+'</p><div class="jp-ask-a"><span class="jp-ask-by">Packy</span>'+fmt(d.answer)+'</div>'+(d.guide?'<p class="jp-ask-more">More in our <a href="'+esc(d.guide.url)+'">'+esc(d.guide.title)+'</a></p>':'');
      track('answered');})
    .catch(function(){out.className='jp-ask-out err';out.innerHTML='<p>No connection. Please try again when you are online.</p>';track('offline');})
    .then(function(){b.disabled=false;});
@@ -217,7 +223,9 @@ f.addEventListener('submit',function(e){e.preventDefault();ask(q.value);});
 var EX={'New Chitose to Sapporo':'How do I get from New Chitose Airport to Sapporo?','Ski bus to Niseko':'Is there a ski bus from New Chitose Airport to Niseko?','ATMs at Sapporo Station':'Where are the ATMs at Sapporo Station?','Ueno to Narita Airport':'How do I get from Ueno to Narita Airport?'};
 [].forEach.call(document.querySelectorAll('.jp-ask-try button'),function(btn){btn.addEventListener('click',function(){var t=EX[btn.textContent]||btn.textContent;q.value=t;ask(t);});});
 })();
-</script>"""
+</script>
+<button type="button" class="jp-packy-fab" id="packyFab" hidden aria-label="Ask Packy, your Japan travel helper"><span class="jp-ask-av" aria-hidden="true">P</span>Ask Packy</button>
+<script>(function(){var f=document.getElementById('packyFab'),box=document.getElementById('ask'),q=document.getElementById('askQ');if(!f||!box)return;function vis(){var r=box.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight;}if('IntersectionObserver' in window){new IntersectionObserver(function(e){f.hidden=e[0].isIntersecting;},{threshold:0}).observe(box);}else{f.hidden=false;}f.addEventListener('click',function(){box.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){try{q.focus({preventScroll:true});}catch(e){q.focus();}},400);try{if(window.gtag)gtag('event','ask_japan',{event_category:'engagement',status:'fab_open',page_path:location.pathname});}catch(e){}});})();</script>"""
 
 body = """<div class="page-wrapper">
     <div class="page-header">
@@ -300,8 +308,8 @@ if 'id="ask-japan-privacy"' not in pv:
     a = '    <h3>Payment Information</h3>'
     if pv.count(a) != 1 or pv.count("<p>Last updated: November 22, 2026</p>") != 1:
         die("privacy policy anchors not found")
-    pv = pv.replace(a, '    <h3 id="ask-japan-privacy">Questions to "Ask about Japan"</h3>\n'
-                    '    <p>When you type a question into "Ask about Japan" on our Japan page, the question is sent to Google\'s Gemini service, together with '
+    pv = pv.replace(a, '    <h3 id="ask-japan-privacy">Questions to Packy</h3>\n'
+                    '    <p>When you type a question into Packy, our Japan travel helper on our Japan page, the question is sent to Google\'s Gemini service, together with '
                     'the official-source notes it may answer from, to write the answer. We keep a log of the questions without your IP address, and with any '
                     'email address or phone number in the question removed, so we can see what travellers ask and improve our guides. Please do not type '
                     'personal details into it. We do not store the answers.</p>\n\n' + a, 1)

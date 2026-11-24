@@ -13,7 +13,7 @@ Owner: Ari (solo; reviews and pushes everything). Site email: `hello@packsmartap
 ## Tech stack
 - Static HTML, CSS and vanilla JS. **No framework, no build step.** Edit the file, push, done.
 - Hosting: Vercel (team packsmartapps-projects, project `packsmart`), auto-deploys from `main`. `vercel.json`: `cleanUrls`, no trailing slash, 301 redirects.
-- `api/*.js`: Vercel serverless (Node, ESM). `ask` ("Ask about Japan" on `/japan`, Gemini; answers only from `api/_japan_kb.js`, locked to the site, rate-limited), `generate-plan` (Gemini), `weather` (OpenWeather), `share-plan`, `subscribe` (unused since newsletter removal). Keys are Vercel env vars.
+- `api/*.js`: Vercel serverless (Node, ESM). `ask` (Packy, the "Ask about Japan" helper on `/japan`, Gemini; answers only from `api/_japan_kb.js`, locked to the site, rate-limited), `generate-plan` (Gemini), `weather` (OpenWeather), `share-plan`, `subscribe` (unused since newsletter removal). Keys are Vercel env vars.
 - `tools/`: Python 3 scripts that generate and patch pages (see "Generator scripts").
 - Analytics: GA4 `G-0C4Z7VVGPE`. Affiliates via Travelpayouts (marker `711400`, TRS `508747`; its verification script sits in every `<head>`).
 - Fonts and colours: DM Sans; `--primary #00C9A7`, `--accent #E94560`, `--dark #0f0f23`. Never the purple `#667eea` or system font stacks.

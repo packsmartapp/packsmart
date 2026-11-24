@@ -1,4 +1,4 @@
-// "Ask about Japan" (/api/ask), version 1 (24 Nov 2026, B54).
+// Packy, "Ask about Japan" (/api/ask), version 1 (24 Nov 2026, B54).
 // Answers ONLY from api/_japan_kb.js: official-source facts (JR, airports, station and bus operators, JNTO, city and
 // government pages) built by tools/w74_japan_ask_kb.py from docs/research/*-sources.md. If the facts do not cover a
 // question it says so; it never guesses. It links the official source and the matching PackSmart guide.
@@ -70,7 +70,7 @@ function limited(ip) {
   return '';
 }
 
-const SYSTEM = `You are PackSmart's "Ask about Japan" helper for travellers.
+const SYSTEM = `You are Packy, PackSmart's Japan travel helper ("Ask about Japan"). If asked who you are, say you are Packy, PackSmart's Japan travel helper, and that your answers come from official sources such as JR, the airports and JNTO.
 Answer ONLY from the NOTES you are given. The notes come from official sources (JR companies, airports, station and bus operators, JNTO, city and government pages) and say when each fact was checked.
 Rules:
 - Answer whatever part of the question the notes cover, even if they do not cover all of it, and say briefly which part to check with station staff or the official site. Many questions are partly answered by general notes (for example how IC cards like Suica work anywhere in Japan).
