@@ -18,7 +18,7 @@ IMG = os.path.join(PUB, "images")
 REG = os.path.join(ROOT, "tools", "pocket_guides.json")
 HUB = os.path.join(PUB, "travel-essentials.html")
 MARK = "pocket-hub-v3"
-PAGE_MAX, MAX_COUNTRIES, ALL_URL = 8, 6, "/pocket-guides"
+PAGE_MAX, MAX_COUNTRIES, ALL_URL = 12, 6, "/pocket-guides"   # 12 (was 8) = three rows of four on the phone, so ten Japan guides fit without the "See all" button (no /pocket-guides page yet)
 
 
 def die(msg):
@@ -78,6 +78,8 @@ CSS = """<style id="pocket-hub-css">
 .pocket-hub .ph-tabs button{font:inherit;font-size:.8rem;font-weight:800;border:1.5px solid #D5DCE0;background:#fff;color:#0f0f23;border-radius:20px;padding:5px 12px;cursor:pointer}
 .pocket-hub .ph-tabs button[aria-pressed=true]{background:#0f0f23;color:#fff;border-color:#0f0f23}
 .pocket-hub .ph-tabs i{font-style:normal;opacity:.6;margin-left:4px;font-weight:600}
+.pocket-hub .ph-dense .ph-widget{margin-top:1.7rem;padding:8px 12px}
+.pocket-hub .ph-dense .ph-icons{gap:10px 8px;margin-top:.8rem}
 .pocket-hub .ph-home{width:92px;height:4px;border-radius:2px;background:#fff;opacity:.85;margin:12px auto 0}
 .pocket-hub .ph-cap{margin:.9rem 0 0;font-size:.84rem;color:#5a6378}
 .pocket-hub .ph-all{display:inline-block;margin-top:.7rem;font-weight:800;color:#0f0f23;background:#fff;border:2px solid #0f0f23;border-radius:24px;padding:8px 18px;text-decoration:none}
@@ -117,6 +119,7 @@ def build_section():
     for n, c in enumerate(cs):
         mine = [g for g in guides if g["country"] == c]
         pages.append('<div class="ph-page" data-ph-page="%d"%s><div class="ph-icons">%s</div></div>' % (n, "" if n == 0 else " hidden", icons_html(mine)))
+    dense = any(sum(1 for g in guides if g["country"] == c) > 8 for c in cs)   # three rows of icons: tighter widget and gaps so they fit the screen
     if multi:
         top = '<div class="ph-tabs" role="group" aria-label="Pocket guides by country">' + "".join(
             '<button type="button" data-ph-tab="%d" aria-pressed="%s">%s<i>%d</i></button>'
@@ -146,7 +149,7 @@ def build_section():
         '<li><span>Open it from your home screen whenever you need it.</span></li>'
         '</ol></div></div>'
         '<div class="ph-side">' + top +
-        '<div class="ph-phone" role="group" aria-label="A phone home screen with the pocket guide icons"><div class="ph-screen"><span class="ph-island" aria-hidden="true"></span>'
+        '<div class="ph-phone" role="group" aria-label="A phone home screen with the pocket guide icons"><div class="ph-screen' + (' ph-dense' if dense else '') + '"><span class="ph-island" aria-hidden="true"></span>'
         '<div class="ph-status" aria-hidden="true"><span>9:41</span><span class="ph-batt"></span></div>'
         '<div class="ph-widget" aria-hidden="true"><b>Works offline</b><span>Saved on your phone, no signal needed</span></div>'
         + "".join(pages) +

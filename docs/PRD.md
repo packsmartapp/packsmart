@@ -32,7 +32,7 @@ Status as of 21 Nov 2026. Source of truth for what the site does today and what 
 | F6 | Flights, hotels and ground transport | Built |
 | F7 | Navigation and Travel Essentials hub | Built |
 | F8 | Japan airport, station and city guides | Built |
-| F9 | Pocket Guides (eight) | Built |
+| F9 | Pocket Guides (ten) | Built |
 | F10 | Pocket Guide install and offline flow | Built, real-device checks in progress |
 | F11 | Pocket Guide hub block and trip picker | Built |
 | F12 | Pocket Guide sharing (WhatsApp) | Built |
@@ -86,7 +86,7 @@ Status as of 21 Nov 2026. Source of truth for what the site does today and what 
 **Criteria:** `/travel-essentials` lists non-destination articles in groups plus the Japan guides and the Pocket Guide block; the blog index lists destination guides only; every page has the same menu.
 
 ### F8 Japan airport, station and city guides (Built)
-**Pages (8):** Narita, Haneda and Kansai airport guides; Tokyo, Kyoto and Osaka station guides; Kyoto and Osaka city guides.
+**Pages (12):** Narita, Haneda, Kansai and New Chitose airport guides; Tokyo, Shinjuku, Ueno, Kyoto, Osaka and Sapporo station guides; Kyoto and Osaka city guides. New Chitose has a plain colour hero (no suitable photo).
 **User:** someone arriving in or moving around Japan. **Criteria**
 - Facts come from the operator's own pages; fare and time figures are rounded ranges; each page states when it was checked.
 - Hero line reads "Japan · Published D Mon 2026 · N min read".
@@ -96,7 +96,7 @@ Status as of 21 Nov 2026. Source of truth for what the site does today and what 
 **Open:** Haruka price wording awaits the owner; Kyoto city-bus fare wording check; optional own USJ photo.
 
 ### F9 Pocket Guides (Built)
-**Guides:** Tokyo Station, Shinjuku Station, Ueno Station, Narita, Haneda, Kansai (KIX), Kyoto Station, Shin-Osaka and Umeda at `/<key>-pocket`. Registry: `tools/pocket_guides.json`.
+**Guides:** Tokyo Station, Shinjuku Station, Ueno Station, Narita, Haneda, Kansai (KIX), Kyoto Station, Shin-Osaka and Umeda, New Chitose Airport and Sapporo Station at `/<key>-pocket`. Registry: `tools/pocket_guides.json`.
 **User:** a traveller on a phone at the airport or station, possibly with no signal. **Shell (all guides)**
 - Single-file page with a bottom tab bar and info sheets; works at 360px and 390px with no horizontal scroll.
 - Airport guides: Find (tiles, slide with More/Back), Terminals, Arrive and Depart checklists (tick-off steps), Help (everyday Japanese phrases with a Play button, then phone numbers).
@@ -118,6 +118,7 @@ Status as of 21 Nov 2026. Source of truth for what the site does today and what 
 ### F11 Hub block and trip picker (Built)
 **Hub:** "Your pocket guides" card on `/travel-essentials` (phone-style home screen, one page per country, tappable icons). **Picker:** two chips in each Japan article ("where do you land", "where are you going") that show the matching guides, arrival airport first with "Start here".
 **Criteria:** driven by `tools/pocket_guides.json`; the six airport and station articles omit their own guide; links carry `?src=art_<tag>`; the picker contains no partner links.
+The phone shows up to 12 icons per country (three rows of four; tighter spacing once there are more than 8), so the ten Japan guides fit without the "See all" button.
 **Planned:** a `/pocket-guides` index page (the hub's "See all" button needs it before it is shown).
 
 ### F12 Sharing (Built)

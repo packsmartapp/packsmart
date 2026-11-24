@@ -101,7 +101,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w56_pocket_review_fixes.py` | w56: fixes from the reviewer's Pocket Guide feedback (21 Nov 2026). |
 | `w57_osaka_guide_rename.py` | w57: rename the "Osaka Station" Pocket Guide to "Shin-Osaka and Umeda" on pages that earlier scripts |
 | `w58_shinjuku_station_page.py` | w58: new page /blog/shinjuku-station-guide + offline /shinjuku-pocket (neutral, plain-English station guide for Shinjuku Station). |
-| `w59_shinjuku_station_card.py` | w59: Travel Essentials hub: add the station-guide cards that are not built by an earlier script to the Stations |
+| `w59_shinjuku_station_card.py` | w59: Travel Essentials hub: add the airport- and station-guide cards that are not built by an earlier script, each |
 | `w60_gyg_deep_links.py` | w60: GetYourGuide deep links (backlog B29, 23 Nov 2026). |
 | `w61_b28_city_tours_pilot.py` | w61: backlog B28 pilot (23 Nov 2026): contextual offers instead of the generic grid, on the Italy, Spain and |
 | `w62_fix_article_photos.py` | w62: fix article photos that do not show what they say, and move out-of-place cross-links (23 Nov 2026). |
@@ -112,6 +112,8 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w67_disclosure_partners.py` | w67: keep the Affiliate Disclosure page and the About page's partner pills in step with the partners we link to |
 | `w68_ueno_station_page.py` | w68: new page /blog/ueno-station-guide + offline /ueno-pocket (neutral, plain-English station guide for Ueno Station). |
 | `w69_read_times.py` | w69: honest read times (24 Nov 2026, owner's request). |
+| `w70_new_chitose_airport_page.py` | w70: new page /blog/new-chitose-airport-guide + offline /new-chitose-pocket (neutral, plain-English airport guide for |
+| `w71_sapporo_station_page.py` | w71: new page /blog/sapporo-station-guide + offline /sapporo-pocket (neutral, plain-English station guide for JR Sapporo |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `pocket_guides.json` | data file read by the scripts above |
 | `w62_photo_fixes.json` | data file read by the scripts above |
@@ -120,14 +122,14 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 
 **Top-level pages (12):** `about.html`, `affiliate-disclosure.html`, `blog.html`, `book.html`, `contact.html`, `flights.html`, `gyg-preview.html`, `index.html`, `privacy-policy.html`, `share.html`, `terms.html`, `travel-essentials.html`
 
-**Pocket Guides (8):** `haneda-pocket.html`, `kix-pocket.html`, `kyoto-pocket.html`, `narita-pocket.html`, `osaka-pocket.html`, `shinjuku-pocket.html`, `tokyo-pocket.html`, `ueno-pocket.html`
+**Pocket Guides (10):** `haneda-pocket.html`, `kix-pocket.html`, `kyoto-pocket.html`, `narita-pocket.html`, `new-chitose-pocket.html`, `osaka-pocket.html`, `sapporo-pocket.html`, `shinjuku-pocket.html`, `tokyo-pocket.html`, `ueno-pocket.html`
 Each also has `<key>-sw.js` (service worker) and `<key>-pocket.webmanifest`.
 
-**Blog and guides (`public/blog/`, 70 pages).** Japan-related (11): `haneda-airport-guide.html`, `japan-7-day-itinerary-budget.html`, `japan-travel-packing-guide-from-india.html`, `japan-travel-packing-guide.html`, `kansai-airport-guide.html`, `kyoto-station-guide.html`, `kyoto-travel-guide.html`, `narita-airport-guide.html`, `osaka-station-guide.html`, `osaka-travel-guide.html`, `tokyo-station-guide.html`
+**Blog and guides (`public/blog/`, 72 pages).** Japan-related (11): `haneda-airport-guide.html`, `japan-7-day-itinerary-budget.html`, `japan-travel-packing-guide-from-india.html`, `japan-travel-packing-guide.html`, `kansai-airport-guide.html`, `kyoto-station-guide.html`, `kyoto-travel-guide.html`, `narita-airport-guide.html`, `osaka-station-guide.html`, `osaka-travel-guide.html`, `tokyo-station-guide.html`
 
 **Web stories (5):** `bali-travel-guide.html`, `malaysia-travel-guide.html`, `sri-lanka-travel-guide.html`, `thailand-travel-guide.html`, `vietnam-travel-guide.html`
 
-**Images:** 153 files in `public/images/`; site icons and logos in `public/`.
+**Images:** 165 files in `public/images/`; site icons and logos in `public/`.
 
 **Other public files:** `favicon.ico`, `packsmart-icon.svg`, `packsmart-logo-white.svg`, `packsmart-logo.svg`, `packsmart-phase1.js`, `packsmart-widgets.js`, `robots.txt`, `sitemap.xml`
 

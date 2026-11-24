@@ -23,7 +23,7 @@ import glob, html, os, re, sys
 ROOT = os.getcwd()
 PUB = os.path.join(ROOT, "public")
 DRY = "--dry" in sys.argv
-JP = ("japan-", "narita-", "haneda-", "kansai-", "tokyo-", "kyoto-", "osaka-", "shinjuku-", "ueno-")
+JP = ("japan-", "narita-", "haneda-", "kansai-", "tokyo-", "kyoto-", "osaka-", "shinjuku-", "ueno-", "new-chitose-", "sapporo-")
 EXEMPT = {"affiliate-disclosure.html", "about.html", "terms.html", "privacy-policy.html", "gyg-preview.html",
           "best-esim-international-travel-comparison.html"}
 

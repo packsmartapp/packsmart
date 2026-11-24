@@ -274,7 +274,7 @@
   </url>
   <url>
     <loc>https://www.packsmartapp.com/blog/japan-travel-packing-guide</loc>
-    <lastmod>2026-11-23</lastmod>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
@@ -513,6 +513,18 @@
   <url>
     <loc>https://www.packsmartapp.com/blog/ueno-station-guide</loc>
     <lastmod>2026-11-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.packsmartapp.com/blog/new-chitose-airport-guide</loc>
+    <lastmod>2026-11-24</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://www.packsmartapp.com/blog/sapporo-station-guide</loc>
+    <lastmod>2026-11-24</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>

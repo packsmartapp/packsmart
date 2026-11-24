@@ -41,6 +41,19 @@
       "chip_rank": 3
     },
     {
+      "key": "new-chitose",
+      "name": "New Chitose Airport",
+      "country": "Japan",
+      "type": "Airport",
+      "icon": "new-chitose-icon-192.png",
+      "blurb": "Terminals, train and buses to Sapporo, ski buses, winter",
+      "stop": "Sapporo",
+      "label": "New Chitose",
+      "chip": "Sapporo New Chitose",
+      "chip_rank": 4,
+      "short": "Chitose"
+    },
+    {
       "key": "tokyo",
       "name": "Tokyo Station",
       "country": "Japan",
@@ -85,13 +98,23 @@
       "blurb": "Shin-Osaka and Osaka/Umeda, platforms, lockers",
       "stop": "Osaka",
       "short": "Osaka"
+    },
+    {
+      "key": "sapporo",
+      "name": "Sapporo Station",
+      "country": "Japan",
+      "type": "Station",
+      "icon": "sapporo-icon-192.png",
+      "blurb": "West and East gates, subway to Odori, Snow Festival, lockers",
+      "stop": "Sapporo"
     }
   ],
   "stop_order": {
     "Japan": [
       "Tokyo",
       "Kyoto",
-      "Osaka"
+      "Osaka",
+      "Sapporo"
     ]
   }
 }

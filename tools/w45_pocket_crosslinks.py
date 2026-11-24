@@ -33,13 +33,17 @@ G = {
     "tokyo": ("Tokyo Station", "\U0001F689", "Marunouchi and Yaesu sides, Shinkansen platforms, lockers", "stn"),
     "shinjuku": ("Shinjuku Station", "\U0001F689", "West and East sides, Narita Express, airport buses, lockers", "stn"),
     "ueno": ("Ueno Station", "\U0001F689", "Ueno Park gates, Skyliner to Narita, platforms by floor, lockers", "stn"),
+    "new-chitose": ("New Chitose Airport", "✈️", "Terminals, train and buses to Sapporo, ski buses, winter", "air"),
+    "sapporo": ("Sapporo Station", "\U0001F689", "West and East gates, subway to Odori, Snow Festival, lockers", "stn"),
 }
-ORDER = ["haneda", "narita", "kix", "tokyo", "shinjuku", "ueno", "kyoto", "osaka"]
+ORDER = ["haneda", "narita", "kix", "new-chitose", "tokyo", "shinjuku", "ueno", "kyoto", "osaka", "sapporo"]
 NEXT = {
     "narita": ["tokyo", "shinjuku", "ueno"], "haneda": ["tokyo", "shinjuku"], "kix": ["osaka", "kyoto"],
     "tokyo": ["kyoto", "osaka"], "kyoto": ["osaka", "kix"], "osaka": ["kyoto", "kix"],
     "shinjuku": ["narita", "haneda"],
     "ueno": ["narita", "haneda"],
+    "new-chitose": ["sapporo"],
+    "sapporo": ["new-chitose"],
 }
 HEAD = {
     "narita": ("Heading into Tokyo?", "Your next pocket guides."),
@@ -50,6 +54,8 @@ HEAD = {
     "osaka": ("Heading on?", "Your next pocket guides."),
     "shinjuku": ("Flying out?", "Your airport pocket guides."),
     "ueno": ("Flying out?", "Your airport pocket guides."),
+    "new-chitose": ("Heading into Sapporo?", "Your next pocket guide."),
+    "sapporo": ("Flying out?", "Your airport pocket guide."),
 }
 SAVE_LINE = " Open it while you have signal, then add it to your home screen."
 

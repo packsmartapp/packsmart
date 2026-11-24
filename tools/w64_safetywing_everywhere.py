@@ -27,6 +27,7 @@ HAS = 'class="safetywing-price-widget" data-safetywingaffiliateid'   # the widge
 TARGETS = [
     "narita-airport-guide", "haneda-airport-guide", "kansai-airport-guide",
     "tokyo-station-guide", "shinjuku-station-guide", "ueno-station-guide", "kyoto-station-guide", "osaka-station-guide",
+    "new-chitose-airport-guide", "sapporo-station-guide",
     "kyoto-travel-guide", "osaka-travel-guide",
     "budget-travel-destinations-2026", "carry-on-packing-list",
 ]

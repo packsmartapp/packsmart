@@ -19,7 +19,7 @@ Aborts without writing anything if an expected anchor is missing in any guide.
 import os, re, sys
 
 PUB = os.path.join(os.getcwd(), "public")
-GUIDES = {"haneda": "hnd", "narita": "nrt", "kix": "kix", "osaka": "osk", "kyoto": "kyo", "tokyo": "tok", "shinjuku": "sjk", "ueno": "uen"}
+GUIDES = {"haneda": "hnd", "narita": "nrt", "kix": "kix", "osaka": "osk", "kyoto": "kyo", "tokyo": "tok", "shinjuku": "sjk", "ueno": "uen", "new-chitose": "cts", "sapporo": "spr"}
 MARK = "install-v2"
 
 
