@@ -103,10 +103,6 @@ HUB_CSS = """<style id="jp-hub-css">
 .jp-ask-top b{font-weight:800}
 .jp-ask-av{width:26px;height:26px;border-radius:50%;background:#00C9A7;color:#fff;font-weight:800;font-size:.85rem;display:inline-flex;align-items:center;justify-content:center}
 .jp-ask-sub{color:#5a6378;font-size:.85rem}
-.jp-packy-fab{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));z-index:80;display:flex;align-items:center;gap:8px;background:#0f0f23;color:#fff;border:0;border-radius:999px;padding:8px 16px 8px 8px;min-height:48px;font:inherit;font-weight:800;font-size:.95rem;box-shadow:0 8px 24px rgba(15,15,35,.25);cursor:pointer;transition:opacity .2s,transform .2s}
-.jp-packy-fab .jp-ask-av{width:32px;height:32px}
-.jp-packy-fab[hidden]{display:none}
-@media print{.jp-packy-fab{display:none!important}}
 .jp-ask-kick{font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:#E6FAF5;color:#0a8f78;border-radius:999px;padding:2px 8px}
 .jp-ask-form{display:flex;gap:8px;align-items:center;background:#F5F7F9;border:1.5px solid #E3E8EC;border-radius:14px;padding:4px 4px 4px 12px}
 .jp-ask-form:focus-within{border-color:#00C9A7;background:#fff}
@@ -223,9 +219,7 @@ f.addEventListener('submit',function(e){e.preventDefault();ask(q.value);});
 var EX={'New Chitose to Sapporo':'How do I get from New Chitose Airport to Sapporo?','Ski bus to Niseko':'Is there a ski bus from New Chitose Airport to Niseko?','ATMs at Sapporo Station':'Where are the ATMs at Sapporo Station?','Ueno to Narita Airport':'How do I get from Ueno to Narita Airport?'};
 [].forEach.call(document.querySelectorAll('.jp-ask-try button'),function(btn){btn.addEventListener('click',function(){var t=EX[btn.textContent]||btn.textContent;q.value=t;ask(t);});});
 })();
-</script>
-<button type="button" class="jp-packy-fab" id="packyFab" hidden aria-label="Ask Packy, your Japan travel helper"><span class="jp-ask-av" aria-hidden="true">P</span>Ask Packy</button>
-<script>(function(){var f=document.getElementById('packyFab'),box=document.getElementById('ask'),q=document.getElementById('askQ');if(!f||!box)return;function vis(){var r=box.getBoundingClientRect();return r.bottom>0&&r.top<innerHeight;}if('IntersectionObserver' in window){new IntersectionObserver(function(e){f.hidden=e[0].isIntersecting;},{threshold:0}).observe(box);}else{f.hidden=false;}f.addEventListener('click',function(){box.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(function(){try{q.focus({preventScroll:true});}catch(e){q.focus();}},400);try{if(window.gtag)gtag('event','ask_japan',{event_category:'engagement',status:'fab_open',page_path:location.pathname});}catch(e){}});})();</script>"""
+</script>"""
 
 body = """<div class="page-wrapper">
     <div class="page-header">
@@ -261,6 +255,8 @@ for need in ('id="plan"', 'id="arriving"', 'id="stations"', "hub_japan", "</html
         die("built page lacks " + need)
 
 old = open(OUT, encoding="utf-8").read() if os.path.isfile(OUT) else ""
+# w75 adds the Packy pop-up line after this script runs; ignore it when deciding whether the page changed
+old = re.sub(r'<script src="/packy\.js"[^>]*></script>\n', "", old)
 changed = old != page
 
 # ---- sitemap

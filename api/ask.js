@@ -4,7 +4,12 @@
 // question it says so; it never guesses. It links the official source and the matching PackSmart guide.
 // Guarded: only pages on packsmartapp.com (and this project's Vercel previews) may call it; a few questions per visitor;
 // a daily cap per instance. Questions are logged without personal data, so the owner can see what travellers ask.
-import KB from './_japan_kb.js';
+import JAPAN_KB from './_japan_kb.js';
+
+// One Packy, scoped by country (D56): each country has its own official-source knowledge. Add a country here when its
+// knowledge pack exists (built like tools/w74_japan_ask_kb.py) and its pages load /packy.js with data-country.
+const KBS = { japan: JAPAN_KB };
+const KB = JAPAN_KB;   // the only country so far; search() below uses it
 
 const GUIDES = [
   ['New Chitose Airport guide', '/blog/new-chitose-airport-guide', 'new chitose cts airport sapporo bus ski niseko noboribetsu'],
@@ -35,8 +40,9 @@ DOCS.forEach(set => set.forEach(w => DF.set(w, (DF.get(w) || 0) + 1)));
 
 // a few place names travellers use for the same thing
 const ALIAS = { kansai: ['osaka', 'kyoto', 'kix'], kix: ['kansai'], kanto: ['tokyo'], hakata: ['fukuoka'], fukuoka: ['hakata'], chitose: ['new-chitose', 'cts'], cts: ['chitose'], kasai: ['kansai', 'osaka', 'kyoto'], shinkansen: ['bullet'], bullet: ['shinkansen'], suitcase: ['baggage', 'luggage'], luggage: ['baggage'], bag: ['baggage'], bags: ['baggage'], big: ['oversized'], large: ['oversized'], alcohol: ['alcoholic'], cigarette: ['cigarettes', 'tobacco'], phone: ['sim', 'wi-fi'], sim: ['esim'], money: ['cash', 'atm'], weather: ['season'], rain: ['rainy'], recharge: ['charge', 'add money', 'top'], topup: ['charge'], top: ['charge'], suica: ['ic', 'pasmo', 'icoca'], pasmo: ['suica', 'ic'], icoca: ['ic', 'suica'], airport: ['international'], osaka: ['kansai', 'itami'], kyoto: ['kansai'] };
-function search(q, n) {
+function search(q, n, topicWords) {
   const base = words(q);
+  const tw = (topicWords || []).map(stem).filter(w => !base.includes(w));
   const qs = [...new Set(base.concat(...base.map(w => ALIAS[w] || [])).map(stem))];
   const routeWords = base.concat(...base.map(w => ALIAS[w] || []));
   const scored = KB.map((p, i) => {
@@ -45,6 +51,7 @@ function search(q, n) {
       if (DOCS[i].has(w)) s += Math.log(1 + KB.length / (DF.get(w) || 1));
       else if (w.length >= 5 && LOW[i].includes(w)) s += Math.log(1 + KB.length / 8);   // word start, e.g. alcohol -> alcoholic
     }
+    for (const w of tw) if (DOCS[i].has(w)) s += 0.5 * Math.log(1 + KB.length / (DF.get(w) || 1));   // the page's own topic, a light nudge
     // a route named as "A to B" (either way) is the strongest sign the piece answers the question
     const low = LOW[i];
     for (const a of routeWords) for (const b of routeWords) if (a !== b && (low.includes(a + ' to ' + b) || low.includes(a + '\u2013' + b) || low.includes(a + '-' + b))) s += 6;
@@ -52,9 +59,12 @@ function search(q, n) {
   }).filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]);
   return scored.slice(0, n).map(x => KB[x[1]]);
 }
-function guideFor(q) {
+const TOPIC_GUIDE = { sapporo: 'Sapporo Station guide', 'new-chitose': 'New Chitose Airport guide', ueno: 'Ueno Station guide', shinjuku: 'Shinjuku Station guide',
+  tokyo: 'Tokyo Station guide', kyoto: 'Kyoto Station guide', osaka: 'Osaka Station guide', narita: 'Narita Airport guide', haneda: 'Haneda Airport guide', kansai: 'Kansai Airport guide' };
+const TOPIC_WORDS = { sapporo: ['sapporo'], 'new-chitose': ['chitose', 'airport'], ueno: ['ueno'], shinjuku: ['shinjuku'], tokyo: ['tokyo'], kyoto: ['kyoto'], osaka: ['osaka'], narita: ['narita'], haneda: ['haneda'], kansai: ['kansai', 'kix'] };
+function guideFor(q, topic) {
   const qs = new Set(words(q));
-  let best = GUIDES[GUIDES.length - 1], bs = 0;
+  let best = GUIDES.find(g => g[0] === TOPIC_GUIDE[topic]) || GUIDES[GUIDES.length - 1], bs = 0;
   for (const g of GUIDES) { const s = g[2].split(' ').filter(w => qs.has(w)).length; if (s > bs) { bs = s; best = g; } }
   return best;
 }
@@ -97,6 +107,9 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ ok: false, error: 'Method not allowed' });
   if (!ORIGIN_OK.test(origin)) return res.status(403).json({ ok: false, error: 'Not allowed' });
 
+  const country = String((req.body && req.body.country) || 'japan').toLowerCase();
+  if (!KBS[country]) return res.status(400).json({ ok: false, error: 'Packy does not cover that country yet.' });
+  const topic = String((req.body && req.body.topic) || '').toLowerCase().replace(/[^a-z-]/g, '').slice(0, 30);
   const q = String((req.body && req.body.q) || '').trim();
   if (q.length < 5) return res.status(400).json({ ok: false, error: 'Please type a question.' });
   if (q.length > MAX_Q) return res.status(400).json({ ok: false, error: 'Please keep it under 300 characters.' });
@@ -106,9 +119,9 @@ export default async function handler(req, res) {
   if (lim) return res.status(429).json({ ok: false, error: lim === 'daily' ? 'The assistant is busy today. Please try again tomorrow.' : 'That is a lot of questions in a short time. Please try again in a few minutes.' });
 
   const t0 = Date.now();
-  const notes = search(q, 9);
-  const guide = guideFor(q);
-  const log = { ev: 'ask_japan', q: redact(q), pieces: notes.length, guide: guide[0] };
+  const notes = search(q, 9, TOPIC_WORDS[topic]);
+  const guide = guideFor(q, topic);
+  const log = { ev: 'ask_' + country, topic, q: redact(q), pieces: notes.length, guide: guide[0] };
   if (!notes.length) {
     console.log(JSON.stringify({ ...log, answered: 'no_notes' }));
     return res.status(200).json({ ok: true, answer: "I give the most precise answers to specific travel questions: getting between places, stations, airports, trains and buses, money and luggage. Try asking about a particular place or route, for example \"How do I get from New Chitose Airport to Sapporo?\"", guide: null });

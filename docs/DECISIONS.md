@@ -249,6 +249,11 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Chose: one page with every Japan guide (trip planning, airports, stations), the ten Pocket Guides, Hokkaido-this-winter and by-season links; on `/blog`, picking the Japan chip shows a banner to it. Built by `w73` from the cards on `/blog` and `/travel-essentials`, so titles and read times stay in step. A slot is kept for the planned "Ask about Japan" assistant.
 - Why: owner's mock-up; Japan is the lead topic (D48) and its guides were spread over two pages. Hubs and cross-links before new articles.
 
+**D56. One Packy, scoped by country** (24 Nov)
+- Chose: one character and one engine (`public/packy.js` pop-up, `/api/ask`), with a knowledge pack per country from official sources only. On a country's pages Packy is that country's helper ("Packy · Japan"), with example questions and a guide link for the page's topic. The homepage will ask "Where are you going?" and route to a country Packy covers, offering a note when Packy reaches other countries (email capture), rather than an open search box. An open umbrella Packy waits until three or more countries have solid knowledge.
+- Rollout: stage 1 is `/japan` and the guides with solid knowledge (Japan guide, Sapporo, New Chitose, Ueno, Shinjuku, Tokyo, Kyoto, Osaka stations); Narita, Haneda and Kansai after their research notes; Pocket Guides after real questions are reviewed (they are offline-first).
+- Why: Packy's edge is trust and precision, not breadth; an open box everywhere invites questions it cannot answer and compares it with search engines. Fixes to the one engine reach every page at once.
+
 ## Open decisions (not made)
 
 - Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.
