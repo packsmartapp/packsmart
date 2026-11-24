@@ -220,12 +220,15 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - Instead of: other countries' airports (Bangkok, Bali, Singapore, Seoul), or competing for "cherry blossom forecast" searches, which the big Japan sites own.
 - Why: the station and airport guides answer practical questions with official facts and work offline; that crowd has booked and is about to spend on bullet-train tickets, eSIMs, transfers, hotels, tours and luggage storage.
 
+**D49. About page: no Tripadvisor pill, no "best deals"** (23 Nov)
+- Chose: remove the Tripadvisor partner pill (nothing on the site links to Tripadvisor) and say "to bring you useful travel services" instead of "the best deals".
+- Why: the partner list should match the links, and "best deals" is a claim of our own.
+
 ## Open decisions (not made)
 
 - Install sheet: stop it opening by itself on first visit (`AUTO_INSTALL_SHEET`)? Recommended, owner has not said yes.
 - Haruka price wording on the Kansai and Osaka guides.
 - Whether to keep the Terminals tab (watch the `pg_tab` count for it).
 - No airport outside Japan before spring 2027 (D48).
-- Whether Tripadvisor is still a partner.
 - Email capture: whether and how it returns.
 - Whether to add a native-speaker check for the Japanese phrases before promoting the guides.
