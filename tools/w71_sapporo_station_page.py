@@ -92,6 +92,7 @@ SRC = {
     "sbtoho": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000027385", "Seven Bank ATM: subway Toho Line, Sapporo"),
     "sbapia": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000009330", "Seven Bank ATM: JR Tower APIA"),
     "sbodori": ("https://location.sevenbank.co.jp/sevenbank/spot/detail?code=0000026672", "Seven Bank ATM: subway Odori station"),
+    "jrpass": ("https://www.jrhokkaido.co.jp/global/english/ticket/railpass/index.html", "JR Hokkaido: rail passes for visitors"),
 }
 
 def a_src(k, label=None):
@@ -635,6 +636,7 @@ AIRPORT = """<h2 id="airport">To New Chitose Airport: the Airport Train</h2>
 <li><strong>How often.</strong> JR's page gives six trains an hour between 9:00 and 16:00 from the airport to Sapporo. It does not give the times the other way, so check the timetable.</li>
 <li><strong>Which platform?</strong> We did not find a current official platform list for the Airport Train at Sapporo, so check the departure boards.</li>
 <li><strong>First and last trains.</strong> JR Hokkaido&rsquo;s timetable for 24 November 2026 (a weekday): from New Chitose Airport, the first train to Sapporo is the Rapid Airport at 6:38 (Sapporo 7:18), and the last is the Special Rapid Airport at 23:21 (Sapporo 23:59). From Sapporo to the airport, the first is the Rapid Airport at 5:50 (airport 6:28), and the last is a local train at 22:25, which stops everywhere and reaches the airport at 23:12. Timetables change, so check JR&rsquo;s departures the day before.</li>
+<li><strong>Rail passes for visitors.</strong> JR Hokkaido&rsquo;s Sapporo&ndash;Noboribetsu Area Pass and Sapporo&ndash;Furano Area Pass (4 consecutive days each) include New Chitose Airport, and the Hokkaido Rail Pass (5, 7 or 10 days) covers all JR Hokkaido lines except the Hokkaido Shinkansen. JR says all non-Japanese passport holders can use them; show your passport itself when you buy or exchange one (a copy is not accepted). With a pass you can sit in the reserved car or the non-reserved cars. Put only the pass into the ticket gate and take it back: JR does not reissue a lost pass. The passes do not cover the subway.</li>
 <li><strong>Seats.</strong> Cars 1 to 3 and 5 to 6 are non-reserved. Car 4 is the reserved &ldquo;U seat&rdquo; car: you need a reserved-seat ticket as well as the fare.</li>
 <li><strong>IC cards work</strong> (Suica, Kitaca and others). Ticket machines take cash only; the reserved-seat machine and the ticket office take cash and credit cards.</li>
 <li><strong>Luggage.</strong> Within 250 cm in total (2 m at most in length), up to 2 items, each up to 30 kg.</li>
@@ -643,7 +645,7 @@ AIRPORT = """<h2 id="airport">To New Chitose Airport: the Airport Train</h2>
 <li><strong>At the airport.</strong> The train arrives at B1F under the Domestic Terminal. For an international flight, go up to 2F and walk the 2F corridor: the 3F passage is closed until about the end of June 2027.</li>
 </ul>
 <p>More detail: our <a href="/blog/new-chitose-airport-guide">New Chitose Airport guide</a> covers the terminals, the corridor, buses, money and what to do in snow.</p>
-""" + sources(["jrair", "jrttspk", "jrttcts", "jrops", "jrdis", "ctsjr", "jrhome", "jrwifi"], "Times change, so check JR Hokkaido.")
+""" + sources(["jrair", "jrttspk", "jrttcts", "jrops", "jrpass", "jrdis", "ctsjr", "jrhome", "jrwifi"], "Times change, so check JR Hokkaido.")
 
 LONG = """<h2 id="long-distance">Hakodate, Asahikawa, Otaru and the Shinkansen</h2>
 <ul>
@@ -1613,6 +1615,7 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>IC cards</b> (Suica, Kitaca and others) work. Ticket machines: cash only.</li>'
       +'<li><b>Luggage:</b> within 250 cm in total, up to 2 items, each up to 30 kg.</li>'
       +'<li>To the airport: first 5:50, last 22:25 (a local train, at the airport 23:12). JR timetable, 24 Nov 2026.</li>'
+      +'<li>Rail passes for visitors (Sapporo area passes, Hokkaido Rail Pass) cover the Airport Train. Show your passport to buy one; put only the pass in the gate and take it back.</li>'
       +'<li><b>At the airport:</b> you arrive at B1F under the Domestic Terminal. International flight: walk the 2F corridor (3F closed).</li></ul>'
       +'<p class="sm">Source: JR Hokkaido and New Chitose Airport, checked 24 November 2026.</p>'+more('#airport');
   }

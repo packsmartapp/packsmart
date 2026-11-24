@@ -504,3 +504,10 @@ www3.jrhokkaido.co.jp was allowed in the sandbox on 24 Nov 2026. Each time cell 
   Last to the airport: 22:25 Local train (stops at every station), New Chitose Airport 23:12 arr.
 - Platform at Sapporo for the Airport Train: not shown on these pages. Still unconfirmed.
 - JR's MajorTrainTimetable.pdf (linked from the English home page) is dated June 2022: not used.
+
+- JR Hokkaido rail passes (https://www.jrhokkaido.co.jp/global/english/ticket/railpass/index.html, checked 24 Nov 2026; owner's screenshots of the pass cards the same day):
+  Sapporo-Noboribetsu Area Pass (4 consecutive days; "convenient for travel between New Chitose Airport, Sapporo, Otaru and Noboribetsu"; Toya not included);
+  Sapporo-Furano Area Pass (4 consecutive days; Tomamu not included); Hokkaido Rail Pass (5, 7 or 10 days; all JR Hokkaido lines except the Hokkaido Shinkansen;
+  not the South Hokkaido Railway, streetcar or subway). "All non-Japanese passport holders can use the rail passes"; show a valid passport (no copies).
+  Reserved and non-reserved seats in ordinary cars. "Please insert only your rail pass into the automatic ticket gate"; a lost pass "cannot be reissued".
+  Prices are on the page; body copy carries none.

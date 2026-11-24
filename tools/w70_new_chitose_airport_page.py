@@ -94,6 +94,7 @@ SRC = {
     "stv": ("https://www.sapporo.travel/en/info/about/transportation/", "Sapporo Tourist Association: transportation"),
     "stvnews": ("https://www.sapporo.travel/en/news/important-information-for-travelers-to-sapporo/", "Sapporo Tourist Association: important information for travelers (17 December 2025)"),
     "safe": ("https://hokkaido-safe-travel.mlit.go.jp/", "Hokkaido travel safety information (Hokkaido District Transport Bureau)"),
+    "jrpass": ("https://www.jrhokkaido.co.jp/global/english/ticket/railpass/index.html", "JR Hokkaido: rail passes for visitors"),
 }
 
 def a_src(k, label=None):
@@ -686,12 +687,13 @@ TRAIN = """<h2 id="train">To Sapporo by train: the Airport Train</h2>
 <li><strong>Luggage.</strong> Within 250 cm in total (2 m at most in length), up to 2 items, each up to 30 kg.</li>
 <li><strong>Ticket office.</strong> 6:30 to 22:00. Reserved-seat machines from 6:30 until the last train. Tour counter 9:00 to 17:30.</li>
 <li><strong>First and last trains.</strong> JR Hokkaido&rsquo;s timetable for 24 November 2026 (a weekday): from New Chitose Airport, the first train to Sapporo is the Rapid Airport at 6:38 (Sapporo 7:18), and the last is the Special Rapid Airport at 23:21 (Sapporo 23:59). From Sapporo to the airport, the first is the Rapid Airport at 5:50 (airport 6:28), and the last is a local train at 22:25, which stops everywhere and reaches the airport at 23:12. Timetables change, so check JR&rsquo;s departures the day before.</li>
+<li><strong>Rail passes for visitors.</strong> JR Hokkaido&rsquo;s Sapporo&ndash;Noboribetsu Area Pass and Sapporo&ndash;Furano Area Pass (4 consecutive days each) include New Chitose Airport, and the Hokkaido Rail Pass (5, 7 or 10 days) covers all JR Hokkaido lines except the Hokkaido Shinkansen. JR says all non-Japanese passport holders can use them; show your passport itself when you buy or exchange one (a copy is not accepted). With a pass you can sit in the reserved car or the non-reserved cars. Put only the pass into the ticket gate and take it back: JR does not reissue a lost pass. The passes do not cover the subway.</li>
 <li><strong>Going on to Hakodate, Noboribetsu, Tomamu or Kushiro?</strong> Change at Minami-Chitose, where the limited express trains leave from the same platform. JR says all seats on those limited expresses are reserved.</li>
 <li><strong>Going on to Otaru from Sapporo?</strong> JR says trains for &ldquo;Teine&rdquo; or &ldquo;Hoshimi&rdquo; do not continue to Otaru.</li>
 </ul>
 <div class="tip-box"><strong>If the trains stop.</strong> JR asks you to check the boards and announcements (some are only in Japanese, so use a translation app) and to consider other transport: the airport bus (about 70 to 90 minutes) or a taxi (about 60 minutes). It warns that buses can get extremely crowded when trains are cancelled, and that times grow or services stop in bad weather. With a paper ticket, a cancelled trip is refunded in full, and the station can give you a delay certificate. JR says it does not pay for meals, other transport or hotels when trains are late or stopped.</div>
 <p>Arriving in Sapporo? Our <a href="/blog/sapporo-station-guide">Sapporo Station guide</a> covers the gates during the Shinkansen works, the subway to Odori and Susukino, and the lockers.</p>
-""" + sources(["jrair", "jrttcts", "jrttspk", "jrops", "jrpdf", "jrstn", "jrdis", "jrfaq", "ajr", "jrhome", "jrwifi"], "Times change, so check JR Hokkaido.")
+""" + sources(["jrair", "jrttcts", "jrttspk", "jrops", "jrpass", "jrpdf", "jrstn", "jrdis", "jrfaq", "ajr", "jrhome", "jrwifi"], "Times change, so check JR Hokkaido.")
 
 BUS = """<h2 id="bus">To Sapporo by bus</h2>
 <p>Two companies, Hokkaido Chuo Bus and Hokuto Kotsu, run the airport buses to Sapporo city centre on one shared timetable, taking turns. Hokkaido Chuo Bus says no booking is needed and gives about every 10 minutes.</p>
@@ -1604,7 +1606,8 @@ POCKET_HTML = """<!DOCTYPE html>
       +'<li><b>Ticket machines:</b> cash only. Ticket counter and reserved-seat machine: cash or credit card. No QR payments.</li>'
       +'<li><b>Luggage:</b> within 250 cm in total, up to 2 items, each up to 30 kg.</li>'
       +'<li><b>From the International Terminal:</b> walk the 2F corridor to the Domestic Terminal, then go down to B1F.</li>'
-      +'<li>First to Sapporo 6:38, last 23:21 (JR timetable, 24 Nov 2026). Timetables change.</li></ul>'
+      +'<li>First to Sapporo 6:38, last 23:21 (JR timetable, 24 Nov 2026). Timetables change.</li>'
+      +'<li>Rail passes for visitors (Sapporo area passes, Hokkaido Rail Pass) cover the Airport Train. Show your passport to buy one; put only the pass in the gate and take it back.</li></ul>'
       +'<p class="sm">Source: JR Hokkaido, checked 24 November 2026. Times change.</p>'+more('#train');
   }
   function busHTML(){
