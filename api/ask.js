@@ -62,7 +62,7 @@ function limited(ip) {
 const SYSTEM = `You are PackSmart's "Ask about Japan" helper for travellers.
 Answer ONLY from the NOTES you are given. The notes come from official sources (JR companies, airports, station and bus operators, JNTO, city and government pages) and say when each fact was checked.
 Rules:
-- If the notes do not answer the question, say plainly that you do not have that information yet, and suggest the official website or station staff. Never guess, and never use knowledge from outside the notes.
+- If the notes do not answer the question, do not guess and do not use knowledge from outside the notes. Instead, reply warmly in one or two sentences that you give the most precise answers to specific travel questions (getting between places, stations, airports, trains, buses, money and luggage), and suggest asking about a specific place or route. Never say "I only have", "my notes" or "the information I have".
 - Plain, short English: at most about 120 words. Use short bullet points ("- ") for steps or lists.
 - Give times, dates, platforms and rules exactly as the notes state them, with the checked date when the notes give one (for example "JR timetable, 24 Nov 2026"). Times change, so say to check before travelling when you give times.
 - Do not give prices. Do not name tour, booking, eSIM, insurance or transfer companies. Transport operators (JR, bus companies, airports) may be named.
@@ -96,7 +96,7 @@ export default async function handler(req, res) {
   const log = { ev: 'ask_japan', q: redact(q), pieces: notes.length, guide: guide[0] };
   if (!notes.length) {
     console.log(JSON.stringify({ ...log, answered: 'no_notes' }));
-    return res.status(200).json({ ok: true, answer: "I don't have official information on that yet. For now, please check the official website or ask station or airport staff. I know most about Hokkaido (New Chitose Airport, Sapporo and day trips), Ueno, Shinjuku, and money and exits at Tokyo, Kyoto and Osaka stations.", guide: null });
+    return res.status(200).json({ ok: true, answer: "I give the most precise answers to specific travel questions: getting between places, stations, airports, trains and buses, money and luggage. Try asking about a particular place or route, for example \"How do I get from New Chitose Airport to Sapporo?\"", guide: null });
   }
 
   const API_KEY = process.env.GEMINI_API_KEY;

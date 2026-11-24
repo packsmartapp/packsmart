@@ -98,27 +98,28 @@ HUB_CSS = """<style id="jp-hub-css">
 .jp-other-row a:hover{border-color:#00C9A7}
 .jp-other-row a.all{border-color:#00C9A7;color:#0a8f78}
 @media (max-width:600px){.jp-other{flex-direction:column;align-items:stretch;gap:6px}.jp-other>span{text-align:center}}
-.jp-ask{max-width:860px;margin:0 auto 2rem;background:#0f0f23;color:#fff;border-radius:26px;padding:1.6rem 1.7rem;box-shadow:0 10px 30px rgba(15,15,35,.18)}
-.jp-ask-kick{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:#00C9A7;color:#0f0f23;border-radius:999px;padding:4px 10px}
-.jp-ask h2{color:#fff;font-size:2rem;margin:.5rem 0 .3rem}
-.jp-ask h2 em{font-family:var(--font-display);color:#00C9A7}
-.jp-ask-head p{color:#C9D1F0;margin:0 0 1rem;line-height:1.55}
-.jp-ask-try{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 .9rem}
-.jp-ask-try button{font:inherit;font-size:.88rem;text-align:left;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:8px 12px;min-height:40px;cursor:pointer}
-.jp-ask-try button:hover{border-color:#00C9A7}
-.jp-ask-form{display:flex;gap:10px;align-items:stretch}
-.jp-ask-form textarea{flex:1;font:inherit;font-size:1rem;border-radius:14px;border:0;padding:12px 14px;resize:vertical;min-height:52px;color:#0f0f23}
-.jp-ask-form button{font:inherit;font-weight:800;font-size:1rem;background:#E94560;color:#fff;border:0;border-radius:14px;padding:0 22px;min-height:52px;cursor:pointer}
+.jp-ask{max-width:760px;margin:0 auto 1.8rem;background:#fff;border:1.5px solid #BFEDE3;border-radius:18px;padding:14px 16px;box-shadow:0 2px 12px rgba(15,15,35,.05)}
+.jp-ask-top{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-size:.95rem;color:#0f0f23}
+.jp-ask-top b{font-weight:800}
+.jp-ask-kick{font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:#E6FAF5;color:#0a8f78;border-radius:999px;padding:2px 8px}
+.jp-ask-form{display:flex;gap:8px;align-items:center;background:#F5F7F9;border:1.5px solid #E3E8EC;border-radius:14px;padding:4px 4px 4px 12px}
+.jp-ask-form:focus-within{border-color:#00C9A7;background:#fff}
+.jp-ask-form input{flex:1;min-width:0;font:inherit;font-size:1rem;border:0;background:transparent;padding:10px 0;color:#0f0f23;outline:none}
+.jp-ask-form button{flex:none;font:inherit;font-weight:800;font-size:.95rem;background:#00C9A7;color:#fff;border:0;border-radius:11px;padding:0 18px;min-height:42px;cursor:pointer}
 .jp-ask-form button[disabled]{opacity:.6;cursor:wait}
-.jp-ask-out{margin-top:1rem;background:#fff;color:#0f0f23;border-radius:16px;padding:1rem 1.1rem;line-height:1.55}
-.jp-ask-out p{margin:.3rem 0}.jp-ask-out ul{margin:.3rem 0 .3rem 1.1rem;padding:0}.jp-ask-out li{margin:.2rem 0}
+.jp-ask-try{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0 0;padding:2px 0;scrollbar-width:none}
+.jp-ask-try::-webkit-scrollbar{display:none}
+.jp-ask-try button{flex:none;font:inherit;font-size:.82rem;background:#fff;color:#3f4a5c;border:1px solid #E3E8EC;border-radius:999px;padding:5px 11px;min-height:32px;cursor:pointer;white-space:nowrap}
+.jp-ask-try button:hover{border-color:#00C9A7;color:#0f0f23}
+.jp-ask-out{margin-top:10px;background:#F8FBFA;border-radius:12px;padding:10px 12px;line-height:1.55;font-size:.95rem;color:#0f0f23}
+.jp-ask-out p{margin:.25rem 0}.jp-ask-out ul{margin:.25rem 0 .25rem 1.1rem;padding:0}.jp-ask-out li{margin:.15rem 0}
 .jp-ask-out a{color:#0a8f78;font-weight:700}
 .jp-ask-out.busy{color:#5a6378}.jp-ask-out.err{background:#fff3f5}
-.jp-ask-q{font-weight:700;border-bottom:1px solid #E3E8EC;padding-bottom:.5rem;margin-bottom:.6rem!important}
-.jp-ask-more{border-top:1px solid #E3E8EC;padding-top:.6rem;margin-top:.7rem!important}
-.jp-ask-note{font-size:.82rem;color:#9aa3c0;margin:.9rem 0 0;line-height:1.5}.jp-ask-note a{color:#C9D1F0}
+.jp-ask-q{font-weight:700;margin-bottom:.4rem!important}
+.jp-ask-more{border-top:1px solid #E3E8EC;padding-top:.5rem;margin-top:.5rem!important;font-size:.9rem}
+.jp-ask-note{font-size:.76rem;color:#8a93a6;margin:8px 0 0;line-height:1.45}.jp-ask-note a{color:#8a93a6}
 .jp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-@media (max-width:600px){.jp-ask{padding:1.2rem 1rem;border-radius:20px}.jp-ask h2{font-size:1.6rem}.jp-ask-form{flex-direction:column}.jp-ask-form button{min-height:48px}}
+@media (max-width:600px){.jp-ask{padding:12px;border-radius:16px}.jp-ask-form button{padding:0 14px}}
 </style>
 """
 head = head + HUB_CSS
@@ -172,22 +173,21 @@ OTHER = ('<nav class="jp-other" aria-label="Other destinations"><span>Going some
 
 # ---- "Ask about Japan" (answers from /api/ask, which uses only official-source notes; see api/ask.js and w74)
 ASK = """<!-- ask-japan-slot -->
-<section class="jp-ask" id="ask" aria-labelledby="askT">
-<div class="jp-ask-head"><span class="jp-ask-kick">New &middot; trial</span><h2 id="askT">Ask about <em>Japan</em></h2>
-<p>Ask a practical question about getting around. Answers come only from official sources we have checked (JR, the airports, bus companies, JNTO), with a link to the source. If it does not know, it will say so.</p></div>
-<div class="jp-ask-try" role="group" aria-label="Example questions">
-<button type="button">How do I get from New Chitose Airport to Sapporo?</button>
-<button type="button">Is there a ski bus from the airport to Niseko?</button>
-<button type="button">Where are the ATMs at Sapporo Station?</button>
-<button type="button">How do I get from Ueno to Narita Airport?</button>
-</div>
+<section class="jp-ask" id="ask" aria-label="Ask about Japan">
+<div class="jp-ask-top"><span aria-hidden="true">&#128172;</span><b>Ask about Japan</b><span class="jp-ask-kick">Beta</span></div>
 <form class="jp-ask-form" id="askForm" autocomplete="off">
-<label for="askQ" class="jp-sr">Your question</label>
-<textarea id="askQ" maxlength="300" rows="2" placeholder="For example: how do I get to Otaru from Sapporo?"></textarea>
+<label for="askQ" class="jp-sr">Your question about travel in Japan</label>
+<input id="askQ" type="text" maxlength="300" placeholder="e.g. How do I get from New Chitose Airport to Sapporo?">
 <button type="submit" id="askBtn">Ask</button>
 </form>
+<div class="jp-ask-try" role="group" aria-label="Example questions">
+<button type="button">New Chitose to Sapporo</button>
+<button type="button">Ski bus to Niseko</button>
+<button type="button">ATMs at Sapporo Station</button>
+<button type="button">Ueno to Narita Airport</button>
+</div>
 <div class="jp-ask-out" id="askOut" aria-live="polite" hidden></div>
-<p class="jp-ask-note">It knows most about Hokkaido (New Chitose Airport, Sapporo and day trips), Ueno, Shinjuku, and money and exits at Tokyo, Kyoto and Osaka stations; more is coming. Times change, so check the official page before you travel. Please do not type personal details. <a href="/privacy-policy">Privacy</a></p>
+<p class="jp-ask-note">Answers come from official sources (JR, airports, bus companies, JNTO). Times change, so check before you travel. Please don't type personal details. <a href="/privacy-policy">Privacy</a></p>
 </section>
 <script>
 (function(){
@@ -214,8 +214,8 @@ function ask(text){
    .then(function(){b.disabled=false;});
 }
 f.addEventListener('submit',function(e){e.preventDefault();ask(q.value);});
-q.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask(q.value);}});
-[].forEach.call(document.querySelectorAll('.jp-ask-try button'),function(btn){btn.addEventListener('click',function(){q.value=btn.textContent;ask(btn.textContent);});});
+var EX={'New Chitose to Sapporo':'How do I get from New Chitose Airport to Sapporo?','Ski bus to Niseko':'Is there a ski bus from New Chitose Airport to Niseko?','ATMs at Sapporo Station':'Where are the ATMs at Sapporo Station?','Ueno to Narita Airport':'How do I get from Ueno to Narita Airport?'};
+[].forEach.call(document.querySelectorAll('.jp-ask-try button'),function(btn){btn.addEventListener('click',function(){var t=EX[btn.textContent]||btn.textContent;q.value=t;ask(t);});});
 })();
 </script>"""
 

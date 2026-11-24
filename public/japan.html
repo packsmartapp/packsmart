@@ -212,27 +212,28 @@
 .jp-other-row a:hover{border-color:#00C9A7}
 .jp-other-row a.all{border-color:#00C9A7;color:#0a8f78}
 @media (max-width:600px){.jp-other{flex-direction:column;align-items:stretch;gap:6px}.jp-other>span{text-align:center}}
-.jp-ask{max-width:860px;margin:0 auto 2rem;background:#0f0f23;color:#fff;border-radius:26px;padding:1.6rem 1.7rem;box-shadow:0 10px 30px rgba(15,15,35,.18)}
-.jp-ask-kick{display:inline-block;font-size:.75rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;background:#00C9A7;color:#0f0f23;border-radius:999px;padding:4px 10px}
-.jp-ask h2{color:#fff;font-size:2rem;margin:.5rem 0 .3rem}
-.jp-ask h2 em{font-family:var(--font-display);color:#00C9A7}
-.jp-ask-head p{color:#C9D1F0;margin:0 0 1rem;line-height:1.55}
-.jp-ask-try{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 .9rem}
-.jp-ask-try button{font:inherit;font-size:.88rem;text-align:left;background:rgba(255,255,255,.08);color:#fff;border:1px solid rgba(255,255,255,.22);border-radius:14px;padding:8px 12px;min-height:40px;cursor:pointer}
-.jp-ask-try button:hover{border-color:#00C9A7}
-.jp-ask-form{display:flex;gap:10px;align-items:stretch}
-.jp-ask-form textarea{flex:1;font:inherit;font-size:1rem;border-radius:14px;border:0;padding:12px 14px;resize:vertical;min-height:52px;color:#0f0f23}
-.jp-ask-form button{font:inherit;font-weight:800;font-size:1rem;background:#E94560;color:#fff;border:0;border-radius:14px;padding:0 22px;min-height:52px;cursor:pointer}
+.jp-ask{max-width:760px;margin:0 auto 1.8rem;background:#fff;border:1.5px solid #BFEDE3;border-radius:18px;padding:14px 16px;box-shadow:0 2px 12px rgba(15,15,35,.05)}
+.jp-ask-top{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-size:.95rem;color:#0f0f23}
+.jp-ask-top b{font-weight:800}
+.jp-ask-kick{font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:#E6FAF5;color:#0a8f78;border-radius:999px;padding:2px 8px}
+.jp-ask-form{display:flex;gap:8px;align-items:center;background:#F5F7F9;border:1.5px solid #E3E8EC;border-radius:14px;padding:4px 4px 4px 12px}
+.jp-ask-form:focus-within{border-color:#00C9A7;background:#fff}
+.jp-ask-form input{flex:1;min-width:0;font:inherit;font-size:1rem;border:0;background:transparent;padding:10px 0;color:#0f0f23;outline:none}
+.jp-ask-form button{flex:none;font:inherit;font-weight:800;font-size:.95rem;background:#00C9A7;color:#fff;border:0;border-radius:11px;padding:0 18px;min-height:42px;cursor:pointer}
 .jp-ask-form button[disabled]{opacity:.6;cursor:wait}
-.jp-ask-out{margin-top:1rem;background:#fff;color:#0f0f23;border-radius:16px;padding:1rem 1.1rem;line-height:1.55}
-.jp-ask-out p{margin:.3rem 0}.jp-ask-out ul{margin:.3rem 0 .3rem 1.1rem;padding:0}.jp-ask-out li{margin:.2rem 0}
+.jp-ask-try{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0 0;padding:2px 0;scrollbar-width:none}
+.jp-ask-try::-webkit-scrollbar{display:none}
+.jp-ask-try button{flex:none;font:inherit;font-size:.82rem;background:#fff;color:#3f4a5c;border:1px solid #E3E8EC;border-radius:999px;padding:5px 11px;min-height:32px;cursor:pointer;white-space:nowrap}
+.jp-ask-try button:hover{border-color:#00C9A7;color:#0f0f23}
+.jp-ask-out{margin-top:10px;background:#F8FBFA;border-radius:12px;padding:10px 12px;line-height:1.55;font-size:.95rem;color:#0f0f23}
+.jp-ask-out p{margin:.25rem 0}.jp-ask-out ul{margin:.25rem 0 .25rem 1.1rem;padding:0}.jp-ask-out li{margin:.15rem 0}
 .jp-ask-out a{color:#0a8f78;font-weight:700}
 .jp-ask-out.busy{color:#5a6378}.jp-ask-out.err{background:#fff3f5}
-.jp-ask-q{font-weight:700;border-bottom:1px solid #E3E8EC;padding-bottom:.5rem;margin-bottom:.6rem!important}
-.jp-ask-more{border-top:1px solid #E3E8EC;padding-top:.6rem;margin-top:.7rem!important}
-.jp-ask-note{font-size:.82rem;color:#9aa3c0;margin:.9rem 0 0;line-height:1.5}.jp-ask-note a{color:#C9D1F0}
+.jp-ask-q{font-weight:700;margin-bottom:.4rem!important}
+.jp-ask-more{border-top:1px solid #E3E8EC;padding-top:.5rem;margin-top:.5rem!important;font-size:.9rem}
+.jp-ask-note{font-size:.76rem;color:#8a93a6;margin:8px 0 0;line-height:1.45}.jp-ask-note a{color:#8a93a6}
 .jp-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
-@media (max-width:600px){.jp-ask{padding:1.2rem 1rem;border-radius:20px}.jp-ask h2{font-size:1.6rem}.jp-ask-form{flex-direction:column}.jp-ask-form button{min-height:48px}}
+@media (max-width:600px){.jp-ask{padding:12px;border-radius:16px}.jp-ask-form button{padding:0 14px}}
 </style>
 </head>
 <body>
@@ -257,22 +258,21 @@
     </div>
     <nav class="jp-other" aria-label="Other destinations"><span>Going somewhere else?</span><div class="jp-other-row"><a href="/blog?region=Asia&amp;country=vietnam">Vietnam</a><a href="/blog?region=Asia&amp;country=thailand">Thailand</a><a href="/blog?region=Asia&amp;country=bali">Bali</a><a href="/blog?region=Asia&amp;country=south-korea">South Korea</a><a href="/blog?region=Asia&amp;country=china">China</a><a href="/blog?region=Asia&amp;country=sri-lanka">Sri Lanka</a><a href="/blog?region=Asia&amp;country=malaysia">Malaysia</a><a href="/blog?region=Asia&amp;country=nepal">Nepal</a><a href="/blog?region=Asia&amp;country=singapore">Singapore</a><a href="/blog?region=Asia&amp;country=maldives">Maldives</a><a href="/blog?region=Europe&amp;country=germany">Germany</a><a href="/blog?region=Europe&amp;country=france">France</a><a href="/blog?region=Europe&amp;country=switzerland">Switzerland</a><a href="/blog?region=Europe&amp;country=portugal">Portugal</a><a href="/blog?region=Europe&amp;country=spain">Spain</a><a href="/blog?region=Europe&amp;country=italy">Italy</a><a href="/blog?region=Europe&amp;country=uk">UK</a><a href="/blog?region=Europe&amp;country=greece">Greece</a><a href="/blog?region=Americas">Americas</a><a href="/blog?region=Middle%20East">Middle East</a><a href="/blog?region=Pacific">Pacific</a><a href="/blog" class="all">All destinations &rarr;</a></div></nav>
     <!-- ask-japan-slot -->
-<section class="jp-ask" id="ask" aria-labelledby="askT">
-<div class="jp-ask-head"><span class="jp-ask-kick">New &middot; trial</span><h2 id="askT">Ask about <em>Japan</em></h2>
-<p>Ask a practical question about getting around. Answers come only from official sources we have checked (JR, the airports, bus companies, JNTO), with a link to the source. If it does not know, it will say so.</p></div>
-<div class="jp-ask-try" role="group" aria-label="Example questions">
-<button type="button">How do I get from New Chitose Airport to Sapporo?</button>
-<button type="button">Is there a ski bus from the airport to Niseko?</button>
-<button type="button">Where are the ATMs at Sapporo Station?</button>
-<button type="button">How do I get from Ueno to Narita Airport?</button>
-</div>
+<section class="jp-ask" id="ask" aria-label="Ask about Japan">
+<div class="jp-ask-top"><span aria-hidden="true">&#128172;</span><b>Ask about Japan</b><span class="jp-ask-kick">Beta</span></div>
 <form class="jp-ask-form" id="askForm" autocomplete="off">
-<label for="askQ" class="jp-sr">Your question</label>
-<textarea id="askQ" maxlength="300" rows="2" placeholder="For example: how do I get to Otaru from Sapporo?"></textarea>
+<label for="askQ" class="jp-sr">Your question about travel in Japan</label>
+<input id="askQ" type="text" maxlength="300" placeholder="e.g. How do I get from New Chitose Airport to Sapporo?">
 <button type="submit" id="askBtn">Ask</button>
 </form>
+<div class="jp-ask-try" role="group" aria-label="Example questions">
+<button type="button">New Chitose to Sapporo</button>
+<button type="button">Ski bus to Niseko</button>
+<button type="button">ATMs at Sapporo Station</button>
+<button type="button">Ueno to Narita Airport</button>
+</div>
 <div class="jp-ask-out" id="askOut" aria-live="polite" hidden></div>
-<p class="jp-ask-note">It knows most about Hokkaido (New Chitose Airport, Sapporo and day trips), Ueno, Shinjuku, and money and exits at Tokyo, Kyoto and Osaka stations; more is coming. Times change, so check the official page before you travel. Please do not type personal details. <a href="/privacy-policy">Privacy</a></p>
+<p class="jp-ask-note">Answers come from official sources (JR, airports, bus companies, JNTO). Times change, so check before you travel. Please don't type personal details. <a href="/privacy-policy">Privacy</a></p>
 </section>
 <script>
 (function(){
@@ -299,8 +299,8 @@ function ask(text){
    .then(function(){b.disabled=false;});
 }
 f.addEventListener('submit',function(e){e.preventDefault();ask(q.value);});
-q.addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();ask(q.value);}});
-[].forEach.call(document.querySelectorAll('.jp-ask-try button'),function(btn){btn.addEventListener('click',function(){q.value=btn.textContent;ask(btn.textContent);});});
+var EX={'New Chitose to Sapporo':'How do I get from New Chitose Airport to Sapporo?','Ski bus to Niseko':'Is there a ski bus from New Chitose Airport to Niseko?','ATMs at Sapporo Station':'Where are the ATMs at Sapporo Station?','Ueno to Narita Airport':'How do I get from Ueno to Narita Airport?'};
+[].forEach.call(document.querySelectorAll('.jp-ask-try button'),function(btn){btn.addEventListener('click',function(){var t=EX[btn.textContent]||btn.textContent;q.value=t;ask(t);});});
 })();
 </script>
     <section class="pocket-hub" id="pocket-hub" aria-labelledby="pocketHubT"><!-- pocket-hub-v2 pocket-hub-v3 --><div class="ph-intro"><span class="ph-kick">Offline pocket guides</span><h2 id="pocketHubT">Your <em>pocket guides</em></h2><p class="ph-lead">A pocket guide is a short, big-print helper for one airport or station. Open it on your phone, save it to your home screen, and it works like an app, even with no signal.</p></div><div class="ph-more"><ul class="ph-list"><li><span><b>Finds what you need fast.</b> Toilets, lockers, food, exits and trains, a couple of taps away.</span></li><li><span><b>Big print, plain English.</b> With a screen you can show station or airport staff in Japanese.</span></li><li><span><b>Works with no signal</b> once it is saved, so it still helps in a basement or on a train platform.</span></li><li><span><b>Checked against official sources.</b> The date it was last checked is at the top of every guide.</span></li></ul><div class="ph-how"><h3>Save it in three taps</h3><ol><li><span>Open a guide on your phone.</span></li><li><span>Android: tap <b>Install</b>. iPhone: tap Share, then <b>Add to Home Screen</b>.</span></li><li><span>Open it from your home screen whenever you need it.</span></li></ol></div></div><div class="ph-side"><span class="ph-count">Japan &middot; 10 guides</span><div class="ph-phone" role="group" aria-label="A phone home screen with the pocket guide icons"><div class="ph-screen ph-dense"><span class="ph-island" aria-hidden="true"></span><div class="ph-status" aria-hidden="true"><span>9:41</span><span class="ph-batt"></span></div><div class="ph-widget" aria-hidden="true"><b>Works offline</b><span>Saved on your phone, no signal needed</span></div><div class="ph-page" data-ph-page="0"><div class="ph-icons"><a class="ph-icon" href="/haneda-pocket?src=hub_japan"><img src="/images/haneda-icon-v2-192.png" alt="" width="50" height="50" loading="lazy"><span>Haneda</span></a><a class="ph-icon" href="/narita-pocket?src=hub_japan"><img src="/images/narita-icon-v2-192.png" alt="" width="50" height="50" loading="lazy"><span>Narita</span></a><a class="ph-icon" href="/kix-pocket?src=hub_japan"><img src="/images/kix-icon-192.png" alt="" width="50" height="50" loading="lazy"><span>Kansai</span></a><a class="ph-icon" href="/new-chitose-pocket?src=hub_japan"><img src="/images/new-chitose-icon-192.png" alt="" width="50" height="50" loading="lazy"><span>Chitose</span></a><a class="ph-icon" href="/tokyo-pocket?src=hub_japan"><img src="/images/tokyo-icon-192.png" alt="" width="50" height="50" loading="lazy"><span>Tokyo</span></a><a class="ph-icon" href="/shinjuku-pocket?src=hub_japan"><img src="/images/shinjuku-icon-192.png" alt="" width="50" height="50" loading="lazy"><span>Shinjuku</span></a><a class="ph-icon" href="/ueno-pocket?src=hub_japan"><img src="/images/ueno-icon-192.png" alt="" width="50" height="50" loading="lazy"><span>Ueno</span></a><a class="ph-icon" href="/kyoto-pocket?src=hub_japan"><img src="/images/kyoto-icon-192.png" alt="" width="50" height="50" loading="lazy"><span>Kyoto</span></a><a class="ph-icon" href="/osaka-pocket?src=hub_japan"><img src="/images/osaka-icon-192.png" alt="" width="50" height="50" loading="lazy"><span>Osaka</span></a><a class="ph-icon" href="/sapporo-pocket?src=hub_japan"><img src="/images/sapporo-icon-192.png" alt="" width="50" height="50" loading="lazy"><span>Sapporo</span></a></div></div><div class="ph-dots" aria-hidden="true"><i class="on"></i><i></i></div><div class="ph-home" aria-hidden="true"></div></div></div><p class="ph-cap">Tap an icon to open a guide. Free, no app store, no account.</p></div></section>
