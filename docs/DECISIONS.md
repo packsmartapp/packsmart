@@ -273,6 +273,7 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - 25 Nov: the hero has no background block (the washi pattern and side sakura show through); text left, a more realistic drawn Fuji right (flat summit, shaded flank, snow gullies, mist, drifting clouds, a soft glow instead of the red sun, a small torii) that drifts as the page scrolls (not with reduced motion). Brand: teal stays the colour for actions (board rows now hover teal), red is the Japan highlight colour.
 - 25 Nov: brand match: the hub is back on the site's pink (#FDF0F2) with a teal-tinted wave pattern; labels, outlines and the board heading use teal, red stays for highlights (time pills, torii, "Japan"). Fuji redrawn with a blue sky behind it, lit and shaded sides, ridges, a forested base and a small lake; the scene fades at its edges.
 - 25 Nov: the Fuji scene follows the season (Japan date): spring cherry trees, summer green forest with little snow and festival lanterns, autumn maples and first snow, winter snow mantle, white-tipped trees and snowflakes. The falling side petals turn into maple leaves in autumn and snow in winter, and stop in summer. `?season=spring|summer|autumn|winter` previews one.
+- 25 Nov: summer gets fireflies (in the scene, and rising along the sides on wide screens); the blue sky glow now fades out inside its own oval, so no edge shows.
 
 ## Open decisions (not made)
 
