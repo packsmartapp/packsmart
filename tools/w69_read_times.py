@@ -42,6 +42,7 @@ def main_text(s):
     else:
         m = re.search(r"<(main|article)\b.*?</\1>", s, re.S) or re.search(r"<body\b.*?</body>", s, re.S)
         s = m.group(0) if m else s
+    s = re.sub(r"<!-- jp-ask-guide -->.*?<!-- /jp-ask-guide -->", " ", s, flags=re.S)   # w77's Ask Packy box is not reading text
     s = re.sub(r"<script\b.*?</script>|<style\b.*?</style>|<!--.*?-->", " ", s, flags=re.S)
     return html.unescape(re.sub(r"<[^>]+>", " ", s))
 
