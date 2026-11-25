@@ -113,7 +113,7 @@ hours)
   near entrance E.
 - 4F (international departures): Seven Bank ATM, by the check-in islands, between counters D and E.
 - No ATM shown on 3F.
-- Terminal 2 (the low-cost carrier terminal; the map's floors are 1F, departures and arrivals with shops and
+- Terminal 2 (the map's floors are 1F, departures and arrivals with shops and
   restaurants, and 2F, arrivals): two ATMs, both on 1F: a Seven Bank ATM in the west part of the building and a
   Resona Bank ATM in the east part. None shown on 2F.
 - Seven Bank ATMs take overseas cards (JNTO's list, in the Japan basics notes); the Aeon Bank and MUFG ATMs: check
