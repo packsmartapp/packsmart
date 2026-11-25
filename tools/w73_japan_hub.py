@@ -99,20 +99,23 @@ HUB_CSS = """<style id="jp-hub-css">
 .jp-other-row a.all{border-color:#00C9A7;color:#0a8f78}
 @media (max-width:600px){.jp-other{flex-direction:column;align-items:stretch;gap:6px}.jp-other>span{text-align:center}}
 .jp-ask{max-width:760px;margin:0 auto 1.8rem;background:#fff;border:1.5px solid #BFEDE3;border-radius:18px;padding:14px 16px;box-shadow:0 2px 12px rgba(15,15,35,.05)}
-.jp-ask-top{display:flex;align-items:center;gap:8px;margin:0 0 8px;font-size:.95rem;color:#0f0f23}
+.jp-ask-top{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.95rem;color:#0f0f23}.jp-ask-top>div{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px}
 .jp-ask-top b{font-weight:800}
-.jp-ask-av{width:26px;height:26px;border-radius:50%;background:#00C9A7;color:#fff;font-weight:800;font-size:.85rem;display:inline-flex;align-items:center;justify-content:center}
+.jp-ask-av{flex:none;width:40px;height:40px;background:#fff;border-radius:12px;padding:2px;box-shadow:0 2px 8px rgba(15,15,35,.12)}.jp-ask-av svg{width:100%;height:100%;display:block}
 .jp-ask-sub{color:#5a6378;font-size:.85rem}
-.jp-ask-kick{font-size:.68rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;background:#E6FAF5;color:#0a8f78;border-radius:999px;padding:2px 8px}
+.jp-ask-kick{font-size:.68rem;font-weight:800;letter-spacing:.03em;background:#E94560;color:#fff;border-radius:999px;padding:2px 8px;align-self:center}
 .jp-ask-form{display:flex;gap:8px;align-items:center;background:#F5F7F9;border:1.5px solid #E3E8EC;border-radius:14px;padding:4px 4px 4px 12px}
 .jp-ask-form:focus-within{border-color:#00C9A7;background:#fff}
 .jp-ask-form input{flex:1;min-width:0;font:inherit;font-size:1rem;border:0;background:transparent;padding:10px 0;color:#0f0f23;outline:none}
-.jp-ask-form button{flex:none;font:inherit;font-weight:800;font-size:.95rem;background:#00C9A7;color:#fff;border:0;border-radius:11px;padding:0 18px;min-height:42px;cursor:pointer}
+.jp-ask-form button{flex:none;font:inherit;font-weight:800;font-size:.95rem;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;border:0;border-radius:999px;padding:0 18px;min-height:42px;cursor:pointer;box-shadow:0 4px 12px rgba(233,69,96,.3)}
 .jp-ask-form button[disabled]{opacity:.6;cursor:wait}
 .jp-ask-try{display:flex;gap:6px;overflow-x:auto;-webkit-overflow-scrolling:touch;margin:8px 0 0;padding:2px 0;scrollbar-width:none}
 .jp-ask-try::-webkit-scrollbar{display:none}
-.jp-ask-try button{flex:none;font:inherit;font-size:.82rem;background:#fff;color:#3f4a5c;border:1px solid #E3E8EC;border-radius:999px;padding:5px 11px;min-height:32px;cursor:pointer;white-space:nowrap}
-.jp-ask-try button:hover{border-color:#00C9A7;color:#0f0f23}
+@media (min-width:601px){.jp-ask-try{flex-wrap:wrap;overflow:visible}}
+.jp-ask-try button{flex:none;font:inherit;font-size:.82rem;font-weight:600;background:#fff;color:#0f0f23;border:1.5px solid #BFEDE3;border-radius:999px;padding:5px 11px;min-height:32px;cursor:pointer;white-space:nowrap}
+.jp-ask-try button:hover{border-color:#00C9A7}
+.jp-ask-hint{font-size:.82rem;color:#5a6378;margin:8px 0 0}.jp-ask-hint b{color:#0a8f78}
+.jp-ask-cont{font:inherit;font-size:.85rem;font-weight:700;color:#0a8f78;background:none;border:0;padding:0;text-decoration:underline;cursor:pointer}
 .jp-ask-out{margin-top:10px;background:#F8FBFA;border-radius:12px;padding:10px 12px;line-height:1.55;font-size:.95rem;color:#0f0f23}
 .jp-ask-out p{margin:.25rem 0}.jp-ask-out ul{margin:.25rem 0 .25rem 1.1rem;padding:0}.jp-ask-out li{margin:.15rem 0}
 .jp-ask-out a{color:#0a8f78;font-weight:700}
@@ -174,20 +177,29 @@ OTHER = ('<nav class="jp-other" aria-label="Other destinations"><span>Going some
          + '<a href="/blog" class="all">All destinations &rarr;</a></div></nav>')
 
 # ---- Packy, "Ask about Japan" (answers from /api/ask, which uses only official-source notes; see api/ask.js and w74)
+def packy_face():
+    js = open(os.path.join(ROOT, "public", "packy.js"), encoding="utf-8").read()
+    m = re.search(r"var FACE = ((?:'[^']*'\s*\+?\s*)+);", js)
+    if not m:
+        die("Packy's face (var FACE) not found in public/packy.js")
+    return "".join(re.findall(r"'([^']*)'", m.group(1)))
+
 ASK = """<!-- ask-japan-slot -->
-<section class="jp-ask" id="ask" aria-label="Ask Packy, your Japan travel helper">
-<div class="jp-ask-top"><span class="jp-ask-av" aria-hidden="true">P</span><b>Ask Packy</b><span class="jp-ask-sub">your Japan travel helper</span><span class="jp-ask-kick">Beta</span></div>
+<section class="jp-ask" id="ask" aria-label="Ask Packy, your Japan travel buddy">
+<div class="jp-ask-top"><span class="jp-ask-av" aria-hidden="true">%%FACE%%</span><div><b>Ask Packy</b><span class="jp-ask-sub">your Japan travel buddy</span></div><span class="jp-ask-kick">Beta</span></div>
 <form class="jp-ask-form" id="askForm" autocomplete="off">
 <label for="askQ" class="jp-sr">Your question about travel in Japan</label>
-<input id="askQ" type="text" maxlength="300" placeholder="Ask Packy anything about getting around Japan…">
-<button type="submit" id="askBtn">Ask</button>
+<input id="askQ" type="text" maxlength="300" placeholder="Ask Packy about Japan…">
+<button type="submit" id="askBtn">Ask &#10148;</button>
 </form>
 <div class="jp-ask-try" role="group" aria-label="Example questions">
-<button type="button">New Chitose to Sapporo</button>
-<button type="button">Ski bus to Niseko</button>
-<button type="button">ATMs at Sapporo Station</button>
-<button type="button">Ueno to Narita Airport</button>
+<button type="button" data-q="How do I get from Ueno to Narita Airport?">✈️ Ueno to Narita Airport</button>
+<button type="button" data-q="How long is the Shinkansen from Tokyo to Osaka?">🚄 Tokyo to Osaka by Shinkansen</button>
+<button type="button" data-q="How do I top up a Suica card?">💳 Top up a Suica card</button>
+<button type="button" data-q="How do I get from New Chitose Airport to Sapporo?">✈️ New Chitose to Sapporo</button>
+<button type="button" data-q="Is there a ski bus from New Chitose Airport to Niseko?">⛷️ Ski bus to Niseko</button>
 </div>
+<p class="jp-ask-hint" id="askHint">💬 <b>Opens a chat with Packy</b>: ask follow-ups, and get the whole chat by email if you like.</p>
 <div class="jp-ask-out" id="askOut" aria-live="polite" hidden></div>
 <p class="jp-ask-note">Answers come from official sources (JR, airports, bus companies, JNTO). Times change, so check before you travel. Please don't type personal details. <a href="/privacy-policy">Privacy</a></p>
 </section>
@@ -217,10 +229,13 @@ function ask(text){
    .then(function(){b.disabled=false;});
 }
 f.addEventListener('submit',function(e){e.preventDefault();ask(q.value);});
-var EX={'New Chitose to Sapporo':'How do I get from New Chitose Airport to Sapporo?','Ski bus to Niseko':'Is there a ski bus from New Chitose Airport to Niseko?','ATMs at Sapporo Station':'Where are the ATMs at Sapporo Station?','Ueno to Narita Airport':'How do I get from Ueno to Narita Airport?'};
-[].forEach.call(document.querySelectorAll('.jp-ask-try button'),function(btn){btn.addEventListener('click',function(){var t=EX[btn.textContent]||btn.textContent;q.value=t;ask(t);});});
+[].forEach.call(document.querySelectorAll('.jp-ask-try button'),function(btn){btn.addEventListener('click',function(){var t=btn.getAttribute('data-q');q.value=t;ask(t);});});
+// a chat already going in this visit: offer to carry on (packy.js loads after this box, so check once the page is ready)
+window.addEventListener('load',function(){var n=window.Packy&&window.Packy.count?window.Packy.count():0,h=document.getElementById('askHint');
+  if(n&&h){h.innerHTML='💬 <button type="button" class="jp-ask-cont">Continue your chat with Packy ('+n+(n>1?' questions':' question')+')</button>';h.querySelector('button').addEventListener('click',function(){window.Packy.open();});}});
 })();
 </script>"""
+ASK = ASK.replace("%%FACE%%", packy_face())
 
 body = """<div class="page-wrapper">
     <div class="page-header">

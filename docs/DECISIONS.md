@@ -265,6 +265,7 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - 25 Nov, the email matches the chat: each answer keeps its booking button (labelled partner link) and guide link, and the email ends with the Pocket Guide card Packy showed (e.g. Narita) with `?src=packy_email`. The buttons come only from the shared list `api/_offers.js` (the email form is public, so no other link is accepted); the "Continue" link carries them back into the chat, and packy.js accepts only our own pages and the partner hosts Packy uses.
 - 25 Nov: an email sent from a Vercel preview of this project links back to that preview (so the Continue link, guides and Pocket Guides can be tested before going live); from the live site it links to www.packsmartapp.com.
 - 25 Nov: Packy's face is in the email (header and next to each answer), attached inline as a PNG (`api/_packy_png.js`, made from the SVG in packy.js), so it shows without loading images from the site.
+- 25 Nov: the Ask box on `/japan` stays as Packy's doorway on the hub (option 1 of 3; an inline chat and removing the box were not chosen). It now looks like Packy (his face from packy.js, "travel buddy", pink Ask button), says it opens a chat, offers hub-wide starter questions, and shows "Continue your chat with Packy (n)" when a chat is going.
 
 ## Open decisions (not made)
 

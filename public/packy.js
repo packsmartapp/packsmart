@@ -378,5 +378,5 @@
   }
   restore();
 
-  window.Packy = { open: function () { open(false); }, ask: ask };
+  window.Packy = { open: function () { open(false); }, ask: ask, count: function () { return history.length; } };
 })();
