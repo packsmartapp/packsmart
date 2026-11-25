@@ -1,6 +1,6 @@
 # PackSmart: file inventory
 
-Generated 24 Nov 2026 by `tools/make_inventory.py` (re-run it after adding scripts, pages or docs).
+Generated 25 Nov 2026 by `tools/make_inventory.py` (re-run it after adding scripts, pages or docs).
 Every file below is already saved in git (`packsmartapp/packsmart`, branch `main`); `git clone` is the full backup.
 This page says what exists and where. It does not repeat file contents, because git always has the latest version.
 
@@ -30,6 +30,7 @@ This page says what exists and where. It does not repeat file contents, because 
 ## api/ (Vercel functions)
 
 - `api/_japan_kb.js`
+- `api/_offers.js`
 - `api/ask.js`
 - `api/email-chat.js`
 - `api/generate-plan.js`
