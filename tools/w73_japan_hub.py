@@ -397,6 +397,7 @@ def hero_html():
 <span class="jp-hero-kick">🇯🇵 ようこそ · Yōkoso</span>
 <h1 id="jpHeroT">Welcome to <em>Japan</em></h1>
 <p class="jp-hero-lead">Every PackSmart guide for Japan in one place, from the arrivals gate to the platform. Facts come from official sources, with the date we checked them.</p>
+<button type="button" class="jp-hello" id="jpHello"><span class="av" aria-hidden="true">""" + _face_av() + """</span><span class="bub"><b>Konnichiwa!</b> I'm Packy 👋 Where are you landing? Ask me anything.</span></button>
 <div class="jp-live" aria-label="Japan right now"><span id="jpClock">🕗 Japan time</span><span id="jpWx" hidden></span><span id="jpSeason"></span></div>
 </div><div class="jp-scene" aria-hidden="true" data-season="%%SEASON%%">""" + FUJI_SVG + '<div class="sk">' + SAKURA_SVG + """</div></div></div>
 """ + ASK + """
@@ -448,7 +449,7 @@ var fj=document.querySelector('.jp-scene .fuji');
 if(fj&&!still){var tk=false;window.addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){var y=Math.min(window.scrollY,700);fj.style.transform='translateY('+(y*0.22).toFixed(1)+'px) scale('+(1+y*0.00012).toFixed(4)+')';tk=false;});},{passive:true});}
 // Packy: the hello bubble and "Ask Packy about ..." on each boarding pass
 function packy(q){if(window.Packy){if(q)window.Packy.ask(q);else window.Packy.open();}else{var a=document.getElementById('ask');if(a)a.scrollIntoView({behavior:'smooth'});}}
-var hl=document.getElementById('jpHello');if(hl)hl.addEventListener('click',function(){track('hero_packy');packy('');});
+var hl=document.getElementById('jpHello');if(hl)hl.addEventListener('click',function(){track('hero_packy');var i=document.getElementById('askQ');if(i){i.scrollIntoView({behavior:still?'auto':'smooth',block:'center'});i.focus({preventScroll:true});}else packy('');});
 // one listener for the whole page, so the station tickets further down (built after this script) work too
 document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('.jp-pass-ask,[data-pass]');if(!t)return;if(t.classList.contains('jp-pass-ask')){var q=t.getAttribute('data-q');track(t.closest('.jp-tk')?'ticket_packy':'pass_packy',q);packy(q);}else track(t.closest('.jp-tk')?'ticket_tap':'pass_tap',t.getAttribute('data-pass'));});
 [].forEach.call(document.querySelectorAll('[data-board]'),function(a){a.addEventListener('click',function(){track('board_tap',a.getAttribute('data-board'));});});
@@ -619,7 +620,7 @@ body = """<div class="page-wrapper">
         """ + HOKKAIDO + """
         """ + SEASONS + """
     </div>
-    <p class="te-back">Travelling from India? See our <a href="/blog/japan-travel-packing-guide-from-india">Japan guide for travellers from India</a>, with visa and cost details. Need help that is not about Japan? See <a href="/travel-essentials">Travel Essentials</a>.</p>
+    <p class="te-back">Visa rules depend on your passport: many nationalities can visit for up to 90 days without a visa, but check <a href="https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html" target="_blank" rel="noopener">Japan's official visa-exemption list</a> before you book. We also have guides for travellers from particular countries, such as <a href="/blog/japan-travel-packing-guide-from-india">India</a>. Need help that is not about Japan? See <a href="/travel-essentials">Travel Essentials</a>.</p>
 </div>
 
 """
