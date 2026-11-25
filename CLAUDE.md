@@ -148,7 +148,7 @@ Card for `public/blog.html` (`&amp;` and `&mdash;` as entities):
 - The repo is public: earnings, traffic numbers, partner talks and outreach stay in the private Project notes, never in these docs.
 
 ## Known constraints
-- Commit as `git -c user.name="Ari" -c user.email="aricheck@gmail.com"`. Always show a preview (diff summary, what goes live) and wait for Ari's OK before anything is pushed to `main`, because `main` deploys to the live site.
+- Commit as `git -c user.name="Ari" -c user.email="263628963+packsmartapp@users.noreply.github.com"` (the packsmartapp account's private GitHub address, since 25 Nov 2026; the repo is public, so never a personal email. GitHub blocks pushes whose latest commit exposes the private email). Older commits keep the old address; do not rewrite published history. Always show a preview (diff summary, what goes live) and wait for Ari's OK before anything is pushed to `main`, because `main` deploys to the live site.
 - The sandbox cannot reach most sites (proxy allowlist); some pages cannot be fetched at all. Say so instead of guessing.
 - Vercel Web Analytics returns nothing; traffic numbers come from Ari (GA4, Search Console, Travelpayouts).
 - GA4 has 13 custom dimensions registered; adding new params needs registration to appear in reports.
