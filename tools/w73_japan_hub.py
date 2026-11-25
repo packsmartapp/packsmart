@@ -92,9 +92,13 @@ HUB_CSS = """<style id="jp-hub-css">
 .jp-two{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
 @media (max-width:760px){.jp-two{grid-template-columns:1fr}.jp-links{padding:1.1rem 1rem}}
 /* the maneki-neko (lucky cat) beckons at the Ask Packy box; its paw waves gently (still with reduced motion) */
-.jp-cat{position:absolute;right:-26px;top:-86px;width:96px;pointer-events:none;filter:drop-shadow(0 6px 10px rgba(15,15,35,.12))}
+.jp-cat{position:absolute;right:-26px;top:-86px;width:96px;cursor:pointer;filter:drop-shadow(0 6px 10px rgba(15,15,35,.12))}
 .jp-cat svg{width:100%;height:auto;display:block}
 .jp-cat .paw{transform-box:view-box;transform-origin:146px 112px;animation:jpBeckon 2.4s ease-in-out infinite}
+.jp-cat-say{position:absolute;right:70%;top:-6px;white-space:nowrap;background:#0f0f23;color:#fff;font-size:.82rem;font-weight:700;padding:7px 11px;border-radius:14px 14px 4px 14px;opacity:0;transform:translateY(6px) scale(.9);transform-origin:bottom right;transition:opacity .18s,transform .18s;pointer-events:none}
+.jp-cat-say span{color:#FFC1D1;margin-right:4px}
+.jp-cat:hover .jp-cat-say,.jp-cat.on .jp-cat-say{opacity:1;transform:none}
+.jp-cat:hover .paw,.jp-cat.on .paw{animation-duration:.8s}
 @keyframes jpBeckon{0%,55%,100%{transform:rotate(0)}65%{transform:rotate(-16deg)}75%{transform:rotate(4deg)}85%{transform:rotate(-12deg)}}
 @media (prefers-reduced-motion:reduce){.jp-cat .paw{animation:none}}
 @media (max-width:600px){.jp-cat{right:6px;top:-62px;width:64px}.jp-ask{margin-top:4.6rem}}
@@ -185,7 +189,7 @@ def packy_face():
 
 ASK = """<!-- ask-japan-slot -->
 <section class="jp-ask" id="ask" aria-label="Ask Packy, your Japan travel buddy">
-<span class="jp-cat" title="Maneki-neko, the lucky cat: come in and ask!"><svg viewBox="40 20 140 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><ellipse cx="100" cy="168" rx="52" ry="12" fill="#F2D7DC"/><rect x="52" y="96" width="96" height="74" rx="40" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M60 64l-6-34 30 20M140 64l6-34-30 20" fill="#fff" stroke="#0f0f23" stroke-width="3" stroke-linejoin="round"/><path d="M58 32l18 14M142 32l-18 14" stroke="#F49AB0" stroke-width="6" stroke-linecap="round"/><ellipse cx="100" cy="78" rx="50" ry="40" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M70 76q8-8 16 0M114 76q8-8 16 0" fill="none" stroke="#0f0f23" stroke-width="4" stroke-linecap="round"/><path d="M94 90q6 5 12 0" fill="none" stroke="#0f0f23" stroke-width="3" stroke-linecap="round"/><circle cx="100" cy="87" r="3" fill="#E94560"/><path d="M62 86h-18M62 92h-16M138 86h18M138 92h16" stroke="#0f0f23" stroke-width="2"/><circle cx="124" cy="42" r="10" fill="#E94560"/><circle cx="76" cy="46" r="7" fill="#26335c"/><path d="M60 118c30 10 50 10 80 0" stroke="#E94560" stroke-width="9" fill="none"/><circle cx="100" cy="132" r="9" fill="#F5C542" stroke="#0f0f23" stroke-width="2"/><ellipse cx="100" cy="152" rx="30" ry="12" fill="#F5C542" stroke="#0f0f23" stroke-width="2"/><text x="100" y="157" font-size="12" text-anchor="middle" font-weight="800" fill="#0f0f23">千万両</text><g class="paw"><path d="M146 112q22-10 18-46" stroke="#0f0f23" stroke-width="3" fill="#fff"/><ellipse cx="162" cy="62" rx="15" ry="17" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M156 56v8M162 54v10M168 56v8" stroke="#F49AB0" stroke-width="2" stroke-linecap="round"/></g></svg></span>
+<span class="jp-cat" id="jpCat"><span class="jp-cat-say" role="status"><span lang="ja">こんにちは!</span> Konnichiwa! 👋</span><svg viewBox="40 20 140 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><ellipse cx="100" cy="168" rx="52" ry="12" fill="#F2D7DC"/><rect x="52" y="96" width="96" height="74" rx="40" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M60 64l-6-34 30 20M140 64l6-34-30 20" fill="#fff" stroke="#0f0f23" stroke-width="3" stroke-linejoin="round"/><path d="M58 32l18 14M142 32l-18 14" stroke="#F49AB0" stroke-width="6" stroke-linecap="round"/><ellipse cx="100" cy="78" rx="50" ry="40" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M70 76q8-8 16 0M114 76q8-8 16 0" fill="none" stroke="#0f0f23" stroke-width="4" stroke-linecap="round"/><path d="M94 90q6 5 12 0" fill="none" stroke="#0f0f23" stroke-width="3" stroke-linecap="round"/><circle cx="100" cy="87" r="3" fill="#E94560"/><path d="M62 86h-18M62 92h-16M138 86h18M138 92h16" stroke="#0f0f23" stroke-width="2"/><circle cx="124" cy="42" r="10" fill="#E94560"/><circle cx="76" cy="46" r="7" fill="#26335c"/><path d="M60 118c30 10 50 10 80 0" stroke="#E94560" stroke-width="9" fill="none"/><circle cx="100" cy="132" r="9" fill="#F5C542" stroke="#0f0f23" stroke-width="2"/><ellipse cx="100" cy="152" rx="30" ry="12" fill="#F5C542" stroke="#0f0f23" stroke-width="2"/><text x="100" y="157" font-size="12" text-anchor="middle" font-weight="800" fill="#0f0f23">千万両</text><g class="paw"><path d="M146 112q22-10 18-46" stroke="#0f0f23" stroke-width="3" fill="#fff"/><ellipse cx="162" cy="62" rx="15" ry="17" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M156 56v8M162 54v10M168 56v8" stroke="#F49AB0" stroke-width="2" stroke-linecap="round"/></g></svg></span>
 <div class="jp-ask-top"><span class="jp-ask-av" aria-hidden="true">%%FACE%%</span><div><b>Ask Packy</b><span class="jp-ask-sub">your Japan travel buddy</span></div><span class="jp-ask-kick">Beta</span></div>
 <form class="jp-ask-form" id="askForm" autocomplete="off">
 <label for="askQ" class="jp-sr">Your question about travel in Japan</label>
@@ -449,6 +453,10 @@ if(!still){var A='ABCDEFGHIJKLMNOPRSTUVWXYZ0123456789';[].forEach.call(document.
 // Fuji drifts as the page scrolls, like a far-away mountain (not with reduced motion)
 var fj=document.querySelector('.jp-scene .fuji');
 if(fj&&!still){var tk=false;window.addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){var y=Math.min(window.scrollY,700);fj.style.transform='translateY('+(y*0.22).toFixed(1)+'px) scale('+(1+y*0.00012).toFixed(4)+')';tk=false;});},{passive:true});}
+// the lucky cat says Konnichiwa on hover (CSS) or tap
+var cat=document.getElementById('jpCat');
+if(cat){var ct;cat.addEventListener('click',function(){cat.classList.add('on');track('cat_hello');clearTimeout(ct);ct=setTimeout(function(){cat.classList.remove('on');},2500);});
+ cat.addEventListener('mouseenter',function(){track('cat_hello');});}
 // Packy: the hello bubble and "Ask Packy about ..." on each boarding pass
 function packy(q){if(window.Packy){if(q)window.Packy.ask(q);else window.Packy.open();}else{var a=document.getElementById('ask');if(a)a.scrollIntoView({behavior:'smooth'});}}
 var hl=document.getElementById('jpHello');if(hl)hl.addEventListener('click',function(){track('hero_packy');var i=document.getElementById('askQ');if(i){i.scrollIntoView({behavior:still?'auto':'smooth',block:'center'});i.focus({preventScroll:true});}else packy('');});
