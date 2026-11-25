@@ -1112,6 +1112,16 @@ export default [
 },
 {
 "t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
+"x": "- Hyogo: Amagasaki and Nishinomiya: stop 3 · Kobe Sannomiya, Rokko Island: stop 4 · Himeji, Kakogawa: stop 4.\n  Nara: Kintetsu Gakuenmae, Nara and Yamato Yagi: stop 5 · Kyoto, Kyo-tanabe: stop 2 · Wakayama: stop 7 ·\n  Okayama: stop 5 · Shikoku: Awaji, Naruto, Tokushima: stop 9; Takamatsu: stop 8.\n\nairport's interactive map, 25 Nov 2026; the side list was only partly visible)",
+"u": []
+},
+{
+"t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
+"x": "- Services named on the map or in its list for Terminal 1 / 1F: Aeon Bank ATM; Kansai Tourist Information Center\n  Kansai Airport; Limousine Bus Information Counter (South); Temporary Storage of Bonded Baggage Terminal 1; SIM and\n  Wi-Fi: Global WiFi (central counter, north counter, a north SIM card vending machine, portable router rental \"same-day\n  rental without reservation (only when in stock)\"), JAPAN WiFi (XCom Global) unmanned return box, Sakura Mobile,\n  Telecom Square; ChargeSPOT phone-battery rental; coin photo booths; Doutor Coffee Shop.\n- The bus stops line the kerb outside this floor.",
+"u": []
+},
+{
+"t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
 "x": "- From the airport, approximate time / fare / access bridge and expressway tolls / total: Itami Airport 70 min,\n  23,490 + 3,000 = 26,490 yen; Kita-ku, Osaka city 50 min, 19,800 + 2,600 = 22,400 yen; Chuo-ku, Osaka city 50 min,\n  19,100 + 2,500 = 21,600 yen; Shin-Osaka Sta. 60 min, 20,790 + 2,300 = 23,090 yen; Tennoji Sta. 50 min,\n  17,640 + 2,200 = 19,840 yen; Universal Studios Japan 50 min, 17,640 + 2,500 = 20,140 yen; Kaiyukan 50 min,\n  16,920 + 2,500 = 19,420 yen; Izumisano Sta. 20 min, 4,400 + 1,000 = 5,400 yen; Kishiwada Sta. 25 min,\n  7,500 + 1,500 = 9,000 yen; JR Sakai-shi Sta. 40 min, 14,220 + 2,100 = 16,320 yen; Suita Sta. 60 min,\n  22,500 + 3,000 = 25,500 yen; Ibaraki Sta. 60 min, 25,920 + 3,500 = 29,420 yen.",
 "u": []
 },

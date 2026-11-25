@@ -91,6 +91,18 @@ differ from Terminal 1, so check which terminal you are at.
   (Momoyamadai), Senri Chuo (via Osaka Sta.): stop 1 · Keihan Moriguchi: stop 10 · Hirakata-shi, Keihan Kuzuha,
   Neyagawashi Sta.: stop 10 · Higashi Osaka: stop 10 · Rinku Town, Izumisano Sta. (night bus): stop 0 ·
   Rinku Town / Washington Hotel Kansai Airport: no stop number shown.
+- Hyogo: Amagasaki and Nishinomiya: stop 3 · Kobe Sannomiya, Rokko Island: stop 4 · Himeji, Kakogawa: stop 4.
+  Nara: Kintetsu Gakuenmae, Nara and Yamato Yagi: stop 5 · Kyoto, Kyo-tanabe: stop 2 · Wakayama: stop 7 ·
+  Okayama: stop 5 · Shikoku: Awaji, Naruto, Tokushima: stop 9; Takamatsu: stop 8.
+
+**Terminal 1, 1F (the international arrivals floor): what the airport's floor map lists** (owner's screenshot of the
+airport's interactive map, 25 Nov 2026; the side list was only partly visible)
+- Services named on the map or in its list for Terminal 1 / 1F: Aeon Bank ATM; Kansai Tourist Information Center
+  Kansai Airport; Limousine Bus Information Counter (South); Temporary Storage of Bonded Baggage Terminal 1; SIM and
+  Wi-Fi: Global WiFi (central counter, north counter, a north SIM card vending machine, portable router rental "same-day
+  rental without reservation (only when in stock)"), JAPAN WiFi (XCom Global) unmanned return box, Sakura Mobile,
+  Telecom Square; ChargeSPOT phone-battery rental; coin photo booths; Doutor Coffee Shop.
+- The bus stops line the kerb outside this floor.
 
 **Taxis: approximate times and fares** (same site, taxi page; owner's screenshots, 25 Nov 2026)
 - From the airport, approximate time / fare / access bridge and expressway tolls / total: Itami Airport 70 min,
@@ -117,8 +129,7 @@ Source: https://osaka-info.jp/en/spot/tourist-information-namba/
 
 ## Gaps (still to fetch or confirm; not used by Packy)
 - From the airport's site (owner's screenshots): ATMs, money exchange, baggage storage and delivery, SIM and Wi-Fi,
-  information counters, "Getting to Terminal 2 Building" (the shuttle), Terminal 2 bus stops for Hyogo, Nara, Kyoto and beyond (not
-  in the screenshots) and where the stops are, where the taxi stands are, and the
+  information counters, "Getting to Terminal 2 Building" (the shuttle), opening hours of the 1F services (the map shows names only), where the taxi stands are, and the
   taxi fares for Hyogo, Nara, Kyoto, Wakayama, Okayama and Shikoku (a closed section in the screenshots).
 - Nankai base fares (the price list is an image at the station and on the site).
 - JR (Haruka and Kansai Airport Rapid) first and last trains from the airport.
