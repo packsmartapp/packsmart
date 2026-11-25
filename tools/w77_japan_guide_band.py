@@ -220,6 +220,8 @@ CSS_RAW = """<style id="jp-guide-css">
  .ps-pickups:not(:has(>h3))>picture{grid-row:1/5}.ps-pickups:not(:has(>h3))>picture+strong{grid-row:1}.ps-pickups:not(:has(>h3))>picture+strong+div{grid-row:2}
  .ps-pickups:not(:has(>h3))>[id^="powered_by_"]{grid-column:2;grid-row:3}
  .ps-pickups:not(:has(>h3))>picture+strong+div+p{grid-column:1/-1;grid-row:5;margin:14px auto 0!important}.ps-pickups:not(:has(>h3))>p:last-of-type{grid-row:6}}
+/* wide screens: the fares line and the "Best when…" line run the full box width, one line each where they fit (owner, 25 Nov) */
+@media (min-width:1200px){.ps-pickups>p{max-width:none!important}.ps-pickups>picture+strong+div+p{margin:12px auto 0!important}.ps-pickups>p:last-of-type{margin-top:8px!important}}
 /* the partner's Continue button: its own pale mint read as disabled; the site's red call-to-action instead (owner, 25 Nov) */
 .ps-pickups [id^="powered_by_"] button[type="submit"]{background:#E94560!important;color:#fff!important;font-weight:700!important;border-radius:10px!important;border:0!important;box-shadow:0 4px 14px rgba(233,69,96,.28)}
 .ps-pickups [id^="powered_by_"] button[type="submit"] *{color:#fff!important}
