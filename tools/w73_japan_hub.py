@@ -257,7 +257,7 @@ for need in ('id="plan"', 'id="arriving"', 'id="stations"', "hub_japan", "</html
 
 old = open(OUT, encoding="utf-8").read() if os.path.isfile(OUT) else ""
 # w75 adds the Packy pop-up line after this script runs; ignore it when deciding whether the page changed
-old = re.sub(r'<script src="/packy\.js"[^>]*></script>\n', "", old)
+old = re.sub(r'<script src="/packy\.js(?:\?v=[0-9a-f]+)?"[^>]*></script>\n', "", old)
 changed = old != page
 
 # ---- sitemap

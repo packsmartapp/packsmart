@@ -10,7 +10,8 @@ Stage 1 (this list): the Japan hub and the guides whose official-source knowledg
 follow once their research notes exist; Pocket Guides follow after real questions have been reviewed (they are
 offline-first and Packy needs internet).
 
-Run after w73 and before w72:  python3 tools/w75_packy_rollout.py
+Run after w73 and before w72, and again after every edit to public/packy.js (the link's ?v= version comes from
+the file, so browsers holding the 30-day cached copy fetch the new one):  python3 tools/w75_packy_rollout.py
 Idempotent: removes any Packy line (the generators copy one from the Japan guide's footer), then adds the right one
 to each listed page. Aborts without writing if a listed page or its </body> is missing.
 """
@@ -31,7 +32,11 @@ PAGES = {  # page: (country, topic, extra attributes)
 }
 
 import glob, re
-TAG_RX = re.compile(r'<script src="/packy\.js"[^>]*></script>\n?')
+TAG_RX = re.compile(r'<script src="/packy\.js(?:\?v=[0-9a-f]+)?"[^>]*></script>\n?')
+# The site caches .js files for 30 days as "immutable" (vercel.json), so the link carries a version made from
+# packy.js itself: any change to Packy gets a new link and every browser fetches the new file at once.
+import hashlib
+VER = hashlib.md5(open(os.path.join(PUB, "packy.js"), "rb").read()).hexdigest()[:10]
 # The page generators copy their footer from the Japan guide, so a Packy line can arrive on pages that are not on
 # the list. Remove it everywhere first, then add the right one to each listed page.
 plans, added = {}, 0
@@ -43,7 +48,7 @@ for path in sorted(glob.glob(os.path.join(PUB, "**", "*.html"), recursive=True))
         country, topic, extra = PAGES[rel]
         if new.count("</body>") != 1:
             sys.exit("w75 aborted, nothing written: </body> not found exactly once in " + rel)
-        new = new.replace("</body>", '<script src="/packy.js" data-country="%s" data-topic="%s"%s defer></script>\n</body>' % (country, topic, extra), 1)
+        new = new.replace("</body>", '<script src="/packy.js?v=%s" data-country="%s" data-topic="%s"%s defer></script>\n</body>' % (VER, country, topic, extra), 1)
         added += 1
     if new != s:
         plans[path] = new
