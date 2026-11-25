@@ -123,6 +123,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w73_japan_hub.py` | w73: the Japan hub page /japan, and a "Welcome to Japan" banner on /blog when the Japan chip is picked (24 Nov 2026). |
 | `w74_japan_ask_kb.py` | w74: the knowledge for "Ask about Japan" (/api/ask), built from the official-source research notes (24 Nov 2026). |
 | `w75_packy_rollout.py` | w75: Packy, the pop-up travel helper, on the pages where its knowledge is solid (24 Nov 2026, D56). |
+| `w76_focused_menu.py` | w76: the focused top menu on every page (25 Nov 2026, B57). |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `pocket_guides.json` | data file read by the scripts above |
 | `w62_photo_fixes.json` | data file read by the scripts above |

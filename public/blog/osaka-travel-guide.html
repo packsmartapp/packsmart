@@ -451,15 +451,39 @@
 .ps-gyg-w{min-height:495px;margin-bottom:-30px}
 @media(max-width:600px){.ps-gyg-w{min-height:772px;margin-bottom:0}}
 </style>
+<style id="ps-menu-css">
+.nav-dd{position:relative;display:inline-flex;align-items:center}
+.nav-dd-c{font-size:.7em;margin-left:2px;display:inline-block;transition:transform .15s}
+.nav-dd:hover .nav-dd-c,.nav-dd:focus-within .nav-dd-c{transform:rotate(180deg)}
+.nav-dd-menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:14px;z-index:1000}
+.nav-dd-menu:before{content:"";position:absolute;inset:14px 0 0;background:#fff;border:1px solid #BFEDE3;border-radius:14px;box-shadow:0 14px 34px rgba(15,15,35,.14);z-index:-1}
+.nav-dd:hover .nav-dd-menu,.nav-dd:focus-within .nav-dd-menu{display:flex;flex-direction:column;min-width:200px;padding:22px 10px 10px}
+.nav-links .nav-dd-menu a{color:#0f0f23!important;font-weight:600;padding:8px 10px;border-radius:10px;white-space:nowrap}
+.nav-links .nav-dd-menu a:hover{background:#E6FAF5;color:#0a8f78!important}
+.nav-links .nav-dd-menu a::after{display:none}
+.nav-links .nav-dd-menu a.nav-dd-all{color:#0a8f78!important;font-weight:800;border-top:1px solid #E6EEF0;border-radius:0 0 10px 10px;margin-top:4px}
+/* the open phone menu is a white panel: dark links even before the page scrolls (white-on-white bug before 25 Nov) */
+.nav-links.open a:not(.nav-cta-btn){color:#333!important}
+.nav-links.open .nav-dd-menu a.nav-dd-all{color:#0a8f78!important}
+.nav-links.open .nav-dd{flex-direction:column;align-items:center}
+.nav-links.open .nav-dd-c{display:none}
+.nav-links.open .nav-dd-menu{display:flex;flex-direction:column;align-items:center;position:static;transform:none;padding:6px 0 0;min-width:0;gap:2px}
+.nav-links.open .nav-dd-menu:before{display:none}
+.nav-links.open .nav-dd-menu a{padding:6px 0;font-weight:500}
+.nav-links.open .nav-dd-menu a.nav-dd-all{border:0;margin:0}
+</style>
 </head>
 <body>
     <nav class="nav" id="nav">
     <a href="/" class="nav-brand">Pack<em>Smart</em></a>
     <div class="nav-links" id="navLinks">
-        <a href="/blog">Destinations</a>
+        <!-- ps-menu -->
+        <a href="/japan" class="nav-jp"><span aria-hidden="true">🇯🇵</span> Japan</a>
+        <div class="nav-dd"><a href="/blog" class="nav-dd-top">Destinations <span class="nav-dd-c" aria-hidden="true">▾</span></a><div class="nav-dd-menu" aria-label="Featured destinations"><a href="/blog/germany-travel-packing-guide"><span aria-hidden="true">🇩🇪</span> Germany</a><a href="/blog/france-travel-packing-guide"><span aria-hidden="true">🇫🇷</span> France</a><a href="/blog" class="nav-dd-all">All destinations &rarr;</a></div></div>
+        <a href="/travel-essentials#packing">Packing Lists</a>
         <a href="/travel-essentials">Travel Essentials</a>
-        <a href="/flights">Flights & Hotels</a>
         <a href="/#plan" class="nav-cta-btn">Plan My Trip</a>
+        <!-- /ps-menu -->
     </div>
     <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
         <span></span><span></span><span></span>

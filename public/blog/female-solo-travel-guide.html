@@ -427,15 +427,39 @@
 {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [{"@type": "Question", "name": "Is it safe for women to travel alone?", "acceptedAnswer": {"@type": "Answer", "text": "Yes, with proper planning and precautions, solo female travel is safe and empowering. Choose destinations with good safety records (Japan, Portugal, Iceland, New Zealand rank highest for solo female travelers). Stay aware of your surroundings, use trusted transportation, keep valuables secure, and trust your instincts. Connect with other travelers through hostels and tours. Millions of women travel solo safely each year."}}, {"@type": "Question", "name": "What are the best destinations for solo female travelers?", "acceptedAnswer": {"@type": "Answer", "text": "Top destinations for solo women: Japan (excellent public transport, very safe, English support), Portugal (affordable, welcoming, beautiful coastline), Iceland (safe, stunning nature, solo-friendly culture), New Zealand (adventure-focused, free-spirited travelers), Slovenia (small, easy to navigate, affordable), Costa Rica (well-developed tourism, adventure activities), Taiwan (safe, cheap, excellent food scene). All offer good infrastructure, low crime, friendly locals, and established solo travel communities."}}, {"@type": "Question", "name": "How much should solo female travelers budget?", "acceptedAnswer": {"@type": "Answer", "text": "Budget $40-80 USD/day in Southeast Asia, $60-120 USD/day in Central/Eastern Europe, $100-150 USD/day in Western Europe, and $80-120 USD/day in developed Asian countries. Solo travel is cheaper than group travel due to hostel dorms ($15-25/night), budget restaurants ($3-10/meal), and free attractions. Budget extra $50-100 for initial setup (travel insurance, eSIM, safety items). Women-only dorms add $5-10/night vs mixed dorms."}}, {"@type": "Question", "name": "What safety items should solo female travelers pack?", "acceptedAnswer": {"@type": "Answer", "text": "Essential safety items: personal alarm or whistle, door lock/travel lock, money belt or hidden pouch (keep passports/cash separate), first aid kit, copies of documents (digital + printed), phone with emergency contacts, power bank, reliable travel insurance, RFID-blocking wallet, and country-specific numbers programmed. Consider personal safety apps like bSafe or Life360. Download offline maps. Keep emergency contact details of your embassy. Wear an anti-theft bag or crossbody daypack."}}]}
 </script>
 <style>html,body{overflow-x:hidden;max-width:100vw;} .safetywing-price-widget{max-width:100%;}</style>
+<style id="ps-menu-css">
+.nav-dd{position:relative;display:inline-flex;align-items:center}
+.nav-dd-c{font-size:.7em;margin-left:2px;display:inline-block;transition:transform .15s}
+.nav-dd:hover .nav-dd-c,.nav-dd:focus-within .nav-dd-c{transform:rotate(180deg)}
+.nav-dd-menu{display:none;position:absolute;top:100%;left:50%;transform:translateX(-50%);padding-top:14px;z-index:1000}
+.nav-dd-menu:before{content:"";position:absolute;inset:14px 0 0;background:#fff;border:1px solid #BFEDE3;border-radius:14px;box-shadow:0 14px 34px rgba(15,15,35,.14);z-index:-1}
+.nav-dd:hover .nav-dd-menu,.nav-dd:focus-within .nav-dd-menu{display:flex;flex-direction:column;min-width:200px;padding:22px 10px 10px}
+.nav-links .nav-dd-menu a{color:#0f0f23!important;font-weight:600;padding:8px 10px;border-radius:10px;white-space:nowrap}
+.nav-links .nav-dd-menu a:hover{background:#E6FAF5;color:#0a8f78!important}
+.nav-links .nav-dd-menu a::after{display:none}
+.nav-links .nav-dd-menu a.nav-dd-all{color:#0a8f78!important;font-weight:800;border-top:1px solid #E6EEF0;border-radius:0 0 10px 10px;margin-top:4px}
+/* the open phone menu is a white panel: dark links even before the page scrolls (white-on-white bug before 25 Nov) */
+.nav-links.open a:not(.nav-cta-btn){color:#333!important}
+.nav-links.open .nav-dd-menu a.nav-dd-all{color:#0a8f78!important}
+.nav-links.open .nav-dd{flex-direction:column;align-items:center}
+.nav-links.open .nav-dd-c{display:none}
+.nav-links.open .nav-dd-menu{display:flex;flex-direction:column;align-items:center;position:static;transform:none;padding:6px 0 0;min-width:0;gap:2px}
+.nav-links.open .nav-dd-menu:before{display:none}
+.nav-links.open .nav-dd-menu a{padding:6px 0;font-weight:500}
+.nav-links.open .nav-dd-menu a.nav-dd-all{border:0;margin:0}
+</style>
 </head>
 <body>
     <nav class="nav" id="nav">
     <a href="/" class="nav-brand">Pack<em>Smart</em></a>
     <div class="nav-links" id="navLinks">
-        <a href="/blog">Destinations</a>
+        <!-- ps-menu -->
+        <a href="/japan" class="nav-jp"><span aria-hidden="true">🇯🇵</span> Japan</a>
+        <div class="nav-dd"><a href="/blog" class="nav-dd-top">Destinations <span class="nav-dd-c" aria-hidden="true">▾</span></a><div class="nav-dd-menu" aria-label="Featured destinations"><a href="/blog/germany-travel-packing-guide"><span aria-hidden="true">🇩🇪</span> Germany</a><a href="/blog/france-travel-packing-guide"><span aria-hidden="true">🇫🇷</span> France</a><a href="/blog" class="nav-dd-all">All destinations &rarr;</a></div></div>
+        <a href="/travel-essentials#packing">Packing Lists</a>
         <a href="/travel-essentials">Travel Essentials</a>
-        <a href="/flights">Flights & Hotels</a>
         <a href="/#plan" class="nav-cta-btn">Plan My Trip</a>
+        <!-- /ps-menu -->
     </div>
     <button class="mobile-menu-btn" id="menuBtn" aria-label="Menu">
         <span></span><span></span><span></span>
