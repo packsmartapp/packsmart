@@ -91,7 +91,14 @@ HUB_CSS = """<style id="jp-hub-css">
 .jp-links li small{display:block;font-weight:500;color:#5a6378}
 .jp-two{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
 @media (max-width:760px){.jp-two{grid-template-columns:1fr}.jp-links{padding:1.1rem 1rem}}
-.jp-ask{max-width:760px;margin:0 auto 1.8rem;background:#fff;border:1.5px solid #BFEDE3;border-radius:18px;padding:14px 16px;box-shadow:0 2px 12px rgba(15,15,35,.05)}
+/* the maneki-neko (lucky cat) beckons at the Ask Packy box; its paw waves gently (still with reduced motion) */
+.jp-cat{position:absolute;right:-26px;top:-86px;width:96px;pointer-events:none;filter:drop-shadow(0 6px 10px rgba(15,15,35,.12))}
+.jp-cat svg{width:100%;height:auto;display:block}
+.jp-cat .paw{transform-box:view-box;transform-origin:146px 112px;animation:jpBeckon 2.4s ease-in-out infinite}
+@keyframes jpBeckon{0%,55%,100%{transform:rotate(0)}65%{transform:rotate(-16deg)}75%{transform:rotate(4deg)}85%{transform:rotate(-12deg)}}
+@media (prefers-reduced-motion:reduce){.jp-cat .paw{animation:none}}
+@media (max-width:600px){.jp-cat{right:6px;top:-62px;width:64px}.jp-ask{margin-top:4.6rem}}
+.jp-ask{position:relative;max-width:760px;margin:6.2rem auto 1.8rem;background:#fff;border:1.5px solid #BFEDE3;border-radius:18px;padding:14px 16px;box-shadow:0 2px 12px rgba(15,15,35,.05)}
 .jp-ask-top{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.95rem;color:#0f0f23}.jp-ask-top>div{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px}
 .jp-ask-top b{font-weight:800}
 .jp-ask-av{flex:none;width:40px;height:40px;background:#fff;border-radius:12px;padding:2px;box-shadow:0 2px 8px rgba(15,15,35,.12)}.jp-ask-av svg{width:100%;height:100%;display:block}
@@ -175,6 +182,7 @@ def packy_face():
 
 ASK = """<!-- ask-japan-slot -->
 <section class="jp-ask" id="ask" aria-label="Ask Packy, your Japan travel buddy">
+<span class="jp-cat" title="Maneki-neko, the lucky cat: come in and ask!"><svg viewBox="40 20 140 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><ellipse cx="100" cy="168" rx="52" ry="12" fill="#F2D7DC"/><rect x="52" y="96" width="96" height="74" rx="40" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M60 64l-6-34 30 20M140 64l6-34-30 20" fill="#fff" stroke="#0f0f23" stroke-width="3" stroke-linejoin="round"/><path d="M58 32l18 14M142 32l-18 14" stroke="#F49AB0" stroke-width="6" stroke-linecap="round"/><ellipse cx="100" cy="78" rx="50" ry="40" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M70 76q8-8 16 0M114 76q8-8 16 0" fill="none" stroke="#0f0f23" stroke-width="4" stroke-linecap="round"/><path d="M94 90q6 5 12 0" fill="none" stroke="#0f0f23" stroke-width="3" stroke-linecap="round"/><circle cx="100" cy="87" r="3" fill="#E94560"/><path d="M62 86h-18M62 92h-16M138 86h18M138 92h16" stroke="#0f0f23" stroke-width="2"/><circle cx="124" cy="42" r="10" fill="#E94560"/><circle cx="76" cy="46" r="7" fill="#26335c"/><path d="M60 118c30 10 50 10 80 0" stroke="#E94560" stroke-width="9" fill="none"/><circle cx="100" cy="132" r="9" fill="#F5C542" stroke="#0f0f23" stroke-width="2"/><ellipse cx="100" cy="152" rx="30" ry="12" fill="#F5C542" stroke="#0f0f23" stroke-width="2"/><text x="100" y="157" font-size="12" text-anchor="middle" font-weight="800" fill="#0f0f23">千万両</text><g class="paw"><path d="M146 112q22-10 18-46" stroke="#0f0f23" stroke-width="3" fill="#fff"/><ellipse cx="162" cy="62" rx="15" ry="17" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M156 56v8M162 54v10M168 56v8" stroke="#F49AB0" stroke-width="2" stroke-linecap="round"/></g></svg></span>
 <div class="jp-ask-top"><span class="jp-ask-av" aria-hidden="true">%%FACE%%</span><div><b>Ask Packy</b><span class="jp-ask-sub">your Japan travel buddy</span></div><span class="jp-ask-kick">Beta</span></div>
 <form class="jp-ask-form" id="askForm" autocomplete="off">
 <label for="askQ" class="jp-sr">Your question about travel in Japan</label>
