@@ -42,6 +42,8 @@ function md(t, SITE) {   // the same small Markdown Packy uses: **bold**, [links
   }
   return out + (list ? '</ul>' : '');
 }
+// Packy ends an answer with "Source: [title](url) | ...": shown small and last, under our guide link and the booking button
+function srcSplit(a) { const m = String(a).match(/\n?[ \t]*\**Sources?:\**[ \t]*(.+)\s*$/i); return m ? [a.slice(0, m.index).trim(), m[1]] : [a, '']; }
 // "Continue this chat with Packy": the chat travels in the link itself (after the #, so it never reaches a server and is
 // not stored anywhere). packy.js reads #packy=..., restores the conversation and opens Packy. The oldest questions are
 // dropped if the link would be very long, so it works in every mail app.
@@ -121,12 +123,13 @@ export default async function handler(req, res) {
     '<div style="margin:0 0 18px;">' +
     '<p style="margin:0 0 6px;"><span style="display:inline-block;background:#00C9A7;color:#fff;border-radius:12px;padding:6px 12px;font-weight:bold;">' + esc(x.q) + '</span></p>' +
     '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td width="36" valign="top" style="padding:4px 8px 0 0;"><img src="cid:packy" width="28" height="28" alt="Packy" style="display:block;border-radius:8px;"></td><td valign="top">' +
-    '<div style="background:#ffffff;border:1px solid #e3e8ec;border-radius:12px;padding:10px 14px;color:#0f0f23;font-size:15px;line-height:1.55;">' + md(x.a, SITE) +
+    '<div style="background:#ffffff;border:1px solid #e3e8ec;border-radius:12px;padding:10px 14px;color:#0f0f23;font-size:15px;line-height:1.55;">' + md(srcSplit(x.a)[0], SITE) +
     // the same booking button and guide link Packy showed in the chat
+    (x.g ? '<p style="margin:10px 0 0;font-size:14px;border-top:1px dashed #D5DCE0;padding-top:8px;">&#128214; More in our <a href="' + SITE + esc(x.g.url) + '" style="color:#0a8f78;font-weight:bold;">' + esc(x.g.title) + '</a></p>' : '') +
     (x.o ? '<p style="margin:10px 0 4px;"><a href="' + esc(x.o.url.startsWith('/') ? SITE + x.o.url : x.o.url) + '"' + (x.o.partner ? ' rel="nofollow noopener sponsored"' : '') +
       ' style="display:block;background:#FFF1F4;border:1.5px solid #F7B9C6;border-radius:12px;padding:10px 12px;color:#0f0f23;text-decoration:none;font-weight:bold;">' +
       (x.o.partner ? '&#127903;&#65039; ' : '&#128073; ') + esc(x.o.label) + (x.o.partner ? ' <span style="font-weight:normal;font-size:12px;color:#8a5563;">(partner link)</span>' : '') + '</a></p>' : '') +
-    (x.g ? '<p style="margin:8px 0 0;font-size:13px;border-top:1px dashed #D5DCE0;padding-top:6px;">&#128214; More in our <a href="' + SITE + esc(x.g.url) + '" style="color:#0a8f78;font-weight:bold;">' + esc(x.g.title) + '</a></p>' : '') +
+    (srcSplit(x.a)[1] ? '<p style="margin:8px 0 0;font-size:11px;color:#8a93a6;">Source: ' + md(srcSplit(x.a)[1], SITE).replace(/^<p[^>]*>|<\/p>$/g, '').replace(/font-weight:bold;/g, '') + '</p>' : '') +
     '</div></td></tr></table></div>').join('');
   const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>' +
     '<body style="margin:0;padding:0;background:#f4faf8;font-family:Arial,Helvetica,sans-serif;"><div style="max-width:600px;margin:0 auto;padding:28px 16px;">' +

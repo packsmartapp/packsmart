@@ -77,7 +77,8 @@
     '.pk-fine{display:block;font-size:11px;color:#8a93a6;margin-top:6px}.pk-fine a{color:#8a93a6}' +
     '.pk-offer{display:flex;align-items:center;gap:8px;margin:10px 0 2px;padding:10px 12px;border-radius:14px;background:linear-gradient(135deg,#FFF1F4,#FFE4EA);border:1.5px solid #F7B9C6;color:#0f0f23!important;text-decoration:none;font-weight:700!important;transition:transform .15s}' +
     '.pk-offer:hover{transform:translateY(-1px);border-color:#E94560}.pk-offer b{flex:1;font-size:14.5px}.pk-offer small{font-size:11px;font-weight:600;color:#8a5563;white-space:nowrap}' +
-    '.pk-more{font-size:13px;border-top:1px dashed #D5DCE0;margin-top:8px!important;padding-top:6px}' +
+    '.pk-more{font-size:14px;border-top:1px dashed #D5DCE0;margin-top:10px!important;padding-top:8px}' +
+    '.pk-src{font-size:11.5px;color:#8a93a6;margin-top:8px!important;line-height:1.4}.pk-msg .pk-src a{color:#6b7a8f;font-weight:500}' +
     '.pk-err{background:#FFF1F4}' +
     '.pk-dots{display:inline-flex;gap:4px;padding:4px 2px}.pk-dots i{width:8px;height:8px;border-radius:50%;background:#00C9A7;animation:pkDot 1s infinite ease-in-out}.pk-dots i:nth-child(2){animation-delay:.15s;background:#7FE3D0}.pk-dots i:nth-child(3){animation-delay:.3s;background:#E94560}' +
     '.pk-chips{display:flex;flex-wrap:wrap;gap:6px;margin-left:36px}' +
@@ -154,7 +155,14 @@
     return '<a class="pk-offer" data-offer="' + esc(o.id || '') + '" href="' + esc(o.url) + '"' + (ext ? ' target="_blank" rel="nofollow noopener sponsored"' : '') + '>' +
       '<span aria-hidden="true">' + (o.partner ? '🎟️' : '👉') + '</span><b>' + esc(o.label) + '</b>' + (o.partner ? '<small>partner link</small>' : '') + '</a>';
   }
-  function answerHtml(a, guide, offer) { return fmt(a) + offerHtml(offer) + (guide ? '<p class="pk-more">📖 More in our <a href="' + esc(guide.url) + '">' + esc(guide.title) + '</a></p>' : ''); }
+  // order under an answer: our own guide first (keeps the reader on PackSmart), then the booking button, then the official
+  // sources, small and last (they open in a new tab)
+  function splitSrc(a) { var m = String(a || '').match(/\n?[ \t]*\**Sources?:\**[ \t]*(.+)\s*$/i); return m ? [a.slice(0, m.index).trim(), m[1]] : [a, '']; }
+  function answerHtml(a, guide, offer) {
+    var p = splitSrc(a);
+    return fmt(p[0]) + (guide ? '<p class="pk-more">📖 More in our <a href="' + esc(guide.url) + '">' + esc(guide.title) + '</a></p>' : '') + offerHtml(offer) +
+      (p[1] ? '<p class="pk-src">Source: ' + fmt(p[1]).replace(/^<p>|<\/p>$/g, '') + '</p>' : '');
+  }
   function chips(list, label) {
     var old = body.querySelector('.pk-chips'); if (old) old.remove();
     if (!list || !list.length) return;
