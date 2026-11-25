@@ -116,6 +116,13 @@ hours)
 - Terminal 2 (the map's floors are 1F, departures and arrivals with shops and
   restaurants, and 2F, arrivals): two ATMs, both on 1F: a Seven Bank ATM in the west part of the building and a
   Resona Bank ATM in the east part. None shown on 2F.
+- Terminal 1, 1F (international arrivals), money exchange (map filter "Currency Exchange", area 32): "Travelex
+  International Arrival Lobby South Shop" (in the south part of the hall), "Travelex International Arrival Lobby
+  Central Shop" (in the middle, on the kerb side by the bus stops) and "Kiyo Bank" (in the north part of the hall).
+- Terminal 1, 1F, SIM and Wi-Fi (map filter "Wi-Fi Rental", area 32): "GLOBAL WiFi North SIM card vending machine"
+  and "GLOBAL WiFi South SIM card vending machine" (one at each end of the arrivals hall); "WiFiBOX Unmanned delivery
+  machine near arrival gate"; "GLOBAL WiFi Router (portable WiFi hot spot) pickup lockers & SIM card vending machine"
+  and Telecom Square, both in the middle of the hall on the kerb side. No opening hours on the map.
 - Terminal 2, 1F, money exchange (map filter "Currency Exchange", area 33): "KIX CURRENCY EXCHANGE Automatic currency
   exchange machine Arrival area" (north-west, by the arrivals area); "KIX CURRENCY EXCHANGE Automatic currency exchange
   machine After Immigration" (departures side, after passport control); "KIX CURRENCY EXCHANGE Terminal 2 Building
