@@ -164,11 +164,6 @@ SEASONS = links("By season", "When you go changes what you pack and what you boo
 _ctys = re.findall(r'<button type="button" class="cty-btn" data-country="([a-z-]+)" data-reg="([A-Za-z ]+)">([^<]+)</button>', blog)
 if len(_ctys) < 10:
     die("country buttons not found on blog.html")
-SWITCH = ('<details class="jp-sw"><summary aria-label="Change destination"><span aria-hidden="true">🇯🇵</span> Japan <i aria-hidden="true">▾</i></summary>'
-          '<nav class="jp-sw-menu" aria-label="Other destinations"><p>Going somewhere else?</p><div>'
-          + "".join('<a href="/blog?region=%s&amp;country=%s">%s</a>' % (r.replace(" ", "%20"), c, n) for c, r, n in _ctys if c != "japan")
-          + "".join('<a href="/blog?region=%s">%s</a>' % (r.replace(" ", "%20"), r) for r in ("Americas", "Middle East", "Pacific"))
-          + '</div><a href="/blog" class="all">All destinations &rarr;</a></nav></details>')
 
 # ---- Packy, "Ask about Japan" (answers from /api/ask, which uses only official-source notes; see api/ask.js and w74)
 def packy_face():
@@ -285,17 +280,6 @@ body[data-season=winter] .jp-petal svg{transform:scale(.7)}
 .jp-hero h1{font-family:var(--font-display);font-size:3.6rem;line-height:1.02;margin:.6rem 0 .5rem;color:#0f0f23}
 .jp-hero h1 em{font-style:italic;color:#E94560}
 .jp-hero-lead{font-size:1.08rem;max-width:600px;color:#3f4a5c;margin:0 0 1rem}
-.jp-hero-row{position:relative;display:flex;flex-wrap:wrap;align-items:center;gap:8px}
-.jp-sw{position:static}
-.jp-sw summary{list-style:none;cursor:pointer;display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:800;background:#00C9A7;color:#fff;border-radius:999px;padding:5px 12px;min-height:30px;box-shadow:0 4px 12px rgba(0,168,140,.25)}
-.jp-sw summary::-webkit-details-marker{display:none}
-.jp-sw summary i{font-style:normal;font-size:.7rem;transition:transform .15s}.jp-sw[open] summary i{transform:rotate(180deg)}
-.jp-sw-menu{position:absolute;z-index:30;top:calc(100% + 8px);left:0;width:min(360px,100%);background:#fff;border:1px solid #BFEDE3;border-radius:16px;padding:12px;box-shadow:0 16px 40px rgba(15,15,35,.16)}
-.jp-sw-menu p{margin:0 0 8px;font-size:.78rem;font-weight:800;letter-spacing:.06em;text-transform:uppercase;color:#5a6378}
-.jp-sw-menu div{display:flex;flex-wrap:wrap;gap:6px}
-.jp-sw-menu a{display:inline-flex;align-items:center;min-height:36px;padding:6px 12px;border:1.5px solid #E3E8EC;border-radius:999px;color:#0f0f23;text-decoration:none;font-weight:600;font-size:.9rem}
-.jp-sw-menu a:hover{border-color:#00C9A7}
-.jp-sw-menu a.all{margin-top:10px;border:0;padding:0;color:#0a8f78;font-weight:800}
 .jp-hello{display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;color:#0f0f23;font:inherit;cursor:pointer;text-align:left;margin:0 0 1.1rem}
 .jp-hello .av{flex:none;width:48px;height:48px;background:#fff;border-radius:14px;padding:3px;box-shadow:0 6px 18px rgba(233,69,96,.2)}.jp-hello .av svg{width:100%;height:100%;display:block}
 .jp-hello .bub{background:#fff;color:#0f0f23;border-radius:16px 16px 16px 4px;padding:9px 14px;font-weight:600;font-size:.95rem;box-shadow:0 6px 18px rgba(233,69,96,.15)}
@@ -401,7 +385,7 @@ def hero_html():
     return ("""<section class="jp-hero" aria-labelledby="jpHeroT">
 <div class="jp-hero-in">
 <div class="jp-hero-top"><div class="jp-hero-text">
-<div class="jp-hero-row"><span class="jp-hero-kick">🇯🇵 ようこそ · Yōkoso</span>""" + SWITCH + """</div>
+<span class="jp-hero-kick">🇯🇵 ようこそ · Yōkoso</span>
 <h1 id="jpHeroT">Welcome to <em>Japan</em></h1>
 <p class="jp-hero-lead">Every PackSmart guide for Japan in one place, from the arrivals gate to the platform. Facts come from official sources, with the date we checked them.</p>
 <button type="button" class="jp-hello" id="jpHello"><span class="av" aria-hidden="true">""" + _face_av() + """</span><span class="bub"><b>Konnichiwa!</b> I'm Packy 👋 Where are you landing? Ask me anything.</span></button>
@@ -458,10 +442,6 @@ if(!still){var A='ABCDEFGHIJKLMNOPRSTUVWXYZ0123456789';[].forEach.call(document.
 // Fuji drifts as the page scrolls, like a far-away mountain (not with reduced motion)
 var fj=document.querySelector('.jp-scene .fuji');
 if(fj&&!still){var tk=false;window.addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){var y=Math.min(window.scrollY,700);fj.style.transform='translateY('+(y*0.22).toFixed(1)+'px) scale('+(1+y*0.00012).toFixed(4)+')';tk=false;});},{passive:true});}
-// the destination switcher closes on an outside tap or Escape
-var sw=document.querySelector('.jp-sw');
-if(sw){document.addEventListener('click',function(e){if(sw.open&&!sw.contains(e.target))sw.open=false;});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&sw.open){sw.open=false;sw.querySelector('summary').focus();}});
- sw.addEventListener('toggle',function(){if(sw.open)track('switch_open');});[].forEach.call(sw.querySelectorAll('a'),function(a){a.addEventListener('click',function(){track('switch_go',a.textContent);});});}
 // Packy: the hello bubble and "Ask Packy about ..." on each boarding pass
 function packy(q){if(window.Packy){if(q)window.Packy.ask(q);else window.Packy.open();}else{var a=document.getElementById('ask');if(a)a.scrollIntoView({behavior:'smooth'});}}
 document.getElementById('jpHello').addEventListener('click',function(){track('hero_packy');packy('');});
