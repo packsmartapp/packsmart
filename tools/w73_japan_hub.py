@@ -263,7 +263,7 @@ PASSES = [  # code, name, serves, line, pocket key, guide slug, Packy question
 ]
 
 HERO_CSS = """
-.jp-hero{position:sticky;top:72px;z-index:0;margin:0 0 1.8rem;padding-bottom:1rem;color:#0f0f23}
+.jp-hero{position:relative;margin:0 0 1.8rem;color:#0f0f23}
 .jp-hero-in{position:relative;padding:.4rem 0 0}
 .jp-hero-top{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:1rem;align-items:stretch}
 .jp-scene{position:relative;min-height:280px;pointer-events:none}
@@ -408,7 +408,12 @@ def hero_html():
 </div><div class="jp-scene" aria-hidden="true" data-season="%%SEASON%%">""" + FUJI_SVG + '<div class="sk">' + SAKURA_SVG + """</div></div></div>
 """ + ASK + """
 </div>
-</section>""").replace("%%SEASON%%", season_of(TODAY_M))
+</section>
+<div class="jp-mini" id="jpMini" aria-label="Ask Packy about Japan"><div class="jp-mini-in">
+<p class="jp-mini-t"><span lang="ja">ようこそ</span> Welcome to <em>Japan</em></p>
+<form class="jp-mini-f" id="jpMiniF" autocomplete="off"><span class="av" aria-hidden="true">""" + _face_av() + """</span><label class="jp-sr" for="jpMiniQ">Ask Packy about Japan</label><input id="jpMiniQ" type="text" maxlength="300" placeholder="Ask Packy about Japan…"><button type="submit">Ask &#10148;</button></form>
+<div class="jp-scene jp-mini-scene" aria-hidden="true" data-season="%%SEASON%%">""" + FUJI_SVG + """</div>
+</div></div>""").replace("%%SEASON%%", season_of(TODAY_M))
 
 def passes_html():
     cards = "".join(
@@ -436,7 +441,7 @@ var m=+new Date().toLocaleString('en-US',{timeZone:'Asia/Tokyo',month:'numeric'}
 // the drawn scene follows the season too (?season=spring|summer|autumn|winter previews one)
 var q=(location.search.match(/[?&]season=(spring|summer|autumn|winter)/)||[])[1];
 var sn=q||(m>=3&&m<=5?'spring':m>=6&&m<=8?'summer':m>=9&&m<=11?'autumn':'winter');
-var sc=document.querySelector('.jp-scene');if(sc)sc.setAttribute('data-season',sn);document.body.setAttribute('data-season',sn);
+[].forEach.call(document.querySelectorAll('.jp-scene'),function(sc){sc.setAttribute('data-season',sn);});document.body.setAttribute('data-season',sn);
 // weather in Tokyo and Sapporo (/api/weather), kept for 30 minutes in this visit
 var wx=document.getElementById('jpWx');
 function showWx(d){if(d&&d.t!=null&&d.s!=null){wx.textContent='🌡️ Tokyo '+d.t+'° · Sapporo '+d.s+'°';wx.hidden=false;}}
@@ -471,12 +476,13 @@ function sayHello(){try{if(!('speechSynthesis' in window))return;var now=Date.no
   catU.rate=1.05;catU.pitch=1.8;catU.volume=1;catAt=now;speechSynthesis.speak(catU);track('cat_voice');}catch(e){}}
 if(cat){var ct;cat.addEventListener('click',function(){cat.classList.add('on');track('cat_hello');sayHello();clearTimeout(ct);ct=setTimeout(function(){cat.classList.remove('on');},2500);});
  cat.addEventListener('mouseenter',function(){track('cat_hello');});}
-// the hero stays as a backdrop and the rest of the page slides up over it (owner's choice, 25 Nov). A tall hero first
-// scrolls until its bottom (the Ask box) is on screen, then holds: its sticky top is the smaller of the menu height
-// and (screen height - hero height)
-var hero=document.querySelector('.jp-hero');
-function holdHero(){if(!hero)return;var nav=72,t=Math.min(nav,window.innerHeight-hero.offsetHeight-16);hero.style.top=t+'px';}
-holdHero();window.addEventListener('resize',holdHero);window.addEventListener('load',holdHero);
+// the compact welcome band: slides in under the menu once the hero's Ask box has scrolled away, and the page scrolls
+// underneath it (the full hero is taller than most screens, so it cannot stay at full size)
+var mini=document.getElementById('jpMini'),askBox=document.getElementById('ask');
+if(mini&&askBox){var mt=false;function syncMini(){mt=false;var on=askBox.getBoundingClientRect().bottom<80;if(on!==mini.classList.contains('on')){mini.classList.toggle('on',on);mini.setAttribute('aria-hidden',on?'false':'true');}}
+ syncMini();window.addEventListener('scroll',function(){if(!mt){mt=true;requestAnimationFrame(syncMini);}},{passive:true});window.addEventListener('resize',syncMini);}
+var mf=document.getElementById('jpMiniF');
+if(mf)mf.addEventListener('submit',function(e){e.preventDefault();var i=document.getElementById('jpMiniQ'),t=(i.value||'').trim();if(t.length<5){i.focus();return;}track('mini_ask',t.slice(0,60));if(window.Packy){window.Packy.ask(t);i.value='';}});
 // Packy: the hello bubble and "Ask Packy about ..." on each boarding pass
 function packy(q){if(window.Packy){if(q)window.Packy.ask(q);else window.Packy.open();}else{var a=document.getElementById('ask');if(a)a.scrollIntoView({behavior:'smooth'});}}
 var hl=document.getElementById('jpHello');if(hl)hl.addEventListener('click',function(){track('hero_packy');var i=document.getElementById('askQ');if(i){i.scrollIntoView({behavior:still?'auto':'smooth',block:'center'});i.focus({preventScroll:true});}else packy('');});
@@ -639,14 +645,24 @@ LOWER_CSS += """
 """
 HERO_CSS += LOWER_CSS
 
-# the "curtain": everything after the hero, on the page's own pink and wave print, slides up over the hero
-HERO_CSS += (".jp-after{position:relative;z-index:2;padding-top:2.2rem}"
- ".jp-after:before{content:'';position:absolute;z-index:-1;top:0;bottom:-4rem;left:-28px;right:-28px;border-radius:30px 30px 0 0;"
- "background:#FDF0F2 " + SEIGAIHA + " fixed;box-shadow:0 -14px 34px rgba(15,15,35,.10)}"
- "@media (max-width:600px){.jp-after:before{left:-16px;right:-16px;border-radius:24px 24px 0 0}}")
+HERO_CSS += (".jp-mini{position:fixed;left:0;right:0;top:72px;z-index:90;background:#FDF0F2 " + SEIGAIHA + ";border-bottom:1px solid #F3D3DA;"
+ "box-shadow:0 10px 26px rgba(15,15,35,.10);transform:translateY(-130%);visibility:hidden;transition:transform .28s ease,visibility .28s}"
+ ".jp-mini.on{transform:none;visibility:visible}"
+ ".jp-mini-in{max-width:1320px;margin:0 auto;padding:8px 24px;display:grid;grid-template-columns:auto minmax(0,1fr) 150px;gap:18px;align-items:center}"
+ ".jp-mini-t{margin:0;font-family:var(--font-display);font-size:1.7rem;line-height:1;color:#0f0f23;white-space:nowrap}"
+ ".jp-mini-t span{font-family:'DM Sans',sans-serif;font-size:.78rem;font-weight:800;letter-spacing:.12em;color:#0a8f78;display:block;margin-bottom:4px}"
+ ".jp-mini-t em{font-style:italic;color:#E94560}"
+ ".jp-mini-f{display:flex;align-items:center;gap:8px;background:#fff;border:1.5px solid #BFEDE3;border-radius:999px;padding:4px 4px 4px 6px;box-shadow:0 4px 14px rgba(0,168,140,.08)}"
+ ".jp-mini-f .av{flex:none;width:34px;height:34px;border-radius:50%;background:#E6FAF5;padding:3px}.jp-mini-f .av svg{width:100%;height:100%;display:block}"
+ ".jp-mini-f input{flex:1;min-width:0;border:0;outline:0;font:inherit;font-size:16px;background:transparent;padding:8px 4px;color:#0f0f23}"
+ ".jp-mini-f button{flex:none;font:inherit;font-weight:800;font-size:.92rem;border:0;border-radius:999px;padding:9px 16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;cursor:pointer}"
+ ".jp-mini-scene{position:relative;min-height:0;height:74px}"
+ "@media (max-width:760px){.jp-mini-in{grid-template-columns:minmax(0,1fr) 96px;gap:4px 10px;padding:6px 14px 8px}"
+ ".jp-mini-t{font-size:1.25rem}.jp-mini-t span{font-size:.66rem;margin-bottom:2px}.jp-mini-f{grid-column:1/-1;grid-row:2}.jp-mini-scene{height:52px;grid-row:1;grid-column:2}}"
+ "@media (prefers-reduced-motion:reduce){.jp-mini{transition:none}}"
+ "#plan,#arriving,#stations,#pocket-hub{scroll-margin-top:200px}")
 body = """<div class="page-wrapper">
     """ + hero_html() + """
-<div class="jp-after">
     """ + HERO_JS + """
     """ + plan_html() + """
     """ + passes_html() + """
@@ -657,7 +673,6 @@ body = """<div class="page-wrapper">
         """ + SEASONS + """
     </div>
     <p class="te-back">Visa rules depend on your passport: many nationalities can visit for up to 90 days without a visa, but check <a href="https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html" target="_blank" rel="noopener">Japan's official visa-exemption list</a> before you book. We also have guides for travellers from particular countries, such as <a href="/blog/japan-travel-packing-guide-from-india">India</a>. Need help that is not about Japan? See <a href="/travel-essentials">Travel Essentials</a>.</p>
-</div>
 </div>
 
 """
