@@ -212,12 +212,18 @@ CSS_RAW = """<style id="jp-guide-css">
  div:has(>div>.safetywing-price-widget)>div:has(>.safetywing-price-widget){grid-column:2;grid-row:1/6;margin-top:0!important}
  div:has(>div>.safetywing-price-widget)>[data-ps-placement="safetywing-complete"]{grid-row:5;margin:20px 0 0!important;max-width:none!important}}
 /* the transfer box without its own heading (the three general Japan articles): everything moves up a row, the fares line
-   and, on 1500px+, the partner's form (its loader script is replaced by a div#powered_by_<promo>_<n>) join the right column as on the guides;
+   on 1500px+ the partner's form (its loader script is replaced by a div#powered_by_<promo>_<n>) joins the right column as
+   on the guides and the fares line runs full width under the photo and form (owner preferred the guides' look);
    the slack goes under them (the form had jumped to the top) */
 @media (min-width:1200px) and (max-width:1499px){.ps-pickups:not(:has(>h3))>picture{grid-row:1/3}.ps-pickups:not(:has(>h3))>picture+strong{grid-row:1}.ps-pickups:not(:has(>h3))>picture+strong+div{grid-row:2}}
-@media (min-width:1500px){.ps-pickups:not(:has(>h3)){grid-template-rows:auto auto auto auto 1fr}
- .ps-pickups:not(:has(>h3))>picture{grid-row:1/6}.ps-pickups:not(:has(>h3))>picture+strong{grid-row:1}.ps-pickups:not(:has(>h3))>picture+strong+div{grid-row:2}.ps-pickups:not(:has(>h3))>picture+strong+div+*{grid-row:3;margin-top:4px!important}
- .ps-pickups:not(:has(>h3))>[id^="powered_by_"]{grid-column:2;grid-row:4}}
+@media (min-width:1500px){.ps-pickups:not(:has(>h3)){grid-template-rows:auto auto auto 1fr}
+ .ps-pickups:not(:has(>h3))>picture{grid-row:1/5}.ps-pickups:not(:has(>h3))>picture+strong{grid-row:1}.ps-pickups:not(:has(>h3))>picture+strong+div{grid-row:2}
+ .ps-pickups:not(:has(>h3))>[id^="powered_by_"]{grid-column:2;grid-row:3}
+ .ps-pickups:not(:has(>h3))>picture+strong+div+p{grid-column:1/-1;grid-row:5;margin:14px auto 0!important}.ps-pickups:not(:has(>h3))>p:last-of-type{grid-row:6}}
+/* the partner's Continue button: its own pale mint read as disabled; the site's red call-to-action instead (owner, 25 Nov) */
+.ps-pickups [id^="powered_by_"] button[type="submit"]{background:#E94560!important;color:#fff!important;font-weight:700!important;border-radius:10px!important;border:0!important;box-shadow:0 4px 14px rgba(233,69,96,.28)}
+.ps-pickups [id^="powered_by_"] button[type="submit"] *{color:#fff!important}
+.ps-pickups [id^="powered_by_"] button[type="submit"]:hover,.ps-pickups [id^="powered_by_"] button[type="submit"]:focus-visible{background:#d23552!important}
 /* wide screens: the "No eSIM?" travel SIM and pocket Wi-Fi box spreads to the panel, and each card puts its picture beside
    its text on 1500px+, so the wider box does not get taller (owner, 25 Nov; at 1280px the cards were too narrow) */
 @media (min-width:1200px){div:has(>div>.ps-sk-tile){max-width:none!important}}
