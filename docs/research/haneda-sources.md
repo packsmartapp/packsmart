@@ -1,7 +1,9 @@
 # Haneda Airport: sources and facts (research for Packy, B54)
 
-Started 25 Nov 2026. Each fact names its source. The airport's site blocks the cloud sandbox, so these come from the
-owner's screenshots of the official English pages (25 Nov 2026).
+Started 25 Nov 2026. Each fact names its source. The first sections come from the owner's screenshots of the official
+English pages; the rest were read from the official pages themselves on 25 Nov 2026 (the airport site, Keikyu's Haneda
+guide and Tokyo Monorail are reachable from the cloud session since that day). The airport's interactive map
+(platinumaps.jp) refuses automated visitors, so nothing here comes from it.
 
 ## Train & Monorail (owner's screenshots, 25 Nov 2026)
 Source: Haneda Airport official site, Access > Train & Monorail, https://tokyo-haneda.com/en/access/train/index.html
@@ -72,7 +74,9 @@ transportation facility")
   Stop for Charters", "To 3F Parking" and "To Haneda Airport Garden".
 
 ## From Haneda to Narita (owner's screenshot, 25 Nov 2026)
-Source: Haneda Airport official site, Access > From Haneda to Narita (https://tokyo-haneda.com/en/, exact page link to add)
+Source: Haneda Airport official site, Access > From Haneda to Narita, https://tokyo-haneda.com/en/access/narita/index.html
+(the page adds: "There are cases when the posted times/fares may change. Please confirm details with each respective
+transportation authority.")
 - "Convenient ways to get to Narita Airport are by train (shared services for the Keikyu Line, Toei Line and Keisei
   Line) and by airport shuttle."
 - Train (Keikyu, Toei and Keisei through-services): 90 to 115 minutes; fare 1,760 to 3,080 yen (IC card 1,746 to
@@ -80,28 +84,56 @@ Source: Haneda Airport official site, Access > From Haneda to Narita (https://to
 - Airport Shuttle (Airport Transport Service, from the Haneda Airport International Terminal): 65 to 85 minutes;
   fare 3,600 yen.
 
-## Keikyu Haneda Airport Access Guide (owner's screenshot, 25 Nov 2026)
-Source: Keikyu's Haneda Airport Access Guide, https://www.haneda-tokyo-access.com/en/ (exact page link to add)
-- Fares from Haneda Airport on the Keikyu Line (adult, one way, IC card), with journey times; the table shows two
-  time columns, a few minutes apart (Terminal 3 and Terminal 1·2):
-  Shinagawa 327 yen, 11 to 14 minutes · Yokohama 363 yen, 23 to 28 minutes · Shimbashi 505 yen, 21 to 24 minutes ·
-  Tokyo Station 505 yen, 20 to 23 minutes · Shibuya 535 yen, 23 to 26 minutes · Higashi-ginza 547 yen, 23 to 26
-  minutes · Asakusa 599 yen, 32 to 35 minutes · Oshiage (Skytree) 599 yen, 35 to 38 minutes.
-- Keikyu ticket machines have a language selection button and take notes, coins and credit cards.
-- The guide has a "Tap to Ride" section: the gates have a reader for contactless card payment ("タッチ決済 Tap to ride").
-- Station numbers on the Keikyu line map: Tenkubashi KK15, Haneda Airport Terminal 3 KK16, Haneda Airport Terminal
-  1·2 KK17, Keikyu Kamata KK11, Keikyu Kawasaki KK20.
+## Keikyu Line from Haneda (Keikyu's Haneda Airport Access Guide, read 25 Nov 2026)
+Source: https://www.haneda-tokyo-access.com/en/ride/fares.html ("Fare and Time Search")
+- "Keikyu Line operates through to the Toei Asakusa Line. To travel to the Tokyo area, press the ticketing machine's
+  '都営線 (Toei Line)' or 'JR線品川乗換 (Transfer to JR Lines)' button and buy your ticket."
+- IC cards: fares are charged in 1-yen units when one IC card is used to enter and exit.
+- Estimated travel time, from Haneda Airport Terminal 3 / from Terminal 1·2:
+  Shinagawa 11 / 14 min · Tokyo Station 20 / 23 · Shimbashi 21 / 24 · Higashi-ginza 23 / 26 · Shibuya 23 / 26 ·
+  Yokohama 23 / 28 · Shinjuku 30 / 33 · Asakusa 34 / 37 · Oshiage (Skytree, Toei Asakusa Line) 38 / 41 ·
+  Ikebukuro 38 / 41 · Narita Airport (Narita Sky Access Line) 92 / 95.
+  (These are Keikyu's own estimates and can differ from the airport page's rounder "time required" list.)
+- Station numbers on the Keikyu line map: Keikyu Kamata KK11, Tenkubashi KK15, Haneda Airport Terminal 3 KK16,
+  Haneda Airport Terminal 1·2 KK17, Keikyu Kawasaki KK20. Ticket machines have a language selection button and take
+  notes, coins and credit cards (diagram on the guide's "Buying a ticket" card).
 
-## Banks and ATMs (owner's screenshots, 25 Nov 2026)
-Source: Haneda Airport official site, Service Guide > List of Services > Bank / ATM, tabs T1, T2, T3
-(https://tokyo-haneda.com/en/, exact page link to add). Hours as the page gives them; holidays follow the same rules
-where the page says so. The T1 and T2 lists continued below the screenshots; the T3 list is complete.
-Which ATMs take foreign cards: JNTO lists Seven Bank and Japan Post Bank ATMs as taking overseas cards (see the
-Japan basics notes); for the other banks, check the bank's own page.
+**Tap to Ride (contactless card payment)**, https://www.haneda-tokyo-access.com/en/ride/taptoride.html
+- Tap a card that supports tap payment (credit, debit or prepaid), or a phone set up with it, on the reader at the
+  ticket gate. Offered by 11 Kanto railway operators: Odakyu, Odakyu Hakone, Keio, Keikyu, Sagami Railway, Seibu,
+  Tokyu, Tokyo Metro, Toei (Bureau of Transportation, Tokyo Metropolitan Government), Tobu, Yokohama Minatomirai.
+- Card brands accepted: Visa, Mastercard, JCB, American Express, Diners Club, Discover, UnionPay. "Some credit, debit or
+  prepaid cards may not be supported."
+- Not available at the transfer gates at Shinagawa, Tenkubashi, Hatcho-nawate and Yokohama stations (and two other
+  exits named on the page). No child fares (children 6-11 pay adult fares), no transfer discount to the Toei Line,
+  only the cardholder may use the card, and the same card or device must be used to enter and exit.
 
-**Terminal 3 (international), complete list**
+**KEIKYU Hanetoku Ticket & Tokyo Subway Ticket**, https://www.haneda-tokyo-access.com/en/ticket/discount/hanetoku.html
+- For people using Haneda Airport: Keikyu between Haneda Airport Terminal 1·2 and Sengakuji, plus a Tokyo Subway
+  Ticket for all Tokyo Metro and Toei Subway lines. Bought online before the trip (through ANA "Airport Access",
+  "JAL MaaS" in Japanese only, or the Tokyo Skytree "Skytree Enjoy Pack"); "Can not be purchased at Haneda Airport";
+  the ticket is exchanged at the airport.
+- Prices: with a 24-hour subway ticket 1,600 yen adults / 700 yen children; 48-hour 2,100 / 950 yen; 72-hour
+  2,600 / 1,200 yen.
+- The Keikyu part is valid 9 days from exchange, for the outbound and return trips; the subway ticket runs 24, 48 or
+  72 hours from first use, within 6 months of exchange. If exchanged at Terminal 3 station on the way out, you cannot
+  get off at Terminal 1·2 on the way back; no stopovers.
+
+## Tokyo Monorail (read 25 Nov 2026)
+Source: https://www.tokyo-monorail.co.jp/english/haneda-tokyo-access/index.html
+- "The monorail runs on an average of every five minutes from Haneda Airport to Hamamatsucho Station."
+- Haneda Airport Terminal 3 station: "Transfers in as little as one minute" from the arrival lobby (the page's words).
+
+## Banks and ATMs (read 25 Nov 2026)
+Source: https://tokyo-haneda.com/en/service/facilities/bank.html
+- The page: "Other credit cards can also be used with these cash dispensers. Withdrawals from ATMs in the Airside
+  Area are limited to 30,000 yen per withdrawal (in units of 1,000 yen). Opening hours are subject to change without
+  prior notice, so please check the banks' websites for details."
+- Which ATMs take overseas cards: JNTO names Seven Bank and Japan Post Bank ATMs (see the Japan basics notes).
+
+**Terminal 3 (international)**
 - 2F Arrival Lobby: Japan Post Bank ATM, 24 hours (not available 0:00-7:00 on the 3rd Monday of the month);
-  Seven Bank ATM, 5:00-24:00. (These are the two in the arrivals hall.)
+  Seven Bank ATM, 5:00-24:00. These are the two ATMs in the arrivals hall.
 - 3F Departure Lobby: Mizuho Bank ATM (Monday 7:00-24:00, Tuesday-Friday 24 hours, Saturday 0:00-22:00, Sunday
   8:00-21:00; not available 3:00-5:00 on the 1st and 4th Saturdays); MUFG Bank ATM, 24 hours (not available
   21:00-7:00 on the 2nd Saturday); SMBC Bank ATM, 24 hours (closed from 21:00 Sunday to 7:00 Monday); Risona Bank
@@ -112,38 +144,126 @@ Japan basics notes); for the other banks, check the bank's own page.
 - 1F Arrival Lobby: Mizuho Bank branch (counter 9:00-11:00 and 12:00-15:00, closed weekends and holidays; its ATM
   Monday-Friday 7:00-24:00, weekends and holidays 8:00-21:00; phone 03-5757-9591).
 - 1F Arrival Lobby (North): MUFG Bank ATM, 6:00-24:00 (not available 21:00-7:00 on the 2nd Saturday); Seven Bank
-  ATM, 5:00-24:00.
+  ATM, 5:00-24:00; Bank of Yokohama ATM, 5:00-24:00; Risona Bank ATM, 5:00-24:00 (not available 23:00-8:00 on the
+  2nd Saturday); Aeon Bank ATM, 5:00-24:00.
 - 1F Market Place: Japan Post Bank ATM, weekdays 7:00-22:00, Saturdays 8:00-21:00, Sundays and holidays 9:00-20:00.
-- 2F Departure Lobby (North): Mizuho Bank ATM, 8:00-21:00.
+- B1F Marketplace: SMBC Bank ATM, weekdays and Saturdays 7:00-24:00, Sundays 7:00-21:00; Seven Bank ATMs at
+  B1F Marketplace (South) and (North), 5:00-24:00.
+- 2F Departure Lobby (North): Mizuho Bank ATM, 8:00-21:00. 2F Departure Lobby (South): Seven Bank ATM, 5:00-24:00.
 - 2F Departure Lobby, close to the Gate 10 departure lounge: Mizuho Bank ATM, Monday 7:00-23:00, Tuesday-Friday
   6:00-23:00, Saturday 6:00-22:00, Sunday 8:00-21:00.
-- B1F Marketplace: SMBC Bank ATM, weekdays and Saturdays 7:00-24:00, Sundays 7:00-21:00.
-- B1F Marketplace (South) and B1F Marketplace (North): Seven Bank ATMs, 5:00-24:00.
+- 3F Terrace Restaurant (South): Seven Bank ATM, 7:00-21:00.
 
-**Terminal 2 (domestic)**
+**Terminal 2**
 - 1F Terminal Lobby (South): MUFG Bank ATM, 6:00-24:00 (not available 21:00-7:00 on the 2nd Saturday); Kiraboshi
   Bank ATM, weekdays 7:00-23:00, Saturdays, Sundays and holidays 7:00-21:00; Japan Post Bank ATM, 5:00-23:55
   (3rd Monday 7:00-23:55).
 - B1F Terminal Lobby (South): Mizuho Bank ATM (weekdays 6:00-23:00, Saturdays 6:00-22:00, Sundays and holidays
   8:00-21:00; not available 6:00-7:00 on Mondays); SMBC Bank ATM, weekdays and Saturdays 7:00-24:00, Sundays
-  7:00-21:00.
-- B1F Terminal Lobby (North): Seven Bank ATM, 5:00-24:00.
+  7:00-21:00. B1F Terminal Lobby (North): Seven Bank ATM, 5:00-24:00.
 - 2F Terminal Lobby (North): Mizuho Bank ATM, same hours as the B1F one; Seven Bank ATM, 5:00-24:00.
-- 2F Terminal Lobby (South): Seven Bank ATM, 5:00-24:00.
+  2F Terminal Lobby (South): Seven Bank ATM, 5:00-24:00.
+- 2F International Arrival Lobby: Seven Bank ATM, 6:00-23:00.
 - 2F Domestic Departure Gate Lounge (South), close to Gate 63: Mizuho Bank ATM, Monday 7:00-21:30, Tuesday-Saturday
   6:00-21:30, Sunday 8:00-21:00.
 
-**What the Service Guide lists** (List of Services page): Information Counter, Police, Meeting Places, Bank / ATM,
-Travel Insurance, Baggage Cart, Toilets / Multipurpose Toilets, Credit Card Lounges, Airline Lounges, Rent-A-Car,
-Clinic, Drugstore, Device Charging, Observation Deck, Pet Care. Currency exchange, SIM and Wi-Fi rental and luggage
-storage are not on this list.
+## Money exchange (read 25 Nov 2026)
+Source: https://tokyo-haneda.com/en/service/facilities/exchange.html
+- "Money exchange facilities are available in various places throughout the Haneda Airport Passenger Terminal. Please
+  note that even 24-hour money exchange facilities will be closed during the middle of the night for maintenance
+  purposes." Currencies "such as the Japanese yen, US dollar, euro, and Chinese yuan, etc." There is also Pocket
+  Change, a machine that turns leftover foreign coins into points.
+- Terminal 3: 2F Arrival Lobby, Japan Airport Terminal Foreign Currency Exchange, 24 hours (03-6428-0850), and a
+  Pocket Change machine, 24 hours. 3F Departure Lobby, Japan Airport Terminal Foreign Currency Exchange, 24 hours.
+  After the 3F security check: Shinhan Bank Japan, 24 hours (03-5756-6446); Travelex, 5:30-25:30 (03-5708-3180).
+- Terminal 2: 1F Domestic Arrival Lobby, Shinhan Bank Japan, 9:00-18:00 (03-5756-6125), and a Pocket Change
+  machine, 24 hours. 3F International Departure Lobby, Japan Airport Terminal Foreign Currency Exchange, 6:30-22:00.
+  After departure: Shinhan Bank Japan, 2F International Gate Area, 7:00-15:30; Travelex after the 3F security check,
+  7:00-23:00.
+- Terminal 1: 1F Arrival Lobby, Travelex, 9:00-19:00 (03-5756-0705), and a Pocket Change machine, 5:00-24:00.
+
+## Baggage storage and delivery (read 25 Nov 2026)
+Sources: https://tokyo-haneda.com/en/service/facilities/baggage_checkroom.html and
+https://tokyo-haneda.com/en/service/facilities/delivery.html
+- Temporary Baggage Storage: up to 2 weeks; up to 300 cm (length + width + height) and 30 kg a piece. Fees per piece
+  (tax included): S (under 120 cm) 800 yen, M (120-199 cm) 1,000 yen, L (200-300 cm) 2,000 yen, per day (per 24 hours
+  at Terminal 3). Skis and surfboards accepted; "some items may not be accepted".
+- Terminal 3: Temporary Baggage Storage, 2F Arrival Lobby, 24 hours (03-6428-0659), and 3F Departure Lobby, 24 hours
+  (03-6428-0671). Bonded Baggage Custody (goods awaiting customs procedures), 2F Arrival Lobby, 24 hours.
+- Terminal 1: Temporary Baggage Storage, B1F Terminal Lobby (South), 8:00-19:30 (03-5757-8341).
+  Terminal 2: B1F Terminal Lobby (North), 8:00-19:30 (03-6428-8341).
+- Sending bags to a hotel or home: at Terminal 3, delivery counters in the 2F Arrival Lobby (JAL ABC 4:00-25:00;
+  Yamato Transport 5:00-23:00), and receiving counters (JAL ABC 3F Departure Lobby, 24 hours; Yamato Transport 2F
+  Arrival Lobby, 6:00-23:00). Terminal 1 and 2 have Sagawa (7:00-20:00) and Yamato (7:00-21:00) counters on 1F.
+  Terminal 1's JAL Baggage Service Counter (1F Arrival Lobby, 7:30-20:00) delivers bags received by 13:00 the same day
+  to hotels in the Urayasu, Odaiba and Maihama area only, 1,500 yen per item (up to 15 kg).
+
+## Phones, pocket Wi-Fi and SIM cards (read 25 Nov 2026)
+Source: https://tokyo-haneda.com/en/service/facilities/cellular_phone_rental.html
+- Terminal 3, 2F Arrival Lobby: Mobile Center (Telecom Square), 6:30-23:00, with "a 24-hour unmanned Wi-Fi rental
+  service" in front of the store; AnyFone JAPAN counter, 6:00-23:00 (rental and prepaid SIM 6:00-23:00, prepaid
+  smartphones 10:00-20:00). 3F Departure Lobby: Mobile Center, 6:30-23:00; XCom Global, 6:30-22:30.
+- Terminal 1: prepaid SIM vending machine (AnyFone JAPAN), B1F Marketplace (North), 5:00-24:00; WiFiBOX, 2F Departure
+  Lobby (North). Terminal 2: AnyFone JAPAN vending machine, B1F Terminal Lobby (North); J WiFi & Mobile / Global WiFi,
+  2F International Arrival Lobby, 5:45-23:00; Mobile Center, 3F Departure Lobby (International), 7:00-22:00.
+
+## Information counters (read 25 Nov 2026)
+Source: https://tokyo-haneda.com/en/service/facilities/info_center.html
+- Information Center by phone: 03-5757-8111, 5:00-24:00 (domestic), 24 hours (international); calls with a hidden
+  caller ID are not answered.
+- Terminal 3: 2F Arrival Lobby 5:00-24:00; 1F Entrance Plaza 5:00-23:00; 3F Departure Lobby 5:00-23:00; 3F Airside
+  Central 7:00-24:00 and North 7:00-23:00. When no one is at the counter, use the counter's phone.
+- Terminal 1: B1F Marketplace (centre) 6:00-20:00; 1F Terminal Lobby (South) 8:00-20:00; 2F Departure Lobby South and
+  North 6:00-18:00. Terminal 2: B1F (centre) 6:00-20:00; 1F (centre) 8:00-20:00; 3F International Departure Lobby
+  6:00-23:00.
+- Counters lend wheelchairs and strollers and have communication boards for customers with speech or hearing needs.
+
+## Travel between terminals (read 25 Nov 2026)
+Source: https://tokyo-haneda.com/en/access/travel_between_terminals/index.html
+- Free Shuttle Bus (timetable in force from 18 August 2026 "for the time being"): every 4 minutes 5:00-20:00 and every
+  8 minutes 20:00-24:00. First and last departures: from T1 to T2 4:55 and 1:23; T1 to T3 5:04 and 1:32; from T2
+  (to T1 and T3) 5:00 and 1:28; from T3 (to T1 and T2) 4:47 and 1:15. Stops: T1 1F Arrival Lobby, bus stop 8;
+  T2 1F Arrival Lobby, bus stop 9; T3 1F, bus stop 0. Crew help wheelchair users; no booking needed. "Buses may be
+  delayed slightly due to road congestion."
+- Free train tickets between terminals: passengers changing between domestic and international flights, or between
+  two international flights, get free Transit Boarding Tickets for Keikyu or the Tokyo Monorail between T1 and T3 or
+  T2 and T3 at the Information Counters (T1 B1F, T2 B1F, T3 2F); passport and boarding pass are checked.
+- The underground passageway between T1 and T2 (a moving walkway about 400 m long) is out of service for construction;
+  moving between T1 and T2 is still possible.
+
+## Taxis (read 25 Nov 2026)
+Source: https://tokyo-haneda.com/en/access/taxi/index.html
+- Terminal 3: follow the taxi signs from the 2F or 3F access hall down to 1F (2nd lane), stop 21. The Terminal 3 stand
+  has "Excellent Service Taxi" for foreign travellers.
+- Terminal 1 (1F Arrival Lobby): stops 1 and 17 for Kawasaki, Yokohama, Yokosuka and Miura; stops 2 and 18 for other
+  areas; stops 0 and 19 for reserved taxis. Terminal 2 (1F): stops 2 and 20 for Kawasaki, Yokohama, Yokosuka and
+  Miura; stops 3 and 19 for other areas; stop 1 for private taxis.
+- App-hailing and reserved taxis: T1 2F near Exit 7, T2 2F near Exit 2 (since 22 October 2025), T3 at P5 Parking 8F.
+- Haneda Flat Rate Taxi: fixed fares between Haneda and most of Tokyo and Kanagawa, approved by the transport ministry;
+  toll-road fees are added; some areas use the meter. Fares from the Tokyo Hire-Taxi Association and Kanagawa Taxi
+  Association.
+
+## Airport buses (read 25 Nov 2026)
+Source: https://tokyo-haneda.com/en/access/bus/index.html
+- Buy the ticket before boarding: machines at T1 and T2; machines or bus ticket counters at T3. Keep power banks with
+  you, not in the luggage hold.
+- Bus stops are on 1F of each terminal; at T3 follow the bus signs from the 2F access hall down to 1F (lane 3).
+- Main routes, approximate time, stop numbers T1 / T2 / T3: Tokyo Station about 35 min (3 / 4 / 1); Shinjuku Station
+  West Exit about 35 min, also Busta Shinjuku and Shinjuku hotels (4 / 5 / 3); Shibuya Station (Mark City) about
+  40 min (9 / 10 / 4); Ikebukuro Station West Exit about 55 min (7 / 8 / 2); T-CAT about 30-40 min (6 / 7 / 2);
+  Odaiba and Tokyo Big Sight about 20-40 min (6 / 7 / 2); Asakusa about 1 hr 5 min (5 / 6 / 5); Tokyo Disney Resort
+  about 30 min to Disneyland, 40 min to DisneySea (5 / 6 / 5); Yokohama Station (YCAT) about 30 min (10 / 11 / 7);
+  Shin-Yokohama about 40-60 min (11 / 12 / 8); Narita Airport about 1 hr 15 min (6 / 7 / 5); Kawaguchiko and Mt. Fuji
+  Station about 2 hr 20 min (13 / 14 / 7); Hakone Togendai via Gotemba about 3 hr (13 / 14 / 7).
+- Shown as suspended on 25 Nov 2026: Akasaka & Roppongi; Hibiya, Shiodome & Ginza; Akihabara, Kudan, Korakuen &
+  Mejiro; Shinagawa, Ebisu & Shiba; Toranomon; Otemachi & Marunouchi.
+- Late-night buses: to Shinjuku and Ikebukuro from T1 at 0:10 (stop 4), T2 at 0:05 (stop 5), T3 at 0:20, 1:00, 1:40
+  and 2:20 (stop 3); to Yokohama Station (YCAT) and Sakuragicho from T3 at 1:20 (stop 7). "May change depending on
+  factors like flight schedule."
 
 ## Gaps (still to fetch or confirm; not used by Packy)
-- Bank / ATM: the page link, and the rest of the T1 and T2 lists (cut off in the screenshots).
-- Currency exchange, SIM and Wi-Fi rental, luggage storage and delivery: not in the Service Guide; probably under
-  Restaurants & Shops or the site search.
-- Exact links for the "From Haneda to Narita" page and the Keikyu fare table; which time column is which terminal
-  (the screenshot was a small preview; the notes above give both times as a range).
-- Keikyu "Tap to Ride": which cards are accepted, and whether it covers through-trains onto the subway.
-- Access > Travel Between Terminals (free shuttle bus), Express Bus & Route Bus, Taxi (fixed fares).
-- First and last trains: on the Keikyu and Tokyo Monorail sites (the airport page sends readers there).
+- Last trains from the airport: Keikyu's timetable sits behind its route search, and Tokyo Monorail's English
+  timetable links lead to a "page not found". Needs a screenshot of either timetable (late-night departures from T3).
+- Keikyu fares by station: the guide's fare list is in a PDF; the small preview image showed older times, so its fares
+  were not used.
+- Flat-rate taxi fares: on the Tokyo Hire-Taxi Association's page, not the airport's.
