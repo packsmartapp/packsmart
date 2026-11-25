@@ -492,6 +492,14 @@
  .content .related-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
  .content .related-card-body{padding:1.1rem 1.2rem}
 }
+/* wide screens: the Shinkansen box in one band (picture | route and text | button), so the button sits up top */
+@media (min-width:1500px){[data-ps-placement^="jw-shinkansen"]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 280px;column-gap:28px;align-items:start}
+ [data-ps-placement^="jw-shinkansen"]>strong{grid-column:1/-1}
+ [data-ps-placement^="jw-shinkansen"] .jb-grid,[data-ps-placement^="jw-shinkansen"] .jb-row{display:contents}
+ [data-ps-placement^="jw-shinkansen"] .jb-grid>a{grid-column:1;grid-row:2/4}
+ [data-ps-placement^="jw-shinkansen"] .jb-grid>div{grid-column:2;grid-row:2;margin-bottom:12px}
+ [data-ps-placement^="jw-shinkansen"] .jb-tx{grid-column:2;grid-row:3}
+ [data-ps-placement^="jw-shinkansen"] .jb-bt{grid-column:3;grid-row:2/4;align-self:center}}
 @media (min-width:1500px){:root{--gw:1320px}.content{max-width:1320px}.jp-band-in{max-width:1256px}}
 @keyframes jpFall{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(30px,25vh) rotate(90deg)}50%{transform:translate(-10px,50vh) rotate(200deg)}75%{transform:translate(25px,75vh) rotate(290deg)}100%{transform:translate(0,110vh) rotate(380deg)}}
 @keyframes jpFly{0%{transform:translate(0,0);opacity:0}15%{opacity:1}35%{opacity:.35}55%{transform:translate(28px,-50vh);opacity:1}75%{opacity:.4}100%{transform:translate(-12px,-100vh);opacity:0}}
