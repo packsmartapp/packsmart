@@ -442,13 +442,14 @@
  .jp-bg svg{width:100%;height:auto;display:block}
  .jp-petal{position:absolute;top:-30px;width:16px;height:16px;animation:jpFall linear infinite;opacity:.85}.jp-petal svg{width:100%;height:100%;display:block}
  :root{--gw:900px}
- .content{max-width:900px;background:#fff;border-radius:28px;margin-top:28px!important;margin-bottom:28px;box-shadow:0 14px 40px rgba(15,15,35,.07)}
+ :is(.content,.article){max-width:900px;background:#fff;border-radius:28px;margin-top:28px!important;margin-bottom:28px;box-shadow:0 14px 40px rgba(15,15,35,.07)}
+ article.article{padding-top:48px;padding-bottom:48px}
  .jp-band{border-bottom:0;padding:22px 16px 6px}
  .jp-bg{opacity:0;transition:opacity .5s}.jp-bg.on{opacity:1}
- .content .pga,.content [data-ps-placement],.content .ps-kd,.content .related-posts,.content .psn-now,.content .jg-ask{max-width:none!important}
- .content .related-posts{padding:0;margin:2.4rem 0 1rem}
- .content .related-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
- .content .related-card-body{padding:1.1rem 1.2rem}
+ :is(.content,.article) .pga,:is(.content,.article) [data-ps-placement],:is(.content,.article) .ps-kd,:is(.content,.article) .related-posts,:is(.content,.article) .psn-now,:is(.content,.article) .jg-ask{max-width:none!important}
+ :is(.content,.article) .related-posts{padding:0;margin:2.4rem 0 1rem}
+ :is(.content,.article) .related-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
+ :is(.content,.article) .related-card-body{padding:1.1rem 1.2rem}
 }
 /* the partner's city search overlay is positioned from the box edge, so it must not be a grid item */
 .ps-pickups>.ps-dest{grid-column:auto!important;grid-row:auto!important}
@@ -468,8 +469,8 @@
  .ps-pickups>picture+strong+div{grid-column:2;grid-row:3;max-width:none!important}
  .ps-pickups>picture+strong+div+*{grid-column:2;grid-row:4}
  /* half width: the city search on its own row, From and To side by side under it (they overlapped) */
- .content .ps-pickups.ps-pickups form>div:nth-child(1){grid-column:1/-1!important}
- .content .ps-pickups.ps-pickups form>div:nth-child(2)>div:nth-child(1),.content .ps-pickups.ps-pickups form>div:nth-child(2)>div:nth-child(3){grid-column:span 12!important}}
+ :is(.content,.article) .ps-pickups.ps-pickups form>div:nth-child(1){grid-column:1/-1!important}
+ :is(.content,.article) .ps-pickups.ps-pickups form>div:nth-child(2)>div:nth-child(1),:is(.content,.article) .ps-pickups.ps-pickups form>div:nth-child(2)>div:nth-child(3){grid-column:span 12!important}}
 /* wide screens: the eSIM box as photo | heading, plans and note (the photo was a full-width poster) */
 @media (min-width:1200px){[data-ps-placement^="airalo-"]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:center}
  [data-ps-placement^="airalo-"]>:where(*){grid-column:2}
@@ -505,7 +506,7 @@
  [data-ps-placement^="jw-shinkansen"] .jb-grid>div{grid-column:2;grid-row:2;margin-bottom:12px}
  [data-ps-placement^="jw-shinkansen"] .jb-tx{grid-column:2;grid-row:3}
  [data-ps-placement^="jw-shinkansen"] .jb-bt{grid-column:3;grid-row:2/4;align-self:center}}
-@media (min-width:1500px){:root{--gw:1320px}.content{max-width:1320px}.jp-band-in{max-width:1256px}}
+@media (min-width:1500px){:root{--gw:1320px}:is(.content,.article){max-width:1320px}.jp-band-in{max-width:1256px}}
 @keyframes jpFall{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(30px,25vh) rotate(90deg)}50%{transform:translate(-10px,50vh) rotate(200deg)}75%{transform:translate(25px,75vh) rotate(290deg)}100%{transform:translate(0,110vh) rotate(380deg)}}
 @keyframes jpFly{0%{transform:translate(0,0);opacity:0}15%{opacity:1}35%{opacity:.35}55%{transform:translate(28px,-50vh);opacity:1}75%{opacity:.4}100%{transform:translate(-12px,-100vh);opacity:0}}
 body[data-season=summer] .jp-petal{top:auto;bottom:-20px;width:7px;height:7px;border-radius:50%;background:#FFF6A0;box-shadow:0 0 10px 4px rgba(240,236,120,.75);animation-name:jpFly}
@@ -515,6 +516,8 @@ body[data-season=winter] .jp-petal path{fill:#fff;stroke:#D6E2EC}body[data-seaso
 @media (prefers-reduced-motion:reduce){.jp-petal{display:none!important}}
 .psn-now{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20'%3E%3Cg fill='none' stroke='%2300C9A7' stroke-opacity='.18'%3E%3Cpath d='M0 20a10 10 0 0 1 20 0M5 20a5 5 0 0 1 10 0M20 20a10 10 0 0 1 20 0M25 20a5 5 0 0 1 10 0M-10 10a10 10 0 0 1 20 0M10 10a10 10 0 0 1 20 0M30 10a10 10 0 0 1 20 0'/%3E%3C/g%3E%3C/svg%3E")!important}
 @media (max-width:600px){.jp-welcome{font-size:2.1rem}.jp-namesign{gap:8px 12px}.jp-namesign-k{font-size:1.5rem}.jp-namesign-bar{display:none}.jp-namesign-st{position:absolute;right:12px;top:-12px;background:#fff}}
+/* small phones: a tighter label so the stamp never covers it (360px) */
+@media (max-width:400px){.jp-namesign-e small{letter-spacing:.06em;padding:5px 10px;font-size:.7rem}}
 </style>
 <style id="ps-menu-css">
 .nav-dd{position:relative;display:inline-flex;align-items:center}

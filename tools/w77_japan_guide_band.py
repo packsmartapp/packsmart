@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """
-w77: a light Japan band at the top of the Japan station, airport and city guides (25 Nov 2026).
+w77: a light Japan band at the top of the Japan station, airport and city guides, and the three general Japan articles
+(travel guide, its from-India version, the 7-day itinerary) (25 Nov 2026).
 
 The /japan hub uses seasonal Fuji, sakura, kanji signs, train tickets and checked stamps; the guides it links to opened
 on a dark photo hero and a plain article, which felt like another site. Without redesigning the articles, this adds,
@@ -43,12 +44,20 @@ GUIDES = {  # slug: (Japanese name, English name, kind)
     "new-chitose-airport-guide": ("新千歳空港", "New Chitose Airport", "airport"),
     "kyoto-travel-guide": ("京都", "Kyoto", "city"),
     "osaka-travel-guide": ("大阪", "Osaka", "city"),
+    # the three general Japan articles (added 25 Nov 2026); without a checked date the band shows no stamp
+    "japan-travel-packing-guide": ("日本", "Japan", "trip"),
+    "japan-travel-packing-guide-from-india": ("日本", "Japan", "trip"),
+    "japan-7-day-itinerary-budget": ("日本・7日間", "Japan in 7 days", "itinerary"),
 }
+OPTIONAL_STAMP = {"japan-travel-packing-guide", "japan-travel-packing-guide-from-india", "japan-7-day-itinerary-budget"}
 KIND = {"station": ("駅", "Station guide", "Stations", "/japan#stations"),
         "airport": ("空港", "Airport guide", "Airports", "/japan#arriving"),
-        "city": ("観光", "City guide", "Plan your trip", "/japan#plan")}
+        "city": ("観光", "City guide", "Plan your trip", "/japan#plan"),
+        "trip": ("旅の準備", "Travel guide", "Plan your trip", "/japan#plan"),
+        "itinerary": ("旅程", "Itinerary", "Plan your trip", "/japan#plan")}
 MONTHS = {m: i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
 OLD_TINT = "linear-gradient(rgba(15,15,35,0.62), rgba(26,26,62,0.72))"
+OLD_TINTS = (OLD_TINT, "linear-gradient(rgba(15,15,35,0.7), rgba(26,26,62,0.7))")
 NEW_TINT = "linear-gradient(rgba(15,15,35,0.14) 0%, rgba(15,15,35,0.32) 45%, rgba(15,15,35,0.66) 100%)"
 BG = re.compile(r'<!-- jp-guide-bg -->.*?<!-- /jp-guide-bg -->\n', re.S)
 _hub = open(os.path.join(ROOT, "public", "japan.html"), encoding="utf-8").read()
@@ -90,13 +99,31 @@ def ask_box(en, topic):
 
 
 CHECKED = re.compile(r"[Cc]hecked (?:on )?(\d{1,2})(?: and (\d{1,2}))? ([A-Z][a-z]+) (20\d\d)")
-HERO = re.compile(r'<div class="hero-blog".*?\n</div>\n', re.S)
+class _Hero:
+    """The hero <div class="hero-blog"> up to its own closing </div> and line end (nested divs counted)."""
+    def __init__(self, start, end): self._s, self._e = start, end
+    def start(self): return self._s
+    def end(self): return self._e
+
+
+def find_hero(page):
+    i = page.find('<div class="hero-blog"')
+    if i < 0:
+        return None
+    depth, pos = 0, i
+    for m in re.finditer(r"<div\b|</div>", page[i:]):
+        depth += 1 if m.group(0) != "</div>" else -1
+        if depth == 0:
+            end = i + m.end()
+            nl = page.find("\n", end)
+            return _Hero(i, nl + 1 if nl >= 0 else end)
+    return None
 BAND = re.compile(r"<!-- jp-band -->.*?<!-- /jp-band -->\n", re.S)
 
 WAVE = ("url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20'%3E%3Cg fill='none' "
         "stroke='%2300C9A7' stroke-opacity='.18'%3E%3Cpath d='M0 20a10 10 0 0 1 20 0M5 20a5 5 0 0 1 10 0M20 20a10 10 0 0 1 20 0M25 20a5 5 0 0 1 10 0"
         "M-10 10a10 10 0 0 1 20 0M10 10a10 10 0 0 1 20 0M30 10a10 10 0 0 1 20 0'/%3E%3C/g%3E%3C/svg%3E\")")
-CSS = """<style id="jp-guide-css">
+CSS_RAW = """<style id="jp-guide-css">
 @import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
 .jp-band{background:#FDF0F2 """ + WAVE + """;border-bottom:1px solid #F3D3DA;padding:14px 16px 18px}
 .jp-band-in{max-width:760px;margin:0 auto}
@@ -129,6 +156,7 @@ CSS = """<style id="jp-guide-css">
  .jp-petal{position:absolute;top:-30px;width:16px;height:16px;animation:jpFall linear infinite;opacity:.85}.jp-petal svg{width:100%;height:100%;display:block}
  :root{--gw:900px}
  .content{max-width:900px;background:#fff;border-radius:28px;margin-top:28px!important;margin-bottom:28px;box-shadow:0 14px 40px rgba(15,15,35,.07)}
+ article.article{padding-top:48px;padding-bottom:48px}
  .jp-band{border-bottom:0;padding:22px 16px 6px}
  .jp-bg{opacity:0;transition:opacity .5s}.jp-bg.on{opacity:1}
  .content .pga,.content [data-ps-placement],.content .ps-kd,.content .related-posts,.content .psn-now,.content .jg-ask{max-width:none!important}
@@ -201,8 +229,11 @@ body[data-season=winter] .jp-petal path{fill:#fff;stroke:#D6E2EC}body[data-seaso
 @media (prefers-reduced-motion:reduce){.jp-petal{display:none!important}}
 .psn-now{background-image:""" + WAVE + """!important}
 @media (max-width:600px){.jp-welcome{font-size:2.1rem}.jp-namesign{gap:8px 12px}.jp-namesign-k{font-size:1.5rem}.jp-namesign-bar{display:none}.jp-namesign-st{position:absolute;right:12px;top:-12px;background:#fff}}
+/* small phones: a tighter label so the stamp never covers it (360px) */
+@media (max-width:400px){.jp-namesign-e small{letter-spacing:.06em;padding:5px 10px;font-size:.7rem}}
 </style>
 """
+CSS = CSS_RAW.replace(".content", ":is(.content,.article)")  # the from-India page uses <article class="article">
 
 
 def _dates(text):
@@ -232,12 +263,14 @@ def last_checked(page):
 
 def band(ja, en, kind, checked):
     k, label, sec, href = KIND[kind]
+    stamp = ('<span class="jp-namesign-st" title="Checked against official sources">確認<br>%s</span>'
+             % checked.strftime("%-d %b %Y").upper().replace(" 20", "<br>20", 1)) if checked else ""
     return ('<!-- jp-band -->\n<div class="jp-band"><div class="jp-band-in">'
             '<p class="jp-crumb"><a href="/japan">🇯🇵 Japan hub</a><span>›</span><a href="%s">%s</a><span>›</span>%s</p>'
             '<div class="jp-namesign"><span class="jp-namesign-e"><small>🇯🇵 <span lang="ja">ようこそ · %s</span> · %s</small>'
             '<span class="jp-welcome"><span class="jp-namesign-k" lang="ja">%s</span> <em>%s</em></span></span>'
-            '<span class="jp-namesign-st" title="Checked against official sources">確認<br>%s</span></div>'
-            '</div></div>\n<!-- /jp-band -->\n') % (href, sec, en, k, label, ja, en, checked.strftime("%-d %b %Y").upper().replace(" 20", "<br>20", 1))
+            '%s</div>'
+            '</div></div>\n<!-- /jp-band -->\n') % (href, sec, en, k, label, ja, en, stamp)
 
 
 TIP_OLD = ("<strong>Tip:</strong> Most visitors need an International Driving Permit under the 1949 Geneva Convention (drivers "
@@ -255,14 +288,15 @@ for slug, (ja, en, kind) in GUIDES.items():
     s = open(path, encoding="utf-8").read()
     new = BAND.sub("", s)
     checked = last_checked(new)
-    hero = HERO.search(new)
-    if not checked or not hero:
+    hero = find_hero(new)
+    if (not checked and slug not in OPTIONAL_STAMP) or not hero:
         problems.append(slug + (" (no checked date)" if not checked else " (no hero)"))
         continue
     new = new[:hero.end()] + band(ja, en, kind, checked) + new[hero.end():]
     hero_old = new[hero.start():hero.end()]
-    if OLD_TINT in hero_old:
-        new = new[:hero.start()] + hero_old.replace(OLD_TINT, NEW_TINT, 1) + new[hero.end():]
+    old_tint = next((t for t in OLD_TINTS if t in hero_old), None)
+    if old_tint:
+        new = new[:hero.start()] + hero_old.replace(old_tint, NEW_TINT, 1) + new[hero.end():]
     elif NEW_TINT not in hero_old and "url(" in hero_old:   # a hero without a photo (New Chitose) keeps its own colour
         problems.append(slug + " (hero tint not recognised)")
         continue
@@ -295,4 +329,4 @@ if problems:
     sys.exit("w77 aborted, nothing written: " + ", ".join(problems))
 for path, s in plans.items():
     open(path, "w", encoding="utf-8").write(s)
-print("w77 done. Japan band on %d guides; %d file(s) changed." % (len(GUIDES), len(plans)))
+print("w77 done. Japan band on %d pages; %d file(s) changed." % (len(GUIDES), len(plans)))
