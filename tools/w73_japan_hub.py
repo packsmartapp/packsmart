@@ -259,14 +259,14 @@ PASSES = [  # code, name, serves, line, pocket key, guide slug, Packy question
 ]
 
 HERO_CSS = """
-.jp-hero{position:relative;overflow:hidden;border-radius:26px;margin:0 0 1.6rem;color:#0f0f23;background:linear-gradient(180deg,#FFE3E8 0%,#FFF1E6 60%,#FBF5EE 100%);box-shadow:0 14px 40px rgba(233,69,96,.12)}
-.jp-scene{position:absolute;inset:0;pointer-events:none}
-.jp-scene>svg{position:absolute;display:block}
-.jp-scene .hills{left:0;right:0;bottom:0;width:100%;height:32%}
-.jp-scene .art{right:0;bottom:0;width:48%;height:85%}
-.jp-scene .sk{display:none}
-.jp-scene .sk{position:absolute;left:-40px;top:-60px;width:250px;transform:rotate(-8deg)}.jp-scene .sk svg{width:100%;height:auto;display:block}
-.jp-hero-in{position:relative;padding:2.2rem 2rem 1.4rem;max-width:980px;margin:0 auto}
+.jp-hero{position:relative;margin:0 0 1.8rem;color:#0f0f23}
+.jp-hero-in{position:relative;padding:.4rem 0 0}
+.jp-hero-top{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:1rem;align-items:stretch}
+.jp-scene{position:relative;min-height:280px;pointer-events:none}
+.jp-scene .fuji{position:absolute;inset:0;width:100%;height:100%;display:block;will-change:transform}
+.jp-scene .cl{animation:jpDrift 26s ease-in-out infinite alternate}
+@keyframes jpDrift{from{transform:translateX(-14px)}to{transform:translateX(18px)}}
+.jp-scene .sk{display:none;position:absolute;left:-30px;top:-40px;width:130px;transform:rotate(-8deg)}.jp-scene .sk svg{width:100%;height:auto;display:block}
 .jp-hero-kick{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:#fff;color:#0f0f23;border:1px solid #F3C6CF;border-radius:999px;padding:5px 12px}
 .jp-hero h1{font-family:var(--font-display);font-size:3.6rem;line-height:1.02;margin:.6rem 0 .5rem;color:#0f0f23}
 .jp-hero h1 em{font-style:italic;color:#E94560}
@@ -283,11 +283,11 @@ HERO_CSS = """
 .jp-board-h i{font-style:normal;color:#8a93a6;letter-spacing:.04em;font-weight:600}
 .jp-board ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
 .jp-board a{display:grid;grid-template-columns:1.2fr 1.2fr 1fr .8fr 18px;align-items:center;gap:8px;text-decoration:none;color:#0f0f23;background:#FFF8F4;border:1px solid #F6E3E6;border-radius:12px;padding:9px 12px;transition:background .15s,border-color .15s}
-.jp-board a:hover,.jp-board a:focus-visible{background:#fff;border-color:#E94560}
+.jp-board a:hover,.jp-board a:focus-visible{background:#fff;border-color:#00C9A7}
 .jp-board .f{position:relative;font-weight:800;font-size:.92rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .jp-board .f.by{color:#5a6378}
 .jp-board .f.t{justify-self:end;color:#C2185B;background:#FFE3E8;border-radius:999px;padding:3px 10px}
-.jp-board .go{color:#E94560;font-weight:800}
+.jp-board .go{color:#00A88C;font-weight:800}
 .jp-board-note{font-size:.72rem;color:#5a6378;margin:8px 4px 2px;line-height:1.4}
 .jp-pass-h{text-align:center;margin:0 0 1rem}.jp-pass-h h2{font-family:var(--font-display);font-size:2.2rem;margin:0}.jp-pass-h p{color:#5a6378;margin:.2rem 0 0}
 .jp-passes{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:0 0 2rem}
@@ -308,9 +308,9 @@ HERO_CSS = """
 .jp-stamp{position:absolute;right:130px;top:12px;transform:rotate(-12deg);border:2px solid #E94560;color:#E94560;border-radius:8px;padding:2px 6px;font-size:.62rem;font-weight:800;letter-spacing:.08em;opacity:.85;text-align:center;line-height:1.15}
 @media (max-width:760px){.jp-passes{grid-template-columns:1fr}}
 @media (max-width:600px){
- .jp-hero{border-radius:20px;margin-left:-4px;margin-right:-4px}.jp-hero-in{padding:0 1rem 1rem}
- .jp-scene{position:relative;inset:auto;height:190px}.jp-scene .art{width:100%;height:100%}.jp-scene .hills{height:40%}
- .jp-scene .sk{display:block;width:130px;left:-24px;top:-34px}.jp-hero h1{font-size:2.6rem}.jp-hero-lead{font-size:.98rem}
+ .jp-hero-top{grid-template-columns:1fr}.jp-scene{order:-1;min-height:0;height:170px;margin:0 -4px;overflow:hidden}
+ .jp-scene .sk{width:86px!important;left:-18px!important;top:-26px!important}
+ .jp-scene .sk{display:block}.jp-hero h1{font-size:2.6rem}.jp-hero-lead{font-size:.98rem}
  .jp-board a{grid-template-columns:1fr auto;grid-template-areas:"r t" "b t";row-gap:2px}
  .jp-board .f.fr{grid-area:r;white-space:normal}.jp-board .f.fr:after{content:" → " attr(data-to);color:#0f0f23}
  .jp-board .f.to{display:none}.jp-board .f.by{grid-area:b;font-size:.74rem;color:#5a6378}.jp-board .f.t{grid-area:t;font-size:1rem}.jp-board .go{display:none}
@@ -321,15 +321,23 @@ HERO_CSS = """
 """
 
 # Drawn dawn scene for the hero (25 Nov 2026, owner chose it over photos): sky, rising sun, Mt Fuji, pink hills, torii.
-HILLS_SVG = ('<svg class="hills" viewBox="0 0 1600 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">'
-    '<path d="M0 600V505C200 480 380 492 560 512S900 545 1120 518 1450 485 1600 498V600Z" fill="#F2D7DC"/>'
-    '<path d="M0 600V550C250 532 500 545 760 560S1250 578 1600 552V600Z" fill="#E9C3CB"/>'
-    '</svg>')
-ART_SVG = ('<svg class="art" viewBox="940 100 660 500" preserveAspectRatio="xMaxYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">'
-    '<circle cx="1225" cy="200" r="84" fill="#E94560" opacity=".9"/>'
-    '<path d="M955 600L1205 300C1218 284 1242 284 1255 300L1505 600Z" fill="#8FA2C0"/>'
-    '<path d="M1205 300C1218 284 1242 284 1255 300L1297 352C1281 341 1270 359 1255 346 1242 359 1228 342 1215 355 1200 342 1188 357 1168 344Z" fill="#fff"/>'
-    '<g transform="translate(1395 352) scale(.62)">'
+FUJI_SVG = ('<svg class="fuji" viewBox="0 0 600 400" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs>'
+    '<linearGradient id="fjB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5D6F96"/><stop offset=".6" stop-color="#8C9CBD"/><stop offset="1" stop-color="#CBD4E6"/></linearGradient>'
+    '<linearGradient id="fjS" x1="0" y1="0" x2="1" y2="0"><stop offset=".35" stop-color="#fff"/><stop offset="1" stop-color="#D9E2F0"/></linearGradient>'
+    '<radialGradient id="fjG"><stop offset="0" stop-color="#FFD9C9" stop-opacity=".95"/><stop offset="1" stop-color="#FFD9C9" stop-opacity="0"/></radialGradient>'
+    '<linearGradient id="fjM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBF5EE" stop-opacity="0"/><stop offset="1" stop-color="#FBF5EE" stop-opacity=".95"/></linearGradient></defs>'
+    '<circle cx="410" cy="120" r="120" fill="url(#fjG)"/>'
+    '<g class="mt">'
+    '<path d="M10 400C120 338 208 232 260 134Q268 120 282 118L318 118Q332 120 340 134C392 232 480 338 590 400Z" fill="url(#fjB)"/>'
+    '<path d="M300 118L318 118Q332 120 340 134C392 232 480 338 590 400L336 400C334 300 318 196 300 118Z" fill="#33415F" opacity=".16"/>'
+    '<path d="M260 134Q268 120 282 118L318 118Q332 120 340 134C352 156 364 176 376 198C369 195 365 212 357 205C351 221 345 231 337 213C331 234 323 242 315 220C309 244 301 250 295 223C288 242 280 237 273 216C267 231 260 226 255 206C248 213 241 206 236 196C232 199 229 200 226 200C238 176 250 156 260 134Z" fill="url(#fjS)"/>'
+    '<path d="M298 236L296 268M322 232L326 258M280 230L275 252M342 222L349 244M258 220L252 238" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".55"/>'
+    '<path d="M286 119l5 4 6-3 6 3 5-4" fill="none" stroke="#C9D3E4" stroke-width="1.5"/>'
+    '<path d="M0 400C80 362 160 352 230 366S360 382 420 364 540 352 600 372V400Z" fill="#B9C5DB" opacity=".75"/>'
+    '<rect y="300" width="600" height="100" fill="url(#fjM)"/></g>'
+    '<g class="cl" fill="#fff"><g opacity=".92"><ellipse cx="118" cy="212" rx="62" ry="13"/><ellipse cx="146" cy="202" rx="34" ry="15"/><ellipse cx="100" cy="206" rx="24" ry="11"/></g>'
+    '<g opacity=".85"><ellipse cx="480" cy="178" rx="54" ry="11"/><ellipse cx="502" cy="170" rx="28" ry="12"/></g></g>'
+    '<g transform="translate(478 262) scale(.4)">'
     '<path d="M18 40C80 30 220 30 282 40L276 54C220 46 80 46 24 54Z" fill="#D7263D"/><rect x="30" y="54" width="240" height="10" fill="#3a2a2a"/>'
     '<rect x="50" y="80" width="200" height="14" fill="#D7263D"/><rect x="72" y="54" width="20" height="246" fill="#D7263D"/><rect x="208" y="54" width="20" height="246" fill="#D7263D"/>'
     '<rect x="66" y="288" width="32" height="14" fill="#3a2a2a"/><rect x="202" y="288" width="32" height="14" fill="#3a2a2a"/><rect x="138" y="62" width="24" height="32" fill="#3a2a2a"/></g>'
@@ -347,13 +355,14 @@ def hero_html():
            to, fr, fr, to, to, by, by, t, t)
         for fr, to, by, t, pk, src in BOARD)
     return ("""<section class="jp-hero" aria-labelledby="jpHeroT">
-<div class="jp-scene" aria-hidden="true">""" + HILLS_SVG + ART_SVG + '<div class="sk">' + SAKURA_SVG + """</div></div>
 <div class="jp-hero-in">
+<div class="jp-hero-top"><div class="jp-hero-text">
 <span class="jp-hero-kick">🇯🇵 ようこそ · Yōkoso</span>
 <h1 id="jpHeroT">Welcome to <em>Japan</em></h1>
 <p class="jp-hero-lead">Every PackSmart guide for Japan in one place, from the arrivals gate to the platform. Facts come from official sources, with the date we checked them.</p>
 <button type="button" class="jp-hello" id="jpHello"><span class="av" aria-hidden="true">""" + _face_av() + """</span><span class="bub"><b>Konnichiwa!</b> I'm Packy 👋 Where are you landing? Ask me anything.</span></button>
 <div class="jp-live" aria-label="Japan right now"><span id="jpClock">🕗 Japan time</span><span id="jpWx" hidden></span><span id="jpSeason"></span></div>
+</div><div class="jp-scene" aria-hidden="true">""" + FUJI_SVG + '<div class="sk">' + SAKURA_SVG + """</div></div></div>
 <div class="jp-board" role="region" aria-label="Arrivals board: fastest trains from the airports">
 <div class="jp-board-h"><span>ARRIVALS · 到着</span><i>Fastest trains<span class="wide"> · tap for the Pocket Guide</span></i></div>
 <ol>""" + rows + """</ol>
@@ -398,6 +407,9 @@ if(!still){var A='ABCDEFGHIJKLMNOPRSTUVWXYZ0123456789';[].forEach.call(document.
   var v=el.getAttribute('data-v'),n=0,steps=8+(i%5)*2;
   var id=setInterval(function(){n++;if(n>=steps){el.textContent=v;clearInterval(id);return;}
     el.textContent=v.split('').map(function(ch,k){return /[A-Z0-9]/.test(ch)&&k>=n-3?A[(Math.random()*A.length)|0]:ch;}).join('');},55);});}
+// Fuji drifts as the page scrolls, like a far-away mountain (not with reduced motion)
+var fj=document.querySelector('.jp-scene .fuji');
+if(fj&&!still){var tk=false;window.addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){var y=Math.min(window.scrollY,700);fj.style.transform='translateY('+(y*0.22).toFixed(1)+'px) scale('+(1+y*0.00012).toFixed(4)+')';tk=false;});},{passive:true});}
 // Packy: the hello bubble and "Ask Packy about ..." on each boarding pass
 function packy(q){if(window.Packy){if(q)window.Packy.ask(q);else window.Packy.open();}else{var a=document.getElementById('ask');if(a)a.scrollIntoView({behavior:'smooth'});}}
 document.getElementById('jpHello').addEventListener('click',function(){track('hero_packy');packy('');});
@@ -451,14 +463,10 @@ html,body{overflow-x:clip}
 /* big screens: the hero photo runs edge to edge, and from 1500px the page itself is wider (4 boarding passes in a row,
    guide cards 3 across), so the space is used for content first and decoration second */
 @media (min-width:1000px){
- .jp-hero{width:100vw;margin-left:calc(50% - 50vw);border-radius:0;box-shadow:none;margin-top:-1.5rem}
- .jp-hero-in{max-width:1200px;padding:3rem 2rem 1.8rem}
  .jp-hero h1{font-size:4.2rem}
- .jp-hero-in>*{max-width:640px}
 }
 @media (min-width:1500px){
  :root{--pw:1320px}
- .jp-hero-in>*{max-width:760px}
  .page-wrapper{max-width:1320px}
  .jp-passes{grid-template-columns:repeat(4,1fr)}
  .jp-pass{flex-direction:column}
@@ -481,7 +489,7 @@ html,body{overflow-x:clip}
  .jp-petal svg{width:100%;height:100%;display:block}
 }
 @keyframes jpFall{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(30px,25vh) rotate(90deg)}50%{transform:translate(-10px,50vh) rotate(200deg)}75%{transform:translate(25px,75vh) rotate(290deg)}100%{transform:translate(0,110vh) rotate(380deg)}}
-@media (prefers-reduced-motion:reduce){.jp-petal{display:none}}
+@media (prefers-reduced-motion:reduce){.jp-petal{display:none}.jp-scene .cl{animation:none}}
 """
 
 body = """<div class="page-wrapper">
