@@ -1046,6 +1046,115 @@ export default [
 "u": []
 },
 {
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54)",
+"x": "Read 25 Nov 2026 from Narita Airport's official English site (https://www.narita-airport.jp/en/), which the cloud\nsession can reach. Each section names its page. Locations are as the site gives them: terminal, building or wing,\nfloor, and \"Before Security Check\" (open to everyone, including arrivals) or \"After Security Check\" (departures only).",
+"u": [
+"https://www.narita-airport.jp/en/"
+]
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > Trains to and from the airport",
+"x": "Source: https://www.narita-airport.jp/en/access/train/\n- \"Rail access is available via the Narita Sky Access line, Keisei line and JR line.\"\n- Stations: Terminal 1 is a 5-minute walk from \"Narita Airport Station\"; Terminals 2 and 3 are a 5-minute and a\n  10-minute walk from \"Narita Airport Terminal 2·3 Station\" (the line tables call it Airport Terminal 2 Building\n  Station).",
+"u": [
+"https://www.narita-airport.jp/en/access/train/"
+]
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > Trains to and from the airport",
+"x": "- Main stops by line (from the site's table):\n  - Skyliner: Narita Airport (T1), Airport Terminal 2 Building (T2 and T3), Shin-Kamagaya, Aoto, Nippori, Keisei Ueno\n    (\"some Skyliner trains stop at Aoto Station and Shin-Kamagaya Station\").\n  - Access Express: the airport stations, Shin-Kamagaya, Higashi-Matsudo, Keisei Takasago, Aoto, Nippori, Keisei Ueno.\n  - Keisei Main Line: the airport stations, Keisei Narita, Keisei Funabashi, Keisei Takasago, Aoto, Nippori, Keisei Ueno.\n  - Narita Express: the airport stations, Narita, Chiba, Tokyo, Shinagawa, Shibuya, Shinjuku, Yokohama, Ofuna.\n  - Other JR lines reach Funabashi, Akihabara, Tokyo, Shinbashi, Hamamatsucho, Shinagawa, Shibuya, Shinjuku, Ikebukuro,\n    Omiya, Nippori, Ueno, Yokohama and more.\n  - Through-trains onto the Toei Asakusa Line reach Oshiage, Asakusa, Shinbashi and Sengakuji; the Keihin Express\n    (Keikyu) Line continues from Sengakuji to Shinagawa and Haneda Airport.",
+"u": []
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > Trains to and from the airport",
+"x": "- The site sums up: JR East's Narita Express for \"Tokyo, Shibuya, Shinjuku and West Tokyo Area\"; the Keisei Skyliner for\n  \"Asakusa, Ueno, Nippori, and Ikebukuro\". JR-East Inquiry Center +81 50-2016-1603, 10:00-18:00 Japan time.\n- Train tickets: \"in front of the ticket gates of each line (B1F of Terminal 1 and 2)\", and at the JR EAST Travel\n  Service Center and the SKYLINER & KEISEI INFORMATION CENTER, both on B1F of Terminal 1 (Central Building) and of\n  Terminal 2 (Main Building). Source: https://www.narita-airport.jp/en/service/transportation/train-ticket/",
+"u": [
+"https://www.narita-airport.jp/en/service/transportation/train-ticket/"
+]
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > Arrival steps (international flights)",
+"x": "Source: https://www.narita-airport.jp/en/airportguide/inter-arr/\n- Order: quarantine, immigration, baggage claim, plant and animal quarantine, customs, arrival lobby.\n- Quarantine: questionnaires are handed out on board; \"persons experiencing diarrhea or fever, or who are otherwise\n  feeling unwell should notify a quarantine inspector or visit the Health Consultation Room.\"\n- Immigration: show your passport. \"If you use the facial recognition gate or automated gate, you will receive no stamp\n  on your passport. Please consult with staff if you want a stamp.\"\n- Customs: everyone submits the personal effects and unaccompanied articles declaration, on paper or with the\n  electronic declaration app and gate (the app can be filled in while waiting at the baggage carousel, and then no\n  paper form is needed).",
+"u": [
+"https://www.narita-airport.jp/en/airportguide/inter-arr/"
+]
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > Arrival steps (international flights)",
+"x": "- Plants (fruit, seeds, vegetables) and animal products (such as ham and sausage) must be declared at the plant and\n  animal quarantine counter, with the exporting country's certificate.",
+"u": []
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > Moving between terminals",
+"x": "Source: https://www.narita-airport.jp/en/access/shuttlebus/\n- \"When transferring between terminals, please use the free terminal shuttle bus.\" Three circular routes:\n  all terminals (T1, then T3, then T2): T1 to T3 about 14 min, T3 to T2 about 3 min, T2 to T1 about 10 min;\n  T1-T2 only: about 10 min each way; T2-T3 only: T2 to T3 about 6 min, T3 to T2 about 3 min. Buses can be delayed by\n  traffic. After T1 the bus also stops at the Higashi-Narita Station bus stop.\n- Stops: T1 No. 6 (and No. 1 towards T3); T2 No. 18 and No. 8 (towards T1) and No. 2; T3 No. 3.\n- Terminals 2 and 3 are also connected by an access corridor you can walk. Passengers already through transit security\n  use separate transit shuttle buses.",
+"u": [
+"https://www.narita-airport.jp/en/access/shuttlebus/"
+]
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > ATMs",
+"x": "Source: https://www.narita-airport.jp/en/service/exchange/atm/\n- The site: \"Varying operating hours apply to different cards and types of transaction. Some ATM services may close for\n  Golden Week and Christmas & New Year holidays.\" ATMs after security allow \"a maximum of 30,000 JPY ... with each\n  transaction.\" Seven Bank and Japan Post Bank are the ATMs JNTO lists for overseas cards (see the Japan basics notes).",
+"u": [
+"https://www.narita-airport.jp/en/service/exchange/atm/"
+]
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > ATMs",
+"x": "- Terminal 1 (before security): Central Building 1F: Japan Post Bank, 24 hours; Seven Bank 6:00-23:00; Chiba Bank\n  (Monday 8:00-24:00, Tuesday-Saturday 24 hours, Sunday until 21:00); Aeon Bank 6:00-23:00; Keiyo Bank 8:00-21:00;\n  SMBC (Monday 7:00-23:00, Tuesday-Saturday 6:00-23:00, Sunday 6:00-21:00). North Wing 4F: Japan Post Bank\n  (weekdays 7:00-21:00, weekends and holidays 8:00-21:00), MUFG 7:00-22:00, Chiba Bank 8:00-21:00. South Wing 4F:\n  Seven Bank 6:00-23:00, Chiba Bank. South Wing 1F: Aeon Bank 7:00-21:30 inside the Ministop shop.\n  After security: Seven Bank at North Wing 3F and No.3 Satellite 3F, 6:00-23:00.",
+"u": []
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > ATMs",
+"x": "- Terminal 2 (before security): B1F: Seven Bank 6:00-23:00, and a 24-hour Seven Bank inside 7-Eleven. 1F: Japan Post\n  Bank, 24 hours; Chiba Bank (Monday 8:00-24:00, Tuesday-Saturday 24 hours, Sunday until 21:00); Keiyo Bank 8:00-21:00;\n  MUFG (weekdays 7:00-23:00, weekends and holidays 7:00-21:00); SMBC. 2F: Chiba Bank 8:00-21:00. 3F: Seven Bank\n  6:00-23:00. 4F: Seven Bank 24 hours inside 7-Eleven. After security: Seven Bank 3F, 6:00-23:00.\n- Terminal 3 (before security): Seven Bank, 2F (\"operating hours may differ depending on the type of card used\");\n  Aeon Bank, 2F; Chiba Bank, 1F (Monday 8:00-24:00, Tuesday-Saturday 24 hours, Sunday until 21:00). After security:\n  Seven Bank, 3F.",
+"u": []
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > Money exchange",
+"x": "Source: https://www.narita-airport.jp/en/service/exchange/currency/\n- \"Exchange rates vary from store to store. Make sure to check the rate at the store when you exchange currency. Your\n  currency may not be available at all stores.\" Traveller's cheques are not sold.\n- Terminal 1 (before security): North Wing 1F, GPA Currency Exchange 7:00-22:00; South Wing 1F, Keiyo Bank (early shift\n  6:30-19:00, late shift 12:00-23:00); Central Building 1F, Pocket Change coin machine 6:00-23:00 and an automated\n  currency exchange machine 17:00-6:50; North and South Wing 4F, GPA (7:00-21:30) and Chiba Bank (8:00-21:00).\n  After security: Travelex, No.2 Satellite 3F, 7:00-22:00; GPA, No.3 Satellite 3F, 7:30-22:00.",
+"u": [
+"https://www.narita-airport.jp/en/service/exchange/currency/"
+]
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > Money exchange",
+"x": "- Terminal 2 (before security): 1F, GPA 7:00-22:00, Chiba Bank 8:00-21:00, Pocket Change 6:00-23:00 and an automated\n  currency exchange machine open 24 hours; 2F, Chiba Bank branch (banking 9:00-15:00, closed weekends and holidays);\n  3F, GPA 7:00-21:30 and Keiyo Bank. After security: Chiba Bank and Pocket Change, 3F.\n- Terminal 3: GPA Currency Exchange, 2F, 7:00-22:00; after security, an automatic currency exchange, 3F, 7:00-22:00.",
+"u": []
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > Sending bags and storing them",
+"x": "Sources: https://www.narita-airport.jp/en/service/delivery/baggage/ and https://www.narita-airport.jp/en/service/delivery/storage/\n- \"All baggage shipment counters at Narita Airport are certified\" for same-day and next-day delivery to set areas with\n  English service (the government's hands-free travel mark).\n- Arrivals level (1F, before security): Yamato (T1 North and South Wing, T2, T3) 6:30-22:30, staying open an hour after\n  the last flight if it lands after 22:30; JAL ABC and Sagawa Express (T1 North and South Wing, T2) from 6:30 until one\n  hour after the last international arrival. Departures level: Yamato and JAL ABC counters on T1 4F and T2 3F,\n  7:00-21:00.\n- Storage: JAL ABC and Sagawa counters (same places and hours) also store bags; Narita International Airport Promotion\n  Foundation baggage storage, T2 3F, 6:30-22:00. Three charge levels by size; \"charges vary by company\".",
+"u": [
+"https://www.narita-airport.jp/en/service/delivery/baggage/",
+"https://www.narita-airport.jp/en/service/delivery/storage/"
+]
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > Sending bags and storing them",
+"x": "- To collect bags for an early flight between 6:00 and 7:00, \"please contact your delivery company\".",
+"u": []
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > SIM cards, pocket Wi-Fi and phones",
+"x": "Source: https://www.narita-airport.jp/en/service/internet/rental/\n- Terminal 1 (before security): Central Building 1F: AnyFone JAPAN, XCom Global, J WiFi & Mobile, SoftBank Global\n  Rental, Telecomsquare (all 7:00-21:00), and a GPA SIM card vending machine; JAL ABC on North and South Wing 1F from\n  6:30 until an hour after the last international arrival; more counters on 4F (7:00-21:00); Rakuten Mobile, Central\n  Building 4F, 8:00-20:00.\n- Terminal 2 (before security): 1F: AnyFone JAPAN, J WiFi & Mobile, SoftBank Global Rental (7:00-21:00), JAL ABC (from\n  6:30 until an hour after the last international arrival) and GPA SIM vending machines; B1F: XCom Global and\n  Telecomsquare; 2F before customs: GPA SIM vending machines; 3F: J WiFi & Mobile, Telecomsquare, JAL ABC.\n- Terminal 3: 1F, J WiFi & Mobile (7:00-21:00) and a GPA SIM vending machine.",
+"u": [
+"https://www.narita-airport.jp/en/service/internet/rental/"
+]
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > Help and information",
+"x": "Sources: https://www.narita-airport.jp/en/service/information/tourist/ and https://www.narita-airport.jp/en/service/information/guidance/\n- Tourist Information Center: T1 Central Building 1F and T2 Main Building 1F, 8:00-20:00. \"Not available in Terminal\n  3; please use Terminal 2.\"\n- Information counters (\"?\" sign) in every terminal, including T1 1F (North and South Wing) and B1F, T2 1F and B1F,\n  T3 1F and 2F (T3 2F lends internet devices). \"Roving concierges use tablets to assist customers.\"",
+"u": [
+"https://www.narita-airport.jp/en/service/information/tourist/",
+"https://www.narita-airport.jp/en/service/information/guidance/"
+]
+},
+{
+"t": "narita > Narita Airport: sources and facts (research for Packy, B54) > Airport bus tickets",
+"x": "Source: https://www.narita-airport.jp/en/service/transportation/bus-ticket/\n- \"Please purchase a ticket at the counter in the airport. Tickets are sold at different counters depending on the\n  destination.\" Bus counters on 1F: T1 (North Wing 6:30-21:00, South Wing 6:30-23:05), T2 (6:30-23:00), T3\n  (6:45-22:55); Low Cost Bus (LCB) counters on 1F of each terminal (T1 South Wing 7:00-22:55, T2 7:00-22:50,\n  T3 7:00-22:45).",
+"u": [
+"https://www.narita-airport.jp/en/service/transportation/bus-ticket/"
+]
+},
+{
 "t": "sapporo daytrips > Day trips from Sapporo by train + ski buses from New Chitose Airport: sources and facts",
 "x": "Research for the Sapporo Station Pocket Guide (\"Day trips from Sapporo by train\") and the New Chitose Airport (CTS) guide (ski buses).\nNo prices are carried over on purpose (they go stale; the blocks carry them).\nLocal copies of the pages, PDFs and timetable JSON are in `dl/` next to this file (file names in brackets).",
 "u": []
