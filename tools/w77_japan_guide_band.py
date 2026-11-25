@@ -161,18 +161,19 @@ CSS = """<style id="jp-guide-css">
  [data-ps-placement^="airalo-"]>:where(*){grid-column:2}
  [data-ps-placement^="airalo-"]>picture{grid-column:1;grid-row:1/6;display:block}[data-ps-placement^="airalo-"]>picture img{margin:0!important}
  [data-ps-placement^="airalo-"]>style{display:none}}
-/* wide screens: the car-hire box as photo, note and text on the left | pick-up choices and the partner's search form on
+/* (the photo spans the chips' row and the next, so the search form starts right under the chips, not under the photo)
+   wide screens: the car-hire box as photo, note and text on the left | pick-up choices and the partner's search form on
    the right (owner's layout, 25 Nov); the form is responsive (it already works at phone width) */
-@media (min-width:1200px){[data-ps-placement^="discovercars-"]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:start;padding-bottom:20px!important}
+@media (min-width:1200px){[data-ps-placement^="discovercars-"]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto auto auto auto auto 1fr;column-gap:28px;align-items:start;padding-bottom:20px!important}
  [data-ps-placement^="discovercars-"]>:where(*){grid-column:1/-1}
  [data-ps-placement^="discovercars-"]>style,[data-ps-placement^="discovercars-"]>script{display:none}
- [data-ps-placement^="discovercars-"]>picture{grid-column:1;grid-row:2;display:block}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(1){grid-column:1;grid-row:3;margin:6px 0 10px!important}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(2){grid-column:1;grid-row:4}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(3){grid-column:1;grid-row:5}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(4){grid-column:1;grid-row:6;margin-bottom:0!important}
+ [data-ps-placement^="discovercars-"]>picture{grid-column:1;grid-row:2/4;display:block}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(1){grid-column:1;grid-row:4;margin:6px 0 10px!important}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(2){grid-column:1;grid-row:5}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(3){grid-column:1;grid-row:6}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(4){grid-column:1;grid-row:7;margin-bottom:0!important}
  [data-ps-placement^="discovercars-"]>.ps-dc-chips{grid-column:2;grid-row:2}
- [data-ps-placement^="discovercars-"]>.ps-dc-mount{grid-column:2;grid-row:3/8}}
+ [data-ps-placement^="discovercars-"]>.ps-dc-mount{grid-column:2;grid-row:3/9;margin-top:6px}}
 /* wide screens: the Shinkansen box in one band (picture | route and text | button), so the button sits up top */
 @media (min-width:1500px){[data-ps-placement^="jw-shinkansen"]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 280px;column-gap:28px;align-items:start}
  [data-ps-placement^="jw-shinkansen"]>strong{grid-column:1/-1}
