@@ -36,9 +36,25 @@ https://www.nankai.co.jp/en_railway/ticket/
 - Other trips from the same page: Namba to Koyasan about 90 min (Limited Express Koya, then the cable car at
   Gokurakubashi); Kansai Airport to Wakayama-shi about 40 min (change at Izumisano to the Limited Express Southern).
 
+## Arriving at Namba: tourist information (Osaka Convention & Tourism Bureau, read 25 Nov 2026)
+Source: https://osaka-info.jp/en/spot/tourist-information-namba/
+- Tourist Information Namba is "on the first floor of Nankai Namba Station, which is easily accessible from Kansai
+  International Airport": in front of the north exit on 1F of Nankai Namba Station, 2 minutes from Exit 4 of Namba
+  Station on the Osaka Metro Midosuji and Sennichimae lines. Open 9:00-20:00 every day of the year; English, Chinese
+  and Korean.
+- The same bureau also runs Tourist Information SHIN-OSAKA (JR Shin-Osaka Station, 3F) and Tourist Information OSAKA
+  (JR Osaka Station, 1F).
+
 ## Gaps (still to fetch or confirm; not used by Packy)
 - From the airport's site (owner's screenshots): train access (JR and Nankai, where the station is), ATMs, money
   exchange, baggage storage and delivery, SIM and Wi-Fi, information counters, Terminal 1 and Terminal 2 and the
   shuttle between them, airport buses (Kyoto, Osaka, Kobe), taxis.
 - Nankai base fares (the price list is an image at the station and on the site).
 - JR (Haruka and Kansai Airport Rapid) first and last trains from the airport.
+- "Which Namba station?": a travel-media guide (Good Luck Trip, https://www.gltjp.com/en/article/item/20889/, updated
+  12 May 2026, not an official source) says there are six stations called Namba (JR Namba; Kintetsu/Hanshin
+  Osaka-Namba; Nankai Namba; Osaka Metro Midosuji, Sennichimae and Yotsubashi lines); that Nankai Namba is the only one
+  above ground; that JR Namba and the Yotsubashi Line station are about 10 minutes' walk from the rest; and that
+  Dotonbori is about 5 minutes from Osaka Metro Namba Exit 14. Confirm from Osaka Metro, JR West and Nankai before
+  Packy uses any of it.
+- Namba CITY (the shopping centre joined to Nankai Namba): its site (nambacity.com) refuses automated visitors.

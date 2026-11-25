@@ -1079,6 +1079,13 @@ export default [
 "u": []
 },
 {
+"t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Arriving at Namba: tourist information (Osaka Convention & Tourism Bureau, read 25 Nov 2026)",
+"x": "Source: https://osaka-info.jp/en/spot/tourist-information-namba/\n- Tourist Information Namba is \"on the first floor of Nankai Namba Station, which is easily accessible from Kansai\n  International Airport\": in front of the north exit on 1F of Nankai Namba Station, 2 minutes from Exit 4 of Namba\n  Station on the Osaka Metro Midosuji and Sennichimae lines. Open 9:00-20:00 every day of the year; English, Chinese\n  and Korean.\n- The same bureau also runs Tourist Information SHIN-OSAKA (JR Shin-Osaka Station, 3F) and Tourist Information OSAKA\n  (JR Osaka Station, 1F).",
+"u": [
+"https://osaka-info.jp/en/spot/tourist-information-namba/"
+]
+},
+{
 "t": "narita > Narita Airport: sources and facts (research for Packy, B54)",
 "x": "Read 25 Nov 2026 from Narita Airport's official English site (https://www.narita-airport.jp/en/), which the cloud\nsession can reach. Each section names its page. Locations are as the site gives them: terminal, building or wing,\nfloor, and \"Before Security Check\" (open to everyone, including arrivals) or \"After Security Check\" (departures only).",
 "u": [
