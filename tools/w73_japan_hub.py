@@ -408,7 +408,7 @@ def passes_html():
         '<div class="jp-pass-stub"><small>GATE</small><a href="/%s-pocket?src=hub_japan" data-pass="%s">📱 Pocket Guide</a><a class="g" href="/blog/%s">Airport guide</a></div></article>'
         % (code, name, serves, line, q, name.replace(" Airport", ""), pk, pk, slug)
         for code, name, serves, line, pk, slug, q in PASSES)
-    return ("""<section id="arriving" aria-labelledby="jpPassT"><div class="jp-pass-h"><h2 id="jpPassT">Where are you landing?</h2><p>Pick your airport: the free Pocket Guide works offline at the gate, and Packy can answer the rest.</p></div>
+    return ("""<section id="arriving" aria-labelledby="jpPassT"><div class="jp-pass-h"><span class="jp-kick"><span lang="ja">空港</span> · Airports</span><h2 id="jpPassT">Where are you landing?</h2><p>Pick your airport: the free Pocket Guide works offline at the gate, and Packy can answer the rest.</p></div>
 <div class="jp-passes">""" + cards + """</div></section>""")
 
 HERO_JS = """<script>
@@ -445,9 +445,9 @@ if(fj&&!still){var tk=false;window.addEventListener('scroll',function(){if(tk)re
 // Packy: the hello bubble and "Ask Packy about ..." on each boarding pass
 function packy(q){if(window.Packy){if(q)window.Packy.ask(q);else window.Packy.open();}else{var a=document.getElementById('ask');if(a)a.scrollIntoView({behavior:'smooth'});}}
 document.getElementById('jpHello').addEventListener('click',function(){track('hero_packy');packy('');});
-[].forEach.call(document.querySelectorAll('.jp-pass-ask'),function(b){b.addEventListener('click',function(){track('pass_packy',b.getAttribute('data-q'));packy(b.getAttribute('data-q'));});});
+// one listener for the whole page, so the station tickets further down (built after this script) work too
+document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('.jp-pass-ask,[data-pass]');if(!t)return;if(t.classList.contains('jp-pass-ask')){var q=t.getAttribute('data-q');track(t.closest('.jp-tk')?'ticket_packy':'pass_packy',q);packy(q);}else track(t.closest('.jp-tk')?'ticket_tap':'pass_tap',t.getAttribute('data-pass'));});
 [].forEach.call(document.querySelectorAll('[data-board]'),function(a){a.addEventListener('click',function(){track('board_tap',a.getAttribute('data-board'));});});
-[].forEach.call(document.querySelectorAll('[data-pass]'),function(a){a.addEventListener('click',function(){track('pass_tap',a.getAttribute('data-pass'));});});
 })();
 </script>"""
 
@@ -555,7 +555,7 @@ def plan_html():
         t, sub = short_title(d["title"])
         out.append('<a class="jp-plan" href="%s"><img src="%s" alt="%s" loading="lazy" width="680" height="340">'
                    '<span class="jp-plan-b"><b>%s</b><small>%s</small><i>%s &rarr;</i></span></a>' % (d["url"], d["img"], d["alt"], t, sub, d["read"]))
-    return ('<section class="jp-sec" id="plan" aria-labelledby="jpPlanT"><div class="jp-sec-h"><h2 id="jpPlanT">Plan your trip</h2>'
+    return ('<section class="jp-sec" id="plan" aria-labelledby="jpPlanT"><div class="jp-sec-h"><span class="jp-kick"><span lang="ja">旅の計画</span> · Plan</span><h2 id="jpPlanT">Plan your trip</h2>'
             '<p>Visas, seasons, budget, packing and a 7-day route.</p></div><div class="jp-plans">' + "".join(out) + '</div></section>')
 
 KANJI = {"tokyo": "東京", "shinjuku": "新宿", "ueno": "上野", "kyoto": "京都", "osaka": "新大阪・大阪", "sapporo": "札幌"}
@@ -565,14 +565,17 @@ def stations_html():
     for slug in STATIONS:
         key = slug.replace("-station-guide", "")
         g = pk[key]
-        out.append('<article class="jp-st"><div class="jp-sign"><span class="jp-sign-k" lang="ja">%s</span><b>%s</b><span class="jp-sign-bar"></span>'
-                   '<span class="jp-sign-city">%s</span></div><div class="jp-st-mid"><p>%s</p>'
-                   '<span class="jp-stamp2" title="Facts checked against official sources">確認<br>%s</span></div>'
-                   '<div class="jp-st-go"><a class="pg" href="/%s-pocket?src=hub_japan" data-pass="%s">📱 Pocket Guide</a><a href="%s">Station guide</a></div></article>'
-                   % (KANJI[key], g["name"].upper(), g["stop"], g["blurb"], checked_on(key).upper().replace(" 20", "<br>20", 1), key, key, "/blog/" + slug))
-    return ('<section class="jp-sec" id="stations" aria-labelledby="jpStT"><div class="jp-sec-h"><h2 id="jpStT">Find your way in the big stations</h2>'
+        short = g["name"].replace(" Station", "").replace(" and Umeda", "")
+        out.append('<article class="jp-pass jp-tk"><div class="jp-pass-main"><div class="jp-pass-top"><span><span lang="ja">乗車券</span> · Station ticket</span></div>'
+                   '<div class="jp-pass-code" lang="ja">%s</div><div class="jp-pass-name">%s</div><div class="jp-pass-serves">In %s</div>'
+                   '<p class="jp-pass-line">%s</p><button type="button" class="jp-pass-ask" data-q="What should I know about %s?">💬 Ask Packy about %s</button></div>'
+                   '<span class="jp-stamp" title="Facts checked against official sources">確認<br>%s</span>'
+                   '<div class="jp-pass-stub"><small><span lang="ja">改札</span> · GATE</small><a href="/%s-pocket?src=hub_japan" data-pass="%s">📱 Pocket Guide</a><a class="g" href="/blog/%s">Station guide</a></div></article>'
+                   % (KANJI[key], g["name"], g["stop"], g["blurb"], g["name"], short, "%s %s<br>%s" % (lambda d: (d[0], d[1][:3].upper(), d[2]))(checked_on(key).split()), key, key, slug))
+    return ('<section class="jp-sec" id="stations" aria-labelledby="jpStT"><div class="jp-sec-h"><span class="jp-kick"><span lang="ja">駅</span> · Stations</span>'
+            '<h2 id="jpStT">Find your way in the big stations</h2>'
             '<p>Exits, platforms, lockers and ATMs, in a free Pocket Guide that works offline. Each stamp shows when we last checked the facts.</p></div>'
-            '<div class="jp-sts">' + "".join(out) + '</div></section>')
+            '<div class="jp-passes jp-tks">' + "".join(out) + '</div></section>')
 
 LOWER_CSS = """
 .jp-sec{margin:0 0 2.4rem}.jp-sec-h{text-align:center;margin:0 0 1.1rem}
@@ -584,22 +587,20 @@ LOWER_CSS = """
 .jp-plan-b{display:flex;flex-direction:column;justify-content:center;padding:12px 14px 12px 0;min-width:0}
 .jp-plan-b b{font-size:1.02rem;line-height:1.25}.jp-plan-b small{color:#5a6378;font-size:.84rem;line-height:1.4;margin:.25rem 0 .35rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
 .jp-plan-b i{font-style:normal;font-size:.8rem;font-weight:700;color:#0a8f78}
-.jp-sts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
-.jp-st{position:relative;background:#fff;border:1px solid #E1F2EE;border-radius:18px;padding:14px;box-shadow:0 6px 18px rgba(15,15,35,.05);display:flex;flex-direction:column}
-.jp-sign{position:relative;background:#fff;border:2px solid #0f0f23;border-radius:10px;padding:10px 10px 8px;text-align:center;box-shadow:inset 0 0 0 3px #fff}
-.jp-sign-k{display:block;font-size:1.65rem;font-weight:800;letter-spacing:.12em;color:#0f0f23;line-height:1.1}
-.jp-sign b{display:block;font-size:.82rem;letter-spacing:.14em;color:#3f4a5c;margin-top:2px}
-.jp-sign-bar{display:block;height:7px;background:#00C9A7;border-radius:3px;margin:8px -4px 6px}
-.jp-sign-city{display:block;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#0a8f78}
-.jp-st-mid{display:flex;align-items:center;gap:10px;flex:1;margin:.75rem 0 .8rem}.jp-st p{font-size:.88rem;color:#3f4a5c;line-height:1.45;margin:0;flex:1}
-.jp-stamp2{flex:none;transform:rotate(-10deg);border:2px solid #E94560;color:#E94560;border-radius:8px;padding:3px 5px;font-size:.56rem;font-weight:800;letter-spacing:.05em;text-align:center;line-height:1.15;opacity:.85}
-.jp-st-go{display:flex;gap:8px}
-.jp-st-go a{flex:1;text-align:center;font-weight:800;font-size:.8rem;white-space:nowrap;text-decoration:none;border-radius:12px;padding:9px 4px;border:1.5px solid #BFEDE3;color:#0a8f78;background:#fff}
-.jp-st-go a.pg{background:linear-gradient(135deg,#00C9A7,#00A88C);border-color:transparent;color:#fff}
-.jp-st-go a:hover{border-color:#00C9A7}
-@media (max-width:900px){.jp-sts{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media (max-width:640px){.jp-plans,.jp-sts{grid-template-columns:1fr}.jp-plan img{width:104px}.jp-sec-h h2{font-size:1.8rem}}
+@media (max-width:640px){.jp-plans{grid-template-columns:1fr}.jp-plan img{width:104px}.jp-sec-h h2{font-size:1.8rem}}
 @media (min-width:1500px){.jp-plans{grid-template-columns:repeat(4,minmax(0,1fr))}.jp-plan{flex-direction:column;gap:0}.jp-plan img{width:100%;height:150px}.jp-plan-b{padding:12px 14px}}
+"""
+LOWER_CSS += """
+.jp-kick{display:inline-block;font-size:.74rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#E94560;margin-bottom:.35rem}
+.jp-kick span{letter-spacing:.2em}
+/* station tickets: the boarding pass, in the pale green of a Japanese paper train ticket with a fine wave print */
+.jp-tk .jp-pass-main{background:#F2FBF8 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='8'%3E%3Cpath d='M0 8a8 8 0 0 1 16 0' fill='none' stroke='%2300C9A7' stroke-opacity='.12'/%3E%3C/svg%3E")}
+.jp-tk .jp-pass-code{font-size:2.3rem;letter-spacing:.12em;font-weight:800}
+@media (max-width:600px){.jp-tk .jp-pass-code{font-size:1.6rem;letter-spacing:.04em;white-space:nowrap;margin-top:.6rem}.jp-tk .jp-pass-ask{font-size:.78rem;white-space:nowrap}}
+.jp-tk .jp-stamp{font-size:.56rem;padding:3px 5px}
+.jp-tk .jp-pass-stub{background:linear-gradient(135deg,#0f0f23,#26335c)}
+.jp-tk .jp-pass-stub a{background:#00C9A7}.jp-tk .jp-pass-stub a.g{background:rgba(255,255,255,.14)}
+@media (min-width:1500px){.jp-tks{grid-template-columns:repeat(3,1fr)}}
 """
 HERO_CSS += LOWER_CSS
 
