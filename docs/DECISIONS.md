@@ -266,6 +266,7 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - 25 Nov: an email sent from a Vercel preview of this project links back to that preview (so the Continue link, guides and Pocket Guides can be tested before going live); from the live site it links to www.packsmartapp.com.
 - 25 Nov: Packy's face is in the email (header and next to each answer), attached inline as a PNG (`api/_packy_png.js`, made from the SVG in packy.js), so it shows without loading images from the site.
 - 25 Nov: the Ask box on `/japan` stays as Packy's doorway on the hub (option 1 of 3; an inline chat and removing the box were not chosen). It now looks like Packy (his face from packy.js, "travel buddy", pink Ask button), says it opens a chat, offers hub-wide starter questions, and shows "Continue your chat with Packy (n)" when a chat is going.
+- 25 Nov, hub redesign wave 1 (ideas 1 and 2 of 5): an arrival hero (licensed Fushimi Inari photo with its credit, Packy's hello, a live strip with Japan time, Tokyo and Sapporo weather from /api/weather and a season line from JNTO, and an arrivals board of fastest official journey times linking to the Pocket Guides) and "Where are you landing?" boarding passes for NRT, HND, KIX and CTS. GA4 `hub_japan` events: `board_tap`, `pass_tap`, `pass_packy`, `hero_packy`. Waves 3 to 5 (station-sign cards and stamps, a Japan map, first words with audio, seasonal snow or petals) wait for the owner's go-ahead.
 
 ## Open decisions (not made)
 

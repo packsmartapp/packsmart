@@ -237,13 +237,158 @@ window.addEventListener('load',function(){var n=window.Packy&&window.Packy.count
 </script>"""
 ASK = ASK.replace("%%FACE%%", packy_face())
 
+# ---- Arrival hero (25 Nov 2026): photo, Packy's hello, a live strip (Japan time, weather, season) and an arrivals board
+# whose rows are fastest official journey times (sources in docs/research: Keisei, Keikyu, JNTO, Kyoto City, checked
+# 24 Nov 2026). Then "Where are you landing?" boarding passes for the four airports with Pocket Guides.
+BOARD = [  # from, to, by, time, pocket key, source
+    ("NARITA", "UENO", "SKYLINER", "41 MIN", "narita", "Keisei"),
+    ("HANEDA", "SHINAGAWA", "KEIKYU", "11 MIN", "haneda", "Keikyu, from Terminal 3"),
+    ("NEW CHITOSE", "SAPPORO", "JR RAPID", "~40 MIN", "new-chitose", "JNTO"),
+    ("KANSAI", "KYOTO", "HARUKA", "~80 MIN", "kix", "Kyoto City"),
+    ("TOKYO", "SHIN-OSAKA", "SHINKANSEN", "~2H30", "tokyo", "JNTO"),
+]
+PASSES = [  # code, name, serves, line, pocket key, guide slug, Packy question
+    ("NRT", "Narita Airport", "Tokyo", "Most international flights to Tokyo. Skyliner to Ueno in 41 minutes.", "narita", "narita-airport-guide", "How do I get from Narita Airport to Tokyo?"),
+    ("HND", "Haneda Airport", "Tokyo", "The closest airport to central Tokyo, about 30 minutes by train.", "haneda", "haneda-airport-guide", "How do I get from Haneda Airport to central Tokyo?"),
+    ("KIX", "Kansai Airport", "Osaka and Kyoto", "Central Osaka in just over 30 minutes by rapid train.", "kix", "kansai-airport-guide", "How do I get from Kansai Airport to Kyoto?"),
+    ("CTS", "New Chitose Airport", "Sapporo and Hokkaido", "JR to Sapporo in under 40 minutes; gateway to the ski areas.", "new-chitose", "new-chitose-airport-guide", "How do I get from New Chitose Airport to Sapporo?"),
+]
+
+HERO_CSS = """
+.jp-hero{position:relative;overflow:hidden;border-radius:26px;margin:0 0 1.6rem;color:#fff;background:#0f0f23 url('/images/kyoto-travel-guide-hero.jpg') center 55%/cover;box-shadow:0 18px 50px rgba(15,15,35,.25)}
+.jp-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,15,35,.15) 0%,rgba(15,15,35,.35) 40%,rgba(15,15,35,.9) 100%)}
+.jp-hero h1,.jp-hero-lead{text-shadow:0 2px 12px rgba(0,0,0,.55)}
+.jp-hero-in{position:relative;padding:2.2rem 2rem 1.4rem;max-width:980px;margin:0 auto}
+.jp-hero-kick{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 12px;backdrop-filter:blur(6px)}
+.jp-hero h1{font-family:var(--font-display);font-size:3.6rem;line-height:1.02;margin:.6rem 0 .5rem;color:#fff}
+.jp-hero h1 em{font-style:italic;color:#FFD5DC}
+.jp-hero-lead{font-size:1.08rem;max-width:640px;color:#E7EAF6;margin:0 0 1rem}
+.jp-hello{display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;color:#fff;font:inherit;cursor:pointer;text-align:left;margin:0 0 1.1rem}
+.jp-hello .av{flex:none;width:48px;height:48px;background:#fff;border-radius:14px;padding:3px;box-shadow:0 6px 18px rgba(0,0,0,.25)}.jp-hello .av svg{width:100%;height:100%;display:block}
+.jp-hello .bub{background:#fff;color:#0f0f23;border-radius:16px 16px 16px 4px;padding:9px 14px;font-weight:600;font-size:.95rem;box-shadow:0 6px 18px rgba(0,0,0,.2)}
+.jp-hello .bub b{color:#E94560}
+.jp-live{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 1.2rem}
+.jp-live span{display:inline-flex;align-items:center;gap:6px;font-size:.86rem;font-weight:700;background:rgba(15,15,35,.55);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;backdrop-filter:blur(6px)}
+.jp-live span[hidden]{display:none}
+.jp-board{background:#111318;border-radius:16px;padding:12px 12px 8px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.35)}
+.jp-board-h{display:flex;align-items:center;justify-content:space-between;color:#F5C542;font-weight:800;letter-spacing:.14em;font-size:.78rem;padding:2px 4px 8px}
+.jp-board-h i{font-style:normal;color:#8D93A5;letter-spacing:.06em;font-weight:600}
+.jp-board ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
+.jp-board a{display:grid;grid-template-columns:1.2fr 1.2fr 1fr .8fr 18px;align-items:center;gap:8px;text-decoration:none;color:#F7F1DC;background:#1B1E26;border-radius:10px;padding:8px 10px;transition:background .15s}
+.jp-board a:hover,.jp-board a:focus-visible{background:#262A35}
+.jp-board .f{position:relative;font-weight:800;font-size:.92rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.jp-board .f.t{color:#F5C542;text-align:right}
+.jp-board .go{color:#8D93A5;font-weight:800}
+.jp-board-note{font-size:.72rem;color:#9aa0b4;margin:8px 4px 2px;line-height:1.4}
+.jp-hero-credit{position:relative;text-align:right;font-size:.68rem;color:rgba(255,255,255,.6);padding:0 1rem .6rem}
+.jp-pass-h{text-align:center;margin:0 0 1rem}.jp-pass-h h2{font-family:var(--font-display);font-size:2.2rem;margin:0}.jp-pass-h p{color:#5a6378;margin:.2rem 0 0}
+.jp-passes{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:0 0 2rem}
+.jp-pass{position:relative;display:flex;background:#fff;border-radius:18px;box-shadow:0 6px 20px rgba(15,15,35,.08);overflow:hidden;border:1px solid #E6ECEF}
+.jp-pass-main{flex:1;min-width:0;padding:14px 16px}
+.jp-pass-top{display:flex;align-items:center;justify-content:space-between;font-size:.7rem;font-weight:800;letter-spacing:.12em;color:#8a93a6;text-transform:uppercase}
+.jp-pass-code{font-size:2.6rem;font-weight:800;letter-spacing:.02em;line-height:1;color:#0f0f23;margin:.35rem 0 .1rem}
+.jp-pass-code small{font-size:.9rem;color:#E94560;margin-left:6px;letter-spacing:.02em;vertical-align:middle}
+.jp-pass-name{font-weight:800;color:#0f0f23}.jp-pass-serves{color:#5a6378;font-size:.86rem}
+.jp-pass-line{font-size:.86rem;color:#3f4a5c;margin:.45rem 0 .6rem;line-height:1.45}
+.jp-pass-ask{font:inherit;font-size:.82rem;font-weight:700;color:#0a8f78;background:#E6FAF5;border:0;border-radius:999px;padding:6px 11px;cursor:pointer}
+.jp-pass-stub{flex:none;width:118px;display:flex;flex-direction:column;justify-content:center;gap:8px;padding:12px 12px 12px 16px;background:linear-gradient(135deg,#00C9A7,#00A88C);color:#fff;border-left:2px dashed rgba(255,255,255,.7);position:relative}
+.jp-pass-stub:before,.jp-pass-stub:after{content:"";position:absolute;left:-9px;width:16px;height:16px;border-radius:50%;background:var(--bg,#FDF0F2)}
+.jp-pass-stub:before{top:-8px}.jp-pass-stub:after{bottom:-8px}
+.jp-pass-stub small{font-size:.66rem;font-weight:800;letter-spacing:.12em;opacity:.85}
+.jp-pass-stub a{display:block;text-align:center;background:#0f0f23;color:#fff;text-decoration:none;font-weight:800;font-size:.8rem;border-radius:10px;padding:8px 6px;line-height:1.2}
+.jp-pass-stub a.g{background:rgba(255,255,255,.18)}
+.jp-stamp{position:absolute;right:130px;top:12px;transform:rotate(-12deg);border:2px solid #E94560;color:#E94560;border-radius:8px;padding:2px 6px;font-size:.62rem;font-weight:800;letter-spacing:.08em;opacity:.85;text-align:center;line-height:1.15}
+@media (max-width:760px){.jp-passes{grid-template-columns:1fr}}
+@media (max-width:600px){
+ .jp-hero{border-radius:20px;margin-left:-4px;margin-right:-4px}.jp-hero-in{padding:1.5rem 1rem 1rem}.jp-hero h1{font-size:2.6rem}.jp-hero-lead{font-size:.98rem}
+ .jp-board a{grid-template-columns:1fr auto;grid-template-areas:"r t" "b t";row-gap:2px}
+ .jp-board .f.fr{grid-area:r;white-space:normal}.jp-board .f.fr:after{content:" → " attr(data-to);color:#F7F1DC}
+ .jp-board .f.to{display:none}.jp-board .f.by{grid-area:b;font-size:.74rem;color:#8D93A5}.jp-board .f.t{grid-area:t;font-size:1rem}.jp-board .go{display:none}
+ .jp-board-h .wide{display:none}
+ .jp-pass-code{font-size:2.2rem}.jp-pass-stub{width:104px;padding-left:14px}.jp-stamp{right:114px}
+}
+@media (prefers-reduced-motion:reduce){.jp-board .f{transition:none}}
+"""
+
+def _face_av():
+    return packy_face()
+
+def hero_html():
+    rows = "".join(
+        '<li><a href="/%s-pocket?src=hub_japan" data-board="%s" aria-label="%s to %s by %s, %s. Open the Pocket Guide">'
+        '<span class="f fr" data-to="%s" data-v="%s">%s</span><span class="f to" data-v="%s">%s</span><span class="f by" data-v="%s">%s</span>'
+        '<span class="f t" data-v="%s">%s</span><span class="go" aria-hidden="true">›</span></a></li>'
+        % (pk, pk, fr.title(), to.title(), by.title(), t.replace("~", "about ").replace("MIN", "minutes").replace("2H30", "2 hours 30"),
+           to, fr, fr, to, to, by, by, t, t)
+        for fr, to, by, t, pk, src in BOARD)
+    return ("""<section class="jp-hero" aria-labelledby="jpHeroT">
+<div class="jp-hero-in">
+<span class="jp-hero-kick">🇯🇵 ようこそ · Yōkoso</span>
+<h1 id="jpHeroT">Welcome to <em>Japan</em></h1>
+<p class="jp-hero-lead">Every PackSmart guide for Japan in one place, from the arrivals gate to the platform. Facts come from official sources, with the date we checked them.</p>
+<button type="button" class="jp-hello" id="jpHello"><span class="av" aria-hidden="true">""" + _face_av() + """</span><span class="bub"><b>Konnichiwa!</b> I'm Packy 👋 Where are you landing? Ask me anything.</span></button>
+<div class="jp-live" aria-label="Japan right now"><span id="jpClock">🕗 Japan time</span><span id="jpWx" hidden></span><span id="jpSeason"></span></div>
+<div class="jp-board" role="region" aria-label="Arrivals board: fastest trains from the airports">
+<div class="jp-board-h"><span>ARRIVALS · 到着</span><i>Fastest trains<span class="wide"> · tap for the Pocket Guide</span></i></div>
+<ol>""" + rows + """</ol>
+<p class="jp-board-note">Journey times from Keisei, Keikyu (from Terminal 3), JNTO and Kyoto City, checked 24 November 2026. Times change, so check before you travel.</p>
+</div>
+</div>
+<div class="jp-hero-credit">Photo: PAKUTASO. Illustrative image of the Fushimi Inari shrine in Kyoto.</div>
+</section>""")
+
+def passes_html():
+    cards = "".join(
+        '<article class="jp-pass"><div class="jp-pass-main"><div class="jp-pass-top"><span>Arriving at</span></div>'
+        '<div class="jp-pass-code">%s<small>✈</small></div><div class="jp-pass-name">%s</div><div class="jp-pass-serves">For %s</div>'
+        '<p class="jp-pass-line">%s</p><button type="button" class="jp-pass-ask" data-q="%s">💬 Ask Packy about %s</button></div>'
+        '<span class="jp-stamp" aria-hidden="true">確認<br>CHECKED</span>'
+        '<div class="jp-pass-stub"><small>GATE</small><a href="/%s-pocket?src=hub_japan" data-pass="%s">📱 Pocket Guide</a><a class="g" href="/blog/%s">Airport guide</a></div></article>'
+        % (code, name, serves, line, q, name.replace(" Airport", ""), pk, pk, slug)
+        for code, name, serves, line, pk, slug, q in PASSES)
+    return ("""<section aria-labelledby="jpPassT"><div class="jp-pass-h"><h2 id="jpPassT">Where are you landing?</h2><p>Pick your airport: the free Pocket Guide works offline at the gate, and Packy can answer the rest.</p></div>
+<div class="jp-passes">""" + cards + """</div></section>""")
+
+HERO_JS = """<script>
+(function(){
+function track(s,x){try{if(window.gtag)gtag('event','hub_japan',{event_category:'engagement',status:s,item:x||'',page_path:location.pathname});}catch(e){}}
+var still=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+// Japan time, every 30 seconds
+var ck=document.getElementById('jpClock');
+function tick(){try{ck.textContent='🕗 '+new Date().toLocaleTimeString('en-GB',{timeZone:'Asia/Tokyo',hour:'2-digit',minute:'2-digit'})+' in Japan';}catch(e){}}
+tick();setInterval(tick,30000);
+// the season, from JNTO's weather and season pages (docs/research/japan-basics-sources.md, checked 24 Nov 2026)
+var S=['❄️ Winter: powder snow in Hokkaido','❄️ Winter: powder snow in Hokkaido','🌸 Cherry blossoms move north, March to May','🌸 Cherry blossom season, moving north','🌸 Late blossoms up north; rainy season from May to June','☔ Rainy season in much of Japan','☀️ Hot and humid summer; peak travel to August','☀️ Hot summer; typhoons possible in August and September','🌀 Typhoons possible: check the forecast','🍁 Autumn leaves, from Hokkaido south','🍁 Autumn leaves, from Hokkaido south','❄️ Snow season up north; New Year closures late Dec'];
+var m=+new Date().toLocaleString('en-US',{timeZone:'Asia/Tokyo',month:'numeric'});document.getElementById('jpSeason').textContent=S[(m||1)-1];
+// weather in Tokyo and Sapporo (/api/weather), kept for 30 minutes in this visit
+var wx=document.getElementById('jpWx');
+function showWx(d){if(d&&d.t!=null&&d.s!=null){wx.textContent='🌡️ Tokyo '+d.t+'° · Sapporo '+d.s+'°';wx.hidden=false;}}
+var c=null;try{c=JSON.parse(sessionStorage.getItem('jp_wx')||'null');}catch(e){}
+if(c&&Date.now()-c.at<1800000)showWx(c);else{
+ var g=function(city){return fetch('/api/weather?city='+city).then(function(r){return r.json();}).then(function(j){return j&&j.success?Math.round(j.weather.temp):null;}).catch(function(){return null;});};
+ Promise.all([g('Tokyo,JP'),g('Sapporo,JP')]).then(function(v){var d={t:v[0],s:v[1],at:Date.now()};showWx(d);try{sessionStorage.setItem('jp_wx',JSON.stringify(d));}catch(e){}});
+}
+// the board flips into place, letter by letter (not with reduced motion)
+if(!still){var A='ABCDEFGHIJKLMNOPRSTUVWXYZ0123456789';[].forEach.call(document.querySelectorAll('.jp-board .f'),function(el,i){
+  var v=el.getAttribute('data-v'),n=0,steps=8+(i%5)*2;
+  var id=setInterval(function(){n++;if(n>=steps){el.textContent=v;clearInterval(id);return;}
+    el.textContent=v.split('').map(function(ch,k){return /[A-Z0-9]/.test(ch)&&k>=n-3?A[(Math.random()*A.length)|0]:ch;}).join('');},55);});}
+// Packy: the hello bubble and "Ask Packy about ..." on each boarding pass
+function packy(q){if(window.Packy){if(q)window.Packy.ask(q);else window.Packy.open();}else{var a=document.getElementById('ask');if(a)a.scrollIntoView({behavior:'smooth'});}}
+document.getElementById('jpHello').addEventListener('click',function(){track('hero_packy');packy('');});
+[].forEach.call(document.querySelectorAll('.jp-pass-ask'),function(b){b.addEventListener('click',function(){track('pass_packy',b.getAttribute('data-q'));packy(b.getAttribute('data-q'));});});
+[].forEach.call(document.querySelectorAll('[data-board]'),function(a){a.addEventListener('click',function(){track('board_tap',a.getAttribute('data-board'));});});
+[].forEach.call(document.querySelectorAll('[data-pass]'),function(a){a.addEventListener('click',function(){track('pass_tap',a.getAttribute('data-pass'));});});
+})();
+</script>"""
+
+
 body = """<div class="page-wrapper">
-    <div class="page-header">
-        <h1>Welcome to <em style="font-family:var(--font-display);font-style:italic;">Japan</em></h1>
-        <p>Every PackSmart guide for Japan in one place. Plan the trip, then save the free Pocket Guides for the airports and stations you will use: they work offline. Station and airport facts come from official sources, with the date we checked them.</p>
-    </div>
-    """ + OTHER + """
+    """ + hero_html() + """
+    """ + passes_html() + """
+    """ + HERO_JS + """
     """ + ASK + """
+    """ + OTHER + """
 """ + "    " + pocket + """
     <div class="filter-wrap te-filter" id="teFilter">
         <div class="filter-label" id="teFilterLabel">What do you need?</div>
@@ -265,7 +410,7 @@ body = """<div class="page-wrapper">
 </div>
 
 """
-page = head + nav + body + foot
+page = head + '<style id="jp-hero-css">' + HERO_CSS + '</style>\n' + nav + body + foot
 for need in ('id="plan"', 'id="arriving"', 'id="stations"', "hub_japan", "</html>"):
     if need not in page:
         die("built page lacks " + need)
