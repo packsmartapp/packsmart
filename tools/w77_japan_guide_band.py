@@ -120,8 +120,8 @@ CSS = """<style id="jp-guide-css">
  html{background:#FDF0F2 """ + WAVE + """ fixed}body{background:transparent!important}
  .jp-bg{display:block;position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
  .jp-bg-l,.jp-bg-r{position:absolute;opacity:.95}
- .jp-bg-l{left:-10px;top:60px;width:min(420px,calc((100vw - 860px)/2))}
- .jp-bg-r{right:-10px;bottom:-60px;transform:scaleX(-1);width:min(360px,calc((100vw - 860px)/2))}
+ .jp-bg-l{left:auto;right:calc(50% + 424px);top:70px;width:min(680px,calc(50vw - 424px))}
+ .jp-bg-r{right:auto;left:calc(50% + 424px);bottom:-40px;transform:scaleX(-1);width:min(680px,calc(50vw - 424px))}
  .jp-bg svg{width:100%;height:auto;display:block}
  .jp-petal{position:absolute;top:-30px;width:16px;height:16px;animation:jpFall linear infinite;opacity:.85}.jp-petal svg{width:100%;height:100%;display:block}
  .content{background:#fff;border-radius:28px;margin-top:28px!important;margin-bottom:28px;box-shadow:0 14px 40px rgba(15,15,35,.07)}
