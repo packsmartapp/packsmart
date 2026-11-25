@@ -252,6 +252,20 @@ CSS_RAW = """<style id="jp-guide-css">
  [data-ps-placement^="discovercars-"]>p:nth-of-type(2){grid-column:1/-1;grid-row:5}
  [data-ps-placement^="discovercars-"]>p:nth-of-type(3){grid-column:1/-1;grid-row:6}
  [data-ps-placement^="discovercars-"]>p:nth-of-type(4){grid-column:1/-1;grid-row:7;margin:6px 0 0!important}}
+/* the "Part of our Japan hub" callout beside the Published line (owner, 25 Nov) */
+.jg-meta{display:flex;align-items:center;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;margin:0 0 .6rem}
+.jg-meta>p{margin:0!important}
+.jg-hubp{display:inline-flex;align-items:center;gap:10px;margin-left:auto;background:#FDF0F2 """ + WAVE + """;border:1px solid #F3D3DA;border-radius:14px;padding:7px 12px 7px 8px;text-decoration:none!important;color:#0f0f23!important;box-shadow:0 4px 14px rgba(233,69,96,.08);transition:transform .15s,box-shadow .15s}
+.jg-hubp:hover,.jg-hubp:focus-visible{transform:translateY(-1px);box-shadow:0 8px 20px rgba(233,69,96,.16)}
+.jg-hubp-i{flex:none;width:44px;height:36px;background:linear-gradient(180deg,#fff7f0,#fde6ea);border-radius:9px;overflow:hidden}
+.jg-hubp-i svg{display:block;width:100%;height:100%}
+.jg-hubp-t{display:flex;flex-direction:column;line-height:1.25}
+.jg-hubp-t b{font-size:.9rem;font-weight:700;color:#0f0f23}
+.jg-hubp-t em{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;color:#E94560;font-size:1.15em}
+.jg-hubp-t small{font-size:.74rem;color:#5a6378}
+.jg-hubp-a{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid #00C9A7;display:grid;place-items:center;font-weight:700;color:#0a8f78;transition:background .15s,color .15s}
+.jg-hubp:hover .jg-hubp-a,.jg-hubp:focus-visible .jg-hubp-a{background:#00C9A7;color:#fff}
+@media (max-width:600px){.jg-hubp{width:100%;box-sizing:border-box}.jg-hubp-t{flex:1}}
 /* wide screens: the Shinkansen box in one band (picture | route and text | button), so the button sits up top */
 @media (min-width:1500px){[data-ps-placement^="jw-shinkansen"]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 280px;column-gap:28px;align-items:start}
  [data-ps-placement^="jw-shinkansen"]>strong{grid-column:1/-1}
@@ -302,6 +316,19 @@ def last_checked(page):
     return max(set(ds), key=lambda d: (ds.count(d), d)) if ds else None
 
 
+# A small "Japan hub" callout to the right of the guide's "Published · Last updated · Facts checked" line (owner,
+# 25 Nov): the line and the callout share one row on wide screens; on phones the callout sits under the line.
+META = re.compile(r'(<p style="font-size:0\.85rem;color:#666;margin:0 0 0\.6rem;">Published [^<]*</p>)')
+META_OLD = re.compile(r'<!-- jg-meta --><div class="jg-meta">(.*?)<!-- jg-hubp -->.*?<!-- /jg-hubp --></div><!-- /jg-meta -->', re.S)
+HUBP = ('<!-- jg-hubp --><a class="jg-hubp" href="/japan?src=jp_top" '
+        "onclick=\"try{if(window.gtag)gtag('event','hub_card',{event_category:'navigation',status:'jp_top',page_path:location.pathname});}catch(e){}\">"
+        '<span class="jg-hubp-i" aria-hidden="true"><svg viewBox="0 0 44 36"><circle cx="31" cy="11" r="6" fill="#E94560"/>'
+        '<path d="M2 32 16 15q6-6 12 0l14 17z" fill="#4f6aa6"/><path d="M16 15q6-6 12 0l-2.5 3-2-2-2 2.5-1.5-2-2 2-2-1.5z" fill="#fff"/>'
+        '<path d="M0 32h44v4H0z" fill="#9fd8cf"/></svg></span>'
+        '<span class="jg-hubp-t"><b>Part of our <em>Japan</em> hub</b><small>Airports, stations, offline Pocket Guides and Packy</small></span>'
+        '<span class="jg-hubp-a" aria-hidden="true">→</span></a><!-- /jg-hubp -->')
+
+
 def band(ja, en, kind, checked):
     k, label, sec, href = KIND[kind]
     stamp = ('<span class="jp-namesign-st" title="Checked against official sources">確認<br>%s</span>'
@@ -349,6 +376,8 @@ for slug, (ja, en, kind) in GUIDES.items():
     new = new[:bm.end()] + SAKURA_BG + new[bm.end():]
     new = ASK.sub("", new)
     new = new.replace(TIP_OLD, TIP_NEW)
+    new = META_OLD.sub(r"\1", new)
+    new = META.sub(lambda m: '<!-- jg-meta --><div class="jg-meta">' + m.group(1) + HUBP + '</div><!-- /jg-meta -->', new, count=1)
     tm = TOPIC.search(new)
     if tm:
         bar = new.find('\n<div id="psnBar"')

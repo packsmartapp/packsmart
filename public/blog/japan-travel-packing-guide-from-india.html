@@ -695,6 +695,20 @@
  [data-ps-placement^="discovercars-"]>p:nth-of-type(2){grid-column:1/-1;grid-row:5}
  [data-ps-placement^="discovercars-"]>p:nth-of-type(3){grid-column:1/-1;grid-row:6}
  [data-ps-placement^="discovercars-"]>p:nth-of-type(4){grid-column:1/-1;grid-row:7;margin:6px 0 0!important}}
+/* the "Part of our Japan hub" callout beside the Published line (owner, 25 Nov) */
+.jg-meta{display:flex;align-items:center;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;margin:0 0 .6rem}
+.jg-meta>p{margin:0!important}
+.jg-hubp{display:inline-flex;align-items:center;gap:10px;margin-left:auto;background:#FDF0F2 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='20'%3E%3Cg fill='none' stroke='%2300C9A7' stroke-opacity='.18'%3E%3Cpath d='M0 20a10 10 0 0 1 20 0M5 20a5 5 0 0 1 10 0M20 20a10 10 0 0 1 20 0M25 20a5 5 0 0 1 10 0M-10 10a10 10 0 0 1 20 0M10 10a10 10 0 0 1 20 0M30 10a10 10 0 0 1 20 0'/%3E%3C/g%3E%3C/svg%3E");border:1px solid #F3D3DA;border-radius:14px;padding:7px 12px 7px 8px;text-decoration:none!important;color:#0f0f23!important;box-shadow:0 4px 14px rgba(233,69,96,.08);transition:transform .15s,box-shadow .15s}
+.jg-hubp:hover,.jg-hubp:focus-visible{transform:translateY(-1px);box-shadow:0 8px 20px rgba(233,69,96,.16)}
+.jg-hubp-i{flex:none;width:44px;height:36px;background:linear-gradient(180deg,#fff7f0,#fde6ea);border-radius:9px;overflow:hidden}
+.jg-hubp-i svg{display:block;width:100%;height:100%}
+.jg-hubp-t{display:flex;flex-direction:column;line-height:1.25}
+.jg-hubp-t b{font-size:.9rem;font-weight:700;color:#0f0f23}
+.jg-hubp-t em{font-family:'Instrument Serif',Georgia,serif;font-style:italic;font-weight:400;color:#E94560;font-size:1.15em}
+.jg-hubp-t small{font-size:.74rem;color:#5a6378}
+.jg-hubp-a{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid #00C9A7;display:grid;place-items:center;font-weight:700;color:#0a8f78;transition:background .15s,color .15s}
+.jg-hubp:hover .jg-hubp-a,.jg-hubp:focus-visible .jg-hubp-a{background:#00C9A7;color:#fff}
+@media (max-width:600px){.jg-hubp{width:100%;box-sizing:border-box}.jg-hubp-t{flex:1}}
 /* wide screens: the Shinkansen box in one band (picture | route and text | button), so the button sits up top */
 @media (min-width:1500px){[data-ps-placement^="jw-shinkansen"]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 280px;column-gap:28px;align-items:start}
  [data-ps-placement^="jw-shinkansen"]>strong{grid-column:1/-1}
