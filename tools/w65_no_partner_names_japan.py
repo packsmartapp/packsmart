@@ -60,7 +60,8 @@ RULES = [
     ("Klook lists <a ", "You can book <a ", False),
     # JR Pass link on the Japan guide (also gains its missing "(partner link)" label)
     (">book a JR Pass on Klook</a> before you go,", ">book a JR Pass online</a> (partner link) before you go,", False),
-    ("through an agent such as Klook (", "through an agent (", False),
+    # (retired 25 Nov 2026: "through an agent such as Klook (" was only in the Japan guide's JR Pass "Before you travel"
+    # line, which was rewritten from the official Japan Rail Pass site and names no partner)
     # luggage storage callouts
     (r"(Store your bags in (?:Tokyo|Kyoto|Osaka)) with Radical Storage</a>", r"\1</a> (partner link)", True),
     # hotel callout: no partner name and no claim of our own ("great rates")
