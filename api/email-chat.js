@@ -7,6 +7,7 @@
 // and only Packy's own conversation goes out (so it cannot be used to send arbitrary mail). No email address is written
 // to the logs.
 import nodemailer from 'nodemailer';
+import { deflateRawSync } from 'zlib';
 
 const ORIGIN_OK = /^https:\/\/(www\.)?packsmartapp\.com$|^https:\/\/packsmart-[a-z0-9-]+-packsmartapps-projects\.vercel\.app$|^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 const PER_IP = 5, WINDOW_MS = 60 * 60 * 1000, DAILY_CAP = 100;
@@ -35,6 +36,19 @@ function md(t) {   // the same small Markdown Packy uses: **bold**, [links](url)
     else { if (list) { out += '</ul>'; list = false; } if (l.trim()) out += '<p style="margin:6px 0;">' + l + '</p>'; }
   }
   return out + (list ? '</ul>' : '');
+}
+// "Continue this chat with Packy": the chat travels in the link itself (after the #, so it never reaches a server and is
+// not stored anywhere). packy.js reads #packy=..., restores the conversation and opens Packy. The oldest questions are
+// dropped if the link would be very long, so it works in every mail app.
+function continueLink(items, next, page, country) {
+  const base = SITE + (/^\/[a-z0-9-]+(\/[a-z0-9-]+)*$/i.test(page) ? page : '/japan') + '?src=packy_email#packy=';
+  let list = items.slice();
+  while (list.length) {
+    const data = deflateRawSync(Buffer.from(JSON.stringify({ v: 1, c: country, i: list.map(x => [x.q, x.a]), n: next }), 'utf8')).toString('base64url');
+    if (data.length <= 8000 || list.length === 1) return base + data;
+    list = list.slice(1);
+  }
+  return SITE + '/japan?src=packy_email';
 }
 
 export default async function handler(req, res) {
@@ -80,6 +94,8 @@ export default async function handler(req, res) {
   const tips = b.tips === true;
   const trip = /^\d{4}-\d{2}$/.test(String(b.trip || '')) ? String(b.trip) : '';
   const page = String(b.page || '').replace(/[^a-z0-9\-\/]/gi, '').slice(0, 80);
+  const next = (Array.isArray(b.next) ? b.next : []).slice(0, 3).map(x => String(x || '').slice(0, 120)).filter(Boolean);
+  const again = b.again === true;   // the traveller sent an updated chat to the address Packy remembered
 
   const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
   if (limited(ip)) return res.status(429).json({ ok: false, error: 'Too many emails for now. Please try again later.' });
@@ -96,6 +112,7 @@ export default async function handler(req, res) {
     '<h1 style="font-size:20px;color:#0f0f23;margin:14px 0 6px;">Your Packy chat about ' + name + '</h1>' +
     '<p style="color:#5a6378;font-size:14px;margin:0 0 18px;">Here is what you asked Packy, with the official sources. Prices and times change, so check the source before you travel.</p>' +
     chat +
+    '<p style="text-align:center;margin:22px 0;"><a href="' + esc(continueLink(items, next, page, country)) + '" style="display:inline-block;background:#E94560;color:#ffffff;text-decoration:none;font-weight:bold;font-size:16px;padding:13px 22px;border-radius:24px;">\uD83D\uDCAC Continue this chat with Packy</a></p>' +
     '<div style="background:#e6faf5;border-radius:12px;padding:14px 16px;margin:20px 0;font-size:14px;color:#0f0f23;">' +
     '<b>Save the free Pocket Guides</b> for the airports and stations you will use: they work offline. ' +
     '<a href="' + SITE + '/japan?src=packy_email" style="color:#0a8f78;font-weight:bold;">All our Japan guides</a></div>' +
@@ -103,19 +120,19 @@ export default async function handler(req, res) {
     (tips ? ' You also asked for trip tips for ' + name + '; reply "stop" at any time and we will not email you again.' : ' We will not email you again unless you ask.') +
     ' <a href="' + SITE + '/privacy-policy" style="color:#8a93a6;">Privacy</a></p></div></body></html>';
   const text = 'Your Packy chat about ' + name + '\n\n' + items.map(x => 'Q: ' + x.q + '\n' + x.a).join('\n\n') +
-    '\n\nPrices and times change, so check the source before you travel.\n' + SITE + '/japan';
+    '\n\nPrices and times change, so check the source before you travel.\nContinue this chat with Packy: ' + continueLink(items, next, page, country);
 
   try {
     const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
-    await t.sendMail({ from: '"Packy from PackSmart" <hello@packsmartapp.com>', replyTo: 'hello@packsmartapp.com', to: email, subject: 'Your Packy chat about ' + name, html, text });
+    await t.sendMail({ from: '"Packy from PackSmart" <hello@packsmartapp.com>', replyTo: 'hello@packsmartapp.com', to: email, subject: (again ? 'Your updated Packy chat about ' : 'Your Packy chat about ') + name, html, text });
     await t.sendMail({
       from: '"Packy signups" <hello@packsmartapp.com>', to: 'hello@packsmartapp.com',
-      subject: '[Packy signup] ' + (tips ? 'TRIP TIPS: YES' : 'chat only') + ' | ' + name + (trip ? ' | trip ' + trip : ''),
+      subject: '[Packy signup] ' + (tips ? 'TRIP TIPS: YES' : again ? 'updated chat re-sent' : 'chat only') + ' | ' + name + (trip ? ' | trip ' + trip : ''),
       text: 'Email: ' + email + '\nTrip tips (marketing consent): ' + (tips ? 'YES (ticked the box)' : 'no') + '\nTrip month: ' + (trip || 'not given') +
         '\nCountry: ' + name + '\nPage: ' + (page || '-') + '\nTime (UTC): ' + new Date().toISOString() + '\nQuestions asked: ' + items.length +
         '\n\nImport to the email marketing service later. Only "YES" signups may get trip tips.',
     });
-    console.log(JSON.stringify({ ev: 'email_chat', country, tips, trip: !!trip, items: items.length, ok: true }));
+    console.log(JSON.stringify({ ev: 'email_chat', country, tips, again, trip: !!trip, items: items.length, ok: true }));
     return res.status(200).json({ ok: true });
   } catch (e) {
     console.log(JSON.stringify({ ev: 'email_chat', country, ok: false }));

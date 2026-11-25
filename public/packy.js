@@ -84,6 +84,7 @@
     '.pk-chips .pk-lbl{width:100%;font-size:11.5px;font-weight:800;letter-spacing:.05em;text-transform:uppercase;color:#5a6378;margin:2px 0 0}' +
     '.pk-chips button{display:inline-flex;align-items:center;gap:6px;font:inherit;font-size:13.5px;font-weight:600;text-align:left;background:#fff;color:#0f0f23;border:1.5px solid #BFEDE3;border-radius:999px;padding:7px 12px;cursor:pointer;animation:pkIn .3s ease both;transition:border-color .15s,transform .15s}' +
     '.pk-chips .pk-mailchip{border-color:#F7B9C6;background:#FFF5F7}' +
+    '.pk-sent b{overflow-wrap:anywhere}.pk-other{background:none;border:0;padding:0;color:#0a8f78;font:inherit;font-weight:700;text-decoration:underline;cursor:pointer}' +
     '.pk-chips button:hover{border-color:#00C9A7;transform:translateY(-1px)}' +
     '.pk-form{display:flex;gap:8px;align-items:center;padding:10px 12px 8px;background:#fff;border-top:1px solid #E6EEF0}' +
     '.pk-form input{flex:1;min-width:0;font:inherit;font-size:16px;border:1.5px solid #E3E8EC;background:#F7F9FA;border-radius:999px;padding:11px 16px;outline:none}.pk-form input:focus{border-color:#00C9A7;background:#fff}' +
@@ -158,14 +159,19 @@
     var old = body.querySelector('.pk-chips'); if (old) old.remove();
     if (!list || !list.length) return;
     var box = el('div', 'pk-chips'); box.appendChild(el('p', 'pk-lbl', label));
-    var mailChip = history.length >= 1 && !sentOnce() && !body.querySelector('.pk-mail');
+    var mailChip = history.length >= 2 && history.length > sentN() && !body.querySelector('form.pk-mail');
+    var known = savedEmail();
     list.forEach(function (q, i) {
       var b = el('button', '', '<span aria-hidden="true">' + icon(q) + '</span>' + esc(q)); b.type = 'button'; b.style.animationDelay = (i * 0.07) + 's';
       b.addEventListener('click', function () { track('chip'); ask(q); }); box.appendChild(b);
     });
     if (mailChip) {
-      var m = el('button', 'pk-mailchip', '<span aria-hidden="true">\uD83D\uDCE9</span>Email me this chat'); m.type = 'button'; m.style.animationDelay = (list.length * 0.07) + 's';
-      m.addEventListener('click', function () { track('email_chip'); m.remove(); var c = emailCard(); if (c) setTimeout(function () { c.scrollIntoView({ block: 'center' }); var i = c.querySelector('input'); if (i) i.focus({ preventScroll: true }); }, 60); });
+      var m = el('button', 'pk-mailchip', '<span aria-hidden="true">\uD83D\uDCE9</span>' + (known ? (sentN() ? 'Email the updated chat to ' : 'Email this chat to ') + esc(mask(known)) : 'Email me this chat')); m.type = 'button'; m.style.animationDelay = (list.length * 0.07) + 's';
+      m.addEventListener('click', function () {
+        track(known ? 'email_chip_resend' : 'email_chip'); m.remove();
+        if (known) return resend(known);
+        var c = emailCard(); if (c) setTimeout(function () { c.scrollIntoView({ block: 'center' }); var i = c.querySelector('input'); if (i) i.focus({ preventScroll: true }); }, 60);
+      });
       box.appendChild(m);
     }
     body.appendChild(box);
@@ -185,7 +191,33 @@
     'haneda-airport-guide': ['haneda', 'Haneda Airport'], 'kansai-airport-guide': ['kix', 'Kansai Airport'] };
   var TOPIC_POCKET = { sapporo: 'sapporo-station-guide', 'new-chitose': 'new-chitose-airport-guide', ueno: 'ueno-station-guide', shinjuku: 'shinjuku-station-guide',
     tokyo: 'tokyo-station-guide', kyoto: 'kyoto-station-guide', osaka: 'osaka-station-guide' };
-  function sentOnce() { try { return sessionStorage.getItem('packy_sent') === '1'; } catch (e) { return false; } }
+  // email and chat stay in step: how many answers the last email held (this visit), and the address, remembered on this
+  // device only (localStorage), so an updated chat is one tap away. "Use another email" forgets it.
+  function sentN() { try { return +sessionStorage.getItem('packy_sent_n') || 0; } catch (e) { return 0; } }
+  function markSent() { try { sessionStorage.setItem('packy_sent_n', String(history.length)); } catch (e) {} }
+  function savedEmail() { try { var v = localStorage.getItem('packy_email') || ''; return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(v) ? v : ''; } catch (e) { return ''; } }
+  function keepEmail(v) { try { if (v) localStorage.setItem('packy_email', v); else localStorage.removeItem('packy_email'); } catch (e) {} }
+  function mask(v) { var p = v.split('@'); return p[0].charAt(0) + '…@' + p[1]; }
+  function postMail(body2) {
+    return fetch('/api/email-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body2) })
+      .then(function (x) { return x.json().then(function (d) { return [x.ok, d]; }); });
+  }
+  function mailBody(em, again) {
+    var last = history[history.length - 1];
+    return { email: em, tips: false, again: !!again, country: country, page: location.pathname, next: (last && last.next) || [], items: history.map(function (h) { return { q: h.q, a: h.a }; }) };
+  }
+  function resend(em) {
+    var r = botRow('<div class="pk-card pk-sent"><b>📩 Sending the updated chat to ' + esc(mask(em)) + '…</b></div>'); r.querySelector('.pk-msg').style.background = 'transparent';
+    var ch = body.querySelector('.pk-chips'); if (ch) body.insertBefore(r, ch); scrollToQ(r);
+    var c = r.querySelector('.pk-sent');
+    postMail(mailBody(em, true)).then(function (x) {
+      if (!x[0] || !x[1].ok) { c.innerHTML = '<b>Sorry, that did not send</b><p>' + esc((x[1] && x[1].error) || 'Please try again.') + '</p>'; track('email_error'); chips(lastNext(), 'Ask next'); return; }
+      markSent(); track('email_resent');
+      c.innerHTML = '<b>✅ Updated chat sent to ' + esc(mask(em)) + '</b><p>It has every question so far, and a button to carry on here. <button type="button" class="pk-other">Use another email</button></p>';
+      c.querySelector('.pk-other').addEventListener('click', function () { keepEmail(''); track('email_other'); c.querySelector('p').remove(); var k = emailCard(true); if (k) { var i = k.querySelector('input'); if (i) i.focus(); } });
+    }).catch(function () { c.innerHTML = '<b>Packy needs an internet connection to send the email.</b>'; chips(lastNext(), 'Ask next'); });
+  }
+  function lastNext() { var l = history[history.length - 1]; return l && l.next && l.next.length ? l.next : STARTERS; }
   function once(k) { try { if (sessionStorage.getItem('packy_' + k)) return false; sessionStorage.setItem('packy_' + k, '1'); } catch (e) {} return true; }
   function pocketCard(guide) {
     var slug = guide && guide.url ? guide.url.split('/').pop().split('#')[0] : '';
@@ -196,26 +228,23 @@
     botRow(html).querySelector('.pk-msg').style.background = 'transparent';
     track('pocket_card');
   }
-  function emailCard() {
+  function emailCard(force) {
     if (!history.length) { botRow('Ask me something first, then I can email you the whole chat.'); scrollDown(); return; }
-    var old = body.querySelector('.pk-mail'); if (old) { var i0 = old.querySelector('input'); if (i0) i0.focus(); old.scrollIntoView({ block: 'center' }); return; }
+    var old = body.querySelector('form.pk-mail'); if (old) { var i0 = old.querySelector('input'); if (i0) i0.focus(); old.scrollIntoView({ block: 'center' }); return; }
     var r = botRow('<form class="pk-card pk-mail" novalidate><b>📩 Get this chat by email</b>' +
       '<div class="pk-quick"><input type="email" name="email" autocomplete="email" inputmode="email" required placeholder="Your email" aria-label="Your email"><button type="submit">Send</button></div>' +
       '<span class="pk-fine">Just this chat, with the official links. <a href="/privacy-policy">Privacy</a></span></form>');
     r.querySelector('.pk-msg').style.background = 'transparent';
     var card = r.querySelector('form'), btn = card.querySelector('button'), inp = card.querySelector('input');
-    function post(body2) {
-      return fetch('/api/email-chat', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body2) })
-        .then(function (x) { return x.json().then(function (d) { return [x.ok, d]; }); });
-    }
+    var post = postMail;
     card.addEventListener('submit', function (e) {
       e.preventDefault();
       var em = inp.value.trim(); if (!/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(em)) { inp.focus(); inp.style.borderColor = '#E94560'; return; }
       btn.disabled = true; btn.textContent = '…';
-      post({ email: em, tips: false, country: country, page: location.pathname, items: history.map(function (h) { return { q: h.q, a: h.a }; }) })
+      post(mailBody(em, !!force))
         .then(function (x) {
           if (!x[0] || !x[1].ok) { btn.disabled = false; btn.textContent = 'Send'; botRow(esc((x[1] && x[1].error) || 'Sorry, that did not work.'), 'pk-err'); track('email_error'); return; }
-          track('email_sent'); try { sessionStorage.setItem('packy_sent', '1'); } catch (z) {}
+          track('email_sent'); markSent(); keepEmail(em);
           var mc = body.querySelector('.pk-mailchip'); if (mc) mc.remove();
           // step 2: trip tips, a clear separate yes
           card.outerHTML = '<div class="pk-card pk-mail"><b>✅ Sent to ' + esc(em) + '</b><p>Want trip tips for ' + esc(C.name) + ' before you go?</p>' +
@@ -258,12 +287,12 @@
         var ok = x[0], d = x[1]; wait.remove();
         if (!ok || !d.ok) { botRow(esc((d && d.error) || 'Sorry, something went wrong. Please try again.'), 'pk-err'); chips(STARTERS, 'Or try one of these'); track('error'); return; }
         botRow(answerHtml(d.answer, d.guide, d.offer));
-        var n = history.length + 1;
-        if (n === 2 && once('pocket')) pocketCard(d.guide);
-        if (n === 3 && once('email')) emailCard();
         var next = (d.next && d.next.length) ? d.next : STARTERS.filter(function (s) { return s !== q; });
-        chips(next, 'Ask next');
         history.push({ q: q, a: d.answer, guide: d.guide, offer: d.offer || null, next: d.next || [] }); save(history); track('answered');
+        var n = history.length;
+        if (n === 2 && once('pocket')) pocketCard(d.guide);
+        if (n === 3 && !savedEmail() && once('email')) emailCard();
+        chips(next, 'Ask next');
       })
       .catch(function () { wait.remove(); botRow('Packy needs an internet connection 📶 Please try again when you are online.', 'pk-err'); track('offline'); })
       .then(function () { busy = false; send.disabled = false; scrollToQ(mine); });
@@ -312,6 +341,28 @@
     try { sessionStorage.setItem(HINT, '1'); } catch (e) {}
     setTimeout(hideTip, 7000);
   }, 5000);
+
+  // "Continue this chat with Packy" from the email: the chat is in the link after #packy= (compressed), never on a server
+  function restore() {
+    var m = /[#&]packy=([A-Za-z0-9_-]{8,12000})/.exec(location.hash); if (!m) return;
+    try { window.history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
+    function welcome(t) { open(false); var ch = body.querySelector('.pk-chips'); var r = botRow(t); if (ch) body.insertBefore(r, ch); setTimeout(function () { body.scrollTop = r.offsetTop - 10; }, 150); track('email_return'); }
+    if (!window.DecompressionStream || !window.Response) return welcome('👋 Welcome back! Your chat is in your email. Ask me your next question here.');
+    var b64 = m[1].replace(/-/g, '+').replace(/_/g, '/'); while (b64.length % 4) b64 += '=';
+    var bin = atob(b64), bytes = new Uint8Array(bin.length); for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    new Response(new Blob([bytes]).stream().pipeThrough(new DecompressionStream('deflate-raw'))).text().then(function (t) {
+      var d = JSON.parse(t);
+      if (!d || d.c !== country || !Array.isArray(d.i)) throw 0;
+      var h = d.i.slice(-10).filter(function (x) { return Array.isArray(x) && typeof x[0] === 'string' && typeof x[1] === 'string'; })
+        .map(function (x) { return { q: x[0].slice(0, 300), a: x[1].slice(0, 4000), guide: null, offer: null, next: [] }; });
+      if (!h.length) throw 0;
+      h[h.length - 1].next = (Array.isArray(d.n) ? d.n : []).filter(function (x) { return typeof x === 'string'; }).slice(0, 3).map(function (x) { return x.slice(0, 120); });
+      history = h; save(history); markSent(); once('pocket'); once('email');
+      body.innerHTML = ''; started = false;
+      welcome('👋 Welcome back! Here is your chat from the email. Ask your next question below, and I can send you the updated chat.');
+    }).catch(function () { welcome('👋 Welcome back! I could not open the chat from that link, but it is all in your email. Ask me your next question here.'); });
+  }
+  restore();
 
   window.Packy = { open: function () { open(false); }, ask: ask };
 })();

@@ -327,6 +327,17 @@ if 'id="packy-email-privacy"' not in pv:
                     'We do not sell or share your email address. If we move this list to an email service, it will be used for the same purpose only.</p>\n\n' + a, 1)
     open(PRIV, "w", encoding="utf-8").write(pv)
     print("w73: privacy policy: Packy emails")
+# ---- privacy policy: the remembered address and the "continue" link (marker: id="packy-email-remember", 25 Nov 2026)
+if 'id="packy-email-remember"' not in pv:
+    a = 'it will be used for the same purpose only.</p>\n'
+    if pv.count(a) != 1:
+        die("privacy policy anchor for the remembered Packy email not found")
+    pv = pv.replace(a, a + '    <p id="packy-email-remember">So you can send an updated chat with one tap, Packy remembers the email address you used '
+                    'in your own browser on that device (not on our servers); tap "Use another email" to make it forget it. '
+                    'The "Continue this chat with Packy" button in the email carries your chat inside the link itself, '
+                    'so the conversation is not stored on our servers.</p>\n', 1)
+    open(PRIV, "w", encoding="utf-8").write(pv)
+    print("w73: privacy policy: remembered Packy email")
 
 if changed:
     open(OUT, "w", encoding="utf-8").write(page)
