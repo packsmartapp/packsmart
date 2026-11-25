@@ -156,6 +156,11 @@ CSS = """<style id="jp-guide-css">
  /* half width: the city search on its own row, From and To side by side under it (they overlapped) */
  .content .ps-pickups.ps-pickups form>div:nth-child(1){grid-column:1/-1!important}
  .content .ps-pickups.ps-pickups form>div:nth-child(2)>div:nth-child(1),.content .ps-pickups.ps-pickups form>div:nth-child(2)>div:nth-child(3){grid-column:span 12!important}}
+/* wide screens: the eSIM box as photo | heading, plans and note (the photo was a full-width poster) */
+@media (min-width:1200px){[data-ps-placement^="airalo-"]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:center}
+ [data-ps-placement^="airalo-"]>:where(*){grid-column:2}
+ [data-ps-placement^="airalo-"]>picture{grid-column:1;grid-row:1/6;display:block}[data-ps-placement^="airalo-"]>picture img{margin:0!important}
+ [data-ps-placement^="airalo-"]>style{display:none}}
 /* wide screens: the Shinkansen box in one band (picture | route and text | button), so the button sits up top */
 @media (min-width:1500px){[data-ps-placement^="jw-shinkansen"]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 280px;column-gap:28px;align-items:start}
  [data-ps-placement^="jw-shinkansen"]>strong{grid-column:1/-1}
