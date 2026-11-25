@@ -30,6 +30,15 @@ PAGES = {  # page: (country, topic, extra attributes)
     "blog/tokyo-station-guide.html": ("japan", "tokyo", ""),
     "blog/kyoto-station-guide.html": ("japan", "kyoto", ""),
     "blog/osaka-station-guide.html": ("japan", "osaka", ""),
+    # 25 Nov: the rest of the Japan pages (the owner found Packy missing on some): the three airports, the two city
+    # guides (their own city's topic) and the two general articles (the Japan-wide topic)
+    "blog/narita-airport-guide.html": ("japan", "narita", ""),
+    "blog/haneda-airport-guide.html": ("japan", "haneda", ""),
+    "blog/kansai-airport-guide.html": ("japan", "kansai", ""),
+    "blog/kyoto-travel-guide.html": ("japan", "kyoto", ""),
+    "blog/osaka-travel-guide.html": ("japan", "osaka", ""),
+    "blog/japan-travel-packing-guide-from-india.html": ("japan", "japan", ""),
+    "blog/japan-7-day-itinerary-budget.html": ("japan", "japan", ""),
 }
 
 import glob, re

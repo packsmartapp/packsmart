@@ -26,6 +26,9 @@
         tokyo: ['Where are the ATMs at Tokyo Station?', 'Which exit for Ginza from Tokyo Station?', 'How long is the Shinkansen from Tokyo to Kyoto?'],
         kyoto: ['Where are the ATMs at Kyoto Station?', 'How do I get from Kyoto to Osaka?', 'Where do the airport buses leave from at Kyoto Station?'],
         osaka: ['Where are the ATMs at Shin-Osaka Station?', 'How do I get from Osaka to Kyoto?', 'How long is the Shinkansen from Shin-Osaka to Hakata?'],
+        narita: ['How do I get from Narita Airport to Tokyo Station?', 'Skyliner or Narita Express: which is faster?', 'Is the Skyliner covered by the JR Pass?'],
+        haneda: ['How do I get from Haneda to Shinjuku?', 'Monorail or Keikyu from Haneda: which should I take?', 'How do I get from Haneda to Tokyo Station?'],
+        kansai: ['How do I get from Kansai Airport to Kyoto?', 'Haruka or Nankai to Osaka: which should I take?', 'Do I need cash in Japan?'],
         japan: ['How long is the Shinkansen from Tokyo to Osaka?', 'How do I top up a Suica card?', 'Do I need cash in Japan?']
       }
     }
