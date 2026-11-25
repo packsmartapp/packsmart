@@ -1,6 +1,6 @@
 # PackSmart: product spec (PRD)
 
-Status as of 21 Nov 2026. Source of truth for what the site does today and what is next. Statuses: **Built** (live), **In progress** (partly live or being checked), **Planned** (not started). Anything marked "owner decision" needs the owner's go-ahead before work starts.
+Status as of 25 Nov 2026. Source of truth for what the site does today and what is next. Statuses: **Built** (live), **In progress** (partly live or being checked), **Planned** (not started). Anything marked "owner decision" needs the owner's go-ahead before work starts.
 
 ## 1. Product
 
@@ -44,7 +44,9 @@ Status as of 21 Nov 2026. Source of truth for what the site does today and what 
 | F18 | Content freshness process | In progress |
 | F19 | Pricing page and paid plans | Removed 22 Nov (D43) |
 | F20 | More Pocket Guides (Japan extras, other countries) | Planned |
-| F21 | Email capture | Planned, owner decision |
+| F21 | Email capture (inside Packy only) | Built 25 Nov (D58) |
+| F22 | Japan hub `/japan` | Built 25 Nov |
+| F23 | Packy, the travel helper (Japan) | Built 25 Nov, beta |
 
 ## 3. Features
 
@@ -82,7 +84,7 @@ Status as of 21 Nov 2026. Source of truth for what the site does today and what 
 **Criteria:** widgets load; the page carries the affiliate disclosure; `book.packsmartapp.com` is not indexed (blocked in Search Console on purpose).
 
 ### F7 Navigation and Travel Essentials hub (Built)
-**Menu:** Destinations (`/blog`) | Travel Essentials | Flights & Hotels | Plan My Trip. Footer links Destinations, Travel Essentials, legal pages.
+**Menu (since 25 Nov, `w76`):** 🇯🇵 Japan (`/japan`) | Destinations ▾ (`/blog`; dropdown Germany, France, All destinations) | Packing Lists (`/travel-essentials#packing`) | Travel Essentials | Plan My Trip. Flights & Hotels left the menu (page and footer link stay). Footer links Destinations, Flights & Hotels, Travel Essentials, legal pages.
 **Criteria:** `/travel-essentials` lists non-destination articles in groups plus the Japan guides and the Pocket Guide block; the blog index lists destination guides only; every page has the same menu.
 
 ### F8 Japan airport, station and city guides (Built)
@@ -168,8 +170,17 @@ PackSmart is free: no paid plans, accounts or payments (D43). `/pricing` was del
 ### F20 More Pocket Guides (Planned)
 Candidates: other Japan stops; airports outside Japan (Heathrow, Mumbai, Dubai, Frankfurt and others). **Criteria for any new guide:** an entry in `tools/pocket_guides.json`; facts from that operator's own pages; the same analytics event names; re-run the hub and picker scripts. **Owner decision:** no new airport, partner application or outreach without the owner's go-ahead.
 
-### F21 Email capture (Planned, owner decision)
-Newsletter boxes were removed on 10 Nov 2026 (some forms were broken). `/api/subscribe` remains but is unused. If it returns: country-scoped signup inside that country's articles, a real email tool, a clear promise of what is sent, and a privacy-policy update first. Not approved.
+### F21 Email capture (Built 25 Nov, inside Packy only)
+Newsletter boxes were removed on 10 Nov 2026 and stay removed. The only email capture is Packy's "Email me this chat" (D58): the traveller gets the chat from hello@ (Hostinger SMTP, `api/email-chat.js`), with each answer's guide link, booking button (partner link) and the matching Pocket Guide, plus a "Continue this chat with Packy" link that carries the chat in the link itself (nothing stored on a server). Packy remembers the address on that device for a one-tap updated chat. Trip tips are a separate, explicit yes with an optional trip month; signups land in hello@ until an email marketing service is chosen (B54). Privacy policy updated (`packy-email-privacy`, `packy-email-remember`).
+**Criteria:** site-only and rate-limited; only Packy's own chat and booking buttons from `api/_offers.js` can be sent; no email address in logs.
+
+### F22 Japan hub `/japan` (Built 25 Nov)
+Built by `tools/w73_japan_hub.py`. Top to bottom: a drawn seasonal Mt Fuji (spring, summer, autumn, winter from the Japan date; "Fuji through the seasons" switcher), Packy's Konnichiwa, a live strip (Japan time, Tokyo and Sapporo weather, the season), the Ask Packy box with a waving lucky cat that says こんにちは (device voice on tap); Plan your trip; airport boarding passes; station train tickets with 確認 checked stamps; Pocket Guides; Hokkaido and seasons. A compact welcome band with the Ask box stays under the menu after scrolling. Washi pink with a seigaiha pattern, sakura branches and seasonal falling petals on wide screens. The 12 Japan guides carry a matching band under their hero (`w77`). GA4 `hub_japan` events: `pass_tap`, `pass_packy`, `ticket_tap`, `ticket_packy`, `season_view`, `cat_hello`, `cat_voice`, `mini_ask`, `hero_packy`.
+**Criteria:** checked at 2000, 1280, 1024, 390 and 360px with no sideways scroll; checked dates are read from the guides and Pocket Guides at build time; original drawings only (no copyrighted characters).
+
+### F23 Packy, the travel helper (Built 25 Nov, beta)
+`public/packy.js` (pop-up on `/japan` and 8 Japan guides via `w75`), `api/ask.js` (Gemini, answers only from `api/_japan_kb.js`, built by `w74` from `docs/research/*-sources.md`). Each answer: the answer, our guide link, a booking button from `api/_offers.js` (region-aware, labelled partner link), then the official sources in small text; 2–3 follow-up questions; a Pocket Guide card after the 2nd answer; the email card after the 3rd. Approximate prices with the checked date and an official link (D57).
+**Criteria:** official sources only; locked to the site and its previews; rate-limited; the AI never chooses or names a partner.
 
 ## 4. Cross-cutting acceptance criteria
 - Every changed page is checked at 390px for overflow before it is called done.
