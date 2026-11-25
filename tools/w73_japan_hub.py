@@ -265,6 +265,22 @@ HERO_CSS = """
 .jp-scene{position:relative;min-height:280px;pointer-events:none}
 .jp-scene .fuji{position:absolute;inset:0;width:100%;height:100%;display:block;will-change:transform;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
 .jp-scene .cl{animation:jpDrift 26s ease-in-out infinite alternate}
+.jp-scene .ss{display:none}
+.jp-scene[data-season=spring] .ss-spring,.jp-scene[data-season=summer] .ss-summer,.jp-scene[data-season=autumn] .ss-autumn,.jp-scene[data-season=winter] .ss-winter{display:inline}
+.jp-scene .sky0{stop-color:#8FCBEF}.jp-scene .sky1{stop-color:#BFE2F6}.jp-scene .mt0{stop-color:#4A5F8E}.jp-scene .mt1{stop-color:#7488B3}.jp-scene .mt2{stop-color:#9FB0CF}
+.jp-scene .fo1{fill:#3F6E67}.jp-scene .fo2{fill:#5C918A}
+.jp-scene[data-season=summer] .sky0{stop-color:#5DB6EE}.jp-scene[data-season=summer] .sky1{stop-color:#A6DAF7}
+.jp-scene[data-season=summer] .mt0{stop-color:#3E4F7C}.jp-scene[data-season=summer] .mt1{stop-color:#5C7096}.jp-scene[data-season=summer] .mt2{stop-color:#7F95A8}
+.jp-scene[data-season=summer] .fo1{fill:#2F7A4F}.jp-scene[data-season=summer] .fo2{fill:#55A56B}
+.jp-scene[data-season=autumn] .sky0{stop-color:#93C6E8}.jp-scene[data-season=autumn] .sky1{stop-color:#F6D9C2}
+.jp-scene[data-season=autumn] .fo1{fill:#A83A27}.jp-scene[data-season=autumn] .fo2{fill:#D9762F}
+.jp-scene[data-season=winter] .sky0{stop-color:#B6D6EC}.jp-scene[data-season=winter] .sky1{stop-color:#DCEBF5}
+.jp-scene[data-season=winter] .mt0{stop-color:#5E7196}.jp-scene[data-season=winter] .mt1{stop-color:#8C9DBE}.jp-scene[data-season=winter] .mt2{stop-color:#C3CEE2}
+.jp-scene[data-season=winter] .fo1{fill:#5E7E86}.jp-scene[data-season=winter] .fo2{fill:#A9BFC5}
+body[data-season=summer] .jp-petal{display:none}
+body[data-season=autumn] .jp-petal path{fill:#E8743B;stroke:#C2501F}
+body[data-season=winter] .jp-petal path{fill:#fff;stroke:#D6E2EC}
+body[data-season=winter] .jp-petal svg{transform:scale(.7)}
 @keyframes jpDrift{from{transform:translateX(-14px)}to{transform:translateX(18px)}}
 .jp-scene .sk{display:none;position:absolute;left:-30px;top:-40px;width:130px;transform:rotate(-8deg)}.jp-scene .sk svg{width:100%;height:auto;display:block}
 .jp-hero-kick{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:#fff;color:#0a8f78;border:1px solid #BFEDE3;border-radius:999px;padding:5px 12px}
@@ -322,22 +338,30 @@ HERO_CSS = """
 
 # Drawn dawn scene for the hero (25 Nov 2026, owner chose it over photos): sky, rising sun, Mt Fuji, pink hills, torii.
 FUJI_SVG = ('<svg class="fuji" viewBox="0 0 600 400" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs>'
-    '<radialGradient id="fjSky" cx=".5" cy=".42" r=".62"><stop offset="0" stop-color="#8FCBEF"/><stop offset=".45" stop-color="#BFE2F6" stop-opacity=".85"/><stop offset="1" stop-color="#E4F3FB" stop-opacity="0"/></radialGradient>'
-    '<linearGradient id="fjB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A5F8E"/><stop offset=".55" stop-color="#7488B3"/><stop offset="1" stop-color="#9FB0CF"/></linearGradient>'
+    '<radialGradient id="fjSky" cx=".5" cy=".42" r=".62"><stop offset="0" class="sky0"/><stop offset=".45" class="sky1" stop-opacity=".85"/><stop offset="1" stop-color="#E4F3FB" stop-opacity="0"/></radialGradient>'
+    '<linearGradient id="fjB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" class="mt0"/><stop offset=".55" class="mt1"/><stop offset="1" class="mt2"/></linearGradient>'
     '<linearGradient id="fjS" x1="0" y1="0" x2="1" y2="0"><stop offset=".3" stop-color="#fff"/><stop offset="1" stop-color="#D3DEEE"/></linearGradient>'
     '<linearGradient id="fjL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9D8F0"/><stop offset="1" stop-color="#D9EEF8"/></linearGradient>'
     '<linearGradient id="fjM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FDF0F2" stop-opacity="0"/><stop offset="1" stop-color="#FDF0F2" stop-opacity=".95"/></linearGradient></defs>'
     '<ellipse cx="300" cy="200" rx="300" ry="200" fill="url(#fjSky)"/>'
+    '<g class="ss ss-summer"><g transform="translate(70 34)"><path d="M0 0v8" stroke="#3a2a2a" stroke-width="1.5"/><rect x="-8" y="8" width="16" height="4" rx="1" fill="#3a2a2a"/><ellipse cx="0" cy="22" rx="11" ry="12" fill="#E94560"/><path d="M-10 18h20M-10 26h20" stroke="#fff" stroke-width="1" opacity=".5"/><rect x="-8" y="32" width="16" height="4" rx="1" fill="#3a2a2a"/></g><g transform="translate(150 44)"><path d="M0 0v8" stroke="#3a2a2a" stroke-width="1.5"/><rect x="-8" y="8" width="16" height="4" rx="1" fill="#3a2a2a"/><ellipse cx="0" cy="22" rx="11" ry="12" fill="#F2994A"/><path d="M-10 18h20M-10 26h20" stroke="#fff" stroke-width="1" opacity=".5"/><rect x="-8" y="32" width="16" height="4" rx="1" fill="#3a2a2a"/></g><g transform="translate(230 50)"><path d="M0 0v8" stroke="#3a2a2a" stroke-width="1.5"/><rect x="-8" y="8" width="16" height="4" rx="1" fill="#3a2a2a"/><ellipse cx="0" cy="22" rx="11" ry="12" fill="#E94560"/><path d="M-10 18h20M-10 26h20" stroke="#fff" stroke-width="1" opacity=".5"/><rect x="-8" y="32" width="16" height="4" rx="1" fill="#3a2a2a"/></g><g transform="translate(310 52)"><path d="M0 0v8" stroke="#3a2a2a" stroke-width="1.5"/><rect x="-8" y="8" width="16" height="4" rx="1" fill="#3a2a2a"/><ellipse cx="0" cy="22" rx="11" ry="12" fill="#F2994A"/><path d="M-10 18h20M-10 26h20" stroke="#fff" stroke-width="1" opacity=".5"/><rect x="-8" y="32" width="16" height="4" rx="1" fill="#3a2a2a"/></g><g transform="translate(390 50)"><path d="M0 0v8" stroke="#3a2a2a" stroke-width="1.5"/><rect x="-8" y="8" width="16" height="4" rx="1" fill="#3a2a2a"/><ellipse cx="0" cy="22" rx="11" ry="12" fill="#E94560"/><path d="M-10 18h20M-10 26h20" stroke="#fff" stroke-width="1" opacity=".5"/><rect x="-8" y="32" width="16" height="4" rx="1" fill="#3a2a2a"/></g><g transform="translate(470 44)"><path d="M0 0v8" stroke="#3a2a2a" stroke-width="1.5"/><rect x="-8" y="8" width="16" height="4" rx="1" fill="#3a2a2a"/><ellipse cx="0" cy="22" rx="11" ry="12" fill="#F2994A"/><path d="M-10 18h20M-10 26h20" stroke="#fff" stroke-width="1" opacity=".5"/><rect x="-8" y="32" width="16" height="4" rx="1" fill="#3a2a2a"/></g><g transform="translate(540 36)"><path d="M0 0v8" stroke="#3a2a2a" stroke-width="1.5"/><rect x="-8" y="8" width="16" height="4" rx="1" fill="#3a2a2a"/><ellipse cx="0" cy="22" rx="11" ry="12" fill="#E94560"/><path d="M-10 18h20M-10 26h20" stroke="#fff" stroke-width="1" opacity=".5"/><rect x="-8" y="32" width="16" height="4" rx="1" fill="#3a2a2a"/></g><path d="M30 30Q300 70 570 32" fill="none" stroke="#3a2a2a" stroke-width="1.4"/></g>'
+    '<g class="ss ss-winter" opacity=".9"><circle cx="60" cy="60" r="2.5" fill="#fff"/><circle cx="140" cy="120" r="2" fill="#fff"/><circle cx="220" cy="40" r="3" fill="#fff"/><circle cx="420" cy="90" r="2.5" fill="#fff"/><circle cx="520" cy="140" r="2" fill="#fff"/><circle cx="560" cy="60" r="3" fill="#fff"/><circle cx="90" cy="250" r="2" fill="#fff"/><circle cx="470" cy="230" r="2.5" fill="#fff"/><circle cx="30" cy="170" r="2" fill="#fff"/><circle cx="380" cy="30" r="2" fill="#fff"/></g>'
     '<g class="mt">'
     '<path d="M20 352C128 300 210 214 260 130Q268 118 282 116L318 116Q332 118 340 130C390 214 472 300 580 352Z" fill="url(#fjB)"/>'
     '<path d="M20 352C128 300 210 214 260 130Q268 118 282 116L292 116C268 190 214 286 150 352Z" fill="#fff" opacity=".1"/>'
     '<path d="M308 116L318 116Q332 118 340 130C390 214 472 300 580 352L340 352C338 268 326 186 308 116Z" fill="#2E3B5A" opacity=".2"/>'
     '<path d="M286 140L238 300M300 150L292 330M316 146L346 320M332 140L410 300M272 150L180 320" stroke="#2E3B5A" stroke-width="1.4" opacity=".14" stroke-linecap="round"/>'
-    '<path d="M260 130Q268 118 282 116L318 116Q332 118 340 130C352 152 364 172 376 194C369 191 365 208 357 201C351 217 345 227 337 209C331 230 323 238 315 216C309 240 301 246 295 219C288 238 280 233 273 212C267 227 260 222 255 202C248 209 241 202 236 192C232 195 229 196 226 196C238 172 250 152 260 130Z" fill="url(#fjS)"/>'
-    '<path d="M298 232L296 262M322 228L326 254M280 226L275 248M342 218L349 240M258 216L252 234" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".5"/>'
+    '<path class="ss ss-winter" d="M260 130Q268 118 282 116L318 116Q332 118 340 130C372 186 404 236 440 282C430 278 424 296 414 286C406 300 398 304 390 290C380 306 370 300 364 286C354 304 342 300 336 282C326 300 312 302 304 284C294 302 282 300 276 282C266 298 254 296 248 278C238 292 226 290 222 272C212 282 200 280 196 266C186 272 176 270 172 262C206 218 236 170 260 130Z" fill="url(#fjS)"/>'
+    '<path class="ss ss-spring" d="M260 130Q268 118 282 116L318 116Q332 118 340 130C352 152 364 172 376 194C369 191 365 208 357 201C351 217 345 227 337 209C331 230 323 238 315 216C309 240 301 246 295 219C288 238 280 233 273 212C267 227 260 222 255 202C248 209 241 202 236 192C232 195 229 196 226 196C238 172 250 152 260 130Z" fill="url(#fjS)"/>'
+    '<path class="ss ss-autumn" d="M260 130Q268 118 282 116L318 116Q332 118 340 130C346 141 352 151 358 162C352 160 348 172 341 166C336 178 330 182 324 170C318 184 310 186 304 172C297 186 289 184 284 170C278 182 270 180 266 168C259 174 252 168 248 160C252 150 256 140 260 130Z" fill="url(#fjS)"/>'
+    '<path class="ss ss-summer" d="M282 120L280 150M300 118L300 160M318 120L322 146M292 122L288 140M310 120L313 136" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".75"/>'
+    '<path class="ss ss-spring ss-winter" d="M298 232L296 262M322 228L326 254M280 226L275 248M342 218L349 240M258 216L252 234" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".5"/>'
     '<path d="M286 117l5 4 6-3 6 3 5-4" fill="none" stroke="#C9D3E4" stroke-width="1.4"/>'
-    '<path d="M0 360C40 346 70 352 96 340S150 344 178 334 226 342 256 330 304 340 334 330 388 342 418 332 470 344 504 334 560 344 600 338V372H0Z" fill="#3F6E67"/>'
-    '<path d="M0 368C50 356 90 362 128 352S200 360 240 350 320 360 360 352 440 362 480 354 560 362 600 356V376H0Z" fill="#5C918A"/>'
+    '<path class="fo1" d="M0 360C40 346 70 352 96 340S150 344 178 334 226 342 256 330 304 340 334 330 388 342 418 332 470 344 504 334 560 344 600 338V372H0Z"/>'
+    '<path class="ss ss-winter" d="M0 360C40 346 70 352 96 340S150 344 178 334 226 342 256 330 304 340 334 330 388 342 418 332 470 344 504 334 560 344 600 338" fill="none" stroke="#fff" stroke-width="4" stroke-linecap="round" opacity=".9"/>'
+    '<path class="fo2" d="M0 368C50 356 90 362 128 352S200 360 240 350 320 360 360 352 440 362 480 354 560 362 600 356V376H0Z"/>'
+    '<g class="ss ss-spring"><circle cx="40" cy="338" r="16" fill="#F7B6C8"/><circle cx="62" cy="330" r="18" fill="#FFCCD8"/><circle cx="84" cy="338" r="15" fill="#F49AB0"/><circle cx="54" cy="346" r="14" fill="#F7B6C8"/><circle cx="108" cy="334" r="13" fill="#FFCCD8"/><circle cx="124" cy="342" r="12" fill="#F49AB0"/><circle cx="470" cy="336" r="15" fill="#F7B6C8"/><circle cx="492" cy="328" r="17" fill="#FFCCD8"/><circle cx="514" cy="336" r="14" fill="#F49AB0"/><circle cx="536" cy="330" r="13" fill="#F7B6C8"/><circle cx="556" cy="338" r="12" fill="#FFCCD8"/></g>'
+    '<g class="ss ss-autumn"><circle cx="40" cy="338" r="16" fill="#D9482B"/><circle cx="62" cy="330" r="18" fill="#F08A3C"/><circle cx="84" cy="338" r="15" fill="#E8613A"/><circle cx="54" cy="346" r="14" fill="#C2361F"/><circle cx="108" cy="334" r="13" fill="#D9482B"/><circle cx="124" cy="342" r="12" fill="#F08A3C"/><circle cx="500" cy="336" r="15" fill="#E8613A"/><circle cx="522" cy="328" r="17" fill="#C2361F"/><circle cx="544" cy="336" r="14" fill="#D9482B"/><circle cx="566" cy="332" r="13" fill="#F08A3C"/></g>'
     '<rect y="372" width="600" height="28" fill="url(#fjL)"/>'
     '<path d="M150 380h70M260 386h90M400 381h60M90 392h50M330 394h70" stroke="#fff" stroke-width="1.5" opacity=".7" stroke-linecap="round"/>'
     '<rect y="330" width="600" height="70" fill="url(#fjM)" opacity=".55"/></g>'
@@ -348,6 +372,10 @@ FUJI_SVG = ('<svg class="fuji" viewBox="0 0 600 400" preserveAspectRatio="xMidYM
     '<rect x="50" y="80" width="200" height="14" fill="#D7263D"/><rect x="72" y="54" width="20" height="246" fill="#D7263D"/><rect x="208" y="54" width="20" height="246" fill="#D7263D"/>'
     '<rect x="66" y="288" width="32" height="14" fill="#3a2a2a"/><rect x="202" y="288" width="32" height="14" fill="#3a2a2a"/><rect x="138" y="62" width="24" height="32" fill="#3a2a2a"/></g>'
     '</svg>')
+
+def season_of(m):
+    return "spring" if m in (3, 4, 5) else "summer" if m in (6, 7, 8) else "autumn" if m in (9, 10, 11) else "winter"
+TODAY_M = datetime.date.today().month
 
 def _face_av():
     return packy_face()
@@ -368,14 +396,14 @@ def hero_html():
 <p class="jp-hero-lead">Every PackSmart guide for Japan in one place, from the arrivals gate to the platform. Facts come from official sources, with the date we checked them.</p>
 <button type="button" class="jp-hello" id="jpHello"><span class="av" aria-hidden="true">""" + _face_av() + """</span><span class="bub"><b>Konnichiwa!</b> I'm Packy 👋 Where are you landing? Ask me anything.</span></button>
 <div class="jp-live" aria-label="Japan right now"><span id="jpClock">🕗 Japan time</span><span id="jpWx" hidden></span><span id="jpSeason"></span></div>
-</div><div class="jp-scene" aria-hidden="true">""" + FUJI_SVG + '<div class="sk">' + SAKURA_SVG + """</div></div></div>
+</div><div class="jp-scene" aria-hidden="true" data-season="%%SEASON%%">""" + FUJI_SVG + '<div class="sk">' + SAKURA_SVG + """</div></div></div>
 <div class="jp-board" role="region" aria-label="Arrivals board: fastest trains from the airports">
 <div class="jp-board-h"><span>ARRIVALS · 到着</span><i>Fastest trains<span class="wide"> · tap for the Pocket Guide</span></i></div>
 <ol>""" + rows + """</ol>
 <p class="jp-board-note">Journey times from Keisei, Keikyu (from Terminal 3), JNTO and Kyoto City, checked """ + BOARD_CHECKED.strftime("%-d %B %Y") + """. Times change, so check before you travel.</p>
 </div>
 </div>
-</section>""")
+</section>""").replace("%%SEASON%%", season_of(TODAY_M))
 
 def passes_html():
     cards = "".join(
@@ -400,6 +428,10 @@ tick();setInterval(tick,30000);
 // the season, from JNTO's weather and season pages (docs/research/japan-basics-sources.md, checked 24 Nov 2026)
 var S=['❄️ Winter: powder snow in Hokkaido','❄️ Winter: powder snow in Hokkaido','🌸 Cherry blossoms move north, March to May','🌸 Cherry blossom season, moving north','🌸 Late blossoms up north; rainy season from May to June','☔ Rainy season in much of Japan','☀️ Hot and humid summer; peak travel to August','☀️ Hot summer; typhoons possible in August and September','🌀 Typhoons possible: check the forecast','🍁 Autumn leaves, from Hokkaido south','🍁 Autumn leaves, from Hokkaido south','❄️ Snow season up north; New Year closures late Dec'];
 var m=+new Date().toLocaleString('en-US',{timeZone:'Asia/Tokyo',month:'numeric'});document.getElementById('jpSeason').textContent=S[(m||1)-1];
+// the drawn scene follows the season too (?season=spring|summer|autumn|winter previews one)
+var q=(location.search.match(/[?&]season=(spring|summer|autumn|winter)/)||[])[1];
+var sn=q||(m>=3&&m<=5?'spring':m>=6&&m<=8?'summer':m>=9&&m<=11?'autumn':'winter');
+var sc=document.querySelector('.jp-scene');if(sc)sc.setAttribute('data-season',sn);document.body.setAttribute('data-season',sn);
 // weather in Tokyo and Sapporo (/api/weather), kept for 30 minutes in this visit
 var wx=document.getElementById('jpWx');
 function showWx(d){if(d&&d.t!=null&&d.s!=null){wx.textContent='🌡️ Tokyo '+d.t+'° · Sapporo '+d.s+'°';wx.hidden=false;}}
