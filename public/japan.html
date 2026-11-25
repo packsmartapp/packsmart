@@ -525,11 +525,15 @@ if(fj&&!still){var tk=false;window.addEventListener('scroll',function(){if(tk)re
 var cat=document.getElementById('jpCat');
 // a tap or click also says it out loud with the phone's or computer's own voice (Japanese if the device has one).
 // Only on a tap, never on hover: browsers block sound that starts without one, and surprise audio annoys people.
-var jaVoice=null;function pickVoice(){try{var v=speechSynthesis.getVoices();jaVoice=v.filter(function(x){return /^ja(-|_|$)/i.test(x.lang);})[0]||null;}catch(e){}}
+// a young, bright voice to match the cat: a female Japanese voice where the device has one (Apple Kyoko / O-Ren, Google
+// 日本語, Microsoft Nanami / Haruka / Ayumi), pitched up; else a female English voice saying "Kon-nichi-wa"
+var jaVoice=null,enVoice=null,FEM=/kyoko|o-?ren|nanami|haruka|ayumi|mayu|google 日本語|female|samantha|karen|moira|tessa|zira|aria|jenny|google uk english female/i,MALE=/otoya|hattori|ichiro|keita|daniel|alex|fred|david|guy|(^|[^e])male/i;
+function best(list){var f=list.filter(function(x){return FEM.test(x.name)&&!MALE.test(x.name);});return f[0]||list.filter(function(x){return !MALE.test(x.name);})[0]||list[0]||null;}
+function pickVoice(){try{var v=speechSynthesis.getVoices();jaVoice=best(v.filter(function(x){return /^ja(-|_|$)/i.test(x.lang);}));enVoice=best(v.filter(function(x){return /^en(-|_|$)/i.test(x.lang);}));}catch(e){}}
 if('speechSynthesis' in window){pickVoice();try{speechSynthesis.addEventListener('voiceschanged',pickVoice);}catch(e){}}
 function sayHello(){try{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();
-  var u=new SpeechSynthesisUtterance(jaVoice?'こんにちは！':'Kon-nichi-wa!');if(jaVoice){u.voice=jaVoice;u.lang=jaVoice.lang;}else u.lang='en-US';
-  u.rate=0.9;u.pitch=1.4;speechSynthesis.speak(u);track('cat_voice');}catch(e){}}
+  var vo=jaVoice||enVoice,u=new SpeechSynthesisUtterance(jaVoice?'こんにちは！':'Kon-nichi-wa!');if(vo){u.voice=vo;u.lang=vo.lang;}else u.lang='en-US';
+  u.rate=1.05;u.pitch=1.8;speechSynthesis.speak(u);track('cat_voice');}catch(e){}}
 if(cat){var ct;cat.addEventListener('click',function(){cat.classList.add('on');track('cat_hello');sayHello();clearTimeout(ct);ct=setTimeout(function(){cat.classList.remove('on');},2500);});
  cat.addEventListener('mouseenter',function(){track('cat_hello');});}
 // Packy: the hello bubble and "Ask Packy about ..." on each boarding pass
