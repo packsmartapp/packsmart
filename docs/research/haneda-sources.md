@@ -1,10 +1,10 @@
 # Haneda Airport: sources and facts (research for Packy, B54)
 
 Started 25 Nov 2026. Each fact names its source. The airport's site blocks the cloud sandbox, so these come from the
-owner's screenshots of the official English pages (25 Nov 2026). Exact page URL to be confirmed by the owner.
+owner's screenshots of the official English pages (25 Nov 2026).
 
 ## Train & Monorail (owner's screenshots, 25 Nov 2026)
-Source: Haneda Airport official site, Access > Train & Monorail (https://tokyo-haneda.com/en/, exact page link to add)
+Source: Haneda Airport official site, Access > Train & Monorail, https://tokyo-haneda.com/en/access/train/index.html
 
 **Two lines serve the airport**
 - "Haneda Airport is directly connected to the Keikyu Line and the Tokyo Monorail Line." The airport points to each
@@ -48,18 +48,22 @@ transportation facility")
   Shinjuku, Shibuya); at Tennozu Isle to the Rinkai Line for Shinkiba.
 - Tokyo Monorail Customer Center: 050-2016-1640, 10:00-17:00 every day, including 29 Dec to 3 Jan.
 
-**Ticket gates (T1 tab of "Ticket Gate Information")**
-- Terminal 1: the Keikyu Line and Tokyo Monorail platforms are at B1F. Meeting points on B1F: Sun Tower and Moon Tower.
-  From B1F there is a passageway to the bus terminal and a passageway to Terminal 2.
-- Keikyu: "ticket gates differ depending on your destination" (details per terminal: see the gaps section).
-- Tokyo Monorail: "The ticket gates are located on the 2nd floor Arrival Lobby and the 3rd floor departure lobby."
+**Ticket gates ("Ticket Gate Information", tabs T1, T2, T3; same page)**
+- Terminal 1: the Keikyu Line and Tokyo Monorail platforms are at B1F. On the B1F map: the Sun Tower and Moon Tower
+  meeting points, the Keikyu and Tokyo Monorail gates, a passageway to the bus terminal and a passageway to Terminal 2.
+- Terminal 2: the Keikyu Line and Tokyo Monorail platforms are at B1F. On the B1F map: International Flights Check-in
+  Counter T, the Keikyu and Tokyo Monorail gates, a passageway to the bus terminal and a passageway to Terminal 1.
+- Terminal 3, Keikyu Line: "Please note that ticket gates differ depending on your destination. For downtown Tokyo and
+  Yokohama: The ticket gates are located in Arrival Lobby on the 2nd floor. For T1 and T2, the ticket gates are located
+  on the Keikyu B2F."
+- Terminal 3, Tokyo Monorail: "The ticket gates are located on the 2nd floor Arrival Lobby and the 3rd floor departure
+  lobby."
+- Terminal 3 map: check-in counters A to O, Security Check Point (North) and (Central), and the Keikyu Line and Tokyo
+  Monorail entrances at the end of the hall, the Keikyu side next to Group Counter Z, the monorail side next to Group
+  Counter Y.
 - The same information is also on RakuRaku Odekake-net (link on the page).
 
 ## Gaps (still to fetch or confirm; not used by Packy)
-- Keikyu gates: the T1 tab showed "For downtown Tokyo and Yokohama: the ticket gates are located in Arrival Lobby on
-  the 2nd floor. For T1 and T2, the ticket gates are located on the Keikyu B2F." This reads like the Terminal 3 text;
-  confirm against the T2 and T3 tabs before using it.
-- Ticket Gate Information: the T2 and T3 tabs.
 - Service Guide > List of Services: ATMs, currency exchange, SIM and Wi-Fi counters, luggage storage and delivery, with floors.
 - Access > Travel Between Terminals (free shuttle bus), Express Bus & Route Bus, Taxi (fixed fares), From Haneda to Narita.
 - First and last trains: on the Keikyu and Tokyo Monorail sites (the airport page sends readers there).

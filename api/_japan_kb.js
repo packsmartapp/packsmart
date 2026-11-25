@@ -2,9 +2,9 @@
 export default [
 {
 "t": "haneda > Haneda Airport: sources and facts (research for Packy, B54) > Train & Monorail (owner's screenshots, 25 Nov 2026)",
-"x": "Source: Haneda Airport official site, Access > Train & Monorail (https://tokyo-haneda.com/en/, exact page link to add)\n\n**Two lines serve the airport**\n- \"Haneda Airport is directly connected to the Keikyu Line and the Tokyo Monorail Line.\" The airport points to each\n  company's own website for timetables and fares.\n- From Tokyo Monorail Hamamatsucho Station: 13 minutes to Haneda Airport Terminal 3 Station on the Haneda Express.\n- From Keikyu Shinagawa Station: 13 minutes to Haneda Airport Terminal 3 Station on the Airport Limited Express.\n\n**Station names and numbers**\n- Keikyu: Haneda Airport Terminal 3 Station (KK16); Haneda Airport Terminal 1·2 Station (KK17), one station for both terminals.",
+"x": "Source: Haneda Airport official site, Access > Train & Monorail, https://tokyo-haneda.com/en/access/train/index.html\n\n**Two lines serve the airport**\n- \"Haneda Airport is directly connected to the Keikyu Line and the Tokyo Monorail Line.\" The airport points to each\n  company's own website for timetables and fares.\n- From Tokyo Monorail Hamamatsucho Station: 13 minutes to Haneda Airport Terminal 3 Station on the Haneda Express.\n- From Keikyu Shinagawa Station: 13 minutes to Haneda Airport Terminal 3 Station on the Airport Limited Express.\n\n**Station names and numbers**\n- Keikyu: Haneda Airport Terminal 3 Station (KK16); Haneda Airport Terminal 1·2 Station (KK17), one station for both terminals.",
 "u": [
-"https://tokyo-haneda.com/en/"
+"https://tokyo-haneda.com/en/access/train/index.html"
 ]
 },
 {
@@ -19,12 +19,17 @@ export default [
 },
 {
 "t": "haneda > Haneda Airport: sources and facts (research for Packy, B54) > Train & Monorail (owner's screenshots, 25 Nov 2026)",
-"x": "- Three train types: Haneda Express, Rapid, Local. Order of stops: Terminal 2, Terminal 1, Terminal 3, then Tennozu\n  Isle and Hamamatsucho. On the map the Haneda Express does not stop at Tennozu Isle; Rapid and Local do.\n- Transfers: at Hamamatsucho to the JR Yamanote Line for the city centre (Tokyo, Akihabara, Ueno, Ikebukuro,\n  Shinjuku, Shibuya); at Tennozu Isle to the Rinkai Line for Shinkiba.\n- Tokyo Monorail Customer Center: 050-2016-1640, 10:00-17:00 every day, including 29 Dec to 3 Jan.\n\n**Ticket gates (T1 tab of \"Ticket Gate Information\")**\n- Terminal 1: the Keikyu Line and Tokyo Monorail platforms are at B1F. Meeting points on B1F: Sun Tower and Moon Tower.\n  From B1F there is a passageway to the bus terminal and a passageway to Terminal 2.\n- Keikyu: \"ticket gates differ depending on your destination\" (details per terminal: see the gaps section).",
+"x": "- Three train types: Haneda Express, Rapid, Local. Order of stops: Terminal 2, Terminal 1, Terminal 3, then Tennozu\n  Isle and Hamamatsucho. On the map the Haneda Express does not stop at Tennozu Isle; Rapid and Local do.\n- Transfers: at Hamamatsucho to the JR Yamanote Line for the city centre (Tokyo, Akihabara, Ueno, Ikebukuro,\n  Shinjuku, Shibuya); at Tennozu Isle to the Rinkai Line for Shinkiba.\n- Tokyo Monorail Customer Center: 050-2016-1640, 10:00-17:00 every day, including 29 Dec to 3 Jan.\n\n**Ticket gates (\"Ticket Gate Information\", tabs T1, T2, T3; same page)**\n- Terminal 1: the Keikyu Line and Tokyo Monorail platforms are at B1F. On the B1F map: the Sun Tower and Moon Tower\n  meeting points, the Keikyu and Tokyo Monorail gates, a passageway to the bus terminal and a passageway to Terminal 2.",
 "u": []
 },
 {
 "t": "haneda > Haneda Airport: sources and facts (research for Packy, B54) > Train & Monorail (owner's screenshots, 25 Nov 2026)",
-"x": "- Tokyo Monorail: \"The ticket gates are located on the 2nd floor Arrival Lobby and the 3rd floor departure lobby.\"\n- The same information is also on RakuRaku Odekake-net (link on the page).",
+"x": "- Terminal 2: the Keikyu Line and Tokyo Monorail platforms are at B1F. On the B1F map: International Flights Check-in\n  Counter T, the Keikyu and Tokyo Monorail gates, a passageway to the bus terminal and a passageway to Terminal 1.\n- Terminal 3, Keikyu Line: \"Please note that ticket gates differ depending on your destination. For downtown Tokyo and\n  Yokohama: The ticket gates are located in Arrival Lobby on the 2nd floor. For T1 and T2, the ticket gates are located\n  on the Keikyu B2F.\"\n- Terminal 3, Tokyo Monorail: \"The ticket gates are located on the 2nd floor Arrival Lobby and the 3rd floor departure\n  lobby.\"\n- Terminal 3 map: check-in counters A to O, Security Check Point (North) and (Central), and the Keikyu Line and Tokyo\n  Monorail entrances at the end of the hall, the Keikyu side next to Group Counter Z, the monorail side next to Group\n  Counter Y.",
+"u": []
+},
+{
+"t": "haneda > Haneda Airport: sources and facts (research for Packy, B54) > Train & Monorail (owner's screenshots, 25 Nov 2026)",
+"x": "- The same information is also on RakuRaku Odekake-net (link on the page).",
 "u": []
 },
 {
