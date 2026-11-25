@@ -665,15 +665,15 @@
  .ps-exp>figure img{height:100%!important;max-height:none!important;aspect-ratio:auto!important;object-fit:cover}
  .ps-exp:has(>figure)>a.go{justify-self:start}}
 /* car-hire box, second pass (owner, 25 Nov): one text colour for the three paragraphs (they were #444, #666, #666 and
-   looked uneven); on 1500px+ a wider photo and a narrower search column (7:4), the pick-up buttons beside the heading so the
-   search form starts level with the photo, and the two paragraphs and the tip run full width under them, so the box is shorter and the text lines longer */
+   looked uneven); on 1500px+ the pick-up buttons get their own row under the heading, the photo and the search form sit
+   side by side at the same height (columns 3:2), and the two paragraphs and the tip run full width under them, so the box is shorter and the text lines longer */
 @media (min-width:1200px){[data-ps-placement^="discovercars-"]>p:nth-of-type(n+2){color:#444!important}}
-@media (min-width:1500px){[data-ps-placement^="discovercars-"]{grid-template-columns:minmax(0,7fr) minmax(0,4fr);grid-template-rows:auto auto auto auto auto auto auto}
- [data-ps-placement^="discovercars-"]>h3{grid-column:1;grid-row:1;align-self:center}
- [data-ps-placement^="discovercars-"]>picture{grid-column:1;grid-row:2/4}
- [data-ps-placement^="discovercars-"]>.ps-dc-chips{grid-column:2;grid-row:1;align-self:center;margin:0 0 12px!important}
- [data-ps-placement^="discovercars-"]>.ps-dc-mount{grid-column:2;grid-row:2/5;margin-top:0}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(1){grid-column:1;grid-row:4;margin:6px 0 14px!important}
+@media (min-width:1500px){[data-ps-placement^="discovercars-"]{grid-template-columns:minmax(0,3fr) minmax(0,2fr);grid-template-rows:auto auto auto auto auto auto auto}
+ [data-ps-placement^="discovercars-"]>h3{grid-column:1/-1;grid-row:1}
+ [data-ps-placement^="discovercars-"]>.ps-dc-chips{grid-column:1/-1;grid-row:2;margin:0 0 16px!important}
+ [data-ps-placement^="discovercars-"]>picture{grid-column:1;grid-row:3}
+ [data-ps-placement^="discovercars-"]>.ps-dc-mount{grid-column:2;grid-row:3;margin-top:0}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(1){grid-column:1;grid-row:4;margin:6px 0 10px!important}
  [data-ps-placement^="discovercars-"]>p:nth-of-type(2){grid-column:1/-1;grid-row:5}
  [data-ps-placement^="discovercars-"]>p:nth-of-type(3){grid-column:1/-1;grid-row:6}
  [data-ps-placement^="discovercars-"]>p:nth-of-type(4){grid-column:1/-1;grid-row:7;margin:6px 0 0!important}}
