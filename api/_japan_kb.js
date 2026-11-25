@@ -1092,7 +1092,17 @@ export default [
 },
 {
 "t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
-"x": "- Destinations listed (each with its own timetable link): Itami Airport (Osaka Airport, Hotarugaike Sta.); central\n  Osaka: Osaka Sta. (Chayamachi, Shin-Umeda City, Senri Newtown, Shin-Osaka), Osakajo and Nippombashi, Temmabashi,\n  Kintetsu Uehonmachi (Shinsaibashi), Abeno Harukas, Namba (OCAT), Nankai Namba Sta. (night bus), Universal Studios\n  Japan with Nanko and Tenpozan (Kaiyukan), Ibaraki, Senri-New Town; elsewhere in Osaka Prefecture: Hirakata and Keihan\n  Kuzuha, Higashi Osaka, Rinku Premium Outlets, Rinku Town and Izumisano Sta. (also a night bus), nearby hotels;\n  Hyogo: Amagasaki, Nishinomiya, Kobe Sannomiya and Rokko Island, Himeji and Kakogawa; Nara: Kintetsu Gakuenmae, Nara,\n  Yamato Yagi; Kyoto: Kyoto and Kyo-tanabe; Wakayama; Okayama; Shikoku: Awaji, Naruto, Tokushima, Takamatsu.",
+"x": "- Destinations listed (each with its own timetable link): Itami Airport (Osaka Airport, Hotarugaike Sta.); central\n  Osaka: Osaka Sta. (Chayamachi, Shin-Umeda City, Senri Newtown, Shin-Osaka), Osakajo and Nippombashi, Temmabashi,\n  Kintetsu Uehonmachi (Shinsaibashi), Abeno Harukas, Namba (OCAT), Nankai Namba Sta. (night bus), Universal Studios\n  Japan with Nanko and Tenpozan (Kaiyukan), Ibaraki, Senri-New Town; elsewhere in Osaka Prefecture: Hirakata and Keihan\n  Kuzuha, Higashi Osaka, Rinku Premium Outlets, Rinku Town and Izumisano Sta. (also a night bus), nearby hotels;\n  Hyogo: Amagasaki, Nishinomiya, Kobe Sannomiya and Rokko Island, Himeji and Kakogawa; Nara: Kintetsu Gakuenmae, Nara,\n  Yamato Yagi; Kyoto: Kyoto and Kyo-tanabe; Wakayama; Okayama; Shikoku: Awaji, Naruto, Tokushima, Takamatsu.\n- Itami Airport (Osaka Airport, Hotarugaike Sta.): stop 8.",
+"u": []
+},
+{
+"t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
+"x": "- Central Osaka: Osaka Sta. (Chayamachi, Shin-Umeda City, Senri Newtown, Shin-Osaka): stop 5 · Osakajo, Nippombashi:\n  stop 10 · Temmabashi: stop 10 · Kintetsu Uehonmachi (Shinsaibashi): stop 7 · Abeno Harukas: stop 7 · Namba (OCAT):\n  stop 11 · Nankai Namba Sta. (night bus): stop 5 · Universal Studios Japan, Nanko, Tenpozan (Kaiyukan): stop 3.\n- Elsewhere in Osaka Prefecture: Senboku New Town, Kongo, Kawachi-nagano: stop 2 · Ibaraki: stop 3 · Senri-New Town\n  (Momoyamadai), Senri Chuo (via Osaka Sta.): stop 5 · Hirakata-shi, Keihan Kuzuha, Neyagawashi Sta.: stop 10 ·\n  Higashi Osaka: stop 10 · Rinku Premium Outlets: stop 12 · Rinku Town, Izumisano Sta. (night bus): stop 3 ·\n  Rinku Town / Washington Hotel Kansai Airport: no stop number shown.",
+"u": []
+},
+{
+"t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
+"x": "- Hotel buses near the airport (Bellevue Garden Hotel, Kanku Izumiotsu Washington Hotel, Hotel Baygulls, Kansai Airport\n  Spa Hotel Garden Palace, Hotel Seagull, Kansai Airport Washington Hotel, Star Gate Hotel Kansai Airport and others):\n  stop S12 is shown for this group; \"For detailed information check directly with the hotel.\"\n- Observation Hall: stop 3. Ferry Terminal: stop 12 (\"Shuttle bus fare is included in High-Speed Ferry tickets\").\n- Hyogo: Amagasaki and Nishinomiya: stop 4 · Kobe Sannomiya, Rokko Island: stop 6 · Himeji, Kakogawa: stop 6.\n  Nara: Kintetsu Gakuenmae, Nara and Yamato Yagi: stop 9.",
 "u": []
 },
 {

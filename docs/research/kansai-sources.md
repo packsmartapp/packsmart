@@ -63,6 +63,22 @@ links to add)
   Hyogo: Amagasaki, Nishinomiya, Kobe Sannomiya and Rokko Island, Himeji and Kakogawa; Nara: Kintetsu Gakuenmae, Nara,
   Yamato Yagi; Kyoto: Kyoto and Kyo-tanabe; Wakayama; Okayama; Shikoku: Awaji, Naruto, Tokushima, Takamatsu.
 
+**Buses from the airport: stop numbers at Terminal 1** (same site; owner's screenshots, 25 Nov 2026)
+- Itami Airport (Osaka Airport, Hotarugaike Sta.): stop 8.
+- Central Osaka: Osaka Sta. (Chayamachi, Shin-Umeda City, Senri Newtown, Shin-Osaka): stop 5 · Osakajo, Nippombashi:
+  stop 10 · Temmabashi: stop 10 · Kintetsu Uehonmachi (Shinsaibashi): stop 7 · Abeno Harukas: stop 7 · Namba (OCAT):
+  stop 11 · Nankai Namba Sta. (night bus): stop 5 · Universal Studios Japan, Nanko, Tenpozan (Kaiyukan): stop 3.
+- Elsewhere in Osaka Prefecture: Senboku New Town, Kongo, Kawachi-nagano: stop 2 · Ibaraki: stop 3 · Senri-New Town
+  (Momoyamadai), Senri Chuo (via Osaka Sta.): stop 5 · Hirakata-shi, Keihan Kuzuha, Neyagawashi Sta.: stop 10 ·
+  Higashi Osaka: stop 10 · Rinku Premium Outlets: stop 12 · Rinku Town, Izumisano Sta. (night bus): stop 3 ·
+  Rinku Town / Washington Hotel Kansai Airport: no stop number shown.
+- Hotel buses near the airport (Bellevue Garden Hotel, Kanku Izumiotsu Washington Hotel, Hotel Baygulls, Kansai Airport
+  Spa Hotel Garden Palace, Hotel Seagull, Kansai Airport Washington Hotel, Star Gate Hotel Kansai Airport and others):
+  stop S12 is shown for this group; "For detailed information check directly with the hotel."
+- Observation Hall: stop 3. Ferry Terminal: stop 12 ("Shuttle bus fare is included in High-Speed Ferry tickets").
+- Hyogo: Amagasaki and Nishinomiya: stop 4 · Kobe Sannomiya, Rokko Island: stop 6 · Himeji, Kakogawa: stop 6.
+  Nara: Kintetsu Gakuenmae, Nara and Yamato Yagi: stop 9.
+
 **Taxis: approximate times and fares** (same site, taxi page; owner's screenshots, 25 Nov 2026)
 - From the airport, approximate time / fare / access bridge and expressway tolls / total: Itami Airport 70 min,
   23,490 + 3,000 = 26,490 yen; Kita-ku, Osaka city 50 min, 19,800 + 2,600 = 22,400 yen; Chuo-ku, Osaka city 50 min,
@@ -88,8 +104,8 @@ Source: https://osaka-info.jp/en/spot/tourist-information-namba/
 
 ## Gaps (still to fetch or confirm; not used by Packy)
 - From the airport's site (owner's screenshots): ATMs, money exchange, baggage storage and delivery, SIM and Wi-Fi,
-  information counters, "Getting to Terminal 2 Building" (the shuttle), bus stop numbers and times from the airport
-  (the list above is the to-the-airport page), where the taxi stands are, and the
+  information counters, "Getting to Terminal 2 Building" (the shuttle), bus stop numbers for Kyoto, Wakayama, Okayama and Shikoku
+  (cut off in the screenshots) and where the stops are, where the taxi stands are, and the
   taxi fares for Hyogo, Nara, Kyoto, Wakayama, Okayama and Shikoku (a closed section in the screenshots).
 - Nankai base fares (the price list is an image at the station and on the site).
 - JR (Haruka and Kansai Airport Rapid) first and last trains from the airport.
