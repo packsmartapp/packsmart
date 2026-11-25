@@ -263,11 +263,11 @@ HERO_CSS = """
 .jp-hero-in{position:relative;padding:.4rem 0 0}
 .jp-hero-top{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:1rem;align-items:stretch}
 .jp-scene{position:relative;min-height:280px;pointer-events:none}
-.jp-scene .fuji{position:absolute;inset:0;width:100%;height:100%;display:block;will-change:transform}
+.jp-scene .fuji{position:absolute;inset:0;width:100%;height:100%;display:block;will-change:transform;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
 .jp-scene .cl{animation:jpDrift 26s ease-in-out infinite alternate}
 @keyframes jpDrift{from{transform:translateX(-14px)}to{transform:translateX(18px)}}
 .jp-scene .sk{display:none;position:absolute;left:-30px;top:-40px;width:130px;transform:rotate(-8deg)}.jp-scene .sk svg{width:100%;height:auto;display:block}
-.jp-hero-kick{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:#fff;color:#0f0f23;border:1px solid #F3C6CF;border-radius:999px;padding:5px 12px}
+.jp-hero-kick{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:#fff;color:#0a8f78;border:1px solid #BFEDE3;border-radius:999px;padding:5px 12px}
 .jp-hero h1{font-family:var(--font-display);font-size:3.6rem;line-height:1.02;margin:.6rem 0 .5rem;color:#0f0f23}
 .jp-hero h1 em{font-style:italic;color:#E94560}
 .jp-hero-lead{font-size:1.08rem;max-width:600px;color:#3f4a5c;margin:0 0 1rem}
@@ -276,13 +276,13 @@ HERO_CSS = """
 .jp-hello .bub{background:#fff;color:#0f0f23;border-radius:16px 16px 16px 4px;padding:9px 14px;font-weight:600;font-size:.95rem;box-shadow:0 6px 18px rgba(233,69,96,.15)}
 .jp-hello .bub b{color:#E94560}
 .jp-live{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 1.2rem}
-.jp-live span{display:inline-flex;align-items:center;gap:6px;font-size:.86rem;font-weight:700;background:#fff;color:#0f0f23;border:1px solid #F0D9DD;border-radius:999px;padding:6px 12px}
+.jp-live span{display:inline-flex;align-items:center;gap:6px;font-size:.86rem;font-weight:700;background:#fff;color:#0f0f23;border:1px solid #BFEDE3;border-radius:999px;padding:6px 12px}
 .jp-live span[hidden]{display:none}
-.jp-board{background:rgba(255,255,255,.88);border:1px solid #F3D3DA;border-radius:18px;padding:12px 12px 8px;box-shadow:0 14px 34px rgba(233,69,96,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
-.jp-board-h{display:flex;align-items:center;justify-content:space-between;color:#E94560;font-weight:800;letter-spacing:.14em;font-size:.78rem;padding:2px 4px 8px}
+.jp-board{background:rgba(255,255,255,.9);border:1px solid #BFEDE3;border-radius:18px;padding:12px 12px 8px;box-shadow:0 14px 34px rgba(0,168,140,.12);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.jp-board-h{display:flex;align-items:center;justify-content:space-between;color:#0a8f78;font-weight:800;letter-spacing:.14em;font-size:.78rem;padding:2px 4px 8px}
 .jp-board-h i{font-style:normal;color:#8a93a6;letter-spacing:.04em;font-weight:600}
 .jp-board ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.jp-board a{display:grid;grid-template-columns:1.2fr 1.2fr 1fr .8fr 18px;align-items:center;gap:8px;text-decoration:none;color:#0f0f23;background:#FFF8F4;border:1px solid #F6E3E6;border-radius:12px;padding:9px 12px;transition:background .15s,border-color .15s}
+.jp-board a{display:grid;grid-template-columns:1.2fr 1.2fr 1fr .8fr 18px;align-items:center;gap:8px;text-decoration:none;color:#0f0f23;background:#F7FCFB;border:1px solid #E1F2EE;border-radius:12px;padding:9px 12px;transition:background .15s,border-color .15s}
 .jp-board a:hover,.jp-board a:focus-visible{background:#fff;border-color:#00C9A7}
 .jp-board .f{position:relative;font-weight:800;font-size:.92rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .jp-board .f.by{color:#5a6378}
@@ -322,22 +322,28 @@ HERO_CSS = """
 
 # Drawn dawn scene for the hero (25 Nov 2026, owner chose it over photos): sky, rising sun, Mt Fuji, pink hills, torii.
 FUJI_SVG = ('<svg class="fuji" viewBox="0 0 600 400" preserveAspectRatio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs>'
-    '<linearGradient id="fjB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#5D6F96"/><stop offset=".6" stop-color="#8C9CBD"/><stop offset="1" stop-color="#CBD4E6"/></linearGradient>'
-    '<linearGradient id="fjS" x1="0" y1="0" x2="1" y2="0"><stop offset=".35" stop-color="#fff"/><stop offset="1" stop-color="#D9E2F0"/></linearGradient>'
-    '<radialGradient id="fjG"><stop offset="0" stop-color="#FFD9C9" stop-opacity=".95"/><stop offset="1" stop-color="#FFD9C9" stop-opacity="0"/></radialGradient>'
-    '<linearGradient id="fjM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FBF5EE" stop-opacity="0"/><stop offset="1" stop-color="#FBF5EE" stop-opacity=".95"/></linearGradient></defs>'
-    '<circle cx="410" cy="120" r="120" fill="url(#fjG)"/>'
+    '<radialGradient id="fjSky" cx=".5" cy=".42" r=".62"><stop offset="0" stop-color="#8FCBEF"/><stop offset=".45" stop-color="#BFE2F6" stop-opacity=".85"/><stop offset="1" stop-color="#E4F3FB" stop-opacity="0"/></radialGradient>'
+    '<linearGradient id="fjB" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4A5F8E"/><stop offset=".55" stop-color="#7488B3"/><stop offset="1" stop-color="#9FB0CF"/></linearGradient>'
+    '<linearGradient id="fjS" x1="0" y1="0" x2="1" y2="0"><stop offset=".3" stop-color="#fff"/><stop offset="1" stop-color="#D3DEEE"/></linearGradient>'
+    '<linearGradient id="fjL" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#A9D8F0"/><stop offset="1" stop-color="#D9EEF8"/></linearGradient>'
+    '<linearGradient id="fjM" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#FDF0F2" stop-opacity="0"/><stop offset="1" stop-color="#FDF0F2" stop-opacity=".95"/></linearGradient></defs>'
+    '<ellipse cx="300" cy="200" rx="300" ry="200" fill="url(#fjSky)"/>'
     '<g class="mt">'
-    '<path d="M10 400C120 338 208 232 260 134Q268 120 282 118L318 118Q332 120 340 134C392 232 480 338 590 400Z" fill="url(#fjB)"/>'
-    '<path d="M300 118L318 118Q332 120 340 134C392 232 480 338 590 400L336 400C334 300 318 196 300 118Z" fill="#33415F" opacity=".16"/>'
-    '<path d="M260 134Q268 120 282 118L318 118Q332 120 340 134C352 156 364 176 376 198C369 195 365 212 357 205C351 221 345 231 337 213C331 234 323 242 315 220C309 244 301 250 295 223C288 242 280 237 273 216C267 231 260 226 255 206C248 213 241 206 236 196C232 199 229 200 226 200C238 176 250 156 260 134Z" fill="url(#fjS)"/>'
-    '<path d="M298 236L296 268M322 232L326 258M280 230L275 252M342 222L349 244M258 220L252 238" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".55"/>'
-    '<path d="M286 119l5 4 6-3 6 3 5-4" fill="none" stroke="#C9D3E4" stroke-width="1.5"/>'
-    '<path d="M0 400C80 362 160 352 230 366S360 382 420 364 540 352 600 372V400Z" fill="#B9C5DB" opacity=".75"/>'
-    '<rect y="300" width="600" height="100" fill="url(#fjM)"/></g>'
-    '<g class="cl" fill="#fff"><g opacity=".92"><ellipse cx="118" cy="212" rx="62" ry="13"/><ellipse cx="146" cy="202" rx="34" ry="15"/><ellipse cx="100" cy="206" rx="24" ry="11"/></g>'
-    '<g opacity=".85"><ellipse cx="480" cy="178" rx="54" ry="11"/><ellipse cx="502" cy="170" rx="28" ry="12"/></g></g>'
-    '<g transform="translate(478 262) scale(.4)">'
+    '<path d="M20 352C128 300 210 214 260 130Q268 118 282 116L318 116Q332 118 340 130C390 214 472 300 580 352Z" fill="url(#fjB)"/>'
+    '<path d="M20 352C128 300 210 214 260 130Q268 118 282 116L292 116C268 190 214 286 150 352Z" fill="#fff" opacity=".1"/>'
+    '<path d="M308 116L318 116Q332 118 340 130C390 214 472 300 580 352L340 352C338 268 326 186 308 116Z" fill="#2E3B5A" opacity=".2"/>'
+    '<path d="M286 140L238 300M300 150L292 330M316 146L346 320M332 140L410 300M272 150L180 320" stroke="#2E3B5A" stroke-width="1.4" opacity=".14" stroke-linecap="round"/>'
+    '<path d="M260 130Q268 118 282 116L318 116Q332 118 340 130C352 152 364 172 376 194C369 191 365 208 357 201C351 217 345 227 337 209C331 230 323 238 315 216C309 240 301 246 295 219C288 238 280 233 273 212C267 227 260 222 255 202C248 209 241 202 236 192C232 195 229 196 226 196C238 172 250 152 260 130Z" fill="url(#fjS)"/>'
+    '<path d="M298 232L296 262M322 228L326 254M280 226L275 248M342 218L349 240M258 216L252 234" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".5"/>'
+    '<path d="M286 117l5 4 6-3 6 3 5-4" fill="none" stroke="#C9D3E4" stroke-width="1.4"/>'
+    '<path d="M0 360C40 346 70 352 96 340S150 344 178 334 226 342 256 330 304 340 334 330 388 342 418 332 470 344 504 334 560 344 600 338V372H0Z" fill="#3F6E67"/>'
+    '<path d="M0 368C50 356 90 362 128 352S200 360 240 350 320 360 360 352 440 362 480 354 560 362 600 356V376H0Z" fill="#5C918A"/>'
+    '<rect y="372" width="600" height="28" fill="url(#fjL)"/>'
+    '<path d="M150 380h70M260 386h90M400 381h60M90 392h50M330 394h70" stroke="#fff" stroke-width="1.5" opacity=".7" stroke-linecap="round"/>'
+    '<rect y="330" width="600" height="70" fill="url(#fjM)" opacity=".55"/></g>'
+    '<g class="cl" fill="#fff"><g opacity=".95"><ellipse cx="110" cy="200" rx="62" ry="13"/><ellipse cx="138" cy="190" rx="34" ry="15"/><ellipse cx="92" cy="194" rx="24" ry="11"/></g>'
+    '<g opacity=".9"><ellipse cx="486" cy="168" rx="54" ry="11"/><ellipse cx="508" cy="160" rx="28" ry="12"/></g></g>'
+    '<g transform="translate(430 252) scale(.4)">'
     '<path d="M18 40C80 30 220 30 282 40L276 54C220 46 80 46 24 54Z" fill="#D7263D"/><rect x="30" y="54" width="240" height="10" fill="#3a2a2a"/>'
     '<rect x="50" y="80" width="200" height="14" fill="#D7263D"/><rect x="72" y="54" width="20" height="246" fill="#D7263D"/><rect x="208" y="54" width="20" height="246" fill="#D7263D"/>'
     '<rect x="66" y="288" width="32" height="14" fill="#3a2a2a"/><rect x="202" y="288" width="32" height="14" fill="#3a2a2a"/><rect x="138" y="62" width="24" height="32" fill="#3a2a2a"/></g>'
@@ -450,14 +456,14 @@ SAKURA_BG = ('<div class="jp-bg" aria-hidden="true"><div class="jp-bg-l">' + SAK
                        for l, d, t in (("4%", 0, 16), ("9%", 6, 19), ("14%", 11, 15), ("85%", 3, 18), ("90%", 9, 16), ("95%", 14, 20), ("2%", 17, 21), ("97%", 7, 17)))
              + '</div>')
 SEIGAIHA = ("url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E"
-            "%3Cg fill='none' stroke='%23E9C9C9' stroke-width='1.2' opacity='.55'%3E"
+            "%3Cg fill='none' stroke='%2300C9A7' stroke-width='1.1' opacity='.16'%3E"
             "%3Cpath d='M0 40a20 20 0 0 1 40 0M8 40a12 12 0 0 1 24 0M16 40a4 4 0 0 1 8 0'/%3E"
             "%3Cpath d='M40 40a20 20 0 0 1 40 0M48 40a12 12 0 0 1 24 0M56 40a4 4 0 0 1 8 0'/%3E"
             "%3Cpath d='M-20 20a20 20 0 0 1 40 0M-12 20a12 12 0 0 1 24 0M-4 20a4 4 0 0 1 8 0'/%3E"
             "%3Cpath d='M20 20a20 20 0 0 1 40 0M28 20a12 12 0 0 1 24 0M36 20a4 4 0 0 1 8 0'/%3E"
             "%3Cpath d='M60 20a20 20 0 0 1 40 0M68 20a12 12 0 0 1 24 0M76 20a4 4 0 0 1 8 0'/%3E%3C/g%3E%3C/svg%3E\")")
 HERO_CSS += """
-:root{--bg:#FBF5EE;--pw:900px}
+:root{--bg:#FDF0F2;--pw:900px}
 html,body{overflow-x:clip}
 .jp-bg{display:none}
 /* big screens: the hero photo runs edge to edge, and from 1500px the page itself is wider (4 boarding passes in a row,
@@ -478,7 +484,7 @@ html,body{overflow-x:clip}
  .jp-ask,.jp-other{max-width:1000px}
 }
 @media (min-width:1200px){
- body{background:#FBF5EE """ + SEIGAIHA + """ fixed}
+ body{background:#FDF0F2 """ + SEIGAIHA + """ fixed}
  .jp-bg{display:block;position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
  .page-wrapper{position:relative;z-index:1}
  .jp-bg-l,.jp-bg-r{position:absolute;opacity:.95}
