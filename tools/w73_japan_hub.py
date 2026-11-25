@@ -98,7 +98,9 @@ HUB_CSS = """<style id="jp-hub-css">
 @keyframes jpBeckon{0%,55%,100%{transform:rotate(0)}65%{transform:rotate(-16deg)}75%{transform:rotate(4deg)}85%{transform:rotate(-12deg)}}
 @media (prefers-reduced-motion:reduce){.jp-cat .paw{animation:none}}
 @media (max-width:600px){.jp-cat{right:6px;top:-62px;width:64px}.jp-ask{margin-top:4.6rem}}
-.jp-hero .jp-ask{max-width:none;margin:2.4rem 0 0}
+.jp-hero .jp-ask{max-width:none;margin:6.4rem 0 0}
+.jp-cat{z-index:3}
+@media (max-width:600px){.jp-hero .jp-ask{margin-top:4.6rem}}
 .jp-ask{position:relative;max-width:760px;margin:6.2rem auto 1.8rem;background:#fff;border:1.5px solid #BFEDE3;border-radius:18px;padding:14px 16px;box-shadow:0 2px 12px rgba(15,15,35,.05)}
 .jp-ask-top{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.95rem;color:#0f0f23}.jp-ask-top>div{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px}
 .jp-ask-top b{font-weight:800}
