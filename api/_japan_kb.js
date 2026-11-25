@@ -157,10 +157,15 @@ export default [
 },
 {
 "t": "haneda > Haneda Airport: sources and facts (research for Packy, B54) > Taxis (read 25 Nov 2026)",
-"x": "Source: https://tokyo-haneda.com/en/access/taxi/index.html\n- Terminal 3: follow the taxi signs from the 2F or 3F access hall down to 1F (2nd lane), stop 21. The Terminal 3 stand\n  has \"Excellent Service Taxi\" for foreign travellers.\n- Terminal 1 (1F Arrival Lobby): stops 1 and 17 for Kawasaki, Yokohama, Yokosuka and Miura; stops 2 and 18 for other\n  areas; stops 0 and 19 for reserved taxis. Terminal 2 (1F): stops 2 and 20 for Kawasaki, Yokohama, Yokosuka and\n  Miura; stops 3 and 19 for other areas; stop 1 for private taxis.\n- App-hailing and reserved taxis: T1 2F near Exit 7, T2 2F near Exit 2 (since 22 October 2025), T3 at P5 Parking 8F.\n- Haneda Flat Rate Taxi: fixed fares between Haneda and most of Tokyo and Kanagawa, approved by the transport ministry;\n  toll-road fees are added; some areas use the meter. Fares from the Tokyo Hire-Taxi Association and Kanagawa Taxi\n  Association.",
+"x": "Source: https://tokyo-haneda.com/en/access/taxi/index.html\n- Terminal 3: follow the taxi signs from the 2F or 3F access hall down to 1F (2nd lane), stop 21. The Terminal 3 stand\n  has \"Excellent Service Taxi\" for foreign travellers.\n- Terminal 1 (1F Arrival Lobby): stops 1 and 17 for Kawasaki, Yokohama, Yokosuka and Miura; stops 2 and 18 for other\n  areas; stops 0 and 19 for reserved taxis. Terminal 2 (1F): stops 2 and 20 for Kawasaki, Yokohama, Yokosuka and\n  Miura; stops 3 and 19 for other areas; stop 1 for private taxis.",
 "u": [
 "https://tokyo-haneda.com/en/access/taxi/index.html"
 ]
+},
+{
+"t": "haneda > Haneda Airport: sources and facts (research for Packy, B54) > Taxis (read 25 Nov 2026)",
+"x": "- App-hailing and reserved taxis: T1 2F near Exit 7, T2 2F near Exit 2 (since 22 October 2025), T3 at P5 Parking 8F.\n  is in the middle of the 2F access hall, between the Keikyu and Tokyo Monorail entrances, by the information counter;\n  stop 21 is on 1F with a boarding area for wheelchair users on each side. At Terminals 1 and 2 the taxi stops are along\n  the 1F kerb outside the Arrival Lobby (T1 by Meeting Points South and North; T2 by Meeting Points 1 and 2), with\n  marked boarding areas for wheelchair users. The 2F app-taxi stand at T1 is near Clock Tower 4 (JAL side); at T2 near\n  Clock Tower 2 (ANA side).\n- Haneda Flat Rate Taxi: fixed fares between Haneda and most of Tokyo and Kanagawa, approved by the transport ministry;\n  toll-road fees are added; some areas use the meter. Fares from the Tokyo Hire-Taxi Association and Kanagawa Taxi\n  Association.",
+"u": []
 },
 {
 "t": "haneda > Haneda Airport: sources and facts (research for Packy, B54) > Airport buses (read 25 Nov 2026)",
