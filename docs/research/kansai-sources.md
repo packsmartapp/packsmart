@@ -116,6 +116,9 @@ hours)
 - Terminal 2 (the map's floors are 1F, departures and arrivals with shops and
   restaurants, and 2F, arrivals): two ATMs, both on 1F: a Seven Bank ATM in the west part of the building and a
   Resona Bank ATM in the east part. None shown on 2F.
+- Aeroplaza (the building on the other side of Kansai Airport Station; the map's floors are 1F hotel and car rental,
+  2F and 3F shops and restaurants, 11F restaurants): one ATM, "LAWSON Bank (Inside LAWSON)", on 2F, the floor joined
+  to the station. None shown on 1F, 3F or 11F.
 - Seven Bank ATMs take overseas cards (JNTO's list, in the Japan basics notes); the Aeon Bank and MUFG ATMs: check
   the bank's own page.
 
