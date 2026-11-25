@@ -98,6 +98,7 @@ HUB_CSS = """<style id="jp-hub-css">
 @keyframes jpBeckon{0%,55%,100%{transform:rotate(0)}65%{transform:rotate(-16deg)}75%{transform:rotate(4deg)}85%{transform:rotate(-12deg)}}
 @media (prefers-reduced-motion:reduce){.jp-cat .paw{animation:none}}
 @media (max-width:600px){.jp-cat{right:6px;top:-62px;width:64px}.jp-ask{margin-top:4.6rem}}
+.jp-hero .jp-ask{max-width:none;margin:2.4rem 0 0}
 .jp-ask{position:relative;max-width:760px;margin:6.2rem auto 1.8rem;background:#fff;border:1.5px solid #BFEDE3;border-radius:18px;padding:14px 16px;box-shadow:0 2px 12px rgba(15,15,35,.05)}
 .jp-ask-top{display:flex;align-items:center;gap:10px;margin:0 0 10px;font-size:.95rem;color:#0f0f23}.jp-ask-top>div{display:flex;flex-wrap:wrap;align-items:baseline;column-gap:8px}
 .jp-ask-top b{font-weight:800}
@@ -396,14 +397,9 @@ def hero_html():
 <span class="jp-hero-kick">🇯🇵 ようこそ · Yōkoso</span>
 <h1 id="jpHeroT">Welcome to <em>Japan</em></h1>
 <p class="jp-hero-lead">Every PackSmart guide for Japan in one place, from the arrivals gate to the platform. Facts come from official sources, with the date we checked them.</p>
-<button type="button" class="jp-hello" id="jpHello"><span class="av" aria-hidden="true">""" + _face_av() + """</span><span class="bub"><b>Konnichiwa!</b> I'm Packy 👋 Where are you landing? Ask me anything.</span></button>
 <div class="jp-live" aria-label="Japan right now"><span id="jpClock">🕗 Japan time</span><span id="jpWx" hidden></span><span id="jpSeason"></span></div>
 </div><div class="jp-scene" aria-hidden="true" data-season="%%SEASON%%">""" + FUJI_SVG + '<div class="sk">' + SAKURA_SVG + """</div></div></div>
-<div class="jp-board" role="region" aria-label="Arrivals board: fastest trains from the airports">
-<div class="jp-board-h"><span>ARRIVALS · 到着</span><i>Fastest trains<span class="wide"> · tap for the Pocket Guide</span></i></div>
-<ol>""" + rows + """</ol>
-<p class="jp-board-note">Journey times from Keisei, Keikyu (from Terminal 3), JNTO and Kyoto City, checked """ + BOARD_CHECKED.strftime("%-d %B %Y") + """. Times change, so check before you travel.</p>
-</div>
+""" + ASK + """
 </div>
 </section>""").replace("%%SEASON%%", season_of(TODAY_M))
 
@@ -452,7 +448,7 @@ var fj=document.querySelector('.jp-scene .fuji');
 if(fj&&!still){var tk=false;window.addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){var y=Math.min(window.scrollY,700);fj.style.transform='translateY('+(y*0.22).toFixed(1)+'px) scale('+(1+y*0.00012).toFixed(4)+')';tk=false;});},{passive:true});}
 // Packy: the hello bubble and "Ask Packy about ..." on each boarding pass
 function packy(q){if(window.Packy){if(q)window.Packy.ask(q);else window.Packy.open();}else{var a=document.getElementById('ask');if(a)a.scrollIntoView({behavior:'smooth'});}}
-document.getElementById('jpHello').addEventListener('click',function(){track('hero_packy');packy('');});
+var hl=document.getElementById('jpHello');if(hl)hl.addEventListener('click',function(){track('hero_packy');packy('');});
 // one listener for the whole page, so the station tickets further down (built after this script) work too
 document.addEventListener('click',function(e){var t=e.target.closest&&e.target.closest('.jp-pass-ask,[data-pass]');if(!t)return;if(t.classList.contains('jp-pass-ask')){var q=t.getAttribute('data-q');track(t.closest('.jp-tk')?'ticket_packy':'pass_packy',q);packy(q);}else track(t.closest('.jp-tk')?'ticket_tap':'pass_tap',t.getAttribute('data-pass'));});
 [].forEach.call(document.querySelectorAll('[data-board]'),function(a){a.addEventListener('click',function(){track('board_tap',a.getAttribute('data-board'));});});
@@ -619,7 +615,6 @@ body = """<div class="page-wrapper">
     """ + passes_html() + """
     """ + stations_html() + """
 """ + "    " + pocket + """
-    """ + ASK + """
     <div class="jp-two">
         """ + HOKKAIDO + """
         """ + SEASONS + """
