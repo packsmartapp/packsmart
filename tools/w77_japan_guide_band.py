@@ -161,20 +161,18 @@ CSS = """<style id="jp-guide-css">
  [data-ps-placement^="airalo-"]>:where(*){grid-column:2}
  [data-ps-placement^="airalo-"]>picture{grid-column:1;grid-row:1/6;display:block}[data-ps-placement^="airalo-"]>picture img{margin:0!important}
  [data-ps-placement^="airalo-"]>style{display:none}}
-/* wide screens: the car-hire box as photo | text, with the pick-up chips and the partner's search form full width below */
-@media (min-width:1200px){[data-ps-placement^="discovercars-"]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto auto 1fr auto;column-gap:28px;align-items:start;align-content:start}
+/* wide screens: the car-hire box as photo, note and text on the left | pick-up choices and the partner's search form on
+   the right (owner's layout, 25 Nov); the form is responsive (it already works at phone width) */
+@media (min-width:1200px){[data-ps-placement^="discovercars-"]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:start;padding-bottom:20px!important}
  [data-ps-placement^="discovercars-"]>:where(*){grid-column:1/-1}
  [data-ps-placement^="discovercars-"]>style,[data-ps-placement^="discovercars-"]>script{display:none}
- [data-ps-placement^="discovercars-"]>picture{grid-column:1;grid-row:2/6;display:block}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(1){grid-column:1;grid-row:6}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(2){grid-column:2;grid-row:2}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(3){grid-column:2;grid-row:3}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(4){grid-column:2;grid-row:4}
- /* the pick-up choices move up beside the photo, into the space under the text; less empty padding at the bottom */
- [data-ps-placement^="discovercars-"]>p:nth-of-type(1){margin:6px 0 0!important}
- [data-ps-placement^="discovercars-"]>.ps-dc-mount{margin-top:14px}
- [data-ps-placement^="discovercars-"]{padding-bottom:16px!important}}
-@media (min-width:1500px){[data-ps-placement^="discovercars-"]>.ps-dc-chips{grid-column:2;grid-row:5/7;align-self:end;margin:8px 0 0!important}}
+ [data-ps-placement^="discovercars-"]>picture{grid-column:1;grid-row:2;display:block}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(1){grid-column:1;grid-row:3;margin:6px 0 10px!important}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(2){grid-column:1;grid-row:4}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(3){grid-column:1;grid-row:5}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(4){grid-column:1;grid-row:6;margin-bottom:0!important}
+ [data-ps-placement^="discovercars-"]>.ps-dc-chips{grid-column:2;grid-row:2}
+ [data-ps-placement^="discovercars-"]>.ps-dc-mount{grid-column:2;grid-row:3/8}}
 /* wide screens: the Shinkansen box in one band (picture | route and text | button), so the button sits up top */
 @media (min-width:1500px){[data-ps-placement^="jw-shinkansen"]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 280px;column-gap:28px;align-items:start}
  [data-ps-placement^="jw-shinkansen"]>strong{grid-column:1/-1}
@@ -232,6 +230,12 @@ def band(ja, en, kind, checked):
             '</div></div>\n<!-- /jp-band -->\n') % (href, sec, en, k, label, ja, en, checked.strftime("%-d %b %Y").upper().replace(" 20", "<br>20", 1))
 
 
+TIP_OLD = ("<strong>Tip:</strong> Most visitors need an International Driving Permit under the 1949 Geneva Convention (drivers "
+           "from a few countries, such as Germany and France, use an official Japanese translation instead), plus their home "
+           "licence and passport. Arrange it before you fly; it cannot be issued in Japan.")
+TIP_NEW = ("<strong>Tip:</strong> Most visitors need an International Driving Permit (1949 Geneva Convention; drivers from Germany, "
+           "France and a few other countries use an official Japanese translation instead), plus their licence and passport. "
+           "Get it before you fly: it cannot be issued in Japan.")
 plans, problems = {}, []
 for slug, (ja, en, kind) in GUIDES.items():
     path = os.path.join(BLOG, slug + ".html")
@@ -259,6 +263,7 @@ for slug, (ja, en, kind) in GUIDES.items():
         continue
     new = new[:bm.end()] + SAKURA_BG + new[bm.end():]
     new = ASK.sub("", new)
+    new = new.replace(TIP_OLD, TIP_NEW)
     tm = TOPIC.search(new)
     if tm:
         bar = new.find('\n<div id="psnBar"')

@@ -484,20 +484,18 @@
  [data-ps-placement^="airalo-"]>:where(*){grid-column:2}
  [data-ps-placement^="airalo-"]>picture{grid-column:1;grid-row:1/6;display:block}[data-ps-placement^="airalo-"]>picture img{margin:0!important}
  [data-ps-placement^="airalo-"]>style{display:none}}
-/* wide screens: the car-hire box as photo | text, with the pick-up chips and the partner's search form full width below */
-@media (min-width:1200px){[data-ps-placement^="discovercars-"]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-rows:auto auto auto auto 1fr auto;column-gap:28px;align-items:start;align-content:start}
+/* wide screens: the car-hire box as photo, note and text on the left | pick-up choices and the partner's search form on
+   the right (owner's layout, 25 Nov); the form is responsive (it already works at phone width) */
+@media (min-width:1200px){[data-ps-placement^="discovercars-"]{display:grid!important;grid-template-columns:minmax(0,1fr) minmax(0,1fr);column-gap:28px;align-items:start;padding-bottom:20px!important}
  [data-ps-placement^="discovercars-"]>:where(*){grid-column:1/-1}
  [data-ps-placement^="discovercars-"]>style,[data-ps-placement^="discovercars-"]>script{display:none}
- [data-ps-placement^="discovercars-"]>picture{grid-column:1;grid-row:2/6;display:block}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(1){grid-column:1;grid-row:6}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(2){grid-column:2;grid-row:2}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(3){grid-column:2;grid-row:3}
- [data-ps-placement^="discovercars-"]>p:nth-of-type(4){grid-column:2;grid-row:4}
- /* the pick-up choices move up beside the photo, into the space under the text; less empty padding at the bottom */
- [data-ps-placement^="discovercars-"]>p:nth-of-type(1){margin:6px 0 0!important}
- [data-ps-placement^="discovercars-"]>.ps-dc-mount{margin-top:14px}
- [data-ps-placement^="discovercars-"]{padding-bottom:16px!important}}
-@media (min-width:1500px){[data-ps-placement^="discovercars-"]>.ps-dc-chips{grid-column:2;grid-row:5/7;align-self:end;margin:8px 0 0!important}}
+ [data-ps-placement^="discovercars-"]>picture{grid-column:1;grid-row:2;display:block}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(1){grid-column:1;grid-row:3;margin:6px 0 10px!important}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(2){grid-column:1;grid-row:4}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(3){grid-column:1;grid-row:5}
+ [data-ps-placement^="discovercars-"]>p:nth-of-type(4){grid-column:1;grid-row:6;margin-bottom:0!important}
+ [data-ps-placement^="discovercars-"]>.ps-dc-chips{grid-column:2;grid-row:2}
+ [data-ps-placement^="discovercars-"]>.ps-dc-mount{grid-column:2;grid-row:3/8}}
 /* wide screens: the Shinkansen box in one band (picture | route and text | button), so the button sits up top */
 @media (min-width:1500px){[data-ps-placement^="jw-shinkansen"]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 280px;column-gap:28px;align-items:start}
  [data-ps-placement^="jw-shinkansen"]>strong{grid-column:1/-1}
@@ -1212,7 +1210,7 @@ if(phone.addEventListener){phone.addEventListener('change',function(){if(started
     <p style="margin: 6px 0 18px 0; color: #999; font-size: 0.75rem; text-align: right;">Illustrative image</p>
     <p style="margin: 0 0 10px 0; color: #444; font-size: 0.95rem; line-height: 1.7;">Ski resorts, lakes and the open country of Hokkaido sit a long way from the train lines. With your own car you stop when you like, and the skis and luggage ride with you.</p>
     <p style="margin: 0 0 10px 0; color: #666; font-size: 0.95rem; line-height: 1.7;">Skip the car inside Sapporo, where the subway is quicker. In winter, ask the rental company about winter tyres and driving on snow before you book. Choose a pick-up point, then compare prices below. Japan drives on the left.</p>
-    <p style="margin: 0 0 20px 0; color: #666; font-size: 0.95rem; line-height: 1.7;"><strong>Tip:</strong> Most visitors need an International Driving Permit under the 1949 Geneva Convention (drivers from a few countries, such as Germany and France, use an official Japanese translation instead), plus their home licence and passport. Arrange it before you fly; it cannot be issued in Japan.</p>
+    <p style="margin: 0 0 20px 0; color: #666; font-size: 0.95rem; line-height: 1.7;"><strong>Tip:</strong> Most visitors need an International Driving Permit (1949 Geneva Convention; drivers from Germany, France and a few other countries use an official Japanese translation instead), plus their licence and passport. Get it before you fly: it cannot be issued in Japan.</p>
         <style>.ps-dc-chips{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin:0 0 14px 0;}.ps-dc-lab{font-size:0.85rem;font-weight:600;color:#0f0f23;margin-right:2px;}.ps-dc-chip{font:inherit;font-size:0.86rem;line-height:1.2;color:#0f0f23;background:#fff;border:1.5px solid #cdeee5;border-radius:999px;padding:8px 12px;cursor:pointer;transition:border-color .15s,box-shadow .15s,background .15s;}.ps-dc-chip:hover,.ps-dc-chip:focus-visible{border-color:#00C9A7;box-shadow:0 2px 10px rgba(0,201,167,.25);outline:none;}.ps-dc-chip.on{background:#00C9A7;border-color:#00C9A7;color:#fff;font-weight:600;}.ps-dc-mount{min-height:362px;}</style>
     <div class="ps-dc-chips" role="group" aria-label="Choose a pick-up location">
         <span class="ps-dc-lab">Pick up at</span>
