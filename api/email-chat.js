@@ -26,8 +26,11 @@ function limited(ip) {
   return false;
 }
 const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
-const SITE = 'https://www.packsmartapp.com';
-function md(t) {   // the same small Markdown Packy uses: **bold**, [links](url), "- " lists
+const LIVE = 'https://www.packsmartapp.com';
+// Links in the email go to the live site, except for an email sent from a Vercel preview of this project: those link back
+// to that preview, so a change can be tested end to end (the "Continue" link, Pocket Guide, guides) before it goes live.
+const PREVIEW = /^https:\/\/packsmart-[a-z0-9-]+-packsmartapps-projects\.vercel\.app$/;
+function md(t, SITE) {   // the same small Markdown Packy uses: **bold**, [links](url), "- " lists
   let h = esc(t).replace(/\*\*([^*]+)\*\*/g, '<b>$1</b>').replace(/\[([^\]]+)\]\(((?:https?:\/\/|\/)[^\s)]+)\)/g, (m, x, u) =>
     '<a href="' + (u.startsWith('/') ? SITE + u : u) + '" style="color:#0a8f78;font-weight:bold;">' + x + '</a>');
   let out = '', list = false;
@@ -49,7 +52,7 @@ function guideOk(g) {
   const title = String(g.title || '').replace(/[^\w .,'&()-]/g, '').slice(0, 80).trim();
   return title ? { title, url: g.url } : null;
 }
-function continueLink(items, next, page, country) {
+function continueLink(items, next, page, country, SITE) {
   const base = SITE + (/^\/[a-z0-9-]+(\/[a-z0-9-]+)*$/i.test(page) ? page : '/japan') + '?src=packy_email#packy=';
   let list = items.slice();
   while (list.length) {
@@ -112,10 +115,11 @@ export default async function handler(req, res) {
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) return res.status(500).json({ ok: false, error: 'Email is not set up yet.' });
 
   const name = COUNTRIES[country];
+  const SITE = PREVIEW.test(origin) ? origin : LIVE;
   const chat = items.map(x =>
     '<div style="margin:0 0 18px;">' +
     '<p style="margin:0 0 6px;"><span style="display:inline-block;background:#00C9A7;color:#fff;border-radius:12px;padding:6px 12px;font-weight:bold;">' + esc(x.q) + '</span></p>' +
-    '<div style="background:#ffffff;border:1px solid #e3e8ec;border-radius:12px;padding:10px 14px;color:#0f0f23;font-size:15px;line-height:1.55;">' + md(x.a) +
+    '<div style="background:#ffffff;border:1px solid #e3e8ec;border-radius:12px;padding:10px 14px;color:#0f0f23;font-size:15px;line-height:1.55;">' + md(x.a, SITE) +
     // the same booking button and guide link Packy showed in the chat
     (x.o ? '<p style="margin:10px 0 4px;"><a href="' + esc(x.o.url.startsWith('/') ? SITE + x.o.url : x.o.url) + '"' + (x.o.partner ? ' rel="nofollow noopener sponsored"' : '') +
       ' style="display:block;background:#FFF1F4;border:1.5px solid #F7B9C6;border-radius:12px;padding:10px 12px;color:#0f0f23;text-decoration:none;font-weight:bold;">' +
@@ -128,7 +132,7 @@ export default async function handler(req, res) {
     '<h1 style="font-size:20px;color:#0f0f23;margin:14px 0 6px;">Your Packy chat about ' + name + '</h1>' +
     '<p style="color:#5a6378;font-size:14px;margin:0 0 18px;">Here is what you asked Packy, with the official sources. Prices and times change, so check the source before you travel.</p>' +
     chat +
-    '<p style="text-align:center;margin:22px 0;"><a href="' + esc(continueLink(items, next, page, country)) + '" style="display:inline-block;background:#E94560;color:#ffffff;text-decoration:none;font-weight:bold;font-size:16px;padding:13px 22px;border-radius:24px;">\uD83D\uDCAC Continue this chat with Packy</a></p>' +
+    '<p style="text-align:center;margin:22px 0;"><a href="' + esc(continueLink(items, next, page, country, SITE)) + '" style="display:inline-block;background:#E94560;color:#ffffff;text-decoration:none;font-weight:bold;font-size:16px;padding:13px 22px;border-radius:24px;">\uD83D\uDCAC Continue this chat with Packy</a></p>' +
     '<div style="background:#e6faf5;border-radius:12px;padding:14px 16px;margin:20px 0;font-size:14px;color:#0f0f23;">' +
     (pocket
       ? '<b>&#128241; Save the free ' + POCKETS[pocket] + ' Pocket Guide</b><br>Exits, platforms, lockers and ATMs a tap away, and it works offline at the station.<br>' +
@@ -141,7 +145,7 @@ export default async function handler(req, res) {
     ' <a href="' + SITE + '/privacy-policy" style="color:#8a93a6;">Privacy</a></p></div></body></html>';
   const text = 'Your Packy chat about ' + name + '\n\n' + items.map(x => 'Q: ' + x.q + '\n' + x.a + (x.o ? '\n' + x.o.label + (x.o.partner ? ' (partner link)' : '') + ': ' + (x.o.url.startsWith('/') ? SITE + x.o.url : x.o.url) : '') +
       (x.g ? '\nMore in our ' + x.g.title + ': ' + SITE + x.g.url : '')).join('\n\n') + (pocket ? '\n\nSave the free ' + POCKETS[pocket] + ' Pocket Guide: ' + SITE + '/' + pocket + '-pocket?src=packy_email' : '') +
-    '\n\nPrices and times change, so check the source before you travel.\nContinue this chat with Packy: ' + continueLink(items, next, page, country);
+    '\n\nPrices and times change, so check the source before you travel.\nContinue this chat with Packy: ' + continueLink(items, next, page, country, SITE);
 
   try {
     const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
