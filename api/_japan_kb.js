@@ -1102,7 +1102,12 @@ export default [
 },
 {
 "t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
-"x": "- Hotel buses near the airport (Bellevue Garden Hotel, Kanku Izumiotsu Washington Hotel, Hotel Baygulls, Kansai Airport\n  Spa Hotel Garden Palace, Hotel Seagull, Kansai Airport Washington Hotel, Star Gate Hotel Kansai Airport and others):\n  stop S12 is shown for this group; \"For detailed information check directly with the hotel.\"\n- Observation Hall: stop 3. Ferry Terminal: stop 12 (\"Shuttle bus fare is included in High-Speed Ferry tickets\").\n- Hyogo: Amagasaki and Nishinomiya: stop 4 · Kobe Sannomiya, Rokko Island: stop 6 · Himeji, Kakogawa: stop 6.\n  Nara: Kintetsu Gakuenmae, Nara and Yamato Yagi: stop 9.",
+"x": "- Hotel buses near the airport (Bellevue Garden Hotel, Kanku Izumiotsu Washington Hotel, Hotel Baygulls, Kansai Airport\n  Spa Hotel Garden Palace, Hotel Seagull, Kansai Airport Washington Hotel, Star Gate Hotel Kansai Airport and others):\n  stop S12 is shown for this group; \"For detailed information check directly with the hotel.\"\n- Observation Hall: stop 3. Ferry Terminal: stop 12 (\"Shuttle bus fare is included in High-Speed Ferry tickets\").\n- Hyogo: Amagasaki and Nishinomiya: stop 4 · Kobe Sannomiya, Rokko Island: stop 6 · Himeji, Kakogawa: stop 6.\n  Nara: Kintetsu Gakuenmae, Nara and Yamato Yagi: stop 9.\n  Kyoto, Kyo-tanabe: stop 8 · Wakayama: stop 3 · Okayama: stop 9 · Shikoku: Awaji, Naruto, Tokushima: stop 2;\n  Takamatsu: stop 7.\n\ndiffer from Terminal 1, so check which terminal you are at.\n- Itami Airport (Osaka Airport, Hotarugaike Sta.): stop 2.",
+"u": []
+},
+{
+"t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
+"x": "- Central Osaka: Osaka Sta. (Chayamachi, Shin-Umeda City, Senri Newtown, Shin-Osaka): stop 1 · Osakajo, Nippombashi:\n  stop 10 · Temmabashi: stop 10 · Kintetsu Uehonmachi (Shinsaibashi): stop 8 · Abeno Harukas: stop 8 · Namba (OCAT):\n  stop 6 · Nankai Namba Sta. (night bus): stop 3 · Universal Studios Japan, Nanko, Tenpozan (Kaiyukan): stop 7.\n- Elsewhere in Osaka Prefecture: Senboku New Town, Kongo, Kawachi-nagano: stop 9 · Ibaraki: stop 7 · Senri-New Town\n  (Momoyamadai), Senri Chuo (via Osaka Sta.): stop 1 · Keihan Moriguchi: stop 10 · Hirakata-shi, Keihan Kuzuha,\n  Neyagawashi Sta.: stop 10 · Higashi Osaka: stop 10 · Rinku Town, Izumisano Sta. (night bus): stop 0 ·\n  Rinku Town / Washington Hotel Kansai Airport: no stop number shown.",
 "u": []
 },
 {
