@@ -1079,6 +1079,23 @@ export default [
 "u": []
 },
 {
+"t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
+"x": "Source: Kansai International Airport official site, https://www.kansai-airport.or.jp/en/ (Access pages; exact page\nlinks to add)\n\n**Railway**\n- Two railways serve the airport: JR West and the Nankai Electric Railway (the site links to both timetables and shows\n  their service status). On the airport's route map, Nankai runs from Kansai-kuko (Kansai Airport) via Rinku Town and\n  Izumisano towards Tengachaya, Shin-Imamiya and Namba; JR runs via Rinku Town and Hineno towards Tennoji and Osaka.\n- \"Kansai Airport Station is directly connected to the 2nd floor of the Terminal 1 Building and the 2nd floor of the\n  Aeroplaza Building.\" JR and Nankai share the one station.",
+"u": [
+"https://www.kansai-airport.or.jp/en/"
+]
+},
+{
+"t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
+"x": "- Station map: the station sits between North Square and South Square, opposite the Terminal 1 entrances on 2F, with\n  escalators up to 4F (international departures) and down to 1F (international arrivals). The Aeroplaza (with a hotel)\n  is on the other side of the station. The \"Free Shuttle Bus Drop (1F) To Terminal 2 Building\" is at the south end,\n  by South Square. Terminal 1's 2F is the domestic floor (ANA and Starflyer, JAL and Jetstar counters, domestic\n  security check), with a police station at the north end and the \"Tasty Street\" food area.\n\n**Airport buses**\n- Buses to the airport: \"Take a bus bound for Kansai International Airport (KIX) from your point of origin. All buses\n  arrive at the International Departures Lobby on the 4th floor of Terminal 1.\"",
+"u": []
+},
+{
+"t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
+"x": "- Destinations listed (each with its own timetable link): Itami Airport (Osaka Airport, Hotarugaike Sta.); central\n  Osaka: Osaka Sta. (Chayamachi, Shin-Umeda City, Senri Newtown, Shin-Osaka), Osakajo and Nippombashi, Temmabashi,\n  Kintetsu Uehonmachi (Shinsaibashi), Abeno Harukas, Namba (OCAT), Nankai Namba Sta. (night bus), Universal Studios\n  Japan with Nanko and Tenpozan (Kaiyukan), Ibaraki, Senri-New Town; elsewhere in Osaka Prefecture: Hirakata and Keihan\n  Kuzuha, Higashi Osaka, Rinku Premium Outlets, Rinku Town and Izumisano Sta. (also a night bus), nearby hotels;\n  Hyogo: Amagasaki, Nishinomiya, Kobe Sannomiya and Rokko Island, Himeji and Kakogawa; Nara: Kintetsu Gakuenmae, Nara,\n  Yamato Yagi; Kyoto: Kyoto and Kyo-tanabe; Wakayama; Okayama; Shikoku: Awaji, Naruto, Tokushima, Takamatsu.",
+"u": []
+},
+{
 "t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Arriving at Namba: tourist information (Osaka Convention & Tourism Bureau, read 25 Nov 2026)",
 "x": "Source: https://osaka-info.jp/en/spot/tourist-information-namba/\n- Tourist Information Namba is \"on the first floor of Nankai Namba Station, which is easily accessible from Kansai\n  International Airport\": in front of the north exit on 1F of Nankai Namba Station, 2 minutes from Exit 4 of Namba\n  Station on the Osaka Metro Midosuji and Sennichimae lines. Open 9:00-20:00 every day of the year; English, Chinese\n  and Korean.\n- The same bureau also runs Tourist Information SHIN-OSAKA (JR Shin-Osaka Station, 3F) and Tourist Information OSAKA\n  (JR Osaka Station, 1F).",
 "u": [

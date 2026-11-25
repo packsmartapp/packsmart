@@ -36,6 +36,33 @@ https://www.nankai.co.jp/en_railway/ticket/
 - Other trips from the same page: Namba to Koyasan about 90 min (Limited Express Koya, then the cable car at
   Gokurakubashi); Kansai Airport to Wakayama-shi about 40 min (change at Izumisano to the Limited Express Southern).
 
+## Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)
+Source: Kansai International Airport official site, https://www.kansai-airport.or.jp/en/ (Access pages; exact page
+links to add)
+
+**Railway**
+- Two railways serve the airport: JR West and the Nankai Electric Railway (the site links to both timetables and shows
+  their service status). On the airport's route map, Nankai runs from Kansai-kuko (Kansai Airport) via Rinku Town and
+  Izumisano towards Tengachaya, Shin-Imamiya and Namba; JR runs via Rinku Town and Hineno towards Tennoji and Osaka.
+- "Kansai Airport Station is directly connected to the 2nd floor of the Terminal 1 Building and the 2nd floor of the
+  Aeroplaza Building." JR and Nankai share the one station.
+- Station map: the station sits between North Square and South Square, opposite the Terminal 1 entrances on 2F, with
+  escalators up to 4F (international departures) and down to 1F (international arrivals). The Aeroplaza (with a hotel)
+  is on the other side of the station. The "Free Shuttle Bus Drop (1F) To Terminal 2 Building" is at the south end,
+  by South Square. Terminal 1's 2F is the domestic floor (ANA and Starflyer, JAL and Jetstar counters, domestic
+  security check), with a police station at the north end and the "Tasty Street" food area.
+
+**Airport buses**
+- Buses to the airport: "Take a bus bound for Kansai International Airport (KIX) from your point of origin. All buses
+  arrive at the International Departures Lobby on the 4th floor of Terminal 1."
+- Destinations listed (each with its own timetable link): Itami Airport (Osaka Airport, Hotarugaike Sta.); central
+  Osaka: Osaka Sta. (Chayamachi, Shin-Umeda City, Senri Newtown, Shin-Osaka), Osakajo and Nippombashi, Temmabashi,
+  Kintetsu Uehonmachi (Shinsaibashi), Abeno Harukas, Namba (OCAT), Nankai Namba Sta. (night bus), Universal Studios
+  Japan with Nanko and Tenpozan (Kaiyukan), Ibaraki, Senri-New Town; elsewhere in Osaka Prefecture: Hirakata and Keihan
+  Kuzuha, Higashi Osaka, Rinku Premium Outlets, Rinku Town and Izumisano Sta. (also a night bus), nearby hotels;
+  Hyogo: Amagasaki, Nishinomiya, Kobe Sannomiya and Rokko Island, Himeji and Kakogawa; Nara: Kintetsu Gakuenmae, Nara,
+  Yamato Yagi; Kyoto: Kyoto and Kyo-tanabe; Wakayama; Okayama; Shikoku: Awaji, Naruto, Tokushima, Takamatsu.
+
 ## Arriving at Namba: tourist information (Osaka Convention & Tourism Bureau, read 25 Nov 2026)
 Source: https://osaka-info.jp/en/spot/tourist-information-namba/
 - Tourist Information Namba is "on the first floor of Nankai Namba Station, which is easily accessible from Kansai
@@ -46,9 +73,9 @@ Source: https://osaka-info.jp/en/spot/tourist-information-namba/
   (JR Osaka Station, 1F).
 
 ## Gaps (still to fetch or confirm; not used by Packy)
-- From the airport's site (owner's screenshots): train access (JR and Nankai, where the station is), ATMs, money
-  exchange, baggage storage and delivery, SIM and Wi-Fi, information counters, Terminal 1 and Terminal 2 and the
-  shuttle between them, airport buses (Kyoto, Osaka, Kobe), taxis.
+- From the airport's site (owner's screenshots): ATMs, money exchange, baggage storage and delivery, SIM and Wi-Fi,
+  information counters, "Getting to Terminal 2 Building" (the shuttle), bus stop numbers and times from the airport
+  (the list above is the to-the-airport page), taxis.
 - Nankai base fares (the price list is an image at the station and on the site).
 - JR (Haruka and Kansai Airport Rapid) first and last trains from the airport.
 - "Which Namba station?": a travel-media guide (Good Luck Trip, https://www.gltjp.com/en/article/item/20889/, updated
