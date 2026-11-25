@@ -411,8 +411,17 @@ SAKURA_SVG = ('<svg viewBox="0 0 300 720" xmlns="http://www.w3.org/2000/svg" ari
     + "".join('<use href="#sk-f" transform="translate(%d %d) scale(%.1f) rotate(%d)"/>' % b for b in _BLOOMS)
     + "".join('<use href="#sk-b" transform="translate(%d %d) rotate(%d)"/>' % b for b in _BUDS)
     + '</svg>')
+# Mt Fuji with a rising sun, low hills and a pagoda, for the bottom of the right side on big screens
+FUJI_SVG = ('<svg viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false">'
+    '<circle cx="190" cy="120" r="66" fill="#E94560" opacity=".85"/>'
+    '<path d="M0 420V330C60 320 110 300 160 305S260 330 300 325 420 300 480 310 560 330 600 325V420Z" fill="#EBD8DA"/>'
+    '<path d="M60 420L255 175C270 157 290 157 305 175L500 420Z" fill="#7C8DA8"/>'
+    '<path d="M255 175C270 157 290 157 305 175L340 220C325 210 316 227 302 215 290 227 278 211 266 223 252 211 242 225 225 213Z" fill="#fff"/>'
+    '<path d="M0 420V372C80 357 140 362 200 374S330 392 400 377 520 352 600 364V420Z" fill="#CBD5E3"/>'
+    '<g fill="#6B4235"><rect x="525" y="250" width="8" height="125"/><path d="M500 262h58l-8-12h-42zM504 292h50l-7-11h-36zM508 320h42l-6-10h-30zM511 346h36l-5-9h-26z"/><rect x="517" y="236" width="24" height="8"/></g>'
+    '</svg>')
 _PETAL = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2C4 6 3 13 10 18 17 13 16 6 10 2Z" fill="#FFC1D1" stroke="#F49AB0" stroke-width=".8"/></svg>'
-SAKURA_BG = ('<div class="jp-bg" aria-hidden="true"><div class="jp-bg-l">' + SAKURA_SVG + '</div><div class="jp-bg-r">' + SAKURA_SVG + '</div>'
+SAKURA_BG = ('<div class="jp-bg" aria-hidden="true"><div class="jp-bg-l">' + SAKURA_SVG + '</div><div class="jp-bg-r">' + SAKURA_SVG + '</div><div class="jp-fuji">' + FUJI_SVG + '</div>'
              + "".join('<i class="jp-petal" style="left:%s;animation-delay:%ss;animation-duration:%ss">%s</i>' % (l, d, t, _PETAL)
                        for l, d, t in (("4%", 0, 16), ("9%", 6, 19), ("14%", 11, 15), ("85%", 3, 18), ("90%", 9, 16), ("95%", 14, 20), ("2%", 17, 21), ("97%", 7, 17)))
              + '</div>')
@@ -424,14 +433,38 @@ SEIGAIHA = ("url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' 
             "%3Cpath d='M20 20a20 20 0 0 1 40 0M28 20a12 12 0 0 1 24 0M36 20a4 4 0 0 1 8 0'/%3E"
             "%3Cpath d='M60 20a20 20 0 0 1 40 0M68 20a12 12 0 0 1 24 0M76 20a4 4 0 0 1 8 0'/%3E%3C/g%3E%3C/svg%3E\")")
 HERO_CSS += """
-:root{--bg:#FBF5EE}
+:root{--bg:#FBF5EE;--pw:900px}
+html,body{overflow-x:clip}
 .jp-bg{display:none}
+/* big screens: the hero photo runs edge to edge, and from 1500px the page itself is wider (4 boarding passes in a row,
+   guide cards 3 across), so the space is used for content first and decoration second */
+@media (min-width:1000px){
+ .jp-hero{width:100vw;margin-left:calc(50% - 50vw);border-radius:0;box-shadow:none;margin-top:-1.5rem}
+ .jp-hero-in{max-width:1200px;padding:3rem 2rem 1.8rem}
+ .jp-hero h1{font-size:4.2rem}
+ .jp-hero-credit{max-width:1200px;margin:0 auto}
+}
+@media (min-width:1400px){.jp-fuji{display:block!important}}
+@media (min-width:1500px){
+ :root{--pw:1320px}
+ .page-wrapper{max-width:1320px}
+ .jp-passes{grid-template-columns:repeat(4,1fr)}
+ .jp-pass{flex-direction:column}
+ .jp-pass-stub{width:auto;flex-direction:row;align-items:center;padding:10px 12px;border-left:0;border-top:2px dashed rgba(255,255,255,.7)}
+ .jp-pass-stub small{display:none}.jp-pass-stub a{flex:1}
+ .jp-pass-stub:before,.jp-pass-stub:after{display:none}
+ .jp-stamp{right:14px}
+ .blog-grid{grid-template-columns:repeat(3,1fr)}
+ .jp-ask,.jp-other{max-width:1000px}
+}
 @media (min-width:1200px){
  body{background:#FBF5EE """ + SEIGAIHA + """ fixed}
  .jp-bg{display:block;position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
  .page-wrapper{position:relative;z-index:1}
- .jp-bg-l,.jp-bg-r{position:absolute;top:70px;width:min(300px,calc((100vw - 900px)/2));opacity:.95}
- .jp-bg-l{left:-10px}.jp-bg-r{right:-10px;transform:scaleX(-1);top:220px}
+ .jp-bg-l,.jp-bg-r{position:absolute;opacity:.95}
+ .jp-bg-l{left:-10px;top:60px;width:min(520px,calc((100vw - var(--pw))/2 + 40px))}
+ .jp-bg-r{right:-10px;top:80px;transform:scaleX(-1);width:min(200px,calc((100vw - var(--pw))/2 - 10px))}
+ .jp-fuji{display:none;position:absolute;right:0;bottom:0;width:min(560px,calc((100vw - var(--pw))/2 - 8px));-webkit-mask-image:linear-gradient(90deg,transparent,#000 18%);mask-image:linear-gradient(90deg,transparent,#000 18%)}
  .jp-bg svg{width:100%;height:auto;display:block}
  .jp-petal{position:absolute;top:-30px;width:16px;height:16px;animation:jpFall linear infinite;opacity:.85}
  .jp-petal svg{width:100%;height:100%;display:block}
