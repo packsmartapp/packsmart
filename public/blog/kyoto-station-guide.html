@@ -464,7 +464,10 @@
  .ps-pickups>picture{grid-column:1;grid-row:2/5}.ps-pickups>picture img{margin:0!important}
  .ps-pickups>picture+strong{grid-column:2;grid-row:2}
  .ps-pickups>picture+strong+div{grid-column:2;grid-row:3;max-width:none!important}
- .ps-pickups>picture+strong+div+*{grid-column:2;grid-row:4}}
+ .ps-pickups>picture+strong+div+*{grid-column:2;grid-row:4}
+ /* half width: the city search on its own row, From and To side by side under it (they overlapped) */
+ .content .ps-pickups.ps-pickups form>div:nth-child(1){grid-column:1/-1!important}
+ .content .ps-pickups.ps-pickups form>div:nth-child(2)>div:nth-child(1),.content .ps-pickups.ps-pickups form>div:nth-child(2)>div:nth-child(3){grid-column:span 12!important}}
 /* wide screens: the Shinkansen box in one band (picture | route and text | button), so the button sits up top */
 @media (min-width:1500px){[data-ps-placement^="jw-shinkansen"]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 280px;column-gap:28px;align-items:start}
  [data-ps-placement^="jw-shinkansen"]>strong{grid-column:1/-1}
