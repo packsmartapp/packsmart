@@ -136,6 +136,13 @@ CSS = """<style id="jp-guide-css">
  .content .related-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
  .content .related-card-body{padding:1.1rem 1.2rem}
 }
+/* wide screens: the airport-transfer box with its photo beside the heading, not a full-width poster */
+@media (min-width:1200px){.ps-pickups{display:grid!important;grid-template-columns:minmax(0,400px) minmax(0,1fr);column-gap:28px;align-items:center}
+ .ps-pickups>*{grid-column:1/-1}
+ .ps-pickups>picture{grid-column:1;grid-row:1/4;margin-bottom:16px}.ps-pickups>picture img{margin:0!important}
+ .ps-pickups>h3{grid-column:2;grid-row:1;align-self:end}
+ .ps-pickups>picture+strong{grid-column:2;grid-row:2}
+ .ps-pickups>picture+strong+div{grid-column:2;grid-row:3;align-self:start}}
 /* wide screens: the Shinkansen box in one band (picture | route and text | button), so the button sits up top */
 @media (min-width:1500px){[data-ps-placement^="jw-shinkansen"]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 280px;column-gap:28px;align-items:start}
  [data-ps-placement^="jw-shinkansen"]>strong{grid-column:1/-1}
