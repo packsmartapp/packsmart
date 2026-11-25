@@ -259,32 +259,36 @@ PASSES = [  # code, name, serves, line, pocket key, guide slug, Packy question
 ]
 
 HERO_CSS = """
-.jp-hero{position:relative;overflow:hidden;border-radius:26px;margin:0 0 1.6rem;color:#fff;background:#0f0f23 url('/images/kyoto-travel-guide-hero.jpg') center 55%/cover;box-shadow:0 18px 50px rgba(15,15,35,.25)}
-.jp-hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,15,35,.15) 0%,rgba(15,15,35,.35) 40%,rgba(15,15,35,.9) 100%)}
-.jp-hero h1,.jp-hero-lead{text-shadow:0 2px 12px rgba(0,0,0,.55)}
+.jp-hero{position:relative;overflow:hidden;border-radius:26px;margin:0 0 1.6rem;color:#0f0f23;background:linear-gradient(180deg,#FFE3E8 0%,#FFF1E6 60%,#FBF5EE 100%);box-shadow:0 14px 40px rgba(233,69,96,.12)}
+.jp-scene{position:absolute;inset:0;pointer-events:none}
+.jp-scene>svg{position:absolute;display:block}
+.jp-scene .hills{left:0;right:0;bottom:0;width:100%;height:32%}
+.jp-scene .art{right:0;bottom:0;width:48%;height:85%}
+.jp-scene .sk{display:none}
+.jp-scene .sk{position:absolute;left:-40px;top:-60px;width:250px;transform:rotate(-8deg)}.jp-scene .sk svg{width:100%;height:auto;display:block}
 .jp-hero-in{position:relative;padding:2.2rem 2rem 1.4rem;max-width:980px;margin:0 auto}
-.jp-hero-kick{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.25);border-radius:999px;padding:5px 12px;backdrop-filter:blur(6px)}
-.jp-hero h1{font-family:var(--font-display);font-size:3.6rem;line-height:1.02;margin:.6rem 0 .5rem;color:#fff}
-.jp-hero h1 em{font-style:italic;color:#FFD5DC}
-.jp-hero-lead{font-size:1.08rem;max-width:640px;color:#E7EAF6;margin:0 0 1rem}
-.jp-hello{display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;color:#fff;font:inherit;cursor:pointer;text-align:left;margin:0 0 1.1rem}
-.jp-hello .av{flex:none;width:48px;height:48px;background:#fff;border-radius:14px;padding:3px;box-shadow:0 6px 18px rgba(0,0,0,.25)}.jp-hello .av svg{width:100%;height:100%;display:block}
-.jp-hello .bub{background:#fff;color:#0f0f23;border-radius:16px 16px 16px 4px;padding:9px 14px;font-weight:600;font-size:.95rem;box-shadow:0 6px 18px rgba(0,0,0,.2)}
+.jp-hero-kick{display:inline-flex;align-items:center;gap:8px;font-size:.8rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;background:#fff;color:#0f0f23;border:1px solid #F3C6CF;border-radius:999px;padding:5px 12px}
+.jp-hero h1{font-family:var(--font-display);font-size:3.6rem;line-height:1.02;margin:.6rem 0 .5rem;color:#0f0f23}
+.jp-hero h1 em{font-style:italic;color:#E94560}
+.jp-hero-lead{font-size:1.08rem;max-width:600px;color:#3f4a5c;margin:0 0 1rem}
+.jp-hello{display:flex;align-items:center;gap:10px;background:none;border:0;padding:0;color:#0f0f23;font:inherit;cursor:pointer;text-align:left;margin:0 0 1.1rem}
+.jp-hello .av{flex:none;width:48px;height:48px;background:#fff;border-radius:14px;padding:3px;box-shadow:0 6px 18px rgba(233,69,96,.2)}.jp-hello .av svg{width:100%;height:100%;display:block}
+.jp-hello .bub{background:#fff;color:#0f0f23;border-radius:16px 16px 16px 4px;padding:9px 14px;font-weight:600;font-size:.95rem;box-shadow:0 6px 18px rgba(233,69,96,.15)}
 .jp-hello .bub b{color:#E94560}
 .jp-live{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 1.2rem}
-.jp-live span{display:inline-flex;align-items:center;gap:6px;font-size:.86rem;font-weight:700;background:rgba(15,15,35,.55);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:6px 12px;backdrop-filter:blur(6px)}
+.jp-live span{display:inline-flex;align-items:center;gap:6px;font-size:.86rem;font-weight:700;background:#fff;color:#0f0f23;border:1px solid #F0D9DD;border-radius:999px;padding:6px 12px}
 .jp-live span[hidden]{display:none}
-.jp-board{background:#111318;border-radius:16px;padding:12px 12px 8px;box-shadow:inset 0 0 0 1px rgba(255,255,255,.06),0 10px 30px rgba(0,0,0,.35)}
-.jp-board-h{display:flex;align-items:center;justify-content:space-between;color:#F5C542;font-weight:800;letter-spacing:.14em;font-size:.78rem;padding:2px 4px 8px}
-.jp-board-h i{font-style:normal;color:#8D93A5;letter-spacing:.06em;font-weight:600}
+.jp-board{background:rgba(255,255,255,.88);border:1px solid #F3D3DA;border-radius:18px;padding:12px 12px 8px;box-shadow:0 14px 34px rgba(233,69,96,.14);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
+.jp-board-h{display:flex;align-items:center;justify-content:space-between;color:#E94560;font-weight:800;letter-spacing:.14em;font-size:.78rem;padding:2px 4px 8px}
+.jp-board-h i{font-style:normal;color:#8a93a6;letter-spacing:.04em;font-weight:600}
 .jp-board ol{list-style:none;margin:0;padding:0;display:grid;gap:6px}
-.jp-board a{display:grid;grid-template-columns:1.2fr 1.2fr 1fr .8fr 18px;align-items:center;gap:8px;text-decoration:none;color:#F7F1DC;background:#1B1E26;border-radius:10px;padding:8px 10px;transition:background .15s}
-.jp-board a:hover,.jp-board a:focus-visible{background:#262A35}
+.jp-board a{display:grid;grid-template-columns:1.2fr 1.2fr 1fr .8fr 18px;align-items:center;gap:8px;text-decoration:none;color:#0f0f23;background:#FFF8F4;border:1px solid #F6E3E6;border-radius:12px;padding:9px 12px;transition:background .15s,border-color .15s}
+.jp-board a:hover,.jp-board a:focus-visible{background:#fff;border-color:#E94560}
 .jp-board .f{position:relative;font-weight:800;font-size:.92rem;letter-spacing:.06em;font-variant-numeric:tabular-nums;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.jp-board .f.t{color:#F5C542;text-align:right}
-.jp-board .go{color:#8D93A5;font-weight:800}
-.jp-board-note{font-size:.72rem;color:#9aa0b4;margin:8px 4px 2px;line-height:1.4}
-.jp-hero-credit{position:relative;text-align:right;font-size:.68rem;color:rgba(255,255,255,.6);padding:0 1rem .6rem}
+.jp-board .f.by{color:#5a6378}
+.jp-board .f.t{justify-self:end;color:#C2185B;background:#FFE3E8;border-radius:999px;padding:3px 10px}
+.jp-board .go{color:#E94560;font-weight:800}
+.jp-board-note{font-size:.72rem;color:#5a6378;margin:8px 4px 2px;line-height:1.4}
 .jp-pass-h{text-align:center;margin:0 0 1rem}.jp-pass-h h2{font-family:var(--font-display);font-size:2.2rem;margin:0}.jp-pass-h p{color:#5a6378;margin:.2rem 0 0}
 .jp-passes{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin:0 0 2rem}
 .jp-pass{position:relative;display:flex;background:#fff;border-radius:18px;box-shadow:0 6px 20px rgba(15,15,35,.08);overflow:hidden;border:1px solid #E6ECEF}
@@ -304,15 +308,32 @@ HERO_CSS = """
 .jp-stamp{position:absolute;right:130px;top:12px;transform:rotate(-12deg);border:2px solid #E94560;color:#E94560;border-radius:8px;padding:2px 6px;font-size:.62rem;font-weight:800;letter-spacing:.08em;opacity:.85;text-align:center;line-height:1.15}
 @media (max-width:760px){.jp-passes{grid-template-columns:1fr}}
 @media (max-width:600px){
- .jp-hero{border-radius:20px;margin-left:-4px;margin-right:-4px}.jp-hero-in{padding:1.5rem 1rem 1rem}.jp-hero h1{font-size:2.6rem}.jp-hero-lead{font-size:.98rem}
+ .jp-hero{border-radius:20px;margin-left:-4px;margin-right:-4px}.jp-hero-in{padding:0 1rem 1rem}
+ .jp-scene{position:relative;inset:auto;height:190px}.jp-scene .art{width:100%;height:100%}.jp-scene .hills{height:40%}
+ .jp-scene .sk{display:block;width:130px;left:-24px;top:-34px}.jp-hero h1{font-size:2.6rem}.jp-hero-lead{font-size:.98rem}
  .jp-board a{grid-template-columns:1fr auto;grid-template-areas:"r t" "b t";row-gap:2px}
- .jp-board .f.fr{grid-area:r;white-space:normal}.jp-board .f.fr:after{content:" → " attr(data-to);color:#F7F1DC}
- .jp-board .f.to{display:none}.jp-board .f.by{grid-area:b;font-size:.74rem;color:#8D93A5}.jp-board .f.t{grid-area:t;font-size:1rem}.jp-board .go{display:none}
+ .jp-board .f.fr{grid-area:r;white-space:normal}.jp-board .f.fr:after{content:" → " attr(data-to);color:#0f0f23}
+ .jp-board .f.to{display:none}.jp-board .f.by{grid-area:b;font-size:.74rem;color:#5a6378}.jp-board .f.t{grid-area:t;font-size:1rem}.jp-board .go{display:none}
  .jp-board-h .wide{display:none}
  .jp-pass-code{font-size:2.2rem}.jp-pass-stub{width:104px;padding-left:14px}.jp-stamp{right:114px}
 }
 @media (prefers-reduced-motion:reduce){.jp-board .f{transition:none}}
 """
+
+# Drawn dawn scene for the hero (25 Nov 2026, owner chose it over photos): sky, rising sun, Mt Fuji, pink hills, torii.
+HILLS_SVG = ('<svg class="hills" viewBox="0 0 1600 600" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">'
+    '<path d="M0 600V505C200 480 380 492 560 512S900 545 1120 518 1450 485 1600 498V600Z" fill="#F2D7DC"/>'
+    '<path d="M0 600V550C250 532 500 545 760 560S1250 578 1600 552V600Z" fill="#E9C3CB"/>'
+    '</svg>')
+ART_SVG = ('<svg class="art" viewBox="940 100 660 500" preserveAspectRatio="xMaxYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">'
+    '<circle cx="1225" cy="200" r="84" fill="#E94560" opacity=".9"/>'
+    '<path d="M955 600L1205 300C1218 284 1242 284 1255 300L1505 600Z" fill="#8FA2C0"/>'
+    '<path d="M1205 300C1218 284 1242 284 1255 300L1297 352C1281 341 1270 359 1255 346 1242 359 1228 342 1215 355 1200 342 1188 357 1168 344Z" fill="#fff"/>'
+    '<g transform="translate(1395 352) scale(.62)">'
+    '<path d="M18 40C80 30 220 30 282 40L276 54C220 46 80 46 24 54Z" fill="#D7263D"/><rect x="30" y="54" width="240" height="10" fill="#3a2a2a"/>'
+    '<rect x="50" y="80" width="200" height="14" fill="#D7263D"/><rect x="72" y="54" width="20" height="246" fill="#D7263D"/><rect x="208" y="54" width="20" height="246" fill="#D7263D"/>'
+    '<rect x="66" y="288" width="32" height="14" fill="#3a2a2a"/><rect x="202" y="288" width="32" height="14" fill="#3a2a2a"/><rect x="138" y="62" width="24" height="32" fill="#3a2a2a"/></g>'
+    '</svg>')
 
 def _face_av():
     return packy_face()
@@ -326,6 +347,7 @@ def hero_html():
            to, fr, fr, to, to, by, by, t, t)
         for fr, to, by, t, pk, src in BOARD)
     return ("""<section class="jp-hero" aria-labelledby="jpHeroT">
+<div class="jp-scene" aria-hidden="true">""" + HILLS_SVG + ART_SVG + '<div class="sk">' + SAKURA_SVG + """</div></div>
 <div class="jp-hero-in">
 <span class="jp-hero-kick">🇯🇵 ようこそ · Yōkoso</span>
 <h1 id="jpHeroT">Welcome to <em>Japan</em></h1>
@@ -338,7 +360,6 @@ def hero_html():
 <p class="jp-board-note">Journey times from Keisei, Keikyu (from Terminal 3), JNTO and Kyoto City, checked """ + BOARD_CHECKED.strftime("%-d %B %Y") + """. Times change, so check before you travel.</p>
 </div>
 </div>
-<div class="jp-hero-credit">Photo: PAKUTASO. Illustrative image of the Fushimi Inari shrine in Kyoto.</div>
 </section>""")
 
 def passes_html():
@@ -411,17 +432,8 @@ SAKURA_SVG = ('<svg viewBox="0 0 300 720" xmlns="http://www.w3.org/2000/svg" ari
     + "".join('<use href="#sk-f" transform="translate(%d %d) scale(%.1f) rotate(%d)"/>' % b for b in _BLOOMS)
     + "".join('<use href="#sk-b" transform="translate(%d %d) rotate(%d)"/>' % b for b in _BUDS)
     + '</svg>')
-# Mt Fuji with a rising sun, low hills and a pagoda, for the bottom of the right side on big screens
-FUJI_SVG = ('<svg viewBox="0 0 600 420" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMax meet" aria-hidden="true" focusable="false">'
-    '<circle cx="190" cy="120" r="66" fill="#E94560" opacity=".85"/>'
-    '<path d="M0 420V330C60 320 110 300 160 305S260 330 300 325 420 300 480 310 560 330 600 325V420Z" fill="#EBD8DA"/>'
-    '<path d="M60 420L255 175C270 157 290 157 305 175L500 420Z" fill="#7C8DA8"/>'
-    '<path d="M255 175C270 157 290 157 305 175L340 220C325 210 316 227 302 215 290 227 278 211 266 223 252 211 242 225 225 213Z" fill="#fff"/>'
-    '<path d="M0 420V372C80 357 140 362 200 374S330 392 400 377 520 352 600 364V420Z" fill="#CBD5E3"/>'
-    '<g fill="#6B4235"><rect x="525" y="250" width="8" height="125"/><path d="M500 262h58l-8-12h-42zM504 292h50l-7-11h-36zM508 320h42l-6-10h-30zM511 346h36l-5-9h-26z"/><rect x="517" y="236" width="24" height="8"/></g>'
-    '</svg>')
 _PETAL = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2C4 6 3 13 10 18 17 13 16 6 10 2Z" fill="#FFC1D1" stroke="#F49AB0" stroke-width=".8"/></svg>'
-SAKURA_BG = ('<div class="jp-bg" aria-hidden="true"><div class="jp-bg-l">' + SAKURA_SVG + '</div><div class="jp-bg-r">' + SAKURA_SVG + '</div><div class="jp-fuji">' + FUJI_SVG + '</div>'
+SAKURA_BG = ('<div class="jp-bg" aria-hidden="true"><div class="jp-bg-l">' + SAKURA_SVG + '</div><div class="jp-bg-r">' + SAKURA_SVG + '</div>'
              + "".join('<i class="jp-petal" style="left:%s;animation-delay:%ss;animation-duration:%ss">%s</i>' % (l, d, t, _PETAL)
                        for l, d, t in (("4%", 0, 16), ("9%", 6, 19), ("14%", 11, 15), ("85%", 3, 18), ("90%", 9, 16), ("95%", 14, 20), ("2%", 17, 21), ("97%", 7, 17)))
              + '</div>')
@@ -442,11 +454,11 @@ html,body{overflow-x:clip}
  .jp-hero{width:100vw;margin-left:calc(50% - 50vw);border-radius:0;box-shadow:none;margin-top:-1.5rem}
  .jp-hero-in{max-width:1200px;padding:3rem 2rem 1.8rem}
  .jp-hero h1{font-size:4.2rem}
- .jp-hero-credit{max-width:1200px;margin:0 auto}
+ .jp-hero-in>*{max-width:640px}
 }
-@media (min-width:1400px){.jp-fuji{display:block!important}}
 @media (min-width:1500px){
  :root{--pw:1320px}
+ .jp-hero-in>*{max-width:760px}
  .page-wrapper{max-width:1320px}
  .jp-passes{grid-template-columns:repeat(4,1fr)}
  .jp-pass{flex-direction:column}
@@ -463,8 +475,7 @@ html,body{overflow-x:clip}
  .page-wrapper{position:relative;z-index:1}
  .jp-bg-l,.jp-bg-r{position:absolute;opacity:.95}
  .jp-bg-l{left:-10px;top:60px;width:min(520px,calc((100vw - var(--pw))/2 + 40px))}
- .jp-bg-r{right:-10px;top:80px;transform:scaleX(-1);width:min(200px,calc((100vw - var(--pw))/2 - 10px))}
- .jp-fuji{display:none;position:absolute;right:0;bottom:0;width:min(560px,calc((100vw - var(--pw))/2 - 8px));-webkit-mask-image:linear-gradient(90deg,transparent,#000 18%);mask-image:linear-gradient(90deg,transparent,#000 18%)}
+ .jp-bg-r{right:-10px;top:auto;bottom:-60px;transform:scaleX(-1);width:min(420px,calc((100vw - var(--pw))/2 + 20px))}
  .jp-bg svg{width:100%;height:auto;display:block}
  .jp-petal{position:absolute;top:-30px;width:16px;height:16px;animation:jpFall linear infinite;opacity:.85}
  .jp-petal svg{width:100%;height:100%;display:block}
