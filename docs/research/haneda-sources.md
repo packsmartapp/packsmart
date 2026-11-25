@@ -63,7 +63,39 @@ transportation facility")
   Counter Y.
 - The same information is also on RakuRaku Odekake-net (link on the page).
 
+**Terminal 3, 2nd floor Arrival Lobby (floor map on the same page)**
+- Arriving passengers go through the Arrival Procedures Area (quarantine, immigration), then Baggage Claim and Customs
+  Inspection, and come out at the Arrival Exit. Animal & Plant Quarantine counters sit beside the baggage hall.
+- Straight ahead from the Arrival Exit is an information counter. The Keikyu Line is to the left (a "To City Center"
+  gate, and a separate Keikyu entrance signed "For Domestic Flights"), the Tokyo Monorail to the right.
+- Beside both rail entrances: "To 1F Bus Stop (Tokyo, Kanagawa, Chiba, Saitama, etc.)". Also on the map: "To 1F Bus
+  Stop for Charters", "To 3F Parking" and "To Haneda Airport Garden".
+
+## From Haneda to Narita (owner's screenshot, 25 Nov 2026)
+Source: Haneda Airport official site, Access > From Haneda to Narita (https://tokyo-haneda.com/en/, exact page link to add)
+- "Convenient ways to get to Narita Airport are by train (shared services for the Keikyu Line, Toei Line and Keisei
+  Line) and by airport shuttle."
+- Train (Keikyu, Toei and Keisei through-services): 90 to 115 minutes; fare 1,760 to 3,080 yen (IC card 1,746 to
+  3,066 yen).
+- Airport Shuttle (Airport Transport Service, from the Haneda Airport International Terminal): 65 to 85 minutes;
+  fare 3,600 yen.
+
+## Keikyu Haneda Airport Access Guide (owner's screenshot, 25 Nov 2026)
+Source: Keikyu's Haneda Airport Access Guide, https://www.haneda-tokyo-access.com/en/ (exact page link to add)
+- Fares from Haneda Airport on the Keikyu Line (adult, one way, IC card), with journey times; the table shows two
+  time columns, a few minutes apart (Terminal 3 and Terminal 1·2):
+  Shinagawa 327 yen, 11 to 14 minutes · Yokohama 363 yen, 23 to 28 minutes · Shimbashi 505 yen, 21 to 24 minutes ·
+  Tokyo Station 505 yen, 20 to 23 minutes · Shibuya 535 yen, 23 to 26 minutes · Higashi-ginza 547 yen, 23 to 26
+  minutes · Asakusa 599 yen, 32 to 35 minutes · Oshiage (Skytree) 599 yen, 35 to 38 minutes.
+- Keikyu ticket machines have a language selection button and take notes, coins and credit cards.
+- The guide has a "Tap to Ride" section: the gates have a reader for contactless card payment ("タッチ決済 Tap to ride").
+- Station numbers on the Keikyu line map: Tenkubashi KK15, Haneda Airport Terminal 3 KK16, Haneda Airport Terminal
+  1·2 KK17, Keikyu Kamata KK11, Keikyu Kawasaki KK20.
+
 ## Gaps (still to fetch or confirm; not used by Packy)
+- Exact links for the "From Haneda to Narita" page and the Keikyu fare table; which time column is which terminal
+  (the screenshot was a small preview; the notes above give both times as a range).
+- Keikyu "Tap to Ride": which cards are accepted, and whether it covers through-trains onto the subway.
 - Service Guide > List of Services: ATMs, currency exchange, SIM and Wi-Fi counters, luggage storage and delivery, with floors.
-- Access > Travel Between Terminals (free shuttle bus), Express Bus & Route Bus, Taxi (fixed fares), From Haneda to Narita.
+- Access > Travel Between Terminals (free shuttle bus), Express Bus & Route Bus, Taxi (fixed fares).
 - First and last trains: on the Keikyu and Tokyo Monorail sites (the airport page sends readers there).
