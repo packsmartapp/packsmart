@@ -16,6 +16,10 @@ Step 2 (25 Nov 2026), same script:
   * an "Ask Packy about <place>" box right after the guide's "What do you need first?" tiles, with that place's own
     starter questions (read from public/packy.js), on the guides that load Packy (w75). Questions open the Packy chat.
 
+Step 2b: on wide screens (1200px and up) the guide sits in the hub's world: washi pink with the wave print behind
+a white "paper" panel for the text (which keeps its 800px reading width), the hub's sakura branches on both sides
+(copied from public/japan.html, so run after w73) and the seasonal falling petals. Phones stay plain white.
+
 The article body is not touched. The band sits between <!-- jp-band --> markers and is replaced as a whole, and the CSS
 is one <style id="jp-guide-css"> block in <head>, so re-running is safe.
 
@@ -46,6 +50,15 @@ KIND = {"station": ("駅", "Station guide", "Stations", "/japan#stations"),
 MONTHS = {m: i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
 OLD_TINT = "linear-gradient(rgba(15,15,35,0.62), rgba(26,26,62,0.72))"
 NEW_TINT = "linear-gradient(rgba(15,15,35,0.14) 0%, rgba(15,15,35,0.32) 45%, rgba(15,15,35,0.66) 100%)"
+BG = re.compile(r'<!-- jp-guide-bg -->.*?<!-- /jp-guide-bg -->\n', re.S)
+_hub = open(os.path.join(ROOT, "public", "japan.html"), encoding="utf-8").read()
+_i = _hub.find('<div class="jp-bg"'); _j = _hub.find('\n<div class="page-wrapper">', _i)
+if _i < 0 or _j < 0:
+    sys.exit("w77 aborted: the sakura backdrop was not found on public/japan.html (run w73 first)")
+SAKURA_BG = ("<!-- jp-guide-bg -->\n" + _hub[_i:_j] + "\n"
+    "<script>(function(){var m=+new Date().toLocaleString('en-US',{timeZone:'Asia/Tokyo',month:'numeric'});"
+    "document.body.setAttribute('data-season',m>=3&&m<=5?'spring':m>=6&&m<=8?'summer':m>=9&&m<=11?'autumn':'winter');})();</script>\n"
+    "<!-- /jp-guide-bg -->\n")
 ASK = re.compile(r"<!-- jp-ask-guide -->.*?<!-- /jp-ask-guide -->\n", re.S)
 TOPIC = re.compile(r'<script src="/packy\.js[^"]*" data-country="japan" data-topic="([a-z-]+)"')
 PACKY = open(os.path.join(ROOT, "public", "packy.js"), encoding="utf-8").read()
@@ -102,6 +115,25 @@ CSS = """<style id="jp-guide-css">
 .jg-f button{flex:none;font:inherit;font-weight:800;font-size:.92rem;border:0;border-radius:999px;padding:9px 16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;cursor:pointer}
 .jg-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.jg-chips button{font:inherit;font-size:.84rem;font-weight:600;text-align:left;background:#fff;color:#0f0f23;border:1.5px solid #BFEDE3;border-radius:999px;padding:6px 12px;cursor:pointer}
 .jg-chips button:hover{border-color:#00C9A7}.jg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+.jp-bg{display:none}
+@media (min-width:1200px){
+ html{background:#FDF0F2 """ + WAVE + """ fixed}body{background:transparent!important}
+ .jp-bg{display:block;position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
+ .jp-bg-l,.jp-bg-r{position:absolute;opacity:.95}
+ .jp-bg-l{left:-10px;top:60px;width:min(420px,calc((100vw - 860px)/2))}
+ .jp-bg-r{right:-10px;bottom:-60px;transform:scaleX(-1);width:min(360px,calc((100vw - 860px)/2))}
+ .jp-bg svg{width:100%;height:auto;display:block}
+ .jp-petal{position:absolute;top:-30px;width:16px;height:16px;animation:jpFall linear infinite;opacity:.85}.jp-petal svg{width:100%;height:100%;display:block}
+ .content{background:#fff;border-radius:28px;margin-top:28px!important;margin-bottom:28px;box-shadow:0 14px 40px rgba(15,15,35,.07)}
+ .jp-band{background:transparent;border-bottom:0}
+}
+@keyframes jpFall{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(30px,25vh) rotate(90deg)}50%{transform:translate(-10px,50vh) rotate(200deg)}75%{transform:translate(25px,75vh) rotate(290deg)}100%{transform:translate(0,110vh) rotate(380deg)}}
+@keyframes jpFly{0%{transform:translate(0,0);opacity:0}15%{opacity:1}35%{opacity:.35}55%{transform:translate(28px,-50vh);opacity:1}75%{opacity:.4}100%{transform:translate(-12px,-100vh);opacity:0}}
+body[data-season=summer] .jp-petal{top:auto;bottom:-20px;width:7px;height:7px;border-radius:50%;background:#FFF6A0;box-shadow:0 0 10px 4px rgba(240,236,120,.75);animation-name:jpFly}
+body[data-season=summer] .jp-petal svg{display:none}
+body[data-season=autumn] .jp-petal path{fill:#E8743B;stroke:#C2501F}
+body[data-season=winter] .jp-petal path{fill:#fff;stroke:#D6E2EC}body[data-season=winter] .jp-petal svg{transform:scale(.7)}
+@media (prefers-reduced-motion:reduce){.jp-petal{display:none!important}}
 .psn-now{background-image:""" + WAVE + """!important}
 @media (max-width:600px){.jp-namesign{flex-wrap:wrap;gap:8px 12px}.jp-namesign-k{font-size:1.5rem}.jp-namesign-bar{display:none}.jp-namesign-st{position:absolute;right:12px;top:-12px;background:#fff}}
 </style>
@@ -163,6 +195,12 @@ for slug, (ja, en, kind) in GUIDES.items():
     elif NEW_TINT not in hero_old and "url(" in hero_old:   # a hero without a photo (New Chitose) keeps its own colour
         problems.append(slug + " (hero tint not recognised)")
         continue
+    new = BG.sub("", new)
+    bm = re.search(r"<body[^>]*>\n?", new)
+    if not bm:
+        problems.append(slug + " (<body>)")
+        continue
+    new = new[:bm.end()] + SAKURA_BG + new[bm.end():]
     new = ASK.sub("", new)
     tm = TOPIC.search(new)
     if tm:
