@@ -1117,7 +1117,14 @@ export default [
 },
 {
 "t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
-"x": "- Services named on the map or in its list for Terminal 1 / 1F: Aeon Bank ATM; Kansai Tourist Information Center\n  Kansai Airport; Limousine Bus Information Counter (South); Temporary Storage of Bonded Baggage Terminal 1; SIM and\n  Wi-Fi: Global WiFi (central counter, north counter, a north SIM card vending machine, portable router rental \"same-day\n  rental without reservation (only when in stock)\"), JAPAN WiFi (XCom Global) unmanned return box, Sakura Mobile,\n  Telecom Square; ChargeSPOT phone-battery rental; coin photo booths; Doutor Coffee Shop.\n- The bus stops line the kerb outside this floor.",
+"x": "- Services named on the map or in its list for Terminal 1 / 1F: Aeon Bank ATM; Kansai Tourist Information Center\n  Kansai Airport; Limousine Bus Information Counter (South); Temporary Storage of Bonded Baggage Terminal 1; SIM and\n  Wi-Fi: Global WiFi (central counter, north counter, a north SIM card vending machine, portable router rental \"same-day\n  rental without reservation (only when in stock)\"), JAPAN WiFi (XCom Global) unmanned return box, Sakura Mobile,\n  Telecom Square; ChargeSPOT phone-battery rental; coin photo booths; Doutor Coffee Shop.\n- The bus stops line the kerb outside this floor.\n\nhttps://platinumaps.jp/maps/kix-airport?culture=en&category=atm , 25 Nov 2026; the map shows names and places, not\nhours)\n- 1F (international arrivals; buses and taxis): Seven Bank ATM, at the north end of the arrivals hall, near exit A;\n  Aeon Bank ATM, in the north part of the hall.",
+"u": [
+"https://platinumaps.jp/maps/kix-airport?culture=en&category=atm"
+]
+},
+{
+"t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
+"x": "- 2F (domestic departures and arrivals): MUFG Bank ATM at the north end; Aeon Bank ATM in the middle of the hall,\n  near entrance E.\n- 4F (international departures): Seven Bank ATM, by the check-in islands, between counters D and E.\n- No ATM shown on 3F.\n- Seven Bank ATMs take overseas cards (JNTO's list, in the Japan basics notes); the Aeon Bank and MUFG ATMs: check\n  the bank's own page.",
 "u": []
 },
 {

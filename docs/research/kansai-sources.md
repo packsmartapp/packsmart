@@ -104,6 +104,18 @@ airport's interactive map, 25 Nov 2026; the side list was only partly visible)
   Telecom Square; ChargeSPOT phone-battery rental; coin photo booths; Doutor Coffee Shop.
 - The bus stops line the kerb outside this floor.
 
+**ATMs in Terminal 1, by floor** (owner's screenshots of the airport's official interactive map, ATM filter,
+https://platinumaps.jp/maps/kix-airport?culture=en&category=atm , 25 Nov 2026; the map shows names and places, not
+hours)
+- 1F (international arrivals; buses and taxis): Seven Bank ATM, at the north end of the arrivals hall, near exit A;
+  Aeon Bank ATM, in the north part of the hall.
+- 2F (domestic departures and arrivals): MUFG Bank ATM at the north end; Aeon Bank ATM in the middle of the hall,
+  near entrance E.
+- 4F (international departures): Seven Bank ATM, by the check-in islands, between counters D and E.
+- No ATM shown on 3F.
+- Seven Bank ATMs take overseas cards (JNTO's list, in the Japan basics notes); the Aeon Bank and MUFG ATMs: check
+  the bank's own page.
+
 **Taxis: approximate times and fares** (same site, taxi page; owner's screenshots, 25 Nov 2026)
 - From the airport, approximate time / fare / access bridge and expressway tolls / total: Itami Airport 70 min,
   23,490 + 3,000 = 26,490 yen; Kita-ku, Osaka city 50 min, 19,800 + 2,600 = 22,400 yen; Chuo-ku, Osaka city 50 min,
@@ -128,7 +140,7 @@ Source: https://osaka-info.jp/en/spot/tourist-information-namba/
   (JR Osaka Station, 1F).
 
 ## Gaps (still to fetch or confirm; not used by Packy)
-- From the airport's site (owner's screenshots): ATMs, money exchange, baggage storage and delivery, SIM and Wi-Fi,
+- From the airport's site (owner's screenshots): ATM hours, money exchange, baggage storage and delivery, SIM and Wi-Fi,
   information counters, "Getting to Terminal 2 Building" (the shuttle), opening hours of the 1F services (the map shows names only), where the taxi stands are, and the
   taxi fares for Hyogo, Nara, Kyoto, Wakayama, Okayama and Shikoku (a closed section in the screenshots).
 - Nankai base fares (the price list is an image at the station and on the site).
