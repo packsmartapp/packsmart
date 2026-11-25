@@ -124,7 +124,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w74_japan_ask_kb.py` | w74: the knowledge for "Ask about Japan" (/api/ask), built from the official-source research notes (24 Nov 2026). |
 | `w75_packy_rollout.py` | w75: Packy, the pop-up travel helper, on the pages where its knowledge is solid (24 Nov 2026, D56). |
 | `w76_focused_menu.py` | w76: the focused top menu on every page (25 Nov 2026, B57). |
-| `w77_japan_guide_band.py` | w77: a light Japan band at the top of the Japan station, airport and city guides (25 Nov 2026). |
+| `w77_japan_guide_band.py` | w77: a light Japan band at the top of the Japan station, airport and city guides, and the three general Japan articles |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `pocket_guides.json` | data file read by the scripts above |
 | `w62_photo_fixes.json` | data file read by the scripts above |
@@ -140,7 +140,7 @@ Each also has `<key>-sw.js` (service worker) and `<key>-pocket.webmanifest`.
 
 **Web stories (5):** `bali-travel-guide.html`, `malaysia-travel-guide.html`, `sri-lanka-travel-guide.html`, `thailand-travel-guide.html`, `vietnam-travel-guide.html`
 
-**Images:** 165 files in `public/images/`; site icons and logos in `public/`.
+**Images:** 166 files in `public/images/`; site icons and logos in `public/`.
 
 **Other public files:** `favicon.ico`, `packsmart-icon.svg`, `packsmart-logo-white.svg`, `packsmart-logo.svg`, `packsmart-phase1.js`, `packsmart-widgets.js`, `packy.js`, `robots.txt`, `sitemap.xml`
 

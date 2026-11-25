@@ -2,7 +2,7 @@
 """w38: Osaka city guide (article only, no pocket guide).
 Run from the repo root (~/packsmart):  python3 tools/w38_osaka_city_page.py
 Idempotent. Needs, in public/images: osaka-travel-guide-hero.jpg (Pakutaso photo, 1600 px wide) and
-osaka-travel-guide-card-680.webp (card crop). Run AFTER w36 (reads the page chrome from blog/osaka-station-guide.html).
+osaka-travel-guide-card-v2-680.webp (card crop; v2 since 25 Nov, re-cropped from the hero because the first crop had a black strip, and renamed because images are cached as immutable). Run AFTER w36 (reads the page chrome from blog/osaka-station-guide.html).
 Writes public/blog/osaka-travel-guide.html, adds a link sentence to the Japan guide, adds the sitemap entry and a card on blog.html.
 No prices are printed: they change by date and group size.
 """
@@ -41,7 +41,7 @@ def die(msg):
 for p in (STATION, JAPAN, SITEMAP, BLOGIDX):
     if not os.path.isfile(p):
         die("missing " + p + " (run from the repo root, after w36)")
-for f in ("osaka-travel-guide-hero.jpg", "osaka-travel-guide-card-680.webp"):
+for f in ("osaka-travel-guide-hero.jpg", "osaka-travel-guide-card-v2-680.webp"):
     if not os.path.isfile(os.path.join(IMG, f)):
         die("missing public/images/" + f)
 
@@ -585,7 +585,7 @@ if 'href="/blog/%s"' % SLUG not in bx:
     CARD = '''
 
         <a href="/blog/%s" class="blog-card" data-region="Asia" data-country="japan">
-            <img class="blog-card-img" src="/images/osaka-travel-guide-card-680.webp" alt="Aerial view of Osaka's skyline and parks under a cloudy sky" width="680" height="340" loading="lazy">
+            <img class="blog-card-img" src="/images/osaka-travel-guide-card-v2-680.webp" alt="Aerial view of Osaka's skyline and parks under a cloudy sky" width="680" height="340" loading="lazy">
             <div class="blog-card-body">
                 <span class="tag">Destination Guide</span>
                 <h2>Osaka Travel Guide 2026: Private Car, Kobe Beef, Sumo and Day Trips</h2>
