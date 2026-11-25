@@ -31,6 +31,7 @@ This page says what exists and where. It does not repeat file contents, because 
 
 - `api/_japan_kb.js`
 - `api/_offers.js`
+- `api/_packy_png.js`
 - `api/ask.js`
 - `api/email-chat.js`
 - `api/generate-plan.js`

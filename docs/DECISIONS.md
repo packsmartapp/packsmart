@@ -264,6 +264,7 @@ Status as of 22 Nov 2026. Oldest first. Each entry gives what was chosen, what i
 - 25 Nov, chat and email kept in step: Packy remembers the address in the traveller's own browser (localStorage, that device only; "Use another email" forgets it). After new answers the chip reads "Email the updated chat to a…@…" and sends the whole chat in one tap. The email has a "Continue this chat with Packy" button: the chat travels compressed in the link after `#packy=` (never sent to or stored on a server), and Packy reopens it on the page where it started. Replying to the email for an AI answer needs inbound email first (B54).
 - 25 Nov, the email matches the chat: each answer keeps its booking button (labelled partner link) and guide link, and the email ends with the Pocket Guide card Packy showed (e.g. Narita) with `?src=packy_email`. The buttons come only from the shared list `api/_offers.js` (the email form is public, so no other link is accepted); the "Continue" link carries them back into the chat, and packy.js accepts only our own pages and the partner hosts Packy uses.
 - 25 Nov: an email sent from a Vercel preview of this project links back to that preview (so the Continue link, guides and Pocket Guides can be tested before going live); from the live site it links to www.packsmartapp.com.
+- 25 Nov: Packy's face is in the email (header and next to each answer), attached inline as a PNG (`api/_packy_png.js`, made from the SVG in packy.js), so it shows without loading images from the site.
 
 ## Open decisions (not made)
 

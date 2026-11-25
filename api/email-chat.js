@@ -9,6 +9,7 @@
 import nodemailer from 'nodemailer';
 import { deflateRawSync } from 'zlib';
 import { knownOffer } from './_offers.js';
+import PACKY_PNG from './_packy_png.js';
 
 const ORIGIN_OK = /^https:\/\/(www\.)?packsmartapp\.com$|^https:\/\/packsmart-[a-z0-9-]+-packsmartapps-projects\.vercel\.app$|^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 const PER_IP = 5, WINDOW_MS = 60 * 60 * 1000, DAILY_CAP = 100;
@@ -119,17 +120,19 @@ export default async function handler(req, res) {
   const chat = items.map(x =>
     '<div style="margin:0 0 18px;">' +
     '<p style="margin:0 0 6px;"><span style="display:inline-block;background:#00C9A7;color:#fff;border-radius:12px;padding:6px 12px;font-weight:bold;">' + esc(x.q) + '</span></p>' +
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%"><tr><td width="36" valign="top" style="padding:4px 8px 0 0;"><img src="cid:packy" width="28" height="28" alt="Packy" style="display:block;border-radius:8px;"></td><td valign="top">' +
     '<div style="background:#ffffff;border:1px solid #e3e8ec;border-radius:12px;padding:10px 14px;color:#0f0f23;font-size:15px;line-height:1.55;">' + md(x.a, SITE) +
     // the same booking button and guide link Packy showed in the chat
     (x.o ? '<p style="margin:10px 0 4px;"><a href="' + esc(x.o.url.startsWith('/') ? SITE + x.o.url : x.o.url) + '"' + (x.o.partner ? ' rel="nofollow noopener sponsored"' : '') +
       ' style="display:block;background:#FFF1F4;border:1.5px solid #F7B9C6;border-radius:12px;padding:10px 12px;color:#0f0f23;text-decoration:none;font-weight:bold;">' +
       (x.o.partner ? '&#127903;&#65039; ' : '&#128073; ') + esc(x.o.label) + (x.o.partner ? ' <span style="font-weight:normal;font-size:12px;color:#8a5563;">(partner link)</span>' : '') + '</a></p>' : '') +
     (x.g ? '<p style="margin:8px 0 0;font-size:13px;border-top:1px dashed #D5DCE0;padding-top:6px;">&#128214; More in our <a href="' + SITE + esc(x.g.url) + '" style="color:#0a8f78;font-weight:bold;">' + esc(x.g.title) + '</a></p>' : '') +
-    '</div></div>').join('');
+    '</div></td></tr></table></div>').join('');
   const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>' +
     '<body style="margin:0;padding:0;background:#f4faf8;font-family:Arial,Helvetica,sans-serif;"><div style="max-width:600px;margin:0 auto;padding:28px 16px;">' +
     '<p style="font-size:22px;font-weight:800;color:#0f0f23;margin:0 0 4px;">Pack<span style="color:#00C9A7;">Smart</span></p>' +
-    '<h1 style="font-size:20px;color:#0f0f23;margin:14px 0 6px;">Your Packy chat about ' + name + '</h1>' +
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 6px;"><tr><td valign="middle" style="padding-right:12px;"><img src="cid:packy" width="56" height="56" alt="Packy" style="display:block;border-radius:16px;box-shadow:0 2px 8px rgba(15,15,35,.12);"></td>' +
+    '<td valign="middle"><h1 style="font-size:20px;color:#0f0f23;margin:0;">Your Packy chat about ' + name + '</h1><p style="margin:2px 0 0;color:#5a6378;font-size:13px;">From Packy, your ' + name + ' travel buddy</p></td></tr></table>' +
     '<p style="color:#5a6378;font-size:14px;margin:0 0 18px;">Here is what you asked Packy, with the official sources. Prices and times change, so check the source before you travel.</p>' +
     chat +
     '<p style="text-align:center;margin:22px 0;"><a href="' + esc(continueLink(items, next, page, country, SITE)) + '" style="display:inline-block;background:#E94560;color:#ffffff;text-decoration:none;font-weight:bold;font-size:16px;padding:13px 22px;border-radius:24px;">\uD83D\uDCAC Continue this chat with Packy</a></p>' +
@@ -151,7 +154,8 @@ export default async function handler(req, res) {
   try {
     const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
     step = 'traveller';
-    await t.sendMail({ from: '"Packy from PackSmart" <hello@packsmartapp.com>', replyTo: 'hello@packsmartapp.com', to: email, subject: (again ? 'Your updated Packy chat about ' : 'Your Packy chat about ') + name, html, text });
+    await t.sendMail({ from: '"Packy from PackSmart" <hello@packsmartapp.com>', replyTo: 'hello@packsmartapp.com', to: email, subject: (again ? 'Your updated Packy chat about ' : 'Your Packy chat about ') + name, html, text,
+      attachments: [{ filename: 'packy.png', content: Buffer.from(PACKY_PNG, 'base64'), contentType: 'image/png', cid: 'packy', contentDisposition: 'inline' }] });
     step = 'copy';
     await t.sendMail({
       from: '"Packy signups" <hello@packsmartapp.com>', to: 'hello@packsmartapp.com',

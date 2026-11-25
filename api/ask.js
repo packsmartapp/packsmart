@@ -72,10 +72,12 @@ function search(q, n, topicWords) {
 const TOPIC_GUIDE = { sapporo: 'Sapporo Station guide', 'new-chitose': 'New Chitose Airport guide', ueno: 'Ueno Station guide', shinjuku: 'Shinjuku Station guide',
   tokyo: 'Tokyo Station guide', kyoto: 'Kyoto Station guide', osaka: 'Osaka Station guide', narita: 'Narita Airport guide', haneda: 'Haneda Airport guide', kansai: 'Kansai Airport guide' };
 const TOPIC_WORDS = { sapporo: ['sapporo'], 'new-chitose': ['chitose', 'airport'], ueno: ['ueno'], shinjuku: ['shinjuku'], tokyo: ['tokyo'], kyoto: ['kyoto'], osaka: ['osaka'], narita: ['narita'], haneda: ['haneda'], kansai: ['kansai', 'kix'] };
+const GENERIC_GUIDE_WORDS = new Set('airport station bus ski rental rent car hire park cherry blossom day trips hotels snow festival zoo shinkansen express visa season packing budget weather money cash plug tipping etiquette pass jr'.split(' '));
 function guideFor(q, topic) {
   const qs = new Set(words(q));
   let best = GUIDES.find(g => g[0] === TOPIC_GUIDE[topic]) || GUIDES[GUIDES.length - 1], bs = 0;
-  for (const g of GUIDES) { const s = g[2].split(' ').filter(w => qs.has(w)).length; if (s > bs) { bs = s; best = g; } }
+  // place names count three times as much as generic words, so "airport bus ... Narita" goes to Narita, not New Chitose
+  for (const g of GUIDES) { const s = g[2].split(' ').filter(w => qs.has(w)).reduce((n, w) => n + (GENERIC_GUIDE_WORDS.has(w) ? 1 : 3), 0); if (s > bs) { bs = s; best = g; } }
   return best;
 }
 // Booking button under an answer (D57). The server picks it from the question, so labels stay honest and the AI never
