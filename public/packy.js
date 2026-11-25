@@ -204,7 +204,9 @@
   }
   function mailBody(em, again) {
     var last = history[history.length - 1];
-    return { email: em, tips: false, again: !!again, country: country, page: location.pathname, next: (last && last.next) || [], items: history.map(function (h) { return { q: h.q, a: h.a }; }) };
+    var g = null; history.forEach(function (h) { if (h.guide) g = h.guide; });
+    return { email: em, tips: false, again: !!again, country: country, page: location.pathname, next: (last && last.next) || [], pocket: pocketFor(g),
+      items: history.map(function (h) { return { q: h.q, a: h.a, offer: h.offer ? { label: h.offer.label, url: h.offer.url } : null, guide: h.guide || null }; }) };
   }
   function resend(em) {
     var r = botRow('<div class="pk-card pk-sent"><b>📩 Sending the updated chat to ' + esc(mask(em)) + '…</b></div>'); r.querySelector('.pk-msg').style.background = 'transparent';
@@ -219,6 +221,10 @@
   }
   function lastNext() { var l = history[history.length - 1]; return l && l.next && l.next.length ? l.next : STARTERS; }
   function once(k) { try { if (sessionStorage.getItem('packy_' + k)) return false; sessionStorage.setItem('packy_' + k, '1'); } catch (e) {} return true; }
+  function pocketFor(guide) {   // the Pocket Guide's key (e.g. 'narita'), or '' for none
+    var slug = guide && guide.url ? guide.url.split('/').pop().split('#')[0] : '';
+    var p = POCKET[slug] || POCKET[TOPIC_POCKET[topic]]; return p ? p[0] : '';
+  }
   function pocketCard(guide) {
     var slug = guide && guide.url ? guide.url.split('/').pop().split('#')[0] : '';
     var p = POCKET[slug] || POCKET[TOPIC_POCKET[topic]];
@@ -343,6 +349,14 @@
   }, 5000);
 
   // "Continue this chat with Packy" from the email: the chat is in the link after #packy= (compressed), never on a server
+  // a booking button or guide link from the email link: our own pages, or the partner hosts Packy uses (never any other site)
+  var PARTNER_HOST = /^https:\/\/([a-z0-9]+\.tpx\.li|tpx\.li|www\.getyourguide\.com|www\.japan-bullettrain\.com|www\.safetywing\.com)\//;
+  function linkOk(x, offer) {
+    if (!Array.isArray(x) || typeof x[0] !== 'string' || typeof x[1] !== 'string') return null;
+    var site = /^\/[a-z0-9\/#-]*$/i.test(x[1]), ext = offer && PARTNER_HOST.test(x[1]);
+    if (!site && !ext) return null;
+    return offer ? { id: 'email', label: x[0].slice(0, 80), url: x[1], partner: ext } : { title: x[0].slice(0, 80), url: x[1] };
+  }
   function restore() {
     var m = /[#&]packy=([A-Za-z0-9_-]{8,12000})/.exec(location.hash); if (!m) return;
     try { window.history.replaceState(null, '', location.pathname + location.search); } catch (e) {}
@@ -354,7 +368,7 @@
       var d = JSON.parse(t);
       if (!d || d.c !== country || !Array.isArray(d.i)) throw 0;
       var h = d.i.slice(-10).filter(function (x) { return Array.isArray(x) && typeof x[0] === 'string' && typeof x[1] === 'string'; })
-        .map(function (x) { return { q: x[0].slice(0, 300), a: x[1].slice(0, 4000), guide: null, offer: null, next: [] }; });
+        .map(function (x) { return { q: x[0].slice(0, 300), a: x[1].slice(0, 4000), offer: linkOk(x[2], true), guide: linkOk(x[3], false), next: [] }; });
       if (!h.length) throw 0;
       h[h.length - 1].next = (Array.isArray(d.n) ? d.n : []).filter(function (x) { return typeof x === 'string'; }).slice(0, 3).map(function (x) { return x.slice(0, 120); });
       history = h; save(history); markSent(); once('pocket'); once('email');

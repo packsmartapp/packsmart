@@ -5,6 +5,7 @@
 // Guarded: only pages on packsmartapp.com (and this project's Vercel previews) may call it; a few questions per visitor;
 // a daily cap per instance. Questions are logged without personal data, so the owner can see what travellers ask.
 import JAPAN_KB from './_japan_kb.js';
+import { OFFERS, TOUR_PLACES } from './_offers.js';
 
 // One Packy, scoped by country (D56): each country has its own official-source knowledge. Add a country here when its
 // knowledge pack exists (built like tools/w74_japan_ask_kb.py) and its pages load /packy.js with data-country.
@@ -90,31 +91,7 @@ const TOPIC_REGION = { sapporo: 'hokkaido', 'new-chitose': 'hokkaido', ueno: 'to
 function regionOf(text) { for (const r in REGION_WORDS) if (REGION_WORDS[r].test(text)) return r; return ''; }
 function regionFor(q, prev, topic) { return regionOf(q.toLowerCase()) || regionOf(prev.toLowerCase()) || TOPIC_REGION[topic] || ''; }
 
-// Each offer: rx = what the question is about; regions = where it applies ('' = anywhere); by = a different button per region.
-const OFFERS = [
-  { id: 'skyliner', rx: /skyliner|keisei|ueno.{0,40}narita|narita.{0,40}ueno|nippori/, regions: ['tokyo', ''], label: 'Book Skyliner tickets online', url: 'https://klook.tpx.li/gIYih1CY', partner: true },
-  { id: 'nex', rx: /narita express|\bn'?ex\b/, regions: ['tokyo', ''], label: 'Book Narita Express tickets online', url: 'https://klook.tpx.li/tX4jclRv', partner: true },
-  { id: 'limousine', rx: /limousine/, regions: ['tokyo', ''], label: 'Book an airport limousine bus online', url: 'https://klook.tpx.li/SISnlOYP', partner: true },
-  // the nationwide pass only: not for the Hokkaido or area passes (no partner sells those through us)
-  { id: 'jrpass', rx: /japan rail pass|\bjr pass\b/, not: /hokkaido rail pass|area pass|hokkaido pass/, regions: ['tokyo', 'kansai', ''], label: 'Book a Japan Rail Pass online', url: 'https://klook.tpx.li/vRbZKSsT', partner: true },
-  { id: 'shinkansen', rx: /shinkansen|bullet train|nozomi|hikari|kodama/, regions: ['tokyo', 'kansai', ''], label: 'Book Shinkansen tickets online', url: 'https://www.japan-bullettrain.com/?via=packsmart', partner: true },
-  { id: 'transfer', rx: /\btransfer\b|private car|pick ?up|taxi from|door.to.door/, regions: ['tokyo', 'kansai', 'hokkaido', ''], label: 'Book a private airport transfer', url: 'https://tpx.li/qYFLwgZ8', partner: true },
-  { id: 'car', rx: /rent(al)?[ -]?a?[ -]?car|car (hire|rental)|\bdrive\b|driving/, regions: ['hokkaido', 'tokyo', 'kansai', ''], by: {
-      hokkaido: ['Compare car hire in our guide', '/blog/new-chitose-airport-guide#transfer-car', false],
-      tokyo: ['Compare car hire in our guide', '/blog/ueno-station-guide#car-rental', false] }, label: 'Compare car hire in our guide', url: '/blog/new-chitose-airport-guide#transfer-car', partner: false },
-  { id: 'esim', rx: /\besim\b|\bsim\b|mobile data|internet|wi-?fi|phone data|roaming/, regions: ['tokyo', 'kansai', 'hokkaido', ''], label: 'See eSIM data plans for Japan', url: 'https://airalo.tpx.li/4TNBGGOO', partner: true },
-  { id: 'insurance', rx: /insurance|hospital|doctor|medical/, regions: ['tokyo', 'kansai', 'hokkaido', ''], label: 'Get a SafetyWing travel medical insurance quote', url: 'https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador', partner: true },
-  // bag storage partner covers Tokyo, Kyoto and Osaka only; in Hokkaido point to our locker sections instead
-  { id: 'bags', rx: /luggage|\bbags?\b|suitcase|locker/, regions: ['tokyo', 'kansai', 'hokkaido'], by: {
-      tokyo: ['Store your bags in Tokyo', 'https://radicalstorage.tpx.li/d0Eds67a', true],
-      kansai: ['Store your bags in Osaka', 'https://radicalstorage.tpx.li/pDtmtRB2', true],
-      kyoto: ['Store your bags in Kyoto', 'https://radicalstorage.tpx.li/x1dvLMVu', true],
-      hokkaido: ['Lockers and luggage at Sapporo Station', '/blog/sapporo-station-guide#luggage', false],
-      'hokkaido-airport': ['Lockers and bag delivery at New Chitose', '/blog/new-chitose-airport-guide#luggage', false] } },
-  { id: 'hotel', rx: /hotel|\bstay\b|accommodation|where to sleep/, regions: ['hokkaido'], label: 'Hotels by Sapporo Station', url: '/blog/sapporo-station-guide#hotels', partner: false },
-  { id: 'tour', rx: /\btours?\b|day trip|guided|excursion|ski (lesson|tour|pass)|lift ticket/, regions: ['tokyo', 'kansai', 'hokkaido', ''], partner: true, gyg: true },
-];
-const TOUR_PLACES = ['niseko', 'otaru', 'noboribetsu', 'furano', 'biei', 'asahikawa', 'sapporo', 'hakodate', 'kyoto', 'osaka', 'nara', 'tokyo', 'hakone', 'fuji', 'nikko', 'hiroshima'];
+// Each offer (list in _offers.js): rx = what the question is about; regions = where it applies ('' = anywhere); by = a different button per region.
 function offerFor(q, prev, topic) {
   const now = q.toLowerCase(), t = (q + ' ' + prev).toLowerCase(), region = regionFor(q, prev, topic);
   for (const o of OFFERS) {
