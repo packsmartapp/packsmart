@@ -225,6 +225,15 @@ CSS_RAW = """<style id="jp-guide-css">
  div:has(>div>.ps-sk-tile) .ps-sk-tile>span:nth-child(2){grid-column:1;grid-row:1/9;margin:0!important}
  div:has(>div>.ps-sk-tile) .ps-sk-tile>span:not(:nth-child(-n+2)){grid-column:2}
  div:has(>div>.ps-sk-tile) .ps-sk-tile>span[style*="flex:1"]{display:none!important}}
+/* wide screens: the day-tour and experience boxes (.ps-exp, Kyoto and Osaka city guides) put the photo on the left and the
+   text on the right (owner, 25 Nov; the full-width banner looked stretched). The photo fills its column (a plain photo,
+   so cropping is fine); the credit stays under it. A box without a photo (the park ticket) stays as it is */
+@media (min-width:1200px){.ps-exp:has(>figure){display:grid;grid-template-columns:minmax(0,5fr) minmax(0,6fr);grid-template-rows:auto auto auto auto 1fr;column-gap:28px;align-items:start}
+ .ps-exp:has(>figure)>*{grid-column:2}
+ .ps-exp>figure{grid-column:1;grid-row:1/7;align-self:stretch;display:flex;flex-direction:column;margin:0!important}
+ .ps-exp>figure>a{flex:1;display:block;min-height:200px}
+ .ps-exp>figure img{height:100%!important;max-height:none!important;aspect-ratio:auto!important;object-fit:cover}
+ .ps-exp:has(>figure)>a.go{justify-self:start}}
 /* wide screens: the Shinkansen box in one band (picture | route and text | button), so the button sits up top */
 @media (min-width:1500px){[data-ps-placement^="jw-shinkansen"]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 280px;column-gap:28px;align-items:start}
  [data-ps-placement^="jw-shinkansen"]>strong{grid-column:1/-1}
