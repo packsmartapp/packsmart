@@ -222,11 +222,7 @@ CSS_RAW = """<style id="jp-guide-css">
  .ps-pickups:not(:has(>h3))>picture+strong+div+p{grid-column:1/-1;grid-row:5;margin:14px auto 0!important}.ps-pickups:not(:has(>h3))>p:last-of-type{grid-row:6}}
 /* wide screens: the fares line and the "Best when…" line run the full box width, one line each where they fit (owner, 25 Nov) */
 @media (min-width:1200px){.ps-pickups>p{max-width:none!important}.ps-pickups>picture+strong+div+p{margin:12px auto 0!important}.ps-pickups>p:last-of-type{margin-top:8px!important}}
-/* the partner's Continue button: its own pale mint read as disabled; now the same outline style as the "See dates and
-   options" buttons (white, teal border, dark bold text, teal on hover) (owner, 25 Nov) */
-.ps-pickups [id^="powered_by_"] button[type="submit"]{background:#fff!important;color:#0f0f23!important;font-weight:700!important;border:2px solid #00C9A7!important;border-radius:10px!important;box-shadow:none!important;transition:background .15s,color .15s}
-.ps-pickups [id^="powered_by_"] button[type="submit"] *{color:inherit!important}
-.ps-pickups [id^="powered_by_"] button[type="submit"]:hover,.ps-pickups [id^="powered_by_"] button[type="submit"]:focus-visible{background:#00C9A7!important;color:#fff!important}
+/* (the partner's Continue button style moved to w78, which covers every page with the transfer box) */
 /* wide screens: the "No eSIM?" travel SIM and pocket Wi-Fi box spreads to the panel, and each card puts its picture beside
    its text on 1500px+, so the wider box does not get taller (owner, 25 Nov; at 1280px the cards were too narrow) */
 @media (min-width:1200px){div:has(>div>.ps-sk-tile){max-width:none!important}}

@@ -509,11 +509,7 @@
  .ps-pickups:not(:has(>h3))>picture+strong+div+p{grid-column:1/-1;grid-row:5;margin:14px auto 0!important}.ps-pickups:not(:has(>h3))>p:last-of-type{grid-row:6}}
 /* wide screens: the fares line and the "Best when…" line run the full box width, one line each where they fit (owner, 25 Nov) */
 @media (min-width:1200px){.ps-pickups>p{max-width:none!important}.ps-pickups>picture+strong+div+p{margin:12px auto 0!important}.ps-pickups>p:last-of-type{margin-top:8px!important}}
-/* the partner's Continue button: its own pale mint read as disabled; now the same outline style as the "See dates and
-   options" buttons (white, teal border, dark bold text, teal on hover) (owner, 25 Nov) */
-.ps-pickups [id^="powered_by_"] button[type="submit"]{background:#fff!important;color:#0f0f23!important;font-weight:700!important;border:2px solid #00C9A7!important;border-radius:10px!important;box-shadow:none!important;transition:background .15s,color .15s}
-.ps-pickups [id^="powered_by_"] button[type="submit"] *{color:inherit!important}
-.ps-pickups [id^="powered_by_"] button[type="submit"]:hover,.ps-pickups [id^="powered_by_"] button[type="submit"]:focus-visible{background:#00C9A7!important;color:#fff!important}
+/* (the partner's Continue button style moved to w78, which covers every page with the transfer box) */
 /* wide screens: the "No eSIM?" travel SIM and pocket Wi-Fi box spreads to the panel, and each card puts its picture beside
    its text on 1500px+, so the wider box does not get taller (owner, 25 Nov; at 1280px the cards were too narrow) */
 @media (min-width:1200px){div:has(>div>.ps-sk-tile){max-width:none!important}}
@@ -550,6 +546,12 @@ body[data-season=winter] .jp-petal path{fill:#fff;stroke:#D6E2EC}body[data-seaso
 @media (max-width:600px){.jp-welcome{font-size:2.1rem}.jp-namesign{gap:8px 12px}.jp-namesign-k{font-size:1.5rem}.jp-namesign-bar{display:none}.jp-namesign-st{position:absolute;right:12px;top:-12px;background:#fff}}
 /* small phones: a tighter label so the stamp never covers it (360px) */
 @media (max-width:400px){.jp-namesign-e small{letter-spacing:.06em;padding:5px 10px;font-size:.7rem}}
+</style>
+<style id="ps-pickups-btn">
+/* the transfer partner's Continue button in our own outline button style (w78) */
+.ps-pickups [id^="powered_by_"] button[type="submit"]{background:#fff!important;color:#0f0f23!important;font-weight:700!important;border:2px solid #00C9A7!important;border-radius:10px!important;box-shadow:none!important;transition:background .15s,color .15s}
+.ps-pickups [id^="powered_by_"] button[type="submit"] *{color:inherit!important}
+.ps-pickups [id^="powered_by_"] button[type="submit"]:hover,.ps-pickups [id^="powered_by_"] button[type="submit"]:focus-visible{background:#00C9A7!important;color:#fff!important}
 </style>
 <style id="ps-menu-css">
 .nav-dd{position:relative;display:inline-flex;align-items:center}
