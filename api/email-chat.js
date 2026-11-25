@@ -147,9 +147,12 @@ export default async function handler(req, res) {
       (x.g ? '\nMore in our ' + x.g.title + ': ' + SITE + x.g.url : '')).join('\n\n') + (pocket ? '\n\nSave the free ' + POCKETS[pocket] + ' Pocket Guide: ' + SITE + '/' + pocket + '-pocket?src=packy_email' : '') +
     '\n\nPrices and times change, so check the source before you travel.\nContinue this chat with Packy: ' + continueLink(items, next, page, country, SITE);
 
+  let step = 'connect';
   try {
     const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
+    step = 'traveller';
     await t.sendMail({ from: '"Packy from PackSmart" <hello@packsmartapp.com>', replyTo: 'hello@packsmartapp.com', to: email, subject: (again ? 'Your updated Packy chat about ' : 'Your Packy chat about ') + name, html, text });
+    step = 'copy';
     await t.sendMail({
       from: '"Packy signups" <hello@packsmartapp.com>', to: 'hello@packsmartapp.com',
       subject: '[Packy signup] ' + (tips ? 'TRIP TIPS: YES' : again ? 'updated chat re-sent' : 'chat only') + ' | ' + name + (trip ? ' | trip ' + trip : ''),
@@ -160,7 +163,9 @@ export default async function handler(req, res) {
     console.log(JSON.stringify({ ev: 'email_chat', country, tips, again, trip: !!trip, items: items.length, ok: true }));
     return res.status(200).json({ ok: true });
   } catch (e) {
-    console.log(JSON.stringify({ ev: 'email_chat', country, ok: false }));
+    // the mail server's reason, without any email address, so a failed send can be fixed
+    const why = String((e && (e.response || e.message)) || '').replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email]').slice(0, 200);
+    console.log(JSON.stringify({ ev: 'email_chat', country, ok: false, step, code: e && e.code, smtp: e && e.responseCode, why }));
     return res.status(502).json({ ok: false, error: 'Sorry, the email could not be sent. Please try again later.' });
   }
 }
