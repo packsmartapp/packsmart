@@ -57,7 +57,9 @@ if _i < 0 or _j < 0:
     sys.exit("w77 aborted: the sakura backdrop was not found on public/japan.html (run w73 first)")
 SAKURA_BG = ("<!-- jp-guide-bg -->\n" + _hub[_i:_j] + "\n"
     "<script>(function(){var m=+new Date().toLocaleString('en-US',{timeZone:'Asia/Tokyo',month:'numeric'});"
-    "document.body.setAttribute('data-season',m>=3&&m<=5?'spring':m>=6&&m<=8?'summer':m>=9&&m<=11?'autumn':'winter');})();</script>\n"
+    "document.body.setAttribute('data-season',m>=3&&m<=5?'spring':m>=6&&m<=8?'summer':m>=9&&m<=11?'autumn':'winter');"
+    "var t=false;function f(){t=false;var bg=document.querySelector('.jp-bg'),h=document.querySelector('.hero-blog');if(bg)bg.classList.toggle('on',!h||h.getBoundingClientRect().bottom<90);}"
+    "window.addEventListener('scroll',function(){if(!t){t=true;requestAnimationFrame(f);}},{passive:true});window.addEventListener('load',f);document.addEventListener('DOMContentLoaded',f);})();</script>\n"
     "<!-- /jp-guide-bg -->\n")
 ASK = re.compile(r"<!-- jp-ask-guide -->.*?<!-- /jp-ask-guide -->\n", re.S)
 TOPIC = re.compile(r'<script src="/packy\.js[^"]*" data-country="japan" data-topic="([a-z-]+)"')
@@ -95,16 +97,17 @@ WAVE = ("url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' widt
         "stroke='%2300C9A7' stroke-opacity='.18'%3E%3Cpath d='M0 20a10 10 0 0 1 20 0M5 20a5 5 0 0 1 10 0M20 20a10 10 0 0 1 20 0M25 20a5 5 0 0 1 10 0"
         "M-10 10a10 10 0 0 1 20 0M10 10a10 10 0 0 1 20 0M30 10a10 10 0 0 1 20 0'/%3E%3C/g%3E%3C/svg%3E\")")
 CSS = """<style id="jp-guide-css">
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&display=swap");
 .jp-band{background:#FDF0F2 """ + WAVE + """;border-bottom:1px solid #F3D3DA;padding:14px 16px 18px}
 .jp-band-in{max-width:760px;margin:0 auto}
 .jp-crumb{font-size:.82rem;color:#5a6378;margin:0 0 10px}.jp-crumb a{color:#0a8f78;font-weight:700;text-decoration:none}.jp-crumb a:hover{text-decoration:underline}
 .jp-crumb span{margin:0 6px;color:#b4bccb}
-.jp-namesign{position:relative;display:flex;align-items:center;gap:14px;background:#fff;border:1px solid #BFEDE3;border-radius:16px;padding:12px 16px;box-shadow:0 8px 20px rgba(0,168,140,.08)}
-.jp-namesign-k{font-size:1.9rem;font-weight:800;letter-spacing:.08em;color:#0f0f23;line-height:1.1}
-.jp-namesign-e{display:flex;flex-direction:column;min-width:0}
-.jp-namesign-e small{font-size:.7rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#E94560}
-.jp-namesign-e b{font-size:1rem;color:#0f0f23}
-.jp-namesign-bar{flex:1;align-self:stretch;min-width:12px;border-radius:4px;background:linear-gradient(90deg,#00C9A7,#7FE3D0);height:6px;margin:auto 0}
+.jp-namesign{position:relative;display:flex;align-items:center;gap:18px;padding:6px 0 4px}
+.jp-namesign-e{display:flex;flex-direction:column;min-width:0;flex:1}
+.jp-namesign-e small{align-self:flex-start;font-size:.74rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#0a8f78;background:#fff;border:1px solid #BFEDE3;border-radius:999px;padding:5px 12px}
+.jp-welcome{display:block;font-family:'Instrument Serif',serif;font-size:3rem;line-height:1.05;color:#0f0f23;margin-top:8px}
+.jp-namesign-k{font-family:'DM Sans',sans-serif;font-weight:800;letter-spacing:.06em;font-size:.82em;margin-right:6px}
+.jp-welcome em{font-style:italic;color:#E94560}
 .jp-namesign-st{flex:none;transform:rotate(-10deg);border:2px solid #E94560;color:#E94560;border-radius:8px;padding:3px 6px;font-size:.6rem;font-weight:800;letter-spacing:.05em;text-align:center;line-height:1.15;opacity:.85}
 .hero-blog h1,.hero-blog .meta{text-shadow:0 2px 14px rgba(0,0,0,.55)}
 .jg-ask{margin:22px 0 26px;background:#FDF0F2 """ + WAVE + """;border:1px solid #F3D3DA;border-radius:20px;padding:16px 16px 14px}
@@ -126,9 +129,14 @@ CSS = """<style id="jp-guide-css">
  .jp-petal{position:absolute;top:-30px;width:16px;height:16px;animation:jpFall linear infinite;opacity:.85}.jp-petal svg{width:100%;height:100%;display:block}
  :root{--gw:900px}
  .content{max-width:900px;background:#fff;border-radius:28px;margin-top:28px!important;margin-bottom:28px;box-shadow:0 14px 40px rgba(15,15,35,.07)}
- .jp-band{background:transparent;border-bottom:0}
+ .jp-band{border-bottom:0;padding:22px 16px 6px}
+ .jp-bg{opacity:0;transition:opacity .5s}.jp-bg.on{opacity:1}
+ .content .pga,.content [data-ps-placement],.content .ps-kd,.content .related-posts,.content .psn-now,.content .jg-ask{max-width:none!important}
+ .content .related-posts{padding:0;margin:2.4rem 0 1rem}
+ .content .related-grid{grid-template-columns:repeat(3,minmax(0,1fr));gap:1.1rem}
+ .content .related-card-body{padding:1.1rem 1.2rem}
 }
-@media (min-width:1500px){:root{--gw:1320px}.content{max-width:1320px}.jp-band-in{max-width:1320px}}
+@media (min-width:1500px){:root{--gw:1320px}.content{max-width:1320px}.jp-band-in{max-width:1256px}}
 @keyframes jpFall{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(30px,25vh) rotate(90deg)}50%{transform:translate(-10px,50vh) rotate(200deg)}75%{transform:translate(25px,75vh) rotate(290deg)}100%{transform:translate(0,110vh) rotate(380deg)}}
 @keyframes jpFly{0%{transform:translate(0,0);opacity:0}15%{opacity:1}35%{opacity:.35}55%{transform:translate(28px,-50vh);opacity:1}75%{opacity:.4}100%{transform:translate(-12px,-100vh);opacity:0}}
 body[data-season=summer] .jp-petal{top:auto;bottom:-20px;width:7px;height:7px;border-radius:50%;background:#FFF6A0;box-shadow:0 0 10px 4px rgba(240,236,120,.75);animation-name:jpFly}
@@ -137,7 +145,7 @@ body[data-season=autumn] .jp-petal path{fill:#E8743B;stroke:#C2501F}
 body[data-season=winter] .jp-petal path{fill:#fff;stroke:#D6E2EC}body[data-season=winter] .jp-petal svg{transform:scale(.7)}
 @media (prefers-reduced-motion:reduce){.jp-petal{display:none!important}}
 .psn-now{background-image:""" + WAVE + """!important}
-@media (max-width:600px){.jp-namesign{flex-wrap:wrap;gap:8px 12px}.jp-namesign-k{font-size:1.5rem}.jp-namesign-bar{display:none}.jp-namesign-st{position:absolute;right:12px;top:-12px;background:#fff}}
+@media (max-width:600px){.jp-welcome{font-size:2.1rem}.jp-namesign{gap:8px 12px}.jp-namesign-k{font-size:1.5rem}.jp-namesign-bar{display:none}.jp-namesign-st{position:absolute;right:12px;top:-12px;background:#fff}}
 </style>
 """
 
@@ -171,10 +179,10 @@ def band(ja, en, kind, checked):
     k, label, sec, href = KIND[kind]
     return ('<!-- jp-band -->\n<div class="jp-band"><div class="jp-band-in">'
             '<p class="jp-crumb"><a href="/japan">🇯🇵 Japan hub</a><span>›</span><a href="%s">%s</a><span>›</span>%s</p>'
-            '<div class="jp-namesign"><span class="jp-namesign-k" lang="ja">%s</span><span class="jp-namesign-e"><small><span lang="ja">%s</span> · %s</small><b>%s</b></span>'
-            '<span class="jp-namesign-bar" aria-hidden="true"></span>'
+            '<div class="jp-namesign"><span class="jp-namesign-e"><small>🇯🇵 <span lang="ja">ようこそ · %s</span> · %s</small>'
+            '<span class="jp-welcome"><span class="jp-namesign-k" lang="ja">%s</span> <em>%s</em></span></span>'
             '<span class="jp-namesign-st" title="Checked against official sources">確認<br>%s</span></div>'
-            '</div></div>\n<!-- /jp-band -->\n') % (href, sec, en, ja, k, label, en, checked.strftime("%-d %b %Y").upper().replace(" 20", "<br>20", 1))
+            '</div></div>\n<!-- /jp-band -->\n') % (href, sec, en, k, label, ja, en, checked.strftime("%-d %b %Y").upper().replace(" 20", "<br>20", 1))
 
 
 plans, problems = {}, []
