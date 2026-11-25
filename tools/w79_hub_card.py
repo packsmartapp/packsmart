@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
 """
-w79: a "Japan hub" card on every article, near the end, so readers find the /japan hub (25 Nov 2026).
+w79: a "Japan hub" card near the end of the 15 Japan pages, so readers find the /japan hub (25 Nov 2026).
 
-The hub is the site's best-designed page and the owner wants readers to see it. Every article gets one card, just
+The hub is the site's best-designed page and the owner wants readers to see it. Each Japan page gets one card, just
 before "Related posts" (or, on the two articles without related posts, just before the travel-insurance box), so it
 never interrupts the article or pushes down the partner boxes:
 
   * on the 15 Japan pages (the w77 list): "Everything for your Japan trip, in one place", link /japan?src=jp_card;
-  * on every other article, India-segment guides included (owner, 25 Nov): "Thinking about Japan next?",
-    link /japan?src=art_card.
+  * not on other articles: tried on all of them (25 Nov, "Thinking about Japan next?", /japan?src=art_card), then
+    dropped the same day at the owner's call (a Germany reader would get Japan on top of the other countries' links).
+    The script removes the card from any article outside the Japan list. The "art" copy is kept for a later trial.
 
 The card previews the hub's look: washi pink with the wave print, a drawn Mount Fuji with a red sun and a sakura
 branch, a few falling petals (still when the reader prefers reduced motion), what the hub holds (4 airports,
@@ -113,6 +114,10 @@ for path in sorted(glob.glob(os.path.join(BLOG, "*.html"))):
     s = open(path, encoding="utf-8").read()
     new = CSSBLOCK.sub("", BLOCK.sub("", s))
     kind = "jp" if slug in JAPAN else "art"
+    if kind == "art":   # owner, 25 Nov: a Germany reader would see Japan plus other countries' links, too many
+        if new != s:
+            plans[path] = new
+        continue
     at = next((new.find(a) for a in ANCHORS if new.find(a) >= 0), -1)
     if at < 0:
         problems.append(slug + " (no anchor)")
@@ -134,5 +139,5 @@ if problems:
     sys.exit("w79 aborted, nothing written: " + "; ".join(problems))
 for path, s in plans.items():
     open(path, "w", encoding="utf-8").write(s)
-print("w79 done. Japan hub card on %d Japan page(s) and %d other article(s); %d file(s) changed."
-      % (counts["jp"], counts["art"], len(plans)))
+print("w79 done. Japan hub card on %d Japan page(s), none on other articles; %d file(s) changed."
+      % (counts["jp"], len(plans)))

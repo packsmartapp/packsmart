@@ -252,7 +252,8 @@ CSS_RAW = """<style id="jp-guide-css">
  [data-ps-placement^="discovercars-"]>p:nth-of-type(2){grid-column:1/-1;grid-row:5}
  [data-ps-placement^="discovercars-"]>p:nth-of-type(3){grid-column:1/-1;grid-row:6}
  [data-ps-placement^="discovercars-"]>p:nth-of-type(4){grid-column:1/-1;grid-row:7;margin:6px 0 0!important}}
-/* the "Part of our Japan hub" callout beside the Published line (owner, 25 Nov) */
+/* the "Explore all our Japan guides" callout beside the Published line (owner, 25 Nov) */
+.jg-disc{font-size:.78rem;color:#8a8f9c;margin:.2rem 0 1.2rem;line-height:1.5}.jg-disc span{color:#b4bccb;margin-right:2px}.jg-disc a{color:#0a8f78;text-decoration:underline}
 .jg-meta{display:flex;align-items:center;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;margin:0 0 .6rem}
 .jg-meta>p{margin:0!important}
 .jg-hubp{display:inline-flex;align-items:center;gap:10px;margin-left:auto;background:#FDF0F2 """ + WAVE + """;border:1px solid #F3D3DA;border-radius:14px;padding:7px 12px 7px 8px;text-decoration:none!important;color:#0f0f23!important;box-shadow:0 4px 14px rgba(233,69,96,.08);transition:transform .15s,box-shadow .15s}
@@ -316,7 +317,7 @@ def last_checked(page):
     return max(set(ds), key=lambda d: (ds.count(d), d)) if ds else None
 
 
-# A small "Japan hub" callout to the right of the guide's "Published · Last updated · Facts checked" line (owner,
+# A small "Explore all our Japan guides" callout (to the hub) to the right of the guide's "Published · Last updated · Facts checked" line (owner,
 # 25 Nov): the line and the callout share one row on wide screens; on phones the callout sits under the line.
 META = re.compile(r'(<p style="font-size:0\.85rem;color:#666;margin:0 0 0\.6rem;">Published [^<]*</p>)')
 META_OLD = re.compile(r'<!-- jg-meta --><div class="jg-meta">(.*?)<!-- jg-hubp -->.*?<!-- /jg-hubp --></div><!-- /jg-meta -->', re.S)
@@ -325,7 +326,7 @@ HUBP = ('<!-- jg-hubp --><a class="jg-hubp" href="/japan?src=jp_top" '
         '<span class="jg-hubp-i" aria-hidden="true"><svg viewBox="0 0 44 36"><circle cx="31" cy="11" r="6" fill="#E94560"/>'
         '<path d="M2 32 16 15q6-6 12 0l14 17z" fill="#4f6aa6"/><path d="M16 15q6-6 12 0l-2.5 3-2-2-2 2.5-1.5-2-2 2-2-1.5z" fill="#fff"/>'
         '<path d="M0 32h44v4H0z" fill="#9fd8cf"/></svg></span>'
-        '<span class="jg-hubp-t"><b>Part of our <em>Japan</em> hub</b><small>Airports, stations, offline Pocket Guides and Packy</small></span>'
+        '<span class="jg-hubp-t"><b>Explore all our <em>Japan</em> guides</b><small>Airports, stations, offline Pocket Guides and Ask Packy</small></span>'
         '<span class="jg-hubp-a" aria-hidden="true">→</span></a><!-- /jg-hubp -->')
 
 
@@ -341,6 +342,14 @@ def band(ja, en, kind, checked):
             '</div></div>\n<!-- /jp-band -->\n') % (href, sec, en, k, label, ja, en, stamp)
 
 
+# The affiliate disclosure stays (FTC and UK rules, and the partner programmes, want it before the first partner link),
+# but on these pages as one quieter line without the divider (owner, 25 Nov: the old one "disturbed the design").
+DISC_OLD = ('<p style="font-size:0.82rem;color:#999;margin-bottom:0.5rem;padding-bottom:0.8rem;border-bottom:1px solid #eee;">'
+            'This article contains affiliate links. If you make a purchase through these links, we may earn a small commission '
+            'at no extra cost to you. <a href="/affiliate-disclosure" style="color:#00C9A7;">Learn more</a></p>')
+DISC_RX = re.compile(re.escape(DISC_OLD[:-len('</a></p>')]) + r'</a>\.?</p>')   # the guides end with "Learn more</a>."
+DISC_NEW = ('<p class="jg-disc"><span aria-hidden="true">ⓘ</span> This guide has affiliate (partner) links: if you book through '
+            'them, we may earn a small commission at no extra cost to you. <a href="/affiliate-disclosure">Learn more</a></p>')
 TIP_OLD = ("<strong>Tip:</strong> Most visitors need an International Driving Permit under the 1949 Geneva Convention (drivers "
            "from a few countries, such as Germany and France, use an official Japanese translation instead), plus their home "
            "licence and passport. Arrange it before you fly; it cannot be issued in Japan.")
@@ -376,6 +385,7 @@ for slug, (ja, en, kind) in GUIDES.items():
     new = new[:bm.end()] + SAKURA_BG + new[bm.end():]
     new = ASK.sub("", new)
     new = new.replace(TIP_OLD, TIP_NEW)
+    new = DISC_RX.sub(DISC_NEW, new)
     new = META_OLD.sub(r"\1", new)
     new = META.sub(lambda m: '<!-- jg-meta --><div class="jg-meta">' + m.group(1) + HUBP + '</div><!-- /jg-meta -->', new, count=1)
     tm = TOPIC.search(new)
