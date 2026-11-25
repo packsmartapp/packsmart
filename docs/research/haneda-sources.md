@@ -92,10 +92,58 @@ Source: Keikyu's Haneda Airport Access Guide, https://www.haneda-tokyo-access.co
 - Station numbers on the Keikyu line map: Tenkubashi KK15, Haneda Airport Terminal 3 KK16, Haneda Airport Terminal
   1·2 KK17, Keikyu Kamata KK11, Keikyu Kawasaki KK20.
 
+## Banks and ATMs (owner's screenshots, 25 Nov 2026)
+Source: Haneda Airport official site, Service Guide > List of Services > Bank / ATM, tabs T1, T2, T3
+(https://tokyo-haneda.com/en/, exact page link to add). Hours as the page gives them; holidays follow the same rules
+where the page says so. The T1 and T2 lists continued below the screenshots; the T3 list is complete.
+Which ATMs take foreign cards: JNTO lists Seven Bank and Japan Post Bank ATMs as taking overseas cards (see the
+Japan basics notes); for the other banks, check the bank's own page.
+
+**Terminal 3 (international), complete list**
+- 2F Arrival Lobby: Japan Post Bank ATM, 24 hours (not available 0:00-7:00 on the 3rd Monday of the month);
+  Seven Bank ATM, 5:00-24:00. (These are the two in the arrivals hall.)
+- 3F Departure Lobby: Mizuho Bank ATM (Monday 7:00-24:00, Tuesday-Friday 24 hours, Saturday 0:00-22:00, Sunday
+  8:00-21:00; not available 3:00-5:00 on the 1st and 4th Saturdays); MUFG Bank ATM, 24 hours (not available
+  21:00-7:00 on the 2nd Saturday); SMBC Bank ATM, 24 hours (closed from 21:00 Sunday to 7:00 Monday); Risona Bank
+  ATM, 24 hours (not available 21:00-8:00 on the 2nd Saturday).
+- 3F after security check: Mizuho Bank ATM, same hours as the 3F Departure Lobby one.
+
+**Terminal 1 (domestic)**
+- 1F Arrival Lobby: Mizuho Bank branch (counter 9:00-11:00 and 12:00-15:00, closed weekends and holidays; its ATM
+  Monday-Friday 7:00-24:00, weekends and holidays 8:00-21:00; phone 03-5757-9591).
+- 1F Arrival Lobby (North): MUFG Bank ATM, 6:00-24:00 (not available 21:00-7:00 on the 2nd Saturday); Seven Bank
+  ATM, 5:00-24:00.
+- 1F Market Place: Japan Post Bank ATM, weekdays 7:00-22:00, Saturdays 8:00-21:00, Sundays and holidays 9:00-20:00.
+- 2F Departure Lobby (North): Mizuho Bank ATM, 8:00-21:00.
+- 2F Departure Lobby, close to the Gate 10 departure lounge: Mizuho Bank ATM, Monday 7:00-23:00, Tuesday-Friday
+  6:00-23:00, Saturday 6:00-22:00, Sunday 8:00-21:00.
+- B1F Marketplace: SMBC Bank ATM, weekdays and Saturdays 7:00-24:00, Sundays 7:00-21:00.
+- B1F Marketplace (South) and B1F Marketplace (North): Seven Bank ATMs, 5:00-24:00.
+
+**Terminal 2 (domestic)**
+- 1F Terminal Lobby (South): MUFG Bank ATM, 6:00-24:00 (not available 21:00-7:00 on the 2nd Saturday); Kiraboshi
+  Bank ATM, weekdays 7:00-23:00, Saturdays, Sundays and holidays 7:00-21:00; Japan Post Bank ATM, 5:00-23:55
+  (3rd Monday 7:00-23:55).
+- B1F Terminal Lobby (South): Mizuho Bank ATM (weekdays 6:00-23:00, Saturdays 6:00-22:00, Sundays and holidays
+  8:00-21:00; not available 6:00-7:00 on Mondays); SMBC Bank ATM, weekdays and Saturdays 7:00-24:00, Sundays
+  7:00-21:00.
+- B1F Terminal Lobby (North): Seven Bank ATM, 5:00-24:00.
+- 2F Terminal Lobby (North): Mizuho Bank ATM, same hours as the B1F one; Seven Bank ATM, 5:00-24:00.
+- 2F Terminal Lobby (South): Seven Bank ATM, 5:00-24:00.
+- 2F Domestic Departure Gate Lounge (South), close to Gate 63: Mizuho Bank ATM, Monday 7:00-21:30, Tuesday-Saturday
+  6:00-21:30, Sunday 8:00-21:00.
+
+**What the Service Guide lists** (List of Services page): Information Counter, Police, Meeting Places, Bank / ATM,
+Travel Insurance, Baggage Cart, Toilets / Multipurpose Toilets, Credit Card Lounges, Airline Lounges, Rent-A-Car,
+Clinic, Drugstore, Device Charging, Observation Deck, Pet Care. Currency exchange, SIM and Wi-Fi rental and luggage
+storage are not on this list.
+
 ## Gaps (still to fetch or confirm; not used by Packy)
+- Bank / ATM: the page link, and the rest of the T1 and T2 lists (cut off in the screenshots).
+- Currency exchange, SIM and Wi-Fi rental, luggage storage and delivery: not in the Service Guide; probably under
+  Restaurants & Shops or the site search.
 - Exact links for the "From Haneda to Narita" page and the Keikyu fare table; which time column is which terminal
   (the screenshot was a small preview; the notes above give both times as a range).
 - Keikyu "Tap to Ride": which cards are accepted, and whether it covers through-trains onto the subway.
-- Service Guide > List of Services: ATMs, currency exchange, SIM and Wi-Fi counters, luggage storage and delivery, with floors.
 - Access > Travel Between Terminals (free shuttle bus), Express Bus & Route Bus, Taxi (fixed fares).
 - First and last trains: on the Keikyu and Tokyo Monorail sites (the airport page sends readers there).

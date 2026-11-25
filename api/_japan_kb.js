@@ -52,6 +52,33 @@ export default [
 "u": []
 },
 {
+"t": "haneda > Haneda Airport: sources and facts (research for Packy, B54) > Banks and ATMs (owner's screenshots, 25 Nov 2026)",
+"x": "Source: Haneda Airport official site, Service Guide > List of Services > Bank / ATM, tabs T1, T2, T3\n(https://tokyo-haneda.com/en/, exact page link to add). Hours as the page gives them; holidays follow the same rules\nwhere the page says so. The T1 and T2 lists continued below the screenshots; the T3 list is complete.\nWhich ATMs take foreign cards: JNTO lists Seven Bank and Japan Post Bank ATMs as taking overseas cards (see the\nJapan basics notes); for the other banks, check the bank's own page.\n\n**Terminal 3 (international), complete list**\n- 2F Arrival Lobby: Japan Post Bank ATM, 24 hours (not available 0:00-7:00 on the 3rd Monday of the month);\n  Seven Bank ATM, 5:00-24:00. (These are the two in the arrivals hall.)",
+"u": [
+"https://tokyo-haneda.com/en/"
+]
+},
+{
+"t": "haneda > Haneda Airport: sources and facts (research for Packy, B54) > Banks and ATMs (owner's screenshots, 25 Nov 2026)",
+"x": "- 3F Departure Lobby: Mizuho Bank ATM (Monday 7:00-24:00, Tuesday-Friday 24 hours, Saturday 0:00-22:00, Sunday\n  8:00-21:00; not available 3:00-5:00 on the 1st and 4th Saturdays); MUFG Bank ATM, 24 hours (not available\n  21:00-7:00 on the 2nd Saturday); SMBC Bank ATM, 24 hours (closed from 21:00 Sunday to 7:00 Monday); Risona Bank\n  ATM, 24 hours (not available 21:00-8:00 on the 2nd Saturday).\n- 3F after security check: Mizuho Bank ATM, same hours as the 3F Departure Lobby one.\n\n**Terminal 1 (domestic)**\n- 1F Arrival Lobby: Mizuho Bank branch (counter 9:00-11:00 and 12:00-15:00, closed weekends and holidays; its ATM\n  Monday-Friday 7:00-24:00, weekends and holidays 8:00-21:00; phone 03-5757-9591).\n- 1F Arrival Lobby (North): MUFG Bank ATM, 6:00-24:00 (not available 21:00-7:00 on the 2nd Saturday); Seven Bank\n  ATM, 5:00-24:00.",
+"u": []
+},
+{
+"t": "haneda > Haneda Airport: sources and facts (research for Packy, B54) > Banks and ATMs (owner's screenshots, 25 Nov 2026)",
+"x": "- 1F Market Place: Japan Post Bank ATM, weekdays 7:00-22:00, Saturdays 8:00-21:00, Sundays and holidays 9:00-20:00.\n- 2F Departure Lobby (North): Mizuho Bank ATM, 8:00-21:00.\n- 2F Departure Lobby, close to the Gate 10 departure lounge: Mizuho Bank ATM, Monday 7:00-23:00, Tuesday-Friday\n  6:00-23:00, Saturday 6:00-22:00, Sunday 8:00-21:00.\n- B1F Marketplace: SMBC Bank ATM, weekdays and Saturdays 7:00-24:00, Sundays 7:00-21:00.\n- B1F Marketplace (South) and B1F Marketplace (North): Seven Bank ATMs, 5:00-24:00.\n\n**Terminal 2 (domestic)**\n- 1F Terminal Lobby (South): MUFG Bank ATM, 6:00-24:00 (not available 21:00-7:00 on the 2nd Saturday); Kiraboshi\n  Bank ATM, weekdays 7:00-23:00, Saturdays, Sundays and holidays 7:00-21:00; Japan Post Bank ATM, 5:00-23:55\n  (3rd Monday 7:00-23:55).",
+"u": []
+},
+{
+"t": "haneda > Haneda Airport: sources and facts (research for Packy, B54) > Banks and ATMs (owner's screenshots, 25 Nov 2026)",
+"x": "- B1F Terminal Lobby (South): Mizuho Bank ATM (weekdays 6:00-23:00, Saturdays 6:00-22:00, Sundays and holidays\n  8:00-21:00; not available 6:00-7:00 on Mondays); SMBC Bank ATM, weekdays and Saturdays 7:00-24:00, Sundays\n  7:00-21:00.\n- B1F Terminal Lobby (North): Seven Bank ATM, 5:00-24:00.\n- 2F Terminal Lobby (North): Mizuho Bank ATM, same hours as the B1F one; Seven Bank ATM, 5:00-24:00.\n- 2F Terminal Lobby (South): Seven Bank ATM, 5:00-24:00.\n- 2F Domestic Departure Gate Lounge (South), close to Gate 63: Mizuho Bank ATM, Monday 7:00-21:30, Tuesday-Saturday\n  6:00-21:30, Sunday 8:00-21:00.",
+"u": []
+},
+{
+"t": "haneda > Haneda Airport: sources and facts (research for Packy, B54) > Banks and ATMs (owner's screenshots, 25 Nov 2026)",
+"x": "**What the Service Guide lists** (List of Services page): Information Counter, Police, Meeting Places, Bank / ATM,\nTravel Insurance, Baggage Cart, Toilets / Multipurpose Toilets, Credit Card Lounges, Airline Lounges, Rent-A-Car,\nClinic, Drugstore, Device Charging, Observation Deck, Pet Care. Currency exchange, SIM and Wi-Fi rental and luggage\nstorage are not on this list.",
+"u": []
+},
+{
 "t": "japan basics > Japan basics: official-source facts for the \"Ask about Japan\" assistant",
 "x": "Rules for the assistant: travel times are approximate and depend on the train. Where two official pages differ, both are given, marked **Differs**. No prices are repeated here except where a page states a rule tied to one (noted).\n\n---",
 "u": []
