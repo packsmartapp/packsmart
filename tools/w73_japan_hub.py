@@ -614,12 +614,12 @@ HERO_CSS += LOWER_CSS
 
 body = """<div class="page-wrapper">
     """ + hero_html() + """
-    """ + passes_html() + """
     """ + HERO_JS + """
-    """ + ASK + """
-""" + "    " + pocket + """
     """ + plan_html() + """
+    """ + passes_html() + """
     """ + stations_html() + """
+""" + "    " + pocket + """
+    """ + ASK + """
     <div class="jp-two">
         """ + HOKKAIDO + """
         """ + SEASONS + """
