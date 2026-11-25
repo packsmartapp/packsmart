@@ -254,9 +254,11 @@ CSS_RAW = """<style id="jp-guide-css">
  [data-ps-placement^="discovercars-"]>p:nth-of-type(4){grid-column:1/-1;grid-row:7;margin:6px 0 0!important}}
 /* the "Explore all our Japan guides" callout beside the Published line (owner, 25 Nov) */
 p.jg-disc{font-size:.72rem!important;color:#8a8f9c!important;margin:.2rem 0 1.2rem!important;line-height:1.5!important}.jg-disc span{color:#b4bccb;margin-right:2px}.jg-disc a{color:#0a8f78;text-decoration:underline}
-.jg-meta{display:flex;align-items:center;justify-content:space-between;gap:10px 20px;flex-wrap:wrap;margin:0 0 .6rem}
-.jg-meta>p{margin:0!important}
-.jg-hubp{display:inline-flex;align-items:center;gap:10px;margin-left:auto;background:#FDF0F2 """ + WAVE + """;border:1px solid #F3D3DA;border-radius:14px;padding:7px 12px 7px 8px;text-decoration:none!important;color:#0f0f23!important;box-shadow:0 4px 14px rgba(233,69,96,.08);transition:transform .15s,box-shadow .15s}
+.jg-meta{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:28px;align-items:start;margin:0 0 1.6rem}
+.jg-meta>p{grid-column:1;margin:0!important}
+.jg-meta>p.jg-disc{margin:10px 0 0!important}
+.jg-meta>.jg-hubp{grid-column:2;grid-row:1/3;align-self:start;margin:-4px 0 0}
+.jg-hubp{display:inline-flex;align-items:center;gap:10px;background:#FDF0F2 """ + WAVE + """;border:1px solid #F3D3DA;border-radius:14px;padding:7px 12px 7px 8px;text-decoration:none!important;color:#0f0f23!important;box-shadow:0 4px 14px rgba(233,69,96,.08);transition:transform .15s,box-shadow .15s}
 .jg-hubp:hover,.jg-hubp:focus-visible{transform:translateY(-1px);box-shadow:0 8px 20px rgba(233,69,96,.16)}
 .jg-hubp-i{flex:none;width:44px;height:36px;background:linear-gradient(180deg,#fff7f0,#fde6ea);border-radius:9px;overflow:hidden}
 .jg-hubp-i svg{display:block;width:100%;height:100%}
@@ -266,6 +268,7 @@ p.jg-disc{font-size:.72rem!important;color:#8a8f9c!important;margin:.2rem 0 1.2r
 .jg-hubp-t small{font-size:.74rem;color:#5a6378}
 .jg-hubp-a{flex:none;width:28px;height:28px;border-radius:50%;border:2px solid #00C9A7;display:grid;place-items:center;font-weight:700;color:#0a8f78;transition:background .15s,color .15s}
 .jg-hubp:hover .jg-hubp-a,.jg-hubp:focus-visible .jg-hubp-a{background:#00C9A7;color:#fff}
+@media (max-width:900px){.jg-meta{grid-template-columns:1fr}.jg-meta>.jg-hubp{grid-column:1;grid-row:2;margin:14px 0 0}.jg-meta>p.jg-disc{grid-row:3}}
 @media (max-width:600px){.jg-hubp{width:100%;box-sizing:border-box}.jg-hubp-t{flex:1}}
 /* wide screens: the Shinkansen box in one band (picture | route and text | button), so the button sits up top */
 @media (min-width:1500px){[data-ps-placement^="jw-shinkansen"]{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr) 280px;column-gap:28px;align-items:start}
@@ -319,8 +322,10 @@ def last_checked(page):
 
 # A small "Explore all our Japan guides" callout (to the hub) to the right of the guide's "Published · Last updated · Facts checked" line (owner,
 # 25 Nov): the line and the callout share one row on wide screens; on phones the callout sits under the line.
-META = re.compile(r'(<p style="font-size:0\.85rem;color:#666;margin:0 0 0\.6rem;">Published [^<]*</p>)')
-META_OLD = re.compile(r'<!-- jg-meta --><div class="jg-meta">(.*?)<!-- jg-hubp -->.*?<!-- /jg-hubp --></div><!-- /jg-meta -->', re.S)
+# The date line and the disclosure line sit in the left column, the callout on the right, top-aligned with the date
+# line (owner, 25 Nov); on phones: date line, callout, disclosure.
+META = re.compile(r'(<p style="font-size:0\.85rem;color:#666;margin:0 0 0\.6rem;">Published [^<]*</p>\s*<p class="jg-disc">.*?</p>)', re.S)
+META_OLD = re.compile(r'<!-- jg-meta --><div class="jg-meta">(?:<!-- jg-in -->)?(.*?)(?:<!-- /jg-in -->)?<!-- jg-hubp -->.*?<!-- /jg-hubp --></div><!-- /jg-meta -->', re.S)
 HUBP = ('<!-- jg-hubp --><a class="jg-hubp" href="/japan?src=jp_top" '
         "onclick=\"try{if(window.gtag)gtag('event','hub_card',{event_category:'navigation',status:'jp_top',page_path:location.pathname});}catch(e){}\">"
         '<span class="jg-hubp-i" aria-hidden="true"><svg viewBox="0 0 44 36"><circle cx="31" cy="11" r="6" fill="#E94560"/>'
@@ -387,7 +392,10 @@ for slug, (ja, en, kind) in GUIDES.items():
     new = new.replace(TIP_OLD, TIP_NEW)
     new = DISC_RX.sub(DISC_NEW, new)
     new = META_OLD.sub(r"\1", new)
-    new = META.sub(lambda m: '<!-- jg-meta --><div class="jg-meta">' + m.group(1) + HUBP + '</div><!-- /jg-meta -->', new, count=1)
+    new, n = META.subn(lambda m: '<!-- jg-meta --><div class="jg-meta"><!-- jg-in -->' + m.group(1) + '<!-- /jg-in -->' + HUBP + '</div><!-- /jg-meta -->', new, count=1)
+    if not n and '<p style="font-size:0.85rem;color:#666;margin:0 0 0.6rem;">Published ' in new:
+        problems.append(slug + " (date line and disclosure not found together)")
+        continue
     tm = TOPIC.search(new)
     if tm:
         bar = new.find('\n<div id="psnBar"')
