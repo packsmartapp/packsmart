@@ -120,13 +120,15 @@ CSS = """<style id="jp-guide-css">
  html{background:#FDF0F2 """ + WAVE + """ fixed}body{background:transparent!important}
  .jp-bg{display:block;position:fixed;inset:0;pointer-events:none;z-index:-1;overflow:hidden}
  .jp-bg-l,.jp-bg-r{position:absolute;opacity:.95}
- .jp-bg-l{left:auto;right:calc(50% + 424px);top:70px;width:min(680px,calc(50vw - 424px))}
- .jp-bg-r{right:auto;left:calc(50% + 424px);bottom:-40px;transform:scaleX(-1);width:min(680px,calc(50vw - 424px))}
+ .jp-bg-l{left:-10px;top:60px;width:min(420px,calc((100vw - var(--gw))/2 + 20px))}
+ .jp-bg-r{right:-10px;bottom:-60px;transform:scaleX(-1);width:min(360px,calc((100vw - var(--gw))/2 + 20px))}
  .jp-bg svg{width:100%;height:auto;display:block}
  .jp-petal{position:absolute;top:-30px;width:16px;height:16px;animation:jpFall linear infinite;opacity:.85}.jp-petal svg{width:100%;height:100%;display:block}
- .content{background:#fff;border-radius:28px;margin-top:28px!important;margin-bottom:28px;box-shadow:0 14px 40px rgba(15,15,35,.07)}
+ :root{--gw:900px}
+ .content{max-width:900px;background:#fff;border-radius:28px;margin-top:28px!important;margin-bottom:28px;box-shadow:0 14px 40px rgba(15,15,35,.07)}
  .jp-band{background:transparent;border-bottom:0}
 }
+@media (min-width:1500px){:root{--gw:1320px}.content{max-width:1320px}.jp-band-in{max-width:1320px}}
 @keyframes jpFall{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(30px,25vh) rotate(90deg)}50%{transform:translate(-10px,50vh) rotate(200deg)}75%{transform:translate(25px,75vh) rotate(290deg)}100%{transform:translate(0,110vh) rotate(380deg)}}
 @keyframes jpFly{0%{transform:translate(0,0);opacity:0}15%{opacity:1}35%{opacity:.35}55%{transform:translate(28px,-50vh);opacity:1}75%{opacity:.4}100%{transform:translate(-12px,-100vh);opacity:0}}
 body[data-season=summer] .jp-petal{top:auto;bottom:-20px;width:7px;height:7px;border-radius:50%;background:#FFF6A0;box-shadow:0 0 10px 4px rgba(240,236,120,.75);animation-name:jpFly}
