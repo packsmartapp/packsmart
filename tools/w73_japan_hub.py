@@ -18,7 +18,7 @@ What it does (idempotent; every run rebuilds public/japan.html from the current 
 Run after w69 and before w72:  python3 tools/w73_japan_hub.py
 Aborts without writing if an expected anchor or card is missing.
 """
-import datetime, hashlib, os, re, sys
+import datetime, hashlib, json, os, re, sys
 
 ROOT = os.getcwd()
 PUB = os.path.join(ROOT, "public")
@@ -408,7 +408,7 @@ def passes_html():
         '<div class="jp-pass-stub"><small>GATE</small><a href="/%s-pocket?src=hub_japan" data-pass="%s">📱 Pocket Guide</a><a class="g" href="/blog/%s">Airport guide</a></div></article>'
         % (code, name, serves, line, q, name.replace(" Airport", ""), pk, pk, slug)
         for code, name, serves, line, pk, slug, q in PASSES)
-    return ("""<section aria-labelledby="jpPassT"><div class="jp-pass-h"><h2 id="jpPassT">Where are you landing?</h2><p>Pick your airport: the free Pocket Guide works offline at the gate, and Packy can answer the rest.</p></div>
+    return ("""<section id="arriving" aria-labelledby="jpPassT"><div class="jp-pass-h"><h2 id="jpPassT">Where are you landing?</h2><p>Pick your airport: the free Pocket Guide works offline at the gate, and Packy can answer the rest.</p></div>
 <div class="jp-passes">""" + cards + """</div></section>""")
 
 HERO_JS = """<script>
@@ -524,25 +524,94 @@ html,body{overflow-x:clip}
 @media (prefers-reduced-motion:reduce){.jp-petal{display:none!important}.jp-scene .cl,.jp-scene .ff{animation:none}}
 """
 
+# ---- lower half (25 Nov 2026): compact "Plan your trip" cards and station-sign cards. The airport cards are gone:
+# the boarding passes at the top (id="arriving") link each airport guide and Pocket Guide.
+def card_data(src, slug, where):
+    m = re.search(r'<a href="/blog/%s" class="blog-card"[^>]*>(.*?)</a>' % re.escape(slug), src, re.S)
+    if not m:
+        die("card for %s not found on %s" % (slug, where))
+    c = m.group(1)
+    img = re.search(r'<img class="blog-card-img" src="([^"]+)" alt="([^"]*)"', c)
+    meta = re.search(r'<span class="meta">([^<]*)</span>', c)
+    return {"url": "/blog/" + slug, "title": re.search(r"<h2>(.*?)</h2>", c, re.S).group(1).strip(),
+            "desc": re.search(r"<p>(.*?)</p>", c, re.S).group(1).strip(), "img": img.group(1) if img else "",
+            "alt": img.group(2) if img else "", "read": meta.group(1).split("&middot;")[-1].strip() if meta else ""}
+
+def short_title(t):   # "Kyoto Travel Guide 2026: Private Guide, ..." -> ("Kyoto Travel Guide", "Private Guide, ...")
+    a, _, b = t.partition(":")
+    return re.sub(r"\s*20\d\d\b", "", a).strip(), b.strip()
+
+def checked_on(key):  # the date the Pocket Guide's facts were last checked, read from the guide itself
+    pg = open(os.path.join(ROOT, "public", key + "-pocket.html"), encoding="utf-8").read()
+    ds = re.findall(r"[Cc]hecked (?:on )?(\d{1,2} [A-Z][a-z]+ 20\d\d)", pg)
+    if not ds:
+        die("no checked date in %s-pocket.html" % key)
+    return max(set(ds), key=ds.count)
+
+def plan_html():
+    out = []
+    for slug in PLAN:
+        d = card_data(blog, slug, "blog.html")
+        t, sub = short_title(d["title"])
+        out.append('<a class="jp-plan" href="%s"><img src="%s" alt="%s" loading="lazy" width="680" height="340">'
+                   '<span class="jp-plan-b"><b>%s</b><small>%s</small><i>%s &rarr;</i></span></a>' % (d["url"], d["img"], d["alt"], t, sub, d["read"]))
+    return ('<section class="jp-sec" id="plan" aria-labelledby="jpPlanT"><div class="jp-sec-h"><h2 id="jpPlanT">Plan your trip</h2>'
+            '<p>Visas, seasons, budget, packing and a 7-day route.</p></div><div class="jp-plans">' + "".join(out) + '</div></section>')
+
+KANJI = {"tokyo": "東京", "shinjuku": "新宿", "ueno": "上野", "kyoto": "京都", "osaka": "新大阪・大阪", "sapporo": "札幌"}
+def stations_html():
+    pk = {g["key"]: g for g in json.load(open(os.path.join(ROOT, "tools", "pocket_guides.json"), encoding="utf-8"))["guides"]}
+    out = []
+    for slug in STATIONS:
+        key = slug.replace("-station-guide", "")
+        g = pk[key]
+        out.append('<article class="jp-st"><div class="jp-sign"><span class="jp-sign-k" lang="ja">%s</span><b>%s</b><span class="jp-sign-bar"></span>'
+                   '<span class="jp-sign-city">%s</span></div><div class="jp-st-mid"><p>%s</p>'
+                   '<span class="jp-stamp2" title="Facts checked against official sources">確認<br>%s</span></div>'
+                   '<div class="jp-st-go"><a class="pg" href="/%s-pocket?src=hub_japan" data-pass="%s">📱 Pocket Guide</a><a href="%s">Station guide</a></div></article>'
+                   % (KANJI[key], g["name"].upper(), g["stop"], g["blurb"], checked_on(key).upper().replace(" 20", "<br>20", 1), key, key, "/blog/" + slug))
+    return ('<section class="jp-sec" id="stations" aria-labelledby="jpStT"><div class="jp-sec-h"><h2 id="jpStT">Find your way in the big stations</h2>'
+            '<p>Exits, platforms, lockers and ATMs, in a free Pocket Guide that works offline. Each stamp shows when we last checked the facts.</p></div>'
+            '<div class="jp-sts">' + "".join(out) + '</div></section>')
+
+LOWER_CSS = """
+.jp-sec{margin:0 0 2.4rem}.jp-sec-h{text-align:center;margin:0 0 1.1rem}
+.jp-sec-h h2{font-family:var(--font-display);font-size:2.2rem;margin:0;line-height:1.1}.jp-sec-h p{color:#5a6378;margin:.35rem auto 0;max-width:620px}
+.jp-plans{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+.jp-plan{display:flex;gap:12px;align-items:stretch;background:#fff;border:1px solid #E1F2EE;border-radius:18px;overflow:hidden;text-decoration:none;color:#0f0f23;box-shadow:0 6px 18px rgba(15,15,35,.05);transition:transform .15s,border-color .15s}
+.jp-plan:hover{transform:translateY(-2px);border-color:#00C9A7}
+.jp-plan img{flex:none;width:132px;height:auto;min-height:118px;object-fit:cover;background:#E6FAF5}
+.jp-plan-b{display:flex;flex-direction:column;justify-content:center;padding:12px 14px 12px 0;min-width:0}
+.jp-plan-b b{font-size:1.02rem;line-height:1.25}.jp-plan-b small{color:#5a6378;font-size:.84rem;line-height:1.4;margin:.25rem 0 .35rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.jp-plan-b i{font-style:normal;font-size:.8rem;font-weight:700;color:#0a8f78}
+.jp-sts{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.jp-st{position:relative;background:#fff;border:1px solid #E1F2EE;border-radius:18px;padding:14px;box-shadow:0 6px 18px rgba(15,15,35,.05);display:flex;flex-direction:column}
+.jp-sign{position:relative;background:#fff;border:2px solid #0f0f23;border-radius:10px;padding:10px 10px 8px;text-align:center;box-shadow:inset 0 0 0 3px #fff}
+.jp-sign-k{display:block;font-size:1.65rem;font-weight:800;letter-spacing:.12em;color:#0f0f23;line-height:1.1}
+.jp-sign b{display:block;font-size:.82rem;letter-spacing:.14em;color:#3f4a5c;margin-top:2px}
+.jp-sign-bar{display:block;height:7px;background:#00C9A7;border-radius:3px;margin:8px -4px 6px}
+.jp-sign-city{display:block;font-size:.7rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#0a8f78}
+.jp-st-mid{display:flex;align-items:center;gap:10px;flex:1;margin:.75rem 0 .8rem}.jp-st p{font-size:.88rem;color:#3f4a5c;line-height:1.45;margin:0;flex:1}
+.jp-stamp2{flex:none;transform:rotate(-10deg);border:2px solid #E94560;color:#E94560;border-radius:8px;padding:3px 5px;font-size:.56rem;font-weight:800;letter-spacing:.05em;text-align:center;line-height:1.15;opacity:.85}
+.jp-st-go{display:flex;gap:8px}
+.jp-st-go a{flex:1;text-align:center;font-weight:800;font-size:.8rem;white-space:nowrap;text-decoration:none;border-radius:12px;padding:9px 4px;border:1.5px solid #BFEDE3;color:#0a8f78;background:#fff}
+.jp-st-go a.pg{background:linear-gradient(135deg,#00C9A7,#00A88C);border-color:transparent;color:#fff}
+.jp-st-go a:hover{border-color:#00C9A7}
+@media (max-width:900px){.jp-sts{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:640px){.jp-plans,.jp-sts{grid-template-columns:1fr}.jp-plan img{width:104px}.jp-sec-h h2{font-size:1.8rem}}
+@media (min-width:1500px){.jp-plans{grid-template-columns:repeat(4,minmax(0,1fr))}.jp-plan{flex-direction:column;gap:0}.jp-plan img{width:100%;height:150px}.jp-plan-b{padding:12px 14px}}
+"""
+HERO_CSS += LOWER_CSS
+
 body = """<div class="page-wrapper">
     """ + hero_html() + """
     """ + passes_html() + """
     """ + HERO_JS + """
     """ + ASK + """
 """ + "    " + pocket + """
-    <div class="filter-wrap te-filter" id="teFilter">
-        <div class="filter-label" id="teFilterLabel">What do you need?</div>
-        <div class="filter-bar" role="group" aria-labelledby="teFilterLabel">
-            <a href="#all" class="filter-btn active" data-sec="all" aria-pressed="true">All <i class="cnt"></i></a>
-            <a href="#plan" class="filter-btn" data-sec="plan" aria-pressed="false">Plan your trip <i class="cnt"></i></a>
-            <a href="#arriving" class="filter-btn" data-sec="arriving" aria-pressed="false">Airports <i class="cnt"></i></a>
-            <a href="#stations" class="filter-btn" data-sec="stations" aria-pressed="false">Stations <i class="cnt"></i></a>
-        </div>
-    </div>
-""" + section("plan", "Plan your trip", "Visas, seasons, budget, packing and a 7-day route.", plan_cards) \
-    + section("arriving", "Airports", "Landing in Japan: terminals, trains and buses into town, money and SIM cards. Each guide has a free Pocket Guide.", arrive_cards) \
-    + section("stations", "Stations", "The big stations, side by side: exits, platforms, lockers and ATMs. Each guide has a free Pocket Guide.", station_cards) \
-    + """    <div class="jp-two">
+    """ + plan_html() + """
+    """ + stations_html() + """
+    <div class="jp-two">
         """ + HOKKAIDO + """
         """ + SEASONS + """
     </div>
