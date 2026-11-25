@@ -20,7 +20,8 @@ import os, sys
 ROOT = os.getcwd()
 PUB = os.path.join(ROOT, "public")
 PAGES = {  # page: (country, topic, extra attributes)
-    "japan.html": ("japan", "japan", ' data-hide-when="#ask"'),
+    # no data-hide-when="#ask": hiding the button while the hub's Ask box was on screen looked like Packy vanishing (25 Nov)
+    "japan.html": ("japan", "japan", ""),
     "blog/japan-travel-packing-guide.html": ("japan", "japan", ""),
     "blog/sapporo-station-guide.html": ("japan", "sapporo", ""),
     "blog/new-chitose-airport-guide.html": ("japan", "new-chitose", ""),
