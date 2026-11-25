@@ -263,7 +263,7 @@ PASSES = [  # code, name, serves, line, pocket key, guide slug, Packy question
 ]
 
 HERO_CSS = """
-.jp-hero{position:relative;margin:0 0 1.8rem;color:#0f0f23}
+.jp-hero{position:sticky;top:72px;z-index:0;margin:0 0 1.8rem;padding-bottom:1rem;color:#0f0f23}
 .jp-hero-in{position:relative;padding:.4rem 0 0}
 .jp-hero-top{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:1rem;align-items:stretch}
 .jp-scene{position:relative;min-height:280px;pointer-events:none}
@@ -452,7 +452,7 @@ if(!still){var A='ABCDEFGHIJKLMNOPRSTUVWXYZ0123456789';[].forEach.call(document.
     el.textContent=v.split('').map(function(ch,k){return /[A-Z0-9]/.test(ch)&&k>=n-3?A[(Math.random()*A.length)|0]:ch;}).join('');},55);});}
 // Fuji drifts as the page scrolls, like a far-away mountain (not with reduced motion)
 var fj=document.querySelector('.jp-scene .fuji');
-if(fj&&!still){var tk=false;window.addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){var y=Math.min(window.scrollY,700);fj.style.transform='translateY('+(y*0.22).toFixed(1)+'px) scale('+(1+y*0.00012).toFixed(4)+')';tk=false;});},{passive:true});}
+if(fj&&!still){var tk=false;window.addEventListener('scroll',function(){if(tk)return;tk=true;requestAnimationFrame(function(){var y=Math.min(window.scrollY,700);fj.style.transform='translateY('+(y*0.08).toFixed(1)+'px) scale('+(1+y*0.00008).toFixed(4)+')';tk=false;});},{passive:true});}
 // the lucky cat says Konnichiwa on hover (CSS) or tap
 var cat=document.getElementById('jpCat');
 // a tap or click also says it out loud with the phone's or computer's own voice (Japanese if the device has one).
@@ -471,6 +471,12 @@ function sayHello(){try{if(!('speechSynthesis' in window))return;var now=Date.no
   catU.rate=1.05;catU.pitch=1.8;catU.volume=1;catAt=now;speechSynthesis.speak(catU);track('cat_voice');}catch(e){}}
 if(cat){var ct;cat.addEventListener('click',function(){cat.classList.add('on');track('cat_hello');sayHello();clearTimeout(ct);ct=setTimeout(function(){cat.classList.remove('on');},2500);});
  cat.addEventListener('mouseenter',function(){track('cat_hello');});}
+// the hero stays as a backdrop and the rest of the page slides up over it (owner's choice, 25 Nov). A tall hero first
+// scrolls until its bottom (the Ask box) is on screen, then holds: its sticky top is the smaller of the menu height
+// and (screen height - hero height)
+var hero=document.querySelector('.jp-hero');
+function holdHero(){if(!hero)return;var nav=72,t=Math.min(nav,window.innerHeight-hero.offsetHeight-16);hero.style.top=t+'px';}
+holdHero();window.addEventListener('resize',holdHero);window.addEventListener('load',holdHero);
 // Packy: the hello bubble and "Ask Packy about ..." on each boarding pass
 function packy(q){if(window.Packy){if(q)window.Packy.ask(q);else window.Packy.open();}else{var a=document.getElementById('ask');if(a)a.scrollIntoView({behavior:'smooth'});}}
 var hl=document.getElementById('jpHello');if(hl)hl.addEventListener('click',function(){track('hero_packy');var i=document.getElementById('askQ');if(i){i.scrollIntoView({behavior:still?'auto':'smooth',block:'center'});i.focus({preventScroll:true});}else packy('');});
@@ -633,8 +639,14 @@ LOWER_CSS += """
 """
 HERO_CSS += LOWER_CSS
 
+# the "curtain": everything after the hero, on the page's own pink and wave print, slides up over the hero
+HERO_CSS += (".jp-after{position:relative;z-index:2;padding-top:2.2rem}"
+ ".jp-after:before{content:'';position:absolute;z-index:-1;top:0;bottom:-4rem;left:-28px;right:-28px;border-radius:30px 30px 0 0;"
+ "background:#FDF0F2 " + SEIGAIHA + " fixed;box-shadow:0 -14px 34px rgba(15,15,35,.10)}"
+ "@media (max-width:600px){.jp-after:before{left:-16px;right:-16px;border-radius:24px 24px 0 0}}")
 body = """<div class="page-wrapper">
     """ + hero_html() + """
+<div class="jp-after">
     """ + HERO_JS + """
     """ + plan_html() + """
     """ + passes_html() + """
@@ -645,6 +657,7 @@ body = """<div class="page-wrapper">
         """ + SEASONS + """
     </div>
     <p class="te-back">Visa rules depend on your passport: many nationalities can visit for up to 90 days without a visa, but check <a href="https://www.mofa.go.jp/j_info/visit/visa/short/novisa.html" target="_blank" rel="noopener">Japan's official visa-exemption list</a> before you book. We also have guides for travellers from particular countries, such as <a href="/blog/japan-travel-packing-guide-from-india">India</a>. Need help that is not about Japan? See <a href="/travel-essentials">Travel Essentials</a>.</p>
+</div>
 </div>
 
 """
