@@ -116,6 +116,15 @@ hours)
 - Terminal 2 (the map's floors are 1F, departures and arrivals with shops and
   restaurants, and 2F, arrivals): two ATMs, both on 1F: a Seven Bank ATM in the west part of the building and a
   Resona Bank ATM in the east part. None shown on 2F.
+- Terminal 2, 1F, money exchange (map filter "Currency Exchange", area 33): "KIX CURRENCY EXCHANGE Automatic currency
+  exchange machine Arrival area" (north-west, by the arrivals area); "KIX CURRENCY EXCHANGE Automatic currency exchange
+  machine After Immigration" (departures side, after passport control); "KIX CURRENCY EXCHANGE Terminal 2 Building
+  Shop" (a staffed shop, in the middle of the building near the bus and taxi side).
+- Terminal 2, 1F, SIM and Wi-Fi (map filter "Wi-Fi Rental", area 33): "JAPAN WiFi (XCom Global) XCom Global Arrival
+  Counter [Unmanned] Return Box" and "WiFiBOX (Telecom Square) Unmanned delivery machine (International arrivals)",
+  both by the arrivals area; "WiFiBOX (Telecom Square) Unmanned delivery machine (International departures)"; and a
+  "GLOBAL WiFi SIM card vending machine" in the middle of the building. The map shows no opening hours.
+- Terminal 2, 1F, "Send Luggage" filter: no counter named on the map.
 - Aeroplaza (the building on the other side of Kansai Airport Station; the map's floors are 1F hotel and car rental,
   2F and 3F shops and restaurants, 11F restaurants): one ATM, "LAWSON Bank (Inside LAWSON)", on 2F, the floor joined
   to the station. None shown on 1F, 3F or 11F.
