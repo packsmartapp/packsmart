@@ -11,6 +11,11 @@ right under each guide's hero:
     in the page's own "Facts checked" line (else the date its sources were most often checked);
   * the hub's washi wave print behind the band and behind the guide's "What do you need first?" panel.
 
+Step 2 (25 Nov 2026), same script:
+  * a lighter photo hero (the dark navy tint is now light at the top and darker only under the title);
+  * an "Ask Packy about <place>" box right after the guide's "What do you need first?" tiles, with that place's own
+    starter questions (read from public/packy.js), on the guides that load Packy (w75). Questions open the Packy chat.
+
 The article body is not touched. The band sits between <!-- jp-band --> markers and is replaced as a whole, and the CSS
 is one <style id="jp-guide-css"> block in <head>, so re-running is safe.
 
@@ -39,6 +44,36 @@ KIND = {"station": ("駅", "Station guide", "Stations", "/japan#stations"),
         "airport": ("空港", "Airport guide", "Airports", "/japan#arriving"),
         "city": ("観光", "City guide", "Plan your trip", "/japan#plan")}
 MONTHS = {m: i for i, m in enumerate(["jan", "feb", "mar", "apr", "may", "jun", "jul", "aug", "sep", "oct", "nov", "dec"], 1)}
+OLD_TINT = "linear-gradient(rgba(15,15,35,0.62), rgba(26,26,62,0.72))"
+NEW_TINT = "linear-gradient(rgba(15,15,35,0.14) 0%, rgba(15,15,35,0.32) 45%, rgba(15,15,35,0.66) 100%)"
+ASK = re.compile(r"<!-- jp-ask-guide -->.*?<!-- /jp-ask-guide -->\n", re.S)
+TOPIC = re.compile(r'<script src="/packy\.js[^"]*" data-country="japan" data-topic="([a-z-]+)"')
+PACKY = open(os.path.join(ROOT, "public", "packy.js"), encoding="utf-8").read()
+FACE = "".join(re.findall(r"'([^']*)'", re.search(r"var FACE = ((?:'[^']*'\s*\+?\s*)+);", PACKY).group(1)))
+
+
+def starters(topic):
+    m = re.search(r"\n\s*'?%s'?: \[(.*?)\],?\n" % re.escape(topic), PACKY)
+    return re.findall(r"'((?:[^'\\]|\\.)*)'", m.group(1)) if m else []
+
+
+def ask_box(en, topic):
+    qs = starters(topic)
+    if not qs:
+        return ""
+    esc = lambda t: t.replace("&", "&amp;").replace('"', "&quot;").replace("<", "&lt;")
+    chips = "".join('<button type="button" data-q="%s">%s</button>' % (esc(q), esc(q)) for q in qs)
+    return ('<!-- jp-ask-guide -->\n<section class="jg-ask" aria-label="Ask Packy about %s"><div class="jg-h"><span class="av" aria-hidden="true">%s</span>'
+            '<div><b>Ask Packy about %s</b><small>Your Japan travel buddy · answers from official sources</small></div></div>'
+            '<form class="jg-f" autocomplete="off"><label class="jg-sr" for="jgQ">Your question</label><input id="jgQ" type="text" maxlength="300" placeholder="Ask about %s…">'
+            '<button type="submit">Ask &#10148;</button></form><div class="jg-chips">%s</div></section>\n'
+            "<script>(function(){var b=document.querySelector('.jg-ask');if(!b)return;function go(q){q=(q||'').trim();if(q.length<5)return;"
+            "try{if(window.gtag)gtag('event','ask_japan',{event_category:'engagement',status:'guide_box',page_path:location.pathname});}catch(e){}"
+            "if(window.Packy)window.Packy.ask(q);}b.querySelector('form').addEventListener('submit',function(e){e.preventDefault();var i=b.querySelector('input');go(i.value);i.value='';});"
+            "[].forEach.call(b.querySelectorAll('[data-q]'),function(c){c.addEventListener('click',function(){go(c.getAttribute('data-q'));});});})();</script>\n"
+            '<!-- /jp-ask-guide -->\n') % (en, FACE, en, en, chips)
+
+
 CHECKED = re.compile(r"[Cc]hecked (?:on )?(\d{1,2})(?: and (\d{1,2}))? ([A-Z][a-z]+) (20\d\d)")
 HERO = re.compile(r'<div class="hero-blog".*?\n</div>\n', re.S)
 BAND = re.compile(r"<!-- jp-band -->.*?<!-- /jp-band -->\n", re.S)
@@ -58,6 +93,15 @@ CSS = """<style id="jp-guide-css">
 .jp-namesign-e b{font-size:1rem;color:#0f0f23}
 .jp-namesign-bar{flex:1;align-self:stretch;min-width:12px;border-radius:4px;background:linear-gradient(90deg,#00C9A7,#7FE3D0);height:6px;margin:auto 0}
 .jp-namesign-st{flex:none;transform:rotate(-10deg);border:2px solid #E94560;color:#E94560;border-radius:8px;padding:3px 6px;font-size:.6rem;font-weight:800;letter-spacing:.05em;text-align:center;line-height:1.15;opacity:.85}
+.hero-blog h1,.hero-blog .meta{text-shadow:0 2px 14px rgba(0,0,0,.55)}
+.jg-ask{margin:22px 0 26px;background:#FDF0F2 """ + WAVE + """;border:1px solid #F3D3DA;border-radius:20px;padding:16px 16px 14px}
+.jg-h{display:flex;align-items:center;gap:12px;margin-bottom:10px}.jg-h .av{flex:none;width:42px;height:42px;background:#fff;border-radius:12px;padding:3px;box-shadow:0 4px 12px rgba(0,168,140,.15)}
+.jg-h .av svg{width:100%;height:100%;display:block}.jg-h b{display:block;font-size:1.08rem;color:#0f0f23}.jg-h small{color:#5a6378;font-size:.82rem}
+.jg-f{display:flex;gap:8px;align-items:center;background:#fff;border:1.5px solid #BFEDE3;border-radius:999px;padding:4px 4px 4px 14px}
+.jg-f input{flex:1;min-width:0;border:0;outline:0;font:inherit;font-size:16px;background:transparent;padding:8px 0;color:#0f0f23}
+.jg-f button{flex:none;font:inherit;font-weight:800;font-size:.92rem;border:0;border-radius:999px;padding:9px 16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;cursor:pointer}
+.jg-chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px}.jg-chips button{font:inherit;font-size:.84rem;font-weight:600;text-align:left;background:#fff;color:#0f0f23;border:1.5px solid #BFEDE3;border-radius:999px;padding:6px 12px;cursor:pointer}
+.jg-chips button:hover{border-color:#00C9A7}.jg-sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
 .psn-now{background-image:""" + WAVE + """!important}
 @media (max-width:600px){.jp-namesign{flex-wrap:wrap;gap:8px 12px}.jp-namesign-k{font-size:1.5rem}.jp-namesign-bar{display:none}.jp-namesign-st{position:absolute;right:12px;top:-12px;background:#fff}}
 </style>
@@ -113,6 +157,20 @@ for slug, (ja, en, kind) in GUIDES.items():
         problems.append(slug + (" (no checked date)" if not checked else " (no hero)"))
         continue
     new = new[:hero.end()] + band(ja, en, kind, checked) + new[hero.end():]
+    hero_old = new[hero.start():hero.end()]
+    if OLD_TINT in hero_old:
+        new = new[:hero.start()] + hero_old.replace(OLD_TINT, NEW_TINT, 1) + new[hero.end():]
+    elif NEW_TINT not in hero_old and "url(" in hero_old:   # a hero without a photo (New Chitose) keeps its own colour
+        problems.append(slug + " (hero tint not recognised)")
+        continue
+    new = ASK.sub("", new)
+    tm = TOPIC.search(new)
+    if tm:
+        bar = new.find('\n<div id="psnBar"')
+        if bar < 0:
+            problems.append(slug + " (no section bar)")
+            continue
+        new = new[:bar + 1] + ask_box(en, tm.group(1)) + new[bar + 1:]
     if 'id="jp-guide-css"' in new:
         new = re.sub(r'<style id="jp-guide-css">.*?</style>\n', lambda m: CSS, new, count=1, flags=re.S)
     else:
