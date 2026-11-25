@@ -240,6 +240,10 @@ ASK = ASK.replace("%%FACE%%", packy_face())
 # ---- Arrival hero (25 Nov 2026): photo, Packy's hello, a live strip (Japan time, weather, season) and an arrivals board
 # whose rows are fastest official journey times (sources in docs/research: Keisei, Keikyu, JNTO, Kyoto City, checked
 # 24 Nov 2026). Then "Where are you landing?" boarding passes for the four airports with Pocket Guides.
+BOARD_CHECKED = datetime.date(2026, 11, 24)   # when the board and boarding-pass facts were last checked against the sources
+if (datetime.date.today() - BOARD_CHECKED).days > 183:
+    print("w73 WARNING: the arrivals board and boarding passes were last checked on %s, over 6 months ago. Re-check the "
+          "times in docs/research (Keisei, Keikyu, JNTO, Kyoto City), update BOARD and PASSES, then BOARD_CHECKED." % BOARD_CHECKED)
 BOARD = [  # from, to, by, time, pocket key, source
     ("NARITA", "UENO", "SKYLINER", "41 MIN", "narita", "Keisei"),
     ("HANEDA", "SHINAGAWA", "KEIKYU", "11 MIN", "haneda", "Keikyu, from Terminal 3"),
@@ -331,7 +335,7 @@ def hero_html():
 <div class="jp-board" role="region" aria-label="Arrivals board: fastest trains from the airports">
 <div class="jp-board-h"><span>ARRIVALS · 到着</span><i>Fastest trains<span class="wide"> · tap for the Pocket Guide</span></i></div>
 <ol>""" + rows + """</ol>
-<p class="jp-board-note">Journey times from Keisei, Keikyu (from Terminal 3), JNTO and Kyoto City, checked 24 November 2026. Times change, so check before you travel.</p>
+<p class="jp-board-note">Journey times from Keisei, Keikyu (from Terminal 3), JNTO and Kyoto City, checked """ + BOARD_CHECKED.strftime("%-d %B %Y") + """. Times change, so check before you travel.</p>
 </div>
 </div>
 <div class="jp-hero-credit">Photo: PAKUTASO. Illustrative image of the Fushimi Inari shrine in Kyoto.</div>
@@ -383,6 +387,59 @@ document.getElementById('jpHello').addEventListener('click',function(){track('he
 </script>"""
 
 
+
+# ---- Japan backdrop for wide screens (25 Nov 2026): washi-paper colour with a faint seigaiha (wave) pattern, sakura
+# branches reaching in from both sides and a few drifting petals. Drawn here as vectors (no photos, no downloads); shown
+# only where the page has empty sides (1200px and wider), and the petals stay still for people who prefer less motion.
+_FLOWER = ('<g id="sk-f"><g fill="#FFC9D6" stroke="#F49AB0" stroke-width=".8">'
+           + "".join('<path transform="rotate(%d)" d="M0 0C-5-4-6-12-2-15L0-13 2-15C6-12 5-4 0 0Z"/>' % a for a in (0, 72, 144, 216, 288))
+           + '</g><circle r="2.6" fill="#E94560"/><g fill="#C2185B">'
+           + "".join('<circle cx="%.1f" cy="%.1f" r=".9"/>' % (4.2 * __import__("math").cos(__import__("math").radians(a)), 4.2 * __import__("math").sin(__import__("math").radians(a))) for a in range(0, 360, 60))
+           + '</g></g><g id="sk-b"><ellipse rx="3.4" ry="5" fill="#F7A8BC"/><path d="M0 4v4" stroke="#7a4b3a" stroke-width="1.2"/></g>')
+_BLOOMS = [(150, 92, 1.5, 10), (118, 150, 1.2, 40), (205, 150, 1.4, 70), (92, 214, 1.1, 15), (178, 236, 1.6, 50), (232, 268, 1.1, 5),
+           (60, 300, 1.3, 30), (140, 330, 1.2, 80), (210, 360, 1.5, 20), (96, 420, 1.0, 60), (168, 462, 1.3, 35), (62, 520, 1.2, 0),
+           (122, 560, 1.4, 45), (40, 612, 1.0, 25), (100, 660, 1.2, 65), (250, 210, 1.0, 12), (30, 400, 1.1, 55)]
+_BUDS = [(176, 112, 20), (230, 190, -30), (70, 250, 40), (190, 300, -10), (40, 470, 30), (150, 520, -25), (78, 600, 15)]
+SAKURA_SVG = ('<svg viewBox="0 0 300 720" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><defs>' + _FLOWER + '</defs>'
+    '<g fill="none" stroke="#6B4235" stroke-linecap="round">'
+    '<path d="M-20 700C30 610 20 540 60 470S150 360 140 300 190 190 160 90" stroke-width="13"/>'
+    '<path d="M60 470C100 450 150 470 175 462" stroke-width="6"/><path d="M95 380C60 350 40 320 60 300" stroke-width="6"/>'
+    '<path d="M150 330C185 320 205 340 210 360" stroke-width="5"/><path d="M145 250C180 240 220 250 232 268" stroke-width="6"/>'
+    '<path d="M150 190C140 160 120 150 118 150" stroke-width="5"/><path d="M155 150C180 140 200 145 205 150" stroke-width="5"/>'
+    '<path d="M40 560C70 560 110 555 122 560" stroke-width="6"/><path d="M30 640C55 650 85 655 100 660" stroke-width="5"/>'
+    '<path d="M70 250C80 230 88 220 92 214" stroke-width="4"/><path d="M178 236C190 230 230 210 250 210" stroke-width="3"/></g>'
+    + "".join('<use href="#sk-f" transform="translate(%d %d) scale(%.1f) rotate(%d)"/>' % b for b in _BLOOMS)
+    + "".join('<use href="#sk-b" transform="translate(%d %d) rotate(%d)"/>' % b for b in _BUDS)
+    + '</svg>')
+_PETAL = '<svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2C4 6 3 13 10 18 17 13 16 6 10 2Z" fill="#FFC1D1" stroke="#F49AB0" stroke-width=".8"/></svg>'
+SAKURA_BG = ('<div class="jp-bg" aria-hidden="true"><div class="jp-bg-l">' + SAKURA_SVG + '</div><div class="jp-bg-r">' + SAKURA_SVG + '</div>'
+             + "".join('<i class="jp-petal" style="left:%s;animation-delay:%ss;animation-duration:%ss">%s</i>' % (l, d, t, _PETAL)
+                       for l, d, t in (("4%", 0, 16), ("9%", 6, 19), ("14%", 11, 15), ("85%", 3, 18), ("90%", 9, 16), ("95%", 14, 20), ("2%", 17, 21), ("97%", 7, 17)))
+             + '</div>')
+SEIGAIHA = ("url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='40' viewBox='0 0 80 40'%3E"
+            "%3Cg fill='none' stroke='%23E9C9C9' stroke-width='1.2' opacity='.55'%3E"
+            "%3Cpath d='M0 40a20 20 0 0 1 40 0M8 40a12 12 0 0 1 24 0M16 40a4 4 0 0 1 8 0'/%3E"
+            "%3Cpath d='M40 40a20 20 0 0 1 40 0M48 40a12 12 0 0 1 24 0M56 40a4 4 0 0 1 8 0'/%3E"
+            "%3Cpath d='M-20 20a20 20 0 0 1 40 0M-12 20a12 12 0 0 1 24 0M-4 20a4 4 0 0 1 8 0'/%3E"
+            "%3Cpath d='M20 20a20 20 0 0 1 40 0M28 20a12 12 0 0 1 24 0M36 20a4 4 0 0 1 8 0'/%3E"
+            "%3Cpath d='M60 20a20 20 0 0 1 40 0M68 20a12 12 0 0 1 24 0M76 20a4 4 0 0 1 8 0'/%3E%3C/g%3E%3C/svg%3E\")")
+HERO_CSS += """
+:root{--bg:#FBF5EE}
+.jp-bg{display:none}
+@media (min-width:1200px){
+ body{background:#FBF5EE """ + SEIGAIHA + """ fixed}
+ .jp-bg{display:block;position:fixed;inset:0;pointer-events:none;z-index:0;overflow:hidden}
+ .page-wrapper{position:relative;z-index:1}
+ .jp-bg-l,.jp-bg-r{position:absolute;top:70px;width:min(300px,calc((100vw - 900px)/2));opacity:.95}
+ .jp-bg-l{left:-10px}.jp-bg-r{right:-10px;transform:scaleX(-1);top:220px}
+ .jp-bg svg{width:100%;height:auto;display:block}
+ .jp-petal{position:absolute;top:-30px;width:16px;height:16px;animation:jpFall linear infinite;opacity:.85}
+ .jp-petal svg{width:100%;height:100%;display:block}
+}
+@keyframes jpFall{0%{transform:translate(0,0) rotate(0)}25%{transform:translate(30px,25vh) rotate(90deg)}50%{transform:translate(-10px,50vh) rotate(200deg)}75%{transform:translate(25px,75vh) rotate(290deg)}100%{transform:translate(0,110vh) rotate(380deg)}}
+@media (prefers-reduced-motion:reduce){.jp-petal{display:none}}
+"""
+
 body = """<div class="page-wrapper">
     """ + hero_html() + """
     """ + passes_html() + """
@@ -410,7 +467,7 @@ body = """<div class="page-wrapper">
 </div>
 
 """
-page = head + '<style id="jp-hero-css">' + HERO_CSS + '</style>\n' + nav + body + foot
+page = head + '<style id="jp-hero-css">' + HERO_CSS + '</style>\n' + nav + SAKURA_BG + '\n' + body + foot
 for need in ('id="plan"', 'id="arriving"', 'id="stations"', "hub_japan", "</html>"):
     if need not in page:
         die("built page lacks " + need)
