@@ -1096,6 +1096,16 @@ export default [
 "u": []
 },
 {
+"t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
+"x": "- From the airport, approximate time / fare / access bridge and expressway tolls / total: Itami Airport 70 min,\n  23,490 + 3,000 = 26,490 yen; Kita-ku, Osaka city 50 min, 19,800 + 2,600 = 22,400 yen; Chuo-ku, Osaka city 50 min,\n  19,100 + 2,500 = 21,600 yen; Shin-Osaka Sta. 60 min, 20,790 + 2,300 = 23,090 yen; Tennoji Sta. 50 min,\n  17,640 + 2,200 = 19,840 yen; Universal Studios Japan 50 min, 17,640 + 2,500 = 20,140 yen; Kaiyukan 50 min,\n  16,920 + 2,500 = 19,420 yen; Izumisano Sta. 20 min, 4,400 + 1,000 = 5,400 yen; Kishiwada Sta. 25 min,\n  7,500 + 1,500 = 9,000 yen; JR Sakai-shi Sta. 40 min, 14,220 + 2,100 = 16,320 yen; Suita Sta. 60 min,\n  22,500 + 3,000 = 25,500 yen; Ibaraki Sta. 60 min, 25,920 + 3,500 = 29,420 yen.",
+"u": []
+},
+{
+"t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Kansai Airport: station and buses (owner's screenshots of the airport's English site, 25 Nov 2026)",
+"x": "- The page's notes: \"These are approximate fares calculated based on the distance, going through highway/local roads.\n  Access Bridge Tolls and Expressway Tolls are estimated fare. The fare might increase due to traffic lights or traffic\n  jam. Between 22:00 and 5:00am, the fare is increased by 20%.\" Kita-ku and Chuo-ku are marked with an asterisk:\n  \"Standard taxi fares of Airport Taxi are no longer available on May 31st, 2024.\"\n- Questions on the bridge toll and ETC discounts: NEXCO West Japan Customer Center, 0120-924-863.",
+"u": []
+},
+{
 "t": "kansai > Kansai Airport (KIX): sources and facts (research for Packy, B54) > Arriving at Namba: tourist information (Osaka Convention & Tourism Bureau, read 25 Nov 2026)",
 "x": "Source: https://osaka-info.jp/en/spot/tourist-information-namba/\n- Tourist Information Namba is \"on the first floor of Nankai Namba Station, which is easily accessible from Kansai\n  International Airport\": in front of the north exit on 1F of Nankai Namba Station, 2 minutes from Exit 4 of Namba\n  Station on the Osaka Metro Midosuji and Sennichimae lines. Open 9:00-20:00 every day of the year; English, Chinese\n  and Korean.\n- The same bureau also runs Tourist Information SHIN-OSAKA (JR Shin-Osaka Station, 3F) and Tourist Information OSAKA\n  (JR Osaka Station, 1F).",
 "u": [

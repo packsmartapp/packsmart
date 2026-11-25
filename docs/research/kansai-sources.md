@@ -63,6 +63,20 @@ links to add)
   Hyogo: Amagasaki, Nishinomiya, Kobe Sannomiya and Rokko Island, Himeji and Kakogawa; Nara: Kintetsu Gakuenmae, Nara,
   Yamato Yagi; Kyoto: Kyoto and Kyo-tanabe; Wakayama; Okayama; Shikoku: Awaji, Naruto, Tokushima, Takamatsu.
 
+**Taxis: approximate times and fares** (same site, taxi page; owner's screenshots, 25 Nov 2026)
+- From the airport, approximate time / fare / access bridge and expressway tolls / total: Itami Airport 70 min,
+  23,490 + 3,000 = 26,490 yen; Kita-ku, Osaka city 50 min, 19,800 + 2,600 = 22,400 yen; Chuo-ku, Osaka city 50 min,
+  19,100 + 2,500 = 21,600 yen; Shin-Osaka Sta. 60 min, 20,790 + 2,300 = 23,090 yen; Tennoji Sta. 50 min,
+  17,640 + 2,200 = 19,840 yen; Universal Studios Japan 50 min, 17,640 + 2,500 = 20,140 yen; Kaiyukan 50 min,
+  16,920 + 2,500 = 19,420 yen; Izumisano Sta. 20 min, 4,400 + 1,000 = 5,400 yen; Kishiwada Sta. 25 min,
+  7,500 + 1,500 = 9,000 yen; JR Sakai-shi Sta. 40 min, 14,220 + 2,100 = 16,320 yen; Suita Sta. 60 min,
+  22,500 + 3,000 = 25,500 yen; Ibaraki Sta. 60 min, 25,920 + 3,500 = 29,420 yen.
+- The page's notes: "These are approximate fares calculated based on the distance, going through highway/local roads.
+  Access Bridge Tolls and Expressway Tolls are estimated fare. The fare might increase due to traffic lights or traffic
+  jam. Between 22:00 and 5:00am, the fare is increased by 20%." Kita-ku and Chuo-ku are marked with an asterisk:
+  "Standard taxi fares of Airport Taxi are no longer available on May 31st, 2024."
+- Questions on the bridge toll and ETC discounts: NEXCO West Japan Customer Center, 0120-924-863.
+
 ## Arriving at Namba: tourist information (Osaka Convention & Tourism Bureau, read 25 Nov 2026)
 Source: https://osaka-info.jp/en/spot/tourist-information-namba/
 - Tourist Information Namba is "on the first floor of Nankai Namba Station, which is easily accessible from Kansai
@@ -75,7 +89,8 @@ Source: https://osaka-info.jp/en/spot/tourist-information-namba/
 ## Gaps (still to fetch or confirm; not used by Packy)
 - From the airport's site (owner's screenshots): ATMs, money exchange, baggage storage and delivery, SIM and Wi-Fi,
   information counters, "Getting to Terminal 2 Building" (the shuttle), bus stop numbers and times from the airport
-  (the list above is the to-the-airport page), taxis.
+  (the list above is the to-the-airport page), where the taxi stands are, and the
+  taxi fares for Hyogo, Nara, Kyoto, Wakayama, Okayama and Shikoku (a closed section in the screenshots).
 - Nankai base fares (the price list is an image at the station and on the site).
 - JR (Haruka and Kansai Airport Rapid) first and last trains from the airport.
 - "Which Namba station?": a travel-media guide (Good Luck Trip, https://www.gltjp.com/en/article/item/20889/, updated
