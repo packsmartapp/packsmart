@@ -541,7 +541,9 @@
  [data-ps-placement^="discovercars-"]>p:nth-of-type(4){grid-column:1/-1;grid-row:7;margin:6px 0 0!important}}
 /* the "Explore all our Japan guides" callout beside the Published line (owner, 25 Nov) */
 p.jg-disc{font-size:.72rem!important;color:#8a8f9c!important;margin:.2rem 0 1.2rem!important;line-height:1.5!important}.jg-disc span{color:#b4bccb;margin-right:2px}.jg-disc a{color:#0a8f78;text-decoration:underline}
-.jg-meta{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:28px;align-items:start;margin:0 0 1.6rem}
+.jg-meta{display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:28px;align-items:start;margin:0 0 .9rem}
+/* the first share row (right after the date and callout) sits a little higher and leaves room before the article starts (owner, 25 Nov) */
+.jg-meta+.share-row,.jg-meta~.share-row:first-of-type{padding:4px 0 0!important;margin:0 0 2.2rem!important}
 .jg-meta>p{grid-column:1;margin:0!important}
 .jg-meta>p.jg-disc{margin:10px 0 0!important}
 .jg-meta>.jg-hubp{grid-column:2;grid-row:1/3;align-self:start;margin:-4px 0 0}
