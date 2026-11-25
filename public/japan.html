@@ -230,7 +230,7 @@
 .jp-cat{position:absolute;right:-26px;top:-86px;width:96px;cursor:pointer;filter:drop-shadow(0 6px 10px rgba(15,15,35,.12))}
 .jp-cat svg{width:100%;height:auto;display:block}
 .jp-cat .paw{transform-box:view-box;transform-origin:146px 112px;animation:jpBeckon 2.4s ease-in-out infinite}
-.jp-cat-say{position:absolute;right:70%;top:-6px;white-space:nowrap;background:#0f0f23;color:#fff;font-size:.82rem;font-weight:700;padding:7px 11px;border-radius:14px 14px 4px 14px;opacity:0;transform:translateY(6px) scale(.9);transform-origin:bottom right;transition:opacity .18s,transform .18s;pointer-events:none}
+.jp-cat-say{position:absolute;right:30%;bottom:calc(100% + 6px);z-index:4;white-space:nowrap;background:#0f0f23;color:#fff;font-size:.82rem;font-weight:700;padding:7px 11px;border-radius:14px 14px 4px 14px;opacity:0;transform:translateY(6px) scale(.9);transform-origin:bottom right;transition:opacity .18s,transform .18s;pointer-events:none}
 .jp-cat-say span{color:#FFC1D1;margin-right:4px}.jp-cat-say small{display:block;font-size:.68rem;font-weight:600;color:#C9D1F0;margin-top:2px}
 .jp-cat:hover .jp-cat-say,.jp-cat.on .jp-cat-say{opacity:1;transform:none}
 .jp-cat:hover .paw,.jp-cat.on .paw{animation-duration:.8s}
@@ -531,9 +531,9 @@ var jaVoice=null,enVoice=null,FEM=/kyoko|o-?ren|nanami|haruka|ayumi|mayu|google 
 function best(list){var f=list.filter(function(x){return FEM.test(x.name)&&!MALE.test(x.name);});return f[0]||list.filter(function(x){return !MALE.test(x.name);})[0]||list[0]||null;}
 function pickVoice(){try{var v=speechSynthesis.getVoices();jaVoice=best(v.filter(function(x){return /^ja(-|_|$)/i.test(x.lang);}));enVoice=best(v.filter(function(x){return /^en(-|_|$)/i.test(x.lang);}));}catch(e){}}
 if('speechSynthesis' in window){pickVoice();try{speechSynthesis.addEventListener('voiceschanged',pickVoice);}catch(e){}}
-function sayHello(){try{if(!('speechSynthesis' in window))return;speechSynthesis.cancel();
+function sayHello(){try{if(!('speechSynthesis' in window))return;var busy=speechSynthesis.speaking||speechSynthesis.pending;if(busy)speechSynthesis.cancel();try{speechSynthesis.resume();}catch(e){}if(!jaVoice&&!enVoice)pickVoice();
   var vo=jaVoice||enVoice,u=new SpeechSynthesisUtterance(jaVoice?'こんにちは！':'Kon-nichi-wa!');if(vo){u.voice=vo;u.lang=vo.lang;}else u.lang='en-US';
-  u.rate=1.05;u.pitch=1.8;speechSynthesis.speak(u);track('cat_voice');}catch(e){}}
+  u.rate=1.05;u.pitch=1.8;setTimeout(function(){try{speechSynthesis.speak(u);}catch(e){}},busy?120:0);track('cat_voice');}catch(e){}}
 if(cat){var ct;cat.addEventListener('click',function(){cat.classList.add('on');track('cat_hello');sayHello();clearTimeout(ct);ct=setTimeout(function(){cat.classList.remove('on');},2500);});
  cat.addEventListener('mouseenter',function(){track('cat_hello');});}
 // Packy: the hello bubble and "Ask Packy about ..." on each boarding pass
