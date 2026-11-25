@@ -267,6 +267,16 @@ HERO_CSS = """
 .jp-hero-in{position:relative;padding:.4rem 0 0}
 .jp-hero-top{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:1rem;align-items:stretch}
 .jp-scene{position:relative;min-height:280px;pointer-events:none}
+/* "Fuji through the seasons": a small switcher on the scene (starts on the current season) */
+.jp-seasons{position:absolute;left:50%;top:calc(100% + 6px);transform:translateX(-50%);pointer-events:auto;text-align:center;white-space:nowrap}
+.jp-seasons small{display:block;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#5a6378;margin-bottom:3px}
+.jp-seasons-row{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.92);border:1px solid #BFEDE3;border-radius:999px;padding:3px;box-shadow:0 6px 16px rgba(0,168,140,.12)}
+.jp-seasons button{width:30px;height:30px;border:0;border-radius:50%;background:#E6FAF5;color:#0a8f78;font-size:1.25rem;line-height:1;font-weight:800;cursor:pointer}
+.jp-seasons button:hover{background:#00C9A7;color:#fff}
+.jp-s-lbl{min-width:104px;font-size:.88rem;color:#0f0f23}.jp-s-lbl span{color:#E94560;margin-right:5px}
+.jp-scene .fuji,.jp-scene .ss{transition:opacity .35s}
+.jp-hero-top .jp-scene{margin-bottom:64px}
+@media (max-width:600px){.jp-hero-top .jp-scene{margin-bottom:0}.jp-seasons{top:auto;bottom:4px}.jp-seasons small{display:none}}
 .jp-scene .fuji{position:absolute;inset:0;width:100%;height:100%;display:block;will-change:transform;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
 .jp-scene .cl{animation:jpDrift 26s ease-in-out infinite alternate}
 .jp-scene .ss{display:none}
@@ -405,7 +415,8 @@ def hero_html():
 <p class="jp-hero-lead">Every PackSmart guide for Japan in one place, from the arrivals gate to the platform. Facts come from official sources, with the date we checked them.</p>
 <button type="button" class="jp-hello" id="jpHello"><span class="av" aria-hidden="true">""" + _face_av() + """</span><span class="bub"><b>Konnichiwa!</b> I'm Packy 👋 Where are you landing? Ask me anything.</span></button>
 <div class="jp-live" aria-label="Japan right now"><span id="jpClock">🕗 Japan time</span><span id="jpWx" hidden></span><span id="jpSeason"></span></div>
-</div><div class="jp-scene" aria-hidden="true" data-season="%%SEASON%%">""" + FUJI_SVG + '<div class="sk">' + SAKURA_SVG + """</div></div></div>
+</div><div class="jp-scene" data-season="%%SEASON%%">""" + FUJI_SVG + '<div class="sk" aria-hidden="true">' + SAKURA_SVG + """</div>
+<div class="jp-seasons" role="group" aria-label="See Mt Fuji in each season"><small>Fuji through the seasons</small><span class="jp-seasons-row"><button type="button" class="jp-s-prev" aria-label="Previous season">&#8249;</button><b class="jp-s-lbl" aria-live="polite"></b><button type="button" class="jp-s-next" aria-label="Next season">&#8250;</button></span></div></div></div>
 """ + ASK + """
 </div>
 </section>
@@ -483,6 +494,13 @@ if(mini&&askBox){var mt=false;function syncMini(){mt=false;var on=askBox.getBoun
  syncMini();window.addEventListener('scroll',function(){if(!mt){mt=true;requestAnimationFrame(syncMini);}},{passive:true});window.addEventListener('resize',syncMini);}
 var mf=document.getElementById('jpMiniF');
 if(mf)mf.addEventListener('submit',function(e){e.preventDefault();var i=document.getElementById('jpMiniQ'),t=(i.value||'').trim();if(t.length<5){i.focus();return;}track('mini_ask',t.slice(0,60));if(window.Packy){window.Packy.ask(t);i.value='';}});
+// Fuji through the seasons: ‹ › cycle the drawn scene (hero, small band and falling petals); starts on the real season
+var SEAS=[['spring','春','Spring'],['summer','夏','Summer'],['autumn','秋','Autumn'],['winter','冬','Winter']],sIx=0;
+for(var si=0;si<4;si++)if(SEAS[si][0]===sn)sIx=si;
+var sLbl=document.querySelector('.jp-s-lbl');
+function showSeason(i,user){sIx=(i+4)%4;var k=SEAS[sIx][0];[].forEach.call(document.querySelectorAll('.jp-scene'),function(x){x.setAttribute('data-season',k);});document.body.setAttribute('data-season',k);
+ if(sLbl)sLbl.innerHTML='<span lang="ja">'+SEAS[sIx][1]+'</span>'+SEAS[sIx][2]+(k===sn?' · now':'');if(user)track('season_view',k);}
+if(sLbl){showSeason(sIx,false);document.querySelector('.jp-s-prev').addEventListener('click',function(){showSeason(sIx-1,true);});document.querySelector('.jp-s-next').addEventListener('click',function(){showSeason(sIx+1,true);});}
 // Packy: the hello bubble and "Ask Packy about ..." on each boarding pass
 function packy(q){if(window.Packy){if(q)window.Packy.ask(q);else window.Packy.open();}else{var a=document.getElementById('ask');if(a)a.scrollIntoView({behavior:'smooth'});}}
 var hl=document.getElementById('jpHello');if(hl)hl.addEventListener('click',function(){track('hero_packy');var i=document.getElementById('askQ');if(i){i.scrollIntoView({behavior:still?'auto':'smooth',block:'center'});i.focus({preventScroll:true});}else packy('');});
