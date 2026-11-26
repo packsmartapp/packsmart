@@ -83,8 +83,8 @@
     '.pk-offer{display:flex;align-items:center;gap:7px;margin:10px 0 0;padding:7px 10px;border-radius:10px;background:#FFFAFB;border:1px solid #F3D3DB;color:#3f4a5c!important;text-decoration:none!important;font-size:12.5px;line-height:1.35;transition:border-color .15s}' +
     '.pk-offer:hover{border-color:#E94560}.pk-offer i{font-style:normal;font-size:14px;flex:none}' +
     '.pk-offer b{flex:1;font-weight:600;color:#0f0f23}.pk-offer small{font-size:10.5px;color:#8a93a6;white-space:nowrap}.pk-offer em{font-style:normal;color:#E94560;font-weight:700}' +
-    '.pk-fact{margin:4px 0 8px;padding:10px 12px;border-radius:14px;background:#FFF8E1;border:1px solid #F5DE9C;color:#3f4a5c;font-size:13.5px;line-height:1.45;animation:pkIn .3s ease both}' +
-    '.pk-fact b{color:#0f0f23}.pk-chips .pk-fact button{display:inline!important;margin:0 0 0 4px!important;white-space:nowrap;font:inherit!important;font-size:12.5px!important;font-weight:700!important;color:#0a8f78!important;background:none!important;border:0!important;box-shadow:none!important;padding:0!important;min-height:0!important;cursor:pointer;animation:none!important}.pk-chips .pk-fact button:hover{text-decoration:underline}' +
+    '.pk-fact{margin:6px 0 8px;padding:9px 12px 10px;border-radius:12px;background:#fff;border:1px solid #D7EFE8;border-left:3px solid #00C9A7;color:#3f4a5c;font-size:13.5px;line-height:1.45;animation:pkIn .3s ease both}' +
+    '.pk-fact b{display:block;margin:0 0 2px;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;color:#0a8f78}.pk-chips .pk-fact button{display:inline!important;margin:0 0 0 4px!important;white-space:nowrap;font:inherit!important;font-size:12.5px!important;font-weight:700!important;color:#0a8f78!important;background:none!important;border:0!important;box-shadow:none!important;padding:0!important;min-height:0!important;cursor:pointer;animation:none!important}.pk-chips .pk-fact button:hover{text-decoration:underline}' +
     '.pk-pocket{margin:8px 0 0;padding-top:7px;border-top:1px dashed #D5DCE0;font-size:12.5px;line-height:1.45}.pk-hint{color:#5a6378}' +
     '.pk-soft{display:inline;margin:0;font-size:12.5px;font-weight:600;color:#0a8f78!important;text-decoration:none!important}.pk-soft:hover{text-decoration:underline!important}' +
     '.pk-more{font-size:14px;border-top:1px dashed #D5DCE0;margin-top:10px!important;padding-top:8px}' +
@@ -183,7 +183,7 @@
     // "Did you know?" (owner, 26 Nov): a fact that inspires and leads on, in place of one of the three questions
     var fc = null;
     if (fact && fact.t) {
-      fc = el('div', 'pk-fact', '<b>💡 Did you know?</b> ' + esc(fact.t) + (fact.q ? ' <button type="button">Tell me more&nbsp;→</button>' : ''));
+      fc = el('div', 'pk-fact', '<b>Did you know?</b>' + esc(fact.t) + (fact.q ? ' <button type="button">Tell me more&nbsp;→</button>' : ''));
       var fb = fc.querySelector('button'); if (fb) fb.addEventListener('click', function () { track('fact_more'); ask(fact.q); });
       track('fact_shown');
     }
