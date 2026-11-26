@@ -626,7 +626,7 @@ function openWords(){if(!words){words=document.createElement('div');words.classN
    '<h3 id="jpWordsT">Your first Japanese words <span lang="ja">🇯🇵</span></h3><p class="jp-words-sub">Tap 🔊 to hear each one. A smile and a small bow go a long way.</p><ul>'+
    WORDS.map(function(w,i){return '<li><i aria-hidden="true">'+w[0]+'</i><div><b>'+esc(w[3])+'<span lang="ja">'+esc(w[2])+'</span></b><small>'+esc(w[1])+'</small></div><button type="button" data-w="'+i+'" aria-label="Play: '+esc(w[1])+'">🔊</button></li>';}).join('')+
    '</ul><div class="jp-words-mail"><button type="button" class="jp-words-mbtn">📩 Email me these words</button></div>'+
-   '<a class="jp-words-more" href="/tokyo-pocket?src=hub_cat">📱 50+ more phrases, offline, in the free Tokyo Pocket Guide</a>'+
+   '<a class="jp-words-more" href="/tokyo-pocket?src=hub_cat">📱 80+ more phrases, offline, in the free Tokyo Pocket Guide</a>'+
    '<p class="jp-words-note">The voice is your phone’s or computer’s own.</p></div>';
   document.body.appendChild(words);
   words.addEventListener('click',function(e){if(e.target===words||e.target.closest('.jp-words-x')){closeWords();return;}
