@@ -235,8 +235,13 @@
 .jp-cat:hover .jp-cat-say,.jp-cat.on .jp-cat-say{opacity:1;transform:none}
 .jp-cat:hover .paw,.jp-cat.on .paw{animation-duration:.8s}
 @keyframes jpBeckon{0%,55%,100%{transform:rotate(0)}65%{transform:rotate(-16deg)}75%{transform:rotate(4deg)}85%{transform:rotate(-12deg)}}
-@media (prefers-reduced-motion:reduce){.jp-cat .paw{animation:none}}
-@media (max-width:600px){.jp-cat{right:6px;top:-62px;width:64px}.jp-ask{margin-top:4.6rem}}
+/* a small sound badge so phone users (no hover) know the cat can be tapped; gone once it has been */
+.jp-cat-tap{position:absolute;left:2px;bottom:16%;z-index:2;width:28px;height:28px;border-radius:50%;background:#E94560;color:#fff;font-size:.8rem;line-height:1;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 3px 8px rgba(233,69,96,.35);animation:jpTapPulse 2.2s ease-out infinite}
+.jp-cat.heard .jp-cat-tap{display:none}
+.jp-cat:focus-visible{outline:2px solid #00C9A7;outline-offset:4px;border-radius:12px}
+@keyframes jpTapPulse{0%{box-shadow:0 3px 8px rgba(233,69,96,.35),0 0 0 0 rgba(233,69,96,.45)}70%,100%{box-shadow:0 3px 8px rgba(233,69,96,.35),0 0 0 10px rgba(233,69,96,0)}}
+@media (prefers-reduced-motion:reduce){.jp-cat .paw,.jp-cat-tap{animation:none}}
+@media (max-width:600px){.jp-cat{right:6px;top:-62px;width:64px}.jp-cat-tap{width:22px;height:22px;font-size:.66rem;left:-4px}.jp-ask{margin-top:4.6rem}}
 .jp-hero .jp-ask{max-width:none;margin:6.4rem 0 0}
 .jp-cat{z-index:3}
 @media (max-width:600px){.jp-hero .jp-ask{margin-top:4.6rem}}
@@ -450,7 +455,7 @@ html,body{overflow-x:clip}
 <div class="jp-seasons" role="group" aria-label="See Mt Fuji in each season"><small>Fuji through the seasons</small><span class="jp-seasons-row"><button type="button" class="jp-s-prev" aria-label="Previous season">&#8249;</button><b class="jp-s-lbl" aria-live="polite"></b><button type="button" class="jp-s-next" aria-label="Next season">&#8250;</button></span></div></div></div>
 <!-- ask-japan-slot -->
 <section class="jp-ask" id="ask" aria-label="Ask Packy, your Japan travel buddy">
-<span class="jp-cat" id="jpCat"><span class="jp-cat-say" role="status"><span lang="ja">こんにちは!</span> Konnichiwa! 👋<small>🔊 Tap me to hear it</small></span><svg viewBox="40 20 140 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><ellipse cx="100" cy="168" rx="52" ry="12" fill="#F2D7DC"/><rect x="52" y="96" width="96" height="74" rx="40" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M60 64l-6-34 30 20M140 64l6-34-30 20" fill="#fff" stroke="#0f0f23" stroke-width="3" stroke-linejoin="round"/><path d="M58 32l18 14M142 32l-18 14" stroke="#F49AB0" stroke-width="6" stroke-linecap="round"/><ellipse cx="100" cy="78" rx="50" ry="40" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M70 76q8-8 16 0M114 76q8-8 16 0" fill="none" stroke="#0f0f23" stroke-width="4" stroke-linecap="round"/><path d="M94 90q6 5 12 0" fill="none" stroke="#0f0f23" stroke-width="3" stroke-linecap="round"/><circle cx="100" cy="87" r="3" fill="#E94560"/><path d="M62 86h-18M62 92h-16M138 86h18M138 92h16" stroke="#0f0f23" stroke-width="2"/><circle cx="124" cy="42" r="10" fill="#E94560"/><circle cx="76" cy="46" r="7" fill="#26335c"/><path d="M60 118c30 10 50 10 80 0" stroke="#E94560" stroke-width="9" fill="none"/><circle cx="100" cy="132" r="9" fill="#F5C542" stroke="#0f0f23" stroke-width="2"/><ellipse cx="100" cy="152" rx="30" ry="12" fill="#F5C542" stroke="#0f0f23" stroke-width="2"/><text x="100" y="157" font-size="12" text-anchor="middle" font-weight="800" fill="#0f0f23">千万両</text><g class="paw"><path d="M146 112q22-10 18-46" stroke="#0f0f23" stroke-width="3" fill="#fff"/><ellipse cx="162" cy="62" rx="15" ry="17" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M156 56v8M162 54v10M168 56v8" stroke="#F49AB0" stroke-width="2" stroke-linecap="round"/></g></svg></span>
+<span class="jp-cat" id="jpCat" role="button" tabindex="0" aria-label="Lucky cat: tap to hear Konnichiwa"><span class="jp-cat-tap" aria-hidden="true">🔊</span><span class="jp-cat-say" role="status"><span lang="ja">こんにちは!</span> Konnichiwa! 👋<small>🔊 Tap me to hear it</small></span><svg viewBox="40 20 140 165" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false"><ellipse cx="100" cy="168" rx="52" ry="12" fill="#F2D7DC"/><rect x="52" y="96" width="96" height="74" rx="40" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M60 64l-6-34 30 20M140 64l6-34-30 20" fill="#fff" stroke="#0f0f23" stroke-width="3" stroke-linejoin="round"/><path d="M58 32l18 14M142 32l-18 14" stroke="#F49AB0" stroke-width="6" stroke-linecap="round"/><ellipse cx="100" cy="78" rx="50" ry="40" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M70 76q8-8 16 0M114 76q8-8 16 0" fill="none" stroke="#0f0f23" stroke-width="4" stroke-linecap="round"/><path d="M94 90q6 5 12 0" fill="none" stroke="#0f0f23" stroke-width="3" stroke-linecap="round"/><circle cx="100" cy="87" r="3" fill="#E94560"/><path d="M62 86h-18M62 92h-16M138 86h18M138 92h16" stroke="#0f0f23" stroke-width="2"/><circle cx="124" cy="42" r="10" fill="#E94560"/><circle cx="76" cy="46" r="7" fill="#26335c"/><path d="M60 118c30 10 50 10 80 0" stroke="#E94560" stroke-width="9" fill="none"/><circle cx="100" cy="132" r="9" fill="#F5C542" stroke="#0f0f23" stroke-width="2"/><ellipse cx="100" cy="152" rx="30" ry="12" fill="#F5C542" stroke="#0f0f23" stroke-width="2"/><text x="100" y="157" font-size="12" text-anchor="middle" font-weight="800" fill="#0f0f23">千万両</text><g class="paw"><path d="M146 112q22-10 18-46" stroke="#0f0f23" stroke-width="3" fill="#fff"/><ellipse cx="162" cy="62" rx="15" ry="17" fill="#fff" stroke="#0f0f23" stroke-width="3"/><path d="M156 56v8M162 54v10M168 56v8" stroke="#F49AB0" stroke-width="2" stroke-linecap="round"/></g></svg></span>
 <div class="jp-ask-top"><span class="jp-ask-av" aria-hidden="true"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14 9c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke="#0f0f23" stroke-width="2.6" stroke-linecap="round"/><rect x="7" y="8" width="26" height="28" rx="9" fill="#00C9A7"/><rect x="11" y="24" width="18" height="9" rx="4" fill="#00A88C"/><circle cx="15.5" cy="17" r="3.2" fill="#fff"/><circle cx="24.5" cy="17" r="3.2" fill="#fff"/><circle cx="16.2" cy="17.6" r="1.6" fill="#0f0f23"/><circle cx="25.2" cy="17.6" r="1.6" fill="#0f0f23"/><path d="M17 21.4c1.7 1.5 4.3 1.5 6 0" fill="none" stroke="#0f0f23" stroke-width="1.6" stroke-linecap="round"/><circle cx="12.6" cy="21" r="1.4" fill="#E94560" opacity=".55"/><circle cx="27.4" cy="21" r="1.4" fill="#E94560" opacity=".55"/></svg></span><div><b>Ask Packy</b><span class="jp-ask-sub">your Japan travel buddy</span></div><span class="jp-ask-kick">Beta</span></div>
 <form class="jp-ask-form" id="askForm" autocomplete="off">
 <label for="askQ" class="jp-sr">Your question about travel in Japan</label>
@@ -554,8 +559,15 @@ function sayHello(){try{if(!('speechSynthesis' in window))return;var now=Date.no
   try{speechSynthesis.resume();}catch(e){}if(!jaVoice&&!enVoice)pickVoice();
   var vo=jaVoice||enVoice;catU=new SpeechSynthesisUtterance(jaVoice||!vo?'こんにちは！':'Kon-nichi-wa!');if(vo){catU.voice=vo;catU.lang=vo.lang;}else catU.lang='ja-JP';
   catU.rate=1.05;catU.pitch=1.8;catU.volume=1;catAt=now;speechSynthesis.speak(catU);track('cat_voice');}catch(e){}}
-if(cat){var ct;cat.addEventListener('click',function(){cat.classList.add('on');track('cat_hello');sayHello();clearTimeout(ct);ct=setTimeout(function(){cat.classList.remove('on');},2500);});
- cat.addEventListener('mouseenter',function(){track('cat_hello');});}
+if(cat){var ct;cat.addEventListener('click',function(){cat.classList.add('on','heard');track('cat_hello');sayHello();clearTimeout(ct);ct=setTimeout(function(){cat.classList.remove('on');},2500);});
+ cat.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();cat.click();}});
+ cat.addEventListener('mouseenter',function(){track('cat_hello');});
+ // phones have no hover: the first time the cat comes into view, its bubble ("Tap me to hear it") shows by itself for
+ // a few seconds, once per visit and without sound
+ var peeked=false;try{peeked=sessionStorage.getItem('jpCatPeek')==='1';}catch(e){}
+ if(!peeked&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;io.disconnect();
+   try{sessionStorage.setItem('jpCatPeek','1');}catch(e){}
+   setTimeout(function(){if(cat.classList.contains('on'))return;cat.classList.add('on');clearTimeout(ct);ct=setTimeout(function(){cat.classList.remove('on');},4000);},700);},{threshold:.8});io.observe(cat);}}
 // the compact welcome band: slides in under the menu once the hero's Ask box has scrolled away, and the page scrolls
 // underneath it (the full hero is taller than most screens, so it cannot stay at full size)
 var mini=document.getElementById('jpMini'),askBox=document.getElementById('ask');
@@ -662,5 +674,6 @@ document.getElementById('menuBtn').addEventListener('click', function() {
 })();
 </script>
 
+<script src="/packy.js?v=2a898ad9f9" data-country="japan" data-topic="japan" defer></script>
 </body>
 </html>
