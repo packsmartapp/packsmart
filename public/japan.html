@@ -279,14 +279,16 @@
 .jp-hero-top{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:1rem;align-items:stretch}
 .jp-scene{position:relative;min-height:280px;pointer-events:none}
 /* "Fuji through the seasons": a small switcher on the scene (starts on the current season) */
-.jp-seasons{position:absolute;left:50%;top:calc(100% + 6px);transform:translateX(-50%);pointer-events:auto;text-align:center;white-space:nowrap}
-.jp-seasons small{display:block;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#5a6378;margin-bottom:3px}
+.jp-seasons{position:absolute;left:50%;top:calc(100% + 10px);transform:translateX(-50%);pointer-events:auto;white-space:nowrap;display:flex;align-items:center;gap:12px}
+.jp-seasons small{display:block;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#5a6378;margin:0;text-align:right;line-height:1.35;white-space:normal;width:118px}
 .jp-seasons-row{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.92);border:1px solid #BFEDE3;border-radius:999px;padding:3px;box-shadow:0 6px 16px rgba(0,168,140,.12)}
 .jp-seasons button{width:30px;height:30px;border:0;border-radius:50%;background:#E6FAF5;color:#0a8f78;font-size:1.25rem;line-height:1;font-weight:800;cursor:pointer}
 .jp-seasons button:hover{background:#00C9A7;color:#fff}
 .jp-s-lbl{min-width:104px;font-size:.88rem;color:#0f0f23}.jp-s-lbl span{color:#E94560;margin-right:5px}
 .jp-scene .fuji,.jp-scene .ss{transition:opacity .35s}
 .jp-hero-top .jp-scene{margin-bottom:64px}
+@media (min-width:601px) and (max-width:900px){.jp-seasons{gap:8px}.jp-seasons small{width:92px}}
+.jp-hero-top .jp-scene{margin-bottom:56px}
 @media (max-width:600px){.jp-hero-top .jp-scene{margin-bottom:46px}.jp-seasons{top:calc(100% + 6px)}.jp-seasons small{display:none}}
 .jp-scene .fuji{position:absolute;inset:0;width:100%;height:100%;display:block;will-change:transform;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
 .jp-scene .cl{animation:jpDrift 26s ease-in-out infinite alternate}
