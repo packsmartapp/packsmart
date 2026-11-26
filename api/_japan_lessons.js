@@ -27,5 +27,29 @@ export const LESSONS = {
     ["Yukkuri onegai shimasu.", "ゆっくりお願いします。", "Slowly, please."],
     ["Mou ichido onegai shimasu.", "もう一度お願いします。", "Once more, please."],
     ["Kaite kudasai.", "書いてください。", "Please write it down."],
-    ["Chotto matte kudasai.", "ちょっと待ってください。", "One moment, please."]]}
+    ["Chotto matte kudasai.", "ちょっと待ってください。", "One moment, please."]]},
+  "5": {"title": "On the train", "phrases": [
+    ["Sumimasen, orimasu.", "すみません、降ります。", "Excuse me, I'm getting off."],
+    ["Kono seki, aite imasu ka?", "この席、空いていますか？", "Is this seat free?"],
+    ["Douzo.", "どうぞ。", "Please, go ahead. (Offering your seat.)"],
+    ["Tsugi no eki wa nan desu ka?", "次の駅は何ですか？", "What's the next station?"],
+    ["Doko de norikaemasu ka?", "どこで乗り換えますか？", "Where do I change trains?"]]},
+  "6": {"title": "Tickets and IC cards", "phrases": [
+    ["Kippu wa doko de kaemasu ka?", "切符はどこで買えますか？", "Where can I buy a ticket?"],
+    ["Chaaji shitai desu.", "チャージしたいです。", "I'd like to top up my card."],
+    ["Seisanki wa doko desu ka?", "精算機はどこですか？", "Where is the fare adjustment machine?"],
+    ["Kaado ga tsukaemasen.", "カードが使えません。", "My card isn't working."],
+    ["Kono basu wa eki ni ikimasu ka?", "このバスは駅に行きますか？", "Does this bus go to the station?"]]},
+  "7": {"title": "Small talk about the weather", "phrases": [
+    ["Ii tenki desu ne.", "いい天気ですね。", "Lovely weather, isn't it?"],
+    ["Kyou wa atsui desu ne.", "今日は暑いですね。", "Hot today, isn't it?"],
+    ["Samui desu ne.", "寒いですね。", "Cold, isn't it?"],
+    ["Ame ga furisou desu ne.", "雨が降りそうですね。", "Looks like rain."],
+    ["Kasa wa arimasu ka?", "傘はありますか？", "Do you sell umbrellas?"]]},
+  "8": {"title": "Asking for help", "phrases": [
+    ["Tasukete!", "助けて！", "Help!"],
+    ["Kouban wa doko desu ka?", "交番はどこですか？", "Where is the police box?"],
+    ["Saifu o nakushimashita.", "財布をなくしました。", "I lost my wallet."],
+    ["Byouin wa doko desu ka?", "病院はどこですか？", "Where is a hospital?"],
+    ["Kyuukyuusha o yonde kudasai.", "救急車を呼んでください。", "Please call an ambulance."]]}
 };

@@ -51,6 +51,11 @@ def footer_offer(kind, n):
         return box('<b>&#128506;&#65039; Want the whole trip laid out?</b><br>Plan My Trip builds a day-by-day plan for your dates and your group, with weather and a packing list. '
                    f'<a href="{SITE}/?dest=Japan&amp;src=gift{n}#plan" style="color:#0a8f78;font-weight:bold;">Build my Japan plan</a>', '#ffffff', 'border:1px solid #e3e8ec;')
 
+    if kind == 'insurance':
+        return box('<b>&#129658; Don&rsquo;t forget travel insurance</b><br>Japan&rsquo;s tourism body ends its guide for visitors who fall ill with: &ldquo;Don&rsquo;t forget to buy travel insurance!&rdquo; '
+                   '<a href="https://www.safetywing.com/nomad-insurance?referenceID=26492686&amp;utm_source=26492686&amp;utm_medium=Ambassador" rel="nofollow noopener sponsored" style="color:#0a8f78;font-weight:bold;">See SafetyWing travel medical insurance</a> '
+                   '<span style="color:#8a93a6;font-size:12px;">(partner link)</span>', '#ffffff', 'border:1px solid #e3e8ec;')
+
 def share(n):
     msg = 'Fuku the lucky cat teaches a few Japanese travel phrases by email. Handy for our trip: ' + SITE + '/japan?src=wa_gift#words'
     wa = 'https://wa.me/?text=' + urllib.parse.quote(msg)
@@ -95,7 +100,7 @@ def page(n, kicker, title, body, nxt, offer, preheader):
         f'<h1 style="margin:0 0 14px;font-size:24px;line-height:1.25;color:#0f0f23;{F}">{title}</h1>'
         + body +
         f'<p style="margin:18px 0 0;font-size:15px;color:#2b3242;{F}">Mata ne! (See you soon!)<br><b>Fuku</b> &#128049; <span style="color:#8a93a6;">with Packy</span></p>'
-        f'<p style="margin:14px 0 0;padding-top:12px;border-top:1px dashed #d9e2e8;font-size:14px;color:#5a6378;{F}"><b>Next time:</b> {nxt}</p>'
+        + (f'<p style="margin:14px 0 0;padding-top:12px;border-top:1px dashed #d9e2e8;font-size:14px;color:#5a6378;{F}"><b>Next time:</b> {nxt}</p>' if nxt else '')
         + btn + '</div>'
         + footer_offer(offer, n) + share(n) +
         f'<div style="font-size:12px;line-height:1.6;color:#8a93a6;padding:6px 4px 0;{F}">'
@@ -137,6 +142,60 @@ EM = [
    + p("<b>When Japanese comes at you fast:</b>", 'margin-bottom:6px;')
    + phrases(4),
   nxt="the quiet rules of riding a Japanese train.", offer='plan'),
+ dict(n=5, kicker="Fuku's lesson 5 &middot; on the train", title="The quiet rules of riding a Japanese train",
+  pre="Five small habits, and the one place you can take that call.",
+  body=p("Japanese trains are famously calm, and a few small habits keep them that way. Japan&rsquo;s tourism body and the rail companies ask riders to:")
+   + '<ol style="margin:0 0 14px 20px;padding:0;font-size:16px;line-height:1.6;color:#2b3242;' + F + '">'
+     '<li style="margin-bottom:6px;"><b>Put your phone on silent.</b> Phone calls are &ldquo;generally frowned upon&rdquo; on trains and buses.</li>'
+     '<li style="margin-bottom:6px;"><b>Line up to the side of the doors</b> and let people off before you get on.</li>'
+     '<li style="margin-bottom:6px;"><b>Leave priority seats</b> for older, pregnant or disabled passengers.</li>'
+     '<li style="margin-bottom:6px;"><b>Take your backpack off</b> on the Shinkansen, and don&rsquo;t leave suitcases by the doors.</li>'
+     '<li style="margin-bottom:6px;"><b>Save the snacks</b> for the Shinkansen: eating on local and subway trains is generally considered impolite.</li>'
+     + '</ol>'
+   + fact("On the Shinkansen it&rsquo;s okay to step into the corridor between cars to take a call. &#128222;")
+   + p("<b>Fuku&rsquo;s train phrases:</b>", 'margin-bottom:6px;')
+   + phrases(5),
+  nxt="your IC card does a lot more than open ticket gates.", offer='pocket'),
+ dict(n=6, kicker="Fuku's lesson 6 &middot; tickets and IC cards", title="Tap, top up, go: your IC card",
+  pre="The little card that saves you from ticket machines. Plus 5 phrases.",
+  body=p("Japan&rsquo;s rechargeable IC cards (Suica, PASMO, ICOCA and friends) are the easiest way to ride. Tap in at the gate, tap out at your destination, and the fare comes off the card.")
+   + '<ol style="margin:0 0 14px 20px;padding:0;font-size:16px;line-height:1.6;color:#2b3242;' + F + '">'
+     '<li style="margin-bottom:6px;"><b>Made for visitors:</b> Welcome Suica and TOURIST PASMO need no deposit. (Welcome Suica is sold in the Tokyo area and is valid for up to 28 days.)</li>'
+     '<li style="margin-bottom:6px;"><b>Top up at almost any station:</b> put the card into a ticket machine, choose an amount, add cash.</li>'
+     '<li style="margin-bottom:6px;"><b>Gate won&rsquo;t open?</b> The tap missed or the balance is low. Top up at a ticket machine or a fare adjustment machine.</li>'
+     '<li style="margin-bottom:6px;"><b>On buses</b> tap when you get on and again when you get off. Some areas and highway buses don&rsquo;t take IC cards, so look for the IC logo.</li>'
+     + '</ol>'
+   + fact("IC cards also pay at many vending machines, shops and station lockers. &#129683;")
+   + p("<b>Fuku&rsquo;s ticket phrases:</b>", 'margin-bottom:6px;')
+   + phrases(6),
+  nxt="what Japan&rsquo;s four seasons feel like, and what to pack for each.", offer='plan'),
+ dict(n=7, kicker="Fuku's lesson 7 &middot; the seasons", title="Japan&rsquo;s four seasons, and what to pack",
+  pre="From cherry blossoms to powder snow, in one email.",
+  body=p("Japan has four very different seasons. Japan&rsquo;s tourism body gives these averages for Tokyo:")
+   + '<ol style="margin:0 0 14px 20px;padding:0;font-size:16px;line-height:1.6;color:#2b3242;' + F + '">'
+     '<li style="margin-bottom:6px;"><b>Spring (March to May):</b> about 10&ndash;20&deg;C. Cherry blossoms, and Golden Week crowds at the end of April.</li>'
+     '<li style="margin-bottom:6px;"><b>Summer (June to August):</b> about 25&ndash;35&deg;C and humid. The rainy season begins in May to June, and August and September may bring typhoons.</li>'
+     '<li style="margin-bottom:6px;"><b>Autumn (September to November):</b> about 15&ndash;25&deg;C. The autumn leaves move south from Hokkaido between late September and early December.</li>'
+     '<li style="margin-bottom:6px;"><b>Winter (December to February):</b> about 0&ndash;10&deg;C. Snow is rare in Tokyo, but the north and the mountains get Japan&rsquo;s famous powder snow.</li>'
+     + '</ol>'
+   + fact("Over the New Year holidays most restaurants and attractions shut down, so plan your meals around them. &#127885;")
+   + p("<b>Weather makes perfect small talk:</b>", 'margin-bottom:6px;')
+   + phrases(7),
+  nxt="who to call if something goes wrong. (Good news: Japan makes it easy.)", offer='packing'),
+ dict(n=8, kicker="Fuku's lesson 8 &middot; help", title="Help is easy to find in Japan",
+  pre="Two numbers, one hotline and five phrases you hope you won&rsquo;t need.",
+  body=p("Japan&rsquo;s tourism body says Japan &ldquo;is considered one of the safest countries in the world,&rdquo; and the tap water is safe to drink. Still, it&rsquo;s good to know who to call:")
+   + '<ol style="margin:0 0 14px 20px;padding:0;font-size:16px;line-height:1.6;color:#2b3242;' + F + '">'
+     '<li style="margin-bottom:6px;"><b>110</b> for the police, <b>119</b> for fire or an ambulance.</li>'
+     '<li style="margin-bottom:6px;"><b>Japan Visitor Hotline: 050-3816-2787.</b> Open 24 hours, every day, in English, Chinese and Korean, for emergencies and everyday travel questions.</li>'
+     '<li style="margin-bottom:6px;"><b>Had something stolen?</b> Go to a <i>koban</i>, the small local police box. You&rsquo;ll need a police report for a new passport or an insurance claim.</li>'
+     '<li style="margin-bottom:6px;"><b>Carry your passport.</b> Japan asks visitors to keep it with them at all times.</li>'
+     + '</ol>'
+   + p("<b>Tip:</b> save the hotline number in your phone before you fly.")
+   + p("<b>Five phrases you hope you won&rsquo;t need:</b>", 'margin-bottom:6px;')
+   + phrases(8)
+   + p("That&rsquo;s the end of my first eight lessons. Keep them handy for your trip, and I&rsquo;ll be back when there&rsquo;s something worth knowing.", 'margin-top:16px;'),
+  nxt="", offer='insurance'),
 ]
 for m in EM:
     # escaped phrase text: undo double escaping of entities we wrote on purpose
@@ -156,11 +215,19 @@ T = {
      "", "when do the cherry blossoms bloom?"),
  4: ("Chasing the cherry blossoms", "They don't open all at once: starting in the south and moving north, they bloom between March and May depending on where you are.",
      "", "the quiet rules of riding a Japanese train."),
+ 5: ("The quiet rules of riding a Japanese train", "Japanese trains are calm. Put your phone on silent (calls are frowned upon), line up beside the doors and let people off first, leave priority seats free, and save snacks for the Shinkansen.",
+     "Did you know? On the Shinkansen it's okay to take a call in the corridor between cars.", "your IC card does more than open ticket gates."),
+ 6: ("Tap, top up, go: your IC card", "Tap in, tap out, and the fare comes off the card. Welcome Suica and TOURIST PASMO need no deposit. Top up at station ticket machines. Gate won't open? Top up at a fare adjustment machine.",
+     "", "Japan's four seasons, and what to pack."),
+ 7: ("Japan's four seasons, and what to pack", "Tokyo averages (JNTO): spring about 10-20C, summer 25-35C and humid, autumn 15-25C, winter 0-10C. Rainy season from May to June; typhoons possible in August and September.",
+     "Did you know? Over New Year most restaurants and attractions shut down.", "who to call if something goes wrong."),
+ 8: ("Help is easy to find in Japan", "Police 110. Fire or ambulance 119. Japan Visitor Hotline 050-3816-2787 (24 hours, English, Chinese, Korean). Something stolen? Go to a koban (police box). Carry your passport.",
+     "That's the end of my first eight lessons. Keep them handy for your trip!", ""),
 }
 for n, (title, intro, extra, nxt) in T.items():
     ph = "\n".join(f"- {r} = {m}" for r, ja, m in LES[str(n)]['phrases'])
     t = (f"{title}\n\n{intro}\n\n{ph}\nHear Fuku say them: {S}/japan?say={n}-1&src=gift{n}_say\n\n" + (extra + "\n\n" if extra else "") +
-         f"Next time: {nxt}\n\nAsk Packy about your trip: {S}/japan?src=gift{n}_ask#ask\n\nMata ne! Fuku\n\n"
+         (f"Next time: {nxt}\n\n" if nxt else "") + f"Ask Packy about your trip: {S}/japan?src=gift{n}_ask#ask\n\nMata ne! Fuku\n\n"
          + ", ".join(POSTAL) + "\nUnsubscribe: {$unsubscribe}")
     open(os.path.join(OUT, f'lesson{n}.txt'), 'w').write(t)
     print('lesson', n, 'plain text', len(t), 'characters' + ('  TOO LONG (max 1000)' if len(t) > 1000 else ''))
