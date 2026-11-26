@@ -50,6 +50,7 @@ Most Japan pages, the Pocket Guides and affiliate blocks are produced by scripts
 - Body copy carries no prices and no partner names (they go stale; the blocks carry them). Claim only what the provider itself states. **Exception, Packy (D57):** Packy may give an approximate price or range from `docs/research/*-sources.md` (official sources, with the checked date and an official link to the current price); its booking button is chosen by `api/ask.js` from `api/_offers.js` (`OFFERS`, also used for the same buttons in the emailed chat), labelled "partner link", never by the AI.
 - **Our own words never name a partner** (D47): headings, captions, buttons, aria-labels and body text say what it is ("airport transfer", "tours and tickets", "eSIM"), plus "(partner link)". Exceptions: SafetyWing (its box, card and text keep the name), the Affiliate Disclosure page, the eSIM comparison article, and names a traveller needs to find something (a pick-up counter). Code (click maps, comments) may name them.
 - Hedge visa and entry rules ("check current rules") and link the official page for fees.
+- **Packy changes:** after editing `api/ask.js` or any `docs/research/*-sources.md` (then `w74`), run `node tools/packy_eval.mjs`: every question must find its note in the top 5. When a reader's question gets a weak answer, add it to the check before fixing it.
 - Mobile first: check pages at 390px for overflow before calling a change done.
 
 ## Article template quick reference
