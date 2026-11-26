@@ -912,6 +912,23 @@ if "packy-email-words" not in pv and 'id="packy-email-privacy"' in pv:
     open(PRIV, "w", encoding="utf-8").write(pv)
     print("w73: privacy policy: the cat's words email")
 
+# ---- privacy policy: the trip-tips list is kept at MailerLite (marker: packy-email-mailerlite, 26 Nov)
+pv = open(PRIV, encoding="utf-8").read()
+if "packy-email-mailerlite" not in pv:
+    a = ('We send trip tips only if you said yes to them, and you can stop them at any time by replying "stop". '
+         'We do not sell or share your email address. If we move this list to an email service, it will be used for the same purpose only.')
+    b = ('<span id="packy-email-mailerlite"></span>We send trip tips only if you said yes to them. When you say yes, we add your email address, '
+         'your trip month (if you chose one), the destination, and a few topic tags based on what you asked Packy (for example "Shinkansen" or '
+         '"Narita"; never your questions themselves) to MailerLite, the email service that sends our trip tips. You can stop them at any time '
+         'with the unsubscribe link in every email, or by replying "stop". We do not sell your email address or share it with anyone else, and '
+         'MailerLite uses it only to send our emails.')
+    if pv.count(a) != 1:
+        die("privacy policy: trip tips sentence not found")
+    pv = pv.replace(a, b, 1)
+    pv = re.sub(r"<p>Last updated: [A-Za-z]+ \d+, 2026</p>", "<p>Last updated: November 26, 2026</p>", pv, count=1)
+    open(PRIV, "w", encoding="utf-8").write(pv)
+    print("w73: privacy policy: MailerLite")
+
 # ---- privacy policy: the remembered address and the "continue" link (marker: id="packy-email-remember", 25 Nov 2026)
 if 'id="packy-email-remember"' not in pv:
     a = 'it will be used for the same purpose only.</p>\n'

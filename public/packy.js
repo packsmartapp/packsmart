@@ -278,7 +278,7 @@
             [].forEach.call(c2.querySelectorAll('.pk-mo'), function (m) {
               m.addEventListener('click', function () {
                 var trip = m.getAttribute('data-m'); [].forEach.call(c2.querySelectorAll('.pk-mo'), function (z) { z.disabled = true; });
-                post({ update: true, email: em, tips: true, trip: trip, country: country }).then(function (x) {
+                post({ update: true, email: em, tips: true, trip: trip, country: country, qs: history.map(function (h) { return h.q; }).slice(-10) }).then(function (x) {
                   c2.innerHTML = x[0] && x[1].ok ? '<b>🎉 You’re on the list</b><p>We’ll send a few useful tips before your trip. Check your inbox for your chat now.</p>'
                     : '<b>Your chat is on its way</b><p>' + esc((x[1] && x[1].error) || 'We could not save the trip tips, sorry.') + '</p>';
                   track(x[0] && x[1].ok ? 'tips_yes' : 'tips_error');

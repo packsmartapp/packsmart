@@ -91,19 +91,26 @@ export default async function handler(req, res) {
     if (b.tips !== true) return res.status(400).json({ ok: false, error: 'Nothing to update.' });
     const ip2 = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
     if (limited(ip2)) return res.status(429).json({ ok: false, error: 'Too many requests for now. Please try again later.' });
-    if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) return res.status(500).json({ ok: false, error: 'Email is not set up yet.' });
-    try {
-      const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
-      await t.sendMail({ from: '"Packy signups" <hello@packsmartapp.com>', to: 'hello@packsmartapp.com',
-        subject: '[Packy signup] TRIP TIPS: YES | ' + COUNTRIES[country] + (trip2 ? ' | trip ' + trip2 : '') + (b.from === 'words' ? ' | from the cat\'s word card' : ''),
-        text: 'Email: ' + email + '\nTrip tips (marketing consent): YES (tapped "Yes please" after the ' + (b.from === 'words' ? 'cat\'s words were' : 'chat was') + ' emailed)\nTrip month: ' + (trip2 || 'not sure') +
-          '\nCountry: ' + COUNTRIES[country] + '\nTime (UTC): ' + new Date().toISOString() + '\n\nImport to the email marketing service later.' });
-      console.log(JSON.stringify({ ev: 'email_tips', country, trip: !!trip2, ok: true }));
-      return res.status(200).json({ ok: true });
-    } catch (e) {
-      console.log(JSON.stringify({ ev: 'email_tips', country, ok: false }));
-      return res.status(502).json({ ok: false, error: 'Sorry, that did not work. Please try again.' });
+    const door = b.from === 'words' ? 'fuku' : 'packy';
+    const topics = door === 'fuku' ? ['words'] : topicsOf(b.qs);
+    // the trip-tips list itself: MailerLite (26 Nov, D58). Only this explicit "Yes please" adds anyone to it.
+    const ml = await mlAdd({ email, country, door, trip: trip2, topics });
+    // the hello@ note stays as a backup while MailerLite is new
+    let noted = false;
+    if (process.env.EMAIL_USER && process.env.EMAIL_PASSWORD) {
+      try {
+        const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
+        await t.sendMail({ from: '"Packy signups" <hello@packsmartapp.com>', to: 'hello@packsmartapp.com',
+          subject: '[Packy signup] TRIP TIPS: YES | ' + COUNTRIES[country] + (trip2 ? ' | trip ' + trip2 : '') + (b.from === 'words' ? ' | from the cat\'s word card' : ''),
+          text: 'Email: ' + email + '\nTrip tips (marketing consent): YES (tapped "Yes please" after the ' + (b.from === 'words' ? 'cat\'s words were' : 'chat was') + ' emailed)\nTrip month: ' + (trip2 || 'not sure') +
+            '\nCountry: ' + COUNTRIES[country] + '\nTopics: ' + (topics.join(', ') || '-') + '\nMailerLite: ' + ml + '\nTime (UTC): ' + new Date().toISOString() +
+            (ml === 'added' ? '' : '\n\nNot in MailerLite yet: add this subscriber by hand or ask Claude to import it.') });
+        noted = true;
+      } catch (e) { /* logged below */ }
     }
+    console.log(JSON.stringify({ ev: 'email_tips', country, door, trip: !!trip2, topics: topics.length, ml, noted }));
+    if (ml === 'added' || noted) return res.status(200).json({ ok: true });
+    return res.status(502).json({ ok: false, error: 'Sorry, that did not work. Please try again.' });
   }
   if (b.kind === 'words') return sendWords(req, res, b, email, country, origin);
   const items = (Array.isArray(b.items) ? b.items : []).slice(-10)
@@ -256,4 +263,37 @@ function iconRow(title, list, SITE) {
       '<img src="' + SITE + '/images/' + g[2] + '" width="46" height="46" alt="' + esc(g[1]) + ' Pocket Guide" style="display:block;margin:0 auto;border-radius:12px;border:0;">' +
       '<span style="display:block;margin-top:5px;font-size:11px;font-weight:bold;color:#0f0f23;line-height:1.2;">' + esc(g[3]) + '</span></a></td>').join('') +
     (list.length < 6 ? '<td width="' + (100 - w * list.length) + '%">&nbsp;</td>' : '') + '</tr></table>';
+}
+
+// ---- MailerLite: the trip-tips list (26 Nov 2026). Group ids are not secret; the key is MAILERLITE_API_KEY (a Vercel Secret).
+const ML = 'https://connect.mailerlite.com/api';
+const ML_GROUPS = { japan: '205198435303818809' };   // "Japan · trip tips": joining it starts that country's sequence
+// Packy's questions become a few topic tags here; the questions themselves are never stored or sent anywhere.
+const TOPIC_TAGS = [
+  ['shinkansen', /shinkansen|bullet train|nozomi|hikari/i], ['rail_pass', /jr pass|rail pass|japan rail pass/i],
+  ['narita', /narita/i], ['haneda', /haneda/i], ['kansai', /kansai|\bkix\b/i], ['hokkaido', /new chitose|sapporo|hokkaido|niseko/i],
+  ['tokyo', /tokyo|shinjuku|ueno|shibuya/i], ['kyoto', /kyoto/i], ['osaka', /osaka|umeda|namba/i],
+  ['kids', /\bkids?\b|child|children|family|disney|stroller|baby/i], ['ic_card', /suica|pasmo|icoca|ic card/i],
+  ['luggage', /luggage|locker|baggage|suitcase/i], ['connectivity', /esim|\bsim\b|wi-?fi|data plan/i], ['money', /\batm\b|cash|yen|money|card payment/i]];
+function topicsOf(qs) {
+  const text = (Array.isArray(qs) ? qs : []).slice(-10).map(q => String(q || '').slice(0, 300)).join(' \n ');
+  return TOPIC_TAGS.filter(([, rx]) => rx.test(text)).map(([tag]) => tag);
+}
+async function mlAdd({ email, country, door, trip, topics }) {
+  const key = process.env.MAILERLITE_API_KEY, group = ML_GROUPS[country];
+  if (!key || !group) return 'off';
+  const H = { Authorization: 'Bearer ' + key, 'Content-Type': 'application/json', Accept: 'application/json' };
+  try {
+    // one person, one record: keep their first door, merge topic tags, keep a known trip month when they pick "Not sure"
+    let old = {};
+    const g = await fetch(ML + '/subscribers/' + encodeURIComponent(email), { headers: H });
+    if (g.ok) old = ((await g.json()).data || {}).fields || {};
+    const tags = [...new Set(String(old.topics || '').split(',').map(x => x.trim()).filter(Boolean).concat(topics))].join(',');
+    const fields = { destination: COUNTRIES[country], door: old.door || door, topics: tags || null };
+    if (trip) fields.trip_month = trip + '-01';
+    const r = await fetch(ML + '/subscribers', { method: 'POST', headers: H, body: JSON.stringify({ email, fields, groups: [group], resubscribe: true }) });
+    return r.ok ? 'added' : 'failed ' + r.status;
+  } catch (e) {
+    return 'failed';
+  }
 }
