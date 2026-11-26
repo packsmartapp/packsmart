@@ -15,6 +15,21 @@ Source: https://www.jnto.go.jp/emergency/eng/mi_guide.html ("How to use Medical 
   over-the-counter medicines. "Consult a pharmacist or a registered sales clerk, if necessary." "Some types of
   medicines cannot be purchased when the pharmacist is not there."
 
+## Finding an English-speaking doctor or hospital
+Source: https://www.jnto.go.jp/emergency/eng/mi_guide.html ("Search Medical institutions", checked 26 Nov 2026)
+- JNTO has a search for medical institutions on that page: "Select area, language, and medical department", or search
+  by keyword. It also offers a "list of medical institutions as a PDF" for each area.
+- Languages it can search include English, Chinese, Korean, Spanish, French, German, Hindi, Thai, Vietnamese and more
+  (about 30 language codes).
+- "Only basic information is provided here. Please check with each medical institution for details on medical
+  treatment such as business hours and what language each facility can accommodate." "When possible, please contact
+  each medical institution before visiting." "There may be cases where treatment cannot be provided."
+- "Some medical institutions may not be able to support certain languages, depending on the circumstances."
+  "Patients may be referred to another medical institution, depending on the extent of the illness or injury."
+- "Travel insurance does not cover perinatal medical care, which could make it expensive."
+- For help finding one by phone: the Japan Visitor Hotline (below) gives "introductions to medical institutions where
+  consultations can be done in foreign languages".
+
 ## Ambulance and emergency hospitals
 Source: https://www.jnto.go.jp/emergency/eng/mi_guide.html ("How to use an emergency care hospital", checked 26 Nov 2026)
 - "Ambulance: Call 119." "If you need an ambulance, show the sentence below to a nearby Japanese person so they will call
