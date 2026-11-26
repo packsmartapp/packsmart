@@ -80,11 +80,11 @@
     '.pk-quick button,.pk-yes{flex:none;font:inherit;font-weight:800;font-size:14.5px;border:0;border-radius:999px;padding:9px 16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;cursor:pointer}.pk-quick button[disabled]{opacity:.6}' +
     '.pk-row2{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.pk-no,.pk-mo{font:inherit;font-size:13.5px;font-weight:700;border:1.5px solid #E3E8EC;background:#fff;color:#3f4a5c;border-radius:999px;padding:7px 12px;cursor:pointer}.pk-mo:hover,.pk-no:hover{border-color:#E94560}' +
     '.pk-fine{display:block;font-size:11px;color:#8a93a6;margin-top:6px}.pk-fine a{color:#8a93a6}' +
-    '.pk-offer{display:grid;grid-template-columns:34px minmax(0,1fr) auto;align-items:center;column-gap:10px;margin:10px 0 2px;padding:9px 12px 9px 9px;border-radius:14px;background:#fff;border:1.5px solid #F7B9C6;color:#0f0f23!important;text-decoration:none!important;transition:transform .15s,border-color .15s}' +
-    '.pk-offer:hover{transform:translateY(-1px);border-color:#E94560}' +
-    '.pk-offer i{grid-row:1/span 2;width:34px;height:34px;border-radius:10px;background:#FFF1F4;display:flex;align-items:center;justify-content:center;font-style:normal;font-size:17px}' +
-    '.pk-offer b{grid-column:2;font-size:13.5px;font-weight:700;line-height:1.3}.pk-offer small{grid-column:2;font-size:11px;font-weight:600;color:#8a5563;margin-top:1px}' +
-    '.pk-offer em{grid-column:3;grid-row:1/span 2;font-style:normal;font-weight:800;color:#E94560;font-size:15px}' +
+    '.pk-offer{display:flex;align-items:center;gap:7px;margin:10px 0 0;padding:7px 10px;border-radius:10px;background:#FFFAFB;border:1px solid #F3D3DB;color:#3f4a5c!important;text-decoration:none!important;font-size:12.5px;line-height:1.35;transition:border-color .15s}' +
+    '.pk-offer:hover{border-color:#E94560}.pk-offer i{font-style:normal;font-size:14px;flex:none}' +
+    '.pk-offer b{flex:1;font-weight:600;color:#0f0f23}.pk-offer small{font-size:10.5px;color:#8a93a6;white-space:nowrap}.pk-offer em{font-style:normal;color:#E94560;font-weight:700}' +
+    '.pk-pocket{margin:8px 0 0;padding-top:7px;border-top:1px dashed #D5DCE0}' +
+    '.pk-soft{display:inline;margin:0;font-size:12.5px;font-weight:600;color:#0a8f78!important;text-decoration:none!important}.pk-soft:hover{text-decoration:underline!important}' +
     '.pk-more{font-size:14px;border-top:1px dashed #D5DCE0;margin-top:10px!important;padding-top:8px}' +
     '.pk-src{font-size:11.5px;color:#8a93a6;margin-top:8px!important;line-height:1.4}.pk-msg .pk-src a{color:#6b7a8f;font-weight:500}' +
     '.pk-err{background:#FFF1F4}' +
@@ -248,9 +248,11 @@
     var slug = guide && guide.url ? guide.url.split('/').pop().split('#')[0] : '';
     var p = POCKET[slug] || POCKET[TOPIC_POCKET[topic]];
     var html = p
-      ? '<div class="pk-card"><b>📱 Save the free ' + esc(p[1]) + ' Pocket Guide</b><p>Exits, platforms, lockers and ATMs a tap away, and it works offline at the station.</p><a class="pk-go" href="/' + p[0] + '-pocket?src=packy">Open the Pocket Guide</a></div>'
-      : '<div class="pk-card"><b>📱 Free Pocket Guides for ' + esc(C.name) + '</b><p>Airports and stations on your phone, working offline.</p><a class="pk-go" href="/japan?src=packy#pocket-hub">See the Pocket Guides</a></div>';
-    botRow(html).querySelector('.pk-msg').style.background = 'transparent';
+      ? '<a class="pk-soft" href="/' + p[0] + '-pocket?src=packy">📱 Free offline Pocket Guide for ' + esc(p[1]) + '&nbsp;→</a></div>'
+      : '<a class="pk-soft" href="/japan?src=packy#pocket-hub">📱 Free offline Pocket Guides for ' + esc(C.name) + '\'s airports and stations&nbsp;→</a>';
+    // a quiet footnote at the end of Packy's last answer, not a card of its own (owner, 26 Nov)
+    var bots = body.querySelectorAll('.pk-msg.pk-bot'), last = bots[bots.length - 1];
+    if (last) { var d = el('div', 'pk-pocket', html); last.appendChild(d); } else botRow(html);
     track('pocket_card');
   }
   function emailCard(force) {
