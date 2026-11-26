@@ -1,7 +1,11 @@
 // Packy's booking buttons (D57), shared by /api/ask (which picks one per answer, in offerFor) and /api/email-chat
 // (which puts the same buttons in the emailed chat). The AI never picks or writes these; only this list does.
 // The leading underscore keeps this file from becoming an API route.
+// Itinerary and "plan my trip" questions (owner, 26 Nov): Packy gives a starting route, then this button opens the
+// trip planner on the home page with Japan filled in (it builds the day-by-day plan for the reader's dates and group).
+export const ITINQ = /itin[ea]r|iten[ae]r|itenar|plan (?:my|our|a|the) (?:\w+ )?(?:trip|holiday|vacation|route|visit)|\b\d{1,2}[ -]?(?:days?|nights?|weeks?)\b|where (?:should|to|can) (?:i|we) go|what (?:should|to) (?:i|we) (?:see|visit)|things to do in japan|first (?:trip|time|visit) (?:to|in) japan/;
 export const OFFERS = [
+  { id: 'plan', rx: ITINQ, not: /\bpass\b|ticket|valid|visa|stay (?:up to|for)|lockers?|bus\b/, label: 'Build a day-by-day Japan plan', url: '/?dest=Japan&src=packy#plan', partner: false },
   { id: 'skyliner', rx: /skyliner|keisei|ueno.{0,40}narita|narita.{0,40}ueno|nippori/, regions: ['tokyo', ''], label: 'Book Skyliner tickets online', url: 'https://klook.tpx.li/gIYih1CY', partner: true },
   { id: 'nex', rx: /narita express|\bn'?ex\b/, regions: ['tokyo', ''], label: 'Book Narita Express tickets online', url: 'https://klook.tpx.li/tX4jclRv', partner: true },
   { id: 'limousine', rx: /limousine/, regions: ['tokyo', ''], label: 'Book an airport limousine bus online', url: 'https://klook.tpx.li/SISnlOYP', partner: true },

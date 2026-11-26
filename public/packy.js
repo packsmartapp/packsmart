@@ -160,7 +160,7 @@
   function botRow(html, cls) { var r = el('div', 'pk-row'); r.innerHTML = '<span class="pk-face">' + FACE + '</span>'; var m = el('div', 'pk-msg pk-bot' + (cls ? ' ' + cls : ''), html); r.appendChild(m); body.appendChild(r); return r; }
   function meRow(q) { var m = el('div', 'pk-msg pk-me', esc(q)); body.appendChild(m); return m; }
   // one icon per kind of offer (the ticket only for tours and tickets)
-  var OFFER_ICON = { insurance: '🩺', esim: '📶', bags: '🧳', transfer: '🚐', limousine: '🚌', car: '🚗', hotel: '🏨', tour: '🎟️', jrpass: '🚄', shinkansen: '🚄', nex: '🚆', skyliner: '🚆' };
+  var OFFER_ICON = { insurance: '🩺', esim: '📶', bags: '🧳', transfer: '🚐', limousine: '🚌', car: '🚗', hotel: '🏨', tour: '🎟️', plan: '🗺️', jrpass: '🚄', shinkansen: '🚄', nex: '🚆', skyliner: '🚆' };
   function offerHtml(o) {
     if (!o || !o.url || !/^(https:\/\/|\/)/.test(o.url)) return '';
     var ext = /^https:/.test(o.url);
