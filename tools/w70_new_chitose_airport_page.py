@@ -643,8 +643,8 @@ CARD = """<div class="ps-card" id="one-page">
 <li><strong>Snow or a cancelled flight?</strong> Contact your airline, and check Hokkaido travel safety information.</li>
 <li><strong>Help:</strong> information centers in both terminals. Airport line 0123-23-0111 (7:00 to 23:00). Emergency: 119.</li>
 </ul>
-<div class="ps-qr ps-qr-screen">__QR_SCREEN__<p><strong>Want it on your phone?</strong> Point your phone camera at this code. It opens the free New Chitose Airport Pocket Guide, which works without internet once opened.<span class="u">packsmartapp.com/new-chitose-pocket</span></p></div>
-<div class="ps-qr ps-qr-print">__QR_PRINT__<p><strong>Free New Chitose Airport Pocket Guide.</strong> Point your phone camera at this code. Open it once with signal and it works without internet.<span class="u">packsmartapp.com/new-chitose-pocket</span></p></div>
+<div class="ps-qr ps-qr-screen">__QR_SCREEN__<p><strong>Want it on your phone?</strong> Point your phone camera at this code. It opens the New Chitose Airport Pocket Guide: no app to install, and it works without internet once opened.<span class="u">packsmartapp.com/new-chitose-pocket</span></p></div>
+<div class="ps-qr ps-qr-print">__QR_PRINT__<p><strong>New Chitose Airport Pocket Guide. No app needed.</strong> Point your phone camera at this code. Open it once with signal and it works without internet.<span class="u">packsmartapp.com/new-chitose-pocket</span></p></div>
 <button type="button" class="ps-print-btn" onclick="window.print()">Print this card</button>
 </div>"""
 
@@ -838,7 +838,7 @@ html.ps-pb body{padding-bottom:84px}
 @media print{#psPocketBar{display:none!important}}
 </style>
 <div id="psPocketBar" role="region" aria-label="New Chitose Airport Pocket Guide">
-<div class="t"><b>Get the New Chitose Airport Pocket Guide</b><span>Free. Works offline at the airport.</span></div>
+<div class="t"><b>Get the New Chitose Airport Pocket Guide</b><span>No app, no sign-up. Works offline at the airport.</span></div>
 <a class="go" href="/new-chitose-pocket?src=bar">Get it</a>
 <button type="button" class="x" aria-label="Hide this message">&times;</button>
 </div>

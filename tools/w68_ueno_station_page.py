@@ -657,8 +657,8 @@ CARD = """<div class="ps-card" id="one-page">
 <li><strong>Lockers:</strong> on 1F, 2F and 3F (JR East map). Lost &amp; Found: 2F, by the Panda Bridge Exit stairs.</li>
 <li><strong>Need help?</strong> Question &amp; Answer counter beside the Central Gate (1F). In an emergency, call 119.</li>
 </ul>
-<div class="ps-qr ps-qr-screen">__QR_SCREEN__<p><strong>Want it on your phone?</strong> Point your phone camera at this code. It opens the free Ueno Station Pocket Guide, which works without internet once opened.<span class="u">packsmartapp.com/ueno-pocket</span></p></div>
-<div class="ps-qr ps-qr-print">__QR_PRINT__<p><strong>Free Ueno Station Pocket Guide.</strong> Point your phone camera at this code. Open it once with signal and it works without internet.<span class="u">packsmartapp.com/ueno-pocket</span></p></div>
+<div class="ps-qr ps-qr-screen">__QR_SCREEN__<p><strong>Want it on your phone?</strong> Point your phone camera at this code. It opens the Ueno Station Pocket Guide: no app to install, and it works without internet once opened.<span class="u">packsmartapp.com/ueno-pocket</span></p></div>
+<div class="ps-qr ps-qr-print">__QR_PRINT__<p><strong>Ueno Station Pocket Guide. No app needed.</strong> Point your phone camera at this code. Open it once with signal and it works without internet.<span class="u">packsmartapp.com/ueno-pocket</span></p></div>
 <button type="button" class="ps-print-btn" onclick="window.print()">Print this card</button>
 </div>"""
 # QR codes are made once for each guide address (?src=qr on screen, ?src=card on paper), with segno (error="m"), as in w42.
@@ -822,7 +822,7 @@ html.ps-pb body{padding-bottom:84px}
 @media print{#psPocketBar{display:none!important}}
 </style>
 <div id="psPocketBar" role="region" aria-label="Ueno Station Pocket Guide">
-<div class="t"><b>Get the Ueno Station Pocket Guide</b><span>Free. Works offline at the station.</span></div>
+<div class="t"><b>Get the Ueno Station Pocket Guide</b><span>No app, no sign-up. Works offline at the station.</span></div>
 <a class="go" href="/ueno-pocket?src=bar">Get it</a>
 <button type="button" class="x" aria-label="Hide this message">&times;</button>
 </div>

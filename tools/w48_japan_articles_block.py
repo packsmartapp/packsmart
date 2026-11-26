@@ -46,7 +46,7 @@ KICK = "background:rgba(255,255,255,.22);border:1px solid rgba(255,255,255,.35);
 TITLE = "Landing in Japan? Get the airport and station guides on your phone."
 LIST = ("Find the ATMs, trains, buses, toilets, lockers, exits, emergency phone numbers, and easy Japanese words "
         "to talk or show to staff, all in one place. ")
-SUB = LIST + "Install and it works even offline."
+SUB = LIST + "Add it to your Home Screen and it works even offline."
 SUB_TRIP = LIST + "Install the guides for your airport and the stations on your route, and they work even offline."
 SUB_NEXT = LIST + "Install the guides for your next stops, and they work even offline."
 TICKS = ["<b>Arrival and leaving steps.</b> What to do after landing, and how to get on trains and buses.",
@@ -195,7 +195,7 @@ def block(slug, tag, lead, title, sub, exclude=()):
                         "".join(tile(g, tag, g["key"] in lead) for g in mine)))
     ticks = "".join('<div class="pga-tick"><span>%s</span></div>' % t for t in TICKS)
     return ('<aside class="pga" id="pocket-guides-japan" %s data-pga-article="%s" role="complementary" aria-label="Offline pocket guides for Japan">'
-            '<div class="pga-top"><span class="pga-kick">Free offline pocket guides</span>'
+            '<div class="pga-top"><span class="pga-kick">Pocket guides that work offline</span>'
             '<p class="pga-title">%s</p><p class="pga-sub">%s</p><div class="pga-route">%s</div></div>'
             '<div class="pga-ticks">%s</div><p class="pga-foot">%s</p></aside>\n' % (MARK, tag, title, sub, "".join(stops), ticks, FOOT))
 
@@ -212,7 +212,12 @@ for slug, spec in ARTICLES.items():
         die("missing article " + os.path.relpath(path, ROOT))
     s = open(path, encoding="utf-8").read()
     if MARK in s or 'data-pga="japan-v3"' in s or 'data-pga="japan-v4"' in s:
-        plans.append((path, None, slug))
+        # wording kept in step on blocks built earlier (26 Nov): no "free", and no "install" next to "no app"
+        fixed = s
+        for a_, b_ in (('<span class="pga-kick">Free offline pocket guides</span>', '<span class="pga-kick">Pocket guides that work offline</span>'),
+                       ('Install and it works even offline.', 'Add it to your Home Screen and it works even offline.')):
+            fixed = fixed.replace(a_, b_)
+        plans.append((path, fixed if fixed != s else None, slug))
         continue
     if s.count(anchor) != 1:
         die("%s: insertion point %r found %d times (need exactly 1)" % (slug, anchor, s.count(anchor)))
