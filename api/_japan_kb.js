@@ -771,7 +771,7 @@ export default [
 },
 {
 "t": "japan daily life > Japan daily life and local laws: official sources (for Packy)",
-"x": "Read 26 Nov 2026 from Japan's official tourism site (JNTO, https://www.japan.travel/en/), which the cloud session can\nreach. Quotes are exact. Gap: the legal drinking age is not stated on these pages; Packy does not give one until an\nofficial page is added here.",
+"x": "Read 26 Nov 2026 from Japan's official tourism site (JNTO, https://www.japan.travel/en/), which the cloud session can",
 "u": [
 "https://www.japan.travel/en/"
 ]
@@ -783,6 +783,11 @@ export default [
 "https://www.japan.travel/en/gastronomy/sake/",
 "https://www.japan.travel/en/japan-magazine/2002_konbini/"
 ]
+},
+{
+"t": "japan daily life > Japan daily life and local laws: official sources (for Packy) > Legal drinking age: 20",
+"x": "- \"Drinking alcohol is prohibited by law for persons under the age of 20\" (the Act on the Prevention of Drinking by\n  Persons Under 20 Years of Age).\n- \"While the age of majority under civil law will be lowered to 18 from April 2022, the age limit for alcohol will\n  remain at 20.\"\n- The law also says parents or guardians must stop those under 20 from drinking, and businesses must not sell or serve\n  alcohol to anyone they know is under 20.",
+"u": []
 },
 {
 "t": "japan daily life > Japan daily life and local laws: official sources (for Packy) > Drinking in public",
