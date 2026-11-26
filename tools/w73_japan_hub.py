@@ -276,7 +276,7 @@ HERO_CSS = """
 .jp-s-lbl{min-width:104px;font-size:.88rem;color:#0f0f23}.jp-s-lbl span{color:#E94560;margin-right:5px}
 .jp-scene .fuji,.jp-scene .ss{transition:opacity .35s}
 .jp-hero-top .jp-scene{margin-bottom:64px}
-@media (max-width:600px){.jp-hero-top .jp-scene{margin-bottom:0}.jp-seasons{top:auto;bottom:4px}.jp-seasons small{display:none}}
+@media (max-width:600px){.jp-hero-top .jp-scene{margin-bottom:52px}.jp-seasons{top:calc(100% + 6px);display:flex;align-items:center;gap:10px;white-space:normal}.jp-seasons small{width:92px;margin:0;text-align:right;line-height:1.35;font-size:.62rem}.jp-seasons-row{flex:none;white-space:nowrap}}
 .jp-scene .fuji{position:absolute;inset:0;width:100%;height:100%;display:block;will-change:transform;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
 .jp-scene .cl{animation:jpDrift 26s ease-in-out infinite alternate}
 .jp-scene .ss{display:none}
@@ -342,7 +342,7 @@ body[data-season=winter] .jp-petal svg{transform:scale(.7)}
 .jp-stamp{position:absolute;right:130px;top:12px;transform:rotate(-12deg);border:2px solid #E94560;color:#E94560;border-radius:8px;padding:2px 6px;font-size:.62rem;font-weight:800;letter-spacing:.08em;opacity:.85;text-align:center;line-height:1.15}
 @media (max-width:760px){.jp-passes{grid-template-columns:1fr}}
 @media (max-width:600px){
- .jp-hero-top{grid-template-columns:1fr}.jp-scene{order:-1;min-height:0;height:170px;margin:0 -4px;overflow:hidden}
+ .jp-hero-top{grid-template-columns:1fr}.jp-scene{order:-1;min-height:0;height:170px;margin:0 -4px;overflow:visible}
  .jp-scene .sk{width:86px!important;left:-18px!important;top:-26px!important}
  .jp-scene .sk{display:block}.jp-hero h1{font-size:2.6rem}.jp-hero-lead{font-size:.98rem}
  .jp-board a{grid-template-columns:1fr auto;grid-template-areas:"r t" "b t";row-gap:2px}
