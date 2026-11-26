@@ -1,4 +1,6 @@
-// Packy: "Email me this chat" (24 Nov 2026, D58).
+// Packy: "Email me this chat" (24 Nov 2026, D58), and "Email me these words" from the lucky cat's word card on the Japan
+// hub (kind: 'words', 26 Nov 2026): the same form, consent and guards; the words come from api/_japan_words.js, never
+// from the request.
 // Sends the traveller their Packy conversation from hello@packsmartapp.com (the site's Hostinger mailbox, already used by
 // subscribe.js; EMAIL_USER / EMAIL_PASSWORD in Vercel), and sends hello@packsmartapp.com a copy of the signup: the email,
 // whether they ticked "trip tips" (marketing consent), their trip month and the page. That mailbox is the list until an
@@ -10,6 +12,7 @@ import nodemailer from 'nodemailer';
 import { deflateRawSync } from 'zlib';
 import { knownOffer } from './_offers.js';
 import PACKY_PNG from './_packy_png.js';
+import { WORDS } from './_japan_words.js';
 
 const ORIGIN_OK = /^https:\/\/(www\.)?packsmartapp\.com$|^https:\/\/packsmart-[a-z0-9-]+-packsmartapps-projects\.vercel\.app$|^http:\/\/(localhost|127\.0\.0\.1)(:\d+)?$/;
 const PER_IP = 5, WINDOW_MS = 60 * 60 * 1000, DAILY_CAP = 100;
@@ -92,8 +95,8 @@ export default async function handler(req, res) {
     try {
       const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
       await t.sendMail({ from: '"Packy signups" <hello@packsmartapp.com>', to: 'hello@packsmartapp.com',
-        subject: '[Packy signup] TRIP TIPS: YES | ' + COUNTRIES[country] + (trip2 ? ' | trip ' + trip2 : ''),
-        text: 'Email: ' + email + '\nTrip tips (marketing consent): YES (tapped "Yes please" after the chat was emailed)\nTrip month: ' + (trip2 || 'not sure') +
+        subject: '[Packy signup] TRIP TIPS: YES | ' + COUNTRIES[country] + (trip2 ? ' | trip ' + trip2 : '') + (b.from === 'words' ? ' | from the cat\'s word card' : ''),
+        text: 'Email: ' + email + '\nTrip tips (marketing consent): YES (tapped "Yes please" after the ' + (b.from === 'words' ? 'cat\'s words were' : 'chat was') + ' emailed)\nTrip month: ' + (trip2 || 'not sure') +
           '\nCountry: ' + COUNTRIES[country] + '\nTime (UTC): ' + new Date().toISOString() + '\n\nImport to the email marketing service later.' });
       console.log(JSON.stringify({ ev: 'email_tips', country, trip: !!trip2, ok: true }));
       return res.status(200).json({ ok: true });
@@ -102,6 +105,7 @@ export default async function handler(req, res) {
       return res.status(502).json({ ok: false, error: 'Sorry, that did not work. Please try again.' });
     }
   }
+  if (b.kind === 'words') return sendWords(req, res, b, email, country, origin);
   const items = (Array.isArray(b.items) ? b.items : []).slice(-10)
     .map(x => ({ q: String((x && x.q) || '').slice(0, 300), a: String((x && x.a) || '').slice(0, 4000), o: knownOffer(x && x.offer), g: guideOk(x && x.guide) }))
     .filter(x => x.q && x.a);
@@ -173,6 +177,62 @@ export default async function handler(req, res) {
     // the mail server's reason, without any email address, so a failed send can be fixed
     const why = String((e && (e.response || e.message)) || '').replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email]').slice(0, 200);
     console.log(JSON.stringify({ ev: 'email_chat', country, ok: false, step, code: e && e.code, smtp: e && e.responseCode, why }));
+    return res.status(502).json({ ok: false, error: 'Sorry, the email could not be sent. Please try again later.' });
+  }
+}
+
+// "Email me these words": the cat's 8 starter phrases, a link back to hear them, the Tokyo Pocket Guide for more, and Packy.
+async function sendWords(req, res, b, email, country, origin) {
+  const tips = b.tips === true;
+  const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
+  if (limited(ip)) return res.status(429).json({ ok: false, error: 'Too many emails for now. Please try again later.' });
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) return res.status(500).json({ ok: false, error: 'Email is not set up yet.' });
+  const name = COUNTRIES[country];
+  const SITE = PREVIEW.test(origin) ? origin : LIVE;
+  const hear = SITE + '/japan?src=packy_email#words', pocket = SITE + '/tokyo-pocket?src=packy_email', ask = SITE + '/japan?src=packy_email#ask';
+  const rows = WORDS.map(w =>
+    '<tr><td width="40" valign="top" style="padding:10px 0 10px 12px;font-size:22px;">' + w[0] + '</td>' +
+    '<td style="padding:10px 12px 10px 6px;"><div style="font-weight:bold;font-size:16px;color:#0f0f23;">' + esc(w[3]) + '</div>' +
+    '<div lang="ja" style="font-size:15px;color:#0a8f78;font-weight:bold;margin-top:2px;">' + esc(w[2]) + '</div>' +
+    '<div style="font-size:13px;color:#5a6378;margin-top:2px;">' + esc(w[1]) + '</div></td></tr>').join(
+    '<tr><td colspan="2" style="border-top:1px solid #d9f0ea;font-size:0;line-height:0;">&nbsp;</td></tr>');
+  const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>' +
+    '<body style="margin:0;padding:0;background:#f4faf8;font-family:Arial,Helvetica,sans-serif;"><div style="max-width:600px;margin:0 auto;padding:28px 16px;">' +
+    '<p style="font-size:22px;font-weight:800;color:#0f0f23;margin:0 0 4px;">Pack<span style="color:#00C9A7;">Smart</span></p>' +
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0" style="margin:14px 0 6px;"><tr><td valign="middle" style="padding-right:12px;"><img src="cid:packy" width="56" height="56" alt="Packy" style="display:block;border-radius:16px;"></td>' +
+    '<td valign="middle"><h1 style="font-size:20px;color:#0f0f23;margin:0;">Your first Japanese words &#127471;&#127477;</h1><p style="margin:2px 0 0;color:#5a6378;font-size:13px;">From Packy, your ' + name + ' travel buddy</p></td></tr></table>' +
+    '<p style="color:#5a6378;font-size:14px;margin:0 0 14px;">Eight words that go a long way. A smile and a small bow help too.</p>' +
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#ffffff;border:1px solid #d9f0ea;border-radius:14px;">' + rows + '</table>' +
+    '<p style="text-align:center;margin:22px 0 10px;"><a href="' + esc(hear) + '" style="display:inline-block;background:#E94560;color:#ffffff;text-decoration:none;font-weight:bold;font-size:16px;padding:13px 22px;border-radius:24px;">&#128266; Hear them again</a></p>' +
+    '<div style="background:#e6faf5;border-radius:12px;padding:14px 16px;margin:20px 0;font-size:14px;color:#0f0f23;">' +
+    '<b>&#128241; 50+ more phrases, offline</b><br>The free Tokyo Pocket Guide has phrases for trains, shops, food and help, and it works without a signal.<br>' +
+    '<a href="' + esc(pocket) + '" style="display:inline-block;margin-top:10px;background:#0f0f23;color:#ffffff;text-decoration:none;font-weight:bold;border-radius:20px;padding:9px 16px;">Open the Pocket Guide</a></div>' +
+    '<div style="background:#ffffff;border:1px solid #e3e8ec;border-radius:12px;padding:14px 16px;margin:0 0 20px;font-size:14px;color:#0f0f23;">' +
+    '<b>&#128172; Got a question about your trip?</b><br>Ask Packy about trains, airports, money and luggage in ' + name + '. Answers come from official sources.<br>' +
+    '<a href="' + esc(ask) + '" style="display:inline-block;margin-top:8px;color:#0a8f78;font-weight:bold;">Ask Packy</a></div>' +
+    '<p style="font-size:12px;color:#8a93a6;line-height:1.5;">You received this because you asked for these words on packsmartapp.com.' +
+    (tips ? ' You also asked for trip tips for ' + name + '; reply "stop" at any time and we will not email you again.' : ' We will not email you again unless you ask.') +
+    ' <a href="' + SITE + '/privacy-policy" style="color:#8a93a6;">Privacy</a></p></div></body></html>';
+  const text = 'Your first Japanese words, from Packy\n\n' + WORDS.map(w => w[3] + '  ' + w[2] + '  (' + w[1] + ')').join('\n') +
+    '\n\nHear them again: ' + hear + '\n50+ more phrases, offline, in the free Tokyo Pocket Guide: ' + pocket + '\nAsk Packy about your trip: ' + ask;
+  let step = 'connect';
+  try {
+    const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
+    step = 'traveller';
+    await t.sendMail({ from: '"Packy from PackSmart" <hello@packsmartapp.com>', replyTo: 'hello@packsmartapp.com', to: email, subject: 'Your first Japanese words, from Packy', html, text,
+      attachments: [{ filename: 'packy.png', content: Buffer.from(PACKY_PNG, 'base64'), contentType: 'image/png', cid: 'packy', contentDisposition: 'inline' }] });
+    step = 'copy';
+    await t.sendMail({
+      from: '"Packy signups" <hello@packsmartapp.com>', to: 'hello@packsmartapp.com',
+      subject: '[Packy signup] ' + (tips ? 'TRIP TIPS: YES' : 'words only') + ' | ' + name + ' | from the cat\'s word card',
+      text: 'Email: ' + email + '\nTrip tips (marketing consent): ' + (tips ? 'YES (ticked the box)' : 'no') + '\nFrom: the lucky cat\'s word card on /japan ("Email me these words")' +
+        '\nCountry: ' + name + '\nTime (UTC): ' + new Date().toISOString() + '\n\nImport to the email marketing service later. Only "YES" signups may get trip tips.',
+    });
+    console.log(JSON.stringify({ ev: 'email_words', country, tips, ok: true }));
+    return res.status(200).json({ ok: true });
+  } catch (e) {
+    const why = String((e && (e.response || e.message)) || '').replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email]').slice(0, 200);
+    console.log(JSON.stringify({ ev: 'email_words', country, ok: false, step, code: e && e.code, smtp: e && e.responseCode, why }));
     return res.status(502).json({ ok: false, error: 'Sorry, the email could not be sent. Please try again later.' });
   }
 }

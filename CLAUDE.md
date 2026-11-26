@@ -1,6 +1,6 @@
 # PackSmart (packsmartapp.com)
 
-Travel-prep site for a **global** audience (since 10 Nov 2026; India-specific guides are one segment, not the brand). It earns from affiliate links, not from users: free packing guides, visa and cost info, itineraries, plus offline "Pocket Guides" for airports and stations in Japan. No sign-up and no accounts. Email capture only through Packy's "Email me this chat" (D58).
+Travel-prep site for a **global** audience (since 10 Nov 2026; India-specific guides are one segment, not the brand). It earns from affiliate links, not from users: free packing guides, visa and cost info, itineraries, plus offline "Pocket Guides" for airports and stations in Japan. No sign-up and no accounts. Email capture only through Packy's email (D58): "Email me this chat", and since 26 Nov 2026 "Email me these words" on the lucky cat's word card on `/japan`.
 
 Owner: Ari (solo; reviews and pushes everything). Site email: `hello@packsmartapp.com` (contact, privacy, terms, affiliate disclosure; also the sender for the planned "Ask about Japan" emails). The repo is **public**: never commit secrets, earnings, partner negotiations or strategy notes.
 
@@ -13,7 +13,7 @@ Owner: Ari (solo; reviews and pushes everything). Site email: `hello@packsmartap
 ## Tech stack
 - Static HTML, CSS and vanilla JS. **No framework, no build step.** Edit the file, push, done.
 - Hosting: Vercel (team packsmartapps-projects, project `packsmart`), auto-deploys from `main`. `vercel.json`: `cleanUrls`, no trailing slash, 301 redirects.
-- `api/*.js`: Vercel serverless (Node, ESM). `ask` (Packy, the travel helper: one Packy scoped by country (D56), pop-up from `public/packy.js` on the pages `w75` lists, inline box on `/japan`; Gemini; answers only from `api/_japan_kb.js`, locked to the site, rate-limited), `email-chat` (Packy's "Email me this chat": sends the chat from hello@ through Hostinger SMTP and a signup copy to hello@; D58), `generate-plan` (Gemini), `weather` (OpenWeather), `share-plan`, `subscribe` (unused since newsletter removal). Keys are Vercel env vars.
+- `api/*.js`: Vercel serverless (Node, ESM). `ask` (Packy, the travel helper: one Packy scoped by country (D56), pop-up from `public/packy.js` on the pages `w75` lists, inline box on `/japan`; Gemini; answers only from `api/_japan_kb.js`, locked to the site, rate-limited), `email-chat` (Packy's "Email me this chat", and `kind: 'words'` for the cat's "Email me these words" from `api/_japan_words.js`: sends from hello@ through Hostinger SMTP and a signup copy to hello@; D58), `generate-plan` (Gemini), `weather` (OpenWeather), `share-plan`, `subscribe` (unused since newsletter removal). Keys are Vercel env vars.
 - `tools/`: Python 3 scripts that generate and patch pages (see "Generator scripts").
 - Analytics: GA4 `G-0C4Z7VVGPE`. Affiliates via Travelpayouts (marker `711400`, TRS `508747`; its verification script sits in every `<head>`).
 - Fonts and colours: DM Sans; `--primary #00C9A7`, `--accent #E94560`, `--dark #0f0f23`. Never the purple `#667eea` or system font stacks.
@@ -122,7 +122,7 @@ Card for `public/blog.html` (`&amp;` and `&mdash;` as entities):
 - **`?src=` on every shared link** so each channel can be measured per 100 opens before investing more.
 
 ## Tried and rejected (do not re-propose without asking)
-- Newsletter and sign-up boxes: removed site-wide 10 Nov 2026 (some forms were broken or fake). Ari brought email capture back on 24 Nov 2026 only inside Packy (D58: "Email me this chat", opt-in box for trip tips); no other sign-up boxes.
+- Newsletter and sign-up boxes: removed site-wide 10 Nov 2026 (some forms were broken or fake). Ari brought email capture back on 24 Nov 2026 only inside Packy (D58: "Email me this chat", opt-in box for trip tips), and on 26 Nov extended the same Packy email to the lucky cat's word card ("Email me these words"); no other sign-up boxes.
 - Localrent widget: retired (not in USA or Canada, unreliable). Yesim old program: broken, redirected to Airalo.
 - Klook city deep links (`klook.com/en-US/city/...`): redirect to the homepage. Klook's own `aid=116473`: no payout set up (see D46). Old `affiliate.klook.com/redirect` format: deprecated.
 - All FIFA 2026 content: removed with 301s. Long-weekends-2027 article: cancelled. Japan kids section, Reddit re-enable, site redesign, Pinterest: skipped or parked.
