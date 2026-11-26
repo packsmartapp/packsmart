@@ -232,6 +232,33 @@
 .jp-cat .paw{transform-box:view-box;transform-origin:146px 112px;animation:jpBeckon 2.4s ease-in-out infinite}
 .jp-cat-say{position:absolute;right:58%;top:4%;z-index:1;white-space:nowrap;background:linear-gradient(135deg,#00C9A7,#2D9CDB);color:#fff;font-size:.82rem;font-weight:800;padding:8px 40px 8px 13px;border-radius:18px 6px 18px 18px;box-shadow:0 8px 20px rgba(45,156,219,.3);opacity:0;transform:translateX(6px) scale(.9);transform-origin:top right;transition:opacity .18s,transform .18s;pointer-events:none}
 .jp-cat-say span{color:#FFE66D;margin-right:4px}.jp-cat-say small{display:block;font-size:.68rem;font-weight:700;color:#fff;opacity:.92;margin-top:2px}
+/* after a couple of Konnichiwas the cat offers a few Japanese words (same wording as the Pocket Guides' phrase list) */
+.jp-cat-offer{position:absolute;right:52px;top:-92px;z-index:2;width:236px;background:linear-gradient(135deg,#00C9A7,#2D9CDB);color:#fff;border-radius:18px 6px 18px 18px;padding:10px 40px 11px 13px;box-shadow:0 8px 20px rgba(45,156,219,.3);font-size:.84rem;font-weight:800;line-height:1.35;animation:jpOfferIn .25s ease-out}
+.jp-cat-offer[hidden]{display:none}
+.jp-cat.offering .jp-cat-say{opacity:0!important;transform:translateX(6px) scale(.9)!important}
+.jp-cat-offer b{color:#FFE66D}
+.jp-cat-offer div{display:flex;gap:6px;margin-top:8px}
+.jp-cat-offer button{font:inherit;font-size:.78rem;font-weight:800;border:0;border-radius:999px;padding:6px 12px;cursor:pointer}
+.jp-cat-offer .y{background:#fff;color:#0a8f78}.jp-cat-offer .n{background:rgba(255,255,255,.2);color:#fff}
+@keyframes jpOfferIn{from{opacity:0;transform:translateX(8px) scale(.94)}to{opacity:1;transform:none}}
+@media (max-width:600px){.jp-cat-offer{right:34px;top:-70px;width:212px;font-size:.8rem}}
+.jp-words{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(15,15,35,.45)}
+.jp-words[hidden]{display:none}
+.jp-words-in{position:relative;width:100%;max-width:440px;max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:22px;padding:18px 18px 16px;box-shadow:0 20px 50px rgba(15,15,35,.3);animation:jpOfferIn .25s ease-out}
+.jp-words h3{margin:0 34px 2px 0;font-size:1.15rem;color:#0f0f23}.jp-words h3 span{color:#E94560}
+.jp-words-sub{margin:0 0 12px;font-size:.82rem;color:#5a6378}
+.jp-words-x{position:absolute;right:12px;top:12px;width:32px;height:32px;border:0;border-radius:50%;background:#F1F4F6;color:#0f0f23;font-size:1rem;cursor:pointer}
+.jp-words ul{list-style:none;margin:0;padding:0;display:grid;gap:7px}
+.jp-words li{display:grid;grid-template-columns:28px minmax(0,1fr) 38px;align-items:center;gap:8px;background:#F2FBF8;border-radius:14px;padding:7px 8px 7px 10px}
+.jp-words li i{font-style:normal;font-size:1.2rem;text-align:center}
+.jp-words li b{display:block;font-size:.95rem;color:#0f0f23}.jp-words li b span{display:block;font-weight:700;color:#0a8f78;font-size:.84rem;margin-top:1px}
+.jp-words li small{display:block;font-size:.76rem;color:#5a6378}
+.jp-words li button{width:36px;height:36px;border:0;border-radius:50%;background:#00C9A7;color:#fff;font-size:.95rem;cursor:pointer}
+.jp-words li button:hover{background:#00A88C}
+.jp-words-more{display:block;margin:12px 0 0;text-align:center;font-size:.86rem;font-weight:800;color:#0a8f78;background:#E6FAF5;border-radius:12px;padding:10px;text-decoration:none}
+.jp-words-note{margin:8px 0 0;font-size:.7rem;color:#8a93a6;text-align:center}
+@media (max-width:600px){.jp-words{align-items:flex-end;padding:0}.jp-words-in{max-width:none;border-radius:22px 22px 0 0;max-height:88vh;padding-bottom:calc(16px + env(safe-area-inset-bottom))}}
+@media (prefers-reduced-motion:reduce){.jp-cat-offer,.jp-words-in{animation:none}}
 .jp-cat:hover .jp-cat-say,.jp-cat.on .jp-cat-say{opacity:1;transform:none}
 .jp-cat:hover .paw,.jp-cat.on .paw{animation-duration:.8s}
 @keyframes jpBeckon{0%,55%,100%{transform:rotate(0)}65%{transform:rotate(-16deg)}75%{transform:rotate(4deg)}85%{transform:rotate(-12deg)}}
@@ -570,7 +597,42 @@ function sayHello(){try{if(!('speechSynthesis' in window))return;var now=Date.no
   try{speechSynthesis.resume();}catch(e){}if(!jaVoice&&!enVoice)pickVoice();
   var vo=jaVoice||enVoice;catU=new SpeechSynthesisUtterance(jaVoice||!vo?'こんにちは！':'Kon-nichi-wa!');if(vo){catU.voice=vo;catU.lang=vo.lang;}else catU.lang='ja-JP';
   catU.rate=1.05;catU.pitch=1.8;catU.volume=1;catAt=now;speechSynthesis.speak(catU);track('cat_voice');}catch(e){}}
-if(cat){var ct;cat.addEventListener('click',function(){cat.classList.add('on','heard');track('cat_hello');sayHello();clearTimeout(ct);ct=setTimeout(function(){cat.classList.remove('on');},2500);});
+// after the second Konnichiwa the cat offers a few Japanese words: a small card with 8 starter phrases (the same wording
+// as the Pocket Guides' "Say it in Japanese" list), each with a play button, and a link to the Tokyo Pocket Guide for more.
+// Offered once per visit; "Not now" is remembered for the visit too.
+var WORDS=[['👋','Hello','こんにちは。','Konnichiwa.'],['🙏','Thank you','ありがとうございます。','Arigatou gozaimasu.'],
+ ['🙇','Excuse me / Sorry','すみません。','Sumimasen.'],['👌','No thanks, I am fine','大丈夫です。','Daijoubu desu.'],
+ ['🚻','Where is the toilet?','トイレはどこですか？','Toire wa doko desu ka?'],['💴','How much is it?','いくらですか？','Ikura desu ka?'],
+ ['👉','This one, please','これをください。','Kore o kudasai.'],['😋','It is delicious','おいしいです。','Oishii desu.']];
+function sayJa(ja,ro){try{if(!('speechSynthesis' in window))return;if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel();
+  try{speechSynthesis.resume();}catch(e){}if(!jaVoice&&!enVoice)pickVoice();var vo=jaVoice||enVoice,u=new SpeechSynthesisUtterance(jaVoice||!vo?ja:ro);
+  if(vo){u.voice=vo;u.lang=vo.lang;}else u.lang='ja-JP';u.rate=.9;u.pitch=1.3;speechSynthesis.speak(u);}catch(e){}}
+var taps=0,offered=false,offer=null,words=null,lastFocus=null;try{offered=sessionStorage.getItem('jpWordsOffer')==='1';}catch(e){}
+function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+function closeWords(){if(!words)return;words.hidden=true;document.removeEventListener('keydown',wordsKey);if(lastFocus)try{lastFocus.focus();}catch(e){}}
+function wordsKey(e){if(e.key==='Escape')closeWords();}
+function openWords(){if(!words){words=document.createElement('div');words.className='jp-words';words.hidden=true;
+  words.setAttribute('role','dialog');words.setAttribute('aria-modal','true');words.setAttribute('aria-labelledby','jpWordsT');
+  words.innerHTML='<div class="jp-words-in"><button type="button" class="jp-words-x" aria-label="Close">✕</button>'+
+   '<h3 id="jpWordsT">Your first Japanese words <span lang="ja">🇯🇵</span></h3><p class="jp-words-sub">Tap 🔊 to hear each one. A smile and a small bow go a long way.</p><ul>'+
+   WORDS.map(function(w,i){return '<li><i aria-hidden="true">'+w[0]+'</i><div><b>'+esc(w[3])+'<span lang="ja">'+esc(w[2])+'</span></b><small>'+esc(w[1])+'</small></div><button type="button" data-w="'+i+'" aria-label="Play: '+esc(w[1])+'">🔊</button></li>';}).join('')+
+   '</ul><a class="jp-words-more" href="/tokyo-pocket?src=hub_cat">📱 50+ more phrases, offline, in the free Tokyo Pocket Guide</a>'+
+   '<p class="jp-words-note">The voice is your phone’s or computer’s own.</p></div>';
+  document.body.appendChild(words);
+  words.addEventListener('click',function(e){if(e.target===words||e.target.closest('.jp-words-x')){closeWords();return;}
+   var b=e.target.closest('[data-w]');if(b){var w=WORDS[+b.getAttribute('data-w')];sayJa(w[2],w[3]);track('cat_word_play',w[3]);return;}
+   if(e.target.closest('.jp-words-more'))track('cat_words_more');});}
+ lastFocus=document.activeElement;words.hidden=false;document.addEventListener('keydown',wordsKey);try{words.querySelector('.jp-words-x').focus();}catch(e){}}
+function hideOffer(){if(offer)offer.hidden=true;cat.classList.remove('offering');}
+function showOffer(){if(offered)return;offered=true;try{sessionStorage.setItem('jpWordsOffer','1');}catch(e){}
+ offer=document.createElement('div');offer.className='jp-cat-offer';offer.setAttribute('role','status');
+ offer.innerHTML='Want a few <b>Japanese words</b> for your trip?<div><button type="button" class="y">Yes! 🎌</button><button type="button" class="n">Not now</button></div>';
+ cat.parentNode.insertBefore(offer,cat.nextSibling);cat.classList.add('offering');track('cat_words_offer');
+ offer.querySelector('.y').addEventListener('click',function(){hideOffer();track('cat_words_yes');openWords();});
+ offer.querySelector('.n').addEventListener('click',function(){hideOffer();track('cat_words_no');});}
+if(cat){var ct;cat.addEventListener('click',function(){cat.classList.add('on','heard');track('cat_hello');sayHello();clearTimeout(ct);
+  taps++;if(taps>=2&&!offered){ct=setTimeout(function(){cat.classList.remove('on');showOffer();},1600);return;}
+  ct=setTimeout(function(){cat.classList.remove('on');},2500);});
  cat.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();cat.click();}});
  cat.addEventListener('mouseenter',function(){track('cat_hello');});
  // phones have no hover: the first time the cat comes into view, its bubble ("Tap me to hear it") shows by itself for
