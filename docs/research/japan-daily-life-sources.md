@@ -1,8 +1,7 @@
 # Japan daily life and local laws: official sources (for Packy)
 
 Read 26 Nov 2026 from Japan's official tourism site (JNTO, https://www.japan.travel/en/), which the cloud session can
-reach. Quotes are exact. Gap: the legal drinking age is not stated on these pages; Packy does not give one until an
-official page is added here.
+reach. Quotes are exact. The drinking age comes from the National Tax Agency (owner's screenshot, 26 Nov 2026).
 
 ## Buying alcohol
 Source: https://www.japan.travel/en/gastronomy/sake/ (JNTO, "Japanese Sake & Breweries", checked 26 Nov 2026)
@@ -14,6 +13,15 @@ Source: https://www.japan.travel/en/gastronomy/sake/ (JNTO, "Japanese Sake & Bre
 Source: https://www.japan.travel/en/japan-magazine/2002_konbini/ (JNTO magazine, convenience stores, checked 26 Nov 2026)
 - Convenience stores are called konbini. "Chu-his are alcoholic drinks made from shochu (a Japanese spirit) and flavored
   mixer. They come in a variety of alcohol strengths ranging from 3% alcohol to 12%."
+
+## Legal drinking age: 20
+Source: https://www.nta.go.jp/publication/pamph/koho/campaign/r4/Apr/01.htm (National Tax Agency, "Promoting the prevention of underage drinking"; the owner's screenshot of the page in English translation, checked 26 Nov 2026)
+- "Drinking alcohol is prohibited by law for persons under the age of 20" (the Act on the Prevention of Drinking by
+  Persons Under 20 Years of Age).
+- "While the age of majority under civil law will be lowered to 18 from April 2022, the age limit for alcohol will
+  remain at 20."
+- The law also says parents or guardians must stop those under 20 from drinking, and businesses must not sell or serve
+  alcohol to anyone they know is under 20.
 
 ## Drinking in public
 Source: https://www.japan.travel/en/plan/local-laws/ (JNTO, "Local Laws", checked 26 Nov 2026)
