@@ -189,7 +189,7 @@ async function sendWords(req, res, b, email, country, origin) {
   if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) return res.status(500).json({ ok: false, error: 'Email is not set up yet.' });
   const name = COUNTRIES[country];
   const SITE = PREVIEW.test(origin) ? origin : LIVE;
-  const hear = SITE + '/japan?src=packy_email#words', pocket = SITE + '/tokyo-pocket?src=packy_email', ask = SITE + '/japan?src=packy_email#ask';
+  const hear = SITE + '/japan?src=packy_email#words', ask = SITE + '/japan?src=packy_email#ask';
   const rows = WORDS.map(w =>
     '<tr><td width="40" valign="top" style="padding:10px 0 10px 12px;font-size:22px;">' + w[0] + '</td>' +
     '<td style="padding:10px 12px 10px 6px;"><div style="font-weight:bold;font-size:16px;color:#0f0f23;">' + esc(w[3]) + '</div>' +
@@ -204,9 +204,10 @@ async function sendWords(req, res, b, email, country, origin) {
     '<p style="color:#5a6378;font-size:14px;margin:0 0 14px;">Eight words that go a long way. A smile and a small bow help too.</p>' +
     '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#ffffff;border:1px solid #d9f0ea;border-radius:14px;">' + rows + '</table>' +
     '<p style="text-align:center;margin:22px 0 10px;"><a href="' + esc(hear) + '" style="display:inline-block;background:#E94560;color:#ffffff;text-decoration:none;font-weight:bold;font-size:16px;padding:13px 22px;border-radius:24px;">&#128266; Hear them again</a></p>' +
-    '<div style="background:#e6faf5;border-radius:12px;padding:14px 16px;margin:20px 0;font-size:14px;color:#0f0f23;">' +
-    '<b>&#128241; 50+ more phrases, offline</b><br>The free Tokyo Pocket Guide has phrases for trains, shops, food and help, and it works without a signal.<br>' +
-    '<a href="' + esc(pocket) + '" style="display:inline-block;margin-top:10px;background:#0f0f23;color:#ffffff;text-decoration:none;font-weight:bold;border-radius:20px;padding:9px 16px;">Open the Pocket Guide</a></div>' +
+    '<div style="background:#e6faf5;border-radius:12px;padding:16px 12px 10px;margin:20px 0;font-size:14px;color:#0f0f23;">' +
+    '<p style="margin:0 4px 4px;"><b>&#128241; 80+ more phrases in every Pocket Guide</b></p>' +
+    '<p style="margin:0 4px 12px;color:#3f4a5c;">Free, and they work without a signal: phrases, plus exits, platforms, lockers and ATMs. Tap the airport or station you will use.</p>' +
+    iconRow('Airports', POCKET_ICONS.slice(0, 4), SITE) + iconRow('Stations', POCKET_ICONS.slice(4), SITE) + '</div>' +
     '<div style="background:#ffffff;border:1px solid #e3e8ec;border-radius:12px;padding:14px 16px;margin:0 0 20px;font-size:14px;color:#0f0f23;">' +
     '<b>&#128172; Got a question about your trip?</b><br>Ask Packy about trains, airports, money and luggage in ' + name + '. Answers come from official sources.<br>' +
     '<a href="' + esc(ask) + '" style="display:inline-block;margin-top:8px;color:#0a8f78;font-weight:bold;">Ask Packy</a></div>' +
@@ -214,7 +215,7 @@ async function sendWords(req, res, b, email, country, origin) {
     (tips ? ' You also asked for trip tips for ' + name + '; reply "stop" at any time and we will not email you again.' : ' We will not email you again unless you ask.') +
     ' <a href="' + SITE + '/privacy-policy" style="color:#8a93a6;">Privacy</a></p></div></body></html>';
   const text = 'Your first Japanese words, from Packy\n\n' + WORDS.map(w => w[3] + '  ' + w[2] + '  (' + w[1] + ')').join('\n') +
-    '\n\nHear them again: ' + hear + '\n50+ more phrases, offline, in the free Tokyo Pocket Guide: ' + pocket + '\nAsk Packy about your trip: ' + ask;
+    '\n\nHear them again: ' + hear + '\n\n80+ more phrases, offline, in every free Pocket Guide:\n' + POCKET_ICONS.map(g => g[1] + ': ' + SITE + '/' + g[0] + '-pocket?src=packy_email').join('\n') + '\n\nAsk Packy about your trip: ' + ask;
   let step = 'connect';
   try {
     const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
@@ -235,4 +236,24 @@ async function sendWords(req, res, b, email, country, origin) {
     console.log(JSON.stringify({ ev: 'email_words', country, ok: false, step, code: e && e.code, smtp: e && e.responseCode, why }));
     return res.status(502).json({ ok: false, error: 'Sorry, the email could not be sent. Please try again later.' });
   }
+}
+
+// The Pocket Guides' own home-screen icons (the ones their web manifests use), airports first, then stations.
+// [key, name, icon file, short label]
+const POCKET_ICONS = [
+  ['haneda', 'Haneda Airport', 'haneda-icon-v2-192.png', 'Haneda'], ['narita', 'Narita Airport', 'narita-icon-v2-192.png', 'Narita'],
+  ['kix', 'Kansai Airport', 'kix-icon-192.png', 'Kansai'], ['new-chitose', 'New Chitose Airport', 'new-chitose-icon-192.png', 'New Chitose'],
+  ['tokyo', 'Tokyo Station', 'tokyo-icon-192.png', 'Tokyo'], ['shinjuku', 'Shinjuku Station', 'shinjuku-icon-192.png', 'Shinjuku'],
+  ['ueno', 'Ueno Station', 'ueno-icon-192.png', 'Ueno'], ['kyoto', 'Kyoto Station', 'kyoto-icon-192.png', 'Kyoto'],
+  ['osaka', 'Shin-Osaka and Umeda', 'osaka-icon-192.png', 'Osaka'], ['sapporo', 'Sapporo Station', 'sapporo-icon-192.png', 'Sapporo']];
+// one row of tappable icons in an email-safe table (images load from the site; the name shows if images are blocked)
+function iconRow(title, list, SITE) {
+  const w = Math.floor(100 / 6);
+  return '<p style="margin:4px 4px 6px;font-size:11px;font-weight:bold;letter-spacing:1px;text-transform:uppercase;color:#5a6378;">' + title + '</p>' +
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="margin:0 0 10px;"><tr>' +
+    list.map(g => '<td width="' + w + '%" align="center" valign="top" style="padding:0 1px 6px;">' +
+      '<a href="' + SITE + '/' + g[0] + '-pocket?src=packy_email" style="text-decoration:none;color:#0f0f23;">' +
+      '<img src="' + SITE + '/images/' + g[2] + '" width="46" height="46" alt="' + esc(g[1]) + ' Pocket Guide" style="display:block;margin:0 auto;border-radius:12px;border:0;">' +
+      '<span style="display:block;margin-top:5px;font-size:11px;font-weight:bold;color:#0f0f23;line-height:1.2;">' + esc(g[3]) + '</span></a></td>').join('') +
+    (list.length < 6 ? '<td width="' + (100 - w * list.length) + '%">&nbsp;</td>' : '') + '</tr></table>';
 }
