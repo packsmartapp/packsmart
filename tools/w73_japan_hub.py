@@ -276,7 +276,7 @@ HERO_CSS = """
 .jp-s-lbl{min-width:104px;font-size:.88rem;color:#0f0f23}.jp-s-lbl span{color:#E94560;margin-right:5px}
 .jp-scene .fuji,.jp-scene .ss{transition:opacity .35s}
 .jp-hero-top .jp-scene{margin-bottom:64px}
-@media (max-width:600px){.jp-hero-top .jp-scene{margin-bottom:52px}.jp-seasons{top:calc(100% + 6px);display:flex;align-items:center;gap:10px;white-space:normal}.jp-seasons small{width:92px;margin:0;text-align:right;line-height:1.35;font-size:.62rem}.jp-seasons-row{flex:none;white-space:nowrap}}
+@media (max-width:600px){.jp-hero-top .jp-scene{margin-bottom:46px}.jp-seasons{top:calc(100% + 6px)}.jp-seasons small{display:none}}
 .jp-scene .fuji{position:absolute;inset:0;width:100%;height:100%;display:block;will-change:transform;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
 .jp-scene .cl{animation:jpDrift 26s ease-in-out infinite alternate}
 .jp-scene .ss{display:none}
