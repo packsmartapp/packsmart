@@ -347,6 +347,8 @@ body[data-season=winter] .jp-petal svg{transform:scale(.7)}
 .jp-pass-stub a.g{background:rgba(255,255,255,.18)}
 .jp-stamp{position:absolute;right:130px;top:12px;transform:rotate(-12deg);border:2px solid #E94560;color:#E94560;border-radius:8px;padding:2px 6px;font-size:.62rem;font-weight:800;letter-spacing:.08em;opacity:.85;text-align:center;line-height:1.15}
 @media (max-width:760px){.jp-passes{grid-template-columns:1fr}}
+/* phones: smaller airport cards so more of them show per screen */
+@media (max-width:600px){.jp-pass-h h2{font-size:1.6rem}.jp-pass-h p{font-size:.84rem;line-height:1.45}.jp-pass-main{padding:11px 13px}.jp-pass-top{font-size:.62rem}.jp-pass-code{margin:.25rem 0 .05rem}.jp-pass-name{font-size:.95rem}.jp-pass-serves{font-size:.78rem}.jp-pass-line{font-size:.8rem;margin:.3rem 0 .5rem;line-height:1.4}.jp-pass-ask{font-size:.76rem;padding:5px 10px}.jp-pass-stub{padding-top:10px;padding-bottom:10px;gap:6px}.jp-pass-stub a{font-size:.74rem;padding:7px 4px}}
 @media (max-width:600px){
  .jp-hero-top{grid-template-columns:1fr}.jp-scene{order:-1;min-height:0;height:170px;margin:0 -4px;overflow:visible}
  .jp-scene .sk{width:86px!important;left:-18px!important;top:-26px!important}
@@ -355,7 +357,7 @@ body[data-season=winter] .jp-petal svg{transform:scale(.7)}
  .jp-board .f.fr{grid-area:r;white-space:normal}.jp-board .f.fr:after{content:" → " attr(data-to);color:#0f0f23}
  .jp-board .f.to{display:none}.jp-board .f.by{grid-area:b;font-size:.74rem;color:#5a6378}.jp-board .f.t{grid-area:t;font-size:1rem}.jp-board .go{display:none}
  .jp-board-h .wide{display:none}
- .jp-pass-code{font-size:2.2rem}.jp-pass-stub{width:104px;padding-left:14px}.jp-stamp{right:114px}
+ .jp-pass-code{font-size:1.9rem}.jp-pass-stub{width:94px;padding-left:13px;padding-right:10px}.jp-stamp{right:104px}
 }
 @media (prefers-reduced-motion:reduce){.jp-board .f{transition:none}}
 """
@@ -688,7 +690,7 @@ HERO_CSS += (".jp-mini{position:fixed;left:0;right:0;top:72px;z-index:90;backgro
  ".jp-mini-f input{flex:1;min-width:0;border:0;outline:0;font:inherit;font-size:16px;background:transparent;padding:8px 4px;color:#0f0f23}"
  ".jp-mini-f button{flex:none;font:inherit;font-weight:800;font-size:.92rem;border:0;border-radius:999px;padding:9px 16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;cursor:pointer}"
  ".jp-mini-scene{position:relative;min-height:0;height:74px}"
- "@media (max-width:760px){.jp-mini-in{grid-template-columns:minmax(0,1fr) 96px;gap:4px 10px;padding:6px 14px 8px}"
+ "@media (max-width:760px){.jp-mini-in{grid-template-columns:minmax(0,1fr) 96px;gap:4px 10px;padding:6px 24px 8px}"
  ".jp-mini-t{font-size:1.25rem}.jp-mini-t span{font-size:.66rem;margin-bottom:2px}.jp-mini-f{grid-column:1/-1;grid-row:2}.jp-mini-scene{height:52px;grid-row:1;grid-column:2}}"
  "@media (prefers-reduced-motion:reduce){.jp-mini{transition:none}}"
  "#plan,#arriving,#stations,#pocket-hub{scroll-margin-top:200px}")
