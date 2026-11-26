@@ -770,6 +770,57 @@ export default [
 ]
 },
 {
+"t": "japan daily life > Japan daily life and local laws: official sources (for Packy)",
+"x": "Read 26 Nov 2026 from Japan's official tourism site (JNTO, https://www.japan.travel/en/), which the cloud session can\nreach. Quotes are exact. Gap: the legal drinking age is not stated on these pages; Packy does not give one until an\nofficial page is added here.",
+"u": [
+"https://www.japan.travel/en/"
+]
+},
+{
+"t": "japan daily life > Japan daily life and local laws: official sources (for Packy) > Buying alcohol",
+"x": "Source: https://www.japan.travel/en/gastronomy/sake/ (JNTO, \"Japanese Sake & Breweries\", checked 26 Nov 2026)\n- \"If you fancy a drink in the comfort of your hotel or the great outdoors, you can also buy drinks from sakaya (sake\n  shops), supermarkets and, even convenience stores.\"\n- \"Izakaya, or Japanese pubs, serve a variety of food that you can enjoy with your drinks.\"\n- Sake \"is Japan's national drink\"; \"Sake is traditionally drunk from small cups called ochoko, poured from decanters\n  called tokkuri.\"\nSource: https://www.japan.travel/en/japan-magazine/2002_konbini/ (JNTO magazine, convenience stores, checked 26 Nov 2026)\n- Convenience stores are called konbini. \"Chu-his are alcoholic drinks made from shochu (a Japanese spirit) and flavored\n  mixer. They come in a variety of alcohol strengths ranging from 3% alcohol to 12%.\"",
+"u": [
+"https://www.japan.travel/en/gastronomy/sake/",
+"https://www.japan.travel/en/japan-magazine/2002_konbini/"
+]
+},
+{
+"t": "japan daily life > Japan daily life and local laws: official sources (for Packy) > Drinking in public",
+"x": "Source: https://www.japan.travel/en/plan/local-laws/ (JNTO, \"Local Laws\", checked 26 Nov 2026)\n- \"Drinking outside on the other hand doesn't violate any laws—in fact, it's part of the culture, especially during the\n  hanami season in spring when picnics under the cherry blossoms are common.\"\n- \"However, while this might be the case, loud and boisterous behavior is not part of Japanese culture, so try to keep\n  any outdoor partying under control. Be sure to take any litter home with you.\"",
+"u": [
+"https://www.japan.travel/en/plan/local-laws/"
+]
+},
+{
+"t": "japan daily life > Japan daily life and local laws: official sources (for Packy) > Carry your passport",
+"x": "Source: https://www.japan.travel/en/plan/local-laws/ (checked 26 Nov 2026)\n- \"Be sure to carry your passport with you at all times as a form of identification. The chances are you won't need to\n  show it, but there is always a chance that you may be required to do so.\"",
+"u": [
+"https://www.japan.travel/en/plan/local-laws/"
+]
+},
+{
+"t": "japan daily life > Japan daily life and local laws: official sources (for Packy) > Smoking",
+"x": "Source: https://www.japan.travel/en/plan/local-laws/ (checked 26 Nov 2026)\n- \"Smoking is not allowed in most restaurants and bars, except in designated areas. This rule is strictly\n  enforced—especially in the country's main cities—and can result in a fine, so don't walk and smoke, find a smoking\n  area.\"",
+"u": [
+"https://www.japan.travel/en/plan/local-laws/"
+]
+},
+{
+"t": "japan daily life > Japan daily life and local laws: official sources (for Packy) > Tattoos (onsen, public baths, pools, gyms)",
+"x": "Source: https://www.japan.travel/en/plan/local-laws/ (checked 26 Nov 2026)\n- \"Many public swimming pools, public baths, hot spring resorts, and gyms prohibit entry to anyone with tattoos—even\n  small ones. The rules are loosening slightly, and some establishments will simply ask you to cover any tattoos up.\n  Research in advance to avoid any disappointment.\"",
+"u": [
+"https://www.japan.travel/en/plan/local-laws/"
+]
+},
+{
+"t": "japan daily life > Japan daily life and local laws: official sources (for Packy) > Drugs and cannabis",
+"x": "Source: https://www.japan.travel/en/plan/local-laws/ (checked 26 Nov 2026)\n- \"There is zero tolerance towards any kind of drug-related crime.\" \"Cannabis is treated in the same way as other\n  drugs. Possession of a small amount can lead to a prison sentence, so please don't bring cannabis into the country;\n  even if it is prescribed in your country of origin.\"\n- National Police Agency warning (PDF): https://www.npa.go.jp/english/bureau/criminal_affairs/image/warning_illegal_drugs_in_japan.pdf",
+"u": [
+"https://www.japan.travel/en/plan/local-laws/",
+"https://www.npa.go.jp/english/bureau/criminal_affairs/image/warning_illegal_drugs_in_japan.pdf"
+]
+},
+{
 "t": "japan health > Japan health, doctors and travel insurance: official sources (for Packy)",
 "x": "(https://www.jnto.go.jp/emergency/eng/mi_guide.html), which the cloud session cannot open directly. Quotes are exact.\nInsurance companies named on that page are left out on purpose (Packy names no insurance company except SafetyWing).",
 "u": [

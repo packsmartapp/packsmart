@@ -55,6 +55,12 @@ const CASES = [
   ['Is there a helpline in English?', '', /visitor hotline/i],
   ['How do I find an English-speaking doctor in Osaka?', '', /search medical institutions|medical institutions where consultations/i],
   ['Does travel insurance cover pregnancy care?', '', /perinatal/i],
+  ['Where can I buy alcohol in Tokyo?', 'tokyo', /sakaya|convenience stores/i],
+  ['Can I drink beer in a park in Japan?', '', /drinking outside/i],
+  ['Do I need to carry my passport in Japan?', '', /carry your passport/i],
+  ['Can I go to an onsen with tattoos?', '', /tattoo/i],
+  ['Can I smoke on the street in Tokyo?', '', /smoking/i],
+  ['Is CBD or cannabis legal in Japan?', '', /cannabis/i],
 ];
 const verbose = process.argv.includes('-v');
 let hit = 0;
