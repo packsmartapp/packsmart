@@ -17,3 +17,7 @@ PROJECT_CONTEXT.md
 
 # Python bytecode
 __pycache__/
+
+# Local secrets: never commit
+.env
+.env.*
