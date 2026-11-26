@@ -248,8 +248,8 @@
     var slug = guide && guide.url ? guide.url.split('/').pop().split('#')[0] : '';
     var p = POCKET[slug] || POCKET[TOPIC_POCKET[topic]];
     var html = p
-      ? '<a class="pk-soft" href="/' + p[0] + '-pocket?src=packy">📱 Free offline Pocket Guide for ' + esc(p[1]) + '&nbsp;→</a></div>'
-      : '<a class="pk-soft" href="/japan?src=packy#pocket-hub">📱 Free offline Pocket Guides for ' + esc(C.name) + '\'s airports and stations&nbsp;→</a>';
+      ? '<a class="pk-soft" href="/' + p[0] + '-pocket?src=packy">📱 ' + esc(p[1]) + ' Pocket Guide · no app, works offline&nbsp;→</a></div>'
+      : '<a class="pk-soft" href="/japan?src=packy#pocket-hub">📱 Pocket Guides for ' + esc(C.name) + '\'s airports and stations · no app, work offline&nbsp;→</a>';
     // a quiet footnote at the end of Packy's last answer, not a card of its own (owner, 26 Nov)
     var bots = body.querySelectorAll('.pk-msg.pk-bot'), last = bots[bots.length - 1];
     if (last) { var d = el('div', 'pk-pocket', html); last.appendChild(d); } else botRow(html);
