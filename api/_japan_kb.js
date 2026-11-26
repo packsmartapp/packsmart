@@ -2210,6 +2210,13 @@ export default [
 "u": []
 },
 {
+"t": "sapporo > New Chitose Airport (CTS) and Sapporo Station: sources and facts (research for the CTS and Sapporo guides) > New Chitose Airport: onsen and hotel inside the airport",
+"x": "Source: https://www.hokkaido-airports.com/en/new-chitose/spend/relax/ (New Chitose Airport, \"Hotels and Onsens\", checked 26 Nov 2026)\n- The airport's own page: \"Relax and unwind in our onsen and hotel, both conveniently located within the airport.\"\n- Gap: the onsen's name, floor, hours and price are not read yet (the page lists them separately); Packy points to the page for details.",
+"u": [
+"https://www.hokkaido-airports.com/en/new-chitose/spend/relax/"
+]
+},
+{
 "t": "shinjuku > Shinjuku Station guide: verified facts and sources",
 "x": "Collected 22 Nov 2026 for backlog B31 (decision D45). Only facts read on an official page (or on a screenshot of an official page that Ari took on 22 Nov 2026) are listed. Anything else is under \"Not verified\" and must not be published as fact.\n\nJR East's main site (`www.jreast.co.jp`), Tokyo Metro (`www.tokyometro.jp`) and Toei (`www.kotsu.metro.tokyo.jp`) block cloud servers (Akamai or Incapsula \"Access Denied\"), so their pages were read from Ari's screenshots. The other sources were fetched directly from the `packsmart` cloud environment.",
 "u": []

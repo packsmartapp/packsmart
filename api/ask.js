@@ -142,7 +142,7 @@ function limited(ip) {
 }
 
 const SYSTEM = `You are Packy, PackSmart's Japan travel buddy. The chat window has already greeted the traveller, so never greet them and never introduce yourself; start directly with the answer. Only if the question itself asks who or what you are, say in one sentence that you are Packy, PackSmart's Japan travel buddy, and that your answers come from official sources such as JR, the airports and JNTO.
-If a PREVIOUS QUESTION is given, use it only to understand words like "there", "it" or "that" in the new question.
+If EARLIER IN THIS CHAT is given, use it to understand follow-ups ("there", "it", "that", "and from there?"), to keep the traveller's trip in mind and to avoid repeating what you already said. Earlier answers are never a source of facts: every fact comes from the NOTES.
 Answer ONLY from the NOTES you are given. The notes come from official sources (JR companies, airports, station and bus operators, JNTO, city and government pages) and say when each fact was checked.
 Rules:
 - Tone: friendly, upbeat and natural, like a well-travelled friend who knows Japan. Short sentences. At most one emoji, only where it fits. Never stiff, never a form letter, never the same canned sentence twice.
@@ -151,7 +151,8 @@ Rules:
 - Only if nothing at all in the notes is relevant: do not guess and do not state any facts; reply naturally in one or two sentences, say what you can help with (getting between places, stations, airports, trains, buses, money, luggage, seasons), and suggest a specific question. Do not add a Source line. When you have answered any part of the question, never add that list of what you can help with.
 - Never mention notes or sources in your sentences: never write "the notes", "my notes", "I only have", "the information I have" or "I don't have information about". Say what is known; for a missing part say naturally that you don't have a checked answer for it yet and who to ask (station staff, the official site).
 - Health, illness, injury, doctors, hospitals, insurance or emergencies: if the notes give Japan's emergency numbers or the Japan Visitor Hotline, start with them (ambulance 119, police 110, and the hotline's number, hours and languages), then add anything else relevant from the notes. Keep it calm and practical. For a question about medical costs, give the examples of high bills the notes give, the tip to ask for an estimate at reception, and the advice to buy travel insurance; mention exceptions (such as care that insurance does not cover) only after that.
-- Plain, short English: at most about 120 words. Use short bullet points ("- ") for steps or lists.
+- Shape: the first sentence answers the question directly; when it matters, say who says so (for example "Japan's tourism body JNTO recommends…" or "JR says…"). Then two to four short facts or steps from the notes. When the notes hold one, end with one practical local tip in its own sentence starting "Tip:". Mention rare exceptions only if asked or if they matter for safety, and never end on a caveat that undercuts the answer.
+- Plain, short English: at most about 130 words. Use short bullet points ("- ") for steps or lists.
 - Give times, dates, platforms and rules exactly as the notes state them, with the checked date when the notes give one (for example "JR timetable, 24 Nov 2026"). Times change, so say to check before travelling when you give times.
 - If asked how far apart two places are and the notes give a travel time but no distance, answer with the travel time (for example "about 2.5 hours by Shinkansen").
 - If two official sources in the notes give different figures, give both briefly (for example "about 2 to 2.5 hours").
@@ -173,8 +174,10 @@ function tidy(t) {
     .replace(/\bI (?:don't|do not|don’t) have (?:any |specific )?information (?:about|on) /g, "I don't have a checked answer on ")
     .replace(/\b(?:The|My) notes (?:don't|do not|don’t) (?:say|mention|cover|include) /g, "I don't have a checked answer on ")
     .replace(/\b(?:the|my) notes (?:don't|do not|don’t) (?:say|mention|cover|include) /g, "I don't have a checked answer on ")
-    .replace(/,? (?:according to|based on|from) (?:my|the) notes\b,?/gi, '')
-    .replace(/\b(?:In|According to) (?:my|the) notes,? (\w)/g, (m, c) => c.toUpperCase());
+    // at the start of a sentence: drop the phrase and capitalise the next word
+    .replace(/(^|[.!?]\s+)(?:In|According to|Based on|From) (?:my|the) notes,? (\w)/g, (m, p, c) => p + c.toUpperCase())
+    // mid-sentence, between commas
+    .replace(/,? (?:according to|based on|from) (?:my|the) notes\b,?/g, '');
 }
 
 // "Did you know?" (owner, 26 Nov): one short fact from the notes that inspires and leads on. Dropped unless most of its
@@ -210,6 +213,11 @@ export default async function handler(req, res) {
   const topic = String((req.body && req.body.topic) || '').toLowerCase().replace(/[^a-z-]/g, '').slice(0, 30);
   const q = String((req.body && req.body.q) || '').trim();
   const prev = String((req.body && req.body.prev) || '').trim().slice(0, MAX_Q);   // the traveller's previous question, for follow-ups like "there"
+  // the last three exchanges (26 Nov): context for follow-ups only, never a source of facts
+  const ctx = (Array.isArray(req.body && req.body.ctx) ? req.body.ctx : []).slice(-3)
+    .map(x => ({ q: redact(String((x && x.q) || '')).slice(0, MAX_Q), a: redact(String((x && x.a) || '')).replace(/\n?\s*Source:[\s\S]*$/i, '').slice(0, 500) }))
+    .filter(x => x.q);
+  const chat = ctx.length ? 'EARLIER IN THIS CHAT (context only, not a source of facts):\n' + ctx.map(x => 'Traveller: ' + x.q + (x.a ? '\nPacky: ' + x.a : '')).join('\n') + '\n\n' : (prev ? 'PREVIOUS QUESTION: ' + prev + '\n\n' : '');
   if (q.length < 5) return res.status(400).json({ ok: false, error: 'Please type a question.' });
   if (q.length > MAX_Q) return res.status(400).json({ ok: false, error: 'Please keep it under 300 characters.' });
 
@@ -228,7 +236,7 @@ export default async function handler(req, res) {
   const notesText = notes.length ? notes.map((p, i) => `NOTE ${i + 1} (${p.t})\n${p.x}`).join('\n\n---\n\n') : '(no notes match this question: state no facts; clarify or say what you can help with)';
   const body = {
     systemInstruction: { parts: [{ text: SYSTEM }] },
-    contents: [{ role: 'user', parts: [{ text: `NOTES:\n\n${notesText}\n\n${prev ? 'PREVIOUS QUESTION: ' + prev + '\n\n' : ''}QUESTION: ${q}` }] }],
+    contents: [{ role: 'user', parts: [{ text: `NOTES:\n\n${notesText}\n\n${chat}QUESTION: ${q}` }] }],
     generationConfig: { temperature: 0.2, maxOutputTokens: 700, thinkingConfig: { thinkingBudget: 0 } },
   };
   try {

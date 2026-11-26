@@ -65,6 +65,7 @@ const CASES = [
   ['Can I wear a swimsuit in an onsen?', '', /swimsuit|naked/i],
   ['What do I do with my towel at the hot spring?', '', /towel/i],
   ['What is the drinking age in Japan?', '', /under the age of 20|remain at 20/i],
+  ['Is there an onsen at New Chitose Airport?', '', /onsen and hotel, both conveniently located within the airport/i],
   ['I am 19, can I drink beer in Japan?', '', /under the age of 20|remain at 20/i],
 ];
 const verbose = process.argv.includes('-v');
