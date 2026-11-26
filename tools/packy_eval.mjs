@@ -8,12 +8,13 @@ import fs from 'fs';
 const src = fs.readFileSync('api/ask.js', 'utf8');
 const kbMod = await import(process.cwd() + '/api/_japan_kb.js');
 const KB = kbMod.KB || kbMod.default;
+const { ITINQ } = await import(process.cwd() + '/api/_offers.js');
 // rebuild search() exactly as ask.js defines it (same words, stemming, aliases and weights)
 const stopLine = src.match(/const STOP = new Set\([^\n]*\n/)[0];
 const start = src.indexOf('const words = s =>');
 const end = src.indexOf('\n}\n', src.indexOf('function search(')) + 3;
 const twm = src.match(/const TOPIC_WORDS = \{[^\n]*\n/)[0];
-const { search, TOPIC_WORDS } = new Function('KB', stopLine + src.slice(start, end) + twm + 'return {search, TOPIC_WORDS};')(KB);
+const { search, TOPIC_WORDS } = new Function('KB', 'ITINQ', stopLine + src.slice(start, end) + twm + 'return {search, TOPIC_WORDS};')(KB, ITINQ);
 
 const N = 9;   // what ask.js passes to the model
 // [question, page topic ('' = the hub or a general page), what a right note contains (regex on title + text)]
@@ -66,6 +67,8 @@ const CASES = [
   ['What do I do with my towel at the hot spring?', '', /towel/i],
   ['What is the drinking age in Japan?', '', /under the age of 20|remain at 20/i],
   ['Is there an onsen at New Chitose Airport?', '', /onsen and hotel, both conveniently located within the airport/i],
+  ['can you plan an itenerary for 10 days, and for family of 4.', '', /tokyo to kyoto|kyoto/i],
+  ['What should we see on a first trip to Japan?', '', /kyoto|tokai|kansai/i],
   ['I am 19, can I drink beer in Japan?', '', /under the age of 20|remain at 20/i],
 ];
 const verbose = process.argv.includes('-v');

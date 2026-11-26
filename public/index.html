@@ -1668,6 +1668,8 @@ document.querySelectorAll('.nav-links a').forEach(a => a.addEventListener('click
 const observer = new IntersectionObserver(e => e.forEach(x => { if(x.isIntersecting) x.target.classList.add('visible'); }), { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+// ===== PREFILL FROM PACKY (?dest=Japan#plan) =====
+try { var _d = (new URLSearchParams(location.search).get('dest') || '').replace(/[^A-Za-z ,.'-]/g, '').slice(0, 40); var _di = document.getElementById('destination'); if (_d && _di && !_di.value) _di.value = _d; } catch (e) {}
 // ===== KIDS FIELD TOGGLE =====
 document.getElementById('kids').addEventListener('input', e => {
     document.getElementById('kidsAgesField').style.display = parseInt(e.target.value) > 0 ? 'block' : 'none';

@@ -5,7 +5,7 @@
 // Guarded: only pages on packsmartapp.com (and this project's Vercel previews) may call it; a few questions per visitor;
 // a daily cap per instance. Questions are logged without personal data, so the owner can see what travellers ask.
 import JAPAN_KB from './_japan_kb.js';
-import { OFFERS, TOUR_PLACES } from './_offers.js';
+import { OFFERS, TOUR_PLACES, ITINQ } from './_offers.js';
 
 // One Packy, scoped by country (D56): each country has its own official-source knowledge. Add a country here when its
 // knowledge pack exists (built like tools/w74_japan_ask_kb.py) and its pages load /packy.js with data-country.
@@ -54,7 +54,9 @@ function search(q, n, topicWords) {
   const tw = (topicWords || []).map(stem).filter(w => !base.includes(w));
   // health cost questions: readers say "expensive" or "cost"; JNTO says "medical expenses" and "estimate"
   const careCost = CAREQ.test(qLow) && PRICEQ.test(qLow) ? ['expenses', 'estimate', 'payment', 'insurance'] : [];
-  const qs = [...new Set(base.concat(...base.map(w => ALIAS[w] || []), careCost).map(stem))];
+  // itinerary questions name no place or topic: bring in the regions and the city-to-city train times
+  const itin = ITINQ.test(qLow) && !/\bpass\b|ticket|visa/.test(qLow) ? ['kyoto', 'osaka', 'shinkansen', 'tokai', 'kansai', 'destinations'] : [];
+  const qs = [...new Set(base.concat(...base.map(w => ALIAS[w] || []), careCost, itin).map(stem))];
   const routeWords = base.concat(...base.map(w => ALIAS[w] || []));
   const scored = KB.map((p, i) => {
     let s = 0;
@@ -149,6 +151,7 @@ Rules:
 - Answer whatever part of the question the notes cover, even if they do not cover all of it, and say briefly which part to check with station staff or the official site. Many questions are partly answered by general notes (for example how IC cards like Suica work anywhere in Japan).
 - If the question is vague (for example "what's the cost like?" or "is it far?") and the PREVIOUS QUESTION does not make it clear, ask one short, friendly clarifying question, such as which trip, station or city they mean, and mention two or three specific things you can help with.
 - Only if nothing at all in the notes is relevant: do not guess and do not state any facts; reply naturally in one or two sentences, say what you can help with (getting between places, stations, airports, trains, buses, money, luggage, seasons), and suggest a specific question. Do not add a Source line. When you have answered any part of the question, never add that list of what you can help with.
+- Itinerary, route or "plan my trip" requests (for example "10 days for a family of 4"): never answer that you can only help with specific questions. Give a short starting shape from the notes: which cities or areas could fit their days (for example Tokyo, then Kyoto and Osaka in Kansai) with the train times between them the notes give, and one or two things from the notes that fit their group or season (children's fares, the season they mention). Then say in one sentence that the "Build a day-by-day Japan plan" button below makes a full plan for their dates and group. End with one friendly question, such as which month they travel or what their family loves most. Never invent sights, day counts, opening hours or prices the notes do not hold.
 - Never mention notes or sources in your sentences: never write "the notes", "my notes", "I only have", "the information I have" or "I don't have information about". Say what is known; for a missing part say naturally that you don't have a checked answer for it yet and who to ask (station staff, the official site).
 - Health, illness, injury, doctors, hospitals, insurance or emergencies: if the notes give Japan's emergency numbers or the Japan Visitor Hotline, start with them (ambulance 119, police 110, and the hotline's number, hours and languages), then add anything else relevant from the notes. Keep it calm and practical. For a question about medical costs, give the examples of high bills the notes give, the tip to ask for an estimate at reception, and the advice to buy travel insurance; mention exceptions (such as care that insurance does not cover) only after that.
 - Shape: the first sentence answers the question directly; when it matters, say who says so (for example "Japan's tourism body JNTO recommends…" or "JR says…"). Then two to four short facts or steps from the notes. When the notes hold one, end with one practical local tip in its own sentence starting "Tip:". Mention rare exceptions only if asked or if they matter for safety, and never end on a caveat that undercuts the answer.
