@@ -554,3 +554,8 @@ on Chuo Bus only; PayPay on Hokuto Kotsu only. Contacts: Chuo Bus 0570-200-600, 
 - Airport to Sapporo, hotels loop: 11 a day, ANA stop 12:30 to 19:30, via Nakajima Park and hotels to Keio Plaza Hotel, 81 min.
 - Stop numbers at the airport are not on this page (the airport's bus page lists 14, 22 and 84).
 
+
+## New Chitose Airport: onsen and hotel inside the airport
+Source: https://www.hokkaido-airports.com/en/new-chitose/spend/relax/ (New Chitose Airport, "Hotels and Onsens", checked 26 Nov 2026)
+- The airport's own page: "Relax and unwind in our onsen and hotel, both conveniently located within the airport."
+- Gap: the onsen's name, floor, hours and price are not read yet (the page lists them separately); Packy points to the page for details.

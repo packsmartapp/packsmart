@@ -321,7 +321,7 @@
     var c = body.querySelector('.pk-chips'); if (c) c.remove();
     var mine = meRow(q); var wait = botRow('<span class="pk-dots" aria-label="Packy is checking the official sources"><i></i><i></i><i></i></span>'); scrollDown();
     send.disabled = true; input.value = '';
-    fetch('/api/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, prev: history.length ? history[history.length - 1].q : '', country: country, topic: topic }) })
+    fetch('/api/ask', { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ q: q, prev: history.length ? history[history.length - 1].q : '', ctx: history.slice(-3).map(function (h) { return { q: h.q, a: String(h.a || '').slice(0, 600) }; }), country: country, topic: topic }) })
       .then(function (r) { return r.json().then(function (d) { return [r.ok, d]; }); })
       .then(function (x) {
         var ok = x[0], d = x[1]; wait.remove();
