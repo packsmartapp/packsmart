@@ -806,6 +806,25 @@ export default [
 ]
 },
 {
+"t": "japan daily life > Japan daily life and local laws: official sources (for Packy) > Onsen (hot spring) etiquette: nudity, washing, towels, hair",
+"x": "Source: https://www.japan.travel/en/uk/inspiration/onsen-hot-springs-on-tattoos-and-etiquette/ (JNTO, \"Onsen Hot Springs - On Tattoos and Etiquette\", checked 26 Nov 2026)\n- Nudity: \"Most hot springs (aside from a couple of more commercial themepark-style ones) will ask you to go in fully\n  naked both to prevent contamination from your swimsuit and to practice a bit of 'skinship'.\"\n- Men and women: \"The vast majority of public onsen in Japan will be separated by male (blue) and female (red), but ...\n  mixed onsen do exist.\"\n- Not comfortable with nudity: \"private 'kashikiri' onsen, en-suite onsen and 'ashiyu' footbaths are some of the other\n  best ways to still partake in Japanese bathing culture.\"",
+"u": [
+"https://www.japan.travel/en/uk/inspiration/onsen-hot-springs-on-tattoos-and-etiquette/"
+]
+},
+{
+"t": "japan daily life > Japan daily life and local laws: official sources (for Packy) > Onsen (hot spring) etiquette: nudity, washing, towels, hair",
+"x": "- Towel: \"You will usually be provided with a small towel you can use to cover your delicates and wash yourself with\n  before getting in, but remember that you must keep this towel out of the water.\"\n- Wash first: \"make your way to the washing facilities (small seated shower booths) ... You are expected to thoroughly\n  wash your whole body before entering the hot spring to prevent contamination of the water.\" \"There is almost always\n  free shampoo, body wash and conditioner, and hair dryers\" in the changing rooms.\n- Hair: \"Keep your hair out of the water. Take a hair tie with you if your hair is long and don't fully submerge\n  yourself, even if your hair is short.\"",
+"u": []
+},
+{
+"t": "japan daily life > Japan daily life and local laws: official sources (for Packy) > Onsen (hot spring) etiquette: nudity, washing, towels, hair",
+"x": "- Tattoos at onsen: \"Many onsen owners don't care, while fellow bathers will probably overlook small, less noticeable\n  tattoos\"; \"Tattoo seals ... will happily conceal a small to medium sized tattoo\"; \"Tattoo-friendly onsen - They exist!\"\n  Useful phrase: \"Tatu shiiru ga arimasu ka?\" (Do you have any tattoo seals?)\nSource: https://www.japan.travel/en/ca/etiquette/ (JNTO Canada, \"Etiquette\", checked 26 Nov 2026)\n- \"Nothing but your meticulously cleaned, naked body should be entering the water!\" Onsen and bath houses \"will have\n  several sit-down showers upon entering the bathing area, typically equipped with stools, soap, and shampoo.\"\n- \"Those with tattoos may not be allowed entry to public baths, however, ryokan (traditional Japanese inns) will often\n  have private baths where this policy does not apply.\"",
+"u": [
+"https://www.japan.travel/en/ca/etiquette/"
+]
+},
+{
 "t": "japan daily life > Japan daily life and local laws: official sources (for Packy) > Tattoos (onsen, public baths, pools, gyms)",
 "x": "Source: https://www.japan.travel/en/plan/local-laws/ (checked 26 Nov 2026)\n- \"Many public swimming pools, public baths, hot spring resorts, and gyms prohibit entry to anyone with tattoos—even\n  small ones. The rules are loosening slightly, and some establishments will simply ask you to cover any tattoos up.\n  Research in advance to avoid any disappointment.\"",
 "u": [
