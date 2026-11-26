@@ -274,14 +274,18 @@ HERO_CSS = """
 .jp-scene{position:relative;min-height:280px;pointer-events:none}
 /* "Fuji through the seasons": a small switcher on the scene (starts on the current season) */
 .jp-seasons{position:absolute;left:50%;top:calc(100% + 10px);transform:translateX(-50%);pointer-events:auto;white-space:nowrap;display:flex;align-items:center;gap:12px}
-.jp-seasons small{display:block;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#5a6378;margin:0;text-align:right;line-height:1.35;white-space:normal;width:118px}
+.jp-seasons small{display:block;font-size:.66rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;color:#0a8f78;margin:0;text-align:right;line-height:1.35;white-space:normal;width:150px}
+.jp-seasons small i{font-style:normal;color:#E94560;display:inline-block;animation:jpNudge 1.8s ease-in-out infinite}
+@keyframes jpNudge{0%,60%,100%{transform:none}30%{transform:translateX(4px)}}
+@media (prefers-reduced-motion:reduce){.jp-seasons small i{animation:none}}
+@media (min-width:901px){.jp-seasons small{font-size:.72rem;width:170px}}
 .jp-seasons-row{display:inline-flex;align-items:center;gap:4px;background:rgba(255,255,255,.92);border:1px solid #BFEDE3;border-radius:999px;padding:3px;box-shadow:0 6px 16px rgba(0,168,140,.12)}
 .jp-seasons button{width:30px;height:30px;border:0;border-radius:50%;background:#E6FAF5;color:#0a8f78;font-size:1.25rem;line-height:1;font-weight:800;cursor:pointer}
 .jp-seasons button:hover{background:#00C9A7;color:#fff}
 .jp-s-lbl{min-width:104px;font-size:.88rem;color:#0f0f23}.jp-s-lbl span{color:#E94560;margin-right:5px}
 .jp-scene .fuji,.jp-scene .ss{transition:opacity .35s}
 .jp-hero-top .jp-scene{margin-bottom:64px}
-@media (min-width:601px) and (max-width:900px){.jp-seasons{gap:8px}.jp-seasons small{width:92px}}
+@media (min-width:601px) and (max-width:900px){.jp-seasons{gap:8px}.jp-seasons small{width:112px;font-size:.62rem}}
 .jp-hero-top .jp-scene{margin-bottom:56px}
 @media (max-width:600px){.jp-hero-top .jp-scene{margin-bottom:46px}.jp-seasons{top:calc(100% + 6px)}.jp-seasons small{display:none}}
 .jp-scene .fuji{position:absolute;inset:0;width:100%;height:100%;display:block;will-change:transform;-webkit-mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%);mask-image:linear-gradient(90deg,transparent 0,#000 14%,#000 86%,transparent 100%)}
@@ -426,7 +430,7 @@ def hero_html():
 <button type="button" class="jp-hello" id="jpHello"><span class="av" aria-hidden="true">""" + _face_av() + """</span><span class="bub"><b>Konnichiwa!</b> I'm Packy 👋 Where are you landing? Ask me anything.</span></button>
 <div class="jp-live" aria-label="Japan right now"><span id="jpClock">🕗 Japan time</span><span id="jpWx" hidden></span><span id="jpSeason"></span></div>
 </div><div class="jp-scene" data-season="%%SEASON%%">""" + FUJI_SVG + '<div class="sk" aria-hidden="true">' + SAKURA_SVG + """</div>
-<div class="jp-seasons" role="group" aria-label="See Mt Fuji in each season"><small>Fuji through the seasons</small><span class="jp-seasons-row"><button type="button" class="jp-s-prev" aria-label="Previous season">&#8249;</button><b class="jp-s-lbl" aria-live="polite"></b><button type="button" class="jp-s-next" aria-label="Next season">&#8250;</button></span></div></div></div>
+<div class="jp-seasons" role="group" aria-label="See Mt Fuji in each season"><small>See Mt Fuji through the seasons <i aria-hidden="true">→</i></small><span class="jp-seasons-row"><button type="button" class="jp-s-prev" aria-label="Previous season">&#8249;</button><b class="jp-s-lbl" aria-live="polite"></b><button type="button" class="jp-s-next" aria-label="Next season">&#8250;</button></span></div></div></div>
 """ + ASK + """
 </div>
 </section>
