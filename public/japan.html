@@ -270,7 +270,8 @@
 .jp-words-mail .r2 .y{background:#00C9A7;border-color:#00C9A7;color:#fff}
 @media (max-width:600px){.jp-words{align-items:flex-end;padding:0}.jp-words-in{max-width:none;border-radius:22px 22px 0 0;max-height:88vh;padding-bottom:calc(16px + env(safe-area-inset-bottom))}}
 @media (prefers-reduced-motion:reduce){.jp-cat-offer,.jp-words-in{animation:none}}
-.jp-cat:hover .jp-cat-say,.jp-cat.on .jp-cat-say{opacity:1;transform:none}
+/* the bubble stays from page load until the first tap, so readers know the cat can be tapped (owner, 26 Nov) */
+.jp-cat:hover .jp-cat-say,.jp-cat.on .jp-cat-say,.jp-cat:not(.heard) .jp-cat-say{opacity:1;transform:none}
 .jp-cat:hover .paw,.jp-cat.on .paw{animation-duration:.8s}
 @keyframes jpBeckon{0%,55%,100%{transform:rotate(0)}65%{transform:rotate(-16deg)}75%{transform:rotate(4deg)}85%{transform:rotate(-12deg)}}
 /* a small sound badge so phone users (no hover) know the cat can be tapped; gone once it has been */
@@ -669,12 +670,7 @@ if(cat){var ct;cat.addEventListener('click',function(){cat.classList.add('on','h
  if(location.hash==='#words'){offered=true;setTimeout(function(){openWords();track('cat_words_link');},400);}
  cat.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();cat.click();}});
  cat.addEventListener('mouseenter',function(){track('cat_hello');});
- // phones have no hover: the first time the cat comes into view, its bubble ("Tap me to hear it") shows by itself for
- // a few seconds, once per visit and without sound
- var peeked=false;try{peeked=sessionStorage.getItem('jpCatPeek')==='1';}catch(e){}
- if(!peeked&&'IntersectionObserver' in window){var io=new IntersectionObserver(function(es){if(!es[0].isIntersecting)return;io.disconnect();
-   try{sessionStorage.setItem('jpCatPeek','1');}catch(e){}
-   setTimeout(function(){if(cat.classList.contains('on'))return;cat.classList.add('on');clearTimeout(ct);ct=setTimeout(function(){cat.classList.remove('on');},4000);},700);},{threshold:.8});io.observe(cat);}}
+}
 // the compact welcome band: slides in under the menu once the hero's Ask box has scrolled away, and the page scrolls
 // underneath it (the full hero is taller than most screens, so it cannot stay at full size)
 var mini=document.getElementById('jpMini'),askBox=document.getElementById('ask');
