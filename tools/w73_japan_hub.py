@@ -323,6 +323,9 @@ body[data-season=winter] .jp-petal svg{transform:scale(.7)}
 .jp-live{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 1.2rem}
 .jp-live span{display:inline-flex;align-items:center;gap:6px;font-size:.86rem;font-weight:700;background:#fff;color:#0f0f23;border:1px solid #BFEDE3;border-radius:999px;padding:6px 12px}
 .jp-live span[hidden]{display:none}
+/* phones: fewer words above the Ask box, so the eye goes to it (owner, 26 Nov). The greeting bubble repeats the Ask
+   box right below it, and the season already shows on the Fuji switcher. */
+@media (max-width:600px){.jp-hello,#jpSeason{display:none!important}.jp-ask-sub{display:none}.jp-ask-hint{font-size:.74rem}.jp-ask-note{font-size:.68rem;line-height:1.4}}
 @media (max-width:600px){.jp-live{gap:6px}.jp-live span{font-size:.74rem;font-weight:600;padding:4px 10px;gap:4px}}
 .jp-board{background:rgba(255,255,255,.9);border:1px solid #BFEDE3;border-radius:18px;padding:12px 12px 8px;box-shadow:0 14px 34px rgba(0,168,140,.12);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px)}
 .jp-board-h{display:flex;align-items:center;justify-content:space-between;color:#0a8f78;font-weight:800;letter-spacing:.14em;font-size:.78rem;padding:2px 4px 8px}
@@ -358,7 +361,7 @@ body[data-season=winter] .jp-petal svg{transform:scale(.7)}
 @media (max-width:600px){
  .jp-hero-top{grid-template-columns:1fr}.jp-scene{order:-1;min-height:0;height:170px;margin:0 -4px;overflow:visible}
  .jp-scene .sk{width:86px!important;left:-18px!important;top:-26px!important}
- .jp-scene .sk{display:block}.jp-hero h1{font-size:2.6rem}.jp-hero-lead{font-size:.98rem}
+ .jp-scene .sk{display:block}.jp-hero h1{font-size:2.2rem}.jp-hero-lead{font-size:.9rem;line-height:1.5;margin-bottom:.8rem}
  .jp-board a{grid-template-columns:1fr auto;grid-template-areas:"r t" "b t";row-gap:2px}
  .jp-board .f.fr{grid-area:r;white-space:normal}.jp-board .f.fr:after{content:" → " attr(data-to);color:#0f0f23}
  .jp-board .f.to{display:none}.jp-board .f.by{grid-area:b;font-size:.74rem;color:#5a6378}.jp-board .f.t{grid-area:t;font-size:1rem}.jp-board .go{display:none}
