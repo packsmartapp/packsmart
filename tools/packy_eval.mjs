@@ -53,6 +53,8 @@ const CASES = [
   ['Where can I buy medicine for a cold?', '', /pharmacy|drugstore/i],
   ['How do I call an ambulance?', '', /119/],
   ['Is there a helpline in English?', '', /visitor hotline/i],
+  ['How do I find an English-speaking doctor in Osaka?', '', /search medical institutions|medical institutions where consultations/i],
+  ['Does travel insurance cover pregnancy care?', '', /perinatal/i],
 ];
 const verbose = process.argv.includes('-v');
 let hit = 0;

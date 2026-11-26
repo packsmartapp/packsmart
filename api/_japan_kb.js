@@ -784,6 +784,18 @@ export default [
 ]
 },
 {
+"t": "japan health > Japan health, doctors and travel insurance: official sources (for Packy) > Finding an English-speaking doctor or hospital",
+"x": "Source: https://www.jnto.go.jp/emergency/eng/mi_guide.html (\"Search Medical institutions\", checked 26 Nov 2026)\n- JNTO has a search for medical institutions on that page: \"Select area, language, and medical department\", or search\n  by keyword. It also offers a \"list of medical institutions as a PDF\" for each area.\n- Languages it can search include English, Chinese, Korean, Spanish, French, German, Hindi, Thai, Vietnamese and more\n  (about 30 language codes).\n- \"Only basic information is provided here. Please check with each medical institution for details on medical\n  treatment such as business hours and what language each facility can accommodate.\" \"When possible, please contact\n  each medical institution before visiting.\" \"There may be cases where treatment cannot be provided.\"",
+"u": [
+"https://www.jnto.go.jp/emergency/eng/mi_guide.html"
+]
+},
+{
+"t": "japan health > Japan health, doctors and travel insurance: official sources (for Packy) > Finding an English-speaking doctor or hospital",
+"x": "- \"Some medical institutions may not be able to support certain languages, depending on the circumstances.\"\n  \"Patients may be referred to another medical institution, depending on the extent of the illness or injury.\"\n- \"Travel insurance does not cover perinatal medical care, which could make it expensive.\"\n- For help finding one by phone: the Japan Visitor Hotline (below) gives \"introductions to medical institutions where\n  consultations can be done in foreign languages\".",
+"u": []
+},
+{
 "t": "japan health > Japan health, doctors and travel insurance: official sources (for Packy) > Ambulance and emergency hospitals",
 "x": "Source: https://www.jnto.go.jp/emergency/eng/mi_guide.html (\"How to use an emergency care hospital\", checked 26 Nov 2026)\n- \"Ambulance: Call 119.\" \"If you need an ambulance, show the sentence below to a nearby Japanese person so they will call\n  one for you\": 救急車を呼んでください。 (\"Please call an ambulance.\")\n- \"Be transported to an emergency care hospital in the event of a traffic accident or other emergency.\"\n- \"You cannot choose which hospital you will be brought to. Depending on your condition, you may be given treatment\n  without being questioned, so it is important to fill out the sheet below\" (JNTO's medical information sheet, PDF, on\n  the same page).",
 "u": [
