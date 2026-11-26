@@ -83,7 +83,7 @@
     '.pk-offer{display:flex;align-items:center;gap:7px;margin:10px 0 0;padding:7px 10px;border-radius:10px;background:#FFFAFB;border:1px solid #F3D3DB;color:#3f4a5c!important;text-decoration:none!important;font-size:12.5px;line-height:1.35;transition:border-color .15s}' +
     '.pk-offer:hover{border-color:#E94560}.pk-offer i{font-style:normal;font-size:14px;flex:none}' +
     '.pk-offer b{flex:1;font-weight:600;color:#0f0f23}.pk-offer small{font-size:10.5px;color:#8a93a6;white-space:nowrap}.pk-offer em{font-style:normal;color:#E94560;font-weight:700}' +
-    '.pk-pocket{margin:8px 0 0;padding-top:7px;border-top:1px dashed #D5DCE0}' +
+    '.pk-pocket{margin:8px 0 0;padding-top:7px;border-top:1px dashed #D5DCE0;font-size:12.5px;line-height:1.45}.pk-hint{color:#5a6378}' +
     '.pk-soft{display:inline;margin:0;font-size:12.5px;font-weight:600;color:#0a8f78!important;text-decoration:none!important}.pk-soft:hover{text-decoration:underline!important}' +
     '.pk-more{font-size:14px;border-top:1px dashed #D5DCE0;margin-top:10px!important;padding-top:8px}' +
     '.pk-src{font-size:11.5px;color:#8a93a6;margin-top:8px!important;line-height:1.4}.pk-msg .pk-src a{color:#6b7a8f;font-weight:500}' +
@@ -252,6 +252,7 @@
       : '<a class="pk-soft" href="/japan?src=packy#pocket-hub">📱 Pocket Guides for ' + esc(C.name) + '\'s airports and stations · no app, work offline&nbsp;→</a>';
     // a quiet footnote at the end of Packy's last answer, not a card of its own (owner, 26 Nov)
     var bots = body.querySelectorAll('.pk-msg.pk-bot'), last = bots[bots.length - 1];
+    html = '<span class="pk-hint">You may find this helpful:</span> ' + html;   // a friend's suggestion, not a promotion (owner, 26 Nov)
     if (last) { var d = el('div', 'pk-pocket', html); last.appendChild(d); } else botRow(html);
     track('pocket_card');
   }
