@@ -183,8 +183,8 @@
     // "Did you know?" (owner, 26 Nov): a fact that inspires and leads on, in place of one of the three questions
     var fc = null;
     if (fact && fact.t) {
-      fc = el('div', 'pk-fact', '<b>Did you know?</b>' + esc(fact.t) + (fact.q ? ' <button type="button">Tell me more&nbsp;→</button>' : ''));
-      var fb = fc.querySelector('button'); if (fb) fb.addEventListener('click', function () { track('fact_more'); ask(fact.q); });
+      fc = el('div', 'pk-fact', '<b>Did you know?</b>' + esc(fact.t) + ' <button type="button">Tell me more&nbsp;→</button>');
+      var fb = fc.querySelector('button'); if (fb) fb.addEventListener('click', function () { track('fact_more'); ask(fact.q || ('Tell me more: ' + fact.t).slice(0, 220)); });
       track('fact_shown');
     }
     box.appendChild(el('p', 'pk-lbl', label));

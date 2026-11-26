@@ -191,7 +191,11 @@ function factOk(raw, notes) {
   if (ws.length < 3) return null;
   const best = Math.max(0, ...notes.map(p => { const low = (p.t + ' ' + p.x).toLowerCase(); return ws.filter(w => low.includes(w)).length / ws.length; }));
   if (best < 0.75) return null;
-  const q = q0 && q0.length > 8 && q0.length < 80 ? tidy(q0) : '';
+  // "Tell me more" must be about this fact: it shares a content word with it, otherwise the page asks about the fact itself
+  const GENERIC = new Set(['japan', 'japanese', 'tokyo', 'more', 'about', 'there', 'what', 'where', 'when']);
+  const tw = new Set(ws.filter(w => !GENERIC.has(w)));
+  const sharesWord = q0 && words(q0).map(stem).some(w => w.length > 2 && tw.has(w));
+  const q = q0 && sharesWord && q0.length > 8 && q0.length < 80 ? tidy(q0) : '';
   return { t: tidy(t0), q };
 }
 
