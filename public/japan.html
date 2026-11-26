@@ -228,15 +228,15 @@
 @media (max-width:760px){.jp-two{grid-template-columns:1fr}.jp-links{padding:1.1rem 1rem}}
 /* the maneki-neko (lucky cat) beckons at the Ask Packy box; its paw waves gently (still with reduced motion) */
 .jp-cat{position:absolute;right:-26px;top:-86px;width:96px;cursor:pointer;filter:drop-shadow(0 6px 10px rgba(15,15,35,.12))}
-.jp-cat svg{width:100%;height:auto;display:block}
+.jp-cat svg{position:relative;z-index:2;width:100%;height:auto;display:block}
 .jp-cat .paw{transform-box:view-box;transform-origin:146px 112px;animation:jpBeckon 2.4s ease-in-out infinite}
-.jp-cat-say{position:absolute;right:88%;top:38%;z-index:4;white-space:nowrap;background:#0f0f23;color:#fff;font-size:.82rem;font-weight:700;padding:7px 11px;border-radius:14px 4px 14px 14px;opacity:0;transform:translateX(6px) scale(.9);transform-origin:top right;transition:opacity .18s,transform .18s;pointer-events:none}
-.jp-cat-say span{color:#FFC1D1;margin-right:4px}.jp-cat-say small{display:block;font-size:.68rem;font-weight:600;color:#C9D1F0;margin-top:2px}
+.jp-cat-say{position:absolute;right:88%;top:38%;z-index:1;white-space:nowrap;background:linear-gradient(135deg,#FF8DB8,#FF5C8A);color:#fff;font-size:.82rem;font-weight:800;padding:8px 26px 8px 13px;border-radius:18px 6px 18px 18px;box-shadow:0 8px 20px rgba(255,92,138,.35);opacity:0;transform:translateX(6px) scale(.9);transform-origin:top right;transition:opacity .18s,transform .18s;pointer-events:none}
+.jp-cat-say span{color:#FFF6B0;margin-right:4px}.jp-cat-say small{display:block;font-size:.68rem;font-weight:700;color:#fff;opacity:.92;margin-top:2px}
 .jp-cat:hover .jp-cat-say,.jp-cat.on .jp-cat-say{opacity:1;transform:none}
 .jp-cat:hover .paw,.jp-cat.on .paw{animation-duration:.8s}
 @keyframes jpBeckon{0%,55%,100%{transform:rotate(0)}65%{transform:rotate(-16deg)}75%{transform:rotate(4deg)}85%{transform:rotate(-12deg)}}
 /* a small sound badge so phone users (no hover) know the cat can be tapped; gone once it has been */
-.jp-cat-tap{position:absolute;left:2px;bottom:16%;z-index:2;width:28px;height:28px;border-radius:50%;background:#E94560;color:#fff;font-size:.8rem;line-height:1;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 3px 8px rgba(233,69,96,.35);animation:jpTapPulse 2.2s ease-out infinite}
+.jp-cat-tap{position:absolute;left:2px;bottom:16%;z-index:3;width:28px;height:28px;border-radius:50%;background:#E94560;color:#fff;font-size:.8rem;line-height:1;display:flex;align-items:center;justify-content:center;border:2px solid #fff;box-shadow:0 3px 8px rgba(233,69,96,.35);animation:jpTapPulse 2.2s ease-out infinite}
 .jp-cat.heard .jp-cat-tap{display:none}
 .jp-cat:focus-visible{outline:2px solid #00C9A7;outline-offset:4px;border-radius:12px}
 @keyframes jpTapPulse{0%{box-shadow:0 3px 8px rgba(233,69,96,.35),0 0 0 0 rgba(233,69,96,.45)}70%,100%{box-shadow:0 3px 8px rgba(233,69,96,.35),0 0 0 10px rgba(233,69,96,0)}}
