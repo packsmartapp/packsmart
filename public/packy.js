@@ -83,6 +83,8 @@
     '.pk-offer{display:flex;align-items:center;gap:7px;margin:10px 0 0;padding:7px 10px;border-radius:10px;background:#FFFAFB;border:1px solid #F3D3DB;color:#3f4a5c!important;text-decoration:none!important;font-size:12.5px;line-height:1.35;transition:border-color .15s}' +
     '.pk-offer:hover{border-color:#E94560}.pk-offer i{font-style:normal;font-size:14px;flex:none}' +
     '.pk-offer b{flex:1;font-weight:600;color:#0f0f23}.pk-offer small{font-size:10.5px;color:#8a93a6;white-space:nowrap}.pk-offer em{font-style:normal;color:#E94560;font-weight:700}' +
+    '.pk-fact{margin:0 0 10px;padding:10px 12px;border-radius:14px;background:#FFF8E1;border:1px solid #F5DE9C;color:#3f4a5c;font-size:13.5px;line-height:1.45;animation:pkIn .3s ease both}' +
+    '.pk-fact b{color:#0f0f23}.pk-chips .pk-fact button{display:block!important;margin:6px 0 0!important;font:inherit!important;font-size:12.5px!important;font-weight:700!important;color:#0a8f78!important;background:none!important;border:0!important;box-shadow:none!important;padding:0!important;min-height:0!important;cursor:pointer;animation:none!important}.pk-chips .pk-fact button:hover{text-decoration:underline}' +
     '.pk-pocket{margin:8px 0 0;padding-top:7px;border-top:1px dashed #D5DCE0;font-size:12.5px;line-height:1.45}.pk-hint{color:#5a6378}' +
     '.pk-soft{display:inline;margin:0;font-size:12.5px;font-weight:600;color:#0a8f78!important;text-decoration:none!important}.pk-soft:hover{text-decoration:underline!important}' +
     '.pk-more{font-size:14px;border-top:1px dashed #D5DCE0;margin-top:10px!important;padding-top:8px}' +
@@ -174,10 +176,17 @@
     return fmt(p[0]) + (guide ? '<p class="pk-more">📖 More in our <a href="' + esc(guide.url) + '">' + esc(guide.title) + '</a></p>' : '') + offerHtml(offer) +
       (p[1] ? '<p class="pk-src">Source: ' + fmt(p[1]).replace(/^<p>|<\/p>$/g, '') + '</p>' : '');
   }
-  function chips(list, label) {
+  function chips(list, label, fact) {
     var old = body.querySelector('.pk-chips'); if (old) old.remove();
     if (!list || !list.length) return;
-    var box = el('div', 'pk-chips'); box.appendChild(el('p', 'pk-lbl', label));
+    var box = el('div', 'pk-chips');
+    // "Did you know?" (owner, 26 Nov): a fact that inspires and leads on, in place of one of the three questions
+    if (fact && fact.t) {
+      var fc = el('div', 'pk-fact', '<b>💡 Did you know?</b> ' + esc(fact.t) + (fact.q ? ' <button type="button">Tell me more&nbsp;→</button>' : ''));
+      var fb = fc.querySelector('button'); if (fb) fb.addEventListener('click', function () { track('fact_more'); ask(fact.q); });
+      box.appendChild(fc); list = list.slice(0, 2); track('fact_shown');
+    }
+    box.appendChild(el('p', 'pk-lbl', label));
     var mailChip = history.length >= 2 && history.length > sentN() && !body.querySelector('form.pk-mail');
     var known = savedEmail();
     list.forEach(function (q, i) {
@@ -303,6 +312,7 @@
   function scrollDown() { body.scrollTop = body.scrollHeight; }
   // show a new answer from its start: the traveller's question at the top, the answer below it, the next questions last
   function scrollToQ(m) { if (!m) return scrollDown(); var top = m.offsetTop - 10; if (still) body.scrollTop = top; else try { body.scrollTo({ top: top, behavior: 'smooth' }); } catch (e) { body.scrollTop = top; } }
+  var lastFact = -9;   // the answer number the last "Did you know?" was shown on
   function ask(q) {
     q = (q || '').trim(); if (q.length < 5 || busy) { input.focus(); return; }
     open(true); busy = true;
@@ -324,7 +334,10 @@
         var pk = pocketFor(d.guide);
         if (!(d.offer && d.offer.partner) && (pk || n >= 2) && once('pocket_' + (pk || 'hub'))) pocketCard(d.guide);
         if (n === 3 && !savedEmail() && once('email')) emailCard();
-        chips(next, 'Ask next');
+        // facts are a treat: from the second answer, then at most every third answer, never next to a partner offer
+        var fact = (d.fact && n >= 2 && n - lastFact >= 3 && !(d.offer && d.offer.partner)) ? d.fact : null;
+        if (fact) lastFact = n;
+        chips(next, 'Ask next', fact);
       })
       .catch(function () { wait.remove(); botRow('Packy needs an internet connection 📶 Please try again when you are online.', 'pk-err'); track('offline'); })
       .then(function () { busy = false; send.disabled = false; scrollToQ(mine); });
