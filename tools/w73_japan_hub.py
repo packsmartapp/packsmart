@@ -122,6 +122,17 @@ HUB_CSS = """<style id="jp-hub-css">
 .jp-words li button:hover{background:#00A88C}
 .jp-words-more{display:block;margin:12px 0 0;text-align:center;font-size:.86rem;font-weight:800;color:#0a8f78;background:#E6FAF5;border-radius:12px;padding:10px;text-decoration:none}
 .jp-words-note{margin:8px 0 0;font-size:.7rem;color:#8a93a6;text-align:center}
+.jp-words-mail{position:sticky;bottom:-16px;z-index:2;margin:12px 0 0;background:linear-gradient(135deg,#E6FAF5,#E8F4FC);border:1.5px solid #BFEDE3;border-radius:14px;padding:12px;font-size:.88rem;color:#0f0f23;box-shadow:0 -10px 18px rgba(255,255,255,.95)}
+.jp-words-mail b{display:block;margin:0 0 6px}.jp-words-mail p{margin:0 0 8px;color:#3f4a5c}
+.jp-words-mbtn{display:block;width:100%;font:inherit;font-weight:800;font-size:.92rem;border:0;border-radius:999px;padding:11px 14px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;cursor:pointer}
+.jp-words-mail .r{display:flex;gap:6px}.jp-words-mail input{flex:1;min-width:0;font:inherit;font-size:16px;border:1.5px solid #BFEDE3;border-radius:999px;padding:9px 14px;background:#fff;color:#0f0f23}
+.jp-words-mail .r button{flex:none;font:inherit;font-weight:800;border:0;border-radius:999px;padding:9px 16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;cursor:pointer}
+.jp-words-mail .r button[disabled]{opacity:.6}
+.jp-words-mail .f{display:block;margin-top:6px;font-size:.72rem;color:#5a6378}.jp-words-mail .f a{color:#5a6378}
+.jp-words-mail .e{display:block;margin-top:6px;font-size:.78rem;color:#c0284a;font-weight:700}
+.jp-words-mail .r2{display:flex;flex-wrap:wrap;gap:6px}
+.jp-words-mail .r2 button{font:inherit;font-size:.8rem;font-weight:800;border:1.5px solid #BFEDE3;border-radius:999px;padding:7px 12px;background:#fff;color:#0a8f78;cursor:pointer}
+.jp-words-mail .r2 .y{background:#00C9A7;border-color:#00C9A7;color:#fff}
 @media (max-width:600px){.jp-words{align-items:flex-end;padding:0}.jp-words-in{max-width:none;border-radius:22px 22px 0 0;max-height:88vh;padding-bottom:calc(16px + env(safe-area-inset-bottom))}}
 @media (prefers-reduced-motion:reduce){.jp-cat-offer,.jp-words-in{animation:none}}
 .jp-cat:hover .jp-cat-say,.jp-cat.on .jp-cat-say{opacity:1;transform:none}
@@ -482,6 +493,17 @@ def passes_html():
     return ("""<section id="arriving" aria-labelledby="jpPassT"><div class="jp-pass-h"><span class="jp-kick"><span lang="ja">空港</span> · Airports</span><h2 id="jpPassT">Where are you landing?</h2><p>Pick your airport: the free Pocket Guide works offline at the gate, and Packy can answer the rest.</p></div>
 <div class="jp-passes">""" + cards + """</div></section>""")
 
+def _words():   # the cat's starter words, shared with the "Email me these words" email (api/_japan_words.js)
+    src = open(os.path.join(ROOT, "api", "_japan_words.js"), encoding="utf-8").read()
+    m = re.search(r"export const WORDS = (\[.*?\]);", src, re.S)
+    if not m:
+        die("api/_japan_words.js: WORDS list not found")
+    w = json.loads(m.group(1))
+    if len(w) < 4 or any(len(x) != 4 for x in w):
+        die("api/_japan_words.js: each word needs [emoji, meaning, Japanese, romaji]")
+    return json.dumps(w, ensure_ascii=False).replace("</", "<\\/")
+
+
 HERO_JS = """<script>
 (function(){
 function track(s,x){try{if(window.gtag)gtag('event','hub_japan',{event_category:'engagement',status:s,item:x||'',page_path:location.pathname});}catch(e){}}
@@ -532,10 +554,7 @@ function sayHello(){try{if(!('speechSynthesis' in window))return;var now=Date.no
 // after the second Konnichiwa the cat offers a few Japanese words: a small card with 8 starter phrases (the same wording
 // as the Pocket Guides' "Say it in Japanese" list), each with a play button, and a link to the Tokyo Pocket Guide for more.
 // Offered once per visit; "Not now" is remembered for the visit too.
-var WORDS=[['👋','Hello','こんにちは。','Konnichiwa.'],['🙏','Thank you','ありがとうございます。','Arigatou gozaimasu.'],
- ['🙇','Excuse me / Sorry','すみません。','Sumimasen.'],['👌','No thanks, I am fine','大丈夫です。','Daijoubu desu.'],
- ['🚻','Where is the toilet?','トイレはどこですか？','Toire wa doko desu ka?'],['💴','How much is it?','いくらですか？','Ikura desu ka?'],
- ['👉','This one, please','これをください。','Kore o kudasai.'],['😋','It is delicious','おいしいです。','Oishii desu.']];
+var WORDS=%%WORDS%%;
 function sayJa(ja,ro){try{if(!('speechSynthesis' in window))return;if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel();
   try{speechSynthesis.resume();}catch(e){}if(!jaVoice&&!enVoice)pickVoice();var vo=jaVoice||enVoice,u=new SpeechSynthesisUtterance(jaVoice||!vo?ja:ro);
   if(vo){u.voice=vo;u.lang=vo.lang;}else u.lang='ja-JP';u.rate=.9;u.pitch=1.3;speechSynthesis.speak(u);}catch(e){}}
@@ -548,13 +567,38 @@ function openWords(){if(!words){words=document.createElement('div');words.classN
   words.innerHTML='<div class="jp-words-in"><button type="button" class="jp-words-x" aria-label="Close">✕</button>'+
    '<h3 id="jpWordsT">Your first Japanese words <span lang="ja">🇯🇵</span></h3><p class="jp-words-sub">Tap 🔊 to hear each one. A smile and a small bow go a long way.</p><ul>'+
    WORDS.map(function(w,i){return '<li><i aria-hidden="true">'+w[0]+'</i><div><b>'+esc(w[3])+'<span lang="ja">'+esc(w[2])+'</span></b><small>'+esc(w[1])+'</small></div><button type="button" data-w="'+i+'" aria-label="Play: '+esc(w[1])+'">🔊</button></li>';}).join('')+
-   '</ul><a class="jp-words-more" href="/tokyo-pocket?src=hub_cat">📱 50+ more phrases, offline, in the free Tokyo Pocket Guide</a>'+
+   '</ul><div class="jp-words-mail"><button type="button" class="jp-words-mbtn">📩 Email me these words</button></div>'+
+   '<a class="jp-words-more" href="/tokyo-pocket?src=hub_cat">📱 50+ more phrases, offline, in the free Tokyo Pocket Guide</a>'+
    '<p class="jp-words-note">The voice is your phone’s or computer’s own.</p></div>';
   document.body.appendChild(words);
   words.addEventListener('click',function(e){if(e.target===words||e.target.closest('.jp-words-x')){closeWords();return;}
    var b=e.target.closest('[data-w]');if(b){var w=WORDS[+b.getAttribute('data-w')];sayJa(w[2],w[3]);track('cat_word_play',w[3]);return;}
-   if(e.target.closest('.jp-words-more'))track('cat_words_more');});}
+   if(e.target.closest('.jp-words-more'))track('cat_words_more');
+   if(e.target.closest('.jp-words-mbtn'))mailForm();});}
  lastFocus=document.activeElement;words.hidden=false;document.addEventListener('keydown',wordsKey);try{words.querySelector('.jp-words-x').focus();}catch(e){}}
+// "Email me these words": Packy's email (D58, extended to this card on 26 Nov): the address, then a separate yes for
+// trip tips, then the trip month, exactly like "Email me this chat". The words themselves come from the server's own list.
+function okMail(v){return /^[^@ ]+@[^@ ]+[.][^@ ]{2,}$/.test(v);}
+function mailPost(b){return fetch('/api/email-chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(b)}).then(function(x){return x.json().then(function(d){return [x.ok,d];});});}
+function mailForm(){var box=words.querySelector('.jp-words-mail'),known='';try{known=localStorage.getItem('packy_email')||'';}catch(e){}if(!okMail(known))known='';
+ box.innerHTML='<form novalidate><b>📩 Get these words by email</b><div class="r"><input type="email" autocomplete="email" inputmode="email" placeholder="Your email" aria-label="Your email" value="'+esc(known)+'"><button type="submit">Send</button></div>'+
+  '<span class="f">Just these words, with a link to hear them again. <a href="/privacy-policy">Privacy</a></span></form>';
+ track('cat_words_mail');var f=box.querySelector('form'),inp=f.querySelector('input'),btn=f.querySelector('button');try{inp.focus();}catch(e){}
+ f.addEventListener('submit',function(e){e.preventDefault();var em=inp.value.trim();if(!okMail(em)){inp.focus();inp.style.borderColor='#E94560';return;}
+  btn.disabled=true;btn.textContent='…';
+  mailPost({kind:'words',email:em,tips:false,country:'japan'}).then(function(x){
+   if(!x[0]||!x[1].ok){btn.disabled=false;btn.textContent='Send';var er=f.querySelector('.e')||f.appendChild(document.createElement('span'));er.className='e';er.textContent=(x[1]&&x[1].error)||'Sorry, that did not work.';track('cat_words_mail_error');return;}
+   try{localStorage.setItem('packy_email',em);}catch(e){}track('cat_words_mail_sent');
+   box.innerHTML='<b>✅ Sent to '+esc(em)+'</b><p>Want trip tips for Japan before you go?</p><div class="r2"><button type="button" class="y">Yes please</button><button type="button" class="n">No thanks</button></div>';
+   box.querySelector('.n').addEventListener('click',function(){box.innerHTML='<b>✅ Sent to '+esc(em)+'</b><p>Check your inbox (and spam, just in case). Safe travels! 🇯🇵</p>';track('cat_words_tips_no');});
+   box.querySelector('.y').addEventListener('click',function(){var d=new Date();d.setDate(1);var ch='';
+    for(var i=0;i<8;i++){var v=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2);ch+='<button type="button" data-m="'+v+'">'+d.toLocaleString('en',{month:'short'})+(d.getMonth()===0||i===0?' '+d.getFullYear():'')+'</button>';d.setMonth(d.getMonth()+1);}
+    box.innerHTML='<b>Great! When is your trip?</b><div class="r2">'+ch+'<button type="button" data-m="">Not sure</button></div><span class="f">You can unsubscribe any time.</span>';
+    [].forEach.call(box.querySelectorAll('[data-m]'),function(m){m.addEventListener('click',function(){[].forEach.call(box.querySelectorAll('[data-m]'),function(z){z.disabled=true;});
+     mailPost({update:true,from:'words',email:em,tips:true,trip:m.getAttribute('data-m'),country:'japan'}).then(function(x){
+      box.innerHTML=x[0]&&x[1].ok?'<b>🎉 You’re on the list</b><p>We’ll send a few useful tips before your trip. Your words are in your inbox now.</p>':'<b>Your words are on their way</b><p>'+esc((x[1]&&x[1].error)||'We could not save the trip tips, sorry.')+'</p>';
+      track(x[0]&&x[1].ok?'cat_words_tips_yes':'cat_words_tips_error');}).catch(function(){box.innerHTML='<b>Your words are on their way</b><p>We could not save the trip tips without a connection.</p>';});});});});
+  }).catch(function(){btn.disabled=false;btn.textContent='Send';track('cat_words_mail_error');});});}
 function hideOffer(){if(offer)offer.hidden=true;cat.classList.remove('offering');}
 function showOffer(){if(offered)return;offered=true;try{sessionStorage.setItem('jpWordsOffer','1');}catch(e){}
  offer=document.createElement('div');offer.className='jp-cat-offer';offer.setAttribute('role','status');
@@ -565,6 +609,7 @@ function showOffer(){if(offered)return;offered=true;try{sessionStorage.setItem('
 if(cat){var ct;cat.addEventListener('click',function(){cat.classList.add('on','heard');track('cat_hello');sayHello();clearTimeout(ct);
   taps++;if(taps>=2&&!offered){ct=setTimeout(function(){cat.classList.remove('on');showOffer();},1600);return;}
   ct=setTimeout(function(){cat.classList.remove('on');},2500);});
+ if(location.hash==='#words'){offered=true;setTimeout(function(){openWords();track('cat_words_link');},400);}
  cat.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();cat.click();}});
  cat.addEventListener('mouseenter',function(){track('cat_hello');});
  // phones have no hover: the first time the cat comes into view, its bubble ("Tap me to hear it") shows by itself for
@@ -595,6 +640,7 @@ document.addEventListener('click',function(e){var t=e.target.closest&&e.target.c
 [].forEach.call(document.querySelectorAll('[data-board]'),function(a){a.addEventListener('click',function(){track('board_tap',a.getAttribute('data-board'));});});
 })();
 </script>"""
+HERO_JS = HERO_JS.replace("%%WORDS%%", _words())
 
 
 
@@ -857,6 +903,19 @@ if 'id="packy-email-privacy"' not in pv:
                     'We do not sell or share your email address. If we move this list to an email service, it will be used for the same purpose only.</p>\n\n' + a, 1)
     open(PRIV, "w", encoding="utf-8").write(pv)
     print("w73: privacy policy: Packy emails")
+
+# ---- privacy policy: the lucky cat's "Email me these words" uses the same Packy email (marker: packy-email-words, 26 Nov)
+pv = open(PRIV, encoding="utf-8").read()
+if "packy-email-words" not in pv and 'id="packy-email-privacy"' in pv:
+    a = '<p>If you ask Packy to email you your chat, we use your email address to send that one email from hello@packsmartapp.com, '
+    b = '<p><span id="packy-email-words"></span>If you ask Packy to email you your chat, or ask for the Japanese words from the lucky cat on our Japan page, we use your email address to send that one email from hello@packsmartapp.com, '
+    if pv.count(a) != 1:
+        die("privacy policy: Packy email sentence not found")
+    pv = pv.replace(a, b, 1)
+    pv = re.sub(r"<p>Last updated: [A-Za-z]+ \d+, 2026</p>", "<p>Last updated: November 26, 2026</p>", pv, count=1)
+    open(PRIV, "w", encoding="utf-8").write(pv)
+    print("w73: privacy policy: the cat's words email")
+
 # ---- privacy policy: the remembered address and the "continue" link (marker: id="packy-email-remember", 25 Nov 2026)
 if 'id="packy-email-remember"' not in pv:
     a = 'it will be used for the same purpose only.</p>\n'

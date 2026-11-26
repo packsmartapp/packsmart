@@ -30,6 +30,7 @@ This page says what exists and where. It does not repeat file contents, because 
 ## api/ (Vercel functions)
 
 - `api/_japan_kb.js`
+- `api/_japan_words.js`
 - `api/_offers.js`
 - `api/_packy_png.js`
 - `api/ask.js`
