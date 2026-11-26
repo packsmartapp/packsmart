@@ -32,16 +32,22 @@ const hits = new Map();
 let day = '', dayCount = 0;
 
 const words = s => (s.toLowerCase().normalize('NFKD').match(/[a-z0-9]+(?:-[a-z0-9]+)*/g) || []).filter(w => w.length > 2 && !STOP.has(w));
-const stem = w => w.replace(/(ings?|ed|es|s)$/, '');
+const stem = w => w.replace(/ies$/, 'y').replace(/(ings?|ed|es|s)$/, '');   // emergencies -> emergency, not emergenci
 // document frequency for weighting rare words higher
 const DOCS = KB.map(p => { const set = new Set(words(p.t + ' ' + p.x).map(stem)); return set; });
 const PRICEQ = /how much|\bcost|price|\bfare|\byen\b|expensive|cheap|\u00a5/;
+// health questions about cost ("how expensive is a hospital?") belong to the health notes, not the travel price sheet
+const CAREQ = /doctor|hospital|clinic|medical|insurance|ambulance|\bsick\b|\bill\b|injur|pharmac|medicine/;
+const priceQ = q => PRICEQ.test(q) && !CAREQ.test(q);
 const LOW = KB.map(p => (p.t + ' ' + p.x).toLowerCase());
+const LEN = DOCS.map(d => d.size), AVG_LEN = LEN.reduce((a, b) => a + b, 0) / LEN.length;
 const DF = new Map();
 DOCS.forEach(set => set.forEach(w => DF.set(w, (DF.get(w) || 0) + 1)));
 
 // a few place names travellers use for the same thing
-const ALIAS = { pass: ['rail', 'japan'], rent: ['rental'], hire: ['rental'], car: ['rental'], kansai: ['osaka', 'kyoto', 'kix'], kix: ['kansai'], kanto: ['tokyo'], hakata: ['fukuoka'], fukuoka: ['hakata'], chitose: ['new-chitose', 'cts'], cts: ['chitose'], kasai: ['kansai', 'osaka', 'kyoto'], shinkansen: ['bullet'], bullet: ['shinkansen'], suitcase: ['baggage', 'luggage'], luggage: ['baggage'], bag: ['baggage'], bags: ['baggage'], big: ['oversized'], large: ['oversized'], alcohol: ['alcoholic'], cigarette: ['cigarettes', 'tobacco'], phone: ['sim', 'wi-fi'], sim: ['esim'], money: ['cash', 'atm'], weather: ['season'], rain: ['rainy'], recharge: ['charge', 'add money', 'top'], topup: ['charge'], top: ['charge'], suica: ['ic', 'pasmo', 'icoca'], pasmo: ['suica', 'ic'], icoca: ['ic', 'suica'], airport: ['international'], osaka: ['kansai', 'itami'], kyoto: ['kansai'] };
+// health and safety: readers say doctor or sick; the official note says ambulance, illness, hotline (26 Nov)
+const CARE = ['ambulance', 'emergency', 'illness', 'hotline'];
+const ALIAS = { doctor: CARE, hospital: CARE, clinic: CARE, sick: CARE, ill: CARE, illness: CARE, injured: CARE, injury: CARE, medical: CARE, pharmacy: CARE, ambulance: CARE, unwell: CARE, emergency: ['ambulance', 'hotline', 'police'], insurance: ['medical', 'hospital', 'illness'], stolen: ['police', 'lost'], pass: ['rail', 'japan'], rent: ['rental'], hire: ['rental'], car: ['rental'], kansai: ['osaka', 'kyoto', 'kix'], kix: ['kansai'], kanto: ['tokyo'], hakata: ['fukuoka'], fukuoka: ['hakata'], chitose: ['new-chitose', 'cts'], cts: ['chitose'], kasai: ['kansai', 'osaka', 'kyoto'], shinkansen: ['bullet'], bullet: ['shinkansen'], suitcase: ['baggage', 'luggage'], luggage: ['baggage'], bag: ['baggage'], bags: ['baggage'], big: ['oversized'], large: ['oversized'], alcohol: ['alcoholic'], cigarette: ['cigarettes', 'tobacco'], phone: ['sim', 'wi-fi'], sim: ['esim'], money: ['cash', 'atm'], weather: ['season'], rain: ['rainy'], recharge: ['charge', 'add money', 'top'], topup: ['charge'], top: ['charge'], suica: ['ic', 'pasmo', 'icoca'], pasmo: ['suica', 'ic'], icoca: ['ic', 'suica'], airport: ['international'], osaka: ['kansai', 'itami'], kyoto: ['kansai'] };
 function search(q, n, topicWords) {
   const qLow = q.toLowerCase();
   const base = words(q);
@@ -54,20 +60,23 @@ function search(q, n, topicWords) {
       if (DOCS[i].has(w)) s += Math.log(1 + KB.length / (DF.get(w) || 1));
       else if (w.length >= 5 && LOW[i].includes(w)) s += Math.log(1 + KB.length / 8);   // word start, e.g. alcohol -> alcoholic
     }
-    if (PRICEQ.test(qLow) && KB[i].t.startsWith('japan prices') && s > 0) s += 4;   // cost questions: prefer the official price sheet
+    if (priceQ(qLow) && KB[i].t.startsWith('japan prices') && s > 0) s += 4;   // cost questions: prefer the official price sheet
     for (const w of tw) if (DOCS[i].has(w)) s += 0.5 * Math.log(1 + KB.length / (DF.get(w) || 1));   // the page's own topic, a light nudge
     // a route named as "A to B" (either way) is the strongest sign the piece answers the question
     const low = LOW[i];
     for (const a of routeWords) for (const b of routeWords) if (a !== b && (low.includes(a + ' to ' + b) || low.includes(a + '\u2013' + b) || low.includes(a + '-' + b))) s += 6;
     return [s, i];
-  }).filter(x => x[0] > 0).sort((a, b) => b[0] - a[0]);
+  }).filter(x => x[0] > 0).map(([s, i]) => [s / (0.75 + 0.25 * LEN[i] / AVG_LEN), i]).sort((a, b) => b[0] - a[0]);   // long notes no longer win by length alone
   // cost questions: always include the best few pieces from the official price sheet
-  if (PRICEQ.test(qLow)) {
+  if (priceQ(qLow)) {
     const prices = scored.filter(x => KB[x[1]].t.startsWith('japan prices')).slice(0, 3);
     const rest = scored.filter(x => !prices.includes(x));
     return prices.concat(rest).slice(0, n).map(x => KB[x[1]]);
   }
-  return scored.slice(0, n).map(x => KB[x[1]]);
+  // at most 4 pieces from one notes file, so one long file cannot fill every slot
+  const per = new Map(), out = [];
+  for (const x of scored) { const f = KB[x[1]].t.split(' > ')[0], c = per.get(f) || 0; if (c < 4) { per.set(f, c + 1); out.push(x); } if (out.length >= n) break; }
+  return out.map(x => KB[x[1]]);
 }
 const TOPIC_GUIDE = { sapporo: 'Sapporo Station guide', 'new-chitose': 'New Chitose Airport guide', ueno: 'Ueno Station guide', shinjuku: 'Shinjuku Station guide',
   tokyo: 'Tokyo Station guide', kyoto: 'Kyoto Station guide', osaka: 'Osaka Station guide', narita: 'Narita Airport guide', haneda: 'Haneda Airport guide', kansai: 'Kansai Airport guide' };
@@ -137,7 +146,9 @@ Rules:
 - Tone: friendly, upbeat and natural, like a well-travelled friend who knows Japan. Short sentences. At most one emoji, only where it fits. Never stiff, never a form letter, never the same canned sentence twice.
 - Answer whatever part of the question the notes cover, even if they do not cover all of it, and say briefly which part to check with station staff or the official site. Many questions are partly answered by general notes (for example how IC cards like Suica work anywhere in Japan).
 - If the question is vague (for example "what's the cost like?" or "is it far?") and the PREVIOUS QUESTION does not make it clear, ask one short, friendly clarifying question, such as which trip, station or city they mean, and mention two or three specific things you can help with.
-- If nothing in the notes is relevant: do not guess and do not state any facts; reply naturally in one or two sentences, say what you can help with (getting between places, stations, airports, trains, buses, money, luggage, seasons), and suggest a specific question. Do not add a Source line. Never say "I only have", "my notes" or "the information I have".
+- Only if nothing at all in the notes is relevant: do not guess and do not state any facts; reply naturally in one or two sentences, say what you can help with (getting between places, stations, airports, trains, buses, money, luggage, seasons), and suggest a specific question. Do not add a Source line. When you have answered any part of the question, never add that list of what you can help with.
+- Never mention notes or sources in your sentences: never write "the notes", "my notes", "I only have", "the information I have" or "I don't have information about". Say what is known; for a missing part say naturally that you don't have a checked answer for it yet and who to ask (station staff, the official site).
+- Health, illness, injury, doctors, hospitals, insurance or emergencies: if the notes give Japan's emergency numbers or the Japan Visitor Hotline, start with them (ambulance 119, police 110, and the hotline's number, hours and languages), then add anything else relevant from the notes. Keep it calm and practical.
 - Plain, short English: at most about 120 words. Use short bullet points ("- ") for steps or lists.
 - Give times, dates, platforms and rules exactly as the notes state them, with the checked date when the notes give one (for example "JR timetable, 24 Nov 2026"). Times change, so say to check before travelling when you give times.
 - If asked how far apart two places are and the notes give a travel time but no distance, answer with the travel time (for example "about 2.5 hours by Shinkansen").

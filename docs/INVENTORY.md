@@ -129,6 +129,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w78_pickups_button.py` | w78: the airport-transfer box's Continue button in our own button style, on every page that has the box (25 Nov 2026). |
 | `w79_hub_card.py` | w79: a "Japan hub" card near the end of the 15 Japan pages, so readers find the /japan hub (25 Nov 2026). |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
+| `packy_eval.mjs` | data file read by the scripts above |
 | `pocket_guides.json` | data file read by the scripts above |
 | `w62_photo_fixes.json` | data file read by the scripts above |
 

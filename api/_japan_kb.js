@@ -770,6 +770,54 @@ export default [
 ]
 },
 {
+"t": "japan health > Japan health, doctors and travel insurance: official sources (for Packy)",
+"x": "(https://www.jnto.go.jp/emergency/eng/mi_guide.html), which the cloud session cannot open directly. Quotes are exact.\nInsurance companies named on that page are left out on purpose (Packy names no insurance company except SafetyWing).",
+"u": [
+"https://www.jnto.go.jp/emergency/eng/mi_guide.html"
+]
+},
+{
+"t": "japan health > Japan health, doctors and travel insurance: official sources (for Packy) > If you feel ill or need a doctor",
+"x": "Source: https://www.jnto.go.jp/emergency/eng/mi_guide.html (\"How to use Medical institutions\", checked 26 Nov 2026)\n- \"The type of medical institution you need differs between time of use, if it is an emergency, and the level of\n  severity.\"\n- Emergency hospital: \"Available 24 hours a day, 365 days a year.\" \"Accepts emergency care patients.\"\n- \"If you need doctors' assistance\": \"Visit a clinic or general hospital during regular hours.\" \"Otherwise, go to\n  after-hours reception (varies by region).\"\n- \"If you do not need doctors' assistance\": a nearby pharmacy or drugstore; JNTO links an English-only search for\n  over-the-counter medicines. \"Consult a pharmacist or a registered sales clerk, if necessary.\" \"Some types of\n  medicines cannot be purchased when the pharmacist is not there.\"",
+"u": [
+"https://www.jnto.go.jp/emergency/eng/mi_guide.html"
+]
+},
+{
+"t": "japan health > Japan health, doctors and travel insurance: official sources (for Packy) > Ambulance and emergency hospitals",
+"x": "Source: https://www.jnto.go.jp/emergency/eng/mi_guide.html (\"How to use an emergency care hospital\", checked 26 Nov 2026)\n- \"Ambulance: Call 119.\" \"If you need an ambulance, show the sentence below to a nearby Japanese person so they will call\n  one for you\": 救急車を呼んでください。 (\"Please call an ambulance.\")\n- \"Be transported to an emergency care hospital in the event of a traffic accident or other emergency.\"\n- \"You cannot choose which hospital you will be brought to. Depending on your condition, you may be given treatment\n  without being questioned, so it is important to fill out the sheet below\" (JNTO's medical information sheet, PDF, on\n  the same page).",
+"u": [
+"https://www.jnto.go.jp/emergency/eng/mi_guide.html"
+]
+},
+{
+"t": "japan health > Japan health, doctors and travel insurance: official sources (for Packy) > At the hospital: reception and payment",
+"x": "Source: https://www.jnto.go.jp/emergency/eng/mi_guide.html (\"Procedure from hospital reception to payment\", checked 26 Nov 2026)\n- \"The medical care system varies by country. Avoid difficulties by learning about them in advance.\"\n- \"Ask for a general estimate of the treatment cost at reception.\"\n- \"There is a limited number of medical institutions that can accommodate other languages.\"\n- Then \"Fill out medical sheet\" (JNTO's \"Personal information concerning medical care to write down\", PDF).",
+"u": [
+"https://www.jnto.go.jp/emergency/eng/mi_guide.html"
+]
+},
+{
+"t": "japan health > Japan health, doctors and travel insurance: official sources (for Packy) > Travel insurance",
+"x": "Source: https://www.jnto.go.jp/emergency/eng/mi_guide.html (\"Travel Insurance\", checked 26 Nov 2026)\n- JNTO's page ends with: \"Don't forget to buy travel insurance!\"\n- \"There is travel insurance that you can purchase even after you enter Japan.\" \"Private medical insurance that you can\n  purchase after entering Japan provides sufficient coverage during your stay\": \"Coverage of up to 10 million yen that\n  even covers expensive treatment\"; \"Includes interpretation services as well as medical institution referral and\n  arrangement services\"; \"Negotiation of cashless payment for medical expenses, etc.\"\n- Cashless payment, as JNTO defines it: \"A system that allows short-term visitors, etc. to seek medical care without\n  having to pay the bill on-site by sending the bill to an insurance company ... instead of billing the short-stay\n  visitor, etc. directly.\"",
+"u": [
+"https://www.jnto.go.jp/emergency/eng/mi_guide.html"
+]
+},
+{
+"t": "japan health > Japan health, doctors and travel insurance: official sources (for Packy) > Travel insurance",
+"x": "- \"There are cases in which medical expenses during a trip to Japan can add up to a high amount.\" JNTO's examples:\n  a collision with a bicycle (traumatic pneumothorax and fractured ribs): surgery, a 19-day hospital stay, an attending\n  physician and a business-class flight home, 7.5 million yen; a heart attack: surgery, a 45-day hospital stay, an\n  attending physician and a business-class flight home, 10,000,000 yen.\n- \"Please be aware that foreign visitors who fail to pay their medical expenses may be denied entry into Japan in the\n  future.\"",
+"u": []
+},
+{
+"t": "japan health > Japan health, doctors and travel insurance: official sources (for Packy) > Japan Visitor Hotline (help in English, 24 hours)",
+"x": "Source: https://www.jnto.go.jp/emergency/eng/mi_guide.html (\"Japan Visitor Hotline\", checked 26 Nov 2026)\n- \"The Japan National Tourism Organization (JNTO) operates a 24/7 multilingual call center service 'Japan Visitor\n  Hotline'. If you are a foreign visitor to Japan and are in need of assistance, please contact us.\"\n- Scope: \"Support in the event of emergencies such as illness, disaster, etc., and general tourism information\n  (... introductions to medical institutions where consultations can be done in foreign languages, etc.)\"\n- Languages: \"English, Chinese, Korean\". \"As a general rule, we do not provide three-way interpretation or make\n  reservations on behalf of visitors to Japan.\"\n- TEL: \"050-3816-2787 (24 hours a day, 365 days a year)\".\n- Embassies: the Ministry of Foreign Affairs list \"Foreign Missions in Japan\":\n  https://www.mofa.go.jp/about/emb_cons/protocol/index.html",
+"u": [
+"https://www.jnto.go.jp/emergency/eng/mi_guide.html",
+"https://www.mofa.go.jp/about/emb_cons/protocol/index.html"
+]
+},
+{
 "t": "japan prices > Japan prices: official sources (for Packy)",
 "x": "Approximate prices a first-time visitor asks about, from official pages only (operators, airports, JNTO, city governments, the attraction's own site). All checked 24 Nov 2026. Packy should say \"about ¥X\" with the checked date and link the page, because fares change. Adult fares unless noted; \"child\" is usually ages 6–11.",
 "u": []

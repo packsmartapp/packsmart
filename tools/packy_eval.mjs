@@ -1,0 +1,66 @@
+// Packy search check (26 Nov 2026): real traveller questions, each with the note that should answer it.
+// It loads the search() from api/ask.js and the notes from api/_japan_kb.js, and reports whether a matching note is in
+// the top N that Packy hands the model. No network, no AI call.
+// Run from the repo root:  node tools/packy_eval.mjs        (add -v to list the top notes for every question)
+// Add a question whenever a reader's question gets a weak answer, so the fix stays fixed.
+import fs from 'fs';
+
+const src = fs.readFileSync('api/ask.js', 'utf8');
+const kbMod = await import(process.cwd() + '/api/_japan_kb.js');
+const KB = kbMod.KB || kbMod.default;
+// rebuild search() exactly as ask.js defines it (same words, stemming, aliases and weights)
+const stopLine = src.match(/const STOP = new Set\([^\n]*\n/)[0];
+const start = src.indexOf('const words = s =>');
+const end = src.indexOf('\n}\n', src.indexOf('function search(')) + 3;
+const twm = src.match(/const TOPIC_WORDS = \{[^\n]*\n/)[0];
+const { search, TOPIC_WORDS } = new Function('KB', stopLine + src.slice(start, end) + twm + 'return {search, TOPIC_WORDS};')(KB);
+
+const N = 9;   // what ask.js passes to the model
+// [question, page topic ('' = the hub or a general page), what a right note contains (regex on title + text)]
+const CASES = [
+  ['What should I do if I need a doctor in Tokyo?', '', /visitor hotline|119/i],
+  ['emergency number in Japan', '', /119/],
+  ['I feel sick, who can I call?', '', /visitor hotline|119/i],
+  ['I lost my wallet, what should I do?', '', /\b110\b|police|lost/i],
+  ['How do I get from Narita to Shinjuku?', '', /narita express|n'ex/i],
+  ['Haneda airport to Shibuya by train', '', /haneda/i],
+  ['How do I get from Kansai Airport to Kyoto?', '', /haruka|kyoto/i],
+  ['New Chitose Airport to Sapporo', '', /rapid|new chitose/i],
+  ['How do I top up a Suica card?', '', /suica/i],
+  ['Is tipping expected in Japan?', '', /tip/i],
+  ['Do I need a visa for Japan?', '', /visa/i],
+  ['Where can I withdraw cash at Shinjuku station?', 'shinjuku', /atm/i],
+  ['What plug do I need in Japan?', '', /plug|volt/i],
+  ['When is cherry blossom season?', '', /cherry|sakura/i],
+  ['How long is the Shinkansen from Tokyo to Kyoto?', '', /kyoto/i],
+  ['Is the Japan Rail Pass worth it?', '', /rail pass/i],
+  ['Where can I store my luggage at Ueno?', 'ueno', /locker|baggage|luggage/i],
+  ['Can I pay by credit card in Japan?', '', /card/i],
+  ['How cold is Sapporo in winter?', '', /snow|winter|°c|degrees/i],
+  ['Is there a ski bus to Niseko?', '', /niseko/i],
+  ['How does tax-free shopping work?', '', /tax-free|tax free/i],
+  ['What is the etiquette on trains?', '', /etiquette|quiet|phone/i],
+  ['How much is a taxi from Haneda?', '', /taxi/i],
+  ['Where can I buy a SIM card at Narita?', '', /sim/i],
+  ['Is the tap water safe to drink?', '', /tap water/i],
+  ['How do I get from Osaka to Kyoto?', '', /kyoto/i],
+  ['Where is the Skyliner at Ueno?', 'ueno', /skyliner/i],
+  ['Can I bring medicine into Japan?', '', /medicine/i],
+  ['What exit should I use at Shinjuku?', 'shinjuku', /exit/i],
+  ['Do I need travel insurance for Japan?', '', /travel insurance/i],
+  ['Can I buy travel insurance after I arrive in Japan?', '', /after you enter japan|after entering japan/i],
+  ['How expensive is a hospital in Japan for tourists?', '', /million yen|10,000,000/i],
+  ['Where can I buy medicine for a cold?', '', /pharmacy|drugstore/i],
+  ['How do I call an ambulance?', '', /119/],
+  ['Is there a helpline in English?', '', /visitor hotline/i],
+];
+const verbose = process.argv.includes('-v');
+let hit = 0;
+for (const [q, topic, rx] of CASES) {
+  const top = search(q, N, TOPIC_WORDS[topic] || []);
+  const rank = top.findIndex(p => rx.test(p.t + ' ' + p.x)) + 1;
+  if (rank && rank <= 5) hit++;
+  console.log((rank && rank <= 5 ? 'ok  ' : rank ? 'low ' : 'MISS') + ' #' + (rank || '-') + '  ' + q);
+  if (verbose || !rank || rank > 5) top.slice(0, 5).forEach((p, i) => console.log('        ' + (i + 1) + ' ' + p.t.split(' > ').slice(-2).join(' > ').slice(0, 90)));
+}
+console.log('\n' + hit + '/' + CASES.length + ' questions have a right note in the top 5');
