@@ -120,6 +120,10 @@ HUB_CSS = """<style id="jp-hub-css">
 .jp-words li small{display:block;font-size:.76rem;color:#5a6378}
 .jp-words li button{width:36px;height:36px;border:0;border-radius:50%;background:#00C9A7;color:#fff;font-size:.95rem;cursor:pointer}
 .jp-words li button:hover{background:#00A88C}
+.jp-lesson li i{font-size:.85rem;font-weight:700;color:#0a8f78}
+.jp-lesson li.hot{background:#FFF1F4;box-shadow:0 0 0 2px #E94560 inset}.jp-lesson li.hot button{background:#E94560;animation:jpPing 1.6s ease-in-out 3}
+@keyframes jpPing{50%{box-shadow:0 0 0 7px rgba(233,69,96,.18)}}
+@media (prefers-reduced-motion:reduce){.jp-lesson li.hot button{animation:none}}
 .jp-words-more{display:block;margin:12px 0 0;text-align:center;font-size:.86rem;font-weight:800;color:#0a8f78;background:#E6FAF5;border-radius:12px;padding:10px;text-decoration:none}
 .jp-words-note{margin:8px 0 0;font-size:.7rem;color:#8a93a6;text-align:center}
 .jp-words-mail{position:sticky;bottom:-16px;z-index:2;margin:12px 0 0;background:linear-gradient(135deg,#E6FAF5,#E8F4FC);border:1.5px solid #BFEDE3;border-radius:14px;padding:12px;font-size:.88rem;color:#0f0f23;box-shadow:0 -10px 18px rgba(255,255,255,.95)}
@@ -505,6 +509,17 @@ def _words():   # the cat's starter words, shared with the "Email me these words
     return json.dumps(w, ensure_ascii=False).replace("</", "<\\/")
 
 
+def _lessons():   # Fuku's emailed lessons, for the "Hear Fuku say it" card (api/_japan_lessons.js)
+    src = open(os.path.join(ROOT, "api", "_japan_lessons.js"), encoding="utf-8").read()
+    m = re.search(r"export const LESSONS = (\{.*?\});\s*$", src, re.S)
+    if not m:
+        die("api/_japan_lessons.js: LESSONS object not found")
+    ls = json.loads(m.group(1))
+    if not ls or any(not x.get("title") or not x.get("phrases") or any(len(p) != 3 for p in x["phrases"]) for x in ls.values()):
+        die("api/_japan_lessons.js: each lesson needs a title and phrases of [romaji, Japanese, meaning]")
+    return json.dumps(ls, ensure_ascii=False).replace("</", "<\\/")
+
+
 HERO_JS = """<script>
 (function(){
 function track(s,x){try{if(window.gtag)gtag('event','hub_japan',{event_category:'engagement',status:s,item:x||'',page_path:location.pathname});}catch(e){}}
@@ -555,7 +570,7 @@ function sayHello(){try{if(!('speechSynthesis' in window))return;var now=Date.no
 // after the second Konnichiwa the cat offers a few Japanese words: a small card with 8 starter phrases (the same wording
 // as the Pocket Guides' "Say it in Japanese" list), each with a play button, and a link to the Tokyo Pocket Guide for more.
 // Offered once per visit; "Not now" is remembered for the visit too.
-var WORDS=%%WORDS%%;
+var WORDS=%%WORDS%%,LESSONS=%%LESSONS%%;
 function sayJa(ja,ro){try{if(!('speechSynthesis' in window))return;if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel();
   try{speechSynthesis.resume();}catch(e){}if(!jaVoice&&!enVoice)pickVoice();var vo=jaVoice||enVoice,u=new SpeechSynthesisUtterance(jaVoice||!vo?ja:ro);
   if(vo){u.voice=vo;u.lang=vo.lang;}else u.lang='ja-JP';u.rate=.9;u.pitch=1.3;speechSynthesis.speak(u);}catch(e){}}
@@ -600,6 +615,26 @@ function mailForm(){var box=words.querySelector('.jp-words-mail'),known='';try{k
       box.innerHTML=x[0]&&x[1].ok?'<b>🎉 You’re on the list</b><p>We’ll send a few useful tips before your trip. Your words are in your inbox now.</p>':'<b>Your words are on their way</b><p>'+esc((x[1]&&x[1].error)||'We could not save the trip tips, sorry.')+'</p>';
       track(x[0]&&x[1].ok?'cat_words_tips_yes':'cat_words_tips_error');}).catch(function(){box.innerHTML='<b>Your words are on their way</b><p>We could not save the trip tips without a connection.</p>';});});});});
   }).catch(function(){btn.disabled=false;btn.textContent='Send';track('cat_words_mail_error');});});}
+var lesson=null,sayM=/^([1-9])-([1-9])$/.exec((function(){try{return new URLSearchParams(location.search).get('say')||'';}catch(e){return '';}})());
+function lessonKey(e){if(e.key==='Escape')closeLesson();}
+function closeLesson(){if(!lesson)return;lesson.hidden=true;document.removeEventListener('keydown',lessonKey);}
+function openLesson(n,hot){var L=LESSONS[n];if(!L)return;if(lesson)lesson.remove();
+  lesson=document.createElement('div');lesson.className='jp-words jp-lesson';lesson.setAttribute('role','dialog');lesson.setAttribute('aria-modal','true');lesson.setAttribute('aria-labelledby','jpLessonT');
+  lesson.innerHTML='<div class="jp-words-in"><button type="button" class="jp-words-x" aria-label="Close">✕</button>'+
+   '<h3 id="jpLessonT">Fuku’s lesson '+n+': '+esc(L.title)+'</h3><p class="jp-words-sub">Tap 🔊 to hear each phrase, then say it back. Slowly is fine!</p><ul>'+
+   L.phrases.map(function(p,i){return '<li'+(i===hot?' class="hot"':'')+'><i aria-hidden="true">'+(i+1)+'</i><div><b>'+esc(p[0])+'<span lang="ja">'+esc(p[1])+'</span></b><small>'+esc(p[2])+'</small></div><button type="button" data-p="'+i+'" aria-label="Play: '+esc(p[2])+'">🔊</button></li>';}).join('')+
+   '</ul><div class="jp-words-mail"><button type="button" class="jp-words-mbtn jp-lesson-words">👋 Fuku’s 8 starter words</button></div>'+
+   '<a class="jp-words-more" href="/tokyo-pocket?src=hub_lesson">📱 80+ more phrases in the Tokyo Pocket Guide · no app, works offline</a>'+
+   '<p class="jp-words-note">The voice is your phone’s or computer’s own.</p></div>';
+  document.body.appendChild(lesson);
+  lesson.addEventListener('click',function(e){if(e.target===lesson||e.target.closest('.jp-words-x')){closeLesson();return;}
+   var b=e.target.closest('[data-p]');if(b){var p=L.phrases[+b.getAttribute('data-p')];var li=b.closest('li');[].forEach.call(lesson.querySelectorAll('li.hot'),function(x){if(x!==li)x.classList.remove('hot');});sayJa(p[1],p[0]);track('lesson_play',n+':'+p[0]);return;}
+   if(e.target.closest('.jp-lesson-words')){closeLesson();openWords();track('lesson_words');return;}
+   if(e.target.closest('.jp-words-more'))track('lesson_more');});
+  document.addEventListener('keydown',lessonKey);
+  var h=lesson.querySelector('li.hot');if(h)try{h.scrollIntoView({block:'nearest'});}catch(e){}
+  try{lesson.querySelector('li.hot button, .jp-words-x').focus({preventScroll:true});}catch(e){}
+  track('lesson_open',n+(hot>=0?'-'+(hot+1):''));}
 function hideOffer(){if(offer)offer.hidden=true;cat.classList.remove('offering');}
 function showOffer(){if(offered)return;offered=true;try{sessionStorage.setItem('jpWordsOffer','1');}catch(e){}
  offer=document.createElement('div');offer.className='jp-cat-offer';offer.setAttribute('role','status');
@@ -611,6 +646,7 @@ if(cat){var ct;cat.addEventListener('click',function(){cat.classList.add('on','h
   taps++;if(taps>=2&&!offered){ct=setTimeout(function(){cat.classList.remove('on');showOffer();},1600);return;}
   ct=setTimeout(function(){cat.classList.remove('on');},2500);});
  if(location.hash==='#words'){offered=true;setTimeout(function(){openWords();track('cat_words_link');},400);}
+ else if(sayM){offered=true;setTimeout(function(){openLesson(sayM[1],+sayM[2]-1);},400);}
  cat.addEventListener('keydown',function(e){if(e.key==='Enter'||e.key===' '){e.preventDefault();cat.click();}});
  cat.addEventListener('mouseenter',function(){track('cat_hello');});
 }
@@ -636,7 +672,7 @@ document.addEventListener('click',function(e){var t=e.target.closest&&e.target.c
 [].forEach.call(document.querySelectorAll('[data-board]'),function(a){a.addEventListener('click',function(){track('board_tap',a.getAttribute('data-board'));});});
 })();
 </script>"""
-HERO_JS = HERO_JS.replace("%%WORDS%%", _words())
+HERO_JS = HERO_JS.replace("%%WORDS%%", _words()).replace("%%LESSONS%%", _lessons())
 
 
 
