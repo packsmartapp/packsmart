@@ -1,6 +1,6 @@
 # PackSmart: file inventory
 
-Generated 25 Nov 2026 by `tools/make_inventory.py` (re-run it after adding scripts, pages or docs).
+Generated 26 Nov 2026 by `tools/make_inventory.py` (re-run it after adding scripts, pages or docs).
 Every file below is already saved in git (`packsmartapp/packsmart`, branch `main`); `git clone` is the full backup.
 This page says what exists and where. It does not repeat file contents, because git always has the latest version.
 
@@ -127,6 +127,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w77_japan_guide_band.py` | w77: a light Japan band at the top of the Japan station, airport and city guides, and the three general Japan articles |
 | `w78_pickups_button.py` | w78: the airport-transfer box's Continue button in our own button style, on every page that has the box (25 Nov 2026). |
 | `w79_hub_card.py` | w79: a "Japan hub" card near the end of the 15 Japan pages, so readers find the /japan hub (25 Nov 2026). |
+| `w80_klook_tidy.py` | w80: tidy the "tours and tickets" tile boxes (class ps-kd, Klook partner links) (26 Nov 2026). |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `pocket_guides.json` | data file read by the scripts above |
 | `w62_photo_fixes.json` | data file read by the scripts above |

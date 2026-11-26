@@ -683,6 +683,15 @@ body[data-season=winter] .jp-petal path{fill:#fff;stroke:#D6E2EC}body[data-seaso
  .hubc-art{aspect-ratio:auto;height:160px}
  .hubc-t{font-size:1.25rem}.hubc-btn{display:block;text-align:center}}
 </style>
+<style id="ps-kd-v2">
+/* w80: compact tour and ticket cards, no empty picture block */
+.ps-kd-img .ps-kd-t{display:grid!important;grid-template-columns:52px minmax(0,1fr);grid-auto-rows:auto;column-gap:14px;row-gap:3px;align-content:start;padding:16px 18px!important}
+.ps-kd-img .ps-kd-ph{grid-column:1;grid-row:1/span 4;width:52px;height:52px;aspect-ratio:auto!important;border-radius:14px;font-size:1.6rem!important;margin:0!important;align-self:start}
+.ps-kd-img .ps-kd-b{position:static!important;grid-column:2;justify-self:start;margin:0 0 2px!important}
+.ps-kd-img .ps-kd-n,.ps-kd-img .ps-kd-m,.ps-kd-img .ps-kd-p{grid-column:2;margin-left:0!important;margin-right:0!important}
+.ps-kd-img .g5{background:linear-gradient(135deg,#fde4f0,#f6bcd9)!important}
+@media (min-width:700px){.ps-kd-img .ps-kd-t{flex:1 1 300px!important;max-width:420px!important}}
+</style>
 </head>
 <body>
 <!-- jp-guide-bg -->
@@ -895,45 +904,6 @@ html{scroll-behavior:smooth}
     <li><strong>Avoid:</strong> Thin fabrics, open-toed shoes, shorts</li>
 </ul>
 
-<div class="ps-kd" data-ps-placement="klook-deals-japan-winter">
-<style>
-.ps-kd{margin:28px 0;font-family:"DM Sans",sans-serif}
-.ps-kd-h{display:block;text-align:center;font-size:1.05rem;font-weight:700;color:#0f0f23;margin:0 0 4px}
-.ps-kd-s{text-align:center;font-size:.85rem;color:#3f7f70;margin:0 0 14px}
-.ps-kd-g{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.ps-kd-t{position:relative;flex:1 1 250px;max-width:380px;display:flex;flex-direction:column;gap:5px;padding:16px 18px;background:#f0faf7;border:1px solid #cdeee5;border-radius:12px;text-decoration:none;color:#0f0f23}
-.ps-kd-t:hover{border-color:#00c9a7;background:#e8faf6}
-.ps-kd-c{align-self:flex-start;font-size:.74rem;font-weight:700;letter-spacing:.02em;color:#0b6b57;background:#fff;border:1px solid #00c9a7;border-radius:999px;padding:2px 10px}
-.ps-kd-n{font-size:1rem;line-height:1.35}
-.ps-kd-m{font-size:.82rem;color:#4a5a56;line-height:1.5}
-.ps-kd-p{font-size:.95rem;font-weight:700;color:#0f0f23;margin-top:2px}
-.ps-kd-f{text-align:center;font-size:.74rem;color:#8a9490;margin:10px 0 0}
-</style>
-<strong class="ps-kd-h">Visiting Hokkaido for the snow?</strong>
-<p class="ps-kd-s">One easy, guided winter day out from Sapporo.</p>
-<div class="ps-kd-g">
-<a class="ps-kd-t" data-aid="110247" href="https://klook.tpx.li/HWMB1NdT" target="_blank" rel="nofollow noopener sponsored"><span class="ps-kd-c" hidden></span><strong class="ps-kd-n">Hokkaido winter day tour from Sapporo</strong><span class="ps-kd-m">10 hours &middot; Asahiyama Zoo, Shirahige Waterfall &amp; Ningle Terrace &middot; 4.7/5 from 250 reviews</span><span class="ps-kd-p">from US$50</span></a>
-</div>
-<p class="ps-kd-f">Prices as of 14 Nov. We may earn a commission, at no extra cost to you.</p>
-<script>
-(function(){
-var root=document.currentScript.parentNode;
-var Z='T00:00:00+08:00',E='T23:59:59+08:00';
-var P={
-'145133':[['2026-01-01','2026-12-31','50% off until 31 Dec']],
-'91055':[['2026-01-01','2026-11-25','50% off, 26\u201330 Nov'],['2026-11-26','2026-11-30','50% off, ends 30 Nov'],['2026-12-01','2026-12-31','30% off until 31 Dec']],
-'110247':[['2026-01-01','2026-11-25','50% off, 26\u201330 Nov'],['2026-11-26','2026-11-30','50% off, ends 30 Nov'],['2026-12-01','2026-12-31','30% off until 31 Dec']]
-};
-var now=Date.now();
-Array.prototype.forEach.call(root.querySelectorAll('.ps-kd-t'),function(t){
-var ph=P[t.getAttribute('data-aid')]||[],chip=t.querySelector('.ps-kd-c');
-for(var i=0;i<ph.length;i++){
-if(now>=Date.parse(ph[i][0]+Z)&&now<=Date.parse(ph[i][1]+E)){chip.textContent=ph[i][2];chip.hidden=false;break}
-}
-});
-})();
-</script>
-</div>
 
 <div class="warning-box">
     <strong>Important:</strong> Japan's public buildings often have minimal heating in winter and aggressive air conditioning in summer. Always carry a cardigan or jacket indoors to stay comfortable in extreme temperature swings.
@@ -1146,40 +1116,6 @@ try{if(window.gtag)gtag('event','pg_article_tap',{event_category:'engagement',to
     <li><strong>Universal Studios Japan:</strong> Theme park attire. Comfortable sneakers, sun protection, and casual clothing work perfectly.</li>
 </ul>
 
-<div class="ps-kd ps-kd-img" data-ps-placement="klook-japan-osaka">
-<style>
-.ps-kd{margin:28px 0;font-family:"DM Sans",sans-serif}
-.ps-kd-h{display:block;text-align:center;font-size:1.05rem;font-weight:700;color:#0f0f23;margin:0 0 4px}
-.ps-kd-s{text-align:center;font-size:.85rem;color:#3f7f70;margin:0 0 14px}
-.ps-kd-g{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.ps-kd-t{position:relative;flex:1 1 250px;max-width:380px;display:flex;flex-direction:column;gap:5px;padding:16px 18px;background:#f0faf7;border:1px solid #cdeee5;border-radius:12px;text-decoration:none;color:#0f0f23}
-.ps-kd-t:hover{border-color:#00c9a7;background:#e8faf6}
-.ps-kd-n{font-size:1rem;line-height:1.35}
-.ps-kd-m{font-size:.82rem;color:#4a5a56;line-height:1.5}
-.ps-kd-p{font-size:.95rem;font-weight:700;color:#0f0f23;margin-top:2px}
-.ps-kd-f{text-align:center;font-size:.74rem;color:#8a9490;margin:10px 0 0}
-
-.ps-kd-img .ps-kd-t{padding:0 0 16px;overflow:hidden}
-.ps-kd-img .ps-kd-ph{display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;font-size:3rem;line-height:1;margin:0 0 8px}
-.ps-kd-img .g1{background:linear-gradient(135deg,#d6f5ee,#a8e6d9)}
-.ps-kd-img .g2{background:linear-gradient(135deg,#dbeafe,#b6d0f7)}
-.ps-kd-img .g3{background:linear-gradient(135deg,#fde4f0,#f6bcd9)}
-.ps-kd-img .g4{background:linear-gradient(135deg,#d3f0fa,#9fdcf0)}
-.ps-kd-img .g5{background:linear-gradient(135deg,#e8dcfb,#c9b2f3)}
-.ps-kd-img .g6{background:linear-gradient(135deg,#fdf0cf,#f7d98b)}
-.ps-kd-img .g7{background:linear-gradient(135deg,#ffe0ea,#fbb4cb)}
-.ps-kd-img .ps-kd-b{position:absolute;top:10px;left:10px;background:#fff;color:#0b6b57;border:1px solid #00c9a7;border-radius:999px;font-size:.68rem;font-weight:700;letter-spacing:.03em;padding:3px 9px}
-.ps-kd-img .ps-kd-n,.ps-kd-img .ps-kd-m,.ps-kd-img .ps-kd-p{margin-left:16px;margin-right:16px}
-.ps-kd .ps-kd-t,.ps-kd .ps-kd-t:hover{text-decoration:none!important}.ps-kd .ps-kd-t .ps-kd-n,.ps-kd .ps-kd-t .ps-kd-p{color:#0f0f23!important;text-decoration:none!important}.ps-kd .ps-kd-t .ps-kd-m{color:#4a5a56!important;text-decoration:none!important}
-</style>
-<strong class="ps-kd-h">Osaka: a theme park day and an aquarium</strong>
-<p class="ps-kd-s">Both are easy to book ahead online.</p>
-<div class="ps-kd-g">
-<a class="ps-kd-t" data-aid="japan-att-usj" href="https://klook.tpo.lu/zfzbTTzX" target="_blank" rel="nofollow noopener sponsored"><span class="ps-kd-ph g2" aria-hidden="true">&#127906;</span><span class="ps-kd-b">BOOK AHEAD</span><strong class="ps-kd-n">Universal Studios Japan Studio Pass</strong><span class="ps-kd-m">Osaka &middot; Home of Super Nintendo World &middot; Look for the bundle that includes its timed entry</span><span class="ps-kd-p">from about US$58</span></a>
-<a class="ps-kd-t" data-aid="japan-att-kaiyukan" href="https://klook.tpo.lu/HUkHu5x0" target="_blank" rel="nofollow noopener sponsored"><span class="ps-kd-ph g4" aria-hidden="true">&#128011;</span><span class="ps-kd-b">INDOOR</span><strong class="ps-kd-n">Osaka Aquarium Kaiyukan ticket</strong><span class="ps-kd-m">Osaka Bay &middot; A big indoor aquarium &middot; Good for a rainy day</span><span class="ps-kd-p">see dates and prices</span></a>
-</div>
-<p class="ps-kd-f">Prices checked 14-18 Nov and they change by date. We may earn a commission, at no extra cost to you.</p>
-</div>
 
 <p data-ps-placement="bags-japan-osaka" style="background:#f0faf7;border-left:3px solid #00C9A7;padding:12px 16px;border-radius:0 8px 8px 0;font-size:0.92rem;margin:20px 0;">
         &#129523; Last day in Osaka with a late flight or train? <a href="https://radicalstorage.tpx.li/pDtmtRB2" target="_blank" rel="nofollow noopener sponsored" style="color:#00C9A7;text-decoration:underline;">Store your bags in Osaka</a> (partner link) and keep eating your way through Dotonbori hands-free.
@@ -1204,39 +1140,6 @@ try{if(window.gtag)gtag('event','pg_article_tap',{event_category:'engagement',to
     <li><strong>Weather protection:</strong> Light rain jacket (sudden mountain showers), small umbrella, waterproof bag for electronics.</li>
 </ul>
 
-<div class="ps-kd ps-kd-img" data-ps-placement="klook-japan-fuji-car">
-<style>
-.ps-kd{margin:28px 0;font-family:"DM Sans",sans-serif}
-.ps-kd-h{display:block;text-align:center;font-size:1.05rem;font-weight:700;color:#0f0f23;margin:0 0 4px}
-.ps-kd-s{text-align:center;font-size:.85rem;color:#3f7f70;margin:0 0 14px}
-.ps-kd-g{display:flex;flex-wrap:wrap;gap:12px;justify-content:center}
-.ps-kd-t{position:relative;flex:1 1 250px;max-width:380px;display:flex;flex-direction:column;gap:5px;padding:16px 18px;background:#f0faf7;border:1px solid #cdeee5;border-radius:12px;text-decoration:none;color:#0f0f23}
-.ps-kd-t:hover{border-color:#00c9a7;background:#e8faf6}
-.ps-kd-n{font-size:1rem;line-height:1.35}
-.ps-kd-m{font-size:.82rem;color:#4a5a56;line-height:1.5}
-.ps-kd-p{font-size:.95rem;font-weight:700;color:#0f0f23;margin-top:2px}
-.ps-kd-f{text-align:center;font-size:.74rem;color:#8a9490;margin:10px 0 0}
-
-.ps-kd-img .ps-kd-t{padding:0 0 16px;overflow:hidden}
-.ps-kd-img .ps-kd-ph{display:flex;align-items:center;justify-content:center;aspect-ratio:16/9;font-size:3rem;line-height:1;margin:0 0 8px}
-.ps-kd-img .g1{background:linear-gradient(135deg,#d6f5ee,#a8e6d9)}
-.ps-kd-img .g2{background:linear-gradient(135deg,#dbeafe,#b6d0f7)}
-.ps-kd-img .g3{background:linear-gradient(135deg,#fde4f0,#f6bcd9)}
-.ps-kd-img .g4{background:linear-gradient(135deg,#d3f0fa,#9fdcf0)}
-.ps-kd-img .g5{background:linear-gradient(135deg,#e8dcfb,#c9b2f3)}
-.ps-kd-img .g6{background:linear-gradient(135deg,#fdf0cf,#f7d98b)}
-.ps-kd-img .g7{background:linear-gradient(135deg,#ffe0ea,#fbb4cb)}
-.ps-kd-img .ps-kd-b{position:absolute;top:10px;left:10px;background:#fff;color:#0b6b57;border:1px solid #00c9a7;border-radius:999px;font-size:.68rem;font-weight:700;letter-spacing:.03em;padding:3px 9px}
-.ps-kd-img .ps-kd-n,.ps-kd-img .ps-kd-m,.ps-kd-img .ps-kd-p{margin-left:16px;margin-right:16px}
-.ps-kd .ps-kd-t,.ps-kd .ps-kd-t:hover{text-decoration:none!important}.ps-kd .ps-kd-t .ps-kd-n,.ps-kd .ps-kd-t .ps-kd-p{color:#0f0f23!important;text-decoration:none!important}.ps-kd .ps-kd-t .ps-kd-m{color:#4a5a56!important;text-decoration:none!important}
-</style>
-<strong class="ps-kd-h">Short on time? Fuji and Hakone by private car</strong>
-<p class="ps-kd-s">Plan your own route with an English-speaking driver.</p>
-<div class="ps-kd-g">
-<a class="ps-kd-t" data-aid="japan-car-fuji-hakone" href="https://klook.tpo.lu/6ozHPPNR" target="_blank" rel="nofollow noopener sponsored"><span class="ps-kd-ph g1" aria-hidden="true">&#128663;</span><span class="ps-kd-b">PRIVATE CAR</span><strong class="ps-kd-n">Private car with an English-speaking driver</strong><span class="ps-kd-m">Tokyo pick-up &middot; Mt Fuji, Hakone or Nikko &middot; 5 or 10 hours, you plan the route</span><span class="ps-kd-p">from US$309 per car</span></a>
-</div>
-<p class="ps-kd-f">Prices checked 14-18 Nov and they change by date. We may earn a commission, at no extra cost to you.</p>
-</div>
 
 <div class="ps-gyg" data-ps-placement="gyg-japan">
 <style>
