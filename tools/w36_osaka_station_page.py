@@ -588,8 +588,8 @@ CARD = """<div class="ps-card" id="one-page">
 <li><strong>Umeda is several stations:</strong> JR Osaka, Hankyu, Hanshin and three Osaka Metro stations stand side by side. Allow extra time to find the right gate.</li>
 <li><strong>Need help?</strong> Ask station staff or a tourist information counter. In an emergency, call 119.</li>
 </ul>
-<div class="ps-qr ps-qr-screen">__QR_SCREEN__<p><strong>Want it on your phone?</strong> Point your phone camera at this code. It opens the free Shin-Osaka and Umeda Pocket Guide, which works without internet once opened.<span class="u">packsmartapp.com/osaka-pocket</span></p></div>
-<div class="ps-qr ps-qr-print">__QR_PRINT__<p><strong>Free Shin-Osaka and Umeda Pocket Guide.</strong> Point your phone camera at this code. Open it once with signal and it works without internet.<span class="u">packsmartapp.com/osaka-pocket</span></p></div>
+<div class="ps-qr ps-qr-screen">__QR_SCREEN__<p><strong>Want it on your phone?</strong> Point your phone camera at this code. It opens the Shin-Osaka and Umeda Pocket Guide: no app to install, and it works without internet once opened.<span class="u">packsmartapp.com/osaka-pocket</span></p></div>
+<div class="ps-qr ps-qr-print">__QR_PRINT__<p><strong>Shin-Osaka and Umeda Pocket Guide. No app needed.</strong> Point your phone camera at this code. Open it once with signal and it works without internet.<span class="u">packsmartapp.com/osaka-pocket</span></p></div>
 <button type="button" class="ps-print-btn" onclick="window.print()">Print this card</button>
 </div>"""
 # QR codes are made once for each guide address (?src=qr on screen, ?src=card on paper), with segno. For another guide ask Claude to make the two codes.
@@ -824,7 +824,7 @@ html.ps-pb body{padding-bottom:84px}
 @media print{#psPocketBar{display:none!important}}
 </style>
 <div id="psPocketBar" role="region" aria-label="Shin-Osaka and Umeda Pocket Guide">
-<div class="t"><b>Get the Shin-Osaka and Umeda Pocket Guide</b><span>Free. Works offline at the station.</span></div>
+<div class="t"><b>Get the Shin-Osaka and Umeda Pocket Guide</b><span>No app, no sign-up. Works offline at the station.</span></div>
 <a class="go" href="/osaka-pocket?src=bar">Get it</a>
 <button type="button" class="x" aria-label="Hide this message">&times;</button>
 </div>

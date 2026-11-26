@@ -45,7 +45,7 @@ PILL_BG, PILL_FG = "#D9F7EF", "#0b5d57"                                # "Start 
 
 TITLE = "Landing in Japan? Get the airport and station guides on your phone."
 SUB = ("Find the ATMs, trains, buses, toilets, lockers, exits, emergency phone numbers, and easy Japanese words "
-       "to talk or show to staff, all in one place. Install and it works even offline.")
+       "to talk or show to staff, all in one place. Add it to your Home Screen and it works even offline.")
 Q1 = "Where do you land in Japan?"
 Q2 = "Where are you going after that?"
 EMPTY = "Your guides show up here as soon as you pick where you land and where you are headed."
@@ -219,7 +219,7 @@ def block(slug, cfg):
         res = '<p class="pgp-empty">%s</p>' % EMPTY
     return ('<aside class="pga" id="pocket-guides-japan" %s data-pga-article="%s" data-pre="%s" data-order="%s" data-guides="%s" '
             'role="complementary" aria-label="Offline pocket guides for Japan">'
-            '<div class="pga-top"><span class="pga-kick">Free offline pocket guides</span>'
+            '<div class="pga-top"><span class="pga-kick">Pocket guides that work offline</span>'
             '<p class="pga-title">%s</p><p class="pga-sub">%s</p>'
             '<div class="pgp-qs"><div class="pgp-q" role="group" aria-labelledby="pgp-q1"><p class="pgp-ql" id="pgp-q1">1. %s</p><div class="pgp-chips">%s</div></div>'
             '<div class="pgp-q" role="group" aria-labelledby="pgp-q2"><p class="pgp-ql" id="pgp-q2">2. %s%s</p><div class="pgp-chips">%s</div></div></div></div>'
@@ -240,7 +240,12 @@ for slug, cfg in PAGES.items():
         die("missing article " + os.path.relpath(path, ROOT))
     s = open(path, encoding="utf-8").read()
     if MARK in s:
-        plans.append((path, None, slug))
+        # wording kept in step on blocks built earlier (26 Nov): no "free", and no "install" next to "no app"
+        fixed = s
+        for a_, b_ in (('<span class="pga-kick">Free offline pocket guides</span>', '<span class="pga-kick">Pocket guides that work offline</span>'),
+                       ('Install and it works even offline.', 'Add it to your Home Screen and it works even offline.')):
+            fixed = fixed.replace(a_, b_)
+        plans.append((path, fixed if fixed != s else None, slug))
         continue
     a = s.find('<style id="pga-css">')
     e = s.find("</aside>")

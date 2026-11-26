@@ -152,16 +152,16 @@ export default async function handler(req, res) {
     '<p style="text-align:center;margin:22px 0;"><a href="' + esc(continueLink(items, next, page, country, SITE)) + '" style="display:inline-block;background:#E94560;color:#ffffff;text-decoration:none;font-weight:bold;font-size:16px;padding:13px 22px;border-radius:24px;">\uD83D\uDCAC Continue this chat with Packy</a></p>' +
     '<div style="background:#e6faf5;border-radius:12px;padding:14px 16px;margin:20px 0;font-size:14px;color:#0f0f23;">' +
     (pocket
-      ? '<b>&#128241; Save the free ' + POCKETS[pocket] + ' Pocket Guide</b><br>Exits, platforms, lockers and ATMs a tap away, and it works offline at the station.<br>' +
+      ? '<b>&#128241; Save the ' + POCKETS[pocket] + ' Pocket Guide</b><br>Exits, platforms, lockers and ATMs a tap away, and it works offline at the station.<br>' +
         '<a href="' + SITE + '/' + pocket + '-pocket?src=packy_email" style="display:inline-block;margin-top:10px;background:#0f0f23;color:#ffffff;text-decoration:none;font-weight:bold;border-radius:20px;padding:9px 16px;">Open the Pocket Guide</a>' +
         '<br><a href="' + SITE + '/japan?src=packy_email#pocket-hub" style="display:inline-block;margin-top:8px;color:#0a8f78;font-weight:bold;">All our Japan Pocket Guides</a></div>'
-      : '<b>&#128241; Save the free Pocket Guides</b> for the airports and stations you will use: they work offline. ' +
+      : '<b>&#128241; Save the Pocket Guides</b> for the airports and stations you will use: no app to install, and they work offline. ' +
         '<a href="' + SITE + '/japan?src=packy_email#pocket-hub" style="color:#0a8f78;font-weight:bold;">All our Japan Pocket Guides</a></div>') +
     '<p style="font-size:12px;color:#8a93a6;line-height:1.5;">You received this because you asked Packy to email this chat on packsmartapp.com.' +
     (tips ? ' You also asked for trip tips for ' + name + '; reply "stop" at any time and we will not email you again.' : ' We will not email you again unless you ask.') +
     ' <a href="' + SITE + '/privacy-policy" style="color:#8a93a6;">Privacy</a></p></div></body></html>';
   const text = 'Your Packy chat about ' + name + '\n\n' + items.map(x => 'Q: ' + x.q + '\n' + x.a + (x.o ? '\n' + x.o.label + (x.o.partner ? ' (partner link)' : '') + ': ' + (x.o.url.startsWith('/') ? SITE + x.o.url : x.o.url) : '') +
-      (x.g ? '\nMore in our ' + x.g.title + ': ' + SITE + x.g.url : '')).join('\n\n') + (pocket ? '\n\nSave the free ' + POCKETS[pocket] + ' Pocket Guide: ' + SITE + '/' + pocket + '-pocket?src=packy_email' : '') +
+      (x.g ? '\nMore in our ' + x.g.title + ': ' + SITE + x.g.url : '')).join('\n\n') + (pocket ? '\n\nSave the ' + POCKETS[pocket] + ' Pocket Guide: ' + SITE + '/' + pocket + '-pocket?src=packy_email' : '') +
     '\n\nPrices and times change, so check the source before you travel.\nContinue this chat with Packy: ' + continueLink(items, next, page, country, SITE);
 
   let step = 'connect';
@@ -213,7 +213,7 @@ async function sendWords(req, res, b, email, country, origin) {
     '<p style="text-align:center;margin:22px 0 10px;"><a href="' + esc(hear) + '" style="display:inline-block;background:#E94560;color:#ffffff;text-decoration:none;font-weight:bold;font-size:16px;padding:13px 22px;border-radius:24px;">&#128266; Hear them again</a></p>' +
     '<div style="background:#e6faf5;border-radius:12px;padding:16px 12px 10px;margin:20px 0;font-size:14px;color:#0f0f23;">' +
     '<p style="margin:0 4px 4px;"><b>&#128241; 80+ more phrases in every Pocket Guide</b></p>' +
-    '<p style="margin:0 4px 12px;color:#3f4a5c;">Free, and they work without a signal: phrases, plus exits, platforms, lockers and ATMs. Tap the airport or station you will use.</p>' +
+    '<p style="margin:0 4px 12px;color:#3f4a5c;">No app to install, and they work without a signal: phrases, plus exits, platforms, lockers and ATMs. Tap the airport or station you will use.</p>' +
     iconRow('Airports', POCKET_ICONS.slice(0, 4), SITE) + iconRow('Stations', POCKET_ICONS.slice(4), SITE) + '</div>' +
     '<div style="background:#ffffff;border:1px solid #e3e8ec;border-radius:12px;padding:14px 16px;margin:0 0 20px;font-size:14px;color:#0f0f23;">' +
     '<b>&#128172; Got a question about your trip?</b><br>Ask Packy about trains, airports, money and luggage in ' + name + '. Answers come from official sources.<br>' +
@@ -222,7 +222,7 @@ async function sendWords(req, res, b, email, country, origin) {
     (tips ? ' You also asked for trip tips for ' + name + '; reply "stop" at any time and we will not email you again.' : ' We will not email you again unless you ask.') +
     ' <a href="' + SITE + '/privacy-policy" style="color:#8a93a6;">Privacy</a></p></div></body></html>';
   const text = 'Your first Japanese words, from Packy\n\n' + WORDS.map(w => w[3] + '  ' + w[2] + '  (' + w[1] + ')').join('\n') +
-    '\n\nHear them again: ' + hear + '\n\n80+ more phrases, offline, in every free Pocket Guide:\n' + POCKET_ICONS.map(g => g[1] + ': ' + SITE + '/' + g[0] + '-pocket?src=packy_email').join('\n') + '\n\nAsk Packy about your trip: ' + ask;
+    '\n\nHear them again: ' + hear + '\n\n80+ more phrases in every Pocket Guide (no app, works offline):\n' + POCKET_ICONS.map(g => g[1] + ': ' + SITE + '/' + g[0] + '-pocket?src=packy_email').join('\n') + '\n\nAsk Packy about your trip: ' + ask;
   let step = 'connect';
   try {
     const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });

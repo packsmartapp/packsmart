@@ -317,7 +317,9 @@
         var next = (d.next && d.next.length) ? d.next : STARTERS.filter(function (s) { return s !== q; });
         history.push({ q: q, a: d.answer, guide: d.guide, offer: d.offer || null, next: d.next || [] }); save(history); track('answered');
         var n = history.length;
-        if (n === 2 && once('pocket')) pocketCard(d.guide);
+        // the Pocket Guide footnote: as soon as an answer is about a place that has one (Narita, Tokyo Station...),
+        // otherwise after the second answer; once per visit either way
+        if ((pocketFor(d.guide) || n === 2) && once('pocket')) pocketCard(d.guide);
         if (n === 3 && !savedEmail() && once('email')) emailCard();
         chips(next, 'Ask next');
       })

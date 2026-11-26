@@ -31,7 +31,7 @@ TODAY = datetime.date.today().isoformat()
 
 TITLE = "Japan Travel Guides: Airports, Stations, Pocket Guides &amp; Itineraries | PackSmart"
 DESC = ("Every PackSmart guide for Japan in one place: trip planning, the Narita, Haneda, Kansai and New Chitose airports, "
-        "Tokyo, Kyoto, Osaka and Sapporo stations, and free offline Pocket Guides.")
+        "Tokyo, Kyoto, Osaka and Sapporo stations, and Pocket Guides that work offline.")
 
 PLAN = ["japan-travel-packing-guide", "japan-7-day-itinerary-budget", "kyoto-travel-guide", "osaka-travel-guide"]
 ARRIVE = ["narita-airport-guide", "haneda-airport-guide", "kansai-airport-guide", "new-chitose-airport-guide"]
@@ -491,7 +491,7 @@ def passes_html():
         '<div class="jp-pass-stub"><small>GATE</small><a href="/%s-pocket?src=hub_japan" data-pass="%s">📱 Pocket Guide</a><a class="g" href="/blog/%s">Airport guide</a></div></article>'
         % (code, name, serves, line, q, name.replace(" Airport", ""), pk, pk, slug)
         for code, name, serves, line, pk, slug, q in PASSES)
-    return ("""<section id="arriving" aria-labelledby="jpPassT"><div class="jp-pass-h"><span class="jp-kick"><span lang="ja">空港</span> · Airports</span><h2 id="jpPassT">Where are you landing?</h2><p>Pick your airport: the free Pocket Guide works offline at the gate, and Packy can answer the rest.</p></div>
+    return ("""<section id="arriving" aria-labelledby="jpPassT"><div class="jp-pass-h"><span class="jp-kick"><span lang="ja">空港</span> · Airports</span><h2 id="jpPassT">Where are you landing?</h2><p>Pick your airport: its Pocket Guide works offline at the gate, no app needed, and Packy can answer the rest.</p></div>
 <div class="jp-passes">""" + cards + """</div></section>""")
 
 def _words():   # the cat's starter words, shared with the "Email me these words" email (api/_japan_words.js)
@@ -569,7 +569,7 @@ function openWords(){if(!words){words=document.createElement('div');words.classN
    '<h3 id="jpWordsT">Your first Japanese words <span lang="ja">🇯🇵</span></h3><p class="jp-words-sub">Tap 🔊 to hear each one. A smile and a small bow go a long way.</p><ul>'+
    WORDS.map(function(w,i){return '<li><i aria-hidden="true">'+w[0]+'</i><div><b>'+esc(w[3])+'<span lang="ja">'+esc(w[2])+'</span></b><small>'+esc(w[1])+'</small></div><button type="button" data-w="'+i+'" aria-label="Play: '+esc(w[1])+'">🔊</button></li>';}).join('')+
    '</ul><div class="jp-words-mail"><button type="button" class="jp-words-mbtn">📩 Email me these words</button></div>'+
-   '<a class="jp-words-more" href="/tokyo-pocket?src=hub_cat">📱 80+ more phrases, offline, in the free Tokyo Pocket Guide</a>'+
+   '<a class="jp-words-more" href="/tokyo-pocket?src=hub_cat">📱 80+ more phrases in the Tokyo Pocket Guide · no app, works offline</a>'+
    '<p class="jp-words-note">The voice is your phone’s or computer’s own.</p></div>';
   document.body.appendChild(words);
   words.addEventListener('click',function(e){if(e.target===words||e.target.closest('.jp-words-x')){closeWords();return;}
@@ -761,7 +761,7 @@ def stations_html():
                    % (KANJI[key], g["name"], g["stop"], g["blurb"], g["name"], short, "%s %s<br>%s" % (lambda d: (d[0], d[1][:3].upper(), d[2]))(checked_on(key).split()), key, key, slug))
     return ('<section class="jp-sec" id="stations" aria-labelledby="jpStT"><div class="jp-sec-h"><span class="jp-kick"><span lang="ja">駅</span> · Stations</span>'
             '<h2 id="jpStT">Find your way in the big stations</h2>'
-            '<p>Exits, platforms, lockers and ATMs, in a free Pocket Guide that works offline. Each stamp shows when we last checked the facts.</p></div>'
+            '<p>Exits, platforms, lockers and ATMs, in a Pocket Guide that works offline, no app needed. Each stamp shows when we last checked the facts.</p></div>'
             '<div class="jp-passes jp-tks">' + "".join(out) + '</div></section>')
 
 LOWER_CSS = """
@@ -845,7 +845,7 @@ elif changed:
                 lambda m: m.group(1) + max(m.group(2), TODAY) + m.group(3), sm, count=1)
 
 # ---- blog banner (shows while the Japan chip is selected)
-BANNER = ('<div class="jp-hub-banner" id="jpHubBanner" hidden><b>Welcome to Japan.</b> Airports, stations, itineraries and free offline Pocket Guides, all together. '
+BANNER = ('<div class="jp-hub-banner" id="jpHubBanner" hidden><b>Welcome to Japan.</b> Airports, stations, itineraries and Pocket Guides that work offline, all together. '
           '<a href="/japan">See every Japan guide &rarr;</a></div>\n'
           '<style>.jp-hub-banner{max-width:860px;margin:10px auto 6px;padding:12px 16px;background:#f0faf7;border-left:3px solid #00C9A7;border-radius:0 12px 12px 0;font-size:.98rem;line-height:1.5}'
           '.jp-hub-banner a{color:#0a8f78;font-weight:700;white-space:nowrap}</style>\n'
