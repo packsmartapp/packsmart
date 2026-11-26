@@ -318,9 +318,11 @@
         var next = (d.next && d.next.length) ? d.next : STARTERS.filter(function (s) { return s !== q; });
         history.push({ q: q, a: d.answer, guide: d.guide, offer: d.offer || null, next: d.next || [] }); save(history); track('answered');
         var n = history.length;
-        // the Pocket Guide footnote: as soon as an answer is about a place that has one (Narita, Tokyo Station...),
-        // otherwise after the second answer; once per visit either way
-        if ((pocketFor(d.guide) || n === 2) && once('pocket')) pocketCard(d.guide);
+        // the Pocket Guide footnote (owner, 26 Nov): once per place per visit, the first time an answer is about a place
+        // that has a guide (Narita, Tokyo Station...); otherwise the general link once, from the second answer on.
+        // Never next to a partner offer: then it waits for the next answer, so each answer carries at most one extra.
+        var pk = pocketFor(d.guide);
+        if (!(d.offer && d.offer.partner) && (pk || n >= 2) && once('pocket_' + (pk || 'hub'))) pocketCard(d.guide);
         if (n === 3 && !savedEmail() && once('email')) emailCard();
         chips(next, 'Ask next');
       })
