@@ -163,6 +163,19 @@ Rules:
 - When you answered from the notes, finish with one line "Source: " and one or two official links taken from the notes, written as [short title](url). Use only URLs that appear in the notes.
 - Then, on the very last line, write "NEXT: " followed by two or three short follow-up questions a traveller would likely ask next, separated by " | ". Each must be fully answerable from the NOTES above, under 60 characters, and different from the question just asked. If you could not answer, write "NEXT:" with questions the notes can answer about the same place.`;
 
+// Safety net (26 Nov): the model sometimes ignores the wording rules and talks about its "notes". Rewrite those phrases
+// so a reader never sees them. Conservative: only these exact patterns change.
+function tidy(t) {
+  return t
+    .replace(/\b(?:My|The) notes (?:cover|include|are about)\b/g, 'I can help with')
+    .replace(/\b(?:my|the) notes (?:cover|include|are about)\b/g, 'I can help with')
+    .replace(/\bI (?:don't|do not|don’t) have (?:any |specific )?information (?:about|on) /g, "I don't have a checked answer on ")
+    .replace(/\b(?:The|My) notes (?:don't|do not|don’t) (?:say|mention|cover|include) /g, "I don't have a checked answer on ")
+    .replace(/\b(?:the|my) notes (?:don't|do not|don’t) (?:say|mention|cover|include) /g, "I don't have a checked answer on ")
+    .replace(/,? (?:according to|based on|from) (?:my|the) notes\b,?/gi, '')
+    .replace(/\b(?:In|According to) (?:my|the) notes,? (\w)/g, (m, c) => c.toUpperCase());
+}
+
 export default async function handler(req, res) {
   const origin = req.headers.origin || '';
   if (ORIGIN_OK.test(origin)) {
@@ -217,6 +230,7 @@ export default async function handler(req, res) {
     let text = answer.replace(/^\s*(?:(?:hi|hello|konnichiwa)[!,.]?\s*)?(?:i(?:'|\u2019)?m|i am)\s+packy\b[^.\n]*[.!]\s*(?:my answers come from[^.\n]*[.!]\s*)?/i, '').trim(), next = [];
     const m = text.match(/\n?\s*NEXT:\s*(.*)\s*$/i);
     if (m) { text = text.slice(0, m.index).trim(); next = m[1].split('|').map(x => x.trim().replace(/^[-*\d.\s]+/, '')).filter(x => x.length > 4 && x.length < 90).slice(0, 3); }
+    text = tidy(text);
     const offer = offerFor(q, prev, topic);
     return res.status(200).json({ ok: true, answer: text, next, offer, guide: { title: guide[0], url: guide[1] } });
   } catch (e) {
