@@ -61,6 +61,9 @@ const CASES = [
   ['Can I go to an onsen with tattoos?', '', /tattoo/i],
   ['Can I smoke on the street in Tokyo?', '', /smoking/i],
   ['Is CBD or cannabis legal in Japan?', '', /cannabis/i],
+  ['Do we have to be naked in an onsen?', '', /naked/i],
+  ['Can I wear a swimsuit in an onsen?', '', /swimsuit|naked/i],
+  ['What do I do with my towel at the hot spring?', '', /towel/i],
 ];
 const verbose = process.argv.includes('-v');
 let hit = 0;
