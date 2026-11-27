@@ -54,6 +54,7 @@ DATA = {
     "disneyChild": {"j": 10200, "c": 5900, "src": "juniors 12 to 17 about 10,200 yen, children 4 to 11 about 5,900 yen, from a ticket seller's listing for 28 Nov 2026", "checked": "27 Nov 2026"},
     "sanrio": {"lo": 3400, "hi": 4900, "src": "Sanrio Puroland 1-day ticket, age 3 and up: retail 4,900 yen, 3,400 to 3,600 yen discounted on a ticket seller's site", "checked": "27 Nov 2026"},
     "uenozoo": {"a": 600, "src": "Ueno Zoo: general 600 yen, junior high 200 yen, free up to 6th grade", "url": "https://www.tokyo-zoo.net/english/ueno/", "checked": "27 Nov 2026"},
+    "shinkansen": {"a": 13970, "c": 6980, "src": "Smart EX Service, Nozomi, reserved seat, normal season (off-peak 200 yen less, busiest 400 yen more; children half that)", "url": "https://smart-ex.jp/en/", "checked": "27 Nov 2026"},
     "tax": {"each": 3000, "src": "JNTO: International Tourist Tax", "url": "https://www.japan.travel/en/plan/international-tourist-tax/"},
 }
 # Ways to find what we do not price. Partner links reuse existing tracked links for the sketch (own Sub IDs before launch).
@@ -209,6 +210,11 @@ function calc(){
  if(document.getElementById('sanrio').value==='1'){var r=D.sanrio,sn=ad+ch,sl=r.lo*sn,sh=r.hi*sn;lo+=sl;hi+=sh;
   h+=line('Sanrio Puroland: '+sn+' × '+y(r.lo)+'–'+y(r.hi),y(sl)+'–'+y(sh),'<small>'+esc(r.src)+', checked '+r.checked+(inf?'. Little ones aged 3 to 5 also need a ticket.':'')+'</small>');}
  if(document.getElementById('zoo').value==='1'){var z=D.uenozoo,v=z.a*ad;sum+=v;h+=line('Ueno Zoo: '+ad+' × '+y(z.a)+(ch||inf?' (children up to 6th grade free)':''),y(v),'<small>'+esc(z.src)+', checked '+z.checked+' · <a href="'+z.url+'" target="_blank" rel="noopener">official page</a></small>');}
+ // Shinkansen between Tokyo and Kyoto: one ride if the trip flies into one and out of the other, else there and back
+ var REG={narita:'t',haneda:'t',kansai:'k',chitose:'h'},jrp=document.getElementById('jr').value==='1';
+ if(S.nt&&S.nk&&!jrp){var sk=D.shinkansen,rides=REG[arr.value]!==REG[dep.value]?1:2,bl=((sk.a-200)*ad+(sk.c-100)*ch)*rides,bh=((sk.a+400)*ad+(sk.c+200)*ch)*rides;lo+=bl;hi+=bh;
+  h+=line('Shinkansen Tokyo ⇄ Kyoto: '+rides+' ride'+(rides>1?'s':'')+' each',y(bl)+'–'+y(bh),'<small>'+esc(sk.src)+', checked '+sk.checked+(inf?'; under 6 free on a lap':'')+' · <a href="'+sk.url+'" target="_blank" rel="noopener">official site</a></small>')+go('shinkansen');}
+ if(S.nt&&S.nk&&jrp)h+=line('Shinkansen Tokyo ⇄ Kyoto','with the pass','<small>The Japan Rail Pass covers Hikari and Kodama trains; Nozomi needs an extra ticket (4,960 yen per ride between Tokyo and Kyoto, japanrailpass.net, checked 24 Nov 2026).</small>');
  var tx=D.tax.each*ppl;sum+=tx;h+=line('Departure tax: '+ppl+' × '+y(D.tax.each),y(tx),'<small>JNTO, checked '+CH+'; check JNTO for who is exempt · <a href="'+D.tax.url+'" target="_blank" rel="noopener">official page</a></small>');
  // the reader's own numbers
  var hot=num('hotel'),food=num('food'),fly=num('fly'),own='';
@@ -223,7 +229,6 @@ function calc(){
  if(!food)np+=line('Food and drinks','<span class="np">not priced</span>');
  np+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>')+go('parks');
  if(S.nk)np+=line('Kyoto and Osaka buses and trains','<span class="np">not priced yet</span>');
- if(S.nt&&S.nk&&document.getElementById('jr').value!=='1')np+=line('Shinkansen between Tokyo and Kyoto','<span class="np">not priced yet</span>')+go('shinkansen');
  if(S.nh&&(S.nt||S.nk))np+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
  miss.forEach(function(m){np+=line(esc(m),'<span class="np">not priced yet</span>');});
  h+='<div class="grp">Still to price</div>'+np;
