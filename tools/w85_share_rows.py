@@ -8,7 +8,8 @@ from the Japan travel guide's row so they always match), plus a "Share" button t
 where the browser has one (navigator.share). Every shared link carries ?src=share_<page> so GA4 shows which page is
 shared; clicks send the GA4 event "share_row" with the network.
 
-Idempotent (marker "ps-share-row"). Aborts without writing if an anchor or the article icons are missing.
+Idempotent (marker "ps-share-row"); on a page that already has the row, only its label is brought up to date.
+Label: "Made with ❤️ ..." (27 Nov 2026, owner: "hub" means nothing to readers). Aborts without writing if an anchor or the article icons are missing.
 Run after w73 and w81, before w72:  python3 tools/w85_share_rows.py
 """
 import html, os, re, sys, urllib.parse
@@ -17,11 +18,11 @@ PUB = os.path.join(os.getcwd(), "public")
 SITE = "https://www.packsmartapp.com"
 MARK = "ps-share-row"
 PAGES = [  # file, page path, label, share text, anchor, insert before (True) or after
-    ("japan.html", "/japan", "Share the Japan hub", "Japan, the easy way: airports, stations, Packy and offline Pocket Guides",
+    ("japan.html", "/japan", "Made with ❤️ for Japan travellers. Share it with a friend", "Japan, the easy way: airports, stations, Packy and offline Pocket Guides",
      '<footer class="footer">', True),
-    ("travel-essentials.html", "/travel-essentials", "Share Travel Essentials", "Travel Essentials: Pocket Guides, visas, eSIMs and packing lists",
+    ("travel-essentials.html", "/travel-essentials", "Made with ❤️ for travellers. Share it with a friend", "Travel Essentials: Pocket Guides, visas, eSIMs and packing lists",
      '<section class="pocket-hub"', True),
-    ("japan-phrasebook.html", "/japan-phrasebook", "Share Fuku's Phrasebook", "Fuku's Japanese Phrasebook: tap to hear every phrase, works offline",
+    ("japan-phrasebook.html", "/japan-phrasebook", "Made with ❤️ by Fuku. Share it with your travel buddy", "Fuku's Japanese Phrasebook: tap to hear every phrase, works offline",
      '<p class="note">', True),
 ]
 
@@ -62,7 +63,7 @@ def row(path, label, text, key):
          + "&description=" + q(text), "Pinterest"),
     ]
     icon = {"whatsapp": "whatsapp", "x": "twitter", "facebook": "facebook", "linkedin": "linkedin", "pinterest": "pinterest"}
-    out = ['<div class="' + MARK + ' ps-share-row" data-url="' + e(url) + '" data-text="' + e(text) + '"><span>' + e(label) + ' ✨</span>',
+    out = ['<div class="' + MARK + ' ps-share-row" data-url="' + e(url) + '" data-text="' + e(text) + '"><span>' + e(label) + '</span>',
            '<button type="button" class="ps-native" hidden>📤 Share</button>']
     for net, href, name in links:
         out.append('<a href="' + e(href) + '" target="_blank" rel="noopener" data-net="' + net + '" title="' + name + '" aria-label="Share on ' + name + '">' + ICONS[icon[net]] + '</a>')
@@ -74,6 +75,13 @@ for name, path, label, text, anchor, before in PAGES:
     f = os.path.join(PUB, name)
     s = open(f, encoding="utf-8").read()
     if 'class="' + MARK in s:   # the row itself (the page generators can keep the <head>, so the styles alone do not count)
+        # keep an existing row's label current (travel-essentials.html is not regenerated, so its row stays)
+        m = re.search(r'(<div class="' + MARK + r' ps-share-row"[^>]*><span>)(.*?)(</span>)', s)
+        if not m:
+            sys.exit("w85 aborted, nothing written: share row in " + name + " has no label")
+        new = html.escape(label, quote=True)
+        if m.group(2) != new:
+            plans[f] = s[:m.start(2)] + new + s[m.end(2):]
         continue
     if s.count(anchor) != 1 or s.count("</head>") != 1:
         sys.exit("w85 aborted, nothing written: anchor or </head> not found exactly once in " + name)
@@ -84,4 +92,4 @@ for name, path, label, text, anchor, before in PAGES:
     plans[f] = s
 for f, s in plans.items():
     open(f, "w", encoding="utf-8").write(s)
-print("w85 done. Share row added to %d page(s)." % len(plans))
+print("w85 done. Share row added or relabelled on %d page(s)." % len(plans))
