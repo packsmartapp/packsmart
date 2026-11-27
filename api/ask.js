@@ -37,7 +37,7 @@ const words = s => (s.toLowerCase().normalize('NFKD').match(/[a-z0-9]+(?:-[a-z0-
 const stem = w => w.replace(/ies$/, 'y').replace(/(ings?|ed|es|s)$/, '');   // emergencies -> emergency, not emergenci
 // document frequency for weighting rare words higher
 const DOCS = KB.map(p => { const set = new Set(words(p.t + ' ' + p.x).map(stem)); return set; });
-const PRICEQ = /how much|\bcost|price|\bfare|\byen\b|expensive|cheap|\u00a5/;
+const PRICEQ = /how much|\bcost|price|\bfare|\byen\b|expensive|cheap|\u00a5|\bfees?\b|admission|entrance|\bentry fee/;
 // health questions about cost ("how expensive is a hospital?") belong to the health notes, not the travel price sheet
 const CAREQ = /doctor|hospital|clinic|medical|insurance|ambulance|\bsick\b|\bill\b|injur|pharmac|medicine/;
 const priceQ = q => PRICEQ.test(q) && !CAREQ.test(q);
