@@ -36,7 +36,7 @@ for net in ("whatsapp", "twitter", "facebook", "linkedin", "pinterest", "copy-li
 
 CSS = ('<style id="ps-share-css">.ps-share-row{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;'
        'max-width:760px;margin:28px auto;padding:12px 16px;font-family:\'DM Sans\',sans-serif}'
-       '.ps-share-row>span{font-size:.98rem;line-height:1.45;color:#0f0f23;font-weight:600;width:100%;text-align:center}'
+       '.ps-share-row>span{font-size:1rem;line-height:1.5;color:#4a4f5c;font-weight:400;width:100%;text-align:center}.ps-share-row>span em{display:block;font-style:normal;font-size:.8rem;letter-spacing:.03em;color:#0a8f78;font-weight:600;margin-bottom:2px}'
        '.ps-share-row a,.ps-share-row button{display:inline-flex;align-items:center;justify-content:center;gap:5px;min-width:40px;height:40px;'
        'padding:0 10px;border-radius:10px;border:1px solid #E3E8EC;background:#fff;color:#555;text-decoration:none;font:inherit;'
        'font-size:.84rem;font-weight:600;cursor:pointer}'
@@ -49,6 +49,11 @@ JS = ('<script>(function(){var r=document.currentScript.previousElementSibling;i
       'navigator.share({title:document.title,text:r.getAttribute("data-text"),url:r.getAttribute("data-url")}).then(function(){t("native");}).catch(function(){});});}'
       'r.addEventListener("click",function(e){var a=e.target.closest("[data-net]");if(!a)return;var n=a.getAttribute("data-net");'
       'if(n==="copy"){e.preventDefault();var u=r.getAttribute("data-url");try{navigator.clipboard.writeText(u).then(function(){a.lastChild.textContent=" Copied!";});}catch(x){}}t(n);});})();</script>')
+
+def lab(label):
+    """'Made with ... . The question' -> a small teal 'Made with' line over the question in plain text."""
+    kick, rest = label.split(". ", 1)
+    return "<em>" + html.escape(kick, quote=True) + "</em>" + html.escape(rest, quote=True)
 
 def row(path, label, text, key):
     url = SITE + path + "?src=share_" + key
@@ -63,7 +68,7 @@ def row(path, label, text, key):
          + "&description=" + q(text), "Pinterest"),
     ]
     icon = {"whatsapp": "whatsapp", "x": "twitter", "facebook": "facebook", "linkedin": "linkedin", "pinterest": "pinterest"}
-    out = ['<div class="' + MARK + ' ps-share-row" data-url="' + e(url) + '" data-text="' + e(text) + '"><span>' + e(label) + '</span>',
+    out = ['<div class="' + MARK + ' ps-share-row" data-url="' + e(url) + '" data-text="' + e(text) + '"><span>' + lab(label) + '</span>',
            '<button type="button" class="ps-native" hidden>📤 Share</button>']
     for net, href, name in links:
         out.append('<a href="' + e(href) + '" target="_blank" rel="noopener" data-net="' + net + '" title="' + name + '" aria-label="Share on ' + name + '">' + ICONS[icon[net]] + '</a>')
@@ -83,7 +88,7 @@ for name, path, label, text, anchor, before in PAGES:
             sys.exit("w85 aborted, nothing written: share row in " + name + " has no label or no styles")
         s = s[:c.start()] + CSS + s[c.end():]
         m = re.search(r'(<div class="' + MARK + r' ps-share-row"[^>]*><span>)(.*?)(</span>)', s)
-        s = s[:m.start(2)] + html.escape(label, quote=True) + s[m.end(2):]
+        s = s[:m.start(2)] + lab(label) + s[m.end(2):]
         if s != old:
             plans[f] = s
         continue
