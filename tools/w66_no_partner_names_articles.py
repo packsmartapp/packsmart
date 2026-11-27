@@ -126,7 +126,7 @@ ONEOFFS = [
 ]
 
 NAMES = r"Airalo|GetYourGuide|Get Your Guide|Welcome Pickups|DiscoverCars|EconomyBookings|Radical Storage|Klook|KKday|Yesim|12Go|Trip\.com|Travelpayouts|Tiqets|Japan Bullet Train|Sakura Mobile"
-ALLOWED = [r"Best Saily Alternatives 2026:[^.]{0,80}", r"Yesim vs Airalo vs Saily[^.]{0,40}",
+ALLOWED = [r"Best Saily Alternatives 2026:[^.]{0,80}", r"Best eSIM for International Travel 2026:[^.]{0,80}", r"Yesim vs Airalo vs Saily[^.]{0,40}",
            r"trusted booking platforms Agoda Trip\.com Kiwi\.com"]   # flights.html: the sources the search widget fetches
 
 

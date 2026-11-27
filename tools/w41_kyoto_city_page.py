@@ -235,7 +235,7 @@ ONE_PAGE = """<div class="ps-card" id="one-page">
 <li><strong>Spread out:</strong> Kyoto Station is in the south. Higashiyama and Gion (Kiyomizu-dera) are in the east, Fushimi Inari in the south-east, Arashiyama in the west, and Kinkaku-ji in the north. Plan one or two areas a day.</li>
 <li><strong>Quick trains:</strong> Fushimi Inari is 5 minutes from Kyoto Station on the JR Nara Line. Saga-Arashiyama is about 11 minutes by Rapid on the JR Sagano Line. Nara is about 35 to 45 minutes.</li>
 <li><strong>Long day trip:</strong> Amanohashidate is about 2 to 2.5 hours each way, and Ine is about another hour by bus. Most visitors book a tour for it.</li>
-<li><strong>Closing times:</strong> Most big temples close around 17:00. Ginkaku-ji shortens its hours from 1 December. Kiyomizu-dera stays open late from 21 to 30 November 2026.</li>
+<li><strong>Closing times:</strong> Most big temples close around 17:00. Ginkaku-ji has shorter hours from 1 December to the end of February. Kiyomizu-dera sometimes opens late for special night viewings, so check its schedule.</li>
 <li><strong>Manners:</strong> Do not photograph geiko and maiko without permission, and do not eat while walking in Nishiki Market.</li>
 <li><strong>Arriving?</strong> See our <a href="/blog/kyoto-station-guide">Kyoto Station guide</a> if you come by train, or our <a href="/blog/kansai-airport-guide">Kansai Airport guide</a> if you fly in.</li>
 </ul>
@@ -331,7 +331,7 @@ SIGHTS = ("""<h2 id="sights">The main sights in the city</h2>
 <h3>Fushimi Inari Taisha</h3>
 <p>Entry is free, and JNTO says you can visit at any time of day. The path up Mount Inari is lined with about 10,000 torii gates, and JNTO gives 2 to 3 hours for the full walk. It suggests going early, when fewer people are around, or after dark when the shrine is lit up. From JR Inari Station it is a 3-minute walk to the shrine.</p>
 <h3>Kiyomizu-dera</h3>
-<p>The temple opens at 6:00. In 2026 it closes at 18:00 for most of the year, and at 18:30 in July and August. The autumn special night viewing runs from 21 to 30 November 2026, with the temple open until 21:30 and last entry at 21:00, and no reservation is needed. The Jojuin garden is also open specially on those dates. An entrance fee applies. Read the """ + official("https://www.kiyomizudera.or.jp/en/visit/", "temple's own schedule") + """ before you go.</p>
+<p>The temple opens at 6:00. In 2026 it closes at 18:00 for most of the year, and at 18:30 in July and August. For special night viewings it stays open later: in 2026 that was 21 to 30 November, until 21:30. An entrance fee applies. Read the """ + official("https://www.kiyomizudera.or.jp/en/visit/", "temple's own schedule") + """ before you go.</p>
 <h3>Kinkaku-ji (the Golden Pavilion)</h3>
 <p>Kinkaku-ji, officially Rokuon-ji, is open 9:00 to 17:00 all year, although hours may change for special exhibitions. UNESCO listed it in 1994. A monk burned the pavilion in 1950 and it was rebuilt in 1955. The path is wheelchair accessible up to the pavilion, but the garden beyond has steps. See the """ + official("https://www.shokoku-ji.jp/en/kinkakuji/access/", "temple's access page") + """.</p>
 <h3>Ginkaku-ji (the Silver Pavilion)</h3>
@@ -387,8 +387,8 @@ FAQ = [
      "JNTO gives about 2 to 2.5 hours by Hashidate Limited Express from Kyoto Station to Amanohashidate Station. A bus from Amanohashidate Station to Ine takes about 60 minutes and runs roughly once an hour. Day tours from Kyoto run about 10 hours in total."),
     ("What time does Fushimi Inari close?",
      "Fushimi Inari Taisha can be visited at any time of day, and entry is free, according to JNTO and Kyoto's tourism site. The full walk up the mountain takes 2 to 3 hours."),
-    ("Is Kiyomizu-dera open in the evening in November 2026?",
-     "Yes, during the autumn special night viewing from 21 to 30 November 2026. The temple stays open until 21:30, with last entry at 21:00, and no reservation is needed. For most of the rest of 2026 it closes at 18:00."),
+    ("Is Kiyomizu-dera open in the evening?",
+     "Usually not: in 2026 it closes at 18:00 for most of the year, and at 18:30 in July and August. During special night viewings it stays open later (in 2026, 21 to 30 November, until 21:30), so check the temple's own schedule for the next one."),
     ("What are the opening hours of Kinkaku-ji, Ginkaku-ji and Nijo Castle?",
      "Kinkaku-ji is open 9:00 to 17:00 all year. Ginkaku-ji is open 8:30 to 17:00 until 30 November, then 9:00 to 16:30 from 1 December. The grounds of Nijo Castle open at 8:45, with last entry at 16:00 and closing at 17:00, and the castle is closed 29 to 31 December. Last admission is at 12:00 on Sunday 6 December 2026."),
     ("Can I photograph geiko and maiko in Gion?",
