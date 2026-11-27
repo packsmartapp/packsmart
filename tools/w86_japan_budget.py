@@ -51,7 +51,7 @@ DATA = {
     "taxi": {"lo": 2500, "hi": 3000, "src": "JNTO: a 7 km daytime ride in Tokyo, about 25 minutes", "url": "https://www.japan.travel/en/plan/getting-around/taxis/"},
     "jrpass": {"a": 50000, "c": 25000, "src": "Japan Rail Pass, 7 days, ordinary, bought online", "url": "https://japanrailpass.net/en/purchase/price/"},
     "disney": {"lo": 10900, "hi": 12400, "src": "Tokyo Disney Resort 1-Day Passport, adult, by date (28 Nov to 5 Dec 2026 shown)", "url": "https://www.tokyodisneyresort.jp/en/", "checked": "27 Nov 2026"},
-    "disneyChild": {"c": 5900, "src": "ages 4 to 11, about 5,900 yen, a ticket seller's listing for 28 Nov 2026", "checked": "27 Nov 2026"},
+    "disneyChild": {"j": 10200, "c": 5900, "src": "juniors 12 to 17 about 10,200 yen, children 4 to 11 about 5,900 yen, from a ticket seller's listing for 28 Nov 2026", "checked": "27 Nov 2026"},
     "sanrio": {"lo": 3400, "hi": 4900, "src": "Sanrio Puroland 1-day ticket, age 3 and up: retail 4,900 yen, 3,400 to 3,600 yen discounted on a ticket seller's site", "checked": "27 Nov 2026"},
     "uenozoo": {"a": 600, "src": "Ueno Zoo: general 600 yen, junior high 200 yen, free up to 6th grade", "url": "https://www.tokyo-zoo.net/english/ueno/", "checked": "27 Nov 2026"},
     "tax": {"each": 3000, "src": "JNTO: International Tourist Tax", "url": "https://www.japan.travel/en/plan/international-tourist-tax/"},
@@ -125,7 +125,6 @@ input[type=number]{width:130px}
 .next{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 2px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;text-decoration:none;font-weight:700;font-size:.98rem}.next i{font-style:normal;font-size:1.3rem}
 .two{display:grid;gap:8px;margin:6px 0 2px}.two>div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 13px}
 .two b{display:block;font-size:.95rem}.two span{display:block;font-size:.82rem;color:#bfc6d6;line-height:1.45;margin-top:3px}.two .go{margin-top:10px}
-.ln.fam small{font-size:.82rem;color:#cfd6e6;line-height:1.5}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 </style>
 </head>
@@ -137,8 +136,9 @@ input[type=number]{width:130px}
   <span class="sketch">Sketch for review · not live</span>
 </header>
 <main>
-  <section class="card"><h2>Who is going?</h2><p class="h">Children's fares on trains and buses are for ages 6 to 11; under 6 usually ride free with an adult.</p>
-    <div class="row"><label>Adults<small>12 and older</small></label><div class="step" data-k="ad"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+  <section class="card"><h2>Who is going?</h2><p class="h">On trains and buses, ages 12 and up pay adult fares and ages 6 to 11 child fares; under 6 usually ride free with an adult.</p>
+    <div class="row"><label>Adults<small>18 and older</small></label><div class="step" data-k="ad"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    <div class="row"><label>Teenagers<small>12 to 17</small></label><div class="step" data-k="tn"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label>Children<small>6 to 11</small></label><div class="step" data-k="ch"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label>Little ones<small>under 6</small></label><div class="step" data-k="in"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
   </section>
@@ -166,7 +166,7 @@ input[type=number]{width:130px}
 <script>
 (function(){
 var D=%%DATA%%,LK=%%LINKS%%,CH='%%CHECKED%%';
-var S={ad:2,ch:2,in:0,nt:9,nk:0,nh:0,tx:6,dn:0};var MAX={ad:12,ch:10,in:6,nt:30,nk:30,nh:30,tx:40,dn:10};
+var S={ad:2,tn:0,ch:2,in:0,nt:9,nk:0,nh:0,tx:6,dn:0};var MAX={ad:12,tn:10,ch:10,in:6,nt:30,nk:30,nh:30,tx:40,dn:10};
 function y(n){return '¥'+Math.round(n).toLocaleString('en-US');}
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function track(s,x){try{if(window.gtag)gtag('event','budget_calc',{event_category:'engagement',status:s,item:x||'',page_path:location.pathname});}catch(e){}}
@@ -188,7 +188,7 @@ function src(name,url){return '<small>'+esc(name)+', checked '+CH+' · <a href="
 function line(label,v,note){return '<div class="ln"><div class="l">'+label+(note||'')+'</div><div class="v">'+v+'</div></div>';}
 function go(k){var l=LK[k];return '<a class="go" href="'+esc(l[1])+'"'+(l[2]?' target="_blank" rel="nofollow noopener sponsored" data-ps-placement="budget-'+k+'"':'')+' data-go="'+k+'">'+esc(l[0])+'<small>'+(l[2]?'partner link ↗':'→')+'</small></a>';}
 function calc(){
- var ad=S.ad,ch=S.ch,inf=S.in,ppl=ad+ch+inf,nights=S.nt+S.nk+S.nh,days=nights+1,cars=Math.ceil(ppl/4),h='',sum=0,lo=0,hi=0,miss=[];
+ var tn=S.tn,ad=S.ad+tn,ch=S.ch,inf=S.in,ppl=ad+ch+inf,nights=S.nt+S.nk+S.nh,days=nights+1,cars=Math.ceil(ppl/4),h='',sum=0,lo=0,hi=0,miss=[];
  // airport to town, both ends
  function leg(k,wid,label){var w=D.airport[k].ways.filter(function(x){return x.id===wid;})[0]||D.airport[k].ways[0];
   if(w.car){lo+=w.car[0]*cars;hi+=w.car[1]*cars;return line(label+': '+esc(w.name)+(cars>1?' ('+cars+' cars)':''),y(w.car[0]*cars)+'–'+y(w.car[1]*cars),src(w.src,w.url));}
@@ -203,12 +203,11 @@ function calc(){
  if(S.nh){var s=D.sapporoDay,v=S.nh*(s.a*ad+s.c*ch);sum+=v;h+=line('Sapporo subway: '+S.nh+' one-day ticket'+(S.nh>1?'s':''),y(v),src(s.src,s.url));}
  if(S.tx){var tl=S.tx*cars*D.taxi.lo,th=S.tx*cars*D.taxi.hi;lo+=tl;hi+=th;h+=line('Taxis: '+S.tx+' ride'+(S.tx>1?'s':'')+(cars>1?' × '+cars+' cars':''),y(tl)+'–'+y(th),src(D.taxi.src,D.taxi.url));}
  if(document.getElementById('jr').value==='1'){var j=D.jrpass,v=j.a*ad+j.c*ch;sum+=v;h+=line('Japan Rail Pass, 7 days',y(v),src(j.src,j.url));}
- var park=false;
- if(S.dn){var d=D.disney,dc=D.disneyChild,kid=dc.c*ch*S.dn,dl=d.lo*ad*S.dn+kid,dh=d.hi*ad*S.dn+kid;lo+=dl;hi+=dh;park=true;
-  h+=line('Tokyo Disney: '+ad+' adult'+(ad>1?'s':'')+(ch?' + '+ch+' child'+(ch>1?'ren':''):'')+' × '+S.dn+' day'+(S.dn>1?'s':''),y(dl)+'–'+y(dh),'<small>Adults: '+esc(d.src)+', checked '+d.checked+' · <a href="'+d.url+'" target="_blank" rel="noopener">price calendar</a>'+(ch?'. Children: '+esc(dc.src)+'.':'')+(inf?' Under 4: free.':'')+'</small>');}
- if(document.getElementById('sanrio').value==='1'){var r=D.sanrio,sn=ad+ch,sl=r.lo*sn,sh=r.hi*sn;lo+=sl;hi+=sh;park=true;
+ if(S.dn){var d=D.disney,dc=D.disneyChild,ga=S.ad,kid=(dc.c*ch+dc.j*tn)*S.dn,dl=d.lo*ga*S.dn+kid,dh=d.hi*ga*S.dn+kid;lo+=dl;hi+=dh;
+  var who=[ga+' adult'+(ga>1?'s':''),tn?tn+' teen'+(tn>1?'s':''):'',ch?ch+' child'+(ch>1?'ren':''):''].filter(Boolean).join(' + ');
+  h+=line('Tokyo Disney: '+who+' × '+S.dn+' day'+(S.dn>1?'s':''),y(dl)+'–'+y(dh),'<small>Adults: '+esc(d.src)+', checked '+d.checked+' · <a href="'+d.url+'" target="_blank" rel="noopener">price calendar</a>'+(tn||ch?'. '+esc(dc.src).charAt(0).toUpperCase()+esc(dc.src).slice(1)+'.':'')+(inf?' Under 4: free; ages 4 and 5 pay the child price.':'')+'</small>');}
+ if(document.getElementById('sanrio').value==='1'){var r=D.sanrio,sn=ad+ch,sl=r.lo*sn,sh=r.hi*sn;lo+=sl;hi+=sh;
   h+=line('Sanrio Puroland: '+sn+' × '+y(r.lo)+'–'+y(r.hi),y(sl)+'–'+y(sh),'<small>'+esc(r.src)+', checked '+r.checked+(inf?'. Little ones aged 3 to 5 also need a ticket.':'')+'</small>');}
- if(park)h+='<div class="ln fam"><div class="l"><small>💬 From a PackSmart family’s trip (October 2025, 2 adults, children aged 7 and 10): about ¥34,000 for a day at Tokyo DisneySea and about ¥20,000 for Sanrio Puroland.</small></div></div>';
  if(document.getElementById('zoo').value==='1'){var z=D.uenozoo,v=z.a*ad;sum+=v;h+=line('Ueno Zoo: '+ad+' × '+y(z.a)+(ch||inf?' (children up to 6th grade free)':''),y(v),'<small>'+esc(z.src)+', checked '+z.checked+' · <a href="'+z.url+'" target="_blank" rel="noopener">official page</a></small>');}
  var tx=D.tax.each*ppl;sum+=tx;h+=line('Departure tax: '+ppl+' × '+y(D.tax.each),y(tx),'<small>JNTO, checked '+CH+'; check JNTO for who is exempt · <a href="'+D.tax.url+'" target="_blank" rel="noopener">official page</a></small>');
  // the reader's own numbers
