@@ -42,7 +42,7 @@ def footer_offer(kind, n):
                    + icon_row('Airports', POCKET[:4], n) + icon_row('Stations', POCKET[4:], n))
     if kind == 'esim':
         return box('<b>&#128246; Data from the minute you land</b><br>Maps, train apps and a phone-wallet IC card all need data, from the minute you land. '
-                   f'<a href="https://airalo.tpx.li/4TNBGGOO" rel="nofollow noopener sponsored" style="color:#0a8f78;font-weight:bold;">See eSIM data plans for Japan</a> '
+                   f'<a href="https://airalo.tpo.lu/rYafSSxU" rel="nofollow noopener sponsored" style="color:#0a8f78;font-weight:bold;">See eSIM data plans for Japan</a> '
                    '<span style="color:#8a93a6;font-size:12px;">(partner link)</span>', '#ffffff', 'border:1px solid #e3e8ec;')
     if kind == 'packing':
         return box('<b>&#129523; Packing for Japan?</b><br>Our checklist covers the small things that matter there, like cash for small shops and good socks (you&rsquo;ll take your shoes off more than you think). '

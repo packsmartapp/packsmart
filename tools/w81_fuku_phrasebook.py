@@ -49,7 +49,7 @@ OFFERS = {   # soft start (owner, 27 Nov): lessons 1 to 3 point to our own help;
     "3": ("📅", "Plan My Trip: a day-by-day plan for your dates", "/?dest=Japan&src=phrasebook#plan", False),
     "4": ("🌸", "Compare cherry blossom tours in Japan", GYG % ("japan%20cherry%20blossom%20tour", "4"), True),
     "5": ("🚄", "Book Shinkansen tickets online", "https://www.japan-bullettrain.com/?via=packsmart", True),
-    "6": ("📶", "See eSIM data plans for Japan", "https://airalo.tpx.li/4TNBGGOO", True),
+    "6": ("📶", "See eSIM data plans for Japan", "https://airalo.tpo.lu/Y1kIv39w", True),   # Sub ID pb-l6-esim
     "7": ("🧳", "Open the Japan packing list", "/blog/japan-travel-packing-guide?src=phrasebook", False),
     "8": ("🩺", "Get a SafetyWing travel medical insurance quote", "https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador", True),
 }
