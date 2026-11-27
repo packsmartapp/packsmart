@@ -71,7 +71,7 @@ def phrases(n):
     sep = '<tr><td colspan="2" style="border-top:1px solid #d9f0ea;font-size:0;line-height:0;">&nbsp;</td></tr>'
     rows = []
     for i, (r, ja, m) in enumerate(LES[str(n)]['phrases']):
-        url = f'{SITE}/japan?say={n}-{i+1}&amp;src=gift{n}_say'
+        url = f'{SITE}/japan-phrasebook?say={n}-{i+1}&amp;src=gift{n}_say'
         rows.append(f'<tr><td style="padding:11px 4px 11px 14px;{F}"><div style="font-weight:bold;font-size:17px;color:#0f0f23;">{e(r)}</div>'
                     f'<div lang="ja" style="font-size:15px;color:#0a8f78;font-weight:bold;margin-top:2px;">{e(ja)}</div>'
                     f'<div style="font-size:14px;color:#5a6378;margin-top:2px;">{e(m)}</div></td>'
@@ -226,7 +226,7 @@ T = {
 }
 for n, (title, intro, extra, nxt) in T.items():
     ph = "\n".join(f"- {r} = {m}" for r, ja, m in LES[str(n)]['phrases'])
-    t = (f"{title}\n\n{intro}\n\n{ph}\nHear Fuku say them: {S}/japan?say={n}-1&src=gift{n}_say\n\n" + (extra + "\n\n" if extra else "") +
+    t = (f"{title}\n\n{intro}\n\n{ph}\nHear Fuku say them: {S}/japan-phrasebook?l={n}&src=gift{n}_say\n\n" + (extra + "\n\n" if extra else "") +
          (f"Next time: {nxt}\n\n" if nxt else "") + f"Ask Packy about your trip: {S}/japan?src=gift{n}_ask#ask\n\nMata ne! Fuku\n\n"
          + ", ".join(POSTAL) + "\nUnsubscribe: {$unsubscribe}")
     open(os.path.join(OUT, f'lesson{n}.txt'), 'w').write(t)
