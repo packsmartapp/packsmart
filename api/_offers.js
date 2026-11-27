@@ -12,6 +12,8 @@ export const BUDGETQ = /total (?:cost|budget|price|spend)|\bbudget\b|how much (?
 export const OFFERS = [
   // the budget calculator; ask.js adds what the reader said (people, nights, Disney days) to the link
   { id: 'budget', rx: BUDGETQ, label: 'Work out your trip budget', url: '/japan-budget?src=packy', partner: false },
+  // guided multi-day tours (owner, 27 Nov): for readers who want one booking instead of arranging every piece
+  { id: 'multitour', rx: /package (?:tour|holiday|trip)|tour package|holiday package|multi-?day tours?|guided (?:trip|holiday|tour of japan)|group tours?|organi[sz]ed tours?|escorted tours?|all[- ]inclusive|someone (?:else )?(?:to )?(?:handle|organi[sz]e|arrange|book) (?:it|everything)|(?:easier|simpler|better) (?:with|to (?:take|book|join)) a tour|join a tour/, label: 'Compare guided multi-day Japan tours', url: 'https://www.tourradar.com/d/japan?utm_source=partner-traveller-1471305&utm_medium=ambassador&utm_campaign=packy-tours', partner: true },
   { id: 'plan', rx: ITINQ, not: /\bpass\b|ticket|valid|visa|stay (?:up to|for)|lockers?|bus\b/, label: 'Build a day-by-day Japan plan', url: '/?dest=Japan&src=packy#plan', partner: false },
   { id: 'skyliner', rx: /skyliner|keisei|ueno.{0,40}narita|narita.{0,40}ueno|nippori/, regions: ['tokyo', ''], label: 'Book Skyliner tickets online', url: 'https://klook.tpx.li/gIYih1CY', partner: true },
   { id: 'nex', rx: /narita express|\bn'?ex\b/, regions: ['tokyo', ''], label: 'Book Narita Express tickets online', url: 'https://klook.tpx.li/tX4jclRv', partner: true },

@@ -60,6 +60,8 @@ LINKS = {
     "parks": ["Compare Tokyo Disney and theme park tickets", "https://www.getyourguide.com/s/?q=tokyo%20theme%20park%20tickets&partner_id=D7IXONS&cmp=ps-budget", True],
     "shinkansen": ["Book Shinkansen tickets online", "https://www.japan-bullettrain.com/?via=packsmart", True],
     "transfer": ["Book a private airport transfer", "https://tpo.lu/5TSGg9Tf", True],
+    "tours": ["Compare guided multi-day Japan tours", "https://www.tourradar.com/d/japan?utm_source=partner-traveller-1471305&utm_medium=ambassador&utm_campaign=budget-tours", True],
+    "tours_family": ["Compare family-friendly multi-day Japan tours", "https://www.tourradar.com/srp/d-japan?age_range=13-17%2C7-12&adults=2&children=2&utm_source=partner-traveller-1471305&utm_medium=ambassador&utm_campaign=family-tours", True],
     "esim": ["See eSIM data plans for Japan", "https://airalo.tpo.lu/ndZAMVI0", True],
     "insurance": ["Get a travel medical insurance quote", "https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador", True],
 }
@@ -119,6 +121,8 @@ input[type=number]{width:130px}
 .go{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:8px 0 0;padding:11px 13px;border-radius:14px;background:#fff;border:1.5px solid #e3e8ec;color:var(--dark);text-decoration:none;font-weight:700;font-size:.9rem}
 .go small{flex:0 0 auto;font-weight:500;font-size:.72rem;color:#8a93a6}
 .next{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 2px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;text-decoration:none;font-weight:700;font-size:.98rem}.next i{font-style:normal;font-size:1.3rem}
+.two{display:grid;gap:8px;margin:6px 0 2px}.two>div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 13px}
+.two b{display:block;font-size:.95rem}.two span{display:block;font-size:.82rem;color:#bfc6d6;line-height:1.45;margin-top:3px}.two .go{margin-top:10px}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 </style>
 </head>
@@ -217,6 +221,9 @@ function calc(){
  if(S.nh&&(S.nt||S.nk))np+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
  miss.forEach(function(m){np+=line(esc(m),'<span class="np">not priced yet</span>');});
  h+='<div class="grp">Still to price</div>'+np;
+ // two ways to book (owner, 27 Nov): piece by piece with the buttons above, or one booking with a tour company
+ h+='<div class="grp">Two ways to book</div><div class="two"><div><b>Book it yourself</b><span>Use the buttons above for each piece: trains, tickets, transfers.</span></div>'+
+  '<div><b>Prefer one booking?</b><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
  h+='<div class="grp">Also worth having</div>'+go('esim')+go('transfer')+go('insurance');
  var top='<h2>Your estimate</h2><div class="tot"><b>'+y(sum+lo)+(hi>lo?'–'+y(sum+hi).replace('¥',''):'')+'</b><span>'+ppl+' people · '+nights+' nights</span></div>'+
   '<p class="pp">For the costs listed below only. About '+y((sum+lo)/Math.max(1,ppl))+' per person.</p>';
