@@ -4,6 +4,8 @@
 // Itinerary and "plan my trip" questions (owner, 26 Nov): Packy gives a starting route, then this button opens the
 // trip planner on the home page with Japan filled in (it builds the day-by-day plan for the reader's dates and group).
 export const ITINQ = /itin[ea]r|iten[ae]r|itenar|plan (?:my|our|a|the) (?:\w+ )?(?:trip|holiday|vacation|route|visit)|\b\d{1,2}[ -]?(?:days?|nights?|weeks?)\b|where (?:should|to|can) (?:i|we) go|what (?:should|to) (?:i|we) (?:see|visit)|things to do in japan|first (?:trip|time|visit) (?:to|in) japan/;
+// 27 Nov 2026: the airport transfer, eSIM and bag storage buttons use Packy's own Travelpayouts links (Sub IDs
+// packy-transfer, packy-esim, packy-bags-tokyo/-osaka/-kyoto), so Packy's sales show up separately from the site's.
 export const OFFERS = [
   { id: 'plan', rx: ITINQ, not: /\bpass\b|ticket|valid|visa|stay (?:up to|for)|lockers?|bus\b/, label: 'Build a day-by-day Japan plan', url: '/?dest=Japan&src=packy#plan', partner: false },
   { id: 'skyliner', rx: /skyliner|keisei|ueno.{0,40}narita|narita.{0,40}ueno|nippori/, regions: ['tokyo', ''], label: 'Book Skyliner tickets online', url: 'https://klook.tpx.li/gIYih1CY', partner: true },
@@ -12,17 +14,17 @@ export const OFFERS = [
   // the nationwide pass only: not for the Hokkaido or area passes (no partner sells those through us)
   { id: 'jrpass', rx: /japan rail pass|\bjr pass\b/, not: /hokkaido rail pass|area pass|hokkaido pass/, regions: ['tokyo', 'kansai', ''], label: 'Book a Japan Rail Pass online', url: 'https://klook.tpx.li/vRbZKSsT', partner: true },
   { id: 'shinkansen', rx: /shinkansen|bullet train|nozomi|hikari|kodama/, regions: ['tokyo', 'kansai', ''], label: 'Book Shinkansen tickets online', url: 'https://www.japan-bullettrain.com/?via=packsmart', partner: true },
-  { id: 'transfer', rx: /\btransfer\b|private car|pick ?up|taxi from|door.to.door/, regions: ['tokyo', 'kansai', 'hokkaido', ''], label: 'Book a private airport transfer', url: 'https://tpx.li/qYFLwgZ8', partner: true },
+  { id: 'transfer', rx: /\btransfer\b|private car|pick ?up|taxi from|door.to.door/, regions: ['tokyo', 'kansai', 'hokkaido', ''], label: 'Book a private airport transfer', url: 'https://tpo.lu/5TSGg9Tf', partner: true },
   { id: 'car', rx: /rent(al)?[ -]?a?[ -]?car|car (hire|rental)|\bdrive\b|driving/, regions: ['hokkaido', 'tokyo', 'kansai', ''], by: {
       hokkaido: ['Compare car hire in our guide', '/blog/new-chitose-airport-guide#transfer-car', false],
       tokyo: ['Compare car hire in our guide', '/blog/ueno-station-guide#car-rental', false] }, label: 'Compare car hire in our guide', url: '/blog/new-chitose-airport-guide#transfer-car', partner: false },
-  { id: 'esim', rx: /\besim\b|\bsim\b|mobile data|internet|wi-?fi|phone data|roaming/, regions: ['tokyo', 'kansai', 'hokkaido', ''], label: 'See eSIM data plans for Japan', url: 'https://airalo.tpx.li/4TNBGGOO', partner: true },
+  { id: 'esim', rx: /\besim\b|\bsim\b|mobile data|internet|wi-?fi|phone data|roaming/, regions: ['tokyo', 'kansai', 'hokkaido', ''], label: 'See eSIM data plans for Japan', url: 'https://airalo.tpo.lu/ndZAMVI0', partner: true },
   { id: 'insurance', rx: /insurance|hospital|doctor|medical/, regions: ['tokyo', 'kansai', 'hokkaido', ''], label: 'Get a SafetyWing travel medical insurance quote', url: 'https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador', partner: true },
   // bag storage partner covers Tokyo, Kyoto and Osaka only; in Hokkaido point to our locker sections instead
   { id: 'bags', rx: /luggage|\bbags?\b|suitcase|locker/, regions: ['tokyo', 'kansai', 'hokkaido'], by: {
-      tokyo: ['Store your bags in Tokyo', 'https://radicalstorage.tpx.li/d0Eds67a', true],
-      kansai: ['Store your bags in Osaka', 'https://radicalstorage.tpx.li/pDtmtRB2', true],
-      kyoto: ['Store your bags in Kyoto', 'https://radicalstorage.tpx.li/x1dvLMVu', true],
+      tokyo: ['Store your bags in Tokyo', 'https://radicalstorage.tpo.lu/hEstntUb', true],
+      kansai: ['Store your bags in Osaka', 'https://radicalstorage.tpo.lu/1S7khUHA', true],
+      kyoto: ['Store your bags in Kyoto', 'https://radicalstorage.tpo.lu/FNuz9B3L', true],
       hokkaido: ['Lockers and luggage at Sapporo Station', '/blog/sapporo-station-guide#luggage', false],
       'hokkaido-airport': ['Lockers and bag delivery at New Chitose', '/blog/new-chitose-airport-guide#luggage', false] } },
   { id: 'hotel', rx: /hotel|\bstay\b|accommodation|where to sleep/, regions: ['hokkaido'], label: 'Hotels by Sapporo Station', url: '/blog/sapporo-station-guide#hotels', partner: false },
