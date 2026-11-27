@@ -1125,9 +1125,16 @@ export default [
 },
 {
 "t": "japan prices > Japan prices: official sources (for Packy) > City transport",
-"x": "- Tokyo Subway Ticket (Toei Subway and Tokyo Metro, for visitors from outside Japan): 24 hours adult 1,000 yen (child 500), 48 hours 1,500 (750), 72 hours 2,000 (1,000). Source: https://www.kotsu.metro.tokyo.jp/eng/tickets/, checked 24 Nov 2026.\n- Toei 1Day Pass (Toei Subway, Toei Bus, Tokyo Sakura Tram, Nippori-Toneri Liner): adult 700 yen, child 350 yen. 1Day Ticket for Toei Subway and Tokyo Metro: adult 1,100 yen, child 550 yen. Toei Bus 1Day Pass: 500 yen (child 250). Toden 1Day Pass: 400 yen (200). Tokyo Combination Ticket (Toei, Tokyo Metro and JR in the 23 wards, one day): 1,720 yen (860). Greater Tokyo Pass (5 days, 13 companies): 6,500 yen (3,250). Same source.\n- Gap: single-ride base fares for Tokyo Metro and Toei. www.tokyometro.jp returns 403; Toei's fare page did not load.",
+"x": "- Tokyo Subway Ticket (Toei Subway and Tokyo Metro, for visitors from outside Japan): 24 hours adult 1,000 yen (child 500), 48 hours 1,500 (750), 72 hours 2,000 (1,000). Source: https://www.kotsu.metro.tokyo.jp/eng/tickets/, checked 24 Nov 2026.\n- Toei 1Day Pass (Toei Subway, Toei Bus, Tokyo Sakura Tram, Nippori-Toneri Liner): adult 700 yen, child 350 yen. 1Day Ticket for Toei Subway and Tokyo Metro: adult 1,100 yen, child 550 yen. Toei Bus 1Day Pass: 500 yen (child 250). Toden 1Day Pass: 400 yen (200). Tokyo Combination Ticket (Toei, Tokyo Metro and JR in the 23 wards, one day): 1,720 yen (860). Greater Tokyo Pass (5 days, 13 companies): 6,500 yen (3,250). Same source.",
 "u": [
 "https://www.kotsu.metro.tokyo.jp/eng/tickets/"
+]
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > City transport",
+"x": "- Kyoto bus and subway day pass, the \"Subway & Bus One-Day Pass\" (Kyoto City Transportation Bureau): adult 1,100 yen, child 550 yen for one day of unlimited rides on Kyoto buses and the subway. Covers the Kyoto City Subway (all lines) and Kyoto City Bus (all routes), plus Kyoto Bus, Keihan Bus and West JR Bus (some routes excluded on each). Source: Kyoto City Transportation Bureau, \"Subway, Bus One-Day Pass\" page, https://www.city.kyoto.lg.jp/kotsu/ (read from a screenshot of the official page), checked 27 Nov 2026.\n- Gap: Osaka Metro 1-day pass price (not checked yet).\n- Gap: single-ride base fares for Tokyo Metro and Toei. www.tokyometro.jp returns 403; Toei's fare page did not load.",
+"u": [
+"https://www.city.kyoto.lg.jp/kotsu/"
 ]
 },
 {
