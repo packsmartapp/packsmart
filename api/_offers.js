@@ -3,7 +3,7 @@
 // The leading underscore keeps this file from becoming an API route.
 // Itinerary and "plan my trip" questions (owner, 26 Nov): Packy gives a starting route, then this button opens the
 // trip planner on the home page with Japan filled in (it builds the day-by-day plan for the reader's dates and group).
-export const ITINQ = /itin[ea]r|iten[ae]r|itenar|plan (?:my|our|a|the) (?:\w+ )?(?:trip|holiday|vacation|route|visit)|\b\d{1,2}[ -]?(?:days?|nights?|weeks?)\b|where (?:should|to|can) (?:i|we) go|what (?:should|to) (?:i|we) (?:see|visit)|things to do in japan|first (?:trip|time|visit) (?:to|in) japan/;
+export const ITINQ = /itin[ea]r|iten[ae]r|itenar|\b(?:make|build|create|give|suggest|draw up|help me with)\b.{0,25}\b(?:plan|route|schedule)\b(?!.{0,15}\b(?:data|esim|sim|insurance)\b)|\bplan\b.{0,25}\b(?:for japan|in japan|my japan|japan trip|trip|holiday|vacation|visit)\b|plan (?:my|our|a|the) (?:\w+ )?(?:trip|holiday|vacation|route|visit)|\b\d{1,2}[ -]?(?:days?|nights?|weeks?)\b|where (?:should|to|can) (?:i|we) go|what (?:should|to) (?:i|we) (?:see|visit)|things to do in japan|first (?:trip|time|visit) (?:to|in) japan/;
 // 27 Nov 2026: the airport transfer, eSIM and bag storage buttons use Packy's own Travelpayouts links (Sub IDs
 // packy-transfer, packy-esim, packy-bags-tokyo/-osaka/-kyoto), so Packy's sales show up separately from the site's.
 export const OFFERS = [

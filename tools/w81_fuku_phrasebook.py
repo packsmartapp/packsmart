@@ -19,7 +19,7 @@ import html, json, os, re, sys
 
 ROOT = os.getcwd()
 PUB = os.path.join(ROOT, "public")
-SWV = "japan-phrasebook-v2"
+SWV = "japan-phrasebook-v3"
 PAGE = "/japan-phrasebook"
 
 def die(m):
@@ -79,7 +79,7 @@ PAGE_HTML = """<!DOCTYPE html>
 <meta name="theme-color" content="#0f0f23">
 <link rel="manifest" href="/japan-phrasebook.webmanifest">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
-<link rel="apple-touch-icon" href="/images/phrasebook-apple-touch-180.png">
+<link rel="apple-touch-icon" href="/images/phrasebook-fuku-apple-touch-180.png">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Phrasebook">
@@ -96,6 +96,7 @@ a{color:#0a8f78}
 .top .bk{color:#bfeee4;text-decoration:none;font-size:.85rem;font-weight:700}
 .top h1{margin:10px 0 2px;font-size:1.45rem;line-height:1.2}
 .top h1 span{color:var(--primary)}
+.top h1 .fk{display:inline-block;vertical-align:-6px;margin-right:8px;border-radius:9px}
 .top p{margin:0;color:#cfd6e6;font-size:.9rem}
 .st{display:inline-block;margin-top:9px;font-size:.78rem;font-weight:700;background:rgba(255,255,255,.1);border-radius:999px;padding:4px 10px;color:#bfeee4}
 .chips{position:sticky;top:0;z-index:5;display:flex;gap:7px;overflow-x:auto;padding:10px 16px;background:#f4faf8;border-bottom:1px solid var(--line);scrollbar-width:none}
@@ -120,15 +121,15 @@ section.lock h2{color:#5a6378}
 section{scroll-margin-top:62px;margin:22px 0 0}
 section h2{margin:0 0 3px;font-size:1.12rem;color:var(--dark)}
 section h2 small{display:block;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:2px}
-ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:7px}
-li{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:9px 8px 9px 13px}
-li b{display:block;font-size:1rem;color:var(--dark)}
-li .ja{display:block;font-weight:700;color:#0a8f78;font-size:.92rem;margin-top:1px}
-li small{display:block;font-size:.8rem;color:var(--muted);margin-top:1px}
-li button{width:42px;height:42px;border:0;border-radius:50%;background:var(--primary);color:#fff;font-size:1.05rem;cursor:pointer}
-li button:active{transform:scale(.94)}
-li.hot{background:#FFF1F4;border-color:#F7B9C6;box-shadow:0 0 0 2px var(--accent) inset}
-li.hot button{background:var(--accent);animation:ping 1.6s ease-in-out 3}
+#lessons ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:7px}
+#lessons li{display:grid;grid-template-columns:minmax(0,1fr) 44px;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);border-radius:14px;padding:9px 8px 9px 13px}
+#lessons li b{display:block;font-size:1rem;color:var(--dark)}
+#lessons li .ja{display:block;font-weight:700;color:#0a8f78;font-size:.92rem;margin-top:1px}
+#lessons li small{display:block;font-size:.8rem;color:var(--muted);margin-top:1px}
+#lessons li button{width:42px;height:42px;border:0;border-radius:50%;background:var(--primary);color:#fff;font-size:1.05rem;cursor:pointer}
+#lessons li button:active{transform:scale(.94)}
+#lessons li.hot{background:#FFF1F4;border-color:#F7B9C6;box-shadow:0 0 0 2px var(--accent) inset}
+#lessons li.hot button{background:var(--accent);animation:ping 1.6s ease-in-out 3}
 @keyframes ping{50%{box-shadow:0 0 0 8px rgba(233,69,96,.18)}}
 .act{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
 .wa{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:999px;background:#25D366;color:#fff;font:inherit;font-weight:700;font-size:.86rem;padding:8px 14px;cursor:pointer;text-decoration:none}
@@ -141,13 +142,13 @@ li.hot button{background:var(--accent);animation:ping 1.6s ease-in-out 3}
 .btn{display:inline-block;border:0;border-radius:999px;background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:.92rem;padding:10px 16px;cursor:pointer;text-decoration:none;margin:0 6px 8px 0}
 .btn.alt{background:var(--dark)}
 .note{font-size:.76rem;color:#8a93a6;margin:16px 0 0;line-height:1.5}
-@media (prefers-reduced-motion:reduce){li.hot button{animation:none}}
+@media (prefers-reduced-motion:reduce){#lessons li.hot button{animation:none}}
 </style>
 </head>
 <body>
 <header class="top">
   <a class="bk" href="/japan?src=phrasebook">← Japan hub</a>
-  <h1>🐱 Fuku’s <span>Japanese</span> Phrasebook</h1>
+  <h1><img src="/images/phrasebook-fuku-icon-192.png" width="34" height="34" alt="" class="fk">Fuku’s <span>Japanese</span> Phrasebook</h1>
   <p>Tap 🔊 to hear each phrase, then say it back. Slowly is fine!</p>
   <span class="st" id="st">No app · works offline once saved</span><span class="pg" id="pg" hidden></span>
 </header>
@@ -260,7 +261,7 @@ for tok in ("%%",):
 SW = """/* Fuku's Phrasebook service worker (tools/w81_fuku_phrasebook.py). Network first, saved copy when offline. */
 var V='%s';
 var PAGE='%s';
-var SHELL=[PAGE,'/japan-phrasebook.webmanifest','/favicon-32.png','/images/phrasebook-icon-192.png','/images/phrasebook-icon-512.png'];
+var SHELL=[PAGE,'/japan-phrasebook.webmanifest','/favicon-32.png','/images/phrasebook-fuku-icon-192.png','/images/phrasebook-fuku-icon-512.png'];
 self.addEventListener('install',function(e){
   e.waitUntil(caches.open(V).then(function(c){return c.addAll(SHELL);}).then(function(){return self.skipWaiting();}));
 });
@@ -304,12 +305,12 @@ MANIFEST = json.dumps({
     "description": "Japanese for your trip. Tap to hear each phrase. Works offline.",
     "start_url": PAGE + "?src=homescreen", "scope": PAGE, "display": "standalone",
     "background_color": "#0f0f23", "theme_color": "#0f0f23", "lang": "en",
-    "icons": [{"src": "/images/phrasebook-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
-              {"src": "/images/phrasebook-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
-              {"src": "/images/phrasebook-icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]},
+    "icons": [{"src": "/images/phrasebook-fuku-icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any"},
+              {"src": "/images/phrasebook-fuku-icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any"},
+              {"src": "/images/phrasebook-fuku-icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}]},
     indent=2, ensure_ascii=False)
 
-for f in ("images/phrasebook-icon-192.png", "images/phrasebook-icon-512.png", "images/phrasebook-icon-maskable-512.png", "images/phrasebook-apple-touch-180.png"):
+for f in ("images/phrasebook-fuku-icon-192.png", "images/phrasebook-fuku-icon-512.png", "images/phrasebook-fuku-icon-maskable-512.png", "images/phrasebook-fuku-apple-touch-180.png"):
     if not os.path.exists(os.path.join(PUB, f)):
         die("missing icon " + f)
 open(os.path.join(PUB, "japan-phrasebook.html"), "w", encoding="utf-8").write(PAGE_HTML)
