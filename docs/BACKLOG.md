@@ -76,6 +76,8 @@ The repo is public, so earnings, partner conversations and outreach are tracked 
 | B24 | Permanent shared-plan links (needs a store such as Vercel KV). | Only if people use sharing. |
 | B25 | Email capture, country-scoped. Owner's plan (22 Nov): a list for premium travel offers, trips above about ¥50,000. Needs a provider, a consent line and a Privacy Policy section before it goes live. | Owner decision (PRD F21, D43). Later. |
 
+- Packy knowledge beyond Hokkaido (27 Nov, testers): official-source notes for day trips from Tokyo (Nikko, Hakone, Kamakura), Kyoto and Osaka (Nara, Himeji), Japan's main festivals, and skiing outside Hokkaido (Nagano, Niigata), so general questions stop leaning on the Sapporo research. Then `w74` and `node tools/packy_eval.mjs` with new questions.
+
 ## P3: tech debt
 
 | # | Item | Notes |
