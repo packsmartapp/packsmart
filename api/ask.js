@@ -23,6 +23,7 @@ const GUIDES = [
   ['Narita Airport guide', '/blog/narita-airport-guide', 'narita airport'],
   ['Haneda Airport guide', '/blog/haneda-airport-guide', 'haneda airport'],
   ['Kansai Airport guide', '/blog/kansai-airport-guide', 'kansai kix airport haruka'],
+  ['travel eSIM comparison', '/blog/best-esim-international-travel-comparison', 'esim sim data roaming internet wifi wi-fi'],
   ['Japan travel guide', '/blog/japan-travel-packing-guide', 'visa season packing jr pass budget weather cherry blossom tipping etiquette money cash plug onsen tattoo tattoos alcohol passport smoking'],
 ];
 const STOP = new Set('confused confusing specially especially please tell help know explain the a an and or of to in on at for from with is are was be can i my me we our you your how what where when which who do does did it this that there any get go going near by into about need want will would should could best way japan'.split(' '));

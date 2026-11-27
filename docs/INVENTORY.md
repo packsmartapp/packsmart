@@ -130,6 +130,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w78_pickups_button.py` | w78: the airport-transfer box's Continue button in our own button style, on every page that has the box (25 Nov 2026). |
 | `w79_hub_card.py` | w79: a "Japan hub" card near the end of the 15 Japan pages, so readers find the /japan hub (25 Nov 2026). |
 | `w81_fuku_phrasebook.py` | w81: Fuku's Phrasebook (27 Nov 2026), the one interactive home for Fuku's Japanese: /japan-phrasebook. |
+| `w82_esim_compare_links.py` | w82: a "Compare travel eSIMs" line in every eSIM block (27 Nov 2026, owner: readers could not find the eSIM comparison). |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `packy_eval.mjs` | data file read by the scripts above |
 | `pocket_guides.json` | data file read by the scripts above |

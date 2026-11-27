@@ -125,6 +125,7 @@ HUB_CSS = """<style id="jp-hub-css">
 @keyframes jpPing{50%{box-shadow:0 0 0 7px rgba(233,69,96,.18)}}
 @media (prefers-reduced-motion:reduce){.jp-lesson li.hot button{animation:none}}
 .jp-wa{display:block;margin:10px 0 0;text-align:center;font-weight:800;font-size:.9rem;color:#fff;background:#25D366;border-radius:999px;padding:10px 14px;text-decoration:none}
+.jp-esim-line{margin:14px 0 0;text-align:center;font-size:.9rem;color:#5a6378}.jp-esim-line a{color:#0a8f78;font-weight:700}
 .jp-words-more{display:block;margin:12px 0 0;text-align:center;font-size:.86rem;font-weight:800;color:#0a8f78;background:#E6FAF5;border-radius:12px;padding:10px;text-decoration:none}
 .jp-words-note{margin:8px 0 0;font-size:.7rem;color:#8a93a6;text-align:center}
 .jp-words-mail{position:sticky;bottom:-16px;z-index:2;margin:12px 0 0;background:linear-gradient(135deg,#E6FAF5,#E8F4FC);border:1.5px solid #BFEDE3;border-radius:14px;padding:12px;font-size:.88rem;color:#0f0f23;box-shadow:0 -10px 18px rgba(255,255,255,.95)}
@@ -497,7 +498,7 @@ def passes_html():
         % (code, name, serves, line, q, name.replace(" Airport", ""), pk, pk, slug)
         for code, name, serves, line, pk, slug, q in PASSES)
     return ("""<section id="arriving" aria-labelledby="jpPassT"><div class="jp-pass-h"><span class="jp-kick"><span lang="ja">空港</span> · Airports</span><h2 id="jpPassT">Where are you landing?</h2><p>Pick your airport: its Pocket Guide works offline at the gate, no app needed, and Packy can answer the rest.</p></div>
-<div class="jp-passes">""" + cards + """</div></section>""")
+<div class="jp-passes">""" + cards + """</div><p class="jp-esim-line">📶 Need data from the moment you land? <a href="/blog/best-esim-international-travel-comparison?src=hub_japan#esim-japan">Which eSIM for Japan? Compare travel eSIMs &rarr;</a></p></section>""")
 
 def _words():   # the cat's starter words, shared with the "Email me these words" email (api/_japan_words.js)
     src = open(os.path.join(ROOT, "api", "_japan_words.js"), encoding="utf-8").read()
