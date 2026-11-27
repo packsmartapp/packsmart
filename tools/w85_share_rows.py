@@ -18,11 +18,11 @@ PUB = os.path.join(os.getcwd(), "public")
 SITE = "https://www.packsmartapp.com"
 MARK = "ps-share-row"
 PAGES = [  # file, page path, label, share text, anchor, insert before (True) or after
-    ("japan.html", "/japan", "Made with ❤️. If you like this page, please share it with 1\u00a0friend.", "Japan, the easy way: airports, stations, Packy and offline Pocket Guides",
+    ("japan.html", "/japan", "Made with ❤️. Know someone going to Japan? Send them this\u00a0page.", "Japan, the easy way: airports, stations, Packy and offline Pocket Guides",
      '<footer class="footer">', True),
-    ("travel-essentials.html", "/travel-essentials", "Made with ❤️. If you like this page, please share it with 1\u00a0friend.", "Travel Essentials: Pocket Guides, visas, eSIMs and packing lists",
+    ("travel-essentials.html", "/travel-essentials", "Made with ❤️. Travelling with someone? Send them this so you're both\u00a0ready.", "Travel Essentials: Pocket Guides, visas, eSIMs and packing lists",
      '<section class="pocket-hub"', True),
-    ("japan-phrasebook.html", "/japan-phrasebook", "Made with ❤️ by Fuku. If you like this page, please share it with 1\u00a0friend.", "Fuku's Japanese Phrasebook: tap to hear every phrase, works offline",
+    ("japan-phrasebook.html", "/japan-phrasebook", "Made with ❤️ by Fuku. Learning together is easier. Send this to your travel\u00a0buddy.", "Fuku's Japanese Phrasebook: tap to hear every phrase, works offline",
      '<p class="note">', True),
 ]
 
