@@ -61,7 +61,7 @@ LINKS = {
     "shinkansen": ["Book Shinkansen tickets online", "https://www.japan-bullettrain.com/?via=packsmart", True],
     "transfer": ["Book a private airport transfer", "https://tpo.lu/5TSGg9Tf", True],
     "esim": ["See eSIM data plans for Japan", "https://airalo.tpo.lu/ndZAMVI0", True],
-    "insurance": ["Get a SafetyWing travel medical insurance quote", "https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador", True],
+    "insurance": ["Get a travel medical insurance quote", "https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador", True],
 }
 
 PAGE = r"""<!DOCTYPE html>
