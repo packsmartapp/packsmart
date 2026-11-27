@@ -72,6 +72,8 @@ const CASES = [
   ['can you make a plan for me for Japan?', '', /kyoto|tokai|kansai/i],
   ['What should we see on a first trip to Japan?', '', /kyoto|tokai|kansai/i],
   ['I am 19, can I drink beer in Japan?', '', /under the age of 20|remain at 20/i],
+  ['How much is a ticket to Tokyo Disneyland?', '', /1-Day Passport/],
+  ['Ueno Zoo entrance fee for kids', 'ueno', /Ueno Zoo admission/],
   // 27 Nov, a tester: a Tokyo family budget got Asahiyama Zoo and Sapporo fares
   ['Can you give me the total cost, for a family of 4, from Singapore, for 10 days, 4 star hotels, and mostly in Tokyo, theme park, zoos, temple visits, taxi etc all included... what is the likely total cost? Planning in Feb 2027.', '', /tokyo subway ticket|departure tax|taxi in tokyo/i, /^sapporo|new chitose|hokkaido/i],
   ['How much budget do we need for a week in Tokyo?', '', /tokyo subway ticket|departure tax|taxi in tokyo/i, /^sapporo|new chitose|hokkaido/i],

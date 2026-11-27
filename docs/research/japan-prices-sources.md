@@ -103,6 +103,9 @@ Approximate prices a first-time visitor asks about, from official pages only (op
 
 ## Attractions
 
+- Tokyo Disneyland and Tokyo DisneySea, 1-Day Passport, adult (Tokyo Disney Resort's "By date" price calendar, unit yen, "As of 8:35 p.m., November 27, 2026"): the same prices for both parks on the dates shown. Saturday 28 Nov 2026 12,400; Sunday 29 Nov 11,900; Monday 30 Nov to Friday 4 Dec 10,900 a day; Saturday 5 Dec 12,400. So about 10,900 to 12,400 yen per adult per day for those dates; the price depends on the date and the park, so check the calendar for your dates. Junior and child prices: not checked yet. Source: Tokyo Disney Resort official site, https://www.tokyodisneyresort.jp/en/ (ticket price calendar), read from screenshots of the official site, checked 27 Nov 2026.
+- Ueno Zoo admission (individual): general 600 yen; 65 years or older 300 yen; junior high school students 200 yen; junior high school students living and studying in Tokyo free (bring proof such as a student ID); up to 6th grade (primary school age) free. Groups of 20 or more: 480 / 240 / 160 yen. Annual Passport 2,400 yen (65 and over 1,200 yen). Free with a physical disability, rehabilitation or mental disability certificate (the holder and, in principle, one companion). Source: Ueno Zoo official site (Tokyo Zoological Park Society), https://www.tokyo-zoo.net/english/ueno/, read from a screenshot of the official site, checked 27 Nov 2026.
+- Gap: Sanrio Puroland ticket prices (en.puroland.jp is blocked; no official screenshot yet).
 - Gap: Tokyo Skytree (www.tokyo-skytree.jp blocked), Fushimi Inari (inari.jp blocked), Sapporo Snow Festival (snowfes.com still shows the 2024 festival; no 2027 entry-fee wording).
 
 ## Blocked hosts
