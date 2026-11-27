@@ -134,6 +134,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w82_esim_compare_links.py` | w82: a "Compare travel eSIMs" line in every eSIM block (27 Nov 2026, owner: readers could not find the eSIM comparison). |
 | `w83_pocket_share_tags.py` | w83: share tags (Open Graph and Twitter) on every Pocket Guide (27 Nov 2026, a tester: /sapporo-pocket had none). |
 | `w84_japan_2027_facts.py` | w84: the departure tax and cherry blossoms 2027 on the three general Japan articles (27 Nov 2026, a tester). |
+| `w85_share_rows.py` | w85: a "Share this" row on the Japan hub, Travel Essentials and Fuku's Phrasebook (27 Nov 2026, a tester: no social |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `packy_eval.mjs` | data file read by the scripts above |
 | `pocket_guides.json` | data file read by the scripts above |
