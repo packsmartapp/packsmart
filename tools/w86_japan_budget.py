@@ -51,6 +51,8 @@ DATA = {
     "taxi": {"lo": 2500, "hi": 3000, "src": "JNTO: a 7 km daytime ride in Tokyo, about 25 minutes", "url": "https://www.japan.travel/en/plan/getting-around/taxis/"},
     "jrpass": {"a": 50000, "c": 25000, "src": "Japan Rail Pass, 7 days, ordinary, bought online", "url": "https://japanrailpass.net/en/purchase/price/"},
     "disney": {"lo": 10900, "hi": 12400, "src": "Tokyo Disney Resort 1-Day Passport, adult, by date (28 Nov to 5 Dec 2026 shown)", "url": "https://www.tokyodisneyresort.jp/en/", "checked": "27 Nov 2026"},
+    "disneyChild": {"c": 5900, "src": "ages 4 to 11, about 5,900 yen, a ticket seller's listing for 28 Nov 2026", "checked": "27 Nov 2026"},
+    "sanrio": {"lo": 3400, "hi": 4900, "src": "Sanrio Puroland 1-day ticket, age 3 and up: retail 4,900 yen, 3,400 to 3,600 yen discounted on a ticket seller's site", "checked": "27 Nov 2026"},
     "uenozoo": {"a": 600, "src": "Ueno Zoo: general 600 yen, junior high 200 yen, free up to 6th grade", "url": "https://www.tokyo-zoo.net/english/ueno/", "checked": "27 Nov 2026"},
     "tax": {"each": 3000, "src": "JNTO: International Tourist Tax", "url": "https://www.japan.travel/en/plan/international-tourist-tax/"},
 }
@@ -123,6 +125,7 @@ input[type=number]{width:130px}
 .next{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 2px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;text-decoration:none;font-weight:700;font-size:.98rem}.next i{font-style:normal;font-size:1.3rem}
 .two{display:grid;gap:8px;margin:6px 0 2px}.two>div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 13px}
 .two b{display:block;font-size:.95rem}.two span{display:block;font-size:.82rem;color:#bfc6d6;line-height:1.45;margin-top:3px}.two .go{margin-top:10px}
+.ln.fam small{font-size:.82rem;color:#cfd6e6;line-height:1.5}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 </style>
 </head>
@@ -148,6 +151,7 @@ input[type=number]{width:130px}
     <div class="row"><label for="dep">Fly home from</label><select id="dep"></select></div>
     <div class="row"><label>Taxi rides<small>in town, about 7 km each</small></label><div class="step" data-k="tx"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>6</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label>Tokyo Disney days<small>Disneyland or DisneySea, 1 park a day</small></label><div class="step" data-k="dn"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    <div class="row"><label for="sanrio">Sanrio Puroland</label><select id="sanrio"><option value="0">No</option><option value="1">Yes</option></select></div>
     <div class="row"><label for="zoo">Ueno Zoo</label><select id="zoo"><option value="0">No</option><option value="1">Yes</option></select></div>
     <div class="row"><label for="jr">Japan Rail Pass<small>7 days, for long train trips</small></label><select id="jr"><option value="0">No</option><option value="1">Yes</option></select></div>
   </section>
@@ -177,7 +181,7 @@ try{var q=new URLSearchParams(location.search);/* also dn= Disney days */Object.
 var ap=S.nt?'narita':(S.nk?'kansai':(S.nh?'chitose':'narita'));arr.value=ap;dep.value=ap;ways();
 arr.addEventListener('change',function(){ways();if(dep.value!==arr.value&&!dep.dataset.set)dep.value=arr.value;calc();});
 dep.addEventListener('change',function(){dep.dataset.set='1';calc();});
-[way,document.getElementById('jr'),document.getElementById('zoo')].forEach(function(x){x.addEventListener('change',calc);});
+[way,document.getElementById('jr'),document.getElementById('zoo'),document.getElementById('sanrio')].forEach(function(x){x.addEventListener('change',calc);});
 ['hotel','food','fly'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
 function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)||v<0?0:v;}
 function src(name,url){return '<small>'+esc(name)+', checked '+CH+' · <a href="'+url+'" target="_blank" rel="noopener">official price</a></small>';}
@@ -199,9 +203,12 @@ function calc(){
  if(S.nh){var s=D.sapporoDay,v=S.nh*(s.a*ad+s.c*ch);sum+=v;h+=line('Sapporo subway: '+S.nh+' one-day ticket'+(S.nh>1?'s':''),y(v),src(s.src,s.url));}
  if(S.tx){var tl=S.tx*cars*D.taxi.lo,th=S.tx*cars*D.taxi.hi;lo+=tl;hi+=th;h+=line('Taxis: '+S.tx+' ride'+(S.tx>1?'s':'')+(cars>1?' × '+cars+' cars':''),y(tl)+'–'+y(th),src(D.taxi.src,D.taxi.url));}
  if(document.getElementById('jr').value==='1'){var j=D.jrpass,v=j.a*ad+j.c*ch;sum+=v;h+=line('Japan Rail Pass, 7 days',y(v),src(j.src,j.url));}
- if(S.dn){var d=D.disney,dl=d.lo*ad*S.dn,dh=d.hi*ad*S.dn;lo+=dl;hi+=dh;
-  h+=line('Tokyo Disney: '+ad+' adult'+(ad>1?'s':'')+' × '+S.dn+' day'+(S.dn>1?'s':''),y(dl)+'–'+y(dh),'<small>'+esc(d.src)+', checked '+d.checked+' · <a href="'+d.url+'" target="_blank" rel="noopener">price calendar</a>'+(ch?'. Children\'s tickets are cheaper; not priced yet.':'')+'</small>');
-  if(ch||inf)miss.push('Tokyo Disney tickets for children');}
+ var park=false;
+ if(S.dn){var d=D.disney,dc=D.disneyChild,kid=dc.c*ch*S.dn,dl=d.lo*ad*S.dn+kid,dh=d.hi*ad*S.dn+kid;lo+=dl;hi+=dh;park=true;
+  h+=line('Tokyo Disney: '+ad+' adult'+(ad>1?'s':'')+(ch?' + '+ch+' child'+(ch>1?'ren':''):'')+' × '+S.dn+' day'+(S.dn>1?'s':''),y(dl)+'–'+y(dh),'<small>Adults: '+esc(d.src)+', checked '+d.checked+' · <a href="'+d.url+'" target="_blank" rel="noopener">price calendar</a>'+(ch?'. Children: '+esc(dc.src)+'.':'')+(inf?' Under 4: free.':'')+'</small>');}
+ if(document.getElementById('sanrio').value==='1'){var r=D.sanrio,sn=ad+ch,sl=r.lo*sn,sh=r.hi*sn;lo+=sl;hi+=sh;park=true;
+  h+=line('Sanrio Puroland: '+sn+' × '+y(r.lo)+'–'+y(r.hi),y(sl)+'–'+y(sh),'<small>'+esc(r.src)+', checked '+r.checked+(inf?'. Little ones aged 3 to 5 also need a ticket.':'')+'</small>');}
+ if(park)h+='<div class="ln fam"><div class="l"><small>💬 From a PackSmart family’s trip (October 2025, 2 adults, children aged 7 and 10): about INR 20,000 for a day at Tokyo DisneySea and about INR 12,000 for Sanrio Puroland.</small></div></div>';
  if(document.getElementById('zoo').value==='1'){var z=D.uenozoo,v=z.a*ad;sum+=v;h+=line('Ueno Zoo: '+ad+' × '+y(z.a)+(ch||inf?' (children up to 6th grade free)':''),y(v),'<small>'+esc(z.src)+', checked '+z.checked+' · <a href="'+z.url+'" target="_blank" rel="noopener">official page</a></small>');}
  var tx=D.tax.each*ppl;sum+=tx;h+=line('Departure tax: '+ppl+' × '+y(D.tax.each),y(tx),'<small>JNTO, checked '+CH+'; check JNTO for who is exempt · <a href="'+D.tax.url+'" target="_blank" rel="noopener">official page</a></small>');
  // the reader's own numbers
@@ -215,7 +222,7 @@ function calc(){
  if(!fly)np+=line('Flights','<span class="np">not priced</span>')+go('flights');
  if(!hot)np+=line('Hotels','<span class="np">not priced</span>');
  if(!food)np+=line('Food and drinks','<span class="np">not priced</span>');
- np+=line(S.dn?'Other theme parks and tickets (e.g. Sanrio Puroland)':'Theme parks and tickets','<span class="np">not priced yet</span>')+go('parks');
+ np+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>')+go('parks');
  if(S.nk)np+=line('Kyoto and Osaka buses and trains','<span class="np">not priced yet</span>');
  if(S.nt&&S.nk&&document.getElementById('jr').value!=='1')np+=line('Shinkansen between Tokyo and Kyoto','<span class="np">not priced yet</span>')+go('shinkansen');
  if(S.nh&&(S.nt||S.nk))np+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
