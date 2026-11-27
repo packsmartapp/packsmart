@@ -98,7 +98,7 @@ HUB_CSS = """<style id="jp-hub-css">
 .jp-cat-say{position:absolute;right:58%;top:4%;z-index:1;white-space:nowrap;background:linear-gradient(135deg,#00C9A7,#2D9CDB);color:#fff;font-size:.82rem;font-weight:800;padding:8px 40px 8px 13px;border-radius:18px 6px 18px 18px;box-shadow:0 8px 20px rgba(45,156,219,.3);opacity:0;transform:translateX(6px) scale(.9);transform-origin:top right;transition:opacity .18s,transform .18s;pointer-events:none}
 .jp-cat-say span{color:#FFE66D;margin-right:4px}.jp-cat-say small{display:block;font-size:.68rem;font-weight:700;color:#fff;opacity:.92;margin-top:2px}
 /* after a couple of Konnichiwas the cat offers a few Japanese words (same wording as the Pocket Guides' phrase list) */
-.jp-cat-offer{position:absolute;right:52px;top:-92px;z-index:2;width:236px;background:linear-gradient(135deg,#00C9A7,#2D9CDB);color:#fff;border-radius:18px 6px 18px 18px;padding:10px 40px 11px 13px;box-shadow:0 8px 20px rgba(45,156,219,.3);font-size:.84rem;font-weight:800;line-height:1.35;animation:jpOfferIn .25s ease-out}
+.jp-cat-offer{position:absolute;right:52px;top:auto;bottom:calc(100% + 8px);z-index:2;width:236px;background:linear-gradient(135deg,#00C9A7,#2D9CDB);color:#fff;border-radius:18px 6px 18px 18px;padding:10px 40px 11px 13px;box-shadow:0 8px 20px rgba(45,156,219,.3);font-size:.84rem;font-weight:800;line-height:1.35;animation:jpOfferIn .25s ease-out}
 .jp-cat-offer[hidden]{display:none}
 .jp-cat.offering .jp-cat-say{opacity:0!important;transform:translateX(6px) scale(.9)!important}
 .jp-cat-offer b{color:#FFE66D}
@@ -106,7 +106,7 @@ HUB_CSS = """<style id="jp-hub-css">
 .jp-cat-offer button{font:inherit;font-size:.78rem;font-weight:800;border:0;border-radius:999px;padding:6px 12px;cursor:pointer}
 .jp-cat-offer .y{background:#fff;color:#0a8f78}.jp-cat-offer .n{background:rgba(255,255,255,.2);color:#fff}
 @keyframes jpOfferIn{from{opacity:0;transform:translateX(8px) scale(.94)}to{opacity:1;transform:none}}
-@media (max-width:600px){.jp-cat-offer{right:34px;top:-70px;width:212px;font-size:.8rem}}
+@media (max-width:600px){.jp-cat-offer{right:34px;top:auto;bottom:calc(100% + 6px);width:212px;font-size:.8rem}}
 .jp-words{position:fixed;inset:0;z-index:300;display:flex;align-items:center;justify-content:center;padding:16px;background:rgba(15,15,35,.45)}
 .jp-words[hidden]{display:none}
 .jp-words-in{position:relative;width:100%;max-width:440px;max-height:calc(100vh - 32px);overflow:auto;background:#fff;border-radius:22px;padding:18px 18px 16px;box-shadow:0 20px 50px rgba(15,15,35,.3);animation:jpOfferIn .25s ease-out}
@@ -588,8 +588,7 @@ function openWords(){if(!words){words=document.createElement('div');words.classN
    '<h3 id="jpWordsT">Your first Japanese words <span lang="ja">🇯🇵</span></h3><p class="jp-words-sub">Tap 🔊 to hear each one. A smile and a small bow go a long way.</p><ul>'+
    WORDS.map(function(w,i){return '<li><i aria-hidden="true">'+w[0]+'</i><div><b>'+esc(w[3])+'<span lang="ja">'+esc(w[2])+'</span></b><small>'+esc(w[1])+'</small></div><button type="button" data-w="'+i+'" aria-label="Play: '+esc(w[1])+'">🔊</button></li>';}).join('')+
    '</ul><div class="jp-words-mail"><button type="button" class="jp-words-mbtn">📩 Email me these words</button></div>'+
-   '<a class="jp-words-more" href="/japan-phrasebook?l=0&amp;src=hub_cat">📖 Fuku’s Phrasebook: every lesson, tap to hear · works offline</a>'+
-   '<p class="jp-words-note">The voice is your phone’s or computer’s own.</p></div>';
+      '<p class="jp-words-note">The voice is your phone’s or computer’s own.</p></div>';
   document.body.appendChild(words);
   words.addEventListener('click',function(e){if(e.target===words||e.target.closest('.jp-words-x')){closeWords();return;}
    var b=e.target.closest('[data-w]');if(b){var w=WORDS[+b.getAttribute('data-w')];sayJa(w[2],w[3]);track('cat_word_play',w[3]);return;}
@@ -639,7 +638,7 @@ function openLesson(n,hot){var L=LESSONS[n];if(!L)return;if(lesson)lesson.remove
   var h=lesson.querySelector('li.hot');if(h)try{h.scrollIntoView({block:'nearest'});}catch(e){}
   try{lesson.querySelector('li.hot button, .jp-words-x').focus({preventScroll:true});}catch(e){}
   track('lesson_open',n+(hot>=0?'-'+(hot+1):''));}
-function waBtn(){var t='🐱 Fuku’s first Japanese words for my trip:\\n'+WORDS.slice(0,4).map(function(w){return w[3]+' = '+w[1];}).join('\\n')+'\\n🔊 Hear them all (works offline): https://www.packsmartapp.com/japan-phrasebook?l=0&src=wa_self';
+function waBtn(){var t='🇯🇵 *Fuku’s first Japanese words for my trip*\\n\\n'+WORDS.slice(0,4).map(function(w){return '*'+w[3].replace(/[.。]$/,'')+'* · '+w[1];}).join('\\n')+'\\n\\n🔊 Hear them all, works offline:\\nhttps://www.packsmartapp.com/japan-phrasebook?l=0&src=wa_self';
  return '<a class="jp-wa" href="https://wa.me/?text='+encodeURIComponent(t)+'" target="_blank" rel="noopener">📲 Also send to my WhatsApp</a>';}
 document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.jp-wa'))track('cat_words_wa');});
 function hideOffer(){if(offer)offer.hidden=true;cat.classList.remove('offering');}
