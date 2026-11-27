@@ -1056,6 +1056,11 @@ export default [
 },
 {
 "t": "japan prices > Japan prices: official sources (for Packy) > Shinkansen",
+"x": "- More Smart EX Service rules (same source, Smart EX Service product page, checked 27 Nov 2026): you cannot get off at an intermediate station (the rest of the journey is cancelled and you cannot board again); the discount cannot be combined with other discounts; the ticket covers the Shinkansen only, so local (conventional) train fares to or from the Shinkansen station are paid separately, and with some transfers Smart EX plus the local fare can cost more than a standard ticket. Refunds: with an IC card you can cancel before entering the Shinkansen ticket gate (or before collecting a paper ticket); the refund fee is 320 yen per booking before your train departs (any seat type). After departure you cannot cancel it yourself: the refund is made automatically from the day after travel, minus a set amount for each section (reserved and Green Car seats) or 320 yen (unreserved seats). If you have already collected a paper ticket, take it and the credit card used to a JR ticket office. If the Shinkansen arrives more than 2 hours late, a set amount is refunded for each section of the journey.",
+"u": []
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > Shinkansen",
 "x": "- JAPAN RAIL PASS holders, \"[ONLY WITH JAPAN RAIL PASS] NOZOMI MIZUHO Ticket\" (one per ride): Tokyo–Nagoya 4,180, Tokyo–Kyoto 4,960, Tokyo–Shin-Osaka 4,960, Tokyo–Hiroshima 6,500, Shin-Osaka–Hakata 4,960, Hakata–Kagoshima-Chūō 5,150 (yen). \"Tax included. The same prices apply to Green Car tickets, reserved seat tickets in an ordinary car and non-reserved seat tickets in an ordinary car.\" Source: https://japanrailpass.net/en/use/special-ticket/, checked 24 Nov 2026.\n- JR West \"SANYO-SHINKANSEN One-way Ticket\" (discounted, foreign visitors only, bought abroad as an exchange order; ordinary car reserved or non-reserved): Osaka City to Okayama/Kurashiki 5,100 YEN, Hiroshima City 7,900 YEN, Kokura/Hakata 10,900 YEN; Hiroshima City to Hakata 6,300 YEN (child half). Source: https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/sanyo-shinkansen/, checked 24 Nov 2026.",
 "u": [
 "https://japanrailpass.net/en/use/special-ticket/",

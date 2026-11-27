@@ -75,6 +75,8 @@ const CASES = [
   ['How much is a ticket to Tokyo Disneyland?', '', /1-Day Passport/],
   ['How much is the Shinkansen from Tokyo to Kyoto for a family?', '', /Smart EX/],
   ['Can I change my Shinkansen booking if I miss the train?', '', /miss your train/],
+  ['What is the cancellation fee for a Smart EX Shinkansen ticket?', '', /refund fee is 320 yen/],
+  ['What if the Shinkansen is 2 hours late?', '', /more than 2 hours late/],
   ['Ueno Zoo entrance fee for kids', 'ueno', /Ueno Zoo admission/],
   // 27 Nov, a tester: a Tokyo family budget got Asahiyama Zoo and Sapporo fares
   ['Can you give me the total cost, for a family of 4, from Singapore, for 10 days, 4 star hotels, and mostly in Tokyo, theme park, zoos, temple visits, taxi etc all included... what is the likely total cost? Planning in Feb 2027.', '', /tokyo subway ticket|departure tax|taxi in tokyo/i, /^sapporo|new chitose|hokkaido/i],
