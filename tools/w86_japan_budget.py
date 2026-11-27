@@ -50,12 +50,14 @@ DATA = {
     "sapporoDay": {"a": 830, "c": 420, "src": "Sapporo subway one-day ticket (weekday)", "url": "https://www.city.sapporo.jp/st/s109/23564.html"},
     "taxi": {"lo": 2500, "hi": 3000, "src": "JNTO: a 7 km daytime ride in Tokyo, about 25 minutes", "url": "https://www.japan.travel/en/plan/getting-around/taxis/"},
     "jrpass": {"a": 50000, "c": 25000, "src": "Japan Rail Pass, 7 days, ordinary, bought online", "url": "https://japanrailpass.net/en/purchase/price/"},
+    "disney": {"lo": 10900, "hi": 12400, "src": "Tokyo Disney Resort 1-Day Passport, adult, by date (28 Nov to 5 Dec 2026 shown)", "url": "https://www.tokyodisneyresort.jp/en/", "checked": "27 Nov 2026"},
+    "uenozoo": {"a": 600, "src": "Ueno Zoo: general 600 yen, junior high 200 yen, free up to 6th grade", "url": "https://www.tokyo-zoo.net/english/ueno/", "checked": "27 Nov 2026"},
     "tax": {"each": 3000, "src": "JNTO: International Tourist Tax", "url": "https://www.japan.travel/en/plan/international-tourist-tax/"},
 }
 # Ways to find what we do not price. Partner links reuse existing tracked links for the sketch (own Sub IDs before launch).
 LINKS = {
     "flights": ["Compare flights to Japan", "/flights?src=budget", False],
-    "parks": ["Compare theme park and zoo tickets in Tokyo", "https://www.getyourguide.com/s/?q=tokyo%20theme%20park%20tickets&partner_id=D7IXONS&cmp=ps-budget", True],
+    "parks": ["Compare Tokyo Disney and theme park tickets", "https://www.getyourguide.com/s/?q=tokyo%20theme%20park%20tickets&partner_id=D7IXONS&cmp=ps-budget", True],
     "shinkansen": ["Book Shinkansen tickets online", "https://www.japan-bullettrain.com/?via=packsmart", True],
     "transfer": ["Book a private airport transfer", "https://tpo.lu/5TSGg9Tf", True],
     "esim": ["See eSIM data plans for Japan", "https://airalo.tpo.lu/ndZAMVI0", True],
@@ -140,6 +142,8 @@ input[type=number]{width:130px}
     <div class="row stack"><label for="way">Into town by</label><select id="way"></select></div>
     <div class="row"><label for="dep">Fly home from</label><select id="dep"></select></div>
     <div class="row"><label>Taxi rides<small>in town, about 7 km each</small></label><div class="step" data-k="tx"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>6</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    <div class="row"><label>Tokyo Disney days<small>Disneyland or DisneySea, 1 park a day</small></label><div class="step" data-k="dn"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    <div class="row"><label for="zoo">Ueno Zoo</label><select id="zoo"><option value="0">No</option><option value="1">Yes</option></select></div>
     <div class="row"><label for="jr">Japan Rail Pass<small>7 days, for long train trips</small></label><select id="jr"><option value="0">No</option><option value="1">Yes</option></select></div>
   </section>
   <section class="card"><h2>Your own numbers <span style="font-weight:500;font-size:.8rem;color:var(--muted)">(optional, in yen)</span></h2><p class="h">We can't price these for you. Add them if you know them.</p>
@@ -153,7 +157,7 @@ input[type=number]{width:130px}
 <script>
 (function(){
 var D=%%DATA%%,LK=%%LINKS%%,CH='%%CHECKED%%';
-var S={ad:2,ch:2,in:0,nt:9,nk:0,nh:0,tx:6};var MAX={ad:12,ch:10,in:6,nt:30,nk:30,nh:30,tx:40};
+var S={ad:2,ch:2,in:0,nt:9,nk:0,nh:0,tx:6,dn:0};var MAX={ad:12,ch:10,in:6,nt:30,nk:30,nh:30,tx:40,dn:10};
 function y(n){return '¥'+Math.round(n).toLocaleString('en-US');}
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function track(s,x){try{if(window.gtag)gtag('event','budget_calc',{event_category:'engagement',status:s,item:x||'',page_path:location.pathname});}catch(e){}}
@@ -161,13 +165,13 @@ var arr=document.getElementById('arr'),dep=document.getElementById('dep'),way=do
 Object.keys(D.airport).forEach(function(k){arr.add(new Option(D.airport[k].name,k));dep.add(new Option(D.airport[k].name,k));});
 function ways(){var a=D.airport[arr.value];way.innerHTML='';a.ways.forEach(function(w){way.add(new Option(w.name,w.id));});}
 // a link from Packy can fill the form: ?ad=2&ch=2&nt=9
-try{var q=new URLSearchParams(location.search);Object.keys(S).forEach(function(k){var v=parseInt(q.get(k),10);if(!isNaN(v))S[k]=Math.max(0,Math.min(MAX[k],v));});}catch(e){}
+try{var q=new URLSearchParams(location.search);/* also dn= Disney days */Object.keys(S).forEach(function(k){var v=parseInt(q.get(k),10);if(!isNaN(v))S[k]=Math.max(0,Math.min(MAX[k],v));});}catch(e){}
 [].forEach.call(document.querySelectorAll('.step'),function(st){var k=st.getAttribute('data-k');st.querySelector('output').textContent=S[k];
  st.addEventListener('click',function(e){var b=e.target.closest('[data-d]');if(!b)return;S[k]=Math.max(k==='ad'?1:0,Math.min(MAX[k],S[k]+(+b.getAttribute('data-d'))));st.querySelector('output').textContent=S[k];calc();});});
 arr.value='narita';dep.value='narita';ways();
 arr.addEventListener('change',function(){ways();if(dep.value!==arr.value&&!dep.dataset.set)dep.value=arr.value;calc();});
 dep.addEventListener('change',function(){dep.dataset.set='1';calc();});
-[way,document.getElementById('jr')].forEach(function(x){x.addEventListener('change',calc);});
+[way,document.getElementById('jr'),document.getElementById('zoo')].forEach(function(x){x.addEventListener('change',calc);});
 ['hotel','food','fly'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
 function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)||v<0?0:v;}
 function src(name,url){return '<small>'+esc(name)+', checked '+CH+' · <a href="'+url+'" target="_blank" rel="noopener">official price</a></small>';}
@@ -189,6 +193,10 @@ function calc(){
  if(S.nh){var s=D.sapporoDay,v=S.nh*(s.a*ad+s.c*ch);sum+=v;h+=line('Sapporo subway: '+S.nh+' one-day ticket'+(S.nh>1?'s':''),y(v),src(s.src,s.url));}
  if(S.tx){var tl=S.tx*cars*D.taxi.lo,th=S.tx*cars*D.taxi.hi;lo+=tl;hi+=th;h+=line('Taxis: '+S.tx+' ride'+(S.tx>1?'s':'')+(cars>1?' × '+cars+' cars':''),y(tl)+'–'+y(th),src(D.taxi.src,D.taxi.url));}
  if(document.getElementById('jr').value==='1'){var j=D.jrpass,v=j.a*ad+j.c*ch;sum+=v;h+=line('Japan Rail Pass, 7 days',y(v),src(j.src,j.url));}
+ if(S.dn){var d=D.disney,dl=d.lo*ad*S.dn,dh=d.hi*ad*S.dn;lo+=dl;hi+=dh;
+  h+=line('Tokyo Disney: '+ad+' adult'+(ad>1?'s':'')+' × '+S.dn+' day'+(S.dn>1?'s':''),y(dl)+'–'+y(dh),'<small>'+esc(d.src)+', checked '+d.checked+' · <a href="'+d.url+'" target="_blank" rel="noopener">price calendar</a>'+(ch?'. Children\'s tickets are cheaper; not priced yet.':'')+'</small>');
+  if(ch||inf)miss.push('Tokyo Disney tickets for children');}
+ if(document.getElementById('zoo').value==='1'){var z=D.uenozoo,v=z.a*ad;sum+=v;h+=line('Ueno Zoo: '+ad+' × '+y(z.a)+(ch||inf?' (children up to 6th grade free)':''),y(v),'<small>'+esc(z.src)+', checked '+z.checked+' · <a href="'+z.url+'" target="_blank" rel="noopener">official page</a></small>');}
  var tx=D.tax.each*ppl;sum+=tx;h+=line('Departure tax: '+ppl+' × '+y(D.tax.each),y(tx),'<small>JNTO, checked '+CH+'; check JNTO for who is exempt · <a href="'+D.tax.url+'" target="_blank" rel="noopener">official page</a></small>');
  // the reader's own numbers
  var hot=num('hotel'),food=num('food'),fly=num('fly'),own='';
@@ -201,7 +209,7 @@ function calc(){
  if(!fly)np+=line('Flights','<span class="np">not priced</span>')+go('flights');
  if(!hot)np+=line('Hotels','<span class="np">not priced</span>');
  if(!food)np+=line('Food and drinks','<span class="np">not priced</span>');
- np+=line('Theme parks, zoos and tickets','<span class="np">not priced yet</span>')+go('parks');
+ np+=line(S.dn?'Other theme parks and tickets (e.g. Sanrio Puroland)':'Theme parks and tickets','<span class="np">not priced yet</span>')+go('parks');
  if(S.nk)np+=line('Kyoto and Osaka buses and trains','<span class="np">not priced yet</span>');
  if(S.nt&&S.nk&&document.getElementById('jr').value!=='1')np+=line('Shinkansen between Tokyo and Kyoto','<span class="np">not priced yet</span>')+go('shinkansen');
  if(S.nh&&(S.nt||S.nk))np+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
