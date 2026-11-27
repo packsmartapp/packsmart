@@ -47,6 +47,7 @@ DATA = {
         ]},
     },
     "tokyoTicket": {"a": 2000, "c": 1000, "days": 3, "src": "Tokyo Subway Ticket, 72 hours (Toei and Tokyo Metro)", "url": "https://www.kotsu.metro.tokyo.jp/eng/tickets/"},
+    "kyotoDay": {"a": 1100, "c": 550, "src": "Kyoto Subway & Bus One-Day Pass (city subway and buses)", "url": "https://www.city.kyoto.lg.jp/kotsu/"},
     "sapporoDay": {"a": 830, "c": 420, "src": "Sapporo subway one-day ticket (weekday)", "url": "https://www.city.sapporo.jp/st/s109/23564.html"},
     "taxi": {"lo": 2500, "hi": 3000, "src": "JNTO: a 7 km daytime ride in Tokyo, about 25 minutes", "url": "https://www.japan.travel/en/plan/getting-around/taxis/"},
     "jrpass": {"a": 50000, "c": 25000, "src": "Japan Rail Pass, 7 days, ordinary, bought online", "url": "https://japanrailpass.net/en/purchase/price/"},
@@ -201,6 +202,7 @@ function calc(){
  if(!(dep.value==='narita'&&depWay==='nex'&&arr.value==='narita'))h+=leg(dep.value,depWay,'Town to airport');
  else h+=line('Town to airport: Narita Express','included',' <small>the round-trip ticket covers both rides</small>');
  if(S.nt){var t=D.tokyoTicket,n=Math.ceil((S.nt+1)/t.days),v=n*(t.a*ad+t.c*ch);sum+=v;h+=line('Tokyo subway: '+n+' × 72-hour ticket'+(n>1?'s':''),y(v),src(t.src,t.url));}
+ if(S.nk){var kd=D.kyotoDay,kv=S.nk*(kd.a*ad+kd.c*ch);sum+=kv;h+=line('Kyoto buses and subway: '+S.nk+' one-day pass'+(S.nk>1?'es':''),y(kv),'<small>'+esc(kd.src)+', checked 27 Nov 2026 · <a href="'+kd.url+'" target="_blank" rel="noopener">official page</a></small>');}
  if(S.nh){var s=D.sapporoDay,v=S.nh*(s.a*ad+s.c*ch);sum+=v;h+=line('Sapporo subway: '+S.nh+' one-day ticket'+(S.nh>1?'s':''),y(v),src(s.src,s.url));}
  if(S.tx){var tl=S.tx*cars*D.taxi.lo,th=S.tx*cars*D.taxi.hi;lo+=tl;hi+=th;h+=line('Taxis: '+S.tx+' ride'+(S.tx>1?'s':'')+(cars>1?' × '+cars+' cars':''),y(tl)+'–'+y(th),src(D.taxi.src,D.taxi.url));}
  if(document.getElementById('jr').value==='1'){var j=D.jrpass,v=j.a*ad+j.c*ch;sum+=v;h+=line('Japan Rail Pass, 7 days',y(v),src(j.src,j.url));}
@@ -228,7 +230,7 @@ function calc(){
  if(!hot)np+=line('Hotels','<span class="np">not priced</span>');
  if(!food)np+=line('Food and drinks','<span class="np">not priced</span>');
  np+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>')+go('parks');
- if(S.nk)np+=line('Kyoto and Osaka buses and trains','<span class="np">not priced yet</span>');
+ if(S.nk)np+=line('Osaka Metro (days in Osaka)','<span class="np">not priced yet</span>');
  if(S.nh&&(S.nt||S.nk))np+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
  miss.forEach(function(m){np+=line(esc(m),'<span class="np">not priced yet</span>');});
  h+='<div class="grp">Still to price</div>'+np;
