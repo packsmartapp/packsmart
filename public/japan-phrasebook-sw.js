@@ -1,5 +1,5 @@
 /* Fuku's Phrasebook service worker (tools/w81_fuku_phrasebook.py). Network first, saved copy when offline. */
-var V='japan-phrasebook-v1';
+var V='japan-phrasebook-v2';
 var PAGE='/japan-phrasebook';
 var SHELL=[PAGE,'/japan-phrasebook.webmanifest','/favicon-32.png','/images/phrasebook-icon-192.png','/images/phrasebook-icon-512.png'];
 self.addEventListener('install',function(e){
