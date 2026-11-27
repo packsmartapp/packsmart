@@ -129,6 +129,7 @@ function regionFor(q, prev, topic) { return regionOf(q.toLowerCase()) || regionO
 function offerFor(q, prev, topic) {
   const now = q.toLowerCase(), t = (q + ' ' + prev).toLowerCase(), region = regionFor(q, prev, topic);
   for (const o of OFFERS) {
+    if (o.off) continue;
     if (!o.rx.test(now) && !(o.rx.test(t) && !regionOf(now))) continue;   // follow-ups like "how much is it?" keep the earlier topic
     if (o.not && o.not.test(t)) continue;
     if (o.regions && !o.regions.includes(region)) continue;
@@ -146,9 +147,28 @@ function offerFor(q, prev, topic) {
       label = 'Compare ' + (what === ' ski' ? 'ski tours and lessons' : 'guided' + what + 's').replace('tourss', 'tours') + ' from ' + place.charAt(0).toUpperCase() + place.slice(1);
       url = 'https://www.getyourguide.com/s/?q=' + encodeURIComponent(place + what) + '&partner_id=D7IXONS&cmp=ps-packy-' + place;
     }
+    if (o.id === 'budget') url += budgetParams(q + ' ' + prev);
     return { id: o.id, label, url, partner };
   }
   return null;
+}
+// What the reader said about their trip, for the budget calculator's form: "family of 4", "2 adults and 2 kids",
+// "10 days", "mostly in Tokyo", "Disney". Only plain numbers go into the link.
+function budgetParams(text) {
+  const t = text.toLowerCase(), p = [], n = re => { const m = t.match(re); return m ? Math.min(+m[1], 30) : 0; };
+  let ad = n(/(\d{1,2}) adults?/), ch = n(/(\d{1,2}) (?:kids?|child(?:ren)?|little ones?)\b/);
+  const fam = n(/family of (\d{1,2})/), ppl = n(/(\d{1,2}) (?:people|persons|travell?ers|of us)/);
+  if (!ad && !ch && fam) { ad = Math.min(2, fam); ch = fam - ad; } else if (!ad && !ch && ppl) ad = ppl;
+  if (ad) p.push('ad=' + ad); if (ch || ad) p.push('ch=' + ch);
+  let nights = n(/(\d{1,2}) nights?/) || Math.max(0, n(/(\d{1,2}) days?/) - 1) || (n(/(\d{1,2}) weeks?/) * 7);
+  if (nights) {
+    const kyo = /kyoto|kansai/.test(t), osa = /osaka/.test(t), hok = /hokkaido|sapporo/.test(t), tok = /tokyo/.test(t) || (!kyo && !osa && !hok);
+    const parts = [tok && 'nt', kyo && 'nk', osa && 'no', hok && 'nh'].filter(Boolean), each = Math.floor(nights / parts.length);
+    parts.forEach((k, i) => p.push(k + '=' + (i === 0 ? nights - each * (parts.length - 1) : each)));
+    if (!tok) p.push('nt=0');
+  }
+  if (/disney/.test(t)) p.push('dn=' + (/disneyland/.test(t) && /disneysea/.test(t) ? 2 : 1));
+  return p.length ? '&' + p.join('&') : '';
 }
 const redact = q => q.replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email]').replace(/\+?\d[\d\s-]{7,}\d/g, '[number]').slice(0, MAX_Q);
 
@@ -171,7 +191,7 @@ Rules:
 - If the question is vague (for example "what's the cost like?" or "is it far?") and the PREVIOUS QUESTION does not make it clear, ask one short, friendly clarifying question, such as which trip, station or city they mean, and mention two or three specific things you can help with.
 - Only if nothing at all in the notes is relevant: do not guess and do not state any facts; reply naturally in one or two sentences, say what you can help with (getting between places, stations, airports, trains, buses, money, luggage, seasons), and suggest a specific question. Do not add a Source line. When you have answered any part of the question, never add that list of what you can help with.
 - Itinerary, route or "plan my trip" requests (for example "10 days for a family of 4"): never answer that you can only help with specific questions. Give a short starting shape from the notes: which cities or areas could fit their days (for example Tokyo, then Kyoto and Osaka in Kansai) with the train times between them the notes give, and one or two things from the notes that fit their group or season (children's fares, the season they mention). Then say in one sentence that the "Build a day-by-day Japan plan" button below makes a full plan for their dates and group. End with one friendly question, such as which month they travel or what their family loves most. Never invent sights, day counts, opening hours or prices the notes do not hold.
-- Whole-trip budget questions ("total cost", "budget", a family's trip "all included"): never refuse and never give a grand total. Say in one friendly sentence that you can't price flights, hotels, food or theme-park tickets yet, then list the checked costs from the notes that fit their trip, per adult and per child where the notes give both: city transport (day tickets or passes), taxis, the airport-to-city trip, the departure tax (and what it comes to for their group when that is simple, e.g. 4 × ¥3,000). Then one sentence that the "Get a rough trip budget (estimate)" button below estimates the whole trip for their dates and group. If they invite questions or the group is unclear, end with two or three short questions (children's ages, which theme park, hotel style), not one. Only use places they named; never add another region's sights.
+- Whole-trip budget questions ("total cost", "budget", a family's trip "all included"): never refuse and never give a grand total. Say in one friendly sentence that you can't price flights, hotels, food or theme-park tickets yet, then list the checked costs from the notes that fit their trip, per adult and per child where the notes give both: city transport (day tickets or passes), taxis, the airport-to-city trip, the departure tax (and what it comes to for their group when that is simple, e.g. 4 × ¥3,000). Then one sentence that the "Work out your trip budget" button below opens a calculator with official prices for their group, where they can add their hotel and flights. If they invite questions or the group is unclear, end with two or three short questions (children's ages, which theme park, hotel style), not one. Only use places they named; never add another region's sights.
 - If the traveller named no place and the notes that answer the question are all about one region (for example only Hokkaido: Sapporo, New Chitose, Otaru, Niseko), say so in the first sentence ("In Hokkaido, around Sapporo, …") rather than presenting it as true for all of Japan, and end by asking which part of Japan they are visiting. Never steer a general question towards Hokkaido.
 - Never mention notes or sources in your sentences: never write "the notes", "my notes", "I only have", "the information I have" or "I don't have information about". Say what is known; for a missing part say naturally that you don't have a checked answer for it yet and who to ask (station staff, the official site).
 - Health, illness, injury, doctors, hospitals, insurance or emergencies: if the notes give Japan's emergency numbers or the Japan Visitor Hotline, start with them (ambulance 119, police 110, and the hotline's number, hours and languages), then add anything else relevant from the notes. Keep it calm and practical. For a question about medical costs, give the examples of high bills the notes give, the tip to ask for an estimate at reception, and the advice to buy travel insurance; mention exceptions (such as care that insurance does not cover) only after that.

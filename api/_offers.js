@@ -10,7 +10,10 @@ export const BUDGETQ = /total (?:cost|budget|price|spend)|\bbudget\b|how much (?
 // 27 Nov 2026: the airport transfer, eSIM and bag storage buttons use Packy's own Travelpayouts links (Sub IDs
 // packy-transfer, packy-esim, packy-bags-tokyo/-osaka/-kyoto), so Packy's sales show up separately from the site's.
 export const OFFERS = [
-  { id: 'budget', rx: BUDGETQ, label: 'Get a rough trip budget (estimate)', url: '/?dest=Japan&src=packy_budget#plan', partner: false },
+  // the budget calculator; ask.js adds what the reader said (people, nights, Disney days) to the link
+  { id: 'budget', rx: BUDGETQ, label: 'Work out your trip budget', url: '/japan-budget?src=packy', partner: false },
+  // guided multi-day tours: off (see TOURS_ON in tools/w86_japan_budget.py) until TourRadar confirms
+  { id: 'multitour', off: true, rx: /package (?:tour|holiday|trip)|tour package|holiday package|multi-?day tours?|guided (?:trip|holiday|tour of japan)|group tours?|organi[sz]ed tours?|escorted tours?|all[- ]inclusive|someone (?:else )?(?:to )?(?:handle|organi[sz]e|arrange|book) (?:it|everything)|(?:easier|simpler|better) (?:with|to (?:take|book|join)) a tour|join a tour/, label: 'Compare guided multi-day Japan tours', url: 'https://www.tourradar.com/d/japan?utm_source=partner-traveller-1471305&utm_medium=ambassador&utm_campaign=packy-tours', partner: true },
   { id: 'plan', rx: ITINQ, not: /\bpass\b|ticket|valid|visa|stay (?:up to|for)|lockers?|bus\b/, label: 'Build a day-by-day Japan plan', url: '/?dest=Japan&src=packy#plan', partner: false },
   { id: 'skyliner', rx: /skyliner|keisei|ueno.{0,40}narita|narita.{0,40}ueno|nippori/, regions: ['tokyo', ''], label: 'Book Skyliner tickets online', url: 'https://klook.tpx.li/gIYih1CY', partner: true },
   { id: 'nex', rx: /narita express|\bn'?ex\b/, regions: ['tokyo', ''], label: 'Book Narita Express tickets online', url: 'https://klook.tpx.li/tX4jclRv', partner: true },
@@ -40,11 +43,13 @@ export const TOUR_PLACES = ['niseko', 'otaru', 'noboribetsu', 'furano', 'biei', 
 const GYG = /^https:\/\/www\.getyourguide\.com\/s\/\?q=[a-z0-9%]+&partner_id=D7IXONS&cmp=ps-packy-[a-z]+$/;
 export function knownOffer(o) {
   if (!o || typeof o.url !== 'string') return null;
+  if (/^\/japan-budget\?src=packy(?:&(?:ad|tn|ch|in|nt|nk|no|nh|dn)=\d{1,2})*$/.test(o.url)) return { label: 'Work out your trip budget', url: o.url, partner: false };
   if (GYG.test(o.url)) {
     const label = String(o.label || '');
     return /^Compare [a-z ]{3,60}$/i.test(label) ? { label, url: o.url, partner: true } : null;
   }
   for (const x of OFFERS) {
+    if (x.off) continue;
     if (x.url === o.url && x.label) return { label: x.label, url: x.url, partner: !!x.partner };
     for (const k in (x.by || {})) { const b = x.by[k]; if (b[1] === o.url) return { label: b[0], url: b[1], partner: b[2] }; }
   }

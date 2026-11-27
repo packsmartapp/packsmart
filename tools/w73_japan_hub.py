@@ -126,6 +126,7 @@ HUB_CSS = """<style id="jp-hub-css">
 @media (prefers-reduced-motion:reduce){.jp-lesson li.hot button{animation:none}}
 .jp-wa{display:block;margin:10px 0 0;text-align:center;font-weight:800;font-size:.9rem;color:#fff;background:#25D366;border-radius:999px;padding:10px 14px;text-decoration:none}
 .jp-plan-cta{display:grid;grid-template-columns:auto minmax(0,1fr) auto;column-gap:12px;align-items:center;margin:18px 0 0;padding:14px 18px;border-radius:16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;text-decoration:none;box-shadow:0 8px 20px rgba(233,69,96,.25)}
+.jp-budget-cta{background:linear-gradient(135deg,#0f0f23,#1d2b5a);box-shadow:0 6px 18px rgba(15,15,35,.2)}.jp-plan-2{margin-top:10px}.jp-plan-cta b em{font-style:normal;opacity:.8;font-weight:700}
 .jp-plan-cta>span{font-size:1.5rem;grid-row:span 2}.jp-plan-cta b{font-size:1.02rem}.jp-plan-cta small{grid-column:2;font-size:.82rem;opacity:.92}.jp-plan-cta i{font-style:normal;font-size:1.3rem;grid-row:1/3;grid-column:3}
 .jp-esim-line{margin:14px 0 2.4rem;text-align:center;font-size:.9rem;color:#5a6378}.jp-esim-line a{color:#0a8f78;font-weight:700}
 .jp-words-more{display:block;margin:12px 0 0;text-align:center;font-size:.86rem;font-weight:800;color:#0a8f78;background:#E6FAF5;border-radius:12px;padding:10px;text-decoration:none}
@@ -787,8 +788,11 @@ def plan_html():
     return ('<section class="jp-sec" id="plan" aria-labelledby="jpPlanT"><div class="jp-sec-h"><span class="jp-kick"><span lang="ja">旅の計画</span> · Plan</span><h2 id="jpPlanT">Plan your trip</h2>'
             '<p>Visas, seasons, budget, packing and a 7-day route.</p></div><div class="jp-plans">' + "".join(out) + '</div>'
             # the site's trip planner as the next step (27 Nov 2026, a tester: no single call to action for the personal plan)
-            '<a class="jp-plan-cta" href="/?dest=Japan&amp;src=hub_plan#plan" data-board="plan_my_trip"><span aria-hidden="true">🗺️</span>'
-            '<b>Build your day-by-day Japan plan</b><small>Plan My Trip: your dates and group, with the weather and a packing list</small><i aria-hidden="true">→</i></a></section>')
+            # two steps, cost first (owner, 27 Nov 2026: which comes first, the budget or the plan?)
+            '<a class="jp-plan-cta jp-budget-cta" href="/japan-budget?src=hub_budget" data-board="budget_calc"><span aria-hidden="true">💴</span>'
+            '<b><em>Step 1 · </em>What will Japan cost?</b><small>Work out your budget in 2 minutes: trains, taxis, Disney and the departure tax from official prices</small><i aria-hidden="true">→</i></a>'
+            '<a class="jp-plan-cta jp-plan-2" href="/?dest=Japan&amp;src=hub_plan#plan" data-board="plan_my_trip"><span aria-hidden="true">🗺️</span>'
+            '<b><em>Step 2 · </em>Plan your days</b><small>Plan My Trip: a day-by-day plan for your dates and group, with the weather and a packing list</small><i aria-hidden="true">→</i></a></section>')
 
 KANJI = {"tokyo": "東京", "shinjuku": "新宿", "ueno": "上野", "kyoto": "京都", "osaka": "新大阪・大阪", "sapporo": "札幌"}
 def stations_html():

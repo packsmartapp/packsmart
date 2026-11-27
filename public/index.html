@@ -1670,6 +1670,8 @@ document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
 // ===== PREFILL FROM PACKY (?dest=Japan#plan) =====
 try { var _d = (new URLSearchParams(location.search).get('dest') || '').replace(/[^A-Za-z ,.'-]/g, '').slice(0, 40); var _di = document.getElementById('destination'); if (_d && _di && !_di.value) _di.value = _d; } catch (e) {}
+// adults and children from the Japan budget calculator (?adults=2&kids=2)
+try { var _q = new URLSearchParams(location.search); [['adults', 1, 20], ['kids', 0, 10]].forEach(function (f) { var v = parseInt(_q.get(f[0]), 10), el = document.getElementById(f[0]); if (el && !isNaN(v)) { el.value = Math.max(f[1], Math.min(f[2], v)); el.dispatchEvent(new Event('input', { bubbles: true })); el.dispatchEvent(new Event('change', { bubbles: true })); } }); var _ka = document.getElementById('kidsAgesField'), _k = document.getElementById('kids'); if (_ka && _k && parseInt(_k.value, 10) > 0) _ka.style.display = 'block'; } catch (e) {}
 // ===== KIDS FIELD TOGGLE =====
 document.getElementById('kids').addEventListener('input', e => {
     document.getElementById('kidsAgesField').style.display = parseInt(e.target.value) > 0 ? 'block' : 'none';

@@ -133,7 +133,8 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w82_esim_compare_links.py` | w82: a "Compare travel eSIMs" line in every eSIM block (27 Nov 2026, owner: readers could not find the eSIM comparison). |
 | `w83_pocket_share_tags.py` | w83: share tags (Open Graph and Twitter) on every Pocket Guide (27 Nov 2026, a tester: /sapporo-pocket had none). |
 | `w84_japan_2027_facts.py` | w84: the departure tax and cherry blossoms 2027 on the three general Japan articles (27 Nov 2026, a tester). |
-| `w85_share_rows.py` | w85: a "Share this" row on the Japan hub, Travel Essentials and Fuku's Phrasebook (27 Nov 2026, a tester: no social |
+| `w85_share_rows.py` | w85: a "Share this" row on the Japan hub and Travel Essentials (the Phrasebook has its own ❤️ button since 27 Nov) (27 Nov 2026, a tester: n |
+| `w86_japan_budget.py` | w86: Japan trip budget calculator, /japan-budget (27 Nov 2026; launched the same day). |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `packy_eval.mjs` | data file read by the scripts above |
 | `pocket_guides.json` | data file read by the scripts above |
@@ -141,7 +142,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 
 ## public/ pages
 
-**Top-level pages (14):** `about.html`, `affiliate-disclosure.html`, `blog.html`, `book.html`, `contact.html`, `flights.html`, `gyg-preview.html`, `index.html`, `japan-phrasebook.html`, `japan.html`, `privacy-policy.html`, `share.html`, `terms.html`, `travel-essentials.html`
+**Top-level pages (15):** `about.html`, `affiliate-disclosure.html`, `blog.html`, `book.html`, `contact.html`, `flights.html`, `gyg-preview.html`, `index.html`, `japan-budget.html`, `japan-phrasebook.html`, `japan.html`, `privacy-policy.html`, `share.html`, `terms.html`, `travel-essentials.html`
 
 **Pocket Guides (10):** `haneda-pocket.html`, `kix-pocket.html`, `kyoto-pocket.html`, `narita-pocket.html`, `new-chitose-pocket.html`, `osaka-pocket.html`, `sapporo-pocket.html`, `shinjuku-pocket.html`, `tokyo-pocket.html`, `ueno-pocket.html`
 Each also has `<key>-sw.js` (service worker) and `<key>-pocket.webmanifest`.
