@@ -168,7 +168,8 @@ function ways(){var a=D.airport[arr.value];way.innerHTML='';a.ways.forEach(funct
 try{var q=new URLSearchParams(location.search);/* also dn= Disney days */Object.keys(S).forEach(function(k){var v=parseInt(q.get(k),10);if(!isNaN(v))S[k]=Math.max(0,Math.min(MAX[k],v));});}catch(e){}
 [].forEach.call(document.querySelectorAll('.step'),function(st){var k=st.getAttribute('data-k');st.querySelector('output').textContent=S[k];
  st.addEventListener('click',function(e){var b=e.target.closest('[data-d]');if(!b)return;S[k]=Math.max(k==='ad'?1:0,Math.min(MAX[k],S[k]+(+b.getAttribute('data-d'))));st.querySelector('output').textContent=S[k];calc();});});
-arr.value='narita';dep.value='narita';ways();
+// the likely airport for the trip: Kansai for a Kyoto and Osaka trip, New Chitose for Hokkaido only
+var ap=S.nt?'narita':(S.nk?'kansai':(S.nh?'chitose':'narita'));arr.value=ap;dep.value=ap;ways();
 arr.addEventListener('change',function(){ways();if(dep.value!==arr.value&&!dep.dataset.set)dep.value=arr.value;calc();});
 dep.addEventListener('change',function(){dep.dataset.set='1';calc();});
 [way,document.getElementById('jr'),document.getElementById('zoo')].forEach(function(x){x.addEventListener('change',calc);});
