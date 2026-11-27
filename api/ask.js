@@ -5,7 +5,7 @@
 // Guarded: only pages on packsmartapp.com (and this project's Vercel previews) may call it; a few questions per visitor;
 // a daily cap per instance. Questions are logged without personal data, so the owner can see what travellers ask.
 import JAPAN_KB from './_japan_kb.js';
-import { OFFERS, TOUR_PLACES, ITINQ } from './_offers.js';
+import { OFFERS, TOUR_PLACES, ITINQ, BUDGETQ } from './_offers.js';
 
 // One Packy, scoped by country (D56): each country has its own official-source knowledge. Add a country here when its
 // knowledge pack exists (built like tools/w74_japan_ask_kb.py) and its pages load /packy.js with data-country.
@@ -24,6 +24,7 @@ const GUIDES = [
   ['Haneda Airport guide', '/blog/haneda-airport-guide', 'haneda airport'],
   ['Kansai Airport guide', '/blog/kansai-airport-guide', 'kansai kix airport haruka'],
   ['travel eSIM comparison', '/blog/best-esim-international-travel-comparison', 'esim sim data roaming internet wifi wi-fi'],
+  ['Japan 7-day itinerary on a budget', '/blog/japan-7-day-itinerary-budget', 'itinerary budget costs'],
   ['Japan travel guide', '/blog/japan-travel-packing-guide', 'visa season packing jr pass budget weather cherry blossom tipping etiquette money cash plug onsen tattoo tattoos alcohol passport smoking'],
 ];
 const STOP = new Set('confused confusing specially especially please tell help know explain the a an and or of to in on at for from with is are was be can i my me we our you your how what where when which who do does did it this that there any get go going near by into about need want will would should could best way japan'.split(' '));
@@ -57,7 +58,9 @@ function search(q, n, topicWords) {
   const careCost = CAREQ.test(qLow) && PRICEQ.test(qLow) ? ['expenses', 'estimate', 'payment', 'insurance'] : [];
   // itinerary questions name no place or topic: bring in the regions and the city-to-city train times
   const itin = ITINQ.test(qLow) && !/\bpass\b|ticket|visa/.test(qLow) ? ['kyoto', 'osaka', 'shinkansen', 'tokai', 'kansai', 'destinations'] : [];
-  const qs = [...new Set(base.concat(...base.map(w => ALIAS[w] || []), careCost, itin).map(stem))];
+  // whole-trip budget questions: bring in the costs every trip has (city transport, taxis, airport to city, departure tax)
+  const budget = BUDGETQ.test(qLow) ? ['subway', 'ticket', 'taxi', 'departure', 'tax', 'child', 'airport'] : [];
+  const qs = [...new Set(base.concat(...base.map(w => ALIAS[w] || []), careCost, itin, budget).map(stem))];
   const routeWords = base.concat(...base.map(w => ALIAS[w] || []));
   const scored = KB.map((p, i) => {
     let s = 0;
@@ -72,21 +75,27 @@ function search(q, n, topicWords) {
     for (const a of routeWords) for (const b of routeWords) if (a !== b && (low.includes(a + ' to ' + b) || low.includes(a + '\u2013' + b) || low.includes(a + '-' + b))) s += 6;
     return [s, i];
   }).filter(x => x[0] > 0).map(([s, i]) => [s / (0.75 + 0.25 * LEN[i] / AVG_LEN), i]).sort((a, b) => b[0] - a[0]);   // long notes no longer win by length alone
-  // cost questions: always include the best few pieces from the official price sheet
-  if (priceQ(qLow)) {
-    const prices = scored.filter(x => KB[x[1]].t.startsWith('japan prices')).slice(0, 3);
-    const rest = scored.filter(x => !prices.includes(x));
-    return prices.concat(rest).slice(0, n).map(x => KB[x[1]]);
+  // cost questions: the best few pieces from the official price sheet come first
+  let list = scored;
+  if (priceQ(qLow) || budget.length) {
+    // a whole-trip budget always gets the costs every trip has: city transport (with taxis) and the departure tax
+    const must = budget.length ? scored.filter(x => /> (?:City transport|Taxes and fees)$/.test(KB[x[1]].t)) : [];
+    const prices = must.concat(scored.filter(x => KB[x[1]].t.startsWith('japan prices') && !must.includes(x)).slice(0, budget.length ? 3 : 3));
+    list = prices.concat(scored.filter(x => !prices.includes(x)));
   }
-  // at most 4 pieces from one notes file, so one long file cannot fill every slot; and (27 Nov, testers: general
-  // questions got Hokkaido answers) at most 2 Hokkaido pieces when neither the question, the page nor the earlier
-  // chat is about Hokkaido, since about a third of the notes are Sapporo and New Chitose research
-  const HOKQ = /hokkaido|sapporo|chitose|\bcts\b|otaru|niseko|rusutsu|furano|biei|asahikawa|noboribetsu|hakodate|kushiro|obihiro/;
+  // at most 4 pieces from one notes file, so one long file cannot fill every slot. Hokkaido (27 Nov, testers: general
+  // questions got Hokkaido answers; about a third of the notes are Sapporo and New Chitose research): when neither the
+  // question nor the page is about Hokkaido, at most 2 Hokkaido pieces, and none when the question names another part of
+  // Japan ("mostly in Tokyo"). This applies to cost questions too (a Tokyo family budget had been given Asahiyama Zoo).
+  const HOKQ = /hokkaido|sapporo|chitose|\bcts\b|otaru|niseko|rusutsu|furano|biei|asahikawa|asahiyama|noboribetsu|hakodate|kushiro|obihiro/;
   const hokOk = HOKQ.test(qLow) || (topicWords || []).some(w => HOKQ.test(w));
+  const elsewhere = /tokyo|ueno|shinjuku|shibuya|ginza|asakusa|narita|haneda|kanto|yokohama|disney|kyoto|osaka|kansai|\bkix\b|nara|kobe|hiroshima|fukuoka|okinawa/.test(qLow);
+  const hokMax = hokOk ? 99 : (elsewhere ? 0 : 2);
   const per = new Map(), out = []; let hok = 0;
-  for (const x of scored) {
-    const f = KB[x[1]].t.split(' > ')[0], c = per.get(f) || 0, isHok = /^sapporo/.test(f);
-    if (c >= 4 || (isHok && !hokOk && hok >= 2)) continue;
+  for (const x of list) {
+    const t = KB[x[1]].t, f = t.split(' > ')[0], c = per.get(f) || 0;
+    const isHok = /^sapporo/.test(f) || (f === 'japan prices' && HOKQ.test(t.toLowerCase()));
+    if ((c >= 4 && !(f === 'japan prices' && budget.length && c < 6)) || (isHok && hok >= hokMax)) continue;
     per.set(f, c + 1); if (isHok) hok++; out.push(x); if (out.length >= n) break;
   }
   return out.map(x => KB[x[1]]);
@@ -96,6 +105,7 @@ const TOPIC_GUIDE = { sapporo: 'Sapporo Station guide', 'new-chitose': 'New Chit
 const TOPIC_WORDS = { sapporo: ['sapporo'], 'new-chitose': ['chitose', 'airport'], ueno: ['ueno'], shinjuku: ['shinjuku'], tokyo: ['tokyo'], kyoto: ['kyoto'], osaka: ['osaka'], narita: ['narita'], haneda: ['haneda'], kansai: ['kansai', 'kix'] };
 const GENERIC_GUIDE_WORDS = new Set('airport station bus ski rental rent car hire park cherry blossom day trips hotels snow festival zoo shinkansen express visa season packing budget weather money cash plug tipping etiquette pass jr'.split(' '));
 function guideFor(q, topic) {
+  if (BUDGETQ.test(q.toLowerCase())) return GUIDES.find(g => g[1] === '/blog/japan-7-day-itinerary-budget');
   const qs = new Set(words(q));
   let best = GUIDES.find(g => g[0] === TOPIC_GUIDE[topic]) || GUIDES[GUIDES.length - 1], bs = 0;
   // place names count three times as much as generic words, so "airport bus ... Narita" goes to Narita, not New Chitose
@@ -161,6 +171,7 @@ Rules:
 - If the question is vague (for example "what's the cost like?" or "is it far?") and the PREVIOUS QUESTION does not make it clear, ask one short, friendly clarifying question, such as which trip, station or city they mean, and mention two or three specific things you can help with.
 - Only if nothing at all in the notes is relevant: do not guess and do not state any facts; reply naturally in one or two sentences, say what you can help with (getting between places, stations, airports, trains, buses, money, luggage, seasons), and suggest a specific question. Do not add a Source line. When you have answered any part of the question, never add that list of what you can help with.
 - Itinerary, route or "plan my trip" requests (for example "10 days for a family of 4"): never answer that you can only help with specific questions. Give a short starting shape from the notes: which cities or areas could fit their days (for example Tokyo, then Kyoto and Osaka in Kansai) with the train times between them the notes give, and one or two things from the notes that fit their group or season (children's fares, the season they mention). Then say in one sentence that the "Build a day-by-day Japan plan" button below makes a full plan for their dates and group. End with one friendly question, such as which month they travel or what their family loves most. Never invent sights, day counts, opening hours or prices the notes do not hold.
+- Whole-trip budget questions ("total cost", "budget", a family's trip "all included"): never refuse and never give a grand total. Say in one friendly sentence that you can't price flights, hotels, food or theme-park tickets yet, then list the checked costs from the notes that fit their trip, per adult and per child where the notes give both: city transport (day tickets or passes), taxis, the airport-to-city trip, the departure tax (and what it comes to for their group when that is simple, e.g. 4 × ¥3,000). Then one sentence that the "Get a rough trip budget (estimate)" button below estimates the whole trip for their dates and group. If they invite questions or the group is unclear, end with two or three short questions (children's ages, which theme park, hotel style), not one. Only use places they named; never add another region's sights.
 - If the traveller named no place and the notes that answer the question are all about one region (for example only Hokkaido: Sapporo, New Chitose, Otaru, Niseko), say so in the first sentence ("In Hokkaido, around Sapporo, …") rather than presenting it as true for all of Japan, and end by asking which part of Japan they are visiting. Never steer a general question towards Hokkaido.
 - Never mention notes or sources in your sentences: never write "the notes", "my notes", "I only have", "the information I have" or "I don't have information about". Say what is known; for a missing part say naturally that you don't have a checked answer for it yet and who to ask (station staff, the official site).
 - Health, illness, injury, doctors, hospitals, insurance or emergencies: if the notes give Japan's emergency numbers or the Japan Visitor Hotline, start with them (ambulance 119, police 110, and the hotline's number, hours and languages), then add anything else relevant from the notes. Keep it calm and practical. For a question about medical costs, give the examples of high bills the notes give, the tip to ask for an estimate at reception, and the advice to buy travel insurance; mention exceptions (such as care that insurance does not cover) only after that.

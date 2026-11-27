@@ -8,16 +8,17 @@ import fs from 'fs';
 const src = fs.readFileSync('api/ask.js', 'utf8');
 const kbMod = await import(process.cwd() + '/api/_japan_kb.js');
 const KB = kbMod.KB || kbMod.default;
-const { ITINQ } = await import(process.cwd() + '/api/_offers.js');
+const { ITINQ, BUDGETQ } = await import(process.cwd() + '/api/_offers.js');
 // rebuild search() exactly as ask.js defines it (same words, stemming, aliases and weights)
 const stopLine = src.match(/const STOP = new Set\([^\n]*\n/)[0];
 const start = src.indexOf('const words = s =>');
 const end = src.indexOf('\n}\n', src.indexOf('function search(')) + 3;
 const twm = src.match(/const TOPIC_WORDS = \{[^\n]*\n/)[0];
-const { search, TOPIC_WORDS } = new Function('KB', 'ITINQ', stopLine + src.slice(start, end) + twm + 'return {search, TOPIC_WORDS};')(KB, ITINQ);
+const { search, TOPIC_WORDS } = new Function('KB', 'ITINQ', 'BUDGETQ', stopLine + src.slice(start, end) + twm + 'return {search, TOPIC_WORDS};')(KB, ITINQ, BUDGETQ);
 
 const N = 9;   // what ask.js passes to the model
-// [question, page topic ('' = the hub or a general page), what a right note contains (regex on title + text)]
+// [question, page topic ('' = the hub or a general page), what a right note contains (regex on title + text),
+//  optionally a regex on note titles that must NOT be among the notes handed to the model]
 const CASES = [
   ['What should I do if I need a doctor in Tokyo?', '', /visitor hotline|119/i],
   ['emergency number in Japan', '', /119/],
@@ -71,14 +72,19 @@ const CASES = [
   ['can you make a plan for me for Japan?', '', /kyoto|tokai|kansai/i],
   ['What should we see on a first trip to Japan?', '', /kyoto|tokai|kansai/i],
   ['I am 19, can I drink beer in Japan?', '', /under the age of 20|remain at 20/i],
+  // 27 Nov, a tester: a Tokyo family budget got Asahiyama Zoo and Sapporo fares
+  ['Can you give me the total cost, for a family of 4, from Singapore, for 10 days, 4 star hotels, and mostly in Tokyo, theme park, zoos, temple visits, taxi etc all included... what is the likely total cost? Planning in Feb 2027.', '', /tokyo subway ticket|departure tax|taxi in tokyo/i, /^sapporo|new chitose|hokkaido/i],
+  ['How much budget do we need for a week in Tokyo?', '', /tokyo subway ticket|departure tax|taxi in tokyo/i, /^sapporo|new chitose|hokkaido/i],
+  ['What will our Kyoto and Osaka trip cost?', '', /kyoto|osaka|kansai|departure tax/i, /^sapporo|new chitose|hokkaido/i],
 ];
 const verbose = process.argv.includes('-v');
 let hit = 0;
-for (const [q, topic, rx] of CASES) {
+for (const [q, topic, rx, notRx] of CASES) {
   const top = search(q, N, TOPIC_WORDS[topic] || []);
   const rank = top.findIndex(p => rx.test(p.t + ' ' + p.x)) + 1;
-  if (rank && rank <= 5) hit++;
-  console.log((rank && rank <= 5 ? 'ok  ' : rank ? 'low ' : 'MISS') + ' #' + (rank || '-') + '  ' + q);
+  const bad = notRx ? top.find(p => notRx.test(p.t)) : null;   // by the note's title: a shared note (e.g. city transport) may mention both
+  if (rank && rank <= 5 && !bad) hit++;
+  console.log((bad ? 'BAD ' : rank && rank <= 5 ? 'ok  ' : rank ? 'low ' : 'MISS') + ' #' + (rank || '-') + '  ' + q.slice(0, 110) + (bad ? '   (has: ' + bad.t.slice(0, 60) + ')' : ''));
   if (verbose || !rank || rank > 5) top.slice(0, 5).forEach((p, i) => console.log('        ' + (i + 1) + ' ' + p.t.split(' > ').slice(-2).join(' > ').slice(0, 90)));
 }
 console.log('\n' + hit + '/' + CASES.length + ' questions have a right note in the top 5');
