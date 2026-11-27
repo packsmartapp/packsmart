@@ -43,11 +43,10 @@ for k, l in LESSONS.items():
 # One offer per lesson, fitting what the lesson is about (owner, 27 Nov: the emails and the phrasebook must also sell).
 # Our own words never name a partner (D47; SafetyWing is the exception); partner links say "partner link".
 GYG = "https://www.getyourguide.com/s/?q=%s&partner_id=D7IXONS&cmp=ps-phrasebook-%s"
-OFFERS = {
-    "0": ("📱", "80+ more phrases, plus exits, platforms and lockers: the Pocket Guides (no app, works offline)", "/japan?src=phrasebook#pocket-hub", False),
-    "1": ("🚐", "Book a private airport transfer", "https://tpx.li/qYFLwgZ8", True),
-    "2": ("🎟️", "Compare food tours in Tokyo", GYG % ("tokyo%20food%20tour", "2"), True),
-    "3": ("🧳", "Store your bags in Tokyo", "https://radicalstorage.tpx.li/d0Eds67a", True),
+OFFERS = {   # soft start (owner, 27 Nov): lessons 1 to 3 point to our own help; partner offers from lesson 4, each matching its lesson
+    "1": ("📱", "Exits, platforms, lockers and ATMs, offline: the station Pocket Guides", "/japan?src=phrasebook#pocket-hub", False),
+    "2": ("🗺️", "A 7-day Japan itinerary with costs", "/blog/japan-7-day-itinerary-budget?src=phrasebook", False),
+    "3": ("📅", "Plan My Trip: a day-by-day plan for your dates", "/?dest=Japan&src=phrasebook#plan", False),
     "4": ("🌸", "Compare cherry blossom tours in Japan", GYG % ("japan%20cherry%20blossom%20tour", "4"), True),
     "5": ("🚄", "Book Shinkansen tickets online", "https://www.japan-bullettrain.com/?via=packsmart", True),
     "6": ("📶", "See eSIM data plans for Japan", "https://airalo.tpx.li/4TNBGGOO", True),

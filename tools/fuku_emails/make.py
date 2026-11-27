@@ -41,7 +41,7 @@ def footer_offer(kind, n):
                    '<p style="margin:0 4px 12px;color:#3f4a5c;">Every Pocket Guide has 80+ phrases plus exits, platforms, lockers and ATMs. No app, works offline. Tap the one you&rsquo;ll use:</p>'
                    + icon_row('Airports', POCKET[:4], n) + icon_row('Stations', POCKET[4:], n))
     if kind == 'esim':
-        return box('<b>&#128246; Data from the minute you land</b><br>Maps, train apps and Packy need data at the airport. '
+        return box('<b>&#128246; Data from the minute you land</b><br>Maps, train apps and a phone-wallet IC card all need data, from the minute you land. '
                    f'<a href="https://airalo.tpx.li/4TNBGGOO" rel="nofollow noopener sponsored" style="color:#0a8f78;font-weight:bold;">See eSIM data plans for Japan</a> '
                    '<span style="color:#8a93a6;font-size:12px;">(partner link)</span>', '#ffffff', 'border:1px solid #e3e8ec;')
     if kind == 'packing':
@@ -51,6 +51,17 @@ def footer_offer(kind, n):
         return box('<b>&#128506;&#65039; Want the whole trip laid out?</b><br>Plan My Trip builds a day-by-day plan for your dates and your group, with weather and a packing list. '
                    f'<a href="{SITE}/?dest=Japan&amp;src=gift{n}#plan" style="color:#0a8f78;font-weight:bold;">Build my Japan plan</a>', '#ffffff', 'border:1px solid #e3e8ec;')
 
+    if kind == 'phrasebook':
+        return box('<b>&#128214; Keep Fuku&rsquo;s Phrasebook on your phone</b><br>Every phrase from these lessons, with the Japanese and a button to hear it. A new lesson opens every day, and it works with no signal once you add it to your Home Screen. '
+                   f'<a href="{SITE}/japan-phrasebook?src=gift{n}" style="color:#0a8f78;font-weight:bold;">Open Fuku&rsquo;s Phrasebook</a>', '#ffffff', 'border:1px solid #e3e8ec;')
+    if kind == 'tours':
+        return box('<b>&#127800; See the blossoms with a guide</b><br>Guided cherry blossom walks and day trips, to compare in one place. '
+                   f'<a href="https://www.getyourguide.com/s/?q=japan%20cherry%20blossom%20tour&amp;partner_id=D7IXONS&amp;cmp=ps-email-{n}" rel="nofollow noopener sponsored" style="color:#0a8f78;font-weight:bold;">Compare cherry blossom tours in Japan</a> '
+                   '<span style="color:#8a93a6;font-size:12px;">(partner link)</span>', '#ffffff', 'border:1px solid #e3e8ec;')
+    if kind == 'shinkansen':
+        return box('<b>&#128644; Riding the Shinkansen?</b><br>Book your bullet train tickets online before you go. '
+                   f'<a href="https://www.japan-bullettrain.com/?via=packsmart" rel="nofollow noopener sponsored" style="color:#0a8f78;font-weight:bold;">Book Shinkansen tickets online</a> '
+                   '<span style="color:#8a93a6;font-size:12px;">(partner link)</span>', '#ffffff', 'border:1px solid #e3e8ec;')
     if kind == 'insurance':
         return box('<b>&#129658; Don&rsquo;t forget travel insurance</b><br>Japan&rsquo;s tourism body ends its guide for visitors who fall ill with: &ldquo;Don&rsquo;t forget to buy travel insurance!&rdquo; '
                    '<a href="https://www.safetywing.com/nomad-insurance?referenceID=26492686&amp;utm_source=26492686&amp;utm_medium=Ambassador" rel="nofollow noopener sponsored" style="color:#0a8f78;font-weight:bold;">See SafetyWing travel medical insurance</a> '
@@ -71,7 +82,7 @@ def phrases(n):
     sep = '<tr><td colspan="2" style="border-top:1px solid #d9f0ea;font-size:0;line-height:0;">&nbsp;</td></tr>'
     rows = []
     for i, (r, ja, m) in enumerate(LES[str(n)]['phrases']):
-        url = f'{SITE}/japan?say={n}-{i+1}&amp;src=gift{n}_say'
+        url = f'{SITE}/japan-phrasebook?say={n}-{i+1}&amp;src=gift{n}_say'
         rows.append(f'<tr><td style="padding:11px 4px 11px 14px;{F}"><div style="font-weight:bold;font-size:17px;color:#0f0f23;">{e(r)}</div>'
                     f'<div lang="ja" style="font-size:15px;color:#0a8f78;font-weight:bold;margin-top:2px;">{e(ja)}</div>'
                     f'<div style="font-size:14px;color:#5a6378;margin-top:2px;">{e(m)}</div></td>'
@@ -124,7 +135,7 @@ EM = [
    + p("One exception: if you tip a private guide, it&rsquo;s customary to put it in an envelope.")
    + p("<b>Your first meal out:</b>", 'margin-bottom:6px;')
    + phrases(2),
-  nxt="the little shop on every corner that you&rsquo;ll visit every single day.", offer='esim'),
+  nxt="the little shop on every corner that you&rsquo;ll visit every single day.", offer='phrasebook'),
  dict(n=3, kicker="Fuku's lesson 3 &middot; the konbini", title="Meet the konbini, your new best friend",
   pre="Cash, snacks and your IC card, around the corner. Plus 5 phrases.",
   body=p("Japan&rsquo;s convenience stores are called <b>konbini</b>, and you&rsquo;ll pop into one more often than you think. Three ways they help a traveller:")
@@ -134,14 +145,14 @@ EM = [
      '<li><b>Snacks and drinks</b> for the train, a hotel-room picnic or a rainy afternoon.</li></ol>'
    + p("<b>Fuku&rsquo;s konbini phrases:</b>", 'margin-bottom:6px;')
    + phrases(3),
-  nxt="when do the cherry blossoms bloom, and why does it depend on where you are?", offer='packing'),
+  nxt="when do the cherry blossoms bloom, and why does it depend on where you are?", offer='plan'),
  dict(n=4, kicker="Fuku's lesson 4 &middot; spring and slowing down", title="Chasing the cherry blossoms",
   pre="They move north. Plus 5 phrases that buy you time.",
   body=p("Japan&rsquo;s cherry blossoms don&rsquo;t open all at once. &ldquo;Starting in the south and gradually moving north, the blossoms bloom between March and May depending on your location.&rdquo;")
    + fact("Drinking outdoors doesn&rsquo;t break any law in Japan, so a picnic under the blossoms, drink in hand, is part of the fun. Keep it quiet and take your litter home. &#127800;")
    + p("<b>When Japanese comes at you fast:</b>", 'margin-bottom:6px;')
    + phrases(4),
-  nxt="the quiet rules of riding a Japanese train.", offer='plan'),
+  nxt="the quiet rules of riding a Japanese train.", offer='tours'),
  dict(n=5, kicker="Fuku's lesson 5 &middot; on the train", title="The quiet rules of riding a Japanese train",
   pre="Five small habits, and the one place you can take that call.",
   body=p("Japanese trains are famously calm, and a few small habits keep them that way. Japan&rsquo;s tourism body and the rail companies ask riders to:")
@@ -155,7 +166,7 @@ EM = [
    + fact("On the Shinkansen it&rsquo;s okay to step into the corridor between cars to take a call. &#128222;")
    + p("<b>Fuku&rsquo;s train phrases:</b>", 'margin-bottom:6px;')
    + phrases(5),
-  nxt="your IC card does a lot more than open ticket gates.", offer='pocket'),
+  nxt="your IC card does a lot more than open ticket gates.", offer='shinkansen'),
  dict(n=6, kicker="Fuku's lesson 6 &middot; tickets and IC cards", title="Tap, top up, go: your IC card",
   pre="The little card that saves you from ticket machines. Plus 5 phrases.",
   body=p("Japan&rsquo;s rechargeable IC cards (Suica, PASMO, ICOCA and friends) are the easiest way to ride. Tap in at the gate, tap out at your destination, and the fare comes off the card.")
@@ -168,7 +179,7 @@ EM = [
    + fact("IC cards also pay at many vending machines, shops and station lockers. &#129683;")
    + p("<b>Fuku&rsquo;s ticket phrases:</b>", 'margin-bottom:6px;')
    + phrases(6),
-  nxt="what Japan&rsquo;s four seasons feel like, and what to pack for each.", offer='plan'),
+  nxt="what Japan&rsquo;s four seasons feel like, and what to pack for each.", offer='esim'),
  dict(n=7, kicker="Fuku's lesson 7 &middot; the seasons", title="Japan&rsquo;s four seasons, and what to pack",
   pre="From cherry blossoms to powder snow, in one email.",
   body=p("Japan has four very different seasons. Japan&rsquo;s tourism body gives these averages for Tokyo:")
@@ -226,7 +237,7 @@ T = {
 }
 for n, (title, intro, extra, nxt) in T.items():
     ph = "\n".join(f"- {r} = {m}" for r, ja, m in LES[str(n)]['phrases'])
-    t = (f"{title}\n\n{intro}\n\n{ph}\nHear Fuku say them: {S}/japan?say={n}-1&src=gift{n}_say\n\n" + (extra + "\n\n" if extra else "") +
+    t = (f"{title}\n\n{intro}\n\n{ph}\nHear Fuku say them: {S}/japan-phrasebook?l={n}&src=gift{n}_say\n\n" + (extra + "\n\n" if extra else "") +
          (f"Next time: {nxt}\n\n" if nxt else "") + f"Ask Packy about your trip: {S}/japan?src=gift{n}_ask#ask\n\nMata ne! Fuku\n\n"
          + ", ".join(POSTAL) + "\nUnsubscribe: {$unsubscribe}")
     open(os.path.join(OUT, f'lesson{n}.txt'), 'w').write(t)
