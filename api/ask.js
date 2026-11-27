@@ -161,8 +161,8 @@ function budgetParams(text) {
   if (ad) p.push('ad=' + ad); if (ch || ad) p.push('ch=' + ch);
   let nights = n(/(\d{1,2}) nights?/) || Math.max(0, n(/(\d{1,2}) days?/) - 1) || (n(/(\d{1,2}) weeks?/) * 7);
   if (nights) {
-    const kan = /kyoto|osaka|kansai/.test(t), hok = /hokkaido|sapporo/.test(t), tok = /tokyo/.test(t) || (!kan && !hok);
-    const parts = [tok && 'nt', kan && 'nk', hok && 'nh'].filter(Boolean), each = Math.floor(nights / parts.length);
+    const kyo = /kyoto|kansai/.test(t), osa = /osaka/.test(t), hok = /hokkaido|sapporo/.test(t), tok = /tokyo/.test(t) || (!kyo && !osa && !hok);
+    const parts = [tok && 'nt', kyo && 'nk', osa && 'no', hok && 'nh'].filter(Boolean), each = Math.floor(nights / parts.length);
     parts.forEach((k, i) => p.push(k + '=' + (i === 0 ? nights - each * (parts.length - 1) : each)));
     if (!tok) p.push('nt=0');
   }

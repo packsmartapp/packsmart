@@ -43,7 +43,7 @@ export const TOUR_PLACES = ['niseko', 'otaru', 'noboribetsu', 'furano', 'biei', 
 const GYG = /^https:\/\/www\.getyourguide\.com\/s\/\?q=[a-z0-9%]+&partner_id=D7IXONS&cmp=ps-packy-[a-z]+$/;
 export function knownOffer(o) {
   if (!o || typeof o.url !== 'string') return null;
-  if (/^\/japan-budget\?src=packy(?:&(?:ad|ch|in|nt|nk|nh|dn)=\d{1,2})*$/.test(o.url)) return { label: 'Work out your trip budget', url: o.url, partner: false };
+  if (/^\/japan-budget\?src=packy(?:&(?:ad|tn|ch|in|nt|nk|no|nh|dn)=\d{1,2})*$/.test(o.url)) return { label: 'Work out your trip budget', url: o.url, partner: false };
   if (GYG.test(o.url)) {
     const label = String(o.label || '');
     return /^Compare [a-z ]{3,60}$/i.test(label) ? { label, url: o.url, partner: true } : null;
