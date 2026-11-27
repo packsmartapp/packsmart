@@ -1044,15 +1044,21 @@ export default [
 },
 {
 "t": "japan prices > Japan prices: official sources (for Packy) > Shinkansen",
-"x": "- Gap: regular Shinkansen fares (Tokyo–Kyoto, Tokyo–Shin-Osaka, Tokyo–Hiroshima). JR Central's English site (global.jr-central.co.jp) lists no fare table; smart-ex.jp, jr-central.co.jp and railway.jr-central.co.jp are blocked.\n- JAPAN RAIL PASS holders, \"[ONLY WITH JAPAN RAIL PASS] NOZOMI MIZUHO Ticket\" (one per ride): Tokyo–Nagoya 4,180, Tokyo–Kyoto 4,960, Tokyo–Shin-Osaka 4,960, Tokyo–Hiroshima 6,500, Shin-Osaka–Hakata 4,960, Hakata–Kagoshima-Chūō 5,150 (yen). \"Tax included. The same prices apply to Green Car tickets, reserved seat tickets in an ordinary car and non-reserved seat tickets in an ordinary car.\" Source: https://japanrailpass.net/en/use/special-ticket/, checked 24 Nov 2026.",
+"x": "- Tokaido Shinkansen, \"Smart EX Service\" (JR Central, JR West and JR Kyushu's online booking; the train ticket and express ticket in one; you can ride with a transport IC card instead of a paper ticket). Prices per person, one way, ordinary car, normal season, from the official fare tables dated \"as of 1 April 2025\", which the Smart EX page says apply to bookings made by 30 June 2027 for travel up to 14 December 2027:\n  - Tokyo to Kyoto: Nozomi reserved seat adult 13,970 yen, child 6,980 yen; Hikari or Kodama reserved seat adult 13,650 yen, child 6,820 yen; unreserved seat adult 13,320 yen, child 6,660 yen.\n  - Tokyo to Shin-Osaka: Nozomi reserved seat adult 14,520 yen, child 7,250 yen; Hikari or Kodama reserved seat adult 14,200 yen, child 7,090 yen; unreserved seat adult 13,870 yen, child 6,930 yen.\n  - Tokyo to Nagoya: Nozomi reserved seat adult 11,100 yen, child 5,550 yen. Kyoto to Shin-Osaka: Nozomi reserved seat adult 2,880 yen, child 1,440 yen; unreserved seat adult 1,450 yen, child 720 yen.\n  - Reserved seats cost 200 yen less in the off-peak season, 200 yen more in the peak season and 400 yen more in the busiest season (children 100 / 100 / 200 yen); unreserved seats have one price all year.\n  - Source: Smart EX official site, https://smart-ex.jp/en/ (Smart EX Service fare tables for reserved and unreserved seats, read from the official PDFs), checked 27 Nov 2026.",
 "u": [
-"https://japanrailpass.net/en/use/special-ticket/"
+"https://smart-ex.jp/en/"
 ]
 },
 {
 "t": "japan prices > Japan prices: official sources (for Packy) > Shinkansen",
-"x": "- JR West \"SANYO-SHINKANSEN One-way Ticket\" (discounted, foreign visitors only, bought abroad as an exchange order; ordinary car reserved or non-reserved): Osaka City to Okayama/Kurashiki 5,100 YEN, Hiroshima City 7,900 YEN, Kokura/Hakata 10,900 YEN; Hiroshima City to Hakata 6,300 YEN (child half). Source: https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/sanyo-shinkansen/, checked 24 Nov 2026.",
+"x": "- Smart EX Service rules (same source): book from 5:30 a.m. one year before the travel date until 4 minutes before departure; 1 to 6 people per booking; change the booking as many times as you like, free, before you pass the ticket gate; if you miss your train you can take a later train the same day in an unreserved seat. Smart EX prices change in 2027: bookings made from 1 July 2027, or for travel from 15 December 2027, use new prices (unreserved seats and Hikari, Kodama reserved seats are not affected). Fares bought at the station ticket office are not in these notes.",
+"u": []
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > Shinkansen",
+"x": "- JAPAN RAIL PASS holders, \"[ONLY WITH JAPAN RAIL PASS] NOZOMI MIZUHO Ticket\" (one per ride): Tokyo–Nagoya 4,180, Tokyo–Kyoto 4,960, Tokyo–Shin-Osaka 4,960, Tokyo–Hiroshima 6,500, Shin-Osaka–Hakata 4,960, Hakata–Kagoshima-Chūō 5,150 (yen). \"Tax included. The same prices apply to Green Car tickets, reserved seat tickets in an ordinary car and non-reserved seat tickets in an ordinary car.\" Source: https://japanrailpass.net/en/use/special-ticket/, checked 24 Nov 2026.\n- JR West \"SANYO-SHINKANSEN One-way Ticket\" (discounted, foreign visitors only, bought abroad as an exchange order; ordinary car reserved or non-reserved): Osaka City to Okayama/Kurashiki 5,100 YEN, Hiroshima City 7,900 YEN, Kokura/Hakata 10,900 YEN; Hiroshima City to Hakata 6,300 YEN (child half). Source: https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/sanyo-shinkansen/, checked 24 Nov 2026.",
 "u": [
+"https://japanrailpass.net/en/use/special-ticket/",
 "https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/sanyo-shinkansen/"
 ]
 },
