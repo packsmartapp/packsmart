@@ -118,6 +118,7 @@ input[type=number]{width:130px}
 .np{color:#ffb3c0;font-weight:700}
 .go{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:8px 0 0;padding:11px 13px;border-radius:14px;background:#fff;border:1.5px solid #e3e8ec;color:var(--dark);text-decoration:none;font-weight:700;font-size:.9rem}
 .go small{flex:0 0 auto;font-weight:500;font-size:.72rem;color:#8a93a6}
+.next{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 2px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;text-decoration:none;font-weight:700;font-size:.98rem}.next i{font-style:normal;font-size:1.3rem}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 </style>
 </head>
@@ -219,6 +220,7 @@ function calc(){
  h+='<div class="grp">Also worth having</div>'+go('esim')+go('transfer')+go('insurance');
  var top='<h2>Your estimate</h2><div class="tot"><b>'+y(sum+lo)+(hi>lo?'–'+y(sum+hi).replace('¥',''):'')+'</b><span>'+ppl+' people · '+nights+' nights</span></div>'+
   '<p class="pp">For the costs listed below only. About '+y((sum+lo)/Math.max(1,ppl))+' per person.</p>';
+ h+='<a class="next" href="/?dest=Japan&adults='+ad+'&kids='+(ch+inf)+'&src=budget_plan#plan" data-go="plan"><span>Next: turn this into a day-by-day plan</span><i aria-hidden="true">→</i></a>';
  document.getElementById('res').innerHTML=top+h;
 }
 document.getElementById('res').addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(a)track('link',a.getAttribute('data-go'));});
