@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-w85: a "Share this" row on the Japan hub, Travel Essentials and Fuku's Phrasebook (27 Nov 2026, a tester: no social
+w85: a "Share this" row on the Japan hub and Travel Essentials (the Phrasebook has its own ❤️ button since 27 Nov) (27 Nov 2026, a tester: no social
 sharing links on these pages; articles already have one).
 
 Same buttons as the articles' share row (WhatsApp, X, Facebook, LinkedIn, Pinterest, copy link; the icons are taken
@@ -22,8 +22,6 @@ PAGES = [  # file, page path, label, share text, anchor, insert before (True) or
      '<footer class="footer">', True),
     ("travel-essentials.html", "/travel-essentials", "Made with ❤️. Travelling with someone? Send them this so you're both\u00a0ready.", "Travel Essentials: Pocket Guides, visas, eSIMs and packing lists",
      '<section class="pocket-hub"', True),
-    ("japan-phrasebook.html", "/japan-phrasebook", "Made with ❤️ by Fuku. Learning together is easier. Send this to your travel\u00a0buddy.", "Fuku's Japanese Phrasebook: tap to hear every phrase, works offline",
-     '<p class="note">', True),
 ]
 
 guide = open(os.path.join(PUB, "blog", "japan-travel-packing-guide.html"), encoding="utf-8").read()

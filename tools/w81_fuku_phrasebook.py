@@ -4,8 +4,10 @@ w81: Fuku's Phrasebook (27 Nov 2026), the one interactive home for Fuku's Japane
 
 One self-contained page like a Pocket Guide: the 8 starter words (api/_japan_words.js) and every emailed lesson
 (api/_japan_lessons.js), each phrase with its Japanese and a 🔊 button that plays it with the device's own Japanese
-voice; per lesson "Send to my WhatsApp" (the reader sends it to themselves or their trip group; we collect no numbers)
-and one partner offer that fits the lesson; Packy (added by w75) for any Japan question. Works offline once opened
+voice, and one partner offer that fits the lesson. Laid out like an app (27 Nov): a slim header, one lesson at a time
+(swipe), and a bottom bar with the heart (send this lesson to a travel buddy: share sheet, WhatsApp, copy link; we
+collect no numbers), back, the lesson (tap for the list), next, and Packy (added by w75; its own floating button is
+hidden here). Works offline once opened
 (service worker japan-phrasebook-sw.js, network first), and can be added to the Home Screen.
 
 Links into it: ?l=<lesson>&p=<phrase> (or ?say=<lesson>-<phrase>) opens that lesson on that phrase; l=0 is the starter
@@ -66,6 +68,7 @@ for k, o in OFFERS.items():
 DJSON = json.dumps(DATA, ensure_ascii=False).replace("</", "<\\/")
 e = html.escape
 
+FACE = '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14 9c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke="#0f0f23" stroke-width="2.6" stroke-linecap="round"/><rect x="7" y="8" width="26" height="28" rx="9" fill="#00C9A7"/><rect x="11" y="24" width="18" height="9" rx="4" fill="#00A88C"/><circle cx="15.5" cy="17" r="3.2" fill="#fff"/><circle cx="24.5" cy="17" r="3.2" fill="#fff"/><circle cx="16.2" cy="17.6" r="1.6" fill="#0f0f23"/><circle cx="25.2" cy="17.6" r="1.6" fill="#0f0f23"/><path d="M17 21.4c1.7 1.5 4.3 1.5 6 0" fill="none" stroke="#0f0f23" stroke-width="1.6" stroke-linecap="round"/></svg>'  # Packy's face, as in public/packy.js
 
 PAGE_HTML = """<!DOCTYPE html>
 <html lang="en">
@@ -92,18 +95,6 @@ PAGE_HTML = """<!DOCTYPE html>
 *{box-sizing:border-box}
 body{margin:0;font-family:'DM Sans',sans-serif;background:#f4faf8;color:var(--ink);-webkit-text-size-adjust:100%}
 a{color:#0a8f78}
-.top{background:linear-gradient(135deg,#0f0f23,#1a1a3e);color:#fff;padding:14px 16px 16px;padding-top:calc(14px + env(safe-area-inset-top))}
-.top .bk{color:#bfeee4;text-decoration:none;font-size:.85rem;font-weight:700}
-.top h1{margin:10px 0 2px;font-size:1.45rem;line-height:1.2}
-.top h1 span{color:var(--primary)}
-.top h1 .fk{display:inline-block;vertical-align:-6px;margin-right:8px;border-radius:9px}
-.top p{margin:0;color:#cfd6e6;font-size:.9rem}
-.st{display:inline-block;margin-top:9px;font-size:.78rem;font-weight:700;background:rgba(255,255,255,.1);border-radius:999px;padding:4px 10px;color:#bfeee4}
-.chips{position:sticky;top:0;z-index:5;display:flex;gap:7px;overflow-x:auto;padding:10px 16px;background:#f4faf8;border-bottom:1px solid var(--line);scrollbar-width:none}
-.chips::-webkit-scrollbar{display:none}
-.ch{flex:0 0 auto;white-space:nowrap;text-decoration:none;font-size:.82rem;font-weight:700;color:var(--dark);background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:6px 12px}
-.ch.on{background:var(--dark);color:#fff;border-color:var(--dark)}
-main{max-width:640px;margin:0 auto;padding:6px 16px 120px}
 .inst{margin:14px 0 0;background:#fff;border:1.5px solid #bfe8dc;border-radius:16px;padding:13px 14px;font-size:.88rem;line-height:1.45;box-shadow:0 2px 10px rgba(15,15,35,.05)}
 .inst h2{margin:0 0 6px;font-size:1rem;color:var(--dark)}
 .inst .l1{margin:0 0 4px;color:#555}.inst ol{margin-top:6px!important}
@@ -112,8 +103,6 @@ main{max-width:640px;margin:0 auto;padding:6px 16px 120px}
 .inst .r{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
 .inst button{border:0;border-radius:999px;font:inherit;font-weight:700;font-size:.86rem;padding:8px 14px;cursor:pointer;background:var(--primary);color:#fff}
 .inst button.gh{background:#eef3f6;color:var(--dark)}
-.pg{display:inline-block;margin:9px 0 0 6px;font-size:.78rem;font-weight:700;background:rgba(233,69,96,.22);border-radius:999px;padding:4px 10px;color:#ffd6de}
-.ch.lk{color:#8a93a6;background:#f0f3f5}
 section.lock h2{color:#5a6378}
 .lkx{margin:8px 0 0;background:#fff;border:1.5px dashed #d6dde3;border-radius:14px;padding:12px 14px;font-size:.88rem;color:#5a6378}
 .nx{margin:22px 0 0;background:#FFF5F7;border:1px solid #F7D3DC;border-radius:16px;padding:14px;font-size:.9rem;line-height:1.5}
@@ -123,17 +112,6 @@ section{scroll-margin-top:62px;margin:22px 0 0}
 #lessons{display:flex;align-items:flex-start;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;margin:0 -16px;transition:height .25s ease}
 #lessons::-webkit-scrollbar{display:none}
 #lessons>section{flex:0 0 100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always;margin:0;padding:16px 16px 4px}
-.pager{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 0}
-.nxt{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;margin:14px 0 0;border:0;border-radius:14px;background:var(--dark);color:#fff;font:inherit;font-weight:700;font-size:.9rem;padding:13px 16px;text-align:left;cursor:pointer}
-.nxt span{font-size:1.4rem;line-height:1;color:var(--primary)}
-.pager>button{flex:0 0 42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:#fff;color:var(--dark);font:inherit;font-size:1.6rem;line-height:1;font-weight:500;cursor:pointer;box-shadow:0 2px 8px rgba(15,15,35,.06)}
-.pager>button:disabled{opacity:.3;cursor:default}
-.pager .mid{flex:1;text-align:center;min-width:0}
-#cnt{display:block;font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:6px}
-#dots{display:flex;justify-content:center;gap:4px;flex-wrap:wrap}
-#dots button{width:8px;height:8px;padding:0;border:0;border-radius:4px;background:#bfe3d9;cursor:pointer;transition:width .2s}
-#dots button.lk{background:#e2e7eb}
-#dots button.on{width:22px;background:var(--accent)}
 @media (prefers-reduced-motion:reduce){#lessons{scroll-behavior:auto;transition:none}}
 section h2{margin:0 0 3px;font-size:1.12rem;color:var(--dark)}
 section h2 small{display:block;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:2px}
@@ -147,40 +125,75 @@ section h2 small{display:block;font-size:.72rem;letter-spacing:1px;text-transfor
 #lessons li.hot{background:#FFF1F4;border-color:#F7B9C6;box-shadow:0 0 0 2px var(--accent) inset}
 #lessons li.hot button{background:var(--accent);animation:ping 1.6s ease-in-out 3}
 @keyframes ping{50%{box-shadow:0 0 0 8px rgba(233,69,96,.18)}}
-.act{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
-.wa{display:inline-flex;align-items:center;gap:6px;border:0;border-radius:999px;background:#25D366;color:#fff;font:inherit;font-weight:700;font-size:.86rem;padding:8px 14px;cursor:pointer;text-decoration:none}
 .off{display:flex;align-items:center;gap:8px;margin:10px 0 0;padding:9px 12px;border-radius:12px;background:#fff;border:1px solid #e3e8ec;text-decoration:none;color:var(--dark);font-size:.86rem;font-weight:700;line-height:1.35}
 .off i{font-style:normal}
 .off small{margin-left:auto;flex:0 0 auto;font-size:.7rem;font-weight:500;color:#8a93a6}
-.end{margin:30px 0 0;background:linear-gradient(135deg,#e6faf5,#e8f4fc);border:1.5px solid #bfede3;border-radius:16px;padding:16px}
-.end h2{margin:0 0 6px;font-size:1.05rem;color:var(--dark)}
-.end p{margin:0 0 10px;font-size:.9rem;line-height:1.5}
-.btn{display:inline-block;border:0;border-radius:999px;background:var(--accent);color:#fff;font:inherit;font-weight:700;font-size:.92rem;padding:10px 16px;cursor:pointer;text-decoration:none;margin:0 6px 8px 0}
-.btn.alt{background:var(--dark)}
-.note{font-size:.76rem;color:#8a93a6;margin:16px 0 0;line-height:1.5}
-@media (prefers-reduced-motion:reduce){#lessons li.hot button{animation:none}}
+.top{display:flex;align-items:center;gap:10px;background:linear-gradient(135deg,#0f0f23,#1a1a3e);color:#fff;padding:10px 12px 10px 8px;padding-top:calc(10px + env(safe-area-inset-top))}
+.top .bk{flex:0 0 36px;height:36px;display:flex;align-items:center;justify-content:center;color:#bfeee4;text-decoration:none;font-size:1.7rem;line-height:1;border-radius:10px}
+.top .fk{flex:0 0 auto;border-radius:9px}
+.top .tt{flex:1;min-width:0}
+.top h1{margin:0;font-size:1.06rem;line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top h1 span{color:var(--primary)}
+.top .sub{display:block;font-size:.74rem;font-weight:700;color:#bfeee4;margin-top:2px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top .info{flex:0 0 34px;height:34px;border:0;border-radius:50%;background:rgba(255,255,255,.1);color:#fff;font:inherit;font-size:1rem;cursor:pointer}
+main{max-width:640px;margin:0 auto;padding:4px 16px calc(96px + env(safe-area-inset-bottom))}
+.pk-fab,.pk-tip{display:none!important}
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#fff;border-top:1px solid #e3ece9;box-shadow:0 -4px 18px rgba(15,15,35,.07);padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
+.bar .in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:6px}
+.bar button{flex:0 0 46px;height:46px;border:0;border-radius:14px;background:#f1f6f4;color:var(--dark);font:inherit;font-size:1.6rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
+.bar button:disabled{opacity:.3;cursor:default}
+.bar #love{background:#FFF1F4;font-size:1.3rem}
+.bar #askPacky{background:#e6faf5}
+.bar #askPacky svg{width:32px;height:32px}
+.bar .mid{flex:1;min-width:0;flex-direction:column;gap:5px;background:none;font-size:.8rem;font-weight:700;color:var(--muted)}
+#cnt{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%}
+#dots{display:flex;justify-content:center;gap:3px}
+#dots i{width:6px;height:6px;border-radius:3px;background:#bfe3d9;transition:width .2s}
+#dots i.lk{background:#e2e7eb}
+#dots i.on{width:16px;background:var(--accent)}
+.sheet{position:fixed;inset:0;z-index:120;background:rgba(15,15,35,.45);display:flex;align-items:flex-end;justify-content:center}
+.sheet[hidden]{display:none}
+.sh-in{width:100%;max-width:640px;max-height:80vh;overflow-y:auto;background:#fff;border-radius:20px 20px 0 0;padding:10px 18px calc(18px + env(safe-area-inset-bottom));animation:shUp .22s ease-out}
+.sh-in:before{content:"";display:block;width:40px;height:4px;border-radius:2px;background:#dde3e8;margin:0 auto 12px}
+@keyframes shUp{from{transform:translateY(40px);opacity:.4}}
+.sh-in h2{margin:0 0 6px;font-size:1.08rem;color:var(--dark)}
+.sh-in p{margin:0 0 12px;font-size:.92rem;line-height:1.5;color:var(--ink)}
+.sh-k{display:block;font-size:.8rem;font-weight:700;color:#0a8f78;margin-bottom:2px}
+.sh-b{display:flex;flex-wrap:wrap;gap:8px}
+.sh-b a,.sh-b button{flex:1 1 30%;min-width:96px;display:flex;align-items:center;justify-content:center;gap:6px;height:46px;border-radius:14px;border:1.5px solid #e3e8ec;background:#fff;color:var(--dark);font:inherit;font-weight:700;font-size:.88rem;text-decoration:none;cursor:pointer}
+.sh-b .pri{background:var(--primary);border-color:var(--primary);color:#fff}
+.sh-b .wa2{background:#25D366;border-color:#25D366;color:#fff}
+.sh-l{list-style:none;margin:0;padding:0}
+.sh-l li{margin:0}
+.sh-l button{width:100%;display:flex;align-items:center;gap:10px;border:0;border-bottom:1px solid #eef2f4;background:none;font:inherit;font-size:.95rem;color:var(--dark);padding:12px 4px;text-align:left;cursor:pointer}
+.sh-l button b{flex:0 0 64px;font-size:.74rem;letter-spacing:.5px;text-transform:uppercase;color:var(--accent)}
+.sh-l button.on{background:#f1faf7;border-radius:10px}
+.sh-l button.lk{color:#8a93a6}
+.sh-l button.lk b{color:#8a93a6}
+.sh-x{margin-top:12px;width:100%;height:44px;border:0;border-radius:14px;background:#eef3f6;color:var(--dark);font:inherit;font-weight:700;cursor:pointer}
+.mail{display:inline-block;margin-top:10px;font-weight:700;font-size:.88rem;color:#0a8f78}
+@media (prefers-reduced-motion:reduce){#lessons li.hot button{animation:none}.sh-in{animation:none}}
 </style>
 </head>
 <body>
 <header class="top">
-  <a class="bk" href="/japan?src=phrasebook">← Japan hub</a>
-  <h1><img src="/images/phrasebook-fuku-icon-192.png" width="34" height="34" alt="" class="fk">Fuku’s <span>Japanese</span> Phrasebook</h1>
-  <p>Tap 🔊 to hear each phrase, then say it back. Slowly is fine!</p>
-  <span class="st" id="st">No app · works offline once saved</span><span class="pg" id="pg" hidden></span>
+  <a class="bk" href="/japan?src=phrasebook" aria-label="Back to Japan">‹</a>
+  <img src="/images/phrasebook-fuku-icon-192.png" width="34" height="34" alt="" class="fk">
+  <div class="tt"><h1>Fuku’s <span>Phrasebook</span></h1><span class="sub"><span id="pg"></span> · <span id="st">works offline</span></span></div>
+  <button type="button" class="info" id="info" aria-label="About the voice and offline use">ⓘ</button>
 </header>
-<nav class="chips" id="chips" aria-label="Lessons"></nav>
 <main>
   <div class="inst" id="inst" hidden></div>
-  <div class="pager"><button type="button" id="prev" aria-label="Previous lesson">‹</button><div class="mid"><span id="cnt"></span><div id="dots"></div></div><button type="button" id="next" aria-label="Next lesson">›</button></div>
   <div id="lessons" aria-roledescription="carousel" aria-label="Fuku’s lessons"></div>
-  <div class="end">
-    <h2>💬 Any other Japan question?</h2>
-    <p>Ask Packy, PackSmart’s Japan travel buddy: trains, airports, money, luggage and more, from official sources.</p>
-    <button type="button" class="btn" id="askPacky">Ask Packy</button>
-    <a class="btn alt" href="/japan?src=phrasebook#words">📩 Get Fuku’s lessons by email</a>
-    <p class="note">The voice is your phone’s or computer’s own, so it can sound a little robotic. Phrases are in polite, everyday Japanese.</p>
-  </div>
 </main>
+<nav class="bar" aria-label="Lessons"><div class="in">
+  <button type="button" id="love" aria-label="Send to your travel buddy">❤️</button>
+  <button type="button" id="prev" aria-label="Previous lesson">‹</button>
+  <button type="button" class="mid" id="list" aria-label="All lessons" aria-haspopup="dialog"><span id="cnt"></span><span id="dots" aria-hidden="true"></span></button>
+  <button type="button" id="next" aria-label="Next lesson">›</button>
+  <button type="button" id="askPacky" aria-label="Ask Packy">%%FACE%%</button>
+</div></nav>
+<div class="sheet" id="sheet" hidden><div class="sh-in" role="dialog" aria-modal="true" id="shIn"></div></div>
 <script>
 (function(){
 var D=%%DATA%%,SITE='https://www.packsmartapp.com';
@@ -194,8 +207,8 @@ if('speechSynthesis' in window){pickVoice();try{speechSynthesis.addEventListener
 function say(ja,ro){try{if(!('speechSynthesis' in window))return;if(speechSynthesis.speaking||speechSynthesis.pending)speechSynthesis.cancel();
  try{speechSynthesis.resume();}catch(e){}if(!jaVoice&&!enVoice)pickVoice();var vo=jaVoice||enVoice,u=new SpeechSynthesisUtterance(jaVoice||!vo?ja:ro);
  if(vo){u.voice=vo;u.lang=vo.lang;}else u.lang='ja-JP';u.rate=.9;speechSynthesis.speak(u);}catch(e){}}
-function waText(k){var L=D[k],a=L.phrases.slice(0,3).map(function(p){return '*'+p[0].replace(/[.。]$/,'')+'* · '+p[2];}).join('\\n');
- return '🇯🇵 *Fuku’s Japanese, '+(k==='0'?'first words':'lesson '+k+': '+L.title)+'*\\n\\n'+a+'\\n\\n🔊 Hear them all, works offline:\\n'+SITE+'/japan-phrasebook?l='+k+'&src=wa_self';}
+function shareUrl(k){return SITE+'/japan-phrasebook?l='+k+'&src=share_phrasebook';}
+function shareText(k){return 'Fuku’s Japanese, '+(k==='0'?'first words':'lesson '+k+': '+D[k].title)+'. Tap to hear every phrase, works offline:';}
 // The course (owner, 27 Nov): one new lesson a day on this phone, separate from the emails. Day 1 is the first time
 // this phone opens the Phrasebook (on iPhone the home-screen icon keeps its own memory, so its day 1 is the day it is
 // added). A lesson opened from a link (an email's Hear button, a friend's WhatsApp) is always open. "Unlock all" is
@@ -215,43 +228,40 @@ function when(k){var d=+k-DAY;return d<=1?'tomorrow':'in '+d+' days';}
 var IX=0,rail=null;
 function slideHTML(k,firstShut){var L=D[k],o=L.offer;
  if(!isOpen(k))return '<section id="l'+k+'" class="lock" aria-roledescription="slide"><h2><small>Lesson '+k+'</small>'+esc(L.title)+'</h2><div class="lkx">🔒 '+L.phrases.length+' phrases · opens '+when(k)+'</div>'+
-  '<div class="nx">'+(k===firstShut?'<b>🗓️ A new lesson every day.</b> Come back from Fuku’s icon on your Home Screen.<br>':'')+'<button type="button" class="unlockAll">Travelling now? Unlock all lessons</button></div></section>';
+  '<div class="nx">'+(k===firstShut?'<b>🗓️ A new lesson every day.</b> Come back from Fuku’s icon on your Home Screen.<br>':'')+'<button type="button" class="unlockAll">Travelling now? Unlock all lessons</button><br>'+
+  '<a class="mail" href="/japan?src=phrasebook_lock#words" data-mail="'+k+'">📩 Don’t want to wait? Get the lessons by email</a></div></section>';
  return '<section id="l'+k+'" aria-roledescription="slide"><h2><small>'+(k==='0'?'Start here':'Lesson '+k)+'</small>'+esc(L.title)+'</h2><ul>'+
   L.phrases.map(function(p,i){return '<li id="p'+k+'-'+(i+1)+'"><div><b>'+esc(p[0])+'</b><span class="ja" lang="ja">'+esc(p[1])+'</span><small>'+esc(p[2])+'</small></div><button type="button" data-k="'+k+'" data-i="'+i+'" aria-label="Play: '+esc(p[2])+'">🔊</button></li>';}).join('')+
-  '</ul><div class="act"><a class="wa" data-wa="'+k+'" href="https://wa.me/?text='+encodeURIComponent(waText(k))+'" target="_blank" rel="noopener">📲 Send to my WhatsApp</a></div>'+
+  '</ul>'+
   (o?'<a class="off" data-off="'+k+'" href="'+esc(o.u)+'"'+(o.p?' target="_blank" rel="nofollow noopener sponsored" data-ps-placement="phrasebook-l'+k+'"':'')+'><i aria-hidden="true">'+o.i+'</i><span>'+esc(o.t)+'</span>'+(o.p?'<small>partner link ↗</small>':'<small>→</small>')+'</a>':'')+
-  nextBtn(k)+'</section>';}
-function nextBtn(k){var i=KEYS.indexOf(k)+1;if(i>=KEYS.length)return '';var n=KEYS[i];
- return '<button type="button" class="nxt" data-go="'+i+'">Next: Lesson '+n+' · '+esc(D[n].title)+(isOpen(n)?'':' 🔒')+' <span aria-hidden="true">›</span></button>';}
-// The lessons are a slider (owner, 27 Nov: "feels like an app"): swipe, the tabs, the arrows or the dots move one
-// lesson at a time (CSS scroll snap, so the swipe is the phone's own). The slider takes the height of the lesson shown.
+  '</section>';}
+// The lessons are a slider (owner, 27 Nov: "feels like an app"): swipe, or the bottom bar's arrows, or its middle
+// (the list of all lessons), move one lesson at a time (CSS scroll snap, so the swipe is the phone's own). The bottom
+// bar sits where the thumb is: the heart (send to a travel buddy), back, the lesson, next, Packy. The slider takes the
+// height of the lesson shown.
 function render(){
  var shut=KEYS.filter(function(k){return !isOpen(k);});
  rail=document.getElementById('lessons');rail.innerHTML=KEYS.map(function(k){return slideHTML(k,shut[0]);}).join('');
- document.getElementById('chips').innerHTML=KEYS.map(function(k){var op=isOpen(k);return '<a class="ch'+(op?'':' lk')+'" href="#l'+k+'" data-l="'+k+'">'+(op?'':'🔒 ')+(k==='0'?'👋 Start':k+' · '+esc(D[k].title))+'</a>';}).join('');
- document.getElementById('dots').innerHTML=KEYS.map(function(k,i){return '<button type="button" data-go="'+i+'" class="'+(isOpen(k)?'':'lk')+'" aria-label="'+(k==='0'?'Start':'Lesson '+k)+'"></button>';}).join('');
- var n=KEYS.filter(isOpen).length,pg=document.getElementById('pg');pg.hidden=false;pg.textContent=n>=KEYS.length?'All '+KEYS.length+' lessons open':'Day '+DAY+' · '+n+' of '+KEYS.length+' lessons open';
+ document.getElementById('dots').innerHTML=KEYS.map(function(k){return '<i class="'+(isOpen(k)?'':'lk')+'"></i>';}).join('');
+ var n=KEYS.filter(isOpen).length;document.getElementById('pg').textContent=n>=KEYS.length?'All lessons open':n+' of '+KEYS.length+' lessons open';
  [].forEach.call(document.querySelectorAll('.unlockAll'),function(u){u.addEventListener('click',function(){ALL=true;ls('fukuAll','1');track('unlock_all','day '+DAY);render();go(IX,false);});});
 }
 function fit(){var s=rail.children[IX];if(s)rail.style.height=s.offsetHeight+'px';}
 function show(i){IX=i;var k=KEYS[i];
- [].forEach.call(document.querySelectorAll('.ch'),function(c){var on=c.getAttribute('data-l')===k;c.classList.toggle('on',on);c.setAttribute('aria-current',on?'true':'false');
-  if(on){var bar=c.parentNode;try{bar.scrollTo({left:c.offsetLeft-(bar.clientWidth-c.offsetWidth)/2,behavior:'smooth'});}catch(e){bar.scrollLeft=c.offsetLeft;}}});
- [].forEach.call(document.querySelectorAll('#dots button'),function(d,j){d.classList.toggle('on',j===i);});
+ [].forEach.call(document.querySelectorAll('#dots i'),function(d,j){d.classList.toggle('on',j===i);});
  document.getElementById('prev').disabled=i===0;document.getElementById('next').disabled=i===KEYS.length-1;
- document.getElementById('cnt').textContent=(k==='0'?'Start':'Lesson '+k)+' · '+(i+1)+' of '+KEYS.length;
+ document.getElementById('cnt').textContent=(k==='0'?'Start':'Lesson '+k)+(isOpen(k)?'':' 🔒')+' ▴';
  [].forEach.call(rail.children,function(s,j){s.setAttribute('aria-hidden',j===i?'false':'true');});
  fit();ls('fukuAt',k);}
 function go(i,smooth){i=Math.max(0,Math.min(KEYS.length-1,i));
- var top=document.querySelector('.pager').getBoundingClientRect().top;if(top<58)window.scrollBy({top:top-62,behavior:smooth?'smooth':'auto'});
+ var top=rail.getBoundingClientRect().top;if(top<0)window.scrollBy({top:top-8,behavior:smooth?'smooth':'auto'});
  try{rail.scrollTo({left:i*rail.clientWidth,behavior:smooth?'smooth':'auto'});}catch(e){rail.scrollLeft=i*rail.clientWidth;}
  if(!smooth)show(i);}
 document.addEventListener('click',function(ev){var t=ev.target;
  var b=t.closest&&t.closest('[data-i]');if(b){var k=b.getAttribute('data-k'),p=D[k].phrases[+b.getAttribute('data-i')];say(p[1],p[0]);track('play',k+':'+p[0]);return;}
- var w=t.closest&&t.closest('[data-wa]');if(w){track('wa_self',w.getAttribute('data-wa'));return;}
  var o=t.closest&&t.closest('[data-off]');if(o){track('offer',o.getAttribute('data-off'));return;}
- var c=t.closest&&t.closest('.ch');if(c){ev.preventDefault();var i=KEYS.indexOf(c.getAttribute('data-l'));go(i,true);track('chip',c.getAttribute('data-l'));return;}
- var d=t.closest&&t.closest('[data-go]');if(d){go(+d.getAttribute('data-go'),true);track(d.classList.contains('nxt')?'next_btn':'dot',KEYS[+d.getAttribute('data-go')]);}});
+ var m=t.closest&&t.closest('[data-mail]');if(m){track('lock_email',m.getAttribute('data-mail'));return;}
+ var d=t.closest&&t.closest('[data-go]');if(d){closeSheet();go(+d.getAttribute('data-go'),true);track('list_pick',KEYS[+d.getAttribute('data-go')]);}});
 render();
 document.getElementById('prev').addEventListener('click',function(){go(IX-1,true);track('arrow','prev');});
 document.getElementById('next').addEventListener('click',function(){go(IX+1,true);track('arrow','next');});
@@ -259,6 +269,22 @@ var st=null;rail.addEventListener('scroll',function(){clearTimeout(st);st=setTim
 window.addEventListener('resize',function(){rail.scrollLeft=IX*rail.clientWidth;fit();});
 document.addEventListener('keydown',function(e){if(/INPUT|TEXTAREA/.test((e.target||{}).tagName||''))return;if(e.key==='ArrowRight')go(IX+1,true);else if(e.key==='ArrowLeft')go(IX-1,true);});
 document.getElementById('askPacky').addEventListener('click',function(){track('packy');if(window.Packy)window.Packy.open();else location.href='/japan?src=phrasebook#ask';});
+var sheet=document.getElementById('sheet'),shIn=document.getElementById('shIn'),shFrom=null;
+function closeSheet(){if(sheet.hidden)return;sheet.hidden=true;document.removeEventListener('keydown',shKey);if(shFrom)try{shFrom.focus();}catch(e){}}
+function shKey(e){if(e.key==='Escape')closeSheet();}
+function openSheet(label,h){shFrom=document.activeElement;shIn.setAttribute('aria-label',label);shIn.innerHTML=h+'<button type="button" class="sh-x">Close</button>';sheet.hidden=false;document.addEventListener('keydown',shKey);try{shIn.querySelector('button,a').focus();}catch(e){}}
+sheet.addEventListener('click',function(e){if(e.target===sheet||e.target.closest('.sh-x'))closeSheet();});
+document.getElementById('love').addEventListener('click',function(){var k=KEYS[IX],u=shareUrl(k),t=shareText(k);track('love',k);
+ openSheet('Send to your travel buddy','<span class="sh-k">Made with ❤️ by Fuku</span><h2>Learning together is easier.</h2><p>Send '+(k==='0'?'Fuku’s first words':'Lesson '+k+' · '+esc(D[k].title))+' to your travel buddy.</p><div class="sh-b">'+
+  (navigator.share?'<button type="button" class="pri" id="shN">📤 Share</button>':'')+
+  '<a class="wa2" href="https://wa.me/?text='+encodeURIComponent(t+' '+u)+'" target="_blank" rel="noopener" id="shW">WhatsApp</a><button type="button" id="shC">🔗 Copy link</button></div>');
+ var n=document.getElementById('shN');if(n)n.addEventListener('click',function(){navigator.share({title:'Fuku’s Japanese Phrasebook',text:t,url:u}).then(function(){track('share','native');closeSheet();}).catch(function(){});});
+ document.getElementById('shW').addEventListener('click',function(){track('share','whatsapp');});
+ var c=document.getElementById('shC');c.addEventListener('click',function(){var ok=function(){c.textContent='Copied ✓';track('share','copy');};try{navigator.clipboard.writeText(u).then(ok,function(){c.textContent=u;});}catch(e){c.textContent=u;}});});
+document.getElementById('list').addEventListener('click',function(){track('list');
+ openSheet('All lessons','<h2>All lessons</h2><ul class="sh-l">'+KEYS.map(function(k,i){var op=isOpen(k);return '<li><button type="button" data-go="'+i+'" class="'+(i===IX?'on':'')+(op?'':' lk')+'"><b>'+(k==='0'?'Start':'Lesson '+k)+'</b>'+esc(D[k].title)+(op?'':' 🔒')+'</button></li>';}).join('')+'</ul>');});
+document.getElementById('info').addEventListener('click',function(){track('info');
+ openSheet('About Fuku’s Phrasebook','<h2>About the voice</h2><p>The voice is your phone’s or computer’s own, so it can sound a little robotic. Phrases are in polite, everyday Japanese.</p><h2>Offline</h2><p>No app and no sign-up. Add Fuku to your Home Screen and open it once while online; then it works with no signal.</p><p><a class="mail" href="/japan?src=phrasebook_info#words">📩 Get Fuku’s lessons by email</a></p>');});
 track('open',(lk||'all')+(src?' '+src:'')+' day '+DAY);
 // start on: the lesson a link names; else a lesson that opened since the last visit; else where the reader left off
 var hk=(/^#l([0-9])$/.exec(location.hash)||[])[1],at=ls('fukuAt'),seen=+(ls('fukuSeen')||-1),newest=KEYS.filter(isOpen).pop();
@@ -277,7 +303,7 @@ function showInst(){
  if(standalone||later()||!(isIOS||isAnd)){inst.hidden=true;return;}
  var steps=isIOS?'<li>In WhatsApp? Tap <b>Open in Safari</b> first.</li><li>Tap <b>Share</b> ⬆️, then <b>Add to Home Screen</b>.</li>'
                :'<li>In WhatsApp? Tap <b>⋮</b>, <b>Open in Chrome</b> first.</li><li>Tap <b>⋮</b>, then <b>Add to Home screen</b>.</li>';
- var h='<h2>📲 Keep Fuku on your phone</h2><p class="l1">Works with no signal. A new lesson every day.</p>'+
+ var h='<h2>📲 Keep Fuku on your phone</h2><p class="l1">No app. Works with no signal, and a new lesson opens every day.</p>'+
   '<ol id="instHow" hidden>'+steps+'<li>Open Fuku from the new icon once while online.</li></ol><div class="r">'+
   '<button type="button" id="instGo">'+(dp?'Add to Home Screen':'Show me how')+'</button><button type="button" class="gh" id="instLater">Later</button></div>';
  inst.innerHTML=h;inst.hidden=false;
@@ -297,7 +323,7 @@ if('serviceWorker' in navigator){navigator.serviceWorker.register('/japan-phrase
 </body>
 </html>
 """
-PAGE_HTML = (PAGE_HTML.replace("%%DATA%%", DJSON)
+PAGE_HTML = (PAGE_HTML.replace("%%DATA%%", DJSON).replace("%%FACE%%", FACE)
              .replace("%%PAGE%%", PAGE).replace("%%SWV%%", SWV))
 for tok in ("%%",):
     if tok in PAGE_HTML:
