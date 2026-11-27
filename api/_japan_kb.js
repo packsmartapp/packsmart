@@ -1132,17 +1132,30 @@ export default [
 },
 {
 "t": "japan prices > Japan prices: official sources (for Packy) > City transport",
-"x": "- Kyoto bus and subway day pass, the \"Subway & Bus One-Day Pass\" (Kyoto City Transportation Bureau): adult 1,100 yen, child 550 yen for one day of unlimited rides on Kyoto buses and the subway. Covers the Kyoto City Subway (all lines) and Kyoto City Bus (all routes), plus Kyoto Bus, Keihan Bus and West JR Bus (some routes excluded on each). Source: Kyoto City Transportation Bureau, \"Subway, Bus One-Day Pass\" page, https://www.city.kyoto.lg.jp/kotsu/ (read from a screenshot of the official page), checked 27 Nov 2026.\n- Gap: Osaka Metro 1-day pass price (not checked yet).\n- Gap: single-ride base fares for Tokyo Metro and Toei. www.tokyometro.jp returns 403; Toei's fare page did not load.",
+"x": "- Kyoto bus and subway day pass, the \"Subway & Bus One-Day Pass\" (Kyoto City Transportation Bureau): adult 1,100 yen, child 550 yen for one day of unlimited rides on Kyoto buses and the subway. Covers the Kyoto City Subway (all lines) and Kyoto City Bus (all routes), plus Kyoto Bus, Keihan Bus and West JR Bus (some routes excluded on each). Source: Kyoto City Transportation Bureau, \"Subway, Bus One-Day Pass\" page, https://www.city.kyoto.lg.jp/kotsu/ (read from a screenshot of the official page), checked 27 Nov 2026.",
 "u": [
 "https://www.city.kyoto.lg.jp/kotsu/"
 ]
 },
 {
 "t": "japan prices > Japan prices: official sources (for Packy) > City transport",
-"x": "- Sapporo subway single fares (普通運賃): adult 210円, 250円, 290円, 330円, 360円, 380円 by zone (1–6 区); child 110–190円. Tram (市電) single ride adult 230円, child 120円. Source: https://www.city.sapporo.jp/st/s109/23572.html (updated 1 Apr 2026), checked 24 Nov 2026.\n- Sapporo subway one-day tickets (cash only): weekday 地下鉄専用1日乗車券 adult 830円, child 420円; weekends and holidays ドニチカキップ adult 520円, child 260円. Source: https://www.city.sapporo.jp/st/s109/23564.html, checked 24 Nov 2026.\n- Taxi in Tokyo (JNTO): \"a seven-kilometer Tokyo ride taking about 25 minutes should cost between 2,500 and 3,000 yen during the daytime\"; late-night surcharge 10 p.m. to 5 a.m.; highway tolls are paid by the rider. Source: https://www.japan.travel/en/plan/getting-around/taxis/, checked 24 Nov 2026.\n- Gap: Tokyo taxi flag-fall figure. www.taxi-tokyo.or.jp is blocked.",
+"x": "- Osaka subway and bus day pass, the \"Osaka Metro / Osaka City Bus 1-day pass\" (Osaka Metro): weekdays adult 820 yen, child 310 yen; weekends and holidays adult 620 yen, child 310 yen. One day of unlimited rides on all Osaka Metro lines (except Yumeshima Station) and Osaka City Bus routes (except some routes and on-demand buses), plus discounts at over 20 sights in Osaka when you show the ticket. Valid on the day of use; start using it within 30 days of buying; sold from 1 April 2026 to 31 March 2027; bought on the SURUTTO QRtto website (membership registration needed). Not valid on Hankyu, Kita-Osaka Kyuko, Kintetsu or other non-Osaka Metro lines. Source: Osaka Metro official site, https://subway.osakametro.co.jp/en/ (Special discount tickets, read from a screenshot of the official page), checked 27 Nov 2026.",
+"u": [
+"https://subway.osakametro.co.jp/en/"
+]
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > City transport",
+"x": "- Osaka Metro & Kita-Osaka Kyuko 1-day pass (Osaka Metro): adult 1,500 yen, no child ticket; all Osaka Metro lines (including Yumeshima Station) and all Kita-Osaka Kyuko lines, not Osaka City Bus; valid any one day from 1 April 2026 to 29 April 2027, within 30 days of buying. Same source.\n- Gap: single-ride base fares for Tokyo Metro and Toei. www.tokyometro.jp returns 403; Toei's fare page did not load.\n- Sapporo subway single fares (普通運賃): adult 210円, 250円, 290円, 330円, 360円, 380円 by zone (1–6 区); child 110–190円. Tram (市電) single ride adult 230円, child 120円. Source: https://www.city.sapporo.jp/st/s109/23572.html (updated 1 Apr 2026), checked 24 Nov 2026.\n- Sapporo subway one-day tickets (cash only): weekday 地下鉄専用1日乗車券 adult 830円, child 420円; weekends and holidays ドニチカキップ adult 520円, child 260円. Source: https://www.city.sapporo.jp/st/s109/23564.html, checked 24 Nov 2026.",
 "u": [
 "https://www.city.sapporo.jp/st/s109/23572.html",
-"https://www.city.sapporo.jp/st/s109/23564.html",
+"https://www.city.sapporo.jp/st/s109/23564.html"
+]
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > City transport",
+"x": "- Taxi in Tokyo (JNTO): \"a seven-kilometer Tokyo ride taking about 25 minutes should cost between 2,500 and 3,000 yen during the daytime\"; late-night surcharge 10 p.m. to 5 a.m.; highway tolls are paid by the rider. Source: https://www.japan.travel/en/plan/getting-around/taxis/, checked 24 Nov 2026.\n- Gap: Tokyo taxi flag-fall figure. www.taxi-tokyo.or.jp is blocked.",
+"u": [
 "https://www.japan.travel/en/plan/getting-around/taxis/"
 ]
 },
