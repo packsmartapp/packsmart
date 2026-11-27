@@ -19,7 +19,7 @@ import html, json, os, re, sys
 
 ROOT = os.getcwd()
 PUB = os.path.join(ROOT, "public")
-SWV = "japan-phrasebook-v1"
+SWV = "japan-phrasebook-v2"
 PAGE = "/japan-phrasebook"
 
 def die(m):
@@ -67,7 +67,6 @@ for k, o in OFFERS.items():
 DJSON = json.dumps(DATA, ensure_ascii=False).replace("</", "<\\/")
 e = html.escape
 
-chips = "".join('<a class="ch" href="#l%s" data-l="%s">%s</a>' % (k, k, ("👋 Start" if k == "0" else k + " · " + e(v["title"]))) for k, v in DATA.items())
 
 PAGE_HTML = """<!DOCTYPE html>
 <html lang="en">
@@ -105,8 +104,20 @@ a{color:#0a8f78}
 .ch{flex:0 0 auto;white-space:nowrap;text-decoration:none;font-size:.82rem;font-weight:700;color:var(--dark);background:#fff;border:1.5px solid var(--line);border-radius:999px;padding:6px 12px}
 .ch.on{background:var(--dark);color:#fff;border-color:var(--dark)}
 main{max-width:640px;margin:0 auto;padding:6px 16px 120px}
-.inst{margin:14px 0 0;background:#fff;border:1.5px dashed #bfe8dc;border-radius:14px;padding:11px 13px;font-size:.86rem;line-height:1.45}
-.inst b{color:var(--dark)}
+.inst{margin:14px 0 0;background:#fff;border:1.5px solid #bfe8dc;border-radius:16px;padding:13px 14px;font-size:.88rem;line-height:1.45;box-shadow:0 2px 10px rgba(15,15,35,.05)}
+.inst h2{margin:0 0 6px;font-size:1rem;color:var(--dark)}
+.inst ol{margin:0;padding:0 0 0 20px}.inst li{display:list-item;background:none;border:0;padding:0;margin:0 0 5px;border-radius:0}
+.inst li b{display:inline;font-size:inherit}
+.inst .r{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
+.inst button{border:0;border-radius:999px;font:inherit;font-weight:700;font-size:.86rem;padding:8px 14px;cursor:pointer;background:var(--primary);color:#fff}
+.inst button.gh{background:#eef3f6;color:var(--dark)}
+.pg{display:inline-block;margin:9px 0 0 6px;font-size:.78rem;font-weight:700;background:rgba(233,69,96,.22);border-radius:999px;padding:4px 10px;color:#ffd6de}
+.ch.lk{color:#8a93a6;background:#f0f3f5}
+section.lock h2{color:#5a6378}
+.lkx{margin:8px 0 0;background:#fff;border:1.5px dashed #d6dde3;border-radius:14px;padding:12px 14px;font-size:.88rem;color:#5a6378}
+.nx{margin:22px 0 0;background:#FFF5F7;border:1px solid #F7D3DC;border-radius:16px;padding:14px;font-size:.9rem;line-height:1.5}
+.nx b{color:var(--dark)}
+.nx button{margin-top:8px;border:0;background:none;padding:0;font:inherit;font-weight:700;font-size:.86rem;color:#0a8f78;text-decoration:underline;cursor:pointer}
 section{scroll-margin-top:62px;margin:22px 0 0}
 section h2{margin:0 0 3px;font-size:1.12rem;color:var(--dark)}
 section h2 small{display:block;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:2px}
@@ -139,11 +150,11 @@ li.hot button{background:var(--accent);animation:ping 1.6s ease-in-out 3}
   <a class="bk" href="/japan?src=phrasebook">← Japan hub</a>
   <h1>🐱 Fuku’s <span>Japanese</span> Phrasebook</h1>
   <p>Tap 🔊 to hear each phrase, then say it back. Slowly is fine!</p>
-  <span class="st" id="st">No app · works offline once opened</span>
+  <span class="st" id="st">No app · works offline once saved</span><span class="pg" id="pg" hidden></span>
 </header>
-<nav class="chips" id="chips" aria-label="Lessons">%%CHIPS%%</nav>
+<nav class="chips" id="chips" aria-label="Lessons"></nav>
 <main>
-  <div class="inst" id="inst"><b>📲 Keep it on your phone:</b> <span id="instHow">open the browser’s Share or ⋮ menu and choose “Add to Home Screen”. Open it once from the icon while online, and it works with no signal.</span></div>
+  <div class="inst" id="inst" hidden></div>
   <div id="lessons"></div>
   <div class="end">
     <h2>💬 Any other Japan question?</h2>
@@ -168,33 +179,71 @@ function say(ja,ro){try{if(!('speechSynthesis' in window))return;if(speechSynthe
  if(vo){u.voice=vo;u.lang=vo.lang;}else u.lang='ja-JP';u.rate=.9;speechSynthesis.speak(u);}catch(e){}}
 function waText(k){var L=D[k],a=L.phrases.slice(0,3).map(function(p){return p[0]+' = '+p[2];}).join('\\n');
  return '🐱 Fuku’s Japanese, '+(k==='0'?'first words':'lesson '+k+': '+L.title)+'\\n'+a+'\\n🔊 Hear them all (works offline): '+SITE+'/japan-phrasebook?l='+k+'&src=wa_self';}
-var out=[];
-Object.keys(D).forEach(function(k){var L=D[k],o=L.offer;
- out.push('<section id="l'+k+'"><h2><small>'+(k==='0'?'Start here':'Lesson '+k)+'</small>'+esc(L.title)+'</h2><ul>'+
-  L.phrases.map(function(p,i){return '<li id="p'+k+'-'+(i+1)+'"><div><b>'+esc(p[0])+'</b><span class="ja" lang="ja">'+esc(p[1])+'</span><small>'+esc(p[2])+'</small></div><button type="button" data-k="'+k+'" data-i="'+i+'" aria-label="Play: '+esc(p[2])+'">🔊</button></li>';}).join('')+
-  '</ul><div class="act"><a class="wa" data-wa="'+k+'" href="https://wa.me/?text='+encodeURIComponent(waText(k))+'" target="_blank" rel="noopener">📲 Send to my WhatsApp</a></div>'+
-  (o?'<a class="off" data-off="'+k+'" href="'+esc(o.u)+'"'+(o.p?' target="_blank" rel="nofollow noopener sponsored" data-ps-placement="phrasebook-l'+k+'"':'')+'><i aria-hidden="true">'+o.i+'</i><span>'+esc(o.t)+'</span>'+(o.p?'<small>partner link ↗</small>':'<small>→</small>')+'</a>':'')+
-  '</section>');});
-document.getElementById('lessons').innerHTML=out.join('');
+// The course (owner, 27 Nov): one new lesson a day on this phone, separate from the emails. Day 1 is the first time
+// this phone opens the Phrasebook (on iPhone the home-screen icon keeps its own memory, so its day 1 is the day it is
+// added). A lesson opened from a link (an email's Hear button, a friend's WhatsApp) is always open. "Unlock all" is
+// for people already travelling.
+function ls(k,v){try{if(v===undefined)return localStorage.getItem(k);localStorage.setItem(k,v);}catch(e){}return null;}
+function ymd(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+var TODAY=ymd(new Date()),START=ls('fukuStart');if(!/^[0-9]{4}-[0-9]{2}-[0-9]{2}$/.test(START||'')){START=TODAY;ls('fukuStart',START);}
+var DAY=Math.max(1,Math.round((new Date(TODAY+'T00:00:00')-new Date(START+'T00:00:00'))/864e5)+1);
+var ALL=ls('fukuAll')==='1',OPEN={};try{OPEN=JSON.parse(ls('fukuOpen')||'{}')||{};}catch(e){OPEN={};}
+var KEYS=Object.keys(D);
+// deep links: ?l=1&p=3 or ?say=1-3 (the emails), #l3
+var q=new URLSearchParams(location.search),m=/^([0-9])-([1-9])$/.exec(q.get('say')||''),lk=m?m[1]:(q.get('l')||''),pk=m?m[2]:(q.get('p')||'');
+if(!D[lk])lk='';var src=(q.get('src')||'').toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,40);
+if(lk&&!OPEN[lk]){OPEN[lk]=1;ls('fukuOpen',JSON.stringify(OPEN));}
+function isOpen(k){return ALL||k==='0'||+k<=DAY||!!OPEN[k];}
+function when(k){var d=+k-DAY;return d<=1?'tomorrow':'in '+d+' days';}
+var io=null;
+function render(){
+ var out=[],shut=KEYS.filter(function(k){return !isOpen(k);}),firstShut=shut[0];
+ KEYS.forEach(function(k){var L=D[k],o=L.offer;
+  if(k===firstShut)out.push('<div class="nx"><b>🗓️ A new lesson every day.</b> Lesson '+k+' opens '+when(k)+'. Come back from Fuku’s icon on your Home Screen.<br><button type="button" id="unlockAll">Travelling now? Unlock all lessons</button></div>');
+  if(!isOpen(k)){out.push('<section id="l'+k+'" class="lock"><h2><small>Lesson '+k+'</small>'+esc(L.title)+'</h2><div class="lkx">🔒 '+L.phrases.length+' phrases · opens '+when(k)+'</div></section>');return;}
+  out.push('<section id="l'+k+'"><h2><small>'+(k==='0'?'Start here':'Lesson '+k)+'</small>'+esc(L.title)+'</h2><ul>'+
+   L.phrases.map(function(p,i){return '<li id="p'+k+'-'+(i+1)+'"><div><b>'+esc(p[0])+'</b><span class="ja" lang="ja">'+esc(p[1])+'</span><small>'+esc(p[2])+'</small></div><button type="button" data-k="'+k+'" data-i="'+i+'" aria-label="Play: '+esc(p[2])+'">🔊</button></li>';}).join('')+
+   '</ul><div class="act"><a class="wa" data-wa="'+k+'" href="https://wa.me/?text='+encodeURIComponent(waText(k))+'" target="_blank" rel="noopener">📲 Send to my WhatsApp</a></div>'+
+   (o?'<a class="off" data-off="'+k+'" href="'+esc(o.u)+'"'+(o.p?' target="_blank" rel="nofollow noopener sponsored" data-ps-placement="phrasebook-l'+k+'"':'')+'><i aria-hidden="true">'+o.i+'</i><span>'+esc(o.t)+'</span>'+(o.p?'<small>partner link ↗</small>':'<small>→</small>')+'</a>':'')+
+   '</section>');});
+ document.getElementById('lessons').innerHTML=out.join('');
+ document.getElementById('chips').innerHTML=KEYS.map(function(k){var op=isOpen(k);return '<a class="ch'+(op?'':' lk')+'" href="#l'+k+'" data-l="'+k+'">'+(op?'':'🔒 ')+(k==='0'?'👋 Start':k+' · '+esc(D[k].title))+'</a>';}).join('');
+ var n=KEYS.filter(isOpen).length,pg=document.getElementById('pg');pg.hidden=false;pg.textContent=n>=KEYS.length?'All '+KEYS.length+' lessons open':'Day '+DAY+' · '+n+' of '+KEYS.length+' lessons open';
+ var u=document.getElementById('unlockAll');if(u)u.addEventListener('click',function(){ALL=true;ls('fukuAll','1');track('unlock_all','day '+DAY);render();});
+ if('IntersectionObserver' in window){if(io)io.disconnect();var chips=[].slice.call(document.querySelectorAll('.ch'));
+  io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){var k=x.target.id.slice(1);chips.forEach(function(c){var on=c.getAttribute('data-l')===k;c.classList.toggle('on',on);if(on)try{c.scrollIntoView({block:'nearest',inline:'center'});}catch(e){}});}});},{rootMargin:'-70px 0px -70% 0px'});
+  [].forEach.call(document.querySelectorAll('section'),function(s){io.observe(s);});}
+}
+render();
 document.addEventListener('click',function(ev){var t=ev.target;
  var b=t.closest&&t.closest('[data-i]');if(b){var k=b.getAttribute('data-k'),p=D[k].phrases[+b.getAttribute('data-i')];say(p[1],p[0]);track('play',k+':'+p[0]);return;}
  var w=t.closest&&t.closest('[data-wa]');if(w){track('wa_self',w.getAttribute('data-wa'));return;}
  var o=t.closest&&t.closest('[data-off]');if(o){track('offer',o.getAttribute('data-off'));return;}
  var c=t.closest&&t.closest('.ch');if(c){track('chip',c.getAttribute('data-l'));}});
 document.getElementById('askPacky').addEventListener('click',function(){track('packy');if(window.Packy)window.Packy.open();else location.href='/japan?src=phrasebook#ask';});
-// the chip of the lesson on screen
-var chips=[].slice.call(document.querySelectorAll('.ch'));
-if('IntersectionObserver' in window){var io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){var k=x.target.id.slice(1);chips.forEach(function(c){var on=c.getAttribute('data-l')===k;c.classList.toggle('on',on);if(on)try{c.scrollIntoView({block:'nearest',inline:'center'});}catch(e){}});}});},{rootMargin:'-70px 0px -70% 0px'});
- [].forEach.call(document.querySelectorAll('section'),function(s){io.observe(s);});}
-// deep links: ?l=1&p=3 or ?say=1-3 (the emails), #l3
-var q=new URLSearchParams(location.search),m=/^([0-9])-([1-9])$/.exec(q.get('say')||''),lk=m?m[1]:(q.get('l')||''),pk=m?m[2]:(q.get('p')||'');
-if(!D[lk])lk='';var src=(q.get('src')||'').toLowerCase().replace(/[^a-z0-9_-]/g,'').slice(0,40);
-track('open',(lk||'all')+(src?' '+src:''));
+track('open',(lk||'all')+(src?' '+src:'')+' day '+DAY);
 if(lk){var el=document.getElementById(pk?'p'+lk+'-'+pk:'l'+lk)||document.getElementById('l'+lk);if(el){if(pk&&el.tagName==='LI')el.classList.add('hot');setTimeout(function(){el.scrollIntoView({block:pk?'center':'start'});},60);}}
+// Keep Fuku on your phone: the Pocket Guides' way (Add to Home Screen, then open from the icon while online).
+// Links from WhatsApp often open inside WhatsApp's own browser, which cannot add to the Home Screen, so say how to
+// open the page in the phone's browser first. We cannot always tell we are inside WhatsApp, so the step is always shown.
+var UA=navigator.userAgent||'',isIOS=/iPad|iPhone|iPod/.test(UA)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1),isAnd=/Android/.test(UA);
+var standalone=!!(navigator.standalone||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches)),dp=null,inst=document.getElementById('inst');
+function later(){try{return sessionStorage.getItem('fukuLater')==='1';}catch(e){return false;}}
+function showInst(){
+ if(standalone||later()||!(isIOS||isAnd)){inst.hidden=true;return;}
+ var h='<h2>📲 Keep Fuku on your phone</h2><ol>'+
+  (isIOS?'<li>Opened from WhatsApp? Tap <b>Open in Safari</b> (the compass or <b>···</b> button) first.</li><li>Tap <b>Share</b> ⬆️, then <b>Add to Home Screen</b>.</li>'
+        :'<li>Opened from WhatsApp? Tap <b>⋮</b>, then <b>Open in Chrome</b> first.</li><li>'+(dp?'Tap the button below.':'Tap <b>⋮</b>, then <b>Add to Home screen</b>.')+'</li>')+
+  '<li>Open Fuku from the new icon while online. Then it works with no signal, and a new lesson opens every day.</li></ol><div class="r">'+
+  (dp?'<button type="button" id="instGo">Add to Home Screen</button>':'<button type="button" id="instCopy">Copy link</button>')+'<button type="button" class="gh" id="instLater">Later</button></div>';
+ inst.innerHTML=h;inst.hidden=false;
+ var go=document.getElementById('instGo');if(go)go.addEventListener('click',function(){var p=dp;dp=null;try{p.prompt();p.userChoice.then(function(r){track('save_prompt',r&&r.outcome);});}catch(e){}showInst();});
+ var cp=document.getElementById('instCopy');if(cp)cp.addEventListener('click',function(){var u=location.origin+location.pathname,ok=function(){cp.textContent='Link copied ✓';track('copy_link');};try{navigator.clipboard.writeText(u).then(ok,function(){cp.textContent=u;});}catch(e){cp.textContent=u;}});
+ document.getElementById('instLater').addEventListener('click',function(){try{sessionStorage.setItem('fukuLater','1');}catch(e){}inst.hidden=true;track('save_later');});
+}
+window.addEventListener('beforeinstallprompt',function(e){e.preventDefault();dp=e;showInst();});
+showInst();if(!inst.hidden)track('save_view',isIOS?'ios':'android');
 // offline: the service worker keeps a copy; say so once it is ready
-var standalone=!!(navigator.standalone||(window.matchMedia&&matchMedia('(display-mode: standalone)').matches));
-if(standalone)document.getElementById('inst').hidden=true;
-else if(/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1))document.getElementById('instHow').textContent='tap Share, then “Add to Home Screen”. Open it once from the icon while online, and it works with no signal.';
 if('serviceWorker' in navigator){navigator.serviceWorker.register('/japan-phrasebook-sw.js',{scope:'%%PAGE%%',updateViaCache:'none'})
  .then(function(){return navigator.serviceWorker.ready;}).then(function(){return caches.has('%%SWV%%');})
  .then(function(ok){if(ok)document.getElementById('st').textContent='Ready offline ✓';}).catch(function(){});}
@@ -203,7 +252,7 @@ if('serviceWorker' in navigator){navigator.serviceWorker.register('/japan-phrase
 </body>
 </html>
 """
-PAGE_HTML = (PAGE_HTML.replace("%%CHIPS%%", chips).replace("%%DATA%%", DJSON)
+PAGE_HTML = (PAGE_HTML.replace("%%DATA%%", DJSON)
              .replace("%%PAGE%%", PAGE).replace("%%SWV%%", SWV))
 for tok in ("%%",):
     if tok in PAGE_HTML:
