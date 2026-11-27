@@ -1146,6 +1146,13 @@ export default [
 },
 {
 "t": "japan prices > Japan prices: official sources (for Packy) > City transport",
+"x": "- Nara day trip pass, the \"Nara / Ikaruga 1day Ticket [Osaka Metro version]\" (Osaka Metro): adult 2,200 yen, no child ticket. One day of unlimited rides on all Osaka Metro lines (except Yumeshima Station), Osaka City Bus routes (except some), Kintetsu trains Osaka Namba to Kintetsu Nara, Kyoto to Tsutsui, Nagata to Ikoma and Torii-mae to Ikoma-sanjo, and Nara Kotsu buses in the Nara Park, Nishinokyo and Horyuji free sections; perks at temples and shrines when you show it. Valid any one day from 1 April 2026 to 30 April 2027, within 3 months of buying; bought on the SURUTTO QRtto website (membership registration needed). Source: Osaka Metro official site, https://subway.osakametro.co.jp/en/ (Special discount tickets, read from a screenshot of the official page), checked 27 Nov 2026.",
+"u": [
+"https://subway.osakametro.co.jp/en/"
+]
+},
+{
+"t": "japan prices > Japan prices: official sources (for Packy) > City transport",
 "x": "- Osaka Metro & Kita-Osaka Kyuko 1-day pass (Osaka Metro): adult 1,500 yen, no child ticket; all Osaka Metro lines (including Yumeshima Station) and all Kita-Osaka Kyuko lines, not Osaka City Bus; valid any one day from 1 April 2026 to 29 April 2027, within 30 days of buying. Same source.\n- Gap: single-ride base fares for Tokyo Metro and Toei. www.tokyometro.jp returns 403; Toei's fare page did not load.\n- Sapporo subway single fares (普通運賃): adult 210円, 250円, 290円, 330円, 360円, 380円 by zone (1–6 区); child 110–190円. Tram (市電) single ride adult 230円, child 120円. Source: https://www.city.sapporo.jp/st/s109/23572.html (updated 1 Apr 2026), checked 24 Nov 2026.\n- Sapporo subway one-day tickets (cash only): weekday 地下鉄専用1日乗車券 adult 830円, child 420円; weekends and holidays ドニチカキップ adult 520円, child 260円. Source: https://www.city.sapporo.jp/st/s109/23564.html, checked 24 Nov 2026.",
 "u": [
 "https://www.city.sapporo.jp/st/s109/23572.html",
