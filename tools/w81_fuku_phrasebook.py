@@ -68,6 +68,18 @@ for k, o in OFFERS.items():
 DJSON = json.dumps(DATA, ensure_ascii=False).replace("</", "<\\/")
 e = html.escape
 
+_guide = open(os.path.join(PUB, "blog", "japan-travel-packing-guide.html"), encoding="utf-8").read()
+ICONS = {}
+for net in ("whatsapp", "twitter", "facebook", "copy-link"):
+    m = re.search(r'class="share-btn ' + net + r'".*?(<svg.*?</svg>)', _guide, re.S)
+    if not m:
+        die("no %s icon in the Japan travel guide's share row" % net)
+    ICONS[net] = m.group(1)
+ICONS["instagram"] = ('<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">'
+                      '<rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>')
+ICONS["share"] = ('<svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">'
+                  '<path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>')
+IJSON = json.dumps(ICONS, ensure_ascii=False).replace("</", "<\\/")
 FACE = '<svg viewBox="0 0 40 40" aria-hidden="true"><path d="M14 9c0-3.3 2.7-6 6-6s6 2.7 6 6" fill="none" stroke="#0f0f23" stroke-width="2.6" stroke-linecap="round"/><rect x="7" y="8" width="26" height="28" rx="9" fill="#00C9A7"/><rect x="11" y="24" width="18" height="9" rx="4" fill="#00A88C"/><circle cx="15.5" cy="17" r="3.2" fill="#fff"/><circle cx="24.5" cy="17" r="3.2" fill="#fff"/><circle cx="16.2" cy="17.6" r="1.6" fill="#0f0f23"/><circle cx="25.2" cy="17.6" r="1.6" fill="#0f0f23"/><path d="M17 21.4c1.7 1.5 4.3 1.5 6 0" fill="none" stroke="#0f0f23" stroke-width="1.6" stroke-linecap="round"/></svg>'  # Packy's face, as in public/packy.js
 
 PAGE_HTML = """<!DOCTYPE html>
@@ -104,6 +116,7 @@ a{color:#0a8f78}
 .inst button{border:0;border-radius:999px;font:inherit;font-weight:700;font-size:.86rem;padding:8px 14px;cursor:pointer;background:var(--primary);color:#fff}
 .inst button.gh{background:#eef3f6;color:var(--dark)}
 section.lock h2{color:#5a6378}
+.lkx b{color:var(--dark)}
 .lkx{margin:8px 0 0;background:#fff;border:1.5px dashed #d6dde3;border-radius:14px;padding:12px 14px;font-size:.88rem;color:#5a6378}
 .nx{margin:22px 0 0;background:#FFF5F7;border:1px solid #F7D3DC;border-radius:16px;padding:14px;font-size:.9rem;line-height:1.5}
 .nx b{color:var(--dark)}
@@ -141,7 +154,9 @@ main{max-width:640px;margin:0 auto;padding:4px 16px calc(96px + env(safe-area-in
 .bar{position:fixed;left:0;right:0;bottom:0;z-index:50;background:#fff;border-top:1px solid #e3ece9;box-shadow:0 -4px 18px rgba(15,15,35,.07);padding:8px 10px calc(8px + env(safe-area-inset-bottom))}
 .bar .in{max-width:640px;margin:0 auto;display:flex;align-items:center;gap:6px}
 .bar button{flex:0 0 46px;height:46px;border:0;border-radius:14px;background:#f1f6f4;color:var(--dark);font:inherit;font-size:1.6rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;padding:0}
-.bar button:disabled{opacity:.3;cursor:default}
+.bar #prev,.bar #next{background:var(--dark);color:#fff}
+.bar #prev svg,.bar #next svg{width:22px;height:22px}
+.bar button:disabled{background:#eef2f4!important;color:#b8c0cc!important;cursor:default}
 .bar #love{background:#FFF1F4;font-size:1.3rem}
 .bar #askPacky{background:#e6faf5}
 .bar #askPacky svg{width:32px;height:32px}
@@ -159,10 +174,14 @@ main{max-width:640px;margin:0 auto;padding:4px 16px calc(96px + env(safe-area-in
 .sh-in h2{margin:0 0 6px;font-size:1.08rem;color:var(--dark)}
 .sh-in p{margin:0 0 12px;font-size:.92rem;line-height:1.5;color:var(--ink)}
 .sh-k{display:block;font-size:.8rem;font-weight:700;color:#0a8f78;margin-bottom:2px}
-.sh-b{display:flex;flex-wrap:wrap;gap:8px}
-.sh-b a,.sh-b button{flex:1 1 30%;min-width:96px;display:flex;align-items:center;justify-content:center;gap:6px;height:46px;border-radius:14px;border:1.5px solid #e3e8ec;background:#fff;color:var(--dark);font:inherit;font-weight:700;font-size:.88rem;text-decoration:none;cursor:pointer}
-.sh-b .pri{background:var(--primary);border-color:var(--primary);color:#fff}
-.sh-b .wa2{background:#25D366;border-color:#25D366;color:#fff}
+.sh-g{display:grid;grid-auto-flow:column;grid-auto-columns:minmax(0,1fr);gap:6px;margin:4px 0 2px}
+.sh-g a,.sh-g button{min-width:0;display:flex;flex-direction:column;align-items:center;gap:6px;border:0;background:none;padding:0;font:inherit;color:var(--muted);text-decoration:none;cursor:pointer}
+.sh-g .ic{width:100%;max-width:54px;aspect-ratio:1;height:auto;display:flex;align-items:center;justify-content:center;border-radius:16px;border:1.5px solid #e3e8ec;background:#fff;color:#555;box-shadow:0 2px 6px rgba(15,15,35,.05)}
+.sh-g .ic svg{width:22px;height:22px}
+.sh-g a:active .ic,.sh-g button:active .ic{transform:scale(.94)}
+.sh-g [data-net="native"] .ic{background:var(--primary);border-color:var(--primary);color:#fff}
+.sh-g .lb{font-size:.64rem;font-weight:700;white-space:nowrap;letter-spacing:-.1px}
+.sh-msg{margin:12px 0 0!important;text-align:center;font-size:.86rem!important;font-weight:700;color:#0a8f78!important;word-break:break-all}
 .sh-l{list-style:none;margin:0;padding:0}
 .sh-l li{margin:0}
 .sh-l button{width:100%;display:flex;align-items:center;gap:10px;border:0;border-bottom:1px solid #eef2f4;background:none;font:inherit;font-size:.95rem;color:var(--dark);padding:12px 4px;text-align:left;cursor:pointer}
@@ -170,6 +189,8 @@ main{max-width:640px;margin:0 auto;padding:4px 16px calc(96px + env(safe-area-in
 .sh-l button.on{background:#f1faf7;border-radius:10px}
 .sh-l button.lk{color:#8a93a6}
 .sh-l button.lk b{color:#8a93a6}
+.sh-l .tl{flex:1;min-width:0}
+.sh-l em{flex:0 0 auto;font-style:normal;font-size:.74rem;font-weight:700;color:#0a8f78;background:#e6faf5;border-radius:999px;padding:3px 9px}
 .sh-x{margin-top:12px;width:100%;height:44px;border:0;border-radius:14px;background:#eef3f6;color:var(--dark);font:inherit;font-weight:700;cursor:pointer}
 .mail{display:inline-block;margin-top:10px;font-weight:700;font-size:.88rem;color:#0a8f78}
 @media (prefers-reduced-motion:reduce){#lessons li.hot button{animation:none}.sh-in{animation:none}}
@@ -188,15 +209,15 @@ main{max-width:640px;margin:0 auto;padding:4px 16px calc(96px + env(safe-area-in
 </main>
 <nav class="bar" aria-label="Lessons"><div class="in">
   <button type="button" id="love" aria-label="Send to your travel buddy">❤️</button>
-  <button type="button" id="prev" aria-label="Previous lesson">‹</button>
+  <button type="button" id="prev" aria-label="Previous lesson"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg></button>
   <button type="button" class="mid" id="list" aria-label="All lessons" aria-haspopup="dialog"><span id="cnt"></span><span id="dots" aria-hidden="true"></span></button>
-  <button type="button" id="next" aria-label="Next lesson">›</button>
+  <button type="button" id="next" aria-label="Next lesson"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg></button>
   <button type="button" id="askPacky" aria-label="Ask Packy">%%FACE%%</button>
 </div></nav>
 <div class="sheet" id="sheet" hidden><div class="sh-in" role="dialog" aria-modal="true" id="shIn"></div></div>
 <script>
 (function(){
-var D=%%DATA%%,SITE='https://www.packsmartapp.com';
+var D=%%DATA%%,IC=%%ICONS%%,SITE='https://www.packsmartapp.com';
 function track(s,x){try{if(window.gtag)gtag('event','phrasebook',{event_category:'engagement',status:s,item:x||'',page_path:location.pathname});}catch(e){}}
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 // the device's own voice, Japanese when it has one (same as the hub's word card)
@@ -225,9 +246,10 @@ if(!D[lk])lk='';var src=(q.get('src')||'').toLowerCase().replace(/[^a-z0-9_-]/g,
 if(lk&&!OPEN[lk]){OPEN[lk]=1;ls('fukuOpen',JSON.stringify(OPEN));}
 function isOpen(k){return ALL||k==='0'||+k<=DAY||!!OPEN[k];}
 function when(k){var d=+k-DAY;return d<=1?'tomorrow':'in '+d+' days';}
+function onDay(k){var d=new Date(START+'T00:00:00');d.setDate(d.getDate()+(+k)-1);try{return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});}catch(e){return '';}}
 var IX=0,rail=null;
 function slideHTML(k,firstShut){var L=D[k],o=L.offer;
- if(!isOpen(k))return '<section id="l'+k+'" class="lock" aria-roledescription="slide"><h2><small>Lesson '+k+'</small>'+esc(L.title)+'</h2><div class="lkx">🔒 '+L.phrases.length+' phrases · opens '+when(k)+'</div>'+
+ if(!isOpen(k))return '<section id="l'+k+'" class="lock" aria-roledescription="slide"><h2><small>Lesson '+k+'</small>'+esc(L.title)+'</h2><div class="lkx"><b>Opens '+when(k)+'</b>'+(onDay(k)?' · '+onDay(k):'')+'<br>'+L.phrases.length+' new phrases, ready on this phone that day.</div>'+
   '<div class="nx">'+(k===firstShut?'<b>🗓️ A new lesson every day.</b> Come back from Fuku’s icon on your Home Screen.<br>':'')+'<button type="button" class="unlockAll">Travelling now? Unlock all lessons</button><br>'+
   '<a class="mail" href="/japan?src=phrasebook_lock#words" data-mail="'+k+'">📩 Don’t want to wait? Get the lessons by email</a></div></section>';
  return '<section id="l'+k+'" aria-roledescription="slide"><h2><small>'+(k==='0'?'Start here':'Lesson '+k)+'</small>'+esc(L.title)+'</h2><ul>'+
@@ -250,7 +272,7 @@ function fit(){var s=rail.children[IX];if(s)rail.style.height=s.offsetHeight+'px
 function show(i){IX=i;var k=KEYS[i];
  [].forEach.call(document.querySelectorAll('#dots i'),function(d,j){d.classList.toggle('on',j===i);});
  document.getElementById('prev').disabled=i===0;document.getElementById('next').disabled=i===KEYS.length-1;
- document.getElementById('cnt').textContent=(k==='0'?'Start':'Lesson '+k)+(isOpen(k)?'':' 🔒')+' ▴';
+ document.getElementById('cnt').textContent=(k==='0'?'Start':'Lesson '+k)+' ▴';
  [].forEach.call(rail.children,function(s,j){s.setAttribute('aria-hidden',j===i?'false':'true');});
  fit();ls('fukuAt',k);}
 function go(i,smooth){i=Math.max(0,Math.min(KEYS.length-1,i));
@@ -275,14 +297,23 @@ function shKey(e){if(e.key==='Escape')closeSheet();}
 function openSheet(label,h){shFrom=document.activeElement;shIn.setAttribute('aria-label',label);shIn.innerHTML=h+'<button type="button" class="sh-x">Close</button>';sheet.hidden=false;document.addEventListener('keydown',shKey);try{shIn.querySelector('button,a').focus();}catch(e){}}
 sheet.addEventListener('click',function(e){if(e.target===sheet||e.target.closest('.sh-x'))closeSheet();});
 document.getElementById('love').addEventListener('click',function(){var k=KEYS[IX],u=shareUrl(k),t=shareText(k);track('love',k);
- openSheet('Send to your travel buddy','<span class="sh-k">Made with ❤️ by Fuku</span><h2>Learning together is easier.</h2><p>Send '+(k==='0'?'Fuku’s first words':'Lesson '+k+' · '+esc(D[k].title))+' to your travel buddy.</p><div class="sh-b">'+
-  (navigator.share?'<button type="button" class="pri" id="shN">📤 Share</button>':'')+
-  '<a class="wa2" href="https://wa.me/?text='+encodeURIComponent(t+' '+u)+'" target="_blank" rel="noopener" id="shW">WhatsApp</a><button type="button" id="shC">🔗 Copy link</button></div>');
- var n=document.getElementById('shN');if(n)n.addEventListener('click',function(){navigator.share({title:'Fuku’s Japanese Phrasebook',text:t,url:u}).then(function(){track('share','native');closeSheet();}).catch(function(){});});
- document.getElementById('shW').addEventListener('click',function(){track('share','whatsapp');});
- var c=document.getElementById('shC');c.addEventListener('click',function(){var ok=function(){c.textContent='Copied ✓';track('share','copy');};try{navigator.clipboard.writeText(u).then(ok,function(){c.textContent=u;});}catch(e){c.textContent=u;}});});
+ var T=[];if(navigator.share)T.push(['native','share','Share','button']);
+ T.push(['whatsapp','whatsapp','WhatsApp','https://wa.me/?text='+encodeURIComponent(t+' '+u)],['instagram','instagram','Instagram','button'],
+  ['x','twitter','X','https://twitter.com/intent/tweet?text='+encodeURIComponent(t)+'&url='+encodeURIComponent(u)],
+  ['facebook','facebook','Facebook','https://www.facebook.com/sharer/sharer.php?u='+encodeURIComponent(u)],['copy','copy-link','Copy link','button']);
+ openSheet('Send to your travel buddy','<span class="sh-k">Made with ❤️ by Fuku</span><h2>Learning together is easier.</h2><p>Send '+(k==='0'?'Fuku’s first words':'Lesson '+k+' · '+esc(D[k].title))+' to your travel buddy.</p><div class="sh-g">'+
+  T.map(function(x){var inner='<span class="ic">'+IC[x[1]]+'</span><span class="lb">'+x[2]+'</span>';
+   return x[3]==='button'?'<button type="button" data-net="'+x[0]+'">'+inner+'</button>':'<a href="'+esc(x[3])+'" target="_blank" rel="noopener" data-net="'+x[0]+'">'+inner+'</a>';}).join('')+
+  '</div><p class="sh-msg" id="shMsg" hidden></p>');
+ var msg=document.getElementById('shMsg');
+ function copy(then){var ok=function(){then(true);};try{navigator.clipboard.writeText(u).then(ok,function(){then(false);});}catch(e){then(false);}}
+ shIn.querySelector('.sh-g').addEventListener('click',function(e){var a=e.target.closest('[data-net]');if(!a)return;var n=a.getAttribute('data-net');track('share',n);
+  if(n==='native'){navigator.share({title:'Fuku’s Japanese Phrasebook',text:t,url:u}).then(closeSheet).catch(function(){});}
+  else if(n==='copy'){copy(function(ok){msg.hidden=false;msg.textContent=ok?'Link copied ✓':u;});}
+  // Instagram has no share link for web pages: copy the link, then open Instagram to paste it in a story or message
+  else if(n==='instagram'){copy(function(ok){msg.hidden=false;msg.textContent=ok?'Link copied ✓ Paste it in your Instagram story or message.':'Copy this link for Instagram: '+u;if(ok)setTimeout(function(){window.open('https://www.instagram.com/','_blank','noopener');},900);});}});});
 document.getElementById('list').addEventListener('click',function(){track('list');
- openSheet('All lessons','<h2>All lessons</h2><ul class="sh-l">'+KEYS.map(function(k,i){var op=isOpen(k);return '<li><button type="button" data-go="'+i+'" class="'+(i===IX?'on':'')+(op?'':' lk')+'"><b>'+(k==='0'?'Start':'Lesson '+k)+'</b>'+esc(D[k].title)+(op?'':' 🔒')+'</button></li>';}).join('')+'</ul>');});
+ openSheet('All lessons','<h2>All lessons</h2><ul class="sh-l">'+KEYS.map(function(k,i){var op=isOpen(k);return '<li><button type="button" data-go="'+i+'" class="'+(i===IX?'on':'')+(op?'':' lk')+'"><b>'+(k==='0'?'Start':'Lesson '+k)+'</b>'+'<span class="tl">'+esc(D[k].title)+'</span>'+(op?'':'<em>'+(+k-DAY<=1?'Tomorrow':onDay(k))+'</em>')+'</button></li>';}).join('')+'</ul>');});
 document.getElementById('info').addEventListener('click',function(){track('info');
  openSheet('About Fuku’s Phrasebook','<h2>About the voice</h2><p>The voice is your phone’s or computer’s own, so it can sound a little robotic. Phrases are in polite, everyday Japanese.</p><h2>Offline</h2><p>No app and no sign-up. Add Fuku to your Home Screen and open it once while online; then it works with no signal.</p><p><a class="mail" href="/japan?src=phrasebook_info#words">📩 Get Fuku’s lessons by email</a></p>');});
 track('open',(lk||'all')+(src?' '+src:'')+' day '+DAY);
@@ -305,7 +336,7 @@ function showInst(){
                :'<li>In WhatsApp? Tap <b>⋮</b>, <b>Open in Chrome</b> first.</li><li>Tap <b>⋮</b>, then <b>Add to Home screen</b>.</li>';
  var h='<h2>📲 Keep Fuku on your phone</h2><p class="l1">No app. Works with no signal, and a new lesson opens every day.</p>'+
   '<ol id="instHow" hidden>'+steps+'<li>Open Fuku from the new icon once while online.</li></ol><div class="r">'+
-  '<button type="button" id="instGo">'+(dp?'Add to Home Screen':'Show me how')+'</button><button type="button" class="gh" id="instLater">Later</button></div>';
+  '<button type="button" id="instGo">Save on my phone</button><button type="button" class="gh" id="instLater">Later</button></div>';
  inst.innerHTML=h;inst.hidden=false;
  document.getElementById('instGo').addEventListener('click',function(){
   if(dp){var p=dp;dp=null;try{p.prompt();p.userChoice.then(function(r){track('save_prompt',r&&r.outcome);});}catch(e){}showInst();return;}
@@ -323,7 +354,7 @@ if('serviceWorker' in navigator){navigator.serviceWorker.register('/japan-phrase
 </body>
 </html>
 """
-PAGE_HTML = (PAGE_HTML.replace("%%DATA%%", DJSON).replace("%%FACE%%", FACE)
+PAGE_HTML = (PAGE_HTML.replace("%%DATA%%", DJSON).replace("%%FACE%%", FACE).replace("%%ICONS%%", IJSON)
              .replace("%%PAGE%%", PAGE).replace("%%SWV%%", SWV))
 for tok in ("%%",):
     if tok in PAGE_HTML:
