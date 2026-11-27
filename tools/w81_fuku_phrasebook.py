@@ -19,7 +19,7 @@ import html, json, os, re, sys
 
 ROOT = os.getcwd()
 PUB = os.path.join(ROOT, "public")
-SWV = "japan-phrasebook-v3"
+SWV = "japan-phrasebook-v4"
 PAGE = "/japan-phrasebook"
 
 def die(m):
@@ -120,6 +120,21 @@ section.lock h2{color:#5a6378}
 .nx b{color:var(--dark)}
 .nx button{margin-top:8px;border:0;background:none;padding:0;font:inherit;font-weight:700;font-size:.86rem;color:#0a8f78;text-decoration:underline;cursor:pointer}
 section{scroll-margin-top:62px;margin:22px 0 0}
+#lessons{display:flex;align-items:flex-start;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;margin:0 -16px;transition:height .25s ease}
+#lessons::-webkit-scrollbar{display:none}
+#lessons>section{flex:0 0 100%;min-width:0;scroll-snap-align:start;scroll-snap-stop:always;margin:0;padding:16px 16px 4px}
+.pager{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:14px 0 0}
+.nxt{display:flex;align-items:center;justify-content:space-between;gap:8px;width:100%;margin:14px 0 0;border:0;border-radius:14px;background:var(--dark);color:#fff;font:inherit;font-weight:700;font-size:.9rem;padding:13px 16px;text-align:left;cursor:pointer}
+.nxt span{font-size:1.4rem;line-height:1;color:var(--primary)}
+.pager>button{flex:0 0 42px;height:42px;border-radius:50%;border:1.5px solid var(--line);background:#fff;color:var(--dark);font:inherit;font-size:1.6rem;line-height:1;font-weight:500;cursor:pointer;box-shadow:0 2px 8px rgba(15,15,35,.06)}
+.pager>button:disabled{opacity:.3;cursor:default}
+.pager .mid{flex:1;text-align:center;min-width:0}
+#cnt{display:block;font-size:.8rem;font-weight:700;color:var(--muted);margin-bottom:6px}
+#dots{display:flex;justify-content:center;gap:4px;flex-wrap:wrap}
+#dots button{width:8px;height:8px;padding:0;border:0;border-radius:4px;background:#bfe3d9;cursor:pointer;transition:width .2s}
+#dots button.lk{background:#e2e7eb}
+#dots button.on{width:22px;background:var(--accent)}
+@media (prefers-reduced-motion:reduce){#lessons{scroll-behavior:auto;transition:none}}
 section h2{margin:0 0 3px;font-size:1.12rem;color:var(--dark)}
 section h2 small{display:block;font-size:.72rem;letter-spacing:1px;text-transform:uppercase;color:var(--accent);font-weight:700;margin-bottom:2px}
 #lessons ul{list-style:none;margin:10px 0 0;padding:0;display:grid;gap:7px}
@@ -156,7 +171,8 @@ section h2 small{display:block;font-size:.72rem;letter-spacing:1px;text-transfor
 <nav class="chips" id="chips" aria-label="Lessons"></nav>
 <main>
   <div class="inst" id="inst" hidden></div>
-  <div id="lessons"></div>
+  <div class="pager"><button type="button" id="prev" aria-label="Previous lesson">‹</button><div class="mid"><span id="cnt"></span><div id="dots"></div></div><button type="button" id="next" aria-label="Next lesson">›</button></div>
+  <div id="lessons" aria-roledescription="carousel" aria-label="Fuku’s lessons"></div>
   <div class="end">
     <h2>💬 Any other Japan question?</h2>
     <p>Ask Packy, PackSmart’s Japan travel buddy: trains, airports, money, luggage and more, from official sources.</p>
@@ -196,34 +212,61 @@ if(!D[lk])lk='';var src=(q.get('src')||'').toLowerCase().replace(/[^a-z0-9_-]/g,
 if(lk&&!OPEN[lk]){OPEN[lk]=1;ls('fukuOpen',JSON.stringify(OPEN));}
 function isOpen(k){return ALL||k==='0'||+k<=DAY||!!OPEN[k];}
 function when(k){var d=+k-DAY;return d<=1?'tomorrow':'in '+d+' days';}
-var io=null;
+var IX=0,rail=null;
+function slideHTML(k,firstShut){var L=D[k],o=L.offer;
+ if(!isOpen(k))return '<section id="l'+k+'" class="lock" aria-roledescription="slide"><h2><small>Lesson '+k+'</small>'+esc(L.title)+'</h2><div class="lkx">🔒 '+L.phrases.length+' phrases · opens '+when(k)+'</div>'+
+  '<div class="nx">'+(k===firstShut?'<b>🗓️ A new lesson every day.</b> Come back from Fuku’s icon on your Home Screen.<br>':'')+'<button type="button" class="unlockAll">Travelling now? Unlock all lessons</button></div></section>';
+ return '<section id="l'+k+'" aria-roledescription="slide"><h2><small>'+(k==='0'?'Start here':'Lesson '+k)+'</small>'+esc(L.title)+'</h2><ul>'+
+  L.phrases.map(function(p,i){return '<li id="p'+k+'-'+(i+1)+'"><div><b>'+esc(p[0])+'</b><span class="ja" lang="ja">'+esc(p[1])+'</span><small>'+esc(p[2])+'</small></div><button type="button" data-k="'+k+'" data-i="'+i+'" aria-label="Play: '+esc(p[2])+'">🔊</button></li>';}).join('')+
+  '</ul><div class="act"><a class="wa" data-wa="'+k+'" href="https://wa.me/?text='+encodeURIComponent(waText(k))+'" target="_blank" rel="noopener">📲 Send to my WhatsApp</a></div>'+
+  (o?'<a class="off" data-off="'+k+'" href="'+esc(o.u)+'"'+(o.p?' target="_blank" rel="nofollow noopener sponsored" data-ps-placement="phrasebook-l'+k+'"':'')+'><i aria-hidden="true">'+o.i+'</i><span>'+esc(o.t)+'</span>'+(o.p?'<small>partner link ↗</small>':'<small>→</small>')+'</a>':'')+
+  nextBtn(k)+'</section>';}
+function nextBtn(k){var i=KEYS.indexOf(k)+1;if(i>=KEYS.length)return '';var n=KEYS[i];
+ return '<button type="button" class="nxt" data-go="'+i+'">Next: Lesson '+n+' · '+esc(D[n].title)+(isOpen(n)?'':' 🔒')+' <span aria-hidden="true">›</span></button>';}
+// The lessons are a slider (owner, 27 Nov: "feels like an app"): swipe, the tabs, the arrows or the dots move one
+// lesson at a time (CSS scroll snap, so the swipe is the phone's own). The slider takes the height of the lesson shown.
 function render(){
- var out=[],shut=KEYS.filter(function(k){return !isOpen(k);}),firstShut=shut[0];
- KEYS.forEach(function(k){var L=D[k],o=L.offer;
-  if(k===firstShut)out.push('<div class="nx"><b>🗓️ A new lesson every day.</b> Lesson '+k+' opens '+when(k)+'. Come back from Fuku’s icon on your Home Screen.<br><button type="button" id="unlockAll">Travelling now? Unlock all lessons</button></div>');
-  if(!isOpen(k)){out.push('<section id="l'+k+'" class="lock"><h2><small>Lesson '+k+'</small>'+esc(L.title)+'</h2><div class="lkx">🔒 '+L.phrases.length+' phrases · opens '+when(k)+'</div></section>');return;}
-  out.push('<section id="l'+k+'"><h2><small>'+(k==='0'?'Start here':'Lesson '+k)+'</small>'+esc(L.title)+'</h2><ul>'+
-   L.phrases.map(function(p,i){return '<li id="p'+k+'-'+(i+1)+'"><div><b>'+esc(p[0])+'</b><span class="ja" lang="ja">'+esc(p[1])+'</span><small>'+esc(p[2])+'</small></div><button type="button" data-k="'+k+'" data-i="'+i+'" aria-label="Play: '+esc(p[2])+'">🔊</button></li>';}).join('')+
-   '</ul><div class="act"><a class="wa" data-wa="'+k+'" href="https://wa.me/?text='+encodeURIComponent(waText(k))+'" target="_blank" rel="noopener">📲 Send to my WhatsApp</a></div>'+
-   (o?'<a class="off" data-off="'+k+'" href="'+esc(o.u)+'"'+(o.p?' target="_blank" rel="nofollow noopener sponsored" data-ps-placement="phrasebook-l'+k+'"':'')+'><i aria-hidden="true">'+o.i+'</i><span>'+esc(o.t)+'</span>'+(o.p?'<small>partner link ↗</small>':'<small>→</small>')+'</a>':'')+
-   '</section>');});
- document.getElementById('lessons').innerHTML=out.join('');
+ var shut=KEYS.filter(function(k){return !isOpen(k);});
+ rail=document.getElementById('lessons');rail.innerHTML=KEYS.map(function(k){return slideHTML(k,shut[0]);}).join('');
  document.getElementById('chips').innerHTML=KEYS.map(function(k){var op=isOpen(k);return '<a class="ch'+(op?'':' lk')+'" href="#l'+k+'" data-l="'+k+'">'+(op?'':'🔒 ')+(k==='0'?'👋 Start':k+' · '+esc(D[k].title))+'</a>';}).join('');
+ document.getElementById('dots').innerHTML=KEYS.map(function(k,i){return '<button type="button" data-go="'+i+'" class="'+(isOpen(k)?'':'lk')+'" aria-label="'+(k==='0'?'Start':'Lesson '+k)+'"></button>';}).join('');
  var n=KEYS.filter(isOpen).length,pg=document.getElementById('pg');pg.hidden=false;pg.textContent=n>=KEYS.length?'All '+KEYS.length+' lessons open':'Day '+DAY+' · '+n+' of '+KEYS.length+' lessons open';
- var u=document.getElementById('unlockAll');if(u)u.addEventListener('click',function(){ALL=true;ls('fukuAll','1');track('unlock_all','day '+DAY);render();});
- if('IntersectionObserver' in window){if(io)io.disconnect();var chips=[].slice.call(document.querySelectorAll('.ch'));
-  io=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){var k=x.target.id.slice(1);chips.forEach(function(c){var on=c.getAttribute('data-l')===k;c.classList.toggle('on',on);if(on)try{c.scrollIntoView({block:'nearest',inline:'center'});}catch(e){}});}});},{rootMargin:'-70px 0px -70% 0px'});
-  [].forEach.call(document.querySelectorAll('section'),function(s){io.observe(s);});}
+ [].forEach.call(document.querySelectorAll('.unlockAll'),function(u){u.addEventListener('click',function(){ALL=true;ls('fukuAll','1');track('unlock_all','day '+DAY);render();go(IX,false);});});
 }
-render();
+function fit(){var s=rail.children[IX];if(s)rail.style.height=s.offsetHeight+'px';}
+function show(i){IX=i;var k=KEYS[i];
+ [].forEach.call(document.querySelectorAll('.ch'),function(c){var on=c.getAttribute('data-l')===k;c.classList.toggle('on',on);c.setAttribute('aria-current',on?'true':'false');
+  if(on){var bar=c.parentNode;try{bar.scrollTo({left:c.offsetLeft-(bar.clientWidth-c.offsetWidth)/2,behavior:'smooth'});}catch(e){bar.scrollLeft=c.offsetLeft;}}});
+ [].forEach.call(document.querySelectorAll('#dots button'),function(d,j){d.classList.toggle('on',j===i);});
+ document.getElementById('prev').disabled=i===0;document.getElementById('next').disabled=i===KEYS.length-1;
+ document.getElementById('cnt').textContent=(k==='0'?'Start':'Lesson '+k)+' · '+(i+1)+' of '+KEYS.length;
+ [].forEach.call(rail.children,function(s,j){s.setAttribute('aria-hidden',j===i?'false':'true');});
+ fit();ls('fukuAt',k);}
+function go(i,smooth){i=Math.max(0,Math.min(KEYS.length-1,i));
+ var top=document.querySelector('.pager').getBoundingClientRect().top;if(top<58)window.scrollBy({top:top-62,behavior:smooth?'smooth':'auto'});
+ try{rail.scrollTo({left:i*rail.clientWidth,behavior:smooth?'smooth':'auto'});}catch(e){rail.scrollLeft=i*rail.clientWidth;}
+ if(!smooth)show(i);}
 document.addEventListener('click',function(ev){var t=ev.target;
  var b=t.closest&&t.closest('[data-i]');if(b){var k=b.getAttribute('data-k'),p=D[k].phrases[+b.getAttribute('data-i')];say(p[1],p[0]);track('play',k+':'+p[0]);return;}
  var w=t.closest&&t.closest('[data-wa]');if(w){track('wa_self',w.getAttribute('data-wa'));return;}
  var o=t.closest&&t.closest('[data-off]');if(o){track('offer',o.getAttribute('data-off'));return;}
- var c=t.closest&&t.closest('.ch');if(c){track('chip',c.getAttribute('data-l'));}});
+ var c=t.closest&&t.closest('.ch');if(c){ev.preventDefault();var i=KEYS.indexOf(c.getAttribute('data-l'));go(i,true);track('chip',c.getAttribute('data-l'));return;}
+ var d=t.closest&&t.closest('[data-go]');if(d){go(+d.getAttribute('data-go'),true);track(d.classList.contains('nxt')?'next_btn':'dot',KEYS[+d.getAttribute('data-go')]);}});
+render();
+document.getElementById('prev').addEventListener('click',function(){go(IX-1,true);track('arrow','prev');});
+document.getElementById('next').addEventListener('click',function(){go(IX+1,true);track('arrow','next');});
+var st=null;rail.addEventListener('scroll',function(){clearTimeout(st);st=setTimeout(function(){var i=Math.round(rail.scrollLeft/rail.clientWidth);if(i!==IX){show(i);track('slide',KEYS[i]);}},90);},{passive:true});
+window.addEventListener('resize',function(){rail.scrollLeft=IX*rail.clientWidth;fit();});
+document.addEventListener('keydown',function(e){if(/INPUT|TEXTAREA/.test((e.target||{}).tagName||''))return;if(e.key==='ArrowRight')go(IX+1,true);else if(e.key==='ArrowLeft')go(IX-1,true);});
 document.getElementById('askPacky').addEventListener('click',function(){track('packy');if(window.Packy)window.Packy.open();else location.href='/japan?src=phrasebook#ask';});
 track('open',(lk||'all')+(src?' '+src:'')+' day '+DAY);
-if(lk){var el=document.getElementById(pk?'p'+lk+'-'+pk:'l'+lk)||document.getElementById('l'+lk);if(el){if(pk&&el.tagName==='LI')el.classList.add('hot');setTimeout(function(){el.scrollIntoView({block:pk?'center':'start'});},60);}}
+// start on: the lesson a link names; else a lesson that opened since the last visit; else where the reader left off
+var hk=(/^#l([0-9])$/.exec(location.hash)||[])[1],at=ls('fukuAt'),seen=+(ls('fukuSeen')||-1),newest=KEYS.filter(isOpen).pop();
+var sk=lk||(D[hk]?hk:'')||(at!==null&&+newest>seen&&seen>=0?newest:'')||(at&&D[at]&&isOpen(at)?at:'0');
+ls('fukuSeen',String(Math.max(seen,+newest)));
+go(KEYS.indexOf(sk),false);
+if(lk&&pk){var el=document.getElementById('p'+lk+'-'+pk);if(el){el.classList.add('hot');setTimeout(function(){var r=el.getBoundingClientRect();window.scrollBy({top:r.top-innerHeight/2+r.height/2});},80);}}
+setTimeout(fit,400);if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fit);
 // Keep Fuku on your phone: the Pocket Guides' way (Add to Home Screen, then open from the icon while online).
 // Links from WhatsApp often open inside WhatsApp's own browser, which cannot add to the Home Screen, so say how to
 // open the page in the phone's browser first. We cannot always tell we are inside WhatsApp, so the step is always shown.
