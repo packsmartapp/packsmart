@@ -138,7 +138,7 @@ function calc(){
   h+=line('Tokyo Disney: '+ad+' adult'+(ad>1?'s':'')+(ch?' + '+ch+' child'+(ch>1?'ren':''):'')+' × '+S.dn+' day'+(S.dn>1?'s':''),y(dl)+'–'+y(dh),'<small>Adults: '+esc(d.src)+', checked '+d.checked+' · <a href="'+d.url+'" target="_blank" rel="noopener">price calendar</a>'+(ch?'. Children: '+esc(dc.src)+'.':'')+(inf?' Under 4: free.':'')+'</small>');}
  if(document.getElementById('sanrio').value==='1'){var r=D.sanrio,sn=ad+ch,sl=r.lo*sn,sh=r.hi*sn;lo+=sl;hi+=sh;park=true;
   h+=line('Sanrio Puroland: '+sn+' × '+y(r.lo)+'–'+y(r.hi),y(sl)+'–'+y(sh),'<small>'+esc(r.src)+', checked '+r.checked+(inf?'. Little ones aged 3 to 5 also need a ticket.':'')+'</small>');}
- if(park)h+='<div class="ln fam"><div class="l"><small>💬 From a PackSmart family’s trip (October 2025, 2 adults, children aged 7 and 10): about INR 20,000 for a day at Tokyo DisneySea and about INR 12,000 for Sanrio Puroland.</small></div></div>';
+ if(park)h+='<div class="ln fam"><div class="l"><small>💬 From a PackSmart family’s trip (October 2025, 2 adults, children aged 7 and 10): about ¥34,000 for a day at Tokyo DisneySea and about ¥20,000 for Sanrio Puroland.</small></div></div>';
  if(document.getElementById('zoo').value==='1'){var z=D.uenozoo,v=z.a*ad;sum+=v;h+=line('Ueno Zoo: '+ad+' × '+y(z.a)+(ch||inf?' (children up to 6th grade free)':''),y(v),'<small>'+esc(z.src)+', checked '+z.checked+' · <a href="'+z.url+'" target="_blank" rel="noopener">official page</a></small>');}
  var tx=D.tax.each*ppl;sum+=tx;h+=line('Departure tax: '+ppl+' × '+y(D.tax.each),y(tx),'<small>JNTO, checked '+CH+'; check JNTO for who is exempt · <a href="'+D.tax.url+'" target="_blank" rel="noopener">official page</a></small>');
  // the reader's own numbers
