@@ -4,9 +4,13 @@
 // Itinerary and "plan my trip" questions (owner, 26 Nov): Packy gives a starting route, then this button opens the
 // trip planner on the home page with Japan filled in (it builds the day-by-day plan for the reader's dates and group).
 export const ITINQ = /itin[ea]r|iten[ae]r|itenar|\b(?:make|build|create|give|suggest|draw up|help me with)\b.{0,25}\b(?:plan|route|schedule)\b(?!.{0,15}\b(?:data|esim|sim|insurance)\b)|\bplan\b.{0,25}\b(?:for japan|in japan|my japan|japan trip|trip|holiday|vacation|visit)\b|plan (?:my|our|a|the) (?:\w+ )?(?:trip|holiday|vacation|route|visit)|\b\d{1,2}[ -]?(?:days?|nights?|weeks?)\b|where (?:should|to|can) (?:i|we) go|what (?:should|to) (?:i|we) (?:see|visit)|things to do in japan|first (?:trip|time|visit) (?:to|in) japan/;
+// Whole-trip budget questions (27 Nov, a tester: "total cost for a family of 4 ... 10 days ... all included"): Packy gives
+// the checked costs it has, asks a few questions, and this button opens the trip planner, which estimates a budget.
+export const BUDGETQ = /total (?:cost|budget|price|spend)|\bbudget\b|how much (?:will|would|does|do|should) (?:it|the trip|a trip|our trip|my trip|we|i) (?:cost|need|spend|budget)|how much (?:money|cash) (?:will|would|should|do) (?:i|we) (?:need|bring|budget)|(?:trip|holiday|vacation) (?:cost|costs|budget)|cost (?:of|for) (?:the|a|our|my) (?:trip|holiday|vacation)|likely (?:total|cost)|overall cost|all included|all-inclusive|estimate (?:the |our |my )?(?:cost|budget)/;
 // 27 Nov 2026: the airport transfer, eSIM and bag storage buttons use Packy's own Travelpayouts links (Sub IDs
 // packy-transfer, packy-esim, packy-bags-tokyo/-osaka/-kyoto), so Packy's sales show up separately from the site's.
 export const OFFERS = [
+  { id: 'budget', rx: BUDGETQ, label: 'Get a rough trip budget (estimate)', url: '/?dest=Japan&src=packy_budget#plan', partner: false },
   { id: 'plan', rx: ITINQ, not: /\bpass\b|ticket|valid|visa|stay (?:up to|for)|lockers?|bus\b/, label: 'Build a day-by-day Japan plan', url: '/?dest=Japan&src=packy#plan', partner: false },
   { id: 'skyliner', rx: /skyliner|keisei|ueno.{0,40}narita|narita.{0,40}ueno|nippori/, regions: ['tokyo', ''], label: 'Book Skyliner tickets online', url: 'https://klook.tpx.li/gIYih1CY', partner: true },
   { id: 'nex', rx: /narita express|\bn'?ex\b/, regions: ['tokyo', ''], label: 'Book Narita Express tickets online', url: 'https://klook.tpx.li/tX4jclRv', partner: true },
