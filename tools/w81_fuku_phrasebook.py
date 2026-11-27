@@ -81,8 +81,6 @@ ICONS["share"] = ('<svg viewBox="0 0 24 24" width="20" height="20" fill="none" s
                   '<path d="M12 3v12"/><path d="M7 8l5-5 5 5"/><path d="M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6"/></svg>')
 ICONS['speaker'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4z" fill="currentColor"/><path d="M15.5 8.5a5 5 0 0 1 0 7"/><path d="M18.5 5.5a9 9 0 0 1 0 13"/></svg>'
 ICONS['phone'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6" y="2.5" width="12" height="19" rx="3"/><path d="M10.5 18.5h3"/></svg>'
-ICONS['mail'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="3"/><path d="m4 7 8 6 8-6"/></svg>'
-ICONS['unlock'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="11" width="16" height="10" rx="3"/><path d="M8 11V7a4 4 0 0 1 7.6-1.7"/></svg>'
 ICONS['calendar'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4.5" width="18" height="16" rx="3"/><path d="M3 9.5h18M8 2.5v4M16 2.5v4"/><circle cx="12" cy="15" r="1.6" fill="currentColor" stroke="none"/></svg>'
 ICONS['info'] = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5"/><circle cx="12" cy="7.8" r="1.1" fill="currentColor" stroke="none"/></svg>'
 ICONS['heart'] = '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5s-7.5-4.6-9.2-9.4C1.6 7.6 3.8 4 7.3 4c2 0 3.5 1.1 4.7 2.7C13.2 5.1 14.7 4 16.7 4c3.5 0 5.7 3.6 4.5 7.1-1.7 4.8-9.2 9.4-9.2 9.4z" fill="#E94560"/></svg>'
@@ -130,12 +128,6 @@ section.lock h2{color:#5a6378}
 .soon .hi{flex-basis:40px;height:40px;border-radius:12px}.soon .hi svg{width:22px;height:22px}
 .soon b{display:block;font-size:1rem;color:var(--dark)}
 .soon span:not(.hi){display:block;margin-top:2px;font-size:.86rem;line-height:1.45;color:var(--muted)}
-.nx{margin:14px 0 0;text-align:center}
-.nx p{margin:0 0 10px;font-size:.9rem;font-weight:700;color:var(--dark)}
-.go1,.go2{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;height:50px;border-radius:14px;font:inherit;font-weight:700;font-size:.95rem;text-decoration:none;cursor:pointer}
-.go1{border:0;background:var(--accent);color:#fff;box-shadow:0 4px 12px rgba(233,69,96,.25)}
-.go2{margin-top:8px;border:1.5px solid var(--line);background:#fff;color:var(--dark)}
-.go1 svg,.go2 svg{width:20px;height:20px}
 section{scroll-margin-top:62px;margin:22px 0 0}
 #lessons{display:flex;align-items:flex-start;overflow-x:auto;overflow-y:hidden;scroll-snap-type:x mandatory;overscroll-behavior-x:contain;scrollbar-width:none;margin:0 -16px;transition:height .25s ease}
 #lessons::-webkit-scrollbar{display:none}
@@ -266,9 +258,7 @@ function when(k){var d=+k-DAY;return d<=1?'tomorrow':'in '+d+' days';}
 function onDay(k){var d=new Date(START+'T00:00:00');d.setDate(d.getDate()+(+k)-1);try{return d.toLocaleDateString('en-GB',{weekday:'short',day:'numeric',month:'short'});}catch(e){return '';}}
 var IX=0,rail=null;
 function slideHTML(k,firstShut){var L=D[k],o=L.offer;
- if(!isOpen(k))return '<section id="l'+k+'" class="lock" aria-roledescription="slide"><h2><small>Lesson '+k+'</small>'+esc(L.title)+'</h2><div class="soon"><span class="hi">'+IC.calendar+'</span><div><b>Opens '+when(k)+'</b><span>'+(onDay(k)?onDay(k)+' · ':'')+L.phrases.length+' new phrases. A new lesson opens each day on this phone.</span></div></div>'+
-  '<div class="nx"><p>Already in Japan, or flying soon?</p><button type="button" class="unlockAll go1">'+IC.unlock+'Unlock all lessons now</button>'+
-  '<a class="go2" href="/japan?src=phrasebook_lock#words" data-mail="'+k+'">'+IC.mail+'Or get Fuku’s lessons by email</a></div></section>';
+ if(!isOpen(k))return '<section id="l'+k+'" class="lock" aria-roledescription="slide"><h2><small>Lesson '+k+'</small>'+esc(L.title)+'</h2><div class="soon"><span class="hi">'+IC.calendar+'</span><div><b>Opens '+(+k-DAY<=1?'tomorrow':(onDay(k)||when(k)))+'</b><span>'+L.phrases.length+' new phrases. A new lesson opens each day on this phone.</span></div></div></section>';
  return '<section id="l'+k+'" aria-roledescription="slide"><h2><small>'+(k==='0'?'Start here':'Lesson '+k)+'</small>'+esc(L.title)+'</h2><ul>'+
   L.phrases.map(function(p,i){return '<li id="p'+k+'-'+(i+1)+'"><div><b>'+esc(p[0])+'</b><span class="ja" lang="ja">'+esc(p[1])+'</span><small>'+esc(p[2])+'</small></div><button type="button" data-k="'+k+'" data-i="'+i+'" aria-label="Play: '+esc(p[2])+'">'+IC.speaker+'</button></li>';}).join('')+
   '</ul>'+
@@ -282,7 +272,6 @@ function render(){
  var shut=KEYS.filter(function(k){return !isOpen(k);});
  rail=document.getElementById('lessons');rail.innerHTML=KEYS.map(function(k){return slideHTML(k,shut[0]);}).join('');
  var n=KEYS.filter(isOpen).length;document.getElementById('pg').textContent=n>=KEYS.length?'All lessons open':n+' of '+KEYS.length+' lessons open';
- [].forEach.call(document.querySelectorAll('.unlockAll'),function(u){u.addEventListener('click',function(){ALL=true;ls('fukuAll','1');track('unlock_all','day '+DAY);render();go(IX,false);});});
 }
 function fit(){var s=rail.children[IX];if(s)rail.style.height=s.offsetHeight+'px';}
 function show(i){IX=i;var k=KEYS[i];
@@ -297,7 +286,6 @@ function go(i,smooth){i=Math.max(0,Math.min(KEYS.length-1,i));
 document.addEventListener('click',function(ev){var t=ev.target;
  var b=t.closest&&t.closest('[data-i]');if(b){var k=b.getAttribute('data-k'),p=D[k].phrases[+b.getAttribute('data-i')];say(p[1],p[0]);track('play',k+':'+p[0]);return;}
  var o=t.closest&&t.closest('[data-off]');if(o){track('offer',o.getAttribute('data-off'));return;}
- var m=t.closest&&t.closest('[data-mail]');if(m){track('lock_email',m.getAttribute('data-mail'));return;}
  var d=t.closest&&t.closest('[data-go]');if(d){closeSheet();go(+d.getAttribute('data-go'),true);track('list_pick',KEYS[+d.getAttribute('data-go')]);}});
 render();
 document.getElementById('prev').addEventListener('click',function(){go(IX-1,true);track('arrow','prev');});
@@ -330,7 +318,7 @@ document.getElementById('love').addEventListener('click',function(){var k=KEYS[I
 document.getElementById('list').addEventListener('click',function(){track('list');
  openSheet('All lessons','<h2>All lessons</h2><ul class="sh-l">'+KEYS.map(function(k,i){var op=isOpen(k);return '<li><button type="button" data-go="'+i+'" class="'+(i===IX?'on':'')+(op?'':' lk')+'"><b>'+(k==='0'?'Start':'Lesson '+k)+'</b>'+'<span class="tl">'+esc(D[k].title)+'</span>'+(op?'':'<em>Opens '+(+k-DAY<=1?'tomorrow':onDay(k))+'</em>')+'</button></li>';}).join('')+'</ul>');});
 document.getElementById('info').addEventListener('click',function(){track('info');
- openSheet('About Fuku’s Phrasebook','<h2>About the voice</h2><p>The voice is your phone’s or computer’s own, so it can sound a little robotic. Phrases are in polite, everyday Japanese.</p><h2>Offline</h2><p>No app and no sign-up. Add Fuku to your Home Screen and open it once while online; then it works with no signal.</p><p><a class="go2" href="/japan?src=phrasebook_info#words">'+IC.mail+'Get Fuku’s lessons by email</a></p>');});
+ openSheet('About Fuku’s Phrasebook','<h2>About the voice</h2><p>The voice is your phone’s or computer’s own, so it can sound a little robotic. Phrases are in polite, everyday Japanese.</p><h2>Offline</h2><p>No app and no sign-up. Add Fuku to your Home Screen and open it once while online; then it works with no signal.</p>');});
 track('open',(lk||'all')+(src?' '+src:'')+' day '+DAY);
 // start on: the lesson a link names; else a lesson that opened since the last visit; else where the reader left off
 var hk=(/^#l([0-9])$/.exec(location.hash)||[])[1],at=ls('fukuAt'),seen=+(ls('fukuSeen')||-1),newest=KEYS.filter(isOpen).pop();
