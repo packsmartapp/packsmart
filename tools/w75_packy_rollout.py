@@ -39,6 +39,8 @@ PAGES = {  # page: (country, topic, extra attributes)
     "blog/osaka-travel-guide.html": ("japan", "osaka", ""),
     "blog/japan-travel-packing-guide-from-india.html": ("japan", "japan", ""),
     "blog/japan-7-day-itinerary-budget.html": ("japan", "japan", ""),
+    # 27 Nov: Fuku's Phrasebook (w81), for any Japan question next to the phrases (needs internet; the page works offline)
+    "japan-phrasebook.html": ("japan", "japan", ""),
 }
 
 import glob, re

@@ -1,6 +1,6 @@
 # PackSmart: file inventory
 
-Generated 26 Nov 2026 by `tools/make_inventory.py` (re-run it after adding scripts, pages or docs).
+Generated 27 Nov 2026 by `tools/make_inventory.py` (re-run it after adding scripts, pages or docs).
 Every file below is already saved in git (`packsmartapp/packsmart`, branch `main`); `git clone` is the full backup.
 This page says what exists and where. It does not repeat file contents, because git always has the latest version.
 
@@ -129,6 +129,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w77_japan_guide_band.py` | w77: a light Japan band at the top of the Japan station, airport and city guides, and the three general Japan articles |
 | `w78_pickups_button.py` | w78: the airport-transfer box's Continue button in our own button style, on every page that has the box (25 Nov 2026). |
 | `w79_hub_card.py` | w79: a "Japan hub" card near the end of the 15 Japan pages, so readers find the /japan hub (25 Nov 2026). |
+| `w81_fuku_phrasebook.py` | w81: Fuku's Phrasebook (27 Nov 2026), the one interactive home for Fuku's Japanese: /japan-phrasebook. |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `packy_eval.mjs` | data file read by the scripts above |
 | `pocket_guides.json` | data file read by the scripts above |
@@ -136,7 +137,7 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 
 ## public/ pages
 
-**Top-level pages (13):** `about.html`, `affiliate-disclosure.html`, `blog.html`, `book.html`, `contact.html`, `flights.html`, `gyg-preview.html`, `index.html`, `japan.html`, `privacy-policy.html`, `share.html`, `terms.html`, `travel-essentials.html`
+**Top-level pages (14):** `about.html`, `affiliate-disclosure.html`, `blog.html`, `book.html`, `contact.html`, `flights.html`, `gyg-preview.html`, `index.html`, `japan-phrasebook.html`, `japan.html`, `privacy-policy.html`, `share.html`, `terms.html`, `travel-essentials.html`
 
 **Pocket Guides (10):** `haneda-pocket.html`, `kix-pocket.html`, `kyoto-pocket.html`, `narita-pocket.html`, `new-chitose-pocket.html`, `osaka-pocket.html`, `sapporo-pocket.html`, `shinjuku-pocket.html`, `tokyo-pocket.html`, `ueno-pocket.html`
 Each also has `<key>-sw.js` (service worker) and `<key>-pocket.webmanifest`.
@@ -145,7 +146,7 @@ Each also has `<key>-sw.js` (service worker) and `<key>-pocket.webmanifest`.
 
 **Web stories (5):** `bali-travel-guide.html`, `malaysia-travel-guide.html`, `sri-lanka-travel-guide.html`, `thailand-travel-guide.html`, `vietnam-travel-guide.html`
 
-**Images:** 166 files in `public/images/`; site icons and logos in `public/`.
+**Images:** 170 files in `public/images/`; site icons and logos in `public/`.
 
 **Other public files:** `favicon.ico`, `packsmart-icon.svg`, `packsmart-logo-white.svg`, `packsmart-logo.svg`, `packsmart-phase1.js`, `packsmart-widgets.js`, `packy.js`, `robots.txt`, `sitemap.xml`
 
