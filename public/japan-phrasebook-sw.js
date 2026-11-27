@@ -1,7 +1,7 @@
 /* Fuku's Phrasebook service worker (tools/w81_fuku_phrasebook.py). Network first, saved copy when offline. */
-var V='japan-phrasebook-v2';
+var V='japan-phrasebook-v3';
 var PAGE='/japan-phrasebook';
-var SHELL=[PAGE,'/japan-phrasebook.webmanifest','/favicon-32.png','/images/phrasebook-icon-192.png','/images/phrasebook-icon-512.png'];
+var SHELL=[PAGE,'/japan-phrasebook.webmanifest','/favicon-32.png','/images/phrasebook-fuku-icon-192.png','/images/phrasebook-fuku-icon-512.png'];
 self.addEventListener('install',function(e){
   e.waitUntil(caches.open(V).then(function(c){return c.addAll(SHELL);}).then(function(){return self.skipWaiting();}));
 });

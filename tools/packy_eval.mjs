@@ -68,6 +68,7 @@ const CASES = [
   ['What is the drinking age in Japan?', '', /under the age of 20|remain at 20/i],
   ['Is there an onsen at New Chitose Airport?', '', /onsen and hotel, both conveniently located within the airport/i],
   ['can you plan an itenerary for 10 days, and for family of 4.', '', /tokyo to kyoto|kyoto/i],
+  ['can you make a plan for me for Japan?', '', /kyoto|tokai|kansai/i],
   ['What should we see on a first trip to Japan?', '', /kyoto|tokai|kansai/i],
   ['I am 19, can I drink beer in Japan?', '', /under the age of 20|remain at 20/i],
 ];
