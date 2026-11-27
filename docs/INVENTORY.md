@@ -132,6 +132,8 @@ Run order for a full rebuild of the Japan pages is in `CLAUDE.md` ("Generator sc
 | `w80_klook_tidy.py` | w80: tidy the "tours and tickets" tile boxes (class ps-kd, Klook partner links) (26 Nov 2026). |
 | `w81_fuku_phrasebook.py` | w81: Fuku's Phrasebook (27 Nov 2026), the one interactive home for Fuku's Japanese: /japan-phrasebook. |
 | `w82_esim_compare_links.py` | w82: a "Compare travel eSIMs" line in every eSIM block (27 Nov 2026, owner: readers could not find the eSIM comparison). |
+| `w83_pocket_share_tags.py` | w83: share tags (Open Graph and Twitter) on every Pocket Guide (27 Nov 2026, a tester: /sapporo-pocket had none). |
+| `w84_japan_2027_facts.py` | w84: the departure tax and cherry blossoms 2027 on the three general Japan articles (27 Nov 2026, a tester). |
 | `make_inventory.py` | make_inventory: regenerate docs/INVENTORY.md from the repo (what exists, where, and what each script does). |
 | `packy_eval.mjs` | data file read by the scripts above |
 | `pocket_guides.json` | data file read by the scripts above |
