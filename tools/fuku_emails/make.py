@@ -150,7 +150,7 @@ EM = [
   pre="They move north. Plus 5 phrases that buy you time.",
   body=p("Japan&rsquo;s cherry blossoms don&rsquo;t open all at once. &ldquo;Starting in the south and gradually moving north, the blossoms bloom between March and May depending on your location.&rdquo;")
    + fact("Drinking outdoors doesn&rsquo;t break any law in Japan, so a picnic under the blossoms, drink in hand, is part of the fun. Keep it quiet and take your litter home. &#127800;")
-   + p("<b>When Japanese comes at you fast:</b>", 'margin-bottom:6px;')
+   + p("<b>When you don&rsquo;t understand:</b>", 'margin-bottom:6px;')
    + phrases(4),
   nxt="the quiet rules of riding a Japanese train.", offer='tours'),
  dict(n=5, kicker="Fuku's lesson 5 &middot; on the train", title="The quiet rules of riding a Japanese train",

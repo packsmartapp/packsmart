@@ -22,7 +22,7 @@ export const LESSONS = {
     ["Kaado wa tsukaemasu ka?", "カードは使えますか？", "Can I pay by card?"],
     ["Reshiito o kudasai.", "レシートをください。", "A receipt, please."],
     ["Menzei de kaemasu ka?", "免税で買えますか？", "Can I buy this tax-free?"]]},
-  "4": {"title": "When Japanese comes at you fast", "phrases": [
+  "4": {"title": "When you don't understand", "phrases": [
     ["Wakarimasen.", "わかりません。", "I don't understand."],
     ["Yukkuri onegai shimasu.", "ゆっくりお願いします。", "Slowly, please."],
     ["Mou ichido onegai shimasu.", "もう一度お願いします。", "Once more, please."],
