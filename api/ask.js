@@ -77,9 +77,17 @@ function search(q, n, topicWords) {
     const rest = scored.filter(x => !prices.includes(x));
     return prices.concat(rest).slice(0, n).map(x => KB[x[1]]);
   }
-  // at most 4 pieces from one notes file, so one long file cannot fill every slot
-  const per = new Map(), out = [];
-  for (const x of scored) { const f = KB[x[1]].t.split(' > ')[0], c = per.get(f) || 0; if (c < 4) { per.set(f, c + 1); out.push(x); } if (out.length >= n) break; }
+  // at most 4 pieces from one notes file, so one long file cannot fill every slot; and (27 Nov, testers: general
+  // questions got Hokkaido answers) at most 2 Hokkaido pieces when neither the question, the page nor the earlier
+  // chat is about Hokkaido, since about a third of the notes are Sapporo and New Chitose research
+  const HOKQ = /hokkaido|sapporo|chitose|\bcts\b|otaru|niseko|rusutsu|furano|biei|asahikawa|noboribetsu|hakodate|kushiro|obihiro/;
+  const hokOk = HOKQ.test(qLow) || (topicWords || []).some(w => HOKQ.test(w));
+  const per = new Map(), out = []; let hok = 0;
+  for (const x of scored) {
+    const f = KB[x[1]].t.split(' > ')[0], c = per.get(f) || 0, isHok = /^sapporo/.test(f);
+    if (c >= 4 || (isHok && !hokOk && hok >= 2)) continue;
+    per.set(f, c + 1); if (isHok) hok++; out.push(x); if (out.length >= n) break;
+  }
   return out.map(x => KB[x[1]]);
 }
 const TOPIC_GUIDE = { sapporo: 'Sapporo Station guide', 'new-chitose': 'New Chitose Airport guide', ueno: 'Ueno Station guide', shinjuku: 'Shinjuku Station guide',
@@ -152,6 +160,7 @@ Rules:
 - If the question is vague (for example "what's the cost like?" or "is it far?") and the PREVIOUS QUESTION does not make it clear, ask one short, friendly clarifying question, such as which trip, station or city they mean, and mention two or three specific things you can help with.
 - Only if nothing at all in the notes is relevant: do not guess and do not state any facts; reply naturally in one or two sentences, say what you can help with (getting between places, stations, airports, trains, buses, money, luggage, seasons), and suggest a specific question. Do not add a Source line. When you have answered any part of the question, never add that list of what you can help with.
 - Itinerary, route or "plan my trip" requests (for example "10 days for a family of 4"): never answer that you can only help with specific questions. Give a short starting shape from the notes: which cities or areas could fit their days (for example Tokyo, then Kyoto and Osaka in Kansai) with the train times between them the notes give, and one or two things from the notes that fit their group or season (children's fares, the season they mention). Then say in one sentence that the "Build a day-by-day Japan plan" button below makes a full plan for their dates and group. End with one friendly question, such as which month they travel or what their family loves most. Never invent sights, day counts, opening hours or prices the notes do not hold.
+- If the traveller named no place and the notes that answer the question are all about one region (for example only Hokkaido: Sapporo, New Chitose, Otaru, Niseko), say so in the first sentence ("In Hokkaido, around Sapporo, …") rather than presenting it as true for all of Japan, and end by asking which part of Japan they are visiting. Never steer a general question towards Hokkaido.
 - Never mention notes or sources in your sentences: never write "the notes", "my notes", "I only have", "the information I have" or "I don't have information about". Say what is known; for a missing part say naturally that you don't have a checked answer for it yet and who to ask (station staff, the official site).
 - Health, illness, injury, doctors, hospitals, insurance or emergencies: if the notes give Japan's emergency numbers or the Japan Visitor Hotline, start with them (ambulance 119, police 110, and the hotline's number, hours and languages), then add anything else relevant from the notes. Keep it calm and practical. For a question about medical costs, give the examples of high bills the notes give, the tip to ask for an estimate at reception, and the advice to buy travel insurance; mention exceptions (such as care that insurance does not cover) only after that.
 - Shape: the first sentence answers the question directly; when it matters, say who says so (for example "Japan's tourism body JNTO recommends…" or "JR says…"). Then two to four short facts or steps from the notes. When the notes hold one, end with one practical local tip in its own sentence starting "Tip:". Mention rare exceptions only if asked or if they matter for safety, and never end on a caveat that undercuts the answer.
