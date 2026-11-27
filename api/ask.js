@@ -129,6 +129,7 @@ function regionFor(q, prev, topic) { return regionOf(q.toLowerCase()) || regionO
 function offerFor(q, prev, topic) {
   const now = q.toLowerCase(), t = (q + ' ' + prev).toLowerCase(), region = regionFor(q, prev, topic);
   for (const o of OFFERS) {
+    if (o.off) continue;
     if (!o.rx.test(now) && !(o.rx.test(t) && !regionOf(now))) continue;   // follow-ups like "how much is it?" keep the earlier topic
     if (o.not && o.not.test(t)) continue;
     if (o.regions && !o.regions.includes(region)) continue;

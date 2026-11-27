@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-w86: Japan trip budget calculator, a SKETCH for the owner's review (27 Nov 2026). Preview branch only for now.
+w86: Japan trip budget calculator, /japan-budget (27 Nov 2026; launched the same day).
 
 Owner's idea: Packy gets "total cost for a family of 4, 10 days, mostly Tokyo" questions; a calculator where the
 reader enters their trip and gets an itemised result fits them better than the itinerary planner.
@@ -16,12 +16,16 @@ figures. The result lists:
     Shinkansen fares), each with a way to find the price (internal page or partner link).
 The total says what it covers. No made-up numbers: anything without an official figure says "not priced yet".
 
-Partner links here reuse existing tracked links for the sketch; before launch they need the page's own Sub IDs.
-Writes public/japan-budget.html (noindex while it is a sketch). Run:  python3 tools/w86_japan_budget.py
+Partner links reuse Packy's tracked links until the page has its own Sub IDs (budget-esim, budget-transfer).
+Writes public/japan-budget.html. Run after w85 and before w72:  python3 tools/w86_japan_budget.py
 """
 import json, os
 
 PUB = os.path.join(os.getcwd(), "public")
+# Guided multi-day tours (TourRadar): off until TourRadar confirms the links credit the PackSmartApp partner account
+# and allows naming them on /affiliate-disclosure (their terms, 6.6). When on, also add TourRadar to w67 and set
+# the "multitour" offer in api/_offers.js to on.
+TOURS_ON = True
 CHECKED = "24 Nov 2026"
 
 # Every price here is copied from docs/research/japan-prices-sources.md (official pages). [adult, child 6-11] in yen.
@@ -60,7 +64,7 @@ DATA = {
     "shinkansenOsaka": {"a": 14520, "c": 7250},
     "tax": {"each": 3000, "src": "JNTO: International Tourist Tax", "url": "https://www.japan.travel/en/plan/international-tourist-tax/"},
 }
-# Ways to find what we do not price. Partner links reuse existing tracked links for the sketch (own Sub IDs before launch).
+# Ways to find what we do not price. Partner links reuse Packy's tracked links until the page has its own Sub IDs.
 LINKS = {
     "flights": ["Compare flights to Japan", "/flights?src=budget", False],
     "hotels": ["Search hotels in Japan", "/flights?src=budget_hotels", False],
@@ -78,9 +82,16 @@ PAGE = r"""<!DOCTYPE html>
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Japan Trip Budget Calculator | PackSmart</title>
+<title>Japan Trip Cost Calculator: Trains, Disney, Taxis and More | PackSmart</title>
 <meta name="description" content="Work out what your Japan trip costs: airport trains, city transport, taxis, rail passes and the departure tax from official prices, plus your own hotel and flights.">
-<meta name="robots" content="noindex,follow">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PackSmart">
+<meta property="og:title" content="Japan Trip Cost Calculator">
+<meta property="og:description" content="What will your Japan trip cost? Airport trains, day passes, the Shinkansen, taxis, Disney and the departure tax from official prices, plus your own hotel and flights.">
+<meta property="og:url" content="https://www.packsmartapp.com/japan-budget">
+<meta property="og:image" content="https://www.packsmartapp.com/og-default.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://www.packsmartapp.com/og-default.png">
 <link rel="canonical" href="https://www.packsmartapp.com/japan-budget">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -97,7 +108,6 @@ a{color:#0a8f78}
 .top h1{margin:8px 0 4px;font-size:1.35rem;line-height:1.25}
 .top h1 span{color:var(--primary)}
 .top p{margin:0;color:#cfd6e6;font-size:.9rem;line-height:1.45}
-.sketch{display:inline-block;margin-top:8px;font-size:.72rem;font-weight:700;background:rgba(233,69,96,.25);color:#ffd6de;border-radius:999px;padding:3px 10px}
 main{max-width:640px;margin:0 auto;padding:4px 16px 60px}
 .card{background:#fff;border:1.5px solid var(--line);border-radius:18px;padding:16px;margin:16px 0 0}
 .card h2{margin:0 0 4px;font-size:1.05rem;color:var(--dark)}
@@ -129,7 +139,6 @@ input[type=number]{width:130px}
 .go small{flex:0 0 auto;font-weight:500;font-size:.72rem;color:#8a93a6}
 .next{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 2px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;text-decoration:none;font-weight:700;font-size:.98rem}.next i{font-style:normal;font-size:1.3rem}
 .two{display:grid;gap:8px;margin:6px 0 2px}.two>div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 13px}
-.two b{display:block;font-size:.95rem}.two span{display:block;font-size:.82rem;color:#bfc6d6;line-height:1.45;margin-top:3px}.two .go{margin-top:10px}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 </style>
 </head>
@@ -138,7 +147,6 @@ input[type=number]{width:130px}
   <a href="/japan?src=budget">‹ Japan</a>
   <h1>Japan trip <span>budget calculator</span></h1>
   <p>Enter your trip. We add up the costs we have official prices for, and show what is left to price.</p>
-  <span class="sketch">Sketch for review · not live</span>
 </header>
 <main>
   <section class="card"><h2>Who is going?</h2><p class="h">On trains and buses, ages 12 and up pay adult fares and ages 6 to 11 child fares; under 6 usually ride free with an adult.</p>
@@ -238,16 +246,17 @@ function calc(){
  if(S.nh&&(S.nt||S.nk))np+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
  miss.forEach(function(m){np+=line(esc(m),'<span class="np">not priced yet</span>');});
  h+='<div class="grp">Still to price</div>'+np;
- // two ways to book (owner, 27 Nov): piece by piece with the buttons above, or one booking with a tour company
+ if(%%TOURS%%){
  h+='<div class="grp">Two ways to book</div><div class="two"><div><b>Book it yourself</b><span>Use the buttons above for each piece: trains, tickets, transfers.</span></div>'+
   '<div><b>Prefer one booking?</b><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
+ }
  h+='<div class="grp">Also worth having</div>'+go('esim')+go('transfer')+go('insurance');
  var top='<h2>Your estimate</h2><div class="tot"><b>'+y(sum+lo)+(hi>lo?'–'+y(sum+hi).replace('¥',''):'')+'</b><span>'+ppl+' people · '+nights+' nights</span></div>'+
   '<p class="pp">For the costs listed below only. About '+y((sum+lo)/Math.max(1,ppl))+' per person.</p>';
  h+='<a class="next" href="/?dest=Japan&adults='+ad+'&kids='+(ch+inf)+'&src=budget_plan#plan" data-go="plan"><span>Next: turn this into a day-by-day plan</span><i aria-hidden="true">→</i></a>';
  document.getElementById('res').innerHTML=top+h;
 }
-document.getElementById('res').addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(a)track('link',a.getAttribute('data-go'));});
+document.getElementById('res').addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(!a)return;track('link',a.getAttribute('data-go'));var pl=a.getAttribute('data-ps-placement');if(pl)try{if(window.gtag)gtag('event','affiliate_interact',{event_category:'monetization',placement:pl,page_path:location.pathname});}catch(x){}});
 var tt=null;document.addEventListener('click',function(e){if(e.target.closest('.step,select')){clearTimeout(tt);tt=setTimeout(function(){track('change');},1500);}});
 calc();track('open');
 })();
@@ -255,8 +264,9 @@ calc();track('open');
 </body>
 </html>
 """
-html = (PAGE.replace("%%DATA%%", json.dumps(DATA, ensure_ascii=False))
-        .replace("%%LINKS%%", json.dumps(LINKS, ensure_ascii=False)).replace("%%CHECKED%%", CHECKED))
+LINKS_OUT = {k: v for k, v in LINKS.items() if TOURS_ON or not k.startswith("tours")}
+html = (PAGE.replace("%%TOURS%%", "true" if TOURS_ON else "false").replace("%%DATA%%", json.dumps(DATA, ensure_ascii=False))
+        .replace("%%LINKS%%", json.dumps(LINKS_OUT, ensure_ascii=False)).replace("%%CHECKED%%", CHECKED))
 assert "%%" not in html
 open(os.path.join(PUB, "japan-budget.html"), "w", encoding="utf-8").write(html)
-print("w86 done. public/japan-budget.html written (sketch).")
+print("w86 done. public/japan-budget.html written.")
