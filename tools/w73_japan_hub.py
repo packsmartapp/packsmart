@@ -124,6 +124,7 @@ HUB_CSS = """<style id="jp-hub-css">
 .jp-lesson li.hot{background:#FFF1F4;box-shadow:0 0 0 2px #E94560 inset}.jp-lesson li.hot button{background:#E94560;animation:jpPing 1.6s ease-in-out 3}
 @keyframes jpPing{50%{box-shadow:0 0 0 7px rgba(233,69,96,.18)}}
 @media (prefers-reduced-motion:reduce){.jp-lesson li.hot button{animation:none}}
+.jp-wa{display:block;margin:10px 0 0;text-align:center;font-weight:800;font-size:.9rem;color:#fff;background:#25D366;border-radius:999px;padding:10px 14px;text-decoration:none}
 .jp-words-more{display:block;margin:12px 0 0;text-align:center;font-size:.86rem;font-weight:800;color:#0a8f78;background:#E6FAF5;border-radius:12px;padding:10px;text-decoration:none}
 .jp-words-note{margin:8px 0 0;font-size:.7rem;color:#8a93a6;text-align:center}
 .jp-words-mail{position:sticky;bottom:-16px;z-index:2;margin:12px 0 0;background:linear-gradient(135deg,#E6FAF5,#E8F4FC);border:1.5px solid #BFEDE3;border-radius:14px;padding:12px;font-size:.88rem;color:#0f0f23;box-shadow:0 -10px 18px rgba(255,255,255,.95)}
@@ -584,7 +585,7 @@ function openWords(){if(!words){words=document.createElement('div');words.classN
    '<h3 id="jpWordsT">Your first Japanese words <span lang="ja">🇯🇵</span></h3><p class="jp-words-sub">Tap 🔊 to hear each one. A smile and a small bow go a long way.</p><ul>'+
    WORDS.map(function(w,i){return '<li><i aria-hidden="true">'+w[0]+'</i><div><b>'+esc(w[3])+'<span lang="ja">'+esc(w[2])+'</span></b><small>'+esc(w[1])+'</small></div><button type="button" data-w="'+i+'" aria-label="Play: '+esc(w[1])+'">🔊</button></li>';}).join('')+
    '</ul><div class="jp-words-mail"><button type="button" class="jp-words-mbtn">📩 Email me these words</button></div>'+
-   '<a class="jp-words-more" href="/tokyo-pocket?src=hub_cat">📱 80+ more phrases in the Tokyo Pocket Guide · no app, works offline</a>'+
+   '<a class="jp-words-more" href="/japan-phrasebook?l=0&amp;src=hub_cat">📖 Fuku’s Phrasebook: every lesson, tap to hear · works offline</a>'+
    '<p class="jp-words-note">The voice is your phone’s or computer’s own.</p></div>';
   document.body.appendChild(words);
   words.addEventListener('click',function(e){if(e.target===words||e.target.closest('.jp-words-x')){closeWords();return;}
@@ -606,13 +607,13 @@ function mailForm(){var box=words.querySelector('.jp-words-mail'),known='';try{k
    if(!x[0]||!x[1].ok){btn.disabled=false;btn.textContent='Send';var er=f.querySelector('.e')||f.appendChild(document.createElement('span'));er.className='e';er.textContent=(x[1]&&x[1].error)||'Sorry, that did not work.';track('cat_words_mail_error');return;}
    try{localStorage.setItem('packy_email',em);}catch(e){}track('cat_words_mail_sent');
    box.innerHTML='<b>✅ Sent to '+esc(em)+'</b><p>Want trip tips for Japan before you go?</p><div class="r2"><button type="button" class="y">Yes please</button><button type="button" class="n">No thanks</button></div>';
-   box.querySelector('.n').addEventListener('click',function(){box.innerHTML='<b>✅ Sent to '+esc(em)+'</b><p>Check your inbox (and spam, just in case). Safe travels! 🇯🇵</p>';track('cat_words_tips_no');});
+   box.querySelector('.n').addEventListener('click',function(){box.innerHTML='<b>✅ Sent to '+esc(em)+'</b><p>Check your inbox (and spam, just in case). Safe travels! 🇯🇵</p>'+waBtn();track('cat_words_tips_no');});
    box.querySelector('.y').addEventListener('click',function(){var d=new Date();d.setDate(1);var ch='';
     for(var i=0;i<8;i++){var v=d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2);ch+='<button type="button" data-m="'+v+'">'+d.toLocaleString('en',{month:'short'})+(d.getMonth()===0||i===0?' '+d.getFullYear():'')+'</button>';d.setMonth(d.getMonth()+1);}
     box.innerHTML='<b>Great! When is your trip?</b><div class="r2">'+ch+'<button type="button" data-m="">Not sure</button></div><span class="f">You can unsubscribe any time.</span>';
     [].forEach.call(box.querySelectorAll('[data-m]'),function(m){m.addEventListener('click',function(){[].forEach.call(box.querySelectorAll('[data-m]'),function(z){z.disabled=true;});
      mailPost({update:true,from:'words',email:em,tips:true,trip:m.getAttribute('data-m'),country:'japan'}).then(function(x){
-      box.innerHTML=x[0]&&x[1].ok?'<b>🎉 You’re on the list</b><p>We’ll send a few useful tips before your trip. Your words are in your inbox now.</p>':'<b>Your words are on their way</b><p>'+esc((x[1]&&x[1].error)||'We could not save the trip tips, sorry.')+'</p>';
+      box.innerHTML=(x[0]&&x[1].ok?'<b>🎉 You’re on the list</b><p>We’ll send a few useful tips before your trip. Your words are in your inbox now.</p>':'<b>Your words are on their way</b><p>'+esc((x[1]&&x[1].error)||'We could not save the trip tips, sorry.')+'</p>')+waBtn();
       track(x[0]&&x[1].ok?'cat_words_tips_yes':'cat_words_tips_error');}).catch(function(){box.innerHTML='<b>Your words are on their way</b><p>We could not save the trip tips without a connection.</p>';});});});});
   }).catch(function(){btn.disabled=false;btn.textContent='Send';track('cat_words_mail_error');});});}
 var lesson=null,sayM=/^([1-9])-([1-9])$/.exec((function(){try{return new URLSearchParams(location.search).get('say')||'';}catch(e){return '';}})());
@@ -624,7 +625,7 @@ function openLesson(n,hot){var L=LESSONS[n];if(!L)return;if(lesson)lesson.remove
    '<h3 id="jpLessonT">Fuku’s lesson '+n+': '+esc(L.title)+'</h3><p class="jp-words-sub">Tap 🔊 to hear each phrase, then say it back. Slowly is fine!</p><ul>'+
    L.phrases.map(function(p,i){return '<li'+(i===hot?' class="hot"':'')+'><i aria-hidden="true">'+(i+1)+'</i><div><b>'+esc(p[0])+'<span lang="ja">'+esc(p[1])+'</span></b><small>'+esc(p[2])+'</small></div><button type="button" data-p="'+i+'" aria-label="Play: '+esc(p[2])+'">🔊</button></li>';}).join('')+
    '</ul><div class="jp-words-mail"><button type="button" class="jp-words-mbtn jp-lesson-words">👋 Fuku’s 8 starter words</button></div>'+
-   '<a class="jp-words-more" href="/tokyo-pocket?src=hub_lesson">📱 80+ more phrases in the Tokyo Pocket Guide · no app, works offline</a>'+
+   '<a class="jp-words-more" href="/japan-phrasebook?l='+n+'&amp;src=hub_lesson">📖 All of Fuku’s lessons in the Phrasebook · works offline</a>'+
    '<p class="jp-words-note">The voice is your phone’s or computer’s own.</p></div>';
   document.body.appendChild(lesson);
   lesson.addEventListener('click',function(e){if(e.target===lesson||e.target.closest('.jp-words-x')){closeLesson();return;}
@@ -635,6 +636,9 @@ function openLesson(n,hot){var L=LESSONS[n];if(!L)return;if(lesson)lesson.remove
   var h=lesson.querySelector('li.hot');if(h)try{h.scrollIntoView({block:'nearest'});}catch(e){}
   try{lesson.querySelector('li.hot button, .jp-words-x').focus({preventScroll:true});}catch(e){}
   track('lesson_open',n+(hot>=0?'-'+(hot+1):''));}
+function waBtn(){var t='🐱 Fuku’s first Japanese words for my trip:\\n'+WORDS.slice(0,4).map(function(w){return w[3]+' = '+w[1];}).join('\\n')+'\\n🔊 Hear them all (works offline): https://www.packsmartapp.com/japan-phrasebook?l=0&src=wa_self';
+ return '<a class="jp-wa" href="https://wa.me/?text='+encodeURIComponent(t)+'" target="_blank" rel="noopener">📲 Also send to my WhatsApp</a>';}
+document.addEventListener('click',function(e){if(e.target.closest&&e.target.closest('.jp-wa'))track('cat_words_wa');});
 function hideOffer(){if(offer)offer.hidden=true;cat.classList.remove('offering');}
 function showOffer(){if(offered)return;offered=true;try{sessionStorage.setItem('jpWordsOffer','1');}catch(e){}
  offer=document.createElement('div');offer.className='jp-cat-offer';offer.setAttribute('role','status');
