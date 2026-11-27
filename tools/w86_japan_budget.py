@@ -63,6 +63,7 @@ DATA = {
 # Ways to find what we do not price. Partner links reuse existing tracked links for the sketch (own Sub IDs before launch).
 LINKS = {
     "flights": ["Compare flights to Japan", "/flights?src=budget", False],
+    "hotels": ["Search hotels in Japan", "/flights?src=budget_hotels", False],
     "parks": ["Compare Tokyo Disney and theme park tickets", "https://www.getyourguide.com/s/?q=tokyo%20theme%20park%20tickets&partner_id=D7IXONS&cmp=ps-budget", True],
     "shinkansen": ["Book Shinkansen tickets online", "https://www.japan-bullettrain.com/?via=packsmart", True],
     "transfer": ["Book a private airport transfer", "https://tpo.lu/5TSGg9Tf", True],
@@ -231,7 +232,7 @@ function calc(){
  // what is not priced
  var np='';
  if(!fly)np+=line('Flights','<span class="np">not priced</span>')+go('flights');
- if(!hot)np+=line('Hotels','<span class="np">not priced</span>');
+ if(!hot)np+=line('Hotels','<span class="np">not priced</span>')+go('hotels');
  if(!food)np+=line('Food and drinks','<span class="np">not priced</span>');
  np+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>')+go('parks');
  if(S.nh&&(S.nt||S.nk))np+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
