@@ -79,6 +79,7 @@ const CASES = [
   ['What if the Shinkansen is 2 hours late?', '', /more than 2 hours late/],
   ['Is there a day pass for buses in Kyoto?', '', /Kyoto bus and subway day pass/],
   ['How much is a day pass for the Osaka subway?', '', /Osaka subway and bus day pass/],
+  ['Is there a pass for a day trip from Osaka to Nara?', '', /Nara day trip pass/],
   ['Ueno Zoo entrance fee for kids', 'ueno', /Ueno Zoo admission/],
   // 27 Nov, a tester: a Tokyo family budget got Asahiyama Zoo and Sapporo fares
   ['Can you give me the total cost, for a family of 4, from Singapore, for 10 days, 4 star hotels, and mostly in Tokyo, theme park, zoos, temple visits, taxi etc all included... what is the likely total cost? Planning in Feb 2027.', '', /tokyo subway ticket|departure tax|taxi in tokyo/i, /^sapporo|new chitose|hokkaido/i],
