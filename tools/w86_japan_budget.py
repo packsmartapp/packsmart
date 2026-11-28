@@ -393,6 +393,8 @@ button,input,select{font-family:inherit}
 @media(min-width:900px){.planner{display:grid;grid-template-columns:1fr auto;column-gap:16px}.planner>.mhead,.planner>.msub{grid-column:1}.planner>.filters{grid-column:2;grid-row:1/3;align-self:center;margin:0}.planner>.extra,.planner>.items{grid-column:1/-1}}
 @media(max-width:700px){.top.toy .brand p{display:none}.flag{font-size:1.2rem}.hrow2{gap:8px}.cur button{padding:5px 9px;font-size:.76rem}.top.toy .reset{padding:6px 11px;font-size:.78rem}}
 @media(max-width:560px){.bar.tray #barv{display:block}.bar.tray #barfull{display:none}.bar.tray .tper{display:none}.bar.tray .tpp{font-size:.62rem;padding:2px 8px}.bar.tray .tsum{font-size:.7rem}}
+.mtabs button[data-tab=review]{background:#34d399;border-color:#34d399;color:#06210f}.mtabs button[data-tab=review][aria-selected=true]{background:#22c55e;border-color:#2563eb}
+.rpanel[hidden],.filters[hidden]{display:none}.rpanel{margin-top:6px}.rpanel .rlist{padding:0;max-width:none}.rpanel .rsum{margin-top:14px}.rpanel .rgo{margin-top:12px}.rpanel .rmore{padding:0;max-width:none}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
@@ -459,6 +461,7 @@ button,input,select{font-family:inherit}
     </div>
     <div class="extra" data-tab="move"><p class="lab">🛬 Land at</p><div class="chips" data-g="arr"></div><p class="lab">🛫 Fly home from</p><div class="chips" data-g="dep"></div><div class="kinds" id="kinds" hidden></div><p class="lab" id="waylab">Which one</p><div class="chips sm" data-g="way"></div></div>
     <div class="items" id="items"></div>
+    <div class="rpanel" id="rpanel" hidden></div>
   </section>
   <div id="raw" hidden>
     <div class="row"><label>Adults<small>18 and older</small></label><div class="step" data-k="ad"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
@@ -499,7 +502,7 @@ button,input,select{font-family:inherit}
   <details class="srcs" id="srcs"><summary>Where these prices come from</summary><ul id="srclist"></ul></details>
   <p class="note">Prices are from the operators' and JNTO's official pages (listed under "Where these prices come from"), checked %%CHECKED%%, and are rounded: they change, so check the official page before you buy. Amounts are in Japanese yen. Partner links are marked; we may earn a commission at no cost to you.</p>
 </main>
-<div class="bar tray" id="bar"><span class="tbadge" aria-hidden="true"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><rect x="12" y="18" width="40" height="38" rx="7" fill="#7cc4f5" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M24 18v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 18v38M42 18v38" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="34" r="5" fill="#ffd166" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg><i id="tcount">0</i></span><div class="tmid"><div class="tth"><span class="tpp" id="tpp"></span><span class="tper" id="tper"></span><b class="tt" hidden>My Japan Trip</b><span class="tmode" id="tmode" hidden></span></div><div class="tsum" id="tsum"></div><div class="tchips" id="tchips" hidden></div></div><div class="ttot"><small>Est. budget</small><b id="barv"></b><b id="barfull"></b></div><button type="button" class="tgo" id="review">Review<span class="long"> Plan</span> <span aria-hidden="true">👉</span></button></div>
+<div class="bar tray" id="bar"><span class="tbadge" aria-hidden="true"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><rect x="12" y="18" width="40" height="38" rx="7" fill="#7cc4f5" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M24 18v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 18v38M42 18v38" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="34" r="5" fill="#ffd166" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg><i id="tcount">0</i></span><div class="tmid"><div class="tth"><span class="tpp" id="tpp"></span><span class="tper" id="tper"></span><b class="tt" hidden>My Japan Trip</b><span class="tmode" id="tmode" hidden></span></div><div class="tsum" id="tsum"></div><div class="tchips" id="tchips" hidden></div></div><div class="ttot"><small>Est. budget</small><b id="barv"></b><b id="barfull"></b></div><button type="button" class="tgo" id="review">Review<span class="long"> &amp; Book</span> <span aria-hidden="true">👉</span></button></div>
 <div class="rsheet" id="rsheet" hidden role="dialog" aria-modal="true" aria-labelledby="rtitle"><div class="rhead"><span class="rico" aria-hidden="true"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><rect x="12" y="18" width="40" height="38" rx="7" fill="#7cc4f5" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M24 18v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 18v38M42 18v38" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="34" r="5" fill="#ffd166" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg></span><div><h2 id="rtitle">Your Japan Trip</h2><p>Check your trip before you book.</p></div><button type="button" class="rx" id="rclose" aria-label="Close">✕</button></div><div class="rscroll" id="rscroll"><div class="rlist" id="rlist"></div><div class="rmore" id="rmore"></div></div><div class="rfoot"><div class="rsum" id="rsum"></div><button type="button" class="rgo" id="rgo"><span aria-hidden="true">🧳</span> Booking links &amp; share ↓</button></div></div>
 <script>
 (function(){
@@ -634,7 +637,7 @@ function calc(){
   document.getElementById('res').innerHTML=h;
   var cc=CURS[CUR];function k(n){n=n/cc[1];return n>=1e6?(n/1e6).toFixed(2).replace(/0$/,'')+'M':n>=1e4?Math.round(n/1000)+'K':Math.round(n).toLocaleString('en-US');}document.getElementById('barv').textContent=cc[0]+k(tlo)+(thi>tlo?'–'+k(thi):'');document.getElementById('barv').setAttribute('data-full',tv);document.getElementById('barfull').textContent=tv;document.getElementById('tpp').textContent=ppl+' people · '+nights+' nights';document.getElementById('tper').textContent='~'+y(tlo/Math.max(1,ppl))+(thi>tlo?'–'+y(thi/Math.max(1,ppl)).replace(/^[¥$₹]/,''):'')+' / person';
   document.getElementById('srclist').innerHTML=SRC.map(function(x){return '<li><a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0]||x[1])+'</a></li>';}).join('');
-  sync();items();kidsUI();if(!$('rsheet').hidden)rrows();var bb=document.getElementById('bar');if(bb.getAttribute('data-v')!==tv){bb.setAttribute('data-v',tv);bb.classList.remove('tick');void bb.offsetWidth;bb.classList.add('tick');}
+  sync();items();kidsUI();if(TAB==='review')rrows();var bb=document.getElementById('bar');if(bb.getAttribute('data-v')!==tv){bb.setAttribute('data-v',tv);bb.classList.remove('tick');void bb.offsetWidth;bb.classList.add('tick');}
  document.getElementById('planlink').href='/?dest=Japan&adults='+ad+'&kids='+(ch+inf)+'&src=budget_plan#plan';
  saveUrl();
 }
@@ -712,7 +715,8 @@ var TABS=[['trav','👨‍👩‍👧‍👦','Travelers','Who is going, and you
  ['food','🍜','Food','How you like to eat, per day for the group.'],
  ['fun','🎢','Attractions','Theme parks and days out. Tap Tokyo Disney again for more days.'],
  ['move','🚆','Transit','Airport trips, the rail pass, taxis and a car.'],
- ['pre','🧳','Essentials','eSIM, insurance and the departure tax.']],TAB='trav',FIL='';
+ ['pre','🧳','Essentials','eSIM, insurance and the departure tax.'],
+ ['review','🧾','Review & Book','Your whole trip. Change anything here or in the tabs above; booking links and sharing are below.']],TAB='trav',FIL='';
 var FILS=[['kid','🧸','Kid-Friendly'],['rail','🚄','JR Pass / Rail'],['nocar','🚶','No Car Needed'],['budget','🪙','Budget Pick']];
 function hotelBy(){return D.hotelStyles[$('hstyle').value];}
 function airCost(k){var g=ppl0();function pickK(ap,cur){var a=D.airport[ap].ways;return (cur&&a.filter(function(x){return x.id===cur&&x.k===k;})[0])||a.filter(function(x){return x.k===k;})[0]||null;}
@@ -783,12 +787,12 @@ function items(){var cur=TABS.filter(function(t){return t[0]===TAB;})[0]||TABS[0
  $('mtabs').innerHTML=TABS.map(function(t){var n=CARDS.filter(function(c){var st=state(c);return c[0]===t[0]&&st.n&&!st.fixed&&!st.radio&&!st.ppl;}).length;return '<button type="button" role="tab" data-tab="'+t[0]+'" aria-selected="'+(t[0]===TAB)+'"><span aria-hidden="true">'+t[1]+'</span> '+t[2]+(n?' <i>'+n+'</i>':'')+'</button>';}).join('');
  $('memo').textContent=cur[1];$('mtitle').textContent=cur[2];$('msub').textContent=cur[3]+' Prices are for your group.';
  $('fchips').innerHTML='<button type="button" data-fil="" aria-pressed="'+(!FIL)+'" class="all">All options</button>'+FILS.map(function(f){return '<button type="button" data-fil="'+f[0]+'" aria-pressed="'+(FIL===f[0])+'"><span aria-hidden="true">'+f[1]+'</span> '+f[2]+'</button>';}).join('');
- [].forEach.call(document.querySelectorAll('.extra'),function(x){x.hidden=x.getAttribute('data-tab')!==TAB;});
- var list=CARDS.filter(function(c){return c[0]===TAB&&(!FIL||c[7].indexOf(FIL)>=0);});var pp0=g.ad+g.ch+g.inf,nn0=S.nt+S.nk+S.no+S.nh,fr0=$('from').value,FSN={budget:'Konbini & casual',mid:'Cafés & izakaya',treat:'Treat yourself',own:'Your food figure'};
+ [].forEach.call(document.querySelectorAll('.extra'),function(x){x.hidden=x.getAttribute('data-tab')!==TAB;});var isR=TAB==='review';$('rpanel').hidden=!isR;document.querySelector('.filters').hidden=isR;if(isR)rrows();
+ var list=TAB==='review'?[]:CARDS.filter(function(c){return c[0]===TAB&&(!FIL||c[7].indexOf(FIL)>=0);});var pp0=g.ad+g.ch+g.inf,nn0=S.nt+S.nk+S.no+S.nh,fr0=$('from').value,FSN={budget:'Konbini & casual',mid:'Cafés & izakaya',treat:'Treat yourself',own:'Your food figure'};
  var ncity=['nt','nk','no','nh'].filter(function(x){return S[x];}).length,hsn0={budget:'Budget',mid:'Mid-range',upscale:'Upscale',luxury:'Luxury',own:'Your rate'}[$('hstyle').value]||'';
  $('mcount').textContent={trav:pp0+' travellers · '+(STYLE?STY[STYLE][0]:'Custom'),cities:ncity+' cit'+(ncity===1?'y':'ies')+' · '+nn0+' nights',stays:hsn0+' · '+S.rm+' room'+(S.rm>1?'s':'')+' · '+nn0+' nights',
   flight:fr0&&fr0!=='own'?cityName(fr0)+' · economy return':'Choose your city',food:(FSN[$('fstyle').value]||'')+' · '+(nn0+1)+' days',fun:'Kid-friendly parks',
-  move:'Arrival: '+(D.airport[arr.value]||{name:''}).name.replace(/ \(.*\)/,'')+' · '+({train:'Train',bus:'Bus',taxi:'Taxi',private:'Private car'}[KIND]||''),pre:'Before you fly'}[TAB]||'';
+  move:'Arrival: '+(D.airport[arr.value]||{name:''}).name.replace(/ \(.*\)/,'')+' · '+({train:'Train',bus:'Bus',taxi:'Taxi',private:'Private car'}[KIND]||''),pre:'Before you fly',review:'Estimate '+($('barv').getAttribute('data-full')||$('barv').textContent)}[TAB]||'';
  if($('psel'))$('psel').textContent=fr0&&fr0!=='own'?'Selected: '+cityName(fr0):'';
  $('items').innerHTML=list.length?list.map(function(c){var st=state(c),k=c[1],on=st.n>0;
   var price=st.big?esc(st.big):st.pr?rng(st.pr[0],st.pr[1]):'<em>'+esc(st.note||'')+'</em>';
@@ -802,7 +806,7 @@ function items(){var cur=TABS.filter(function(t){return t[0]===TAB;})[0]||TABS[0
    :on?'<button type="button" class="add rm" data-act="rm" data-k="'+k+'">✓ Added</button>':'<button type="button" class="add" data-act="add" data-k="'+k+'">+ Add to Trip</button>';
   return '<div class="it'+(on&&!st.fixed&&(!st.ppl||st.n>0)?' on':'')+(st.off?' off':'')+'"><div class="tags">'+c[6].map(function(x,i){return '<span class="t'+(x==='Kid fav'?'f':Math.min(i,2))+'">'+esc(x)+'</span>';}).join('')+'</div>'+
    '<div class="art" style="background:'+c[3]+'" aria-hidden="true">'+ICON[c[2]]+'</div><h3>'+esc(c[4])+'</h3><p>'+esc(c[5])+'</p><div class="foot"><div class="pr"><small>'+esc(st.label||'')+'</small>'+price+'</div>'+act+'</div></div>';}).join('')
-  :'<p class="none">Nothing here matches that filter. <button type="button" data-fil="'+FIL+'">Show all</button></p>';
+  :TAB==='review'?'':'<p class="none">Nothing here matches that filter. <button type="button" data-fil="'+FIL+'">Show all</button></p>';
  // the tray
  var cities=['nt','nk','no','nh'].filter(function(k){return S[k];}).map(function(k){return NIGHTS[k]+' ('+S[k]+'n)';}),pp=g.ad+g.ch+g.inf,nn=S.nt+S.nk+S.no+S.nh,cnt=0;
  CARDS.forEach(function(c){var st=state(c);if(st.n&&!st.ppl&&!st.city)cnt++;});
@@ -818,7 +822,7 @@ function openSheet(id){['whosheet','fromsheet'].forEach(function(x){var o=x===id
 
 [].forEach.call(document.querySelectorAll('[data-close]'),function(b){b.addEventListener('click',function(){openSheet('');});});
 $('mtabs').addEventListener('click',function(e){var b=e.target.closest('[data-tab]');if(!b)return;TAB=b.getAttribute('data-tab');FIL='';items();track('tab',TAB);scrollTo(0,0);var sel=document.querySelector('#mtabs [aria-selected=true]');if(sel&&sel.scrollIntoView)sel.scrollIntoView({inline:'center',block:'nearest'});});
-document.querySelector('.planner').addEventListener('click',function(e){var f=e.target.closest('[data-fil]');if(f){var v=f.getAttribute('data-fil');FIL=(!v||FIL===v)?'':v;items();track('filter',FIL);return;}
+document.querySelector('.planner').addEventListener('click',function(e){if(e.target.closest('#rpanel'))return;var f=e.target.closest('[data-fil]');if(f){var v=f.getAttribute('data-fil');FIL=(!v||FIL===v)?'':v;items();track('filter',FIL);return;}
  var b=e.target.closest('[data-act]');if(!b)return;var k=b.getAttribute('data-k'),a=b.getAttribute('data-act');
  if(a==='from'){var pl=document.querySelector('.panel');if(pl)pl.scrollIntoView({behavior:'smooth',block:'center'});return;}
  if(a==='cadd'||a==='crm'){var ck2=k.slice(2);setS(ck2,a==='cadd'?(ADD[ck2]||2):0);calc();track(a==='cadd'?'add':'remove',k);return;}
@@ -836,12 +840,12 @@ function rrows(){var g=ppl0(),out=[];CARDS.forEach(function(c){var st=state(c);i
  var pp=g.ad+g.ch+g.inf,nn=S.nt+S.nk+S.no+S.nh;
  $('rsum').innerHTML='<div><span>🧭 Travel style</span><span class="pill">'+esc(STYLE?STY[STYLE][0]:'Custom')+'</span></div><div><span>👨‍👩‍👧‍👦 Who and how long</span><span>'+pp+' people · '+nn+' nights</span></div>'+
   '<div><span>🧳 In your trip</span><span>'+out.length+' items</span></div><div class="gt"><span>Estimated total</span><span>'+esc($('barv').getAttribute('data-full')||$('barv').textContent)+'</span></div>';}
-function openReview(){rrows();$('rsheet').hidden=false;document.body.style.overflow='hidden';track('review','open');}
+function openReview(){TAB='review';FIL='';items();scrollTo(0,0);var sel=document.querySelector('#mtabs [aria-selected=true]');if(sel&&sel.scrollIntoView)sel.scrollIntoView({inline:'center',block:'nearest'});track('review','open');}
 function closeReview(){$('rsheet').hidden=true;document.body.style.overflow='';}
 $('review').addEventListener('click',openReview);$('rclose').addEventListener('click',closeReview);
 $('rgo').addEventListener('click',function(){track('review','links');$('res').scrollIntoView({behavior:'smooth'});});
-(function(){var m=$('rmore');[$('res'),$('keep'),document.querySelector('.plan'),$('srcs'),document.querySelector('main > .note')].forEach(function(x){if(x)m.appendChild(x);});})();
-$('rsheet').addEventListener('click',function(e){var t=e.target.closest('[data-tabgo]');if(t){TAB=t.getAttribute('data-tabgo');FIL='';closeReview();items();document.querySelector('.planner').scrollIntoView({behavior:'smooth'});return;}
+(function(){var rp=$('rpanel');rp.appendChild($('rlist'));rp.appendChild($('rsum'));rp.appendChild($('rgo'));rp.appendChild($('rmore'));var m=$('rmore');[$('res'),$('keep'),document.querySelector('.plan'),$('srcs'),document.querySelector('main > .note')].forEach(function(x){if(x)m.appendChild(x);});})();
+$('rpanel').addEventListener('click',function(e){var t=e.target.closest('[data-tabgo]');if(t){TAB=t.getAttribute('data-tabgo');FIL='';closeReview();items();document.querySelector('.planner').scrollIntoView({behavior:'smooth'});return;}
  var b=e.target.closest('[data-act]');if(!b)return;var k=b.getAttribute('data-k'),a=b.getAttribute('data-act');
  if(['sanrio','zoo','jr'].indexOf(k)>=0){$(k).value='0';fire($(k));}else{var n=S[k];n=a==='rm'?0:a==='inc'?Math.min(MAX[k],n+1):Math.max(0,n-1);setS(k,n);calc();}
  rrows();track(a==='inc'?'add':'remove',k);});
