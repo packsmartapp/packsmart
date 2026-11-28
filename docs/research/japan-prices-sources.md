@@ -134,3 +134,10 @@ Approximate prices a first-time visitor asks about, from official pages only (op
 - www.limousinebus.co.jp: curl gets a CloudFront 403; a headless browser worked, but was throttled after several requests
 - www.kotsu.metro.tokyo.jp: curl gets a bot-check page; a headless browser worked
 - www.jrhokkaido.co.jp: some requests got no connection, others worked
+
+## Attractions added 28 Nov 2026 (read from screenshots of the official sites)
+
+- **Universal Studios Japan, 1 Day Studio Pass:** adult from 8,400 yen (incl. tax); "prices vary depending on the date of admission". Children's price not shown on the ticket list page. Source: usj.co.jp tickets page. Checked 28 Nov 2026.
+- **Shibuya Sky (Shibuya Scramble Square):** adults (12 and over) 2,700 yen for entry until 14:59, 3,400 yen from 15:00 (web); at the counter 3,000 / 3,700 yen. Children 1,200 yen, sold only at the counter on the day; preschoolers under 6 free. Tickets on sale up to 2 weeks ahead. Source: shibuya-scramble-square.com/sky ticket page. Checked 28 Nov 2026.
+- **Tokyo Skytree:** Combo ticket (Floor 350 and 450) adults 15 and over from 3,000 yen, children 6 to 14 from 1,500 yen; Tembo Deck adults from 1,800 yen, children from 900 yen; Tembo Galleria adults 1,400 yen, children 700 yen; 5 and under free; 500 yen fee per ticket at the 4th-floor counter or machines. Source: tokyo-skytree.jp tickets page. Checked 28 Nov 2026.
+- **Ghibli Museum, Mitaka:** 19 and over 1,000 yen, 13 to 18 700 yen, 7 to 12 400 yen, 4 to 6 100 yen, 3 and under free. Advance reservation only; no tickets sold at the museum. Source: ghibli-museum.jp tickets page. Checked 28 Nov 2026.
