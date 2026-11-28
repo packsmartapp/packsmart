@@ -19,7 +19,7 @@ The total says what it covers. No made-up numbers: anything without an official 
 Partner links reuse Packy's tracked links until the page has its own Sub IDs (budget-esim, budget-transfer).
 Writes public/japan-budget.html. Run after w85 and before w72:  python3 tools/w86_japan_budget.py
 """
-import json, os
+import json, os, re
 
 PUB = os.path.join(os.getcwd(), "public")
 # Guided multi-day tours (TourRadar): off until TourRadar confirms the links credit the PackSmartApp partner account
@@ -27,6 +27,23 @@ PUB = os.path.join(os.getcwd(), "public")
 # the "multitour" offer in api/_offers.js to on.
 TOURS_ON = True
 CHECKED = "24 Nov 2026"
+
+# "Flying from": cities whose travellers often visit Japan, grouped by region. Codes are Travelpayouts city codes
+# (metro codes where a city has several airports). api/flight-price.js only accepts these; w86 checks they match.
+FROM = [
+    ("Southeast Asia", [("SIN", "Singapore"), ("KUL", "Kuala Lumpur"), ("BKK", "Bangkok"), ("JKT", "Jakarta"), ("DPS", "Bali (Denpasar)"),
+                        ("MNL", "Manila"), ("SGN", "Ho Chi Minh City"), ("HAN", "Hanoi")]),
+    ("East Asia", [("HKG", "Hong Kong"), ("TPE", "Taipei"), ("SEL", "Seoul"), ("PUS", "Busan"), ("SHA", "Shanghai"), ("BJS", "Beijing")]),
+    ("South Asia", [("BOM", "Mumbai"), ("DEL", "Delhi"), ("BLR", "Bengaluru"), ("MAA", "Chennai"), ("HYD", "Hyderabad"), ("CCU", "Kolkata"),
+                    ("CMB", "Colombo"), ("KTM", "Kathmandu"), ("DAC", "Dhaka")]),
+    ("Australia and New Zealand", [("SYD", "Sydney"), ("MEL", "Melbourne"), ("BNE", "Brisbane"), ("PER", "Perth"), ("AKL", "Auckland")]),
+    ("Middle East", [("DXB", "Dubai"), ("AUH", "Abu Dhabi"), ("DOH", "Doha"), ("RUH", "Riyadh"), ("IST", "Istanbul")]),
+    ("Europe", [("LON", "London"), ("PAR", "Paris"), ("FRA", "Frankfurt"), ("MUC", "Munich"), ("BER", "Berlin"), ("AMS", "Amsterdam"),
+                ("ZRH", "Zurich"), ("VIE", "Vienna"), ("MAD", "Madrid"), ("BCN", "Barcelona"), ("ROM", "Rome"), ("MIL", "Milan"),
+                ("HEL", "Helsinki"), ("WAW", "Warsaw")]),
+    ("North America", [("LAX", "Los Angeles"), ("SFO", "San Francisco"), ("SEA", "Seattle"), ("NYC", "New York"), ("CHI", "Chicago"),
+                       ("HNL", "Honolulu"), ("YVR", "Vancouver"), ("YTO", "Toronto")]),
+]
 
 # Every price here is copied from docs/research/japan-prices-sources.md (official pages). [adult, child 6-11] in yen.
 DATA = {
@@ -189,7 +206,7 @@ input[type=number]{width:130px}
     <div class="row stack"><label for="fstyle">Food style</label><select id="fstyle"><option value="">Choose a style</option><option value="budget">Budget</option><option value="mid">Mid-range</option><option value="treat">Treat yourself</option><option value="own">I'll type my own amount</option></select></div>
     <p class="hint" id="fhint" hidden></p>
     <div class="row" id="fown" hidden><label for="food">Food per person per day</label><input type="number" id="food" inputmode="numeric" min="0" step="500" placeholder="e.g. 5000"></div>
-    <div class="row stack"><label for="from">Flying from</label><select id="from"><option value="">Choose a city</option><option value="SIN">Singapore</option><option value="KUL">Kuala Lumpur</option><option value="BKK">Bangkok</option><option value="HKG">Hong Kong</option><option value="BOM">Mumbai</option><option value="DEL">Delhi</option><option value="BLR">Bangalore</option><option value="SYD">Sydney</option><option value="LON">London</option><option value="LAX">Los Angeles</option><option value="NYC">New York</option><option value="own">Somewhere else: I'll type my fare</option></select></div>
+    <div class="row stack"><label for="from">Flying from</label><select id="from"><option value="">Choose a city</option>%%FROM%%<option value="own">Somewhere else: I'll type my fare</option></select></div>
     <p class="hint" id="flyhint" hidden></p>
     <div class="row" id="flyown" hidden><label for="fly">Flights, total<small>all travellers, return</small></label><input type="number" id="fly" inputmode="numeric" min="0" step="1000" placeholder="e.g. 280000"></div>
   </section>
@@ -305,9 +322,14 @@ calc();track('open');
 </body>
 </html>
 """
+_api = open(os.path.join(os.getcwd(), "api", "flight-price.js"), encoding="utf-8").read()
+_codes = [c for _, cs in FROM for c, _ in cs]
+assert len(_codes) == len(set(_codes)), "duplicate city code"
+assert set(re.findall(r"'([A-Z]{3})'", re.search(r"ORIGINS = new Set\(\[(.*?)\]\)", _api, re.S).group(1))) == set(_codes), "api/flight-price.js ORIGINS differ from FROM"
+FROM_HTML = "".join('<optgroup label="' + g + '">' + "".join('<option value="' + c + '">' + n + "</option>" for c, n in cs) + "</optgroup>" for g, cs in FROM)
 LINKS_OUT = {k: v for k, v in LINKS.items() if TOURS_ON or not k.startswith("tours")}
 html = (PAGE.replace("%%TOURS%%", "true" if TOURS_ON else "false").replace("%%DATA%%", json.dumps(DATA, ensure_ascii=False))
-        .replace("%%LINKS%%", json.dumps(LINKS_OUT, ensure_ascii=False)).replace("%%CHECKED%%", CHECKED))
+        .replace("%%LINKS%%", json.dumps(LINKS_OUT, ensure_ascii=False)).replace("%%CHECKED%%", CHECKED).replace("%%FROM%%", FROM_HTML))
 assert "%%" not in html
 open(os.path.join(PUB, "japan-budget.html"), "w", encoding="utf-8").write(html)
 print("w86 done. public/japan-budget.html written.")
