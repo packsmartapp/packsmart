@@ -189,6 +189,25 @@ input[type=number]{width:130px}
 .cost .ln{border-top:1px solid #e1efeb;color:var(--dark)}.cost .ln:first-child{border-top:0}
 .cost .ln .l small{color:var(--muted)}.cost .bkl{color:#0a8f78}.cost .np{color:#c0293f}
 .res .tot b{font-size:2.1rem}
+.lab{margin:14px 0 6px;font-weight:700;font-size:.9rem;color:var(--dark)}.lab small{font-weight:500;color:var(--muted);font-size:.74rem}
+.chips{display:flex;flex-wrap:wrap;gap:6px}.chips[hidden]{display:none}
+.chips button,.tiles button{font:inherit;font-size:.86rem;font-weight:700;padding:8px 12px;border-radius:999px;border:1.5px solid var(--line);background:#fff;color:var(--dark);cursor:pointer;transition:background .15s,border-color .15s,transform .1s}
+.chips button:active,.tiles button:active{transform:scale(.95)}
+.chips button[aria-pressed=true]{border-color:var(--primary);background:#e6faf5;color:#07624f}
+.chips.sm{margin-top:6px}.chips.sm button{font-size:.78rem;padding:6px 10px}
+.tiles{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:8px}
+.tiles button{border-radius:16px;padding:12px 4px 10px;font-size:.8rem;line-height:1.25}.tiles button span{display:block;font-size:1.6rem;margin-bottom:4px}
+.tiles button[aria-pressed=true]{border-color:var(--primary);background:#e6faf5;box-shadow:0 2px 8px rgba(0,201,167,.18)}
+.tiles button[disabled]{opacity:.45;cursor:default}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:0 14px}.grid2 .row{border-top:0;padding:6px 0;flex-direction:column;align-items:flex-start;gap:4px}.grid2 .row label{font-size:.88rem}
+.grid2 .step button{width:32px;height:32px}.grid2 .step output{min-width:20px}
+details.more summary,details.info summary{cursor:pointer;font-size:.8rem;font-weight:700;color:#0a8f78;margin:8px 0 2px}
+details.info[hidden]{display:none}
+.bd{margin:12px -16px -16px;border-top:1.5px solid var(--line)}
+.bd summary{cursor:pointer;list-style:none;padding:10px 16px;font-size:.84rem;font-weight:700;color:#0a8f78;background:#f4faf8;border-radius:0 0 16px 16px}
+.bd summary::-webkit-details-marker{display:none}.bd summary::after{content:' ▾'}.bd[open] summary::after{content:' ▴'}.bd[open] summary{border-radius:0}
+.bd .cost{margin:0;border-top:0}
+.bar.tick b{animation:tick .45s}@keyframes tick{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}.bar b{display:inline-block}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
@@ -217,7 +236,7 @@ input[type=number]{width:130px}
 .srcs ul{margin:0 0 12px;padding-left:1.1rem;font-size:.84rem;line-height:1.6}
 .bar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);max-width:calc(100% - 24px);display:flex;gap:10px;align-items:center;background:var(--dark);color:#fff;border-radius:999px;padding:9px 16px;font-size:.86rem;box-shadow:0 6px 20px rgba(15,15,35,.3);text-decoration:none;white-space:nowrap;z-index:20}
 .bar b{color:var(--primary)}@media(max-width:380px){#barp{display:none}}.bar[hidden]{display:none}
-@media print{.top a,.bar,.keep,.plan,.sh,.go,.bkl,.row,.kinds,.hint,.q,.card .h,#way{display:none!important}.card{border:0;padding:0;margin:8px 0}.cost{margin:0;background:#fff;border:0}
+@media print{.bd summary,.chips,.tiles,details.info summary,details.more{display:none!important}.bd{margin:0;border:0}.top a,.bar,.keep,.plan,.sh,.go,.bkl,.row,.kinds,.hint,.q,.card .h,#way{display:none!important}.card{border:0;padding:0;margin:8px 0}.cost{margin:0;background:#fff;border:0}
  body{background:#fff}.res{background:#fff;color:#0f0f23;border:1px solid #ccc}.res h2,.total h3,.ck .t{color:#0f0f23}.ln .l small,.ck .t small,.peek{color:#555}
  .srcs{border:0;padding:0}.srcs[open] summary,.srcs summary{list-style:none}.printsum{display:block!important}}
 .printsum{display:none;font-size:.9rem;margin:0 0 8px}
@@ -230,52 +249,69 @@ input[type=number]{width:130px}
   <p>Three questions give you a number. Every choice below shows what it costs, from official prices where we have them.</p>
 </header>
 <main>
-  <section class="card"><h2>Your trip</h2><p class="h">Three questions and you have a number. Fine-tune below.</p>
-    <p class="q">1. Who is going?<small>On trains and buses, 12 and up pay adult fares, 6 to 11 child fares; under 6 usually ride free.</small></p>
+  <section class="card"><h2>Your trip</h2><p class="h">Tap around: the total at the bottom moves as you go.</p>
+    <p class="q">1. Who is going?</p>
+    <div class="chips" data-g="who"></div>
     <div class="row"><label>Adults<small>18 and older</small></label><div class="step" data-k="ad"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
-    <div class="row"><label>Teenagers<small>12 to 17</small></label><div class="step" data-k="tn"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label>Children<small>6 to 11</small></label><div class="step" data-k="ch"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    <details class="more"><summary>Teenagers and little ones</summary>
+    <div class="row"><label>Teenagers<small>12 to 17</small></label><div class="step" data-k="tn"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label>Little ones<small>under 6</small></label><div class="step" data-k="in"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+      <p class="hint">On trains and buses, 12 and up pay adult fares, 6 to 11 child fares; under 6 usually ride free.</p></details>
     <p class="q">2. Nights in each area</p>
-    <div class="row"><label>Tokyo</label><div class="step" data-k="nt"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>9</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
-    <div class="row"><label>Kyoto</label><div class="step" data-k="nk"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
-    <div class="row"><label>Osaka</label><div class="step" data-k="no"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
-    <div class="row"><label>Hokkaido<small>Sapporo</small></label><div class="step" data-k="nh"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
-    <p class="q">3. Your travel style<small>Sets the hotel, food and airport transfer; change any of them below.</small></p>
+    <div class="grid2">
+    <div class="row"><label>🗼 Tokyo</label><div class="step" data-k="nt"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>9</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    <div class="row"><label>⛩️ Kyoto</label><div class="step" data-k="nk"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    <div class="row"><label>🏯 Osaka</label><div class="step" data-k="no"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    <div class="row"><label>❄️ Hokkaido<small>Sapporo</small></label><div class="step" data-k="nh"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    </div>
+    <p class="q">3. Your travel style</p>
     <div class="kinds styles" id="styles" role="radiogroup" aria-label="Travel style"></div>
   </section>
-  <section class="card sec"><h2>🎢 Things to do <span class="sub" id="s-exp"></span></h2><p class="h">The big days out. More are coming.</p>
+  <section class="card sec"><h2>🎢 Things to do <span class="sub" id="s-exp"></span></h2><p class="h">Tap to add. Tap Disney again for more days. More are coming.</p>
+    <div class="tiles" data-g="todo"></div>
+    <details class="bd"><summary>See the breakdown</summary><div class="cost" id="c-exp"></div></details>
+  </section>
+  <section class="card sec"><h2>✈️ Flights, hotel and food <span class="sub" id="s-stay"></span></h2>
+    <p class="lab">Flying from</p><div class="chips" data-g="from"></div>
+    <div class="row stack" id="fromrow" hidden><label for="from">Other city</label><select id="from"><option value="">Choose a city</option>%%FROM%%<option value="own">Somewhere else: I'll type my fare</option></select></div>
+    <p class="hint" id="flyhint" hidden></p>
+    <div class="row" id="flyown" hidden><label for="fly">Flights, total<small>all travellers, return</small></label><input type="number" id="fly" inputmode="numeric" min="0" step="1000" placeholder="e.g. 280000"></div>
+    <p class="lab">🏨 Hotel</p><div class="chips" data-g="hstyle"></div>
+    <details class="info" id="hinfo"><summary>ⓘ How we price this</summary><p class="hint" id="hhint"></p></details>
+    <div class="row" id="hrooms" hidden><label>Rooms<small>most Japanese rooms sleep 2</small></label><div class="step" data-k="rm"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    <div class="row" id="hown" hidden><label for="hotel">Your hotel per night<small>all rooms together</small></label><input type="number" id="hotel" inputmode="numeric" min="0" step="1000" placeholder="e.g. 25000"></div>
+    <p class="lab">🍜 Food</p><div class="chips" data-g="fstyle"></div>
+    <details class="info" id="finfo"><summary>ⓘ How we price this</summary><p class="hint" id="fhint"></p></details>
+    <div class="row" id="fown" hidden><label for="food">Food per person per day</label><input type="number" id="food" inputmode="numeric" min="0" step="500" placeholder="e.g. 5000"></div>
+    <details class="bd"><summary>See the breakdown</summary><div class="cost" id="c-stay"></div></details>
+  </section>
+  <section class="card sec"><h2>🚆 Getting around <span class="sub" id="s-move"></span></h2>
+    <p class="lab">Land at</p><div class="chips" data-g="arr"></div>
+    <p class="lab">Fly home from</p><div class="chips" data-g="dep"></div>
+    <p class="lab">To and from the airport</p><div class="kinds" id="kinds" role="radiogroup" aria-label="To and from the airport"></div>
+    <div class="chips sm" data-g="way"></div>
+    <p class="lab">Taxi rides in town <small>about 7 km each</small></p><div class="chips" data-g="tx"></div>
+    <p class="lab">🚗 Rental car <small>for Hokkaido and the countryside</small></p><div class="chips" data-g="cr"></div>
+    <div class="tiles" data-g="extras"></div>
+    <details class="bd"><summary>See the breakdown</summary><div class="cost" id="c-move"></div></details>
+  </section>
+  <section class="card sec"><h2>🧳 Before you go <span class="sub" id="s-pre"></span></h2><p class="h">eSIM, insurance and the departure tax.</p>
+    <details class="bd"><summary>See the breakdown</summary><div class="cost" id="c-pre"></div></details>
+  </section>
+  <div id="raw" hidden>
     <div class="row"><label>Tokyo Disney days<small>Disneyland or DisneySea, 1 park a day</small></label><div class="step" data-k="dn"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label for="sanrio">Sanrio Puroland</label><select id="sanrio"><option value="0">No</option><option value="1">Yes</option></select></div>
     <div class="row"><label for="zoo">Ueno Zoo</label><select id="zoo"><option value="0">No</option><option value="1">Yes</option></select></div>
-    <div class="cost" id="c-exp"></div>
-  </section>
-  <section class="card sec"><h2>✈️ Flights, hotel and food <span class="sub" id="s-stay"></span></h2><p class="h">In yen. Type your own figure if you already know it.</p>
     <div class="row stack"><label for="hstyle">Hotel style</label><select id="hstyle"><option value="budget">Budget</option><option value="mid" selected>Mid-range</option><option value="upscale">Upscale</option><option value="luxury">Luxury</option><option value="own">I'll type my own price</option></select></div>
-    <p class="hint" id="hhint" hidden></p>
-    <div class="row" id="hrooms" hidden><label>Rooms<small>most Japanese rooms sleep 2</small></label><div class="step" data-k="rm"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
-    <div class="row" id="hown" hidden><label for="hotel">Your hotel per night<small>all rooms together</small></label><input type="number" id="hotel" inputmode="numeric" min="0" step="1000" placeholder="e.g. 25000"></div>
     <div class="row stack"><label for="fstyle">Food style</label><select id="fstyle"><option value="budget">Budget</option><option value="mid" selected>Mid-range</option><option value="treat">Treat yourself</option><option value="own">I'll type my own amount</option></select></div>
-    <p class="hint" id="fhint" hidden></p>
-    <div class="row" id="fown" hidden><label for="food">Food per person per day</label><input type="number" id="food" inputmode="numeric" min="0" step="500" placeholder="e.g. 5000"></div>
-    <div class="row stack"><label for="from">Flying from</label><select id="from"><option value="">Choose a city</option>%%FROM%%<option value="own">Somewhere else: I'll type my fare</option></select></div>
-    <p class="hint" id="flyhint" hidden></p>
-    <div class="row" id="flyown" hidden><label for="fly">Flights, total<small>all travellers, return</small></label><input type="number" id="fly" inputmode="numeric" min="0" step="1000" placeholder="e.g. 280000"></div>
-    <div class="cost" id="c-stay"></div>
-  </section>
-  <section class="card sec"><h2>🚆 Getting around <span class="sub" id="s-move"></span></h2><p class="h">Airports, trains, taxis and cars.</p>
     <div class="row"><label for="arr">Fly into</label><select id="arr"></select></div>
     <div class="row"><label for="dep">Fly home from</label><select id="dep"></select></div>
-    <div class="row stack"><label>To and from the airport</label><div class="kinds" id="kinds" role="radiogroup" aria-label="To and from the airport"></div>
       <select id="way" aria-label="Which one"></select></div>
     <div class="row"><label>Taxi rides in town<small>about 7 km each</small></label><div class="step" data-k="tx"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>6</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label for="jr">Japan Rail Pass<small>7 days, for long train trips</small></label><select id="jr"><option value="0">No</option><option value="1">Yes</option></select></div>
     <div class="row"><label>Rental car days<small>good for Hokkaido and the countryside; most visitors need an International Driving Permit (check current rules)</small></label><div class="step" data-k="cr"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
-    <div class="cost" id="c-move"></div>
-  </section>
-  <section class="card sec"><h2>🧳 Before you go <span class="sub" id="s-pre"></span></h2><p class="h">Small costs that are easy to forget.</p>
-    <div class="cost" id="c-pre"></div>
-  </section>
+  </div>
   <section class="card res" id="res" aria-live="polite"></section>
   <section class="card keep" id="keep"><h2>Keep it, share it</h2><p class="h">Send this budget to the people you travel with, or keep a copy with its booking links. The link opens this exact budget.</p>
     <div class="sh">
@@ -333,9 +369,9 @@ dep.addEventListener('change',function(){dep.dataset.set='1';calc();});
 [way,document.getElementById('jr'),document.getElementById('zoo'),document.getElementById('sanrio')].forEach(function(x){x.addEventListener('change',calc);});
 ['hotel','food','fly'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
 function styleUI(){var hs=document.getElementById('hstyle').value,fs=document.getElementById('fstyle').value,H=D.hotelStyles[hs],F=D.foodStyles[fs];
- var hh=document.getElementById('hhint');hh.hidden=!H;if(H)hh.innerHTML='<b>'+esc(H.name)+':</b> '+esc(H.desc)+'. Per room per night, room only (breakfast is counted under food): '+['nt','nk','no','nh'].map(function(k){return esc(D.areaNames[k])+' '+y(H.by[k][0])+'–'+y(H.by[k][1]);}).join(', ')+'; '+esc(D.styleNote)+'.';
+ var hh=document.getElementById('hhint');document.getElementById('hinfo').hidden=!H;if(H)hh.innerHTML='<b>'+esc(H.name)+':</b> '+esc(H.desc)+'. Per room per night, room only (breakfast is counted under food): '+['nt','nk','no','nh'].map(function(k){return esc(D.areaNames[k])+' '+y(H.by[k][0])+'–'+y(H.by[k][1]);}).join(', ')+'; '+esc(D.styleNote)+'.';
  document.getElementById('hrooms').hidden=!H;document.getElementById('hown').hidden=hs!=='own';
- var fh=document.getElementById('fhint');fh.hidden=!F;if(F)fh.innerHTML='<b>'+esc(F.name)+':</b> '+esc(F.desc)+'.'+' About '+y(F.lo)+'–'+y(F.hi)+' per adult per day for three meals, breakfast included, since many hotels charge extra for it (children about half); '+esc(D.foodNote)+'.';
+ var fh=document.getElementById('fhint');document.getElementById('finfo').hidden=!F;if(F)fh.innerHTML='<b>'+esc(F.name)+':</b> '+esc(F.desc)+'.'+' About '+y(F.lo)+'–'+y(F.hi)+' per adult per day for three meals, breakfast included, since many hotels charge extra for it (children about half); '+esc(D.foodNote)+'.';
  document.getElementById('fown').hidden=fs!=='own';calc();}
 var FARE=null,fareKey='';
 function dt(iso){try{return new Date(iso+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}catch(e){return iso;}}
@@ -423,7 +459,8 @@ function calc(){
   document.getElementById('res').innerHTML=h;
   function k(n){return n>=1e6?(n/1e6).toFixed(2).replace(/0$/,'')+'M':Math.round(n/1000)+'K';}document.getElementById('barv').textContent='¥'+k(tlo)+(thi>tlo?'–'+k(thi):'');document.getElementById('barp').textContent='· '+ppl+' '+(ppl>1?'people':'person');
   document.getElementById('srclist').innerHTML=SRC.map(function(x){return '<li><a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0]||x[1])+'</a></li>';}).join('');
-  document.getElementById('planlink').href='/?dest=Japan&adults='+ad+'&kids='+(ch+inf)+'&src=budget_plan#plan';
+  sync();var bb=document.getElementById('bar');if(bb.getAttribute('data-v')!==tv){bb.setAttribute('data-v',tv);bb.classList.remove('tick');void bb.offsetWidth;bb.classList.add('tick');}
+ document.getElementById('planlink').href='/?dest=Japan&adults='+ad+'&kids='+(ch+inf)+'&src=budget_plan#plan';
  saveUrl();
 }
 document.getElementById('res').addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(!a)return;track('link',a.getAttribute('data-go'));var pl=a.getAttribute('data-ps-placement');if(pl)try{if(window.gtag)gtag('event','affiliate_interact',{event_category:'monetization',placement:pl,page_path:location.pathname});}catch(x){}});
@@ -444,7 +481,7 @@ document.getElementById('keep').addEventListener('click',function(e){var b=e.tar
  if(k==='wa')window.open('https://wa.me/?text='+encodeURIComponent(msg+link('budget_wa')),'_blank','noopener');
  if(k==='copy'){var u=link('budget_link'),sp=b.querySelector('span');function ok(){sp.textContent='Copied ✓';setTimeout(function(){sp.textContent='Copy link';},2000);}
   if(navigator.clipboard)navigator.clipboard.writeText(u).then(ok,function(){prompt('Copy this link:',u);});else prompt('Copy this link:',u);}
- if(k==='pdf'){var s2=document.getElementById('srcs');s2.open=true;window.print();}
+ if(k==='pdf'){[].forEach.call(document.querySelectorAll('details'),function(d){d.open=true;});window.print();}
  if(k==='email'){em.hidden=!em.hidden;if(!em.hidden){try{var m=localStorage.getItem('packyEmail');if(m)document.getElementById('emaddr').value=m;}catch(x){}document.getElementById('emaddr').focus();}}});
 function post(body){return fetch('/api/email-chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json();});}
 function topics(){var t=[];if(S.nt)t.push('tokyo');if(S.nk)t.push('kyoto');if(S.no)t.push('osaka');if(S.nh)t.push('hokkaido');if(S.ch||S.in||S.dn)t.push('kids');if(document.getElementById('jr').value==='1')t.push('rail_pass');
@@ -459,6 +496,36 @@ emf.addEventListener('submit',function(e){e.preventDefault();var addr=document.g
  },function(){btn.disabled=false;btn.textContent='Send';emerr.textContent='Sorry, that did not work. Please try again.';emerr.hidden=false;});});
 // the floating total while the reader fills in the form; hidden once the full total is on screen
 var bar=document.getElementById('bar');if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(x){bar.hidden=x.isIntersecting;});}).observe(document.getElementById('res'));}
+// ---- tap controls (28 Nov): each group sets the original control behind it, so prices, links and shared links work as before
+function $(id){return document.getElementById(id);}
+function fire(x){x.dispatchEvent(new Event('change'));}
+function setS(k,v){S[k]=v;var o=document.querySelector('.step[data-k="'+k+'"] output');if(o)o.textContent=v;}
+var WHO={solo:[1,0,0,0,'👤 Solo'],couple:[2,0,0,0,'💑 Couple'],family:[2,0,2,0,'👨‍👩‍👧‍👦 Family'],friends:[4,0,0,0,'👯 Friends']};
+var POP=['LAX','NYC','LON','SYD','SIN','HKG','SEL','BKK','BOM','TPE'],OTHER=false;
+function cityName(c){var o=[].filter.call($('from').options,function(x){return x.value===c;})[0];return o?o.text:c;}
+function short(o){return o.map(function(x){return [x[0],x[1].replace(/ \(.*\)/,'')];});}
+function opts(sel){return [].map.call(sel.options,function(o){return [o.value,o.text];});}
+function GROUPS(){var fv=$('from').value;return {
+ who:{o:Object.keys(WHO).map(function(k){return [k,WHO[k][4]];}),v:Object.keys(WHO).filter(function(k){var w=WHO[k];return w[0]===S.ad&&w[1]===S.tn&&w[2]===S.ch&&w[3]===S.in;})[0]||'',
+  set:function(v){var w=WHO[v];setS('ad',w[0]);setS('tn',w[1]);setS('ch',w[2]);setS('in',w[3]);setS('rm',Math.max(1,Math.ceil((w[0]+w[1]+w[2])/2)));calc();}},
+ from:{o:POP.map(function(c){return [c,cityName(c)];}).concat([['other','Other city ▾']]),v:OTHER?'other':(POP.indexOf(fv)>=0?fv:(fv?'other':'')),
+  set:function(v){if(v==='other'){OTHER=true;sync();$('from').focus();return;}OTHER=false;$('from').value=v;fire($('from'));}},
+ hstyle:{o:[['budget','Budget'],['mid','Mid-range'],['upscale','Upscale'],['luxury','Luxury'],['own','✏️ My own']],v:$('hstyle').value,set:function(v){$('hstyle').value=v;fire($('hstyle'));}},
+ fstyle:{o:[['budget','🍙 Konbini & casual'],['mid','☕ Cafés & izakaya'],['treat','🍣 Treat yourself'],['own','✏️ My own']],v:$('fstyle').value,set:function(v){$('fstyle').value=v;fire($('fstyle'));}},
+ arr:{o:short(opts(arr)),v:arr.value,set:function(v){arr.value=v;fire(arr);}},
+ dep:{o:short(opts(dep)),v:dep.value,set:function(v){dep.value=v;fire(dep);}},
+ way:{o:opts(way),v:way.value,hide:way.options.length<2,set:function(v){way.value=v;fire(way);}},
+ tx:{o:[[0,'None'],[3,'A few'],[6,'Some'],[12,'Lots']],v:S.tx,set:function(v){setS('tx',+v);calc();}},
+ cr:{o:[[0,'None'],[2,'2 days'],[4,'4 days'],[7,'A week']],v:S.cr,set:function(v){setS('cr',+v);calc();}},
+ todo:{tiles:[['dn','🏰','Tokyo Disney'+(S.dn?' ×'+S.dn:''),S.dn>0],['sanrio','🎀','Sanrio Puroland',$('sanrio').value==='1'],['zoo','🐼','Ueno Zoo',$('zoo').value==='1']],
+  set:function(v){if(v==='dn'){setS('dn',S.dn>=3?0:S.dn+1);calc();}else{$(v).value=$(v).value==='1'?'0':'1';fire($(v));}}},
+ extras:{tiles:[['jr','🎫','Japan Rail Pass, 7 days',$('jr').value==='1']],set:function(v){$(v).value=$(v).value==='1'?'0':'1';fire($(v));}}
+};}
+function sync(){var G=GROUPS();[].forEach.call(document.querySelectorAll('[data-g]'),function(c){var g=G[c.getAttribute('data-g')];if(!g)return;c.hidden=!!g.hide;
+  c.innerHTML=g.tiles?g.tiles.map(function(t){return '<button type="button" data-v="'+t[0]+'" aria-pressed="'+!!t[3]+'"'+(t[4]?' disabled':'')+'><span aria-hidden="true">'+t[1]+'</span>'+esc(t[2])+'</button>';}).join('')
+   :g.o.map(function(x){return '<button type="button" data-v="'+esc(x[0])+'" aria-pressed="'+(String(x[0])===String(g.v))+'">'+esc(x[1])+'</button>';}).join('');});
+ var fv=$('from').value;$('fromrow').hidden=!(OTHER||(fv&&POP.indexOf(fv)<0));}
+document.addEventListener('click',function(e){var b=e.target.closest('[data-g] button');if(!b||b.disabled)return;var g=b.closest('[data-g]').getAttribute('data-g');GROUPS()[g].set(b.getAttribute('data-v'));track('tap',g);});
 var tt=null;document.addEventListener('click',function(e){if(e.target.closest('.step,select')){clearTimeout(tt);tt=setTimeout(function(){track('change');},1500);}});
 if(Q0.st&&(STY[Q0.st]||Q0.st==='x'))STYLE=Q0.st==='x'?'':Q0.st;styleBtns();styleUI();if(document.getElementById('from').value)fareUI();calc();track('open',Q0.src||'');
 })();
