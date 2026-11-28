@@ -298,6 +298,35 @@ button,input,select{font-family:inherit}
 .tgol{font-weight:700;font-size:.86rem;white-space:nowrap}
 .tmid{min-width:0}
 @media(min-width:700px){.tgo{flex-direction:row;align-items:center;gap:14px;padding:12px 18px}.tgo .ttot b{font-size:1.25rem}.tgol{font-size:1rem}}
+.bar.tray{background:#1e2433;border-top:4px solid #facc15;border-radius:0;padding:12px 16px calc(12px + env(safe-area-inset-bottom));gap:12px;align-items:center;box-shadow:0 -6px 24px -4px rgba(30,36,51,.25)}
+.bar.tray .tbadge{width:52px;height:52px;border-radius:16px;background:#facc15;border:0;padding:8px;flex:0 0 auto;margin:0}
+.bar.tray .tbadge i{top:-7px;right:-7px;background:#ef4444;border:2px solid #fff;min-width:22px;height:22px;font-size:.72rem}
+.bar.tray .tt{font-family:'Fredoka',sans-serif;font-size:1.35rem;font-weight:700;color:#facc15;line-height:1}
+.bar.tray .tmode{font-family:'Nunito',sans-serif;font-size:.66rem;font-weight:800;letter-spacing:.8px;background:#2a3246;border:0;color:#fde68a;border-radius:8px;padding:3px 8px;white-space:nowrap}
+.bar.tray .tsum{font-size:.84rem;font-weight:700;color:#e5e7eb;margin-top:4px}
+.bar.tray .ttot{flex:0 0 auto;text-align:right}.bar.tray .ttot small{display:block;font-size:.66rem;font-weight:800;letter-spacing:.8px;color:#cbd5e1;text-transform:uppercase}
+.bar.tray .ttot b{font-family:'Fredoka',sans-serif;font-size:1.5rem;font-weight:700;color:#fff;white-space:nowrap;line-height:1.1}
+.bar.tray .tgo{flex:0 0 auto;font-family:'Fredoka',sans-serif;font-size:1.05rem;font-weight:700;border:0;border-radius:16px;padding:12px 18px;background:#34d399;color:#1e2433;box-shadow:0 4px 0 #059669;cursor:pointer;white-space:nowrap;display:inline-flex;align-items:center;gap:6px}
+@media(max-width:560px){.bar.tray{gap:8px;padding:10px 10px calc(10px + env(safe-area-inset-bottom))}.bar.tray .tbadge{width:42px;height:42px;border-radius:13px;padding:6px}.bar.tray .tt{font-size:1.05rem}.bar.tray .tmode{display:none}
+ .bar.tray .tsum{font-size:.7rem}.bar.tray .ttot b{font-size:1.02rem}.bar.tray .ttot small{font-size:.56rem}.bar.tray .tgo{font-size:.9rem;padding:10px 11px}.bar.tray .tgo .long{display:none}.rsum{padding:8px 12px}.rsum div{font-size:.82rem}.rsum .gt{font-size:1.1rem;white-space:nowrap}.rgo{font-size:1.05rem;padding:13px}.rfoot{padding:10px 12px calc(10px + env(safe-area-inset-bottom))}}
+@media(max-width:400px){.bar.tray .tgo span[aria-hidden]{display:none}}
+.rsheet{position:fixed;inset:0;z-index:40;background:#fffdf7;display:flex;flex-direction:column}.rsheet[hidden]{display:none}
+.rhead{display:flex;align-items:center;gap:12px;background:#1e2433;color:#fff;padding:14px 16px}.rico{width:40px;height:40px;flex:0 0 auto}
+.rhead h2{margin:0;font-family:'Fredoka',sans-serif;font-size:1.5rem;color:#facc15;line-height:1.1}.rhead p{margin:2px 0 0;font-weight:700;font-size:.84rem;color:#e5e7eb}
+.rx{margin-left:auto;width:46px;height:46px;border-radius:14px;border:2px solid #3a4560;background:transparent;color:#fff;font-size:1.3rem;cursor:pointer}
+.rlist{flex:1;overflow-y:auto;padding:14px 16px;display:flex;flex-direction:column;gap:12px;max-width:760px;width:100%;margin:0 auto;box-sizing:border-box}
+.rrow{display:flex;align-items:center;gap:12px;background:#fff;border:2px solid #f3f1ea;border-radius:20px;padding:12px;box-shadow:0 2px 10px rgba(30,36,51,.04)}
+.rrow .ri{width:56px;height:56px;border-radius:16px;padding:9px;flex:0 0 auto;border:2px solid #fdf3d0}
+.rrow .rt{flex:1;min-width:0}.rrow h3{margin:0;font-family:'Fredoka',sans-serif;font-size:1.05rem;color:#1e2433;line-height:1.2}
+.rrow .rp{font-family:'Fredoka',sans-serif;font-weight:700;color:#d97706;font-size:1rem}.rrow .rp small{font-family:'Nunito',sans-serif;font-size:.74rem;color:#8a93a6;font-weight:700;margin-left:4px}
+.rrow .rs{font-size:.74rem;color:#8a93a6;font-weight:700}
+.rq{display:flex;align-items:center;gap:6px;border:2px solid #fde68a;background:#fffbeb;border-radius:16px;padding:4px;flex:0 0 auto}
+.rq button{width:36px;height:36px;border:0;border-radius:11px;font:inherit;font-size:1.15rem;font-weight:800;cursor:pointer;background:#fff;color:#ef4444}.rq button.p{background:#34d399;color:#1e2433}.rq b{min-width:22px;text-align:center;font-family:'Fredoka',sans-serif;font-size:1.05rem}
+.rch{flex:0 0 auto;font:inherit;font-weight:800;font-size:.8rem;border:2px solid #fde68a;background:#fffbeb;color:#92400e;border-radius:12px;padding:8px 10px;cursor:pointer}
+.rfoot{border-top:4px solid #fde68a;background:#fff;padding:14px 16px calc(14px + env(safe-area-inset-bottom))}.rfoot>*{max-width:728px;margin-left:auto;margin-right:auto}
+.rsum{background:#fffbeb;border:2px solid #fde68a;border-radius:18px;padding:12px 14px}.rsum div{display:flex;justify-content:space-between;gap:10px;font-weight:700;font-size:.9rem;padding:3px 0}
+.rsum .pill{background:#facc15;border:0;border-radius:10px;padding:2px 10px;font-weight:800;font-size:.84rem}.rsum .gt{border-top:1px solid #fde68a;margin-top:6px;padding-top:10px;font-family:'Fredoka',sans-serif;font-size:1.35rem;font-weight:700}
+.rgo{display:block;width:100%;margin-top:12px;font-family:'Fredoka',sans-serif;font-size:1.2rem;font-weight:700;border:0;border-radius:18px;padding:15px;background:#34d399;color:#1e2433;box-shadow:0 5px 0 #059669;cursor:pointer}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
@@ -405,7 +434,8 @@ button,input,select{font-family:inherit}
   <details class="srcs" id="srcs"><summary>Where these prices come from</summary><ul id="srclist"></ul></details>
   <p class="note">Prices are from the operators' and JNTO's official pages (listed under "Where these prices come from"), checked %%CHECKED%%, and are rounded: they change, so check the official page before you buy. Amounts are in Japanese yen. Partner links are marked; we may earn a commission at no cost to you.</p>
 </main>
-<div class="bar tray" id="bar"><span class="tbadge" aria-hidden="true"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><rect x="12" y="18" width="40" height="38" rx="7" fill="#7cc4f5" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M24 18v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 18v38M42 18v38" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="34" r="5" fill="#ffd166" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg><i id="tcount">0</i></span><div class="tmid"><div class="tth"><b class="tt">My Japan Trip</b><span class="tmode" id="tmode"></span></div><div class="tsum" id="tsum"></div><div class="tchips" id="tchips" hidden></div></div><a class="tgo" href="#res"><span class="ttot"><small>Est. total</small><b id="barv"></b></span><span class="tgol">Review Plan <span aria-hidden="true">👉</span></span></a></div>
+<div class="bar tray" id="bar"><span class="tbadge" aria-hidden="true"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><rect x="12" y="18" width="40" height="38" rx="7" fill="#7cc4f5" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M24 18v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 18v38M42 18v38" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="34" r="5" fill="#ffd166" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg><i id="tcount">0</i></span><div class="tmid"><div class="tth"><b class="tt">My Japan Trip</b><span class="tmode" id="tmode"></span></div><div class="tsum" id="tsum"></div><div class="tchips" id="tchips" hidden></div></div><div class="ttot"><small>Total</small><b id="barv"></b></div><button type="button" class="tgo" id="review">Review<span class="long"> Plan</span> <span aria-hidden="true">👉</span></button></div>
+<div class="rsheet" id="rsheet" hidden role="dialog" aria-modal="true" aria-labelledby="rtitle"><div class="rhead"><span class="rico" aria-hidden="true"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><rect x="12" y="18" width="40" height="38" rx="7" fill="#7cc4f5" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M24 18v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 18v38M42 18v38" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="34" r="5" fill="#ffd166" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg></span><div><h2 id="rtitle">Your Japan Trip</h2><p>Check your trip before you book.</p></div><button type="button" class="rx" id="rclose" aria-label="Close">✕</button></div><div class="rlist" id="rlist"></div><div class="rfoot"><div class="rsum" id="rsum"></div><button type="button" class="rgo" id="rgo"><span aria-hidden="true">🧳</span> See booking links &amp; share</button></div></div>
 <script>
 (function(){
 var D=%%DATA%%,LK=%%LINKS%%,CH='%%CHECKED%%';
@@ -531,9 +561,9 @@ function calc(){
    '</div>';
   if(%%TOURS%%)h+='<div class="grp">Prefer one booking?</div><div class="two"><div><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate. Compare its price with your budget above.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
   document.getElementById('res').innerHTML=h;
-  function k(n){return n>=1e6?(n/1e6).toFixed(2).replace(/0$/,'')+'M':Math.round(n/1000)+'K';}document.getElementById('barv').textContent='¥'+k(tlo)+(thi>tlo?'–'+k(thi):'');
+  function k(n){return n>=1e6?(n/1e6).toFixed(2).replace(/0$/,'')+'M':Math.round(n/1000)+'K';}document.getElementById('barv').textContent='¥'+k(tlo)+(thi>tlo?'–'+k(thi):'');document.getElementById('barv').setAttribute('data-full',tv);
   document.getElementById('srclist').innerHTML=SRC.map(function(x){return '<li><a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0]||x[1])+'</a></li>';}).join('');
-  sync();items();kidsUI();var bb=document.getElementById('bar');if(bb.getAttribute('data-v')!==tv){bb.setAttribute('data-v',tv);bb.classList.remove('tick');void bb.offsetWidth;bb.classList.add('tick');}
+  sync();items();kidsUI();if(!$('rsheet').hidden)rrows();var bb=document.getElementById('bar');if(bb.getAttribute('data-v')!==tv){bb.setAttribute('data-v',tv);bb.classList.remove('tick');void bb.offsetWidth;bb.classList.add('tick');}
  document.getElementById('planlink').href='/?dest=Japan&adults='+ad+'&kids='+(ch+inf)+'&src=budget_plan#plan';
  saveUrl();
 }
@@ -569,7 +599,7 @@ emf.addEventListener('submit',function(e){e.preventDefault();var addr=document.g
    t.outerHTML=r&&r.ok?'<p class="ok" style="margin-top:8px">Done. Your first trip tip is on its way ✓</p>':'<p class="err">Sorry, that did not work. Please try again later.</p>';track('tips',r&&r.ok?'yes':'failed');},function(){t.disabled=false;});});
  },function(){btn.disabled=false;btn.textContent='Send';emerr.textContent='Sorry, that did not work. Please try again.';emerr.hidden=false;});});
 // the floating total while the reader fills in the form; hidden once the full total is on screen
-var bar=document.getElementById('bar');if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(x){bar.hidden=x.isIntersecting;});}).observe(document.getElementById('res'));}
+var bar=document.getElementById('bar');  // the tray stays on screen, like the owner's reference
 // ---- tap controls (28 Nov): each group sets the original control behind it, so prices, links and shared links work as before
 function $(id){return document.getElementById(id);}
 function fire(x){x.dispatchEvent(new Event('change'));}
@@ -677,9 +707,9 @@ function items(){var cur=TABS.filter(function(t){return t[0]===TAB;})[0],g=ppl0(
  // the tray
  var cities=['nt','nk','no','nh'].filter(function(k){return S[k];}).map(function(k){return NIGHTS[k]+' ('+S[k]+'n)';}),pp=g.ad+g.ch+g.inf,nn=S.nt+S.nk+S.no+S.nh,cnt=0;
  CARDS.forEach(function(c){var st=state(c);if(st.n)cnt++;});
- $('tcount').textContent=cnt;$('tmode').textContent=pp+' people · '+nn+' nights';
+ $('tcount').textContent=cnt;$('tmode').textContent=(STYLE?STY[STYLE][0]:'Custom').toUpperCase();
  var fs=$('fstyle').value,fsn={budget:'Konbini & casual eats',mid:'Cafés & izakaya',treat:'Treat yourself',own:'Your food figure'}[fs]||'';
- $('tsum').textContent=(cities.join(' · ')||'Add a city')+' · '+S.rm+' room'+(S.rm>1?'s':'')+' · '+fsn;
+ $('tsum').textContent=cities.length?pp+' people · '+cities.join(' · ')+' · '+fsn:'Tap "+ Add to Trip" on a city to start!';
  $('whol').textContent=S.ad+S.tn+' adult'+(S.ad+S.tn>1?'s':'')+(S.ch+S.in?', '+(S.ch+S.in)+' kid'+(S.ch+S.in>1?'s':''):'');
  var fr=$('from').value;$('froml').textContent=fr&&fr!=='own'?cityName(fr):fr==='own'?'Your own fare':'Flying from';
  var wl=document.querySelector('[data-g="way"]');$('waylab').hidden=!wl||wl.hidden;}
@@ -695,6 +725,25 @@ document.querySelector('.planner').addEventListener('click',function(e){var f=e.
  if(['sanrio','zoo','jr'].indexOf(k)>=0){$(k).value=a==='add'?'1':'0';fire($(k));}
  else{var n=S[k];n=a==='add'?(ADD[k]||1):a==='rm'?0:a==='inc'?Math.min(MAX[k],n+1):Math.max(0,n-1);setS(k,n);calc();}
  track(a==='add'||a==='inc'?'add':'remove',k);});
+function rrows(){var g=ppl0(),out=[];CARDS.forEach(function(c){var st=state(c);if(!st.n||st.off)return;var k=c[1],per='';
+  if(st.q&&st.pr&&st.n>1)per='('+rng(st.pr[0]/st.n,st.pr[1]/st.n)+' a '+st.unit+')';
+  var right=st.q?'<div class="rq"><button type="button" data-act="'+(st.n>1?'dec':'rm')+'" data-k="'+k+'" aria-label="'+(st.n>1?'Fewer':'Remove')+'">'+(st.n>1?'−':'🗑')+'</button><b>'+st.n+'</b><button type="button" class="p" data-act="inc" data-k="'+k+'" aria-label="More">+</button></div>'
+   :(['sanrio','zoo','jr','es','ins'].indexOf(k)>=0)?'<div class="rq"><button type="button" data-act="rm" data-k="'+k+'" aria-label="Remove">🗑</button><b>1</b></div>'
+   :st.fixed?'':'<button type="button" class="rch" data-tabgo="'+c[0]+'">Change</button>';
+  out.push('<div class="rrow"><span class="ri" style="background:'+c[3]+'" aria-hidden="true">'+ICON[c[2]]+'</span><div class="rt"><h3>'+esc(c[4])+'</h3><div class="rp">'+(st.pr?rng(st.pr[0],st.pr[1]):'<small style="margin:0">'+esc(st.note||'not priced yet')+'</small>')+(per?'<small>'+per+'</small>':'')+'</div><div class="rs">'+esc(st.label||'')+'</div></div>'+right+'</div>');});
+ $('rlist').innerHTML=out.join('');
+ var pp=g.ad+g.ch+g.inf,nn=S.nt+S.nk+S.no+S.nh;
+ $('rsum').innerHTML='<div><span>🧭 Travel style</span><span class="pill">'+esc(STYLE?STY[STYLE][0]:'Custom')+'</span></div><div><span>👨‍👩‍👧‍👦 Who and how long</span><span>'+pp+' people · '+nn+' nights</span></div>'+
+  '<div><span>🧳 In your trip</span><span>'+out.length+' items</span></div><div class="gt"><span>Estimated total</span><span>'+esc($('barv').getAttribute('data-full')||$('barv').textContent)+'</span></div>';}
+function openReview(){rrows();$('rsheet').hidden=false;document.body.style.overflow='hidden';track('review','open');}
+function closeReview(){$('rsheet').hidden=true;document.body.style.overflow='';}
+$('review').addEventListener('click',openReview);$('rclose').addEventListener('click',closeReview);
+$('rgo').addEventListener('click',function(){closeReview();track('review','links');$('res').scrollIntoView({behavior:'smooth'});});
+$('rsheet').addEventListener('click',function(e){var t=e.target.closest('[data-tabgo]');if(t){TAB=t.getAttribute('data-tabgo');FIL='';closeReview();items();document.querySelector('.planner').scrollIntoView({behavior:'smooth'});return;}
+ var b=e.target.closest('[data-act]');if(!b)return;var k=b.getAttribute('data-k'),a=b.getAttribute('data-act');
+ if(['sanrio','zoo','jr'].indexOf(k)>=0){$(k).value='0';fire($(k));}else{var n=S[k];n=a==='rm'?0:a==='inc'?Math.min(MAX[k],n+1):Math.max(0,n-1);setS(k,n);calc();}
+ rrows();track(a==='inc'?'add':'remove',k);});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!$('rsheet').hidden)closeReview();});
 $('rdef').addEventListener('click',function(){track('reset');location.href=location.pathname;});
 function kidsUI(){var on=S.ch+S.in+S.tn>0;$('kidsw').setAttribute('aria-pressed',on);$('kidsl').textContent='With kids: '+(on?'ON':'OFF');}
 $('kidsw').addEventListener('click',function(){var on=S.ch+S.in+S.tn>0;if(on){setS('ch',0);setS('in',0);setS('tn',0);}else{setS('ch',2);}setS('rm',Math.max(1,Math.ceil((S.ad+S.tn+S.ch)/2)));track('kids',on?'off':'on');calc();});
