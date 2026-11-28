@@ -62,7 +62,7 @@ input[type=number]{width:130px}
 .two{display:grid;gap:8px;margin:6px 0 2px}.two>div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 13px}
 .row[hidden],.hint[hidden]{display:none}
 .hint{margin:2px 0 8px;font-size:.84rem;line-height:1.45;color:var(--muted)}.hint a{font-weight:700}.hint b{color:var(--dark)}
-.bkl{display:block;width:fit-content;margin-top:6px;font-size:.8rem;font-weight:700;color:#7fe6d3;text-decoration:underline;text-underline-offset:2px}.ln .l .bkl small,.bkl small{font-weight:500;color:#9aa5b5;text-decoration:none;display:inline;margin:0 0 0 4px;font-size:.72rem}
+.ln .v{max-width:50%}.bkl{display:block;width:fit-content;margin:6px 0 0 auto;text-align:right;font-size:.8rem;font-weight:700;color:#7fe6d3;text-decoration:underline;text-underline-offset:2px}.ln .l .bkl small,.bkl small{font-weight:500;color:#9aa5b5;text-decoration:none;display:inline;margin:0 0 0 4px;font-size:.72rem}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
@@ -204,8 +204,8 @@ arr.addEventListener('change',function(){if(FARE||fareKey)fareUI();});
 function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)||v<0?0:v;}
 var SRC=[];function reg(o){if(o&&o.url&&!SRC.some(function(x){return x[1]===o.url;}))SRC.push([o.src||'',o.url]);return '';}
 function src(name,url){reg({src:name,url:url});return '<small>'+esc(name)+', checked '+CH+'</small>';}
-function line(label,v,note){return '<div class="ln"><div class="l">'+label+(note||'')+'</div><div class="v">'+v+'</div></div>';}
-function bk(k,t){var l=LK[k];if(!l)return '';var off=l[2]==='official';return '<a class="bkl" href="'+esc(l[1])+'" target="_blank" rel="'+(off?'noopener':'nofollow noopener sponsored')+'"'+(off?'':' data-ps-placement="budget-'+k+'"')+' data-go="'+k+'">'+esc(t||'Check final price')+' ↗</a>';}
+function line(label,v,note){var m=note&&note.match(/<a class="bkl"[\s\S]*?<\/a>/);if(m){note=note.replace(m[0],'');v+=m[0];}return '<div class="ln"><div class="l">'+label+(note||'')+'</div><div class="v">'+v+'</div></div>';}
+function bk(k,t){var l=LK[k];if(!l)return '';var off=l[2]==='official';return '<a class="bkl" href="'+esc(l[1])+'" target="_blank" rel="'+(off?'noopener':'nofollow noopener sponsored')+'"'+(off?'':' data-ps-placement="budget-'+k+'"')+' data-go="'+k+'">'+esc(t||'Check final price')+' →</a>';}
 function go(k){var l=LK[k],off=l[2]==='official';return '<a class="go" href="'+esc(l[1])+'"'+(off?' target="_blank" rel="noopener"':l[2]?' target="_blank" rel="nofollow noopener sponsored" data-ps-placement="budget-'+k+'"':'')+' data-go="'+k+'">'+esc(l[0])+'<small>'+(off?'official site ↗':l[2]?'partner link ↗':'→')+'</small></a>';}
 function calc(){
  SRC=[];var tn=S.tn,ad=S.ad+tn,ch=S.ch,inf=S.in,ppl=ad+ch+inf,nights=S.nt+S.nk+S.no+S.nh,kan=S.nk+S.no,days=nights+1,cars=Math.ceil(ppl/4),h='',sum=0,lo=0,hi=0,miss=[];
@@ -213,7 +213,7 @@ function calc(){
  function leg(k,wid,label){var w=D.airport[k].ways.filter(function(x){return x.id===wid;})[0]||D.airport[k].ways[0];
   if(w.car){lo+=w.car[0]*cars;hi+=w.car[1]*cars;return line(label+': '+esc(w.name)+(cars>1?' ('+cars+' cars)':''),y(w.car[0]*cars)+'–'+y(w.car[1]*cars),src(w.src,w.url));}
   if(w.c===null&&ch){var v=w.a*ad;sum+=v;miss.push('Children\'s fare on '+w.name);return line(label+': '+esc(w.name),y(v)+' <small style="color:#9aa5b5">+ children</small>',src(w.src,w.url));}
-  var v=w.a*ad+(w.c||0)*ch;sum+=v;return line(label+': '+esc(w.name),y(v),src(w.src,w.url)+(label==='Airport to town'?bk('transfer','Prefer a private car? Book a transfer'):''));}
+  var v=w.a*ad+(w.c||0)*ch;sum+=v;return line(label+': '+esc(w.name),y(v),src(w.src,w.url)+(label==='Airport to town'?bk('transfer','Book a private car'):''));}
  var G={exp:'',fly:'',stay:'',rail:'',move:'',pre:''};
  G.move+=leg(arr.value,way.value,'Airport to town');
  var depWay=dep.value===arr.value?way.value:D.airport[dep.value].ways[0].id;
@@ -251,8 +251,8 @@ function calc(){
  if(!flyDone)G.fly+=line('Flights','<span class="np">not priced</span>','<small>choose "Flying from" above, or type your fare</small>');
  if(!hotDone)G.stay+=line('Hotels','<span class="np">not priced</span>','<small>choose a hotel style above</small>');
  if(!foodDone)G.stay+=line('Food and drinks','<span class="np">not priced</span>','<small>choose a food style above</small>');
- G.exp+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>',bk('parks','See tickets and prices'));
- G.pre+=line('eSIM data for your phones','<span class="np">not priced yet</span>',bk('esim','See plans and prices'));
+ G.exp+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>',bk('parks','See tickets'));
+ G.pre+=line('eSIM data for your phones','<span class="np">not priced yet</span>',bk('esim','See plans'));
  G.pre+=line('Travel medical insurance','<span class="np">not priced yet</span>',bk('insurance','Get a quote'));
  if(S.nh&&(S.nt||S.nk))G.move+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
  miss.forEach(function(m){G.move+=line(esc(m),'<span class="np">not priced yet</span>');});
