@@ -263,7 +263,8 @@ body{background:#fffbf0}
 .ttot small{color:#cbd5e1}.ttot b{font-size:1.1rem;font-weight:800}
 .tgo{background:#6ee7b7;color:#0f2f26;border-radius:14px;padding:11px 12px;font-weight:800;box-shadow:0 3px 0 #34b98a}
 .bar.tray .tt{color:#ffd166}.bar.tray .ttot b{color:#fff}
-@media(max-width:700px){.top.toy{position:static}}
+@media(max-width:700px){.top.toy{padding:8px 12px 0}.top.toy .back{display:none}.brand{margin:0 0 8px;gap:10px}.logo{width:36px;height:36px;padding:4px;border-radius:11px}.top.toy h1{font-size:1.15rem}.top.toy .brand p{font-size:.74rem}
+ .ctrls{flex-wrap:nowrap}.seg{flex:1;justify-content:space-between}.reset{padding:8px 10px;font-size:.78rem}}
 @media(max-width:560px){.tchips{display:none}.tbadge{width:40px;height:40px}.ttot b{font-size:1rem;white-space:nowrap}.tgo{padding:10px 10px}.tth{flex-wrap:wrap;gap:2px 6px}}
 @media(max-width:400px){.seg button{padding:8px 7px;font-size:.78rem}.seg button span{display:none}.easy{padding:5px 8px}.top.toy h1{font-size:1.25rem}}
 h1,h2,h3,.tt,.mtabs button,.add,.tgol,.pr,.seg button,.mcount{font-family:'Fredoka','Nunito',sans-serif}
@@ -353,6 +354,13 @@ button,input,select{font-family:inherit}
 .panel .phead{display:flex;justify-content:space-between;align-items:center;gap:8px;margin-top:8px}.panel .phead .lab{margin:0;text-transform:uppercase;letter-spacing:.6px;font-size:.8rem;color:#5a6378}.psel{font-weight:800;font-size:.84rem;color:#b45309}
 .panel .chips button[aria-pressed=true]{background:#facc15;border-color:#facc15;color:#1e2433}
 .it .qty button[disabled]{opacity:.35;cursor:default}
+.top.toy .mtabs{margin:10px -16px 0;padding:2px 16px 10px;border-top:1px solid #f3f1ea;padding-top:10px}
+@media(max-width:700px){.top.toy .mtabs{margin:8px -12px 0;padding:8px 12px 8px}.top.toy .mtabs button{padding:8px 13px;font-size:.86rem}}
+.planner{margin-top:14px}
+@media(max-width:700px){.filters{flex-wrap:nowrap;overflow-x:auto;margin:0 -16px 12px;padding:0 16px 4px;scrollbar-width:none}.filters::-webkit-scrollbar{display:none}.fchips{flex-wrap:nowrap}.fchips button,.rdef{white-space:nowrap;flex:0 0 auto}}
+.rscroll{flex:1;overflow-y:auto;-webkit-overflow-scrolling:touch}.rscroll .rlist{flex:none;overflow:visible}
+.rmore{max-width:760px;margin:0 auto;padding:0 12px 20px;box-sizing:border-box}.rmore .card{margin-top:12px}
+@media print{.rsheet{position:static}.rscroll{overflow:visible}.rhead .rx,.rfoot .rgo,.rlist{display:none!important}}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
@@ -398,10 +406,11 @@ button,input,select{font-family:inherit}
     <button type="button" class="reset" id="reset"><span aria-hidden="true">🔄</span> Start over</button>
     <button type="button" class="easy" id="kidsw" hidden><b id="kidsl"></b></button>
   </div>
+  <div class="mtabs" id="mtabs" role="tablist" aria-label="Plan your trip"></div>
   <div class="sheet" id="whosheet" hidden></div><div class="sheet" id="fromsheet" hidden></div>
 </header>
 <main>
-  <section class="planner"><div class="mtabs" id="mtabs" role="tablist" aria-label="Plan your trip"></div>
+  <section class="planner">
     <div class="mhead"><span class="memo" id="memo" aria-hidden="true"></span><h2 id="mtitle"></h2><span class="mcount" id="mcount"></span></div><p class="msub" id="msub"></p>
     <div class="filters"><div class="fchips" id="fchips"></div><button type="button" class="rdef" id="rdef">Reset defaults</button></div>
     <div class="extra" data-tab="trav"><p class="lab">Quick pick</p><div class="chips" data-g="who"></div></div>
@@ -460,7 +469,7 @@ button,input,select{font-family:inherit}
   <p class="note">Prices are from the operators' and JNTO's official pages (listed under "Where these prices come from"), checked %%CHECKED%%, and are rounded: they change, so check the official page before you buy. Amounts are in Japanese yen. Partner links are marked; we may earn a commission at no cost to you.</p>
 </main>
 <div class="bar tray" id="bar"><span class="tbadge" aria-hidden="true"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><rect x="12" y="18" width="40" height="38" rx="7" fill="#7cc4f5" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M24 18v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 18v38M42 18v38" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="34" r="5" fill="#ffd166" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg><i id="tcount">0</i></span><div class="tmid"><div class="tth"><b class="tt">My Japan Trip</b><span class="tmode" id="tmode"></span></div><div class="tsum" id="tsum"></div><div class="tchips" id="tchips" hidden></div></div><div class="ttot"><small>Total</small><b id="barv"></b></div><button type="button" class="tgo" id="review">Review<span class="long"> Plan</span> <span aria-hidden="true">👉</span></button></div>
-<div class="rsheet" id="rsheet" hidden role="dialog" aria-modal="true" aria-labelledby="rtitle"><div class="rhead"><span class="rico" aria-hidden="true"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><rect x="12" y="18" width="40" height="38" rx="7" fill="#7cc4f5" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M24 18v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 18v38M42 18v38" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="34" r="5" fill="#ffd166" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg></span><div><h2 id="rtitle">Your Japan Trip</h2><p>Check your trip before you book.</p></div><button type="button" class="rx" id="rclose" aria-label="Close">✕</button></div><div class="rlist" id="rlist"></div><div class="rfoot"><div class="rsum" id="rsum"></div><button type="button" class="rgo" id="rgo"><span aria-hidden="true">🧳</span> See booking links &amp; share</button></div></div>
+<div class="rsheet" id="rsheet" hidden role="dialog" aria-modal="true" aria-labelledby="rtitle"><div class="rhead"><span class="rico" aria-hidden="true"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><rect x="12" y="18" width="40" height="38" rx="7" fill="#7cc4f5" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M24 18v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M22 18v38M42 18v38" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="32" cy="34" r="5" fill="#ffd166" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg></span><div><h2 id="rtitle">Your Japan Trip</h2><p>Check your trip before you book.</p></div><button type="button" class="rx" id="rclose" aria-label="Close">✕</button></div><div class="rscroll" id="rscroll"><div class="rlist" id="rlist"></div><div class="rmore" id="rmore"></div></div><div class="rfoot"><div class="rsum" id="rsum"></div><button type="button" class="rgo" id="rgo"><span aria-hidden="true">🧳</span> Booking links &amp; share ↓</button></div></div>
 <script>
 (function(){
 var D=%%DATA%%,LK=%%LINKS%%,CH='%%CHECKED%%';
@@ -765,7 +774,7 @@ function openSheet(id){['whosheet','fromsheet'].forEach(function(x){var o=x===id
 
 
 [].forEach.call(document.querySelectorAll('[data-close]'),function(b){b.addEventListener('click',function(){openSheet('');});});
-$('mtabs').addEventListener('click',function(e){var b=e.target.closest('[data-tab]');if(!b)return;TAB=b.getAttribute('data-tab');FIL='';items();track('tab',TAB);});
+$('mtabs').addEventListener('click',function(e){var b=e.target.closest('[data-tab]');if(!b)return;TAB=b.getAttribute('data-tab');FIL='';items();track('tab',TAB);scrollTo(0,0);var sel=document.querySelector('#mtabs [aria-selected=true]');if(sel&&sel.scrollIntoView)sel.scrollIntoView({inline:'center',block:'nearest'});});
 document.querySelector('.planner').addEventListener('click',function(e){var f=e.target.closest('[data-fil]');if(f){var v=f.getAttribute('data-fil');FIL=(!v||FIL===v)?'':v;items();track('filter',FIL);return;}
  var b=e.target.closest('[data-act]');if(!b)return;var k=b.getAttribute('data-k'),a=b.getAttribute('data-act');
  if(a==='from'){var pl=document.querySelector('.panel');if(pl)pl.scrollIntoView({behavior:'smooth',block:'center'});return;}
@@ -786,7 +795,8 @@ function rrows(){var g=ppl0(),out=[];CARDS.forEach(function(c){var st=state(c);i
 function openReview(){rrows();$('rsheet').hidden=false;document.body.style.overflow='hidden';track('review','open');}
 function closeReview(){$('rsheet').hidden=true;document.body.style.overflow='';}
 $('review').addEventListener('click',openReview);$('rclose').addEventListener('click',closeReview);
-$('rgo').addEventListener('click',function(){closeReview();track('review','links');$('res').scrollIntoView({behavior:'smooth'});});
+$('rgo').addEventListener('click',function(){track('review','links');$('res').scrollIntoView({behavior:'smooth'});});
+(function(){var m=$('rmore');[$('res'),$('keep'),document.querySelector('.plan'),$('srcs'),document.querySelector('main > .note')].forEach(function(x){if(x)m.appendChild(x);});})();
 $('rsheet').addEventListener('click',function(e){var t=e.target.closest('[data-tabgo]');if(t){TAB=t.getAttribute('data-tabgo');FIL='';closeReview();items();document.querySelector('.planner').scrollIntoView({behavior:'smooth'});return;}
  var b=e.target.closest('[data-act]');if(!b)return;var k=b.getAttribute('data-k'),a=b.getAttribute('data-act');
  if(['sanrio','zoo','jr'].indexOf(k)>=0){$(k).value='0';fire($(k));}else{var n=S[k];n=a==='rm'?0:a==='inc'?Math.min(MAX[k],n+1):Math.max(0,n-1);setS(k,n);calc();}
