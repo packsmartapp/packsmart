@@ -235,6 +235,37 @@ details.info[hidden]{display:none}
 .ttot{text-align:right}.ttot small{display:block;font-size:.62rem;color:#bfc6d6;text-transform:uppercase;letter-spacing:.5px}.ttot b{font-size:1rem}
 .tgo{background:var(--primary);color:#0f0f23;font-weight:800;text-decoration:none;border-radius:12px;padding:10px 11px;font-size:.84rem;white-space:nowrap}
 main{padding-bottom:110px}
+body{background:#fffbf0}
+.top.toy{position:sticky;top:0;z-index:15;background:#fff;color:var(--dark);padding:10px 16px 12px;border-bottom:3px solid #ffe7a3;box-shadow:0 4px 14px rgba(15,15,35,.05)}
+.top.toy .back{color:#0a8f78;font-size:.78rem}
+.brand{display:flex;align-items:center;gap:12px;margin:4px 0 10px}.logo{width:48px;height:48px;border-radius:14px;background:#ffd166;padding:6px;box-shadow:0 3px 0 #e0a800;flex:0 0 auto}
+.top.toy h1{margin:0;font-size:1.45rem;font-weight:800;letter-spacing:-.5px;color:#1f2937}.top.toy h1 span{color:#f2a900}.top.toy p{margin:0;color:var(--muted);font-size:.84rem}
+.ctrls{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch}
+.seg{display:flex;gap:4px;padding:4px;border:2px solid #ffe08a;background:#fff8e1;border-radius:16px}
+.seg button{font:inherit;font-weight:800;font-size:.84rem;border:0;background:transparent;border-radius:12px;padding:8px 10px;color:#4b5563;cursor:pointer;white-space:nowrap}.seg button span{margin-right:4px}
+.seg button[aria-checked=true]{background:#ffd166;color:#1f2937;box-shadow:0 2px 0 #e0a800}
+.easy{display:flex;align-items:center;gap:8px;font:inherit;text-align:left;border:2px solid #9be7d3;background:#f0fcf8;border-radius:16px;padding:5px 12px 5px 8px;cursor:pointer}.easy .ei{width:30px;height:30px}
+.easy small{display:block;font-size:.62rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;color:#0a8f78}.easy b{font-size:.84rem;color:#1f2937}
+.easy[aria-pressed=false]{border-color:#e5e7eb;background:#f9fafb}.easy[aria-pressed=false] small{color:#9ca3af}
+.reset{font:inherit;font-size:.84rem;font-weight:800;color:#c0293f;background:#fff0f3;border:2px solid #ffd1da;border-radius:16px;padding:8px 12px;cursor:pointer}
+.card{border:0;box-shadow:0 6px 20px rgba(15,15,35,.06);border-radius:22px}
+.card h2{font-weight:800;letter-spacing:-.3px;font-size:1.15rem}
+.it{border:2px solid transparent;box-shadow:0 6px 18px rgba(15,15,35,.07)}.it.on{border-color:#ffd166;box-shadow:0 0 0 3px #fff3c4,0 6px 18px rgba(15,15,35,.07)}
+.it .art{padding:14px}.it h3{font-size:1.2rem;letter-spacing:-.3px}
+.it .tags span.t0{border-color:#bfe9d9;background:#effbf6;color:#0a7a62}.it .tags span.t1{border-color:#fde7b0;background:#fffaf0;color:#8a5a00}.it .tags span.t2{border-color:#cfe3fb;background:#f2f8ff;color:#2457a6}
+.it .pr{font-size:1.35rem;letter-spacing:-.4px}
+.mtabs button{border-width:2px;padding:10px 14px}.mtabs button[aria-selected=true]{background:#ffd166;border-color:#f2b300}
+.bar.tray{background:#2f3a4f;border-top:3px solid #ffd166;border-radius:22px 22px 0 0;align-items:center}
+.tbadge{width:46px;height:46px;border-radius:14px;background:#ffd166;padding:6px;margin-right:4px}.tbadge svg{display:block}
+.tth{display:flex;align-items:center;gap:6px}.tt{font-size:1.05rem;font-weight:800;color:#ffd166;white-space:nowrap}.tmode{font-size:.6rem;font-weight:800;letter-spacing:.8px;text-transform:uppercase;background:#47546b;color:#e5e7eb;border-radius:8px;padding:2px 6px}
+.tchips{margin-top:4px}.tchips span{display:inline-flex;align-items:center;gap:4px;border:1px solid #5b6880;background:#38445a;color:#fff;font-weight:700;font-size:.68rem;padding:3px 6px 3px 3px;border-radius:10px}
+.tchips span i{font-style:normal;width:18px;height:18px;border-radius:50%;background:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:.7rem}.tchips span em{font-style:normal;background:#ffd166;color:#1f2937;border-radius:5px;padding:0 4px;font-size:.62rem}
+.ttot small{color:#cbd5e1}.ttot b{font-size:1.1rem;font-weight:800}
+.tgo{background:#6ee7b7;color:#0f2f26;border-radius:14px;padding:11px 12px;font-weight:800;box-shadow:0 3px 0 #34b98a}
+.bar.tray .tt{color:#ffd166}.bar.tray .ttot b{color:#fff}
+@media(max-width:700px){.top.toy{position:static}}
+@media(max-width:560px){.tchips{display:none}.tbadge{width:40px;height:40px}.ttot b{font-size:1rem;white-space:nowrap}.tgo{padding:10px 10px}.tth{flex-wrap:wrap;gap:2px 6px}}
+@media(max-width:400px){.seg button{padding:8px 7px;font-size:.78rem}.seg button span{display:none}.easy{padding:5px 8px}.top.toy h1{font-size:1.25rem}}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
@@ -270,13 +301,17 @@ main{padding-bottom:110px}
 </style>
 </head>
 <body>
-<header class="top">
-  <a href="/japan?src=budget">‹ Japan</a>
-  <h1>Japan trip <span>budget calculator</span></h1>
-  <p>Three questions give you a number. Every choice below shows what it costs, from official prices where we have them.</p>
+<header class="top toy">
+  <a class="back" href="/japan?src=budget">‹ Japan</a>
+  <div class="brand"><span class="logo" aria-hidden="true"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><circle cx="32" cy="32" r="14" fill="#ffd166" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M32 6v6M32 52v6M6 32h6M52 32h6M13 13l4 4M47 47l4 4M13 51l4-4M47 17l4-4" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="27" cy="30" r="1.8" fill="#1f2937"/><circle cx="37" cy="30" r="1.8" fill="#1f2937"/><path d="M27 36q5 4 10 0" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg></span><div><h1>Japan Trip <span>Budget</span></h1><p>Tap, pick and see what Japan costs</p></div></div>
+  <div class="ctrls">
+    <div class="seg" id="styles" role="radiogroup" aria-label="Travel style"></div>
+    <button type="button" class="easy" id="kidsw" aria-pressed="true"><span class="ei" aria-hidden="true"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><circle cx="32" cy="22" r="12" fill="#f4c95d" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="22" cy="12" r="5" fill="#c58b4b" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="42" cy="12" r="5" fill="#c58b4b" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M14 58c0-12 8-20 18-20s18 8 18 20z" fill="#c58b4b" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><circle cx="28" cy="22" r="1.6" fill="#1f2937"/><circle cx="36" cy="22" r="1.6" fill="#1f2937"/><path d="M29 27q3 2 6 0" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg></span><span><small>Easy switch</small><b id="kidsl">With kids: ON</b></span></button>
+    <button type="button" class="reset" id="reset"><span aria-hidden="true">🔄</span> Start over</button>
+  </div>
 </header>
 <main>
-  <section class="card"><h2 class="hrow">Your trip <button type="button" class="reset" id="reset">↺ Start over</button></h2><p class="h">Tap around: your total at the bottom moves as you go.</p>
+  <section class="card"><h2>Your trip</h2><p class="h">Tap around: your total at the bottom moves as you go.</p>
     <p class="q">1. Who is going?</p>
     <div class="chips" data-g="who"></div>
     <div class="row"><label>Adults<small>18 and older</small></label><div class="step" data-k="ad"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
@@ -292,8 +327,6 @@ main{padding-bottom:110px}
     <div class="row"><label>🏯 Osaka</label><div class="step" data-k="no"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label>❄️ Hokkaido<small>Sapporo</small></label><div class="step" data-k="nh"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     </div>
-    <p class="q">3. Your travel style</p>
-    <div class="kinds styles" id="styles" role="radiogroup" aria-label="Travel style"></div>
   </section>
   <section class="card"><h2>✈️ The basics</h2><p class="h">Always in your trip, set by your travel style. Change any of them.</p>
     <p class="lab">Flying from</p><div class="chips" data-g="from"></div>
@@ -324,7 +357,7 @@ main{padding-bottom:110px}
     <div class="row stack"><label for="fstyle">Food style</label><select id="fstyle"><option value="budget">Budget</option><option value="mid" selected>Mid-range</option><option value="treat">Treat yourself</option><option value="own">I'll type my own amount</option></select></div>
     <div class="row"><label for="arr">Fly into</label><select id="arr"></select></div>
     <div class="row"><label for="dep">Fly home from</label><select id="dep"></select></div>
-      <select id="way" aria-label="Which one"></select></div>
+    <select id="way" aria-label="Which one"></select>
     <div class="row"><label>Taxi rides in town<small>about 7 km each</small></label><div class="step" data-k="tx"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>6</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label for="jr">Japan Rail Pass<small>7 days, for long train trips</small></label><select id="jr"><option value="0">No</option><option value="1">Yes</option></select></div>
     <div class="row"><label>Rental car days<small>good for Hokkaido and the countryside; most visitors need an International Driving Permit (check current rules)</small></label><div class="step" data-k="cr"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
@@ -347,7 +380,7 @@ main{padding-bottom:110px}
   <details class="srcs" id="srcs"><summary>Where these prices come from</summary><ul id="srclist"></ul></details>
   <p class="note">Prices are from the operators' and JNTO's official pages (listed under "Where these prices come from"), checked %%CHECKED%%, and are rounded: they change, so check the official page before you buy. Amounts are in Japanese yen. Partner links are marked; we may earn a commission at no cost to you.</p>
 </main>
-<div class="bar tray" id="bar"><span class="tbadge" aria-hidden="true">🧳<i id="tcount">0</i></span><div class="tmid"><b class="tt">My trip</b><div class="tchips" id="tchips"></div></div><div class="ttot"><small>Estimate</small><b id="barv"></b></div><a class="tgo" href="#res">Review →</a></div>
+<div class="bar tray" id="bar"><span class="tbadge" aria-hidden="true"><svg viewBox="0 0 64 64" width="100%" height="100%" aria-hidden="true"><rect x="10" y="20" width="44" height="34" rx="6" fill="#e9707a" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M24 20v-6a4 4 0 0 1 4-4h8a4 4 0 0 1 4 4v6" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><path d="M10 34h44" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/><rect x="28" y="30" width="8" height="8" rx="2" fill="#ffd166" fill="none" stroke="#1f2937" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"/></svg><i id="tcount">0</i></span><div class="tmid"><div class="tth"><b class="tt">My Trip</b><span class="tmode" id="tmode"></span></div><div class="tchips" id="tchips"></div></div><div class="ttot"><small>Total</small><b id="barv"></b></div><a class="tgo" href="#res">Review <span aria-hidden="true">👉</span></a></div>
 <script>
 (function(){
 var D=%%DATA%%,LK=%%LINKS%%,CH='%%CHECKED%%';
@@ -358,7 +391,7 @@ function track(s,x){try{if(window.gtag)gtag('event','budget_calc',{event_categor
 var arr=document.getElementById('arr'),dep=document.getElementById('dep'),way=document.getElementById('way');
 Object.keys(D.airport).forEach(function(k){arr.add(new Option(D.airport[k].name,k));dep.add(new Option(D.airport[k].name,k));});
 var STY={budget:['Budget','simple hotels, konbini','budget','budget','cheap'],mid:['Mid-range','3-star, cafés','mid','mid','train'],comfort:['Comfort','4-star, dinners out','upscale','treat','taxi']},STYLE='mid';
-function styleBtns(){document.getElementById('styles').innerHTML=Object.keys(STY).map(function(k){return '<button type="button" role="radio" data-sty="'+k+'" aria-checked="'+(k===STYLE)+'">'+STY[k][0]+'<small>'+STY[k][1]+'</small></button>';}).join('');}
+var SEMO={budget:'💰',mid:'✨',comfort:'💎'};function styleBtns(){document.getElementById('styles').innerHTML=Object.keys(STY).map(function(k){return '<button type="button" role="radio" data-sty="'+k+'" aria-checked="'+(k===STYLE)+'"><span aria-hidden="true">'+SEMO[k]+'</span>'+STY[k][0]+'</button>';}).join('');}
 function cheapest(k){var best=null;D.airport[k].ways.forEach(function(w){if(w.car)return;var v=w.a*2+(w.c||0);if(!best||v<best.v)best={w:w,v:v};});return best&&best.w;}
 document.getElementById('styles').addEventListener('click',function(e){var b=e.target.closest('[data-sty]');if(!b)return;STYLE=b.getAttribute('data-sty');var st=STY[STYLE];
  document.getElementById('hstyle').value=st[2];document.getElementById('fstyle').value=st[3];
@@ -475,7 +508,7 @@ function calc(){
   document.getElementById('res').innerHTML=h;
   function k(n){return n>=1e6?(n/1e6).toFixed(2).replace(/0$/,'')+'M':Math.round(n/1000)+'K';}document.getElementById('barv').textContent='¥'+k(tlo)+(thi>tlo?'–'+k(thi):'');
   document.getElementById('srclist').innerHTML=SRC.map(function(x){return '<li><a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0]||x[1])+'</a></li>';}).join('');
-  sync();items();var bb=document.getElementById('bar');if(bb.getAttribute('data-v')!==tv){bb.setAttribute('data-v',tv);bb.classList.remove('tick');void bb.offsetWidth;bb.classList.add('tick');}
+  sync();items();kidsUI();var bb=document.getElementById('bar');if(bb.getAttribute('data-v')!==tv){bb.setAttribute('data-v',tv);bb.classList.remove('tick');void bb.offsetWidth;bb.classList.add('tick');}
  document.getElementById('planlink').href='/?dest=Japan&adults='+ad+'&kids='+(ch+inf)+'&src=budget_plan#plan';
  saveUrl();
 }
@@ -546,15 +579,16 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-g] b
 function ppl0(){return {ad:S.ad+S.tn,ch:S.ch,inf:S.in,tn:S.tn,cars:Math.ceil((S.ad+S.tn+S.ch+S.in)/4),days:S.nt+S.nk+S.no+S.nh+1};}
 function rng(a,b){return y(a)+(b>a?'–'+y(b).replace('¥',''):'');}
 var ITEMS=[
- {k:'dn',c:'fun',bg:'#fff3c4',s:'Disney',e:'🏰',n:'Tokyo Disney',d:'Disneyland or DisneySea, one park a day',t:['Tokyo','1 park a day'],fav:1,q:1,add:1,unit:'day',pr:function(g){var d=D.disney,c=D.disneyChild,kid=c.c*g.ch+c.j*g.tn;return [d.lo*S.ad+kid,d.hi*S.ad+kid,'a day'];}},
- {k:'sanrio',c:'fun',bg:'#ffe3ea',s:'Sanrio',e:'🎀',n:'Sanrio Puroland',d:"Hello Kitty's indoor theme park",t:['Tokyo','Indoors'],fav:1,sel:1,pr:function(g){var r=D.sanrio,n=g.ad+g.ch;return [r.lo*n,r.hi*n,''];}},
- {k:'zoo',c:'fun',bg:'#e6f6ea',s:'Zoo',e:'🐼',n:'Ueno Zoo',d:'A city zoo in Ueno Park; up to 6th grade free',t:['Tokyo','Outdoors'],fav:1,sel:1,pr:function(g){return [D.uenozoo.a*g.ad,D.uenozoo.a*g.ad,''];}},
- {k:'jr',c:'move',bg:'#e6efff',s:'Rail Pass',e:'🎫',n:'Japan Rail Pass',d:'7 days of JR trains, for long trips',t:['JR trains','7 days'],sel:1,pr:function(g){var j=D.jrpass,v=j.a*g.ad+j.c*g.ch;return [v,v,''];}},
- {k:'tx',c:'move',bg:'#fff3c4',s:'Taxis',e:'🚕',n:'Taxi rides in town',d:'About 7 km each',t:['Tokyo','Kyoto','Osaka'],q:1,add:4,unit:'ride',pr:function(g){return [D.taxi.lo*g.cars,D.taxi.hi*g.cars,'a ride'];}},
- {k:'cr',c:'move',bg:'#ffe3e3',s:'Car',e:'🚗',n:'Rental car',d:'Most visitors need an International Driving Permit (check current rules)',t:['Hokkaido','Countryside'],q:1,add:2,unit:'day',pr:function(){return null;}},
- {k:'es',c:'pre',bg:'#e6efff',s:'eSIM',e:'📱',n:'eSIM data',d:'Maps and messages from landing; one per adult and teen',t:['Before you fly','Per phone'],flag:1,pr:function(g){var ep=D.esim.plans.filter(function(x){return x[0]>=g.days;})[0]||D.esim.plans[D.esim.plans.length-1],en=Math.max(1,Math.ceil(g.days/ep[0])),v=Math.round(ep[2]*en*g.ad*D.usdJpy/10)*10;return [v,v,''];}},
- {k:'ins',c:'pre',bg:'#e6faf5',s:'Insurance',e:'🩺',n:'Travel medical insurance',d:'From about US$2 a day under 40',t:['Before you fly','Per person'],flag:1,pr:function(g){return [Math.round(D.insurance.lo*g.days*g.ad*D.usdJpy/100)*100,Math.round(D.insurance.hi*g.days*g.ad*D.usdJpy/100)*100,''];}}];
+ {k:'dn',ic:'castle',c:'fun',bg:'#fff3c4',s:'Disney',e:'🏰',n:'Tokyo Disney',d:'Disneyland or DisneySea, one park a day',t:['Tokyo','1 park a day'],fav:1,q:1,add:1,unit:'day',pr:function(g){var d=D.disney,c=D.disneyChild,kid=c.c*g.ch+c.j*g.tn;return [d.lo*S.ad+kid,d.hi*S.ad+kid,'a day'];}},
+ {k:'sanrio',ic:'bow',c:'fun',bg:'#ffe3ea',s:'Sanrio',e:'🎀',n:'Sanrio Puroland',d:"Hello Kitty's indoor theme park",t:['Tokyo','Indoors'],fav:1,sel:1,pr:function(g){var r=D.sanrio,n=g.ad+g.ch;return [r.lo*n,r.hi*n,''];}},
+ {k:'zoo',ic:'panda',c:'fun',bg:'#e6f6ea',s:'Zoo',e:'🐼',n:'Ueno Zoo',d:'A city zoo in Ueno Park; up to 6th grade free',t:['Tokyo','Outdoors'],fav:1,sel:1,pr:function(g){return [D.uenozoo.a*g.ad,D.uenozoo.a*g.ad,''];}},
+ {k:'jr',ic:'ticket',c:'move',bg:'#e6efff',s:'Rail Pass',e:'🎫',n:'Japan Rail Pass',d:'7 days of JR trains, for long trips',t:['JR trains','7 days'],sel:1,pr:function(g){var j=D.jrpass,v=j.a*g.ad+j.c*g.ch;return [v,v,''];}},
+ {k:'tx',ic:'taxi',c:'move',bg:'#fff3c4',s:'Taxis',e:'🚕',n:'Taxi rides in town',d:'About 7 km each',t:['Tokyo','Kyoto','Osaka'],q:1,add:4,unit:'ride',pr:function(g){return [D.taxi.lo*g.cars,D.taxi.hi*g.cars,'a ride'];}},
+ {k:'cr',ic:'car',c:'move',bg:'#ffe3e3',s:'Car',e:'🚗',n:'Rental car',d:'Most visitors need an International Driving Permit (check current rules)',t:['Hokkaido','Countryside'],q:1,add:2,unit:'day',pr:function(){return null;}},
+ {k:'es',ic:'phone',c:'pre',bg:'#e6efff',s:'eSIM',e:'📱',n:'eSIM data',d:'Maps and messages from landing; one per adult and teen',t:['Before you fly','Per phone'],flag:1,pr:function(g){var ep=D.esim.plans.filter(function(x){return x[0]>=g.days;})[0]||D.esim.plans[D.esim.plans.length-1],en=Math.max(1,Math.ceil(g.days/ep[0])),v=Math.round(ep[2]*en*g.ad*D.usdJpy/10)*10;return [v,v,''];}},
+ {k:'ins',ic:'health',c:'pre',bg:'#e6faf5',s:'Insurance',e:'🩺',n:'Travel medical insurance',d:'From about US$2 a day under 40',t:['Before you fly','Per person'],flag:1,pr:function(g){return [Math.round(D.insurance.lo*g.days*g.ad*D.usdJpy/100)*100,Math.round(D.insurance.hi*g.days*g.ad*D.usdJpy/100)*100,''];}}];
 function qtyOf(it){return it.sel?($(it.k).value==='1'?1:0):S[it.k];}
+var ICON={"castle": "<svg viewBox=\"0 0 64 64\" width=\"100%\" height=\"100%\" aria-hidden=\"true\"><path d=\"M14 54V30h8v-8l4-6 4 6v8h4v-8l4-6 4 6v8h8v24z\" fill=\"#f4c95d\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M26 54V44a6 6 0 0 1 12 0v10\" fill=\"#e9707a\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M26 10v-6l6 3-6 3M42 10v-6l6 3-6 3\" fill=\"#e9707a\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>", "bow": "<svg viewBox=\"0 0 64 64\" width=\"100%\" height=\"100%\" aria-hidden=\"true\"><path d=\"M32 30 12 18c-4-2-8 2-6 8l4 12c2 6 10 4 22-8z\" fill=\"#f28ca0\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M32 30l20-12c4-2 8 2 6 8l-4 12c-2 6-10 4-22-8z\" fill=\"#f28ca0\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"32\" cy=\"30\" r=\"6\" fill=\"#e9707a\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M28 36l-6 18 8-4 2 6 2-20\" fill=\"#f28ca0\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>", "panda": "<svg viewBox=\"0 0 64 64\" width=\"100%\" height=\"100%\" aria-hidden=\"true\"><circle cx=\"16\" cy=\"16\" r=\"8\" fill=\"#374151\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"48\" cy=\"16\" r=\"8\" fill=\"#374151\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"32\" cy=\"34\" r=\"22\" fill=\"#fff\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><ellipse cx=\"23\" cy=\"32\" rx=\"5\" ry=\"7\" fill=\"#374151\" transform=\"rotate(-20 23 32)\"/><ellipse cx=\"41\" cy=\"32\" rx=\"5\" ry=\"7\" fill=\"#374151\" transform=\"rotate(20 41 32)\"/><circle cx=\"24\" cy=\"31\" r=\"2\" fill=\"#fff\"/><circle cx=\"40\" cy=\"31\" r=\"2\" fill=\"#fff\"/><path d=\"M29 42q3 3 6 0\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><ellipse cx=\"32\" cy=\"39\" rx=\"3\" ry=\"2\" fill=\"#374151\"/></svg>", "ticket": "<svg viewBox=\"0 0 64 64\" width=\"100%\" height=\"100%\" aria-hidden=\"true\"><path d=\"M8 18h48v8a6 6 0 0 0 0 12v8H8v-8a6 6 0 0 0 0-12z\" fill=\"#7cc4f5\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M22 20v24\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-dasharray=\"3 4\"/><path d=\"M30 28h16M30 36h10\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>", "taxi": "<svg viewBox=\"0 0 64 64\" width=\"100%\" height=\"100%\" aria-hidden=\"true\"><path d=\"M10 40l4-14h36l4 14v10H10z\" fill=\"#f4c95d\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M18 26l3-8h22l3 8\" fill=\"#cfe9fb\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"26\" y=\"10\" width=\"12\" height=\"6\" rx=\"2\" fill=\"#e9707a\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"20\" cy=\"50\" r=\"5\" fill=\"#374151\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"44\" cy=\"50\" r=\"5\" fill=\"#374151\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M10 40h44\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>", "car": "<svg viewBox=\"0 0 64 64\" width=\"100%\" height=\"100%\" aria-hidden=\"true\"><path d=\"M8 42l6-14h36l6 14v8H8z\" fill=\"#e9707a\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M18 28l4-8h20l4 8\" fill=\"#cfe9fb\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"20\" cy=\"50\" r=\"5\" fill=\"#374151\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"44\" cy=\"50\" r=\"5\" fill=\"#374151\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M30 20v8\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/></svg>", "phone": "<svg viewBox=\"0 0 64 64\" width=\"100%\" height=\"100%\" aria-hidden=\"true\"><rect x=\"18\" y=\"6\" width=\"28\" height=\"52\" rx=\"6\" fill=\"#7cc4f5\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><rect x=\"23\" y=\"14\" width=\"18\" height=\"30\" rx=\"2\" fill=\"#fff\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M28 30l3 3 6-7\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><circle cx=\"32\" cy=\"51\" r=\"2.5\" fill=\"#1f2937\"/></svg>", "health": "<svg viewBox=\"0 0 64 64\" width=\"100%\" height=\"100%\" aria-hidden=\"true\"><path d=\"M32 56S8 42 8 24a12 12 0 0 1 24-4 12 12 0 0 1 24 4c0 18-24 32-24 32z\" fill=\"#7ad3b8\" fill=\"none\" stroke=\"#1f2937\" stroke-width=\"3\" stroke-linejoin=\"round\" stroke-linecap=\"round\"/><path d=\"M32 24v16M24 32h16\" stroke=\"#fff\" stroke-width=\"5\" stroke-linecap=\"round\"/></svg>"};
 var CATS=[['fun','🎢','Things to do','The big days out. More are coming.'],['move','🚆','Getting around','Passes, taxis and a car.'],['pre','🧳','Before you fly','Sort these out at home.']],CAT='fun';
 function items(){var g=ppl0(),cat=CATS.filter(function(c){return c[0]===CAT;})[0];
  $('mtabs').innerHTML=CATS.map(function(c){var n=ITEMS.filter(function(it){return it.c===c[0]&&qtyOf(it);}).length;return '<button type="button" role="tab" data-cat="'+c[0]+'" aria-selected="'+(c[0]===CAT)+'">'+c[1]+' '+c[2]+(n?' · '+n:'')+'</button>';}).join('');
@@ -562,15 +596,18 @@ function items(){var g=ppl0(),cat=CATS.filter(function(c){return c[0]===CAT;})[0
  $('items').innerHTML=list.map(function(it){var n=qtyOf(it),p=it.pr(g);
   var price=p?'<small>Price</small>'+rng(p[0],p[1])+(p[2]?'<i>'+p[2]+'</i>':''):'<small>Price</small><i>on the booking site</i>';
   var act=it.q&&n?'<div class="qty"><button type="button" data-act="dec" data-k="'+it.k+'" aria-label="Fewer">−</button><b>'+n+' '+it.unit+(n>1?'s':'')+'</b><button type="button" data-act="inc" data-k="'+it.k+'" aria-label="More">+</button></div>'
-   :n?'<button type="button" class="add rm" data-act="rm" data-k="'+it.k+'">✓ Added</button>':'<button type="button" class="add" data-act="add" data-k="'+it.k+'">+ Add to trip</button>';
-  return '<div class="it'+(n?' on':'')+'"><div class="tags">'+it.t.map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+(it.fav?'<span class="fav">⭐ Kid fav</span>':'')+'</div><div class="art" style="background:'+it.bg+'" aria-hidden="true">'+it.e+'</div><h3>'+esc(it.n)+'</h3><p>'+esc(it.d)+'</p><div class="foot"><div class="pr">'+price+'</div>'+act+'</div></div>';}).join('');
- var ch=['✈️ Flights','🏨 Hotel','🍜 Food','🛬 Airport'];ITEMS.forEach(function(it){var n=qtyOf(it);if(n)ch.push(it.e+' '+it.s+(it.q&&n>1?' ×'+n:''));});
- $('tcount').textContent=ch.length;$('tchips').innerHTML=ch.map(function(x){return '<span>'+esc(x)+'</span>';}).join('');}
+   :n?'<button type="button" class="add rm" data-act="rm" data-k="'+it.k+'">✓ Added</button>':'<button type="button" class="add" data-act="add" data-k="'+it.k+'">+ Add to Trip</button>';
+  return '<div class="it'+(n?' on':'')+'"><div class="tags">'+it.t.map(function(x,i){return '<span class="t'+Math.min(i,2)+'">'+esc(x)+'</span>';}).join('')+(it.fav?'<span class="fav">⭐ Kid Fav</span>':'')+'</div><div class="art" style="background:'+it.bg+'" aria-hidden="true">'+ICON[it.ic]+'</div><h3>'+esc(it.n)+'</h3><p>'+esc(it.d)+'</p><div class="foot"><div class="pr">'+price+'</div>'+act+'</div></div>';}).join('');
+ var ch=[['✈️','Flights',1],['🏨','Hotel',1],['🍜','Food',1],['🛬','Airport',1]];ITEMS.forEach(function(it){var n=qtyOf(it);if(n)ch.push([it.e,it.s,n]);});
+ $('tcount').textContent=ch.length;$('tchips').innerHTML=ch.map(function(x){return '<span><i>'+x[0]+'</i>'+esc(x[1])+'<em>×'+x[2]+'</em></span>';}).join('');
+ $('tmode').textContent=STYLE?STY[STYLE][0]:'Custom';}
 $('mtabs').addEventListener('click',function(e){var b=e.target.closest('[data-cat]');if(!b)return;CAT=b.getAttribute('data-cat');items();track('tab',CAT);});
 $('items').addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var k=b.getAttribute('data-k'),a=b.getAttribute('data-act'),it=ITEMS.filter(function(x){return x.k===k;})[0];
  if(it.sel){$(k).value=a==='add'?'1':'0';fire($(k));}
  else{var n=S[k];n=a==='add'?(it.add||1):a==='rm'?0:a==='inc'?Math.min(MAX[k],n+1):Math.max(0,n-1);setS(k,n);calc();}
  track(a==='add'||a==='inc'?'add':'remove',k);});
+function kidsUI(){var on=S.ch+S.in+S.tn>0;$('kidsw').setAttribute('aria-pressed',on);$('kidsl').textContent='With kids: '+(on?'ON':'OFF');}
+$('kidsw').addEventListener('click',function(){var on=S.ch+S.in+S.tn>0;if(on){setS('ch',0);setS('in',0);setS('tn',0);}else{setS('ch',2);}setS('rm',Math.max(1,Math.ceil((S.ad+S.tn+S.ch)/2)));track('kids',on?'off':'on');calc();});
 $('reset').addEventListener('click',function(){track('reset');location.href=location.pathname;});
 var tt=null;document.addEventListener('click',function(e){if(e.target.closest('.step,select')){clearTimeout(tt);tt=setTimeout(function(){track('change');},1500);}});
 if(Q0.st&&(STY[Q0.st]||Q0.st==='x'))STYLE=Q0.st==='x'?'':Q0.st;styleBtns();styleUI();if(document.getElementById('from').value)fareUI();calc();track('open',Q0.src||'');
