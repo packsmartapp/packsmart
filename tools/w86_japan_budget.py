@@ -49,19 +49,19 @@ FROM = [
 DATA = {
     "airport": {
         "narita": {"name": "Narita", "ways": [
-            {"id": "skyliner", "name": "Keisei Skyliner to Ueno / Nippori", "a": 2580, "c": 1290, "src": "Keisei", "url": "https://www.keisei.co.jp/keisei/tetudou/skyliner/us/skyliner/purchase.php"},
-            {"id": "nex", "name": "Narita Express round-trip ticket (both rides)", "a": 5200, "c": 2600, "src": "JR East N'EX TOKYO Round Trip Ticket", "url": "https://www.jreast.co.jp/en/multi/pass/nex.html"},
-            {"id": "limo", "name": "Airport Limousine Bus to Tokyo Station", "a": 3100, "c": 1550, "src": "Airport Limousine Bus", "url": "https://www.limousinebus.co.jp/en/timetable/detail/Narita-Tokyo/?dir=1"},
+            {"id": "skyliner", "q": "keisei skyliner", "name": "Keisei Skyliner to Ueno / Nippori", "a": 2580, "c": 1290, "src": "Keisei", "url": "https://www.keisei.co.jp/keisei/tetudou/skyliner/us/skyliner/purchase.php"},
+            {"id": "nex", "q": "narita express", "name": "Narita Express round-trip ticket (both rides)", "a": 5200, "c": 2600, "src": "JR East N'EX TOKYO Round Trip Ticket", "url": "https://www.jreast.co.jp/en/multi/pass/nex.html"},
+            {"id": "limo", "q": "airport limousine bus", "name": "Airport Limousine Bus to Tokyo Station", "a": 3100, "c": 1550, "src": "Airport Limousine Bus", "url": "https://www.limousinebus.co.jp/en/timetable/detail/Narita-Tokyo/?dir=1"},
             {"id": "taxi", "name": "Fixed-fare taxi to Shinjuku, Shibuya, Minato (zone D)", "car": [31500, 32500], "src": "Narita Airport (plus expressway tolls; late-night surcharge)", "url": "https://www.narita-airport.jp/en/access/taxi/"},
         ]},
         "haneda": {"name": "Haneda", "ways": [
-            {"id": "limo", "name": "Airport Limousine Bus to Tokyo Station", "a": 1200, "c": 600, "src": "Airport Limousine Bus", "url": "https://www.limousinebus.co.jp/en/timetable/detail/Haneda-Tokyo/?dir=1"},
-            {"id": "limo2", "name": "Airport Limousine Bus to Shinjuku", "a": 1400, "c": 700, "src": "Airport Limousine Bus (daytime)", "url": "https://www.limousinebus.co.jp/en/timetable/detail/Haneda-Shinjuku/?dir=1"},
+            {"id": "limo", "q": "airport limousine bus", "name": "Airport Limousine Bus to Tokyo Station", "a": 1200, "c": 600, "src": "Airport Limousine Bus", "url": "https://www.limousinebus.co.jp/en/timetable/detail/Haneda-Tokyo/?dir=1"},
+            {"id": "limo2", "q": "airport limousine bus", "name": "Airport Limousine Bus to Shinjuku", "a": 1400, "c": 700, "src": "Airport Limousine Bus (daytime)", "url": "https://www.limousinebus.co.jp/en/timetable/detail/Haneda-Shinjuku/?dir=1"},
             {"id": "keikyu", "name": "Keikyu train to Shinagawa", "a": 330, "c": None, "src": "Keikyu (adult fare; child fare not checked)", "url": "https://www.haneda-tokyo-access.com/en/ride/fares.html"},
         ]},
         "kansai": {"name": "Kansai (KIX)", "ways": [
-            {"id": "haruka-k", "name": "HARUKA to Kyoto (visitor one-way ticket, bought online)", "a": 2700, "c": 1350, "src": "JR West", "url": "https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/"},
-            {"id": "haruka-o", "name": "HARUKA to Shin-Osaka (visitor one-way ticket, bought online)", "a": 1900, "c": 950, "src": "JR West", "url": "https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/"},
+            {"id": "haruka-k", "q": "haruka express", "name": "HARUKA to Kyoto (visitor one-way ticket, bought online)", "a": 2700, "c": 1350, "src": "JR West", "url": "https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/"},
+            {"id": "haruka-o", "q": "haruka express", "name": "HARUKA to Shin-Osaka (visitor one-way ticket, bought online)", "a": 1900, "c": 950, "src": "JR West", "url": "https://www.westjr.co.jp/travel-information/en/tickets-passes/oneway/haruka/"},
         ]},
         "chitose": {"name": "New Chitose (Sapporo)", "ways": [
             {"id": "bus", "name": "Airport bus to Sapporo Station", "a": 1500, "c": 750, "src": "Hokkaido Chuo Bus", "url": "https://www.chuo-bus.co.jp/airport/timetable/?ope=det&n=34&o=2&t=14"},
@@ -110,7 +110,7 @@ LINKS = {
     "tours_family": ["Compare family-friendly multi-day Japan tours", "https://www.tourradar.com/srp/d-japan?age_range=13-17%2C7-12&adults=2&children=2&utm_source=partner-traveller-1471305&utm_medium=ambassador&utm_campaign=family-tours", True],
     "esim": ["See eSIM data plans for Japan", "https://airalo.tpo.lu/u2N5qgJl", True],
     "flights": ["Search flights", "https://aviasales.tpo.lu/E6VxsbuE", True],   # Aviasales, Sub ID budget-flights (28 Nov 2026)
-    "jrpass": ["Buy it on the official Japan Rail Pass site", "https://japanrailpass.net/en/", "official"],
+    "jrpass": ["Japan Rail Pass", "https://www.getyourguide.com/s/?q=japan%20rail%20pass&partner_id=D7IXONS&cmp=ps-budget-jrpass", True],
     "insurance": ["Get a travel medical insurance quote", "https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador", True],
 }
 
@@ -320,16 +320,17 @@ arr.addEventListener('change',function(){if(FARE||fareKey)fareUI();});
 function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)||v<0?0:v;}
 var SRC=[];function reg(o){if(o&&o.url&&!SRC.some(function(x){return x[1]===o.url;}))SRC.push([o.src||'',o.url]);return '';}
 function src(name,url){reg({src:name,url:url});return '<small>'+esc(name)+', checked '+CH+'</small>';}
-function line(label,v,note){var m=note&&note.match(/<a class="bkl"[\s\S]*?<\/a>/);if(m){note=note.replace(m[0],'');v+=m[0];}return '<div class="ln"><div class="l">'+label+(note||'')+'</div><div class="v">'+v+'</div></div>';}
+function line(label,v,note){var m=note&&note.match(/<a class="bkl"[\s\S]*?<\/a>/g);if(m)m.forEach(function(a){note=note.replace(a,'');v+=a;});return '<div class="ln"><div class="l">'+label+(note||'')+'</div><div class="v">'+v+'</div></div>';}
 function bk(k,t){var l=LK[k];if(!l)return '';var off=l[2]==='official';return '<a class="bkl" href="'+esc(l[1])+'" target="_blank" rel="'+(off?'noopener':'nofollow noopener sponsored')+'"'+(off?'':' data-ps-placement="budget-'+k+'"')+' data-go="'+k+'">'+esc(t||'Check final price')+' →</a>';}
+function gyg(q,tag,t){return '<a class="bkl" href="https://www.getyourguide.com/s/?q='+encodeURIComponent(q)+'&partner_id=D7IXONS&cmp=ps-budget-'+tag+'" target="_blank" rel="nofollow noopener sponsored" data-ps-placement="budget-'+tag+'" data-go="'+tag+'">'+esc(t||'Check final price')+' →</a>';}
 function go(k){var l=LK[k],off=l[2]==='official';return '<a class="go" href="'+esc(l[1])+'"'+(off?' target="_blank" rel="noopener"':l[2]?' target="_blank" rel="nofollow noopener sponsored" data-ps-placement="budget-'+k+'"':'')+' data-go="'+k+'">'+esc(l[0])+'<small>'+(off?'official site ↗':l[2]?'partner link ↗':'→')+'</small></a>';}
 function calc(){
  SRC=[];var tn=S.tn,ad=S.ad+tn,ch=S.ch,inf=S.in,ppl=ad+ch+inf,nights=S.nt+S.nk+S.no+S.nh,kan=S.nk+S.no,days=nights+1,cars=Math.ceil(ppl/4),h='',sum=0,lo=0,hi=0,miss=[];
  // airport to town, both ends
  function leg(k,wid,label){var w=D.airport[k].ways.filter(function(x){return x.id===wid;})[0]||D.airport[k].ways[0];
-  if(w.car){lo+=w.car[0]*cars;hi+=w.car[1]*cars;return line(label+': '+esc(w.name)+(cars>1?' ('+cars+' cars)':''),y(w.car[0]*cars)+'–'+y(w.car[1]*cars),src(w.src,w.url));}
-  if(w.c===null&&ch){var v=w.a*ad;sum+=v;miss.push('Children\'s fare on '+w.name);return line(label+': '+esc(w.name),y(v)+' <small style="color:#9aa5b5">+ children</small>',src(w.src,w.url));}
-  var v=w.a*ad+(w.c||0)*ch;sum+=v;return line(label+': '+esc(w.name),y(v),src(w.src,w.url)+(label==='Airport to town'?bk('transfer','Book a private car'):''));}
+  if(w.car){lo+=w.car[0]*cars;hi+=w.car[1]*cars;return line(label+': '+esc(w.name)+(cars>1?' ('+cars+' cars)':''),y(w.car[0]*cars)+'–'+y(w.car[1]*cars),src(w.src,w.url)+(label==='Airport to town'?bk('transfer','Pre-book a private car'):''));}
+  if(w.c===null&&ch){var v=w.a*ad;sum+=v;miss.push('Children\'s fare on '+w.name);return line(label+': '+esc(w.name),y(v)+' <small style="color:#9aa5b5">+ children</small>',src(w.src,w.url)+(w.q?gyg(w.q,'air-'+w.id.split('-')[0]):'')+(label==='Airport to town'?bk('transfer','Or a private car'):''));}
+  var v=w.a*ad+(w.c||0)*ch;sum+=v;return line(label+': '+esc(w.name),y(v),src(w.src,w.url)+(w.q?gyg(w.q,'air-'+w.id.split('-')[0]):'')+(label==='Airport to town'?bk('transfer','Or a private car'):''));}
  var G={exp:'',fly:'',stay:'',rail:'',move:'',pre:''};
  G.move+=leg(arr.value,way.value,'Airport to town');
  var depWay=dep.value===arr.value?way.value:D.airport[dep.value].ways[0].id;
@@ -340,7 +341,7 @@ function calc(){
  if(S.no){var od=D.osakaDay,ol=S.no*(od.lo*ad+od.c*ch),oh=S.no*(od.hi*ad+od.c*ch);lo+=ol;hi+=oh;G.move+=line('Osaka subway and buses: '+S.no+' one-day pass'+(S.no>1?'es':''),y(ol)+'–'+y(oh),'<small>'+esc(od.src)+', checked 27 Nov 2026'+reg(od)+'</small>');}
  if(S.nh){var s=D.sapporoDay,v=S.nh*(s.a*ad+s.c*ch);sum+=v;G.move+=line('Sapporo subway: '+S.nh+' one-day ticket'+(S.nh>1?'s':''),y(v),src(s.src,s.url));}
  if(S.tx){var tl=S.tx*cars*D.taxi.lo,th=S.tx*cars*D.taxi.hi;lo+=tl;hi+=th;G.move+=line('Taxis: '+S.tx+' ride'+(S.tx>1?'s':'')+(cars>1?' × '+cars+' cars':''),y(tl)+'–'+y(th),src(D.taxi.src,D.taxi.url));}
- if(document.getElementById('jr').value==='1'){var j=D.jrpass,v=j.a*ad+j.c*ch;sum+=v;G.rail+=line('Japan Rail Pass, 7 days',y(v),src(j.src,j.url)+bk('jrpass','Buy on the official site'));}
+ if(document.getElementById('jr').value==='1'){var j=D.jrpass,v=j.a*ad+j.c*ch;sum+=v;G.rail+=line('Japan Rail Pass, 7 days',y(v),src(j.src,j.url)+bk('jrpass'));}
  if(S.dn){var d=D.disney,dc=D.disneyChild,ga=S.ad,kid=(dc.c*ch+dc.j*tn)*S.dn,dl=d.lo*ga*S.dn+kid,dh=d.hi*ga*S.dn+kid;lo+=dl;hi+=dh;
   var who=[ga+' adult'+(ga>1?'s':''),tn?tn+' teen'+(tn>1?'s':''):'',ch?ch+' child'+(ch>1?'ren':''):''].filter(Boolean).join(' + ');
   G.exp+=line('Tokyo Disney: '+who+' × '+S.dn+' day'+(S.dn>1?'s':''),y(dl)+'–'+y(dh),'<small>Adults: '+esc(d.src)+', checked '+d.checked+''+reg(d)+''+(tn||ch?'. '+esc(dc.src).charAt(0).toUpperCase()+esc(dc.src).slice(1)+'.':'')+(inf?' Under 4: free; ages 4 and 5 pay the child price.':'')+'</small>'+bk('parks'));}
@@ -431,7 +432,7 @@ _api = open(os.path.join(os.getcwd(), "api", "flight-price.js"), encoding="utf-8
 _codes = [c for _, cs in FROM for c, _ in cs]
 assert len(_codes) == len(set(_codes)), "duplicate city code"
 assert set(re.findall(r"'([A-Z]{3})'", re.search(r"ORIGINS = new Set\(\[(.*?)\]\)", _api, re.S).group(1))) == set(_codes), "api/flight-price.js ORIGINS differ from FROM"
-for _k in ("flights", "transfer", "shinkansen", "parks", "sanrio", "subway", "esim", "insurance"):   # the budget email (api/email-chat.js) uses the same links
+for _k in ("flights", "jrpass", "transfer", "shinkansen", "parks", "sanrio", "subway", "esim", "insurance"):   # the budget email (api/email-chat.js) uses the same links
     assert "'" + LINKS[_k][1] + "'" in open(os.path.join(os.getcwd(), "api", "email-chat.js"), encoding="utf-8").read(), "email-chat.js link differs: " + _k
 FROM_HTML = "".join('<optgroup label="' + g + '">' + "".join('<option value="' + c + '">' + n + "</option>" for c, n in cs) + "</optgroup>" for g, cs in FROM)
 LINKS_OUT = {k: v for k, v in LINKS.items() if TOURS_ON or not k.startswith("tours")}
