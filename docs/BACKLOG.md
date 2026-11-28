@@ -75,7 +75,7 @@ The repo is public, so earnings, partner conversations and outreach are tracked 
 | B23 | Add NINJA WiFi as a second Wi-Fi provider when approved. | Waiting on approval. |
 | B24 | Permanent shared-plan links (needs a store such as Vercel KV). | Only if people use sharing. |
 | B25 | Email capture, country-scoped. Owner's plan (22 Nov): a list for premium travel offers, trips above about ¥50,000. Needs a provider, a consent line and a Privacy Policy section before it goes live. | Owner decision (PRD F21, D43). Later. |
-| B60 | **Budget calculator: more things to do and currencies.** teamLab Planets, Universal Studios Japan and Shibuya Sky cards once the owner sends their official price pages; JPY/INR/USD switch once rates and their source are agreed. | Owner (28 Nov): later. |
+| B60 | **Budget calculator: more things to do and currencies.** teamLab Planets, Universal Studios Japan and Shibuya Sky cards once the owner sends their official price pages; JPY/INR/USD switch added 28 Nov with rough stated rates; a live rate source later. | Owner (28 Nov): later. |
 
 - Packy knowledge beyond Hokkaido (27 Nov, testers): official-source notes for day trips from Tokyo (Nikko, Hakone, Kamakura), Kyoto and Osaka (Nara, Himeji), Japan's main festivals, and skiing outside Hokkaido (Nagano, Niigata), so general questions stop leaning on the Sapporo research. Then `w74` and `node tools/packy_eval.mjs` with new questions.
 
