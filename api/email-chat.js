@@ -264,7 +264,7 @@ const BUDGET_LINKS = [
   ['transfer', 'Airport to town (a private car; trains are sold at the airport)', 'Book a private airport transfer', 'https://tpo.lu/hPV4u7AE']];
 async function sendBudget(req, res, b, email, country, origin) {
   const q = String(b.q || '');
-  if (!/^[a-z]{1,3}=[A-Za-z0-9_-]{1,12}(&[a-z]{1,3}=[A-Za-z0-9_-]{1,12}){0,30}$/.test(q)) return res.status(400).json({ ok: false, error: 'Please work out your budget first.' });
+  if (!/^[a-z]{1,3}=[A-Za-z0-9_-]{1,12}(&[a-z]{1,3}=[A-Za-z0-9_-]{1,12}){0,45}$/.test(q)) return res.status(400).json({ ok: false, error: 'Please work out your budget first.' });
   const P = Object.fromEntries(q.split('&').map(x => x.split('=')));
   const n = k => Math.max(0, Math.min(40, parseInt(P[k], 10) || 0));
   const lo = Math.round(Number(b.lo)), hi = Math.round(Number(b.hi));
