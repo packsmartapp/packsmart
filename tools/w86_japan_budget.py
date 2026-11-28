@@ -181,6 +181,14 @@ input[type=number]{width:130px}
 .ln .v{max-width:50%}.bkl{display:block;width:fit-content;margin:6px 0 0 auto;text-align:right;font-size:.8rem;font-weight:700;color:#7fe6d3;text-decoration:underline;text-underline-offset:2px}.ln .l .bkl small,.bkl small{font-weight:500;color:#9aa5b5;text-decoration:none;display:inline;margin:0 0 0 4px;font-size:.72rem}
 .kinds{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}.kinds button{font:inherit;font-size:.8rem;font-weight:700;padding:9px 2px 7px;border-radius:12px;border:1.5px solid var(--line);background:#fff;color:var(--dark);cursor:pointer;line-height:1.2}.kinds button span{display:block;font-size:1.15rem;margin-bottom:2px}.kinds button[aria-checked=true]{border-color:var(--primary);background:#e6faf5}.kinds button[disabled]{opacity:.35;cursor:default}
 #way[hidden]{display:none}
+.q{margin:16px 0 2px;font-weight:700;color:var(--dark);font-size:.98rem}.q:first-of-type{margin-top:6px}.q small{display:block;font-weight:500;font-size:.78rem;color:var(--muted)}
+.styles{grid-template-columns:repeat(3,1fr);margin-top:8px}.styles button small{display:block;font-weight:500;font-size:.7rem;color:var(--muted);margin-top:2px}
+.sec h2{display:flex;justify-content:space-between;align-items:baseline;gap:8px}.sec h2 .sub{font-size:.92rem;color:#0a8f78;white-space:nowrap}
+.cost{margin:12px -16px -16px;padding:4px 16px 10px;background:#f4faf8;border-top:1.5px solid var(--line);border-radius:0 0 16px 16px}
+.cost:empty{display:none}
+.cost .ln{border-top:1px solid #e1efeb;color:var(--dark)}.cost .ln:first-child{border-top:0}
+.cost .ln .l small{color:var(--muted)}.cost .bkl{color:#0a8f78}.cost .np{color:#c0293f}
+.res .tot b{font-size:2.1rem}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
@@ -207,9 +215,9 @@ input[type=number]{width:130px}
 .srcs{margin:14px 0 0;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:4px 14px}
 .srcs summary{cursor:pointer;font-weight:700;color:var(--dark);font-size:.9rem;padding:10px 0}
 .srcs ul{margin:0 0 12px;padding-left:1.1rem;font-size:.84rem;line-height:1.6}
-.bar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:10px;align-items:center;background:var(--dark);color:#fff;border-radius:999px;padding:9px 16px;font-size:.86rem;box-shadow:0 6px 20px rgba(15,15,35,.3);text-decoration:none;white-space:nowrap;z-index:20}
-.bar b{color:var(--primary)}.bar[hidden]{display:none}
-@media print{.top a,.bar,.keep,.plan,.sh,.go,.bkl,.card:not(.res){display:none!important}
+.bar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);max-width:calc(100% - 24px);display:flex;gap:10px;align-items:center;background:var(--dark);color:#fff;border-radius:999px;padding:9px 16px;font-size:.86rem;box-shadow:0 6px 20px rgba(15,15,35,.3);text-decoration:none;white-space:nowrap;z-index:20}
+.bar b{color:var(--primary)}@media(max-width:380px){#barp{display:none}}.bar[hidden]{display:none}
+@media print{.top a,.bar,.keep,.plan,.sh,.go,.bkl,.row,.kinds,.hint,.q,.card .h,#way{display:none!important}.card{border:0;padding:0;margin:8px 0}.cost{margin:0;background:#fff;border:0}
  body{background:#fff}.res{background:#fff;color:#0f0f23;border:1px solid #ccc}.res h2,.total h3,.ck .t{color:#0f0f23}.ln .l small,.ck .t small,.peek{color:#555}
  .srcs{border:0;padding:0}.srcs[open] summary,.srcs summary{list-style:none}.printsum{display:block!important}}
 .printsum{display:none;font-size:.9rem;margin:0 0 8px}
@@ -219,27 +227,30 @@ input[type=number]{width:130px}
 <header class="top">
   <a href="/japan?src=budget">‹ Japan</a>
   <h1>Japan trip <span>budget calculator</span></h1>
-  <p>Enter your trip. We add up the costs we have official prices for, and show what is left to price.</p>
+  <p>Three questions give you a number. Every choice below shows what it costs, from official prices where we have them.</p>
 </header>
 <main>
-  <section class="card"><h2>Who is going?</h2><p class="h">On trains and buses, ages 12 and up pay adult fares and ages 6 to 11 child fares; under 6 usually ride free with an adult.</p>
+  <section class="card"><h2>Your trip</h2><p class="h">Three questions and you have a number. Fine-tune below.</p>
+    <p class="q">1. Who is going?<small>On trains and buses, 12 and up pay adult fares, 6 to 11 child fares; under 6 usually ride free.</small></p>
     <div class="row"><label>Adults<small>18 and older</small></label><div class="step" data-k="ad"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label>Teenagers<small>12 to 17</small></label><div class="step" data-k="tn"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label>Children<small>6 to 11</small></label><div class="step" data-k="ch"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label>Little ones<small>under 6</small></label><div class="step" data-k="in"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
-  </section>
-  <section class="card"><h2>Where and how long?</h2><p class="h">Nights in each area.</p>
+    <p class="q">2. Nights in each area</p>
     <div class="row"><label>Tokyo</label><div class="step" data-k="nt"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>9</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label>Kyoto</label><div class="step" data-k="nk"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label>Osaka</label><div class="step" data-k="no"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label>Hokkaido<small>Sapporo</small></label><div class="step" data-k="nh"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    <p class="q">3. Your travel style<small>Sets the hotel, food and airport transfer; change any of them below.</small></p>
+    <div class="kinds styles" id="styles" role="radiogroup" aria-label="Travel style"></div>
   </section>
-  <section class="card"><h2>What will you do?</h2><p class="h">The big days out. More are coming.</p>
+  <section class="card sec"><h2>🎢 Things to do <span class="sub" id="s-exp"></span></h2><p class="h">The big days out. More are coming.</p>
     <div class="row"><label>Tokyo Disney days<small>Disneyland or DisneySea, 1 park a day</small></label><div class="step" data-k="dn"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label for="sanrio">Sanrio Puroland</label><select id="sanrio"><option value="0">No</option><option value="1">Yes</option></select></div>
     <div class="row"><label for="zoo">Ueno Zoo</label><select id="zoo"><option value="0">No</option><option value="1">Yes</option></select></div>
+    <div class="cost" id="c-exp"></div>
   </section>
-  <section class="card"><h2>Hotel, food and flights</h2><p class="h">We start with mid-range. Pick another style, or type your own figure if you already know it. In yen.</p>
+  <section class="card sec"><h2>✈️ Flights, hotel and food <span class="sub" id="s-stay"></span></h2><p class="h">In yen. Type your own figure if you already know it.</p>
     <div class="row stack"><label for="hstyle">Hotel style</label><select id="hstyle"><option value="budget">Budget</option><option value="mid" selected>Mid-range</option><option value="upscale">Upscale</option><option value="luxury">Luxury</option><option value="own">I'll type my own price</option></select></div>
     <p class="hint" id="hhint" hidden></p>
     <div class="row" id="hrooms" hidden><label>Rooms<small>most Japanese rooms sleep 2</small></label><div class="step" data-k="rm"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
@@ -250,8 +261,9 @@ input[type=number]{width:130px}
     <div class="row stack"><label for="from">Flying from</label><select id="from"><option value="">Choose a city</option>%%FROM%%<option value="own">Somewhere else: I'll type my fare</option></select></div>
     <p class="hint" id="flyhint" hidden></p>
     <div class="row" id="flyown" hidden><label for="fly">Flights, total<small>all travellers, return</small></label><input type="number" id="fly" inputmode="numeric" min="0" step="1000" placeholder="e.g. 280000"></div>
+    <div class="cost" id="c-stay"></div>
   </section>
-  <section class="card"><h2>Getting around</h2><p class="h">Airports, trains, taxis and cars.</p>
+  <section class="card sec"><h2>🚆 Getting around <span class="sub" id="s-move"></span></h2><p class="h">Airports, trains, taxis and cars.</p>
     <div class="row"><label for="arr">Fly into</label><select id="arr"></select></div>
     <div class="row"><label for="dep">Fly home from</label><select id="dep"></select></div>
     <div class="row stack"><label>To and from the airport</label><div class="kinds" id="kinds" role="radiogroup" aria-label="To and from the airport"></div>
@@ -259,6 +271,10 @@ input[type=number]{width:130px}
     <div class="row"><label>Taxi rides in town<small>about 7 km each</small></label><div class="step" data-k="tx"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>6</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row"><label for="jr">Japan Rail Pass<small>7 days, for long train trips</small></label><select id="jr"><option value="0">No</option><option value="1">Yes</option></select></div>
     <div class="row"><label>Rental car days<small>good for Hokkaido and the countryside; most visitors need an International Driving Permit (check current rules)</small></label><div class="step" data-k="cr"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    <div class="cost" id="c-move"></div>
+  </section>
+  <section class="card sec"><h2>🧳 Before you go <span class="sub" id="s-pre"></span></h2><p class="h">Small costs that are easy to forget.</p>
+    <div class="cost" id="c-pre"></div>
   </section>
   <section class="card res" id="res" aria-live="polite"></section>
   <section class="card keep" id="keep"><h2>Keep it, share it</h2><p class="h">Send this budget to the people you travel with, or keep a copy with its booking links. The link opens this exact budget.</p>
@@ -278,7 +294,7 @@ input[type=number]{width:130px}
   <details class="srcs" id="srcs"><summary>Where these prices come from</summary><ul id="srclist"></ul></details>
   <p class="note">Prices are from the operators' and JNTO's official pages (listed under "Where these prices come from"), checked %%CHECKED%%, and are rounded: they change, so check the official page before you buy. Amounts are in Japanese yen. Partner links are marked; we may earn a commission at no cost to you.</p>
 </main>
-<a class="bar" id="bar" href="#total" hidden>Estimated budget <b id="barv"></b> ↓</a>
+<a class="bar" id="bar" href="#total">Estimated budget <b id="barv"></b> <span id="barp"></span> ↓</a>
 <script>
 (function(){
 var D=%%DATA%%,LK=%%LINKS%%,CH='%%CHECKED%%';
@@ -288,6 +304,13 @@ function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;
 function track(s,x){try{if(window.gtag)gtag('event','budget_calc',{event_category:'engagement',status:s,item:x||'',page_path:location.pathname});}catch(e){}}
 var arr=document.getElementById('arr'),dep=document.getElementById('dep'),way=document.getElementById('way');
 Object.keys(D.airport).forEach(function(k){arr.add(new Option(D.airport[k].name,k));dep.add(new Option(D.airport[k].name,k));});
+var STY={budget:['Budget','simple hotels, konbini','budget','budget','cheap'],mid:['Mid-range','3-star, cafés','mid','mid','train'],comfort:['Comfort','4-star, dinners out','upscale','treat','taxi']},STYLE='mid';
+function styleBtns(){document.getElementById('styles').innerHTML=Object.keys(STY).map(function(k){return '<button type="button" role="radio" data-sty="'+k+'" aria-checked="'+(k===STYLE)+'">'+STY[k][0]+'<small>'+STY[k][1]+'</small></button>';}).join('');}
+function cheapest(k){var best=null;D.airport[k].ways.forEach(function(w){if(w.car)return;var v=w.a*2+(w.c||0);if(!best||v<best.v)best={w:w,v:v};});return best&&best.w;}
+document.getElementById('styles').addEventListener('click',function(e){var b=e.target.closest('[data-sty]');if(!b)return;STYLE=b.getAttribute('data-sty');var st=STY[STYLE];
+ document.getElementById('hstyle').value=st[2];document.getElementById('fstyle').value=st[3];
+ var av=kindsOf(arr.value);if(st[4]==='cheap'){var c=cheapest(arr.value);if(c){KIND=c.k;ways();way.value=c.id;}}else{KIND=av[st[4]]?st[4]:'train';if(!av[KIND])KIND=D.airport[arr.value].ways[0].k;ways();}
+ styleBtns();track('style',STYLE);styleUI();});
 var KINDS=[['train','🚆','Train'],['bus','🚌','Bus'],['taxi','🚕','Taxi'],['private','🚐','Private car']],KIND='';
 function kindsOf(k){var a=D.airport[k].ways,o={private:1};a.forEach(function(w){o[w.k]=1;});return o;}
 function ways(keep){var a=D.airport[arr.value],have=kindsOf(arr.value);if(!have[KIND])KIND=a.ways[0].k;
@@ -326,7 +349,7 @@ function fareUI(){var f=document.getElementById('from').value,fh=document.getEle
  .catch(function(){if(key===fareKey){fh.textContent='Fares could not be loaded right now. Choose "Somewhere else" to type your own.';calc();}});}
 document.getElementById('from').addEventListener('change',function(){track('from',this.value);fareUI();});
 arr.addEventListener('change',function(){if(FARE||fareKey)fareUI();});
-['hstyle','fstyle'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){track(id,this.value);styleUI();});});
+['hstyle','fstyle'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){track(id,this.value);STYLE='';styleBtns();styleUI();});});
 function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)||v<0?0:v;}
 var SRC=[];function reg(o){if(o&&o.url&&!SRC.some(function(x){return x[1]===o.url;}))SRC.push([o.src||'',o.url]);return '';}
 function src(name,url){reg({src:name,url:url});return '<small>'+esc(name)+', checked '+CH+'</small>';}
@@ -388,24 +411,26 @@ function calc(){
  G.pre+=line('Travel medical insurance: '+ad+' × '+days+' days',y(il)+'–'+y(ih),'<small>'+esc(D.insurance.src)+(ch+inf?'; ask the quote about children':'')+'; at about ¥'+D.usdJpy+' to US$1</small>'+bk('insurance','Get a quote'));
  if(S.nh&&(S.nt||S.nk))G.move+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
  miss.forEach(function(m){G.move+=line(esc(m),'<span class="np">not priced yet</span>');});
- function grp(t,x){return x?'<div class="grp">'+t+'</div>'+x:'';}
- h+=grp('Things to do',G.exp)+grp('Flights, hotel and food',G.fly+G.stay)+grp('Getting around',G.rail+G.move)+grp('Before you go',G.pre);np=h;
- var tlo=sum+lo,thi=sum+hi,tv=y(tlo)+(thi>tlo?'–'+y(thi).replace('¥',''):'');TOT={lo:Math.round(tlo),hi:Math.round(thi),ppl:ppl,nights:nights};
- h+='<div class="total" id="total"><h3>Your estimated budget</h3><div class="tot"><b>'+tv+'</b><span>'+ppl+' '+(ppl>1?'people':'person')+' · '+nights+' night'+(nights>1?'s':'')+'</span></div>'+
-  '<p class="pp" style="margin:0">About '+y(tlo/Math.max(1,ppl))+(thi>tlo?'–'+y(thi/Math.max(1,ppl)).replace('¥',''):'')+' per person, for the costs above. Not priced yet: '+(np.match(/class="np"/g)||[]).length+' item'+((np.match(/class="np"/g)||[]).length>1?'s':'')+'.</p></div>';
- if(%%TOURS%%)h+='<div class="grp">Prefer one booking?</div><div class="two"><div><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate. Compare its price with your budget above.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
- var top='<h2>Your trip, costed</h2><p class="pp" style="margin:0 0 6px">Booking links are partner links: we may earn a commission, at no cost to you.</p><p class="printsum">'+esc(summary())+'</p><div class="peek"><span>Estimated budget <b>'+tv+'</b></span><a href="#total">Total ↓</a></div>';
- document.getElementById('res').innerHTML=top+h;
- document.getElementById('barv').textContent=tv;
- document.getElementById('srclist').innerHTML=SRC.map(function(x){return '<li><a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0]||x[1])+'</a></li>';}).join('');
- document.getElementById('planlink').href='/?dest=Japan&adults='+ad+'&kids='+(ch+inf)+'&src=budget_plan#plan';
+  // each section shows its own lines and subtotal (from the line amounts); the summary card adds them up
+  function subOf(x){var l=0,u=0;(x.match(/<div class="v">¥[\d,]+(?:–¥[\d,]+)?/g)||[]).forEach(function(m){var n=m.match(/¥([\d,]+)(?:–¥([\d,]+))?/);var a=+n[1].replace(/,/g,''),b=n[2]?+n[2].replace(/,/g,''):a;l+=a;u+=b;});return l?y(l)+(u>l?'–'+y(u).replace('¥',''):''):'';}
+  [['exp',G.exp],['stay',G.fly+G.stay],['move',G.rail+G.move],['pre',G.pre]].forEach(function(x){document.getElementById('c-'+x[0]).innerHTML=x[1];document.getElementById('s-'+x[0]).textContent=subOf(x[1]);});
+  var all=G.exp+G.fly+G.stay+G.rail+G.move+G.pre,npn=(all.match(/class="np"/g)||[]).length;
+  var tlo=sum+lo,thi=sum+hi,tv=y(tlo)+(thi>tlo?'–'+y(thi).replace('¥',''):'');TOT={lo:Math.round(tlo),hi:Math.round(thi),ppl:ppl,nights:nights};
+  h='<div id="total"><h2>Your estimated budget</h2><p class="printsum">'+esc(summary())+'</p><div class="tot"><b>'+tv+'</b><span>'+ppl+' '+(ppl>1?'people':'person')+' · '+nights+' night'+(nights>1?'s':'')+'</span></div>'+
+   '<p class="pp" style="margin:0">About '+y(tlo/Math.max(1,ppl))+(thi>tlo?'–'+y(thi/Math.max(1,ppl)).replace('¥',''):'')+' per person.'+(npn?' Not priced yet: '+npn+' item'+(npn>1?'s':'')+'.':'')+'</p>'+
+   '<p class="pp" style="margin:8px 0 0">Booking links are partner links: we may earn a commission, at no cost to you.</p></div>';
+  if(%%TOURS%%)h+='<div class="grp">Prefer one booking?</div><div class="two"><div><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate. Compare its price with your budget above.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
+  document.getElementById('res').innerHTML=h;
+  function k(n){return n>=1e6?(n/1e6).toFixed(2).replace(/0$/,'')+'M':Math.round(n/1000)+'K';}document.getElementById('barv').textContent='¥'+k(tlo)+(thi>tlo?'–'+k(thi):'');document.getElementById('barp').textContent='· '+ppl+' '+(ppl>1?'people':'person');
+  document.getElementById('srclist').innerHTML=SRC.map(function(x){return '<li><a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0]||x[1])+'</a></li>';}).join('');
+  document.getElementById('planlink').href='/?dest=Japan&adults='+ad+'&kids='+(ch+inf)+'&src=budget_plan#plan';
  saveUrl();
 }
 document.getElementById('res').addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(!a)return;track('link',a.getAttribute('data-go'));var pl=a.getAttribute('data-ps-placement');if(pl)try{if(window.gtag)gtag('event','affiliate_interact',{event_category:'monetization',placement:pl,page_path:location.pathname});}catch(x){}});
 // ---- the trip in the address: Copy link, WhatsApp and the email all open this exact budget
 var TOT=null,SEL={a:'arr',d:'dep',w:'way',jr:'jr',zo:'zoo',sa:'sanrio',hs:'hstyle',fs:'fstyle',fr:'from'},OWN={ho:'hotel',fo:'food',fl:'fly'};
 function qs(){var q=[];Object.keys(S).forEach(function(k){q.push(k+'='+S[k]);});Object.keys(SEL).forEach(function(k){var v=document.getElementById(SEL[k]).value;if(v&&v!=='0')q.push(k+'='+encodeURIComponent(v));});
- Object.keys(OWN).forEach(function(k){var v=num(OWN[k]);if(v)q.push(k+'='+Math.round(v));});return q.join('&');}
+ Object.keys(OWN).forEach(function(k){var v=num(OWN[k]);if(v)q.push(k+'='+Math.round(v));});q.push('st='+(STYLE||'x'));return q.join('&');}
 function saveUrl(){try{history.replaceState(null,'',location.pathname+'?'+qs());}catch(e){}}
 function link(src){return 'https://www.packsmartapp.com/japan-budget?'+qs()+'&src='+src;}
 function summary(){var w=[S.ad+S.tn+' adult'+(S.ad+S.tn>1?'s':'')];if(S.ch)w.push(S.ch+' child'+(S.ch>1?'ren':''));if(S.in)w.push(S.in+' under 6');
@@ -433,9 +458,9 @@ emf.addEventListener('submit',function(e){e.preventDefault();var addr=document.g
    t.outerHTML=r&&r.ok?'<p class="ok" style="margin-top:8px">Done. Your first trip tip is on its way ✓</p>':'<p class="err">Sorry, that did not work. Please try again later.</p>';track('tips',r&&r.ok?'yes':'failed');},function(){t.disabled=false;});});
  },function(){btn.disabled=false;btn.textContent='Send';emerr.textContent='Sorry, that did not work. Please try again.';emerr.hidden=false;});});
 // the floating total while the reader fills in the form; hidden once the full total is on screen
-var bar=document.getElementById('bar');if('IntersectionObserver' in window){var seen=false;new IntersectionObserver(function(es){es.forEach(function(x){seen=x.isIntersecting;});bar.hidden=seen;}).observe(document.getElementById('res'));}
+var bar=document.getElementById('bar');if('IntersectionObserver' in window){new IntersectionObserver(function(es){es.forEach(function(x){bar.hidden=x.isIntersecting;});}).observe(document.getElementById('res'));}
 var tt=null;document.addEventListener('click',function(e){if(e.target.closest('.step,select')){clearTimeout(tt);tt=setTimeout(function(){track('change');},1500);}});
-styleUI();if(document.getElementById('from').value)fareUI();calc();track('open',Q0.src||'');
+if(Q0.st&&(STY[Q0.st]||Q0.st==='x'))STYLE=Q0.st==='x'?'':Q0.st;styleBtns();styleUI();if(document.getElementById('from').value)fareUI();calc();track('open',Q0.src||'');
 })();
 </script>
 </body>
