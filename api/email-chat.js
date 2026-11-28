@@ -1,6 +1,8 @@
 // Packy: "Email me this chat" (24 Nov 2026, D58), and "Email me these words" from the lucky cat's word card on the Japan
 // hub (kind: 'words', 26 Nov 2026): the same form, consent and guards; the words come from api/_japan_words.js, never
-// from the request.
+// from the request. And (28 Nov 2026) "Email it to me" on the Japan budget calculator (kind: 'budget'): the total, the
+// trip, a link that reopens the exact budget and the booking checklist; only numbers and the calculator's own settings are
+// accepted, and the partner links come from this file, never from the request.
 // Sends the traveller their Packy conversation from hello@packsmartapp.com (the site's Hostinger mailbox, already used by
 // subscribe.js; EMAIL_USER / EMAIL_PASSWORD in Vercel), and sends hello@packsmartapp.com a copy of the signup: the email,
 // whether they ticked "trip tips" (marketing consent), their trip month and the page. That mailbox is the list until an
@@ -91,8 +93,9 @@ export default async function handler(req, res) {
     if (b.tips !== true) return res.status(400).json({ ok: false, error: 'Nothing to update.' });
     const ip2 = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
     if (limited(ip2)) return res.status(429).json({ ok: false, error: 'Too many requests for now. Please try again later.' });
-    const door = b.from === 'words' ? 'fuku' : 'packy';
-    const topics = door === 'fuku' ? ['words'] : topicsOf(b.qs);
+    const door = b.from === 'words' ? 'fuku' : b.from === 'budget' ? 'budget' : 'packy';
+    const known = TOPIC_TAGS.map(t => t[0]);
+    const topics = door === 'fuku' ? ['words'] : door === 'budget' ? [...new Set((Array.isArray(b.topics) ? b.topics : []).map(String).filter(t => known.includes(t)))] : topicsOf(b.qs);
     // the trip-tips list itself: MailerLite (26 Nov, D58). Only this explicit "Yes please" adds anyone to it.
     const ml = await mlAdd({ email, country, door, trip: trip2, topics });
     // the hello@ note stays as a backup while MailerLite is new
@@ -101,7 +104,7 @@ export default async function handler(req, res) {
       try {
         const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
         await t.sendMail({ from: '"Packy signups" <hello@packsmartapp.com>', to: 'hello@packsmartapp.com',
-          subject: '[Packy signup] TRIP TIPS: YES | ' + COUNTRIES[country] + (trip2 ? ' | trip ' + trip2 : '') + (b.from === 'words' ? ' | from the cat\'s word card' : ''),
+          subject: '[Packy signup] TRIP TIPS: YES | ' + COUNTRIES[country] + (trip2 ? ' | trip ' + trip2 : '') + (b.from === 'words' ? ' | from the cat\'s word card' : b.from === 'budget' ? ' | from the budget calculator' : ''),
           text: 'Email: ' + email + '\nTrip tips (marketing consent): YES (tapped "Yes please" after the ' + (b.from === 'words' ? 'cat\'s words were' : 'chat was') + ' emailed)\nTrip month: ' + (trip2 || 'not sure') +
             '\nCountry: ' + COUNTRIES[country] + '\nTopics: ' + (topics.join(', ') || '-') + '\nMailerLite: ' + ml + '\nTime (UTC): ' + new Date().toISOString() +
             (ml === 'added' ? '' : '\n\nNot in MailerLite yet: add this subscriber by hand or ask Claude to import it.') });
@@ -113,6 +116,7 @@ export default async function handler(req, res) {
     return res.status(502).json({ ok: false, error: 'Sorry, that did not work. Please try again.' });
   }
   if (b.kind === 'words') return sendWords(req, res, b, email, country, origin);
+  if (b.kind === 'budget') return sendBudget(req, res, b, email, country, origin);
   const items = (Array.isArray(b.items) ? b.items : []).slice(-10)
     .map(x => ({ q: String((x && x.q) || '').slice(0, 300), a: String((x && x.a) || '').slice(0, 4000), o: knownOffer(x && x.offer), g: guideOk(x && x.guide) }))
     .filter(x => x.q && x.a);
@@ -241,6 +245,79 @@ async function sendWords(req, res, b, email, country, origin) {
   } catch (e) {
     const why = String((e && (e.response || e.message)) || '').replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email]').slice(0, 200);
     console.log(JSON.stringify({ ev: 'email_words', country, ok: false, step, code: e && e.code, smtp: e && e.responseCode, why }));
+    return res.status(502).json({ ok: false, error: 'Sorry, the email could not be sent. Please try again later.' });
+  }
+}
+
+// "Email it to me" on the budget calculator: the estimate, the trip, a link back to the exact budget, the booking checklist.
+// The calculator's settings come in as its own short query string (letters, numbers, = and &) and are checked here; the
+// partner links are fixed below (the same Sub IDs as the page; w86 checks they match).
+const BUDGET_LINKS = [
+  ['transfer', 'Airport to town', 'Book a private airport transfer', 'https://tpo.lu/hPV4u7AE'],
+  ['shinkansen', 'Shinkansen tickets', 'Book Shinkansen tickets online', 'https://www.japan-bullettrain.com/?via=packsmart'],
+  ['parks', 'Theme park tickets', 'Compare Tokyo Disney and theme park tickets', 'https://www.getyourguide.com/s/?q=tokyo%20theme%20park%20tickets&partner_id=D7IXONS&cmp=ps-budget'],
+  ['esim', 'eSIM data', 'See eSIM data plans for Japan', 'https://airalo.tpo.lu/u2N5qgJl'],
+  ['insurance', 'Travel medical insurance', 'Get a travel medical insurance quote', 'https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador']];
+async function sendBudget(req, res, b, email, country, origin) {
+  const q = String(b.q || '');
+  if (!/^[a-z]{1,3}=[A-Za-z0-9_-]{1,12}(&[a-z]{1,3}=[A-Za-z0-9_-]{1,12}){0,30}$/.test(q)) return res.status(400).json({ ok: false, error: 'Please work out your budget first.' });
+  const P = Object.fromEntries(q.split('&').map(x => x.split('=')));
+  const n = k => Math.max(0, Math.min(40, parseInt(P[k], 10) || 0));
+  const lo = Math.round(Number(b.lo)), hi = Math.round(Number(b.hi));
+  if (!(lo > 0 && hi >= lo && hi < 1e8)) return res.status(400).json({ ok: false, error: 'Please work out your budget first.' });
+  const ip = String(req.headers['x-forwarded-for'] || '').split(',')[0].trim() || 'unknown';
+  if (limited(ip)) return res.status(429).json({ ok: false, error: 'Too many emails for now. Please try again later.' });
+  if (!process.env.EMAIL_USER || !process.env.EMAIL_PASSWORD) return res.status(500).json({ ok: false, error: 'Email is not set up yet.' });
+  const SITE = PREVIEW.test(origin) ? origin : LIVE;
+  const open = SITE + '/japan-budget?' + q + '&src=budget_email';
+  const yen = v => '¥' + v.toLocaleString('en-US');
+  const total = yen(lo) + (hi > lo ? '–' + yen(hi).slice(1) : '');
+  const ad = n('ad') + n('tn'), ch = n('ch'), inf = n('in'), ppl = ad + ch + inf;
+  const areas = [['nt', 'Tokyo'], ['nk', 'Kyoto'], ['no', 'Osaka'], ['nh', 'Hokkaido']].filter(a => n(a[0])).map(a => n(a[0]) + ' in ' + a[1]);
+  const nights = ['nt', 'nk', 'no', 'nh'].reduce((t, k) => t + n(k), 0);
+  const who = [ad + ' adult' + (ad > 1 ? 's' : ''), ch ? ch + ' child' + (ch > 1 ? 'ren' : '') : '', inf ? inf + ' under 6' : ''].filter(Boolean).join(', ');
+  const trip = who + ' · ' + nights + ' night' + (nights > 1 ? 's' : '') + (areas.length ? ' (' + areas.join(', ') + ')' : '');
+  const kan = n('nk') + n('no'), jr = P.jr === '1';
+  const want = ['transfer'].concat(n('nt') && kan && !jr ? ['shinkansen'] : [], n('dn') || P.sa === '1' ? ['parks'] : [], ['esim', 'insurance']);
+  const rows = BUDGET_LINKS.filter(l => want.includes(l[0])).map(l =>
+    '<tr><td style="padding:12px 14px;border-top:1px solid #e3e8ec;"><div style="font-weight:bold;color:#0f0f23;">&#9744; ' + esc(l[1]) + '</div>' +
+    '<a href="' + esc(l[3]) + '" style="color:#0a8f78;font-weight:bold;font-size:14px;">' + esc(l[2]) + '</a> <span style="color:#8a93a6;font-size:12px;">(partner link)</span></td></tr>').join('');
+  const plain = ['Flights: with your usual airline or booking site', 'Hotels: with your usual booking site'].concat(jr ? ['Japan Rail Pass: from the official site, before you fly'] : []);
+  const tips = false;
+  const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>' +
+    '<body style="margin:0;padding:0;background:#f4faf8;font-family:Arial,Helvetica,sans-serif;"><div style="max-width:600px;margin:0 auto;padding:28px 16px;">' +
+    '<p style="font-size:22px;font-weight:800;color:#0f0f23;margin:0 0 4px;">Pack<span style="color:#00C9A7;">Smart</span></p>' +
+    '<h1 style="font-size:20px;color:#0f0f23;margin:14px 0 4px;">Your Japan trip budget &#127471;&#127477;</h1>' +
+    '<p style="color:#5a6378;font-size:14px;margin:0 0 14px;">' + esc(trip) + '</p>' +
+    '<div style="background:#0f0f23;border-radius:14px;padding:18px 16px;color:#ffffff;">' +
+    '<div style="font-size:13px;color:#bfc6d6;">Your estimated budget</div><div style="font-size:28px;font-weight:bold;color:#00C9A7;margin:4px 0;">' + total + '</div>' +
+    '<div style="font-size:13px;color:#bfc6d6;">About ' + yen(Math.round(lo / Math.max(1, ppl))) + ' per person, for the costs priced on the page. Prices from official pages where we have them, rounded.</div></div>' +
+    '<p style="text-align:center;margin:22px 0 10px;"><a href="' + esc(open) + '" style="display:inline-block;background:#E94560;color:#ffffff;text-decoration:none;font-weight:bold;font-size:16px;padding:13px 22px;border-radius:24px;">Open your budget</a></p>' +
+    '<p style="text-align:center;color:#5a6378;font-size:13px;margin:0 0 22px;">The full breakdown, and you can change anything. Fares and prices may have moved since.</p>' +
+    '<h2 style="font-size:16px;color:#0f0f23;margin:0 0 8px;">Your booking checklist</h2>' +
+    '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#ffffff;border:1px solid #d9f0ea;border-radius:14px;">' +
+    plain.map(t => '<tr><td style="padding:12px 14px;border-top:1px solid #e3e8ec;color:#0f0f23;">&#9744; <b>' + esc(t.split(':')[0]) + '</b>:' + esc(t.slice(t.indexOf(':') + 1)) + '</td></tr>').join('') + rows + '</table>' +
+    '<p style="font-size:12px;color:#8a93a6;line-height:1.5;margin-top:20px;">Partner links are marked; we may earn a commission at no cost to you. You received this because you asked for your budget on packsmartapp.com. We will not email you again unless you ask. ' +
+    '<a href="' + SITE + '/privacy-policy" style="color:#8a93a6;">Privacy</a></p></div></body></html>';
+  const text = 'Your Japan trip budget\n' + trip + '\n\nYour estimated budget: ' + total + '\n\nOpen your budget: ' + open + '\n\nYour booking checklist:\n' +
+    plain.map(t => '- ' + t).join('\n') + '\n' + BUDGET_LINKS.filter(l => want.includes(l[0])).map(l => '- ' + l[1] + ': ' + l[3] + ' (partner link)').join('\n');
+  let step = 'connect';
+  try {
+    const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
+    step = 'traveller';
+    await t.sendMail({ from: '"PackSmart" <hello@packsmartapp.com>', replyTo: 'hello@packsmartapp.com', to: email, subject: 'Your Japan trip budget: ' + total, html, text });
+    step = 'copy';
+    await t.sendMail({
+      from: '"Packy signups" <hello@packsmartapp.com>', to: 'hello@packsmartapp.com',
+      subject: '[Packy signup] budget only | Japan | from the budget calculator',
+      text: 'Email: ' + email + '\nTrip tips (marketing consent): no (they can say yes after the email is sent)\nFrom: the budget calculator ("Email it to me")' +
+        '\nTrip: ' + trip + '\nEstimate: ' + total + '\nTime (UTC): ' + new Date().toISOString() + '\n\nOnly "YES" signups may get trip tips.',
+    });
+    console.log(JSON.stringify({ ev: 'email_budget', country, tips, ok: true }));
+    return res.status(200).json({ ok: true });
+  } catch (e) {
+    const why = String((e && (e.response || e.message)) || '').replace(/[\w.+-]+@[\w-]+\.[\w.]+/g, '[email]').slice(0, 200);
+    console.log(JSON.stringify({ ev: 'email_budget', country, ok: false, step, code: e && e.code, smtp: e && e.responseCode, why }));
     return res.status(502).json({ ok: false, error: 'Sorry, the email could not be sent. Please try again later.' });
   }
 }
