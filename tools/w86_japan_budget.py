@@ -49,9 +49,9 @@ FROM = [
 DATA = {
     "airport": {
         "narita": {"name": "Narita", "ways": [
-            {"id": "skyliner", "k": "train", "s": "Keisei Skyliner", "q": "keisei skyliner", "name": "Keisei Skyliner to Ueno / Nippori", "a": 2580, "c": 1290, "src": "Keisei", "url": "https://www.keisei.co.jp/keisei/tetudou/skyliner/us/skyliner/purchase.php"},
-            {"id": "nex", "k": "train", "s": "Narita Express", "q": "narita express", "name": "Narita Express round-trip ticket", "a": 5200, "c": 2600, "src": "JR East N'EX TOKYO Round Trip Ticket", "url": "https://www.jreast.co.jp/en/multi/pass/nex.html"},
-            {"id": "limo", "k": "bus", "s": "Limousine Bus to Tokyo Station", "q": "airport limousine bus", "name": "Airport Limousine Bus to Tokyo Station", "a": 3100, "c": 1550, "src": "Airport Limousine Bus", "url": "https://www.limousinebus.co.jp/en/timetable/detail/Narita-Tokyo/?dir=1"},
+            {"id": "skyliner", "k": "train", "s": "Keisei Skyliner", "q": "keisei skyliner narita", "name": "Keisei Skyliner to Ueno / Nippori", "a": 2580, "c": 1290, "src": "Keisei", "url": "https://www.keisei.co.jp/keisei/tetudou/skyliner/us/skyliner/purchase.php"},
+            {"id": "nex", "k": "train", "s": "Narita Express", "q": "narita express ticket", "name": "Narita Express round-trip ticket", "a": 5200, "c": 2600, "src": "JR East N'EX TOKYO Round Trip Ticket", "url": "https://www.jreast.co.jp/en/multi/pass/nex.html"},
+            {"id": "limo", "k": "bus", "s": "Limousine Bus to Tokyo Station", "q": "narita airport limousine bus", "name": "Airport Limousine Bus to Tokyo Station", "a": 3100, "c": 1550, "src": "Airport Limousine Bus", "url": "https://www.limousinebus.co.jp/en/timetable/detail/Narita-Tokyo/?dir=1"},
             {"id": "taxi", "k": "taxi", "s": "Fixed-fare taxi", "name": "Fixed-fare taxi to Shinjuku, Shibuya, Minato (zone D)", "car": [31500, 32500], "src": "Narita Airport (plus expressway tolls; late-night surcharge)", "url": "https://www.narita-airport.jp/en/access/taxi/"},
         ]},
         "haneda": {"name": "Haneda", "ways": [
