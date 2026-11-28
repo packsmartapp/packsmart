@@ -128,9 +128,9 @@ dep.addEventListener('change',function(){dep.dataset.set='1';calc();});
 [way,document.getElementById('jr'),document.getElementById('zoo'),document.getElementById('sanrio')].forEach(function(x){x.addEventListener('change',calc);});
 ['hotel','food','fly'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
 function styleUI(){var hs=document.getElementById('hstyle').value,fs=document.getElementById('fstyle').value,H=D.hotelStyles[hs],F=D.foodStyles[fs];
- var hh=document.getElementById('hhint');hh.hidden=!H;if(H)hh.innerHTML='<b>'+esc(H.name)+':</b> '+esc(H.desc)+'. Per room per night: '+['nt','nk','no','nh'].map(function(k){return esc(D.areaNames[k])+' '+y(H.by[k][0])+'–'+y(H.by[k][1]);}).join(', ')+'; '+esc(D.styleNote)+'.';
+ var hh=document.getElementById('hhint');hh.hidden=!H;if(H)hh.innerHTML='<b>'+esc(H.name)+':</b> '+esc(H.desc)+'. Per room per night, room only (breakfast is counted under food): '+['nt','nk','no','nh'].map(function(k){return esc(D.areaNames[k])+' '+y(H.by[k][0])+'–'+y(H.by[k][1]);}).join(', ')+'; '+esc(D.styleNote)+'.';
  document.getElementById('hrooms').hidden=!H;document.getElementById('hown').hidden=hs!=='own';
- var fh=document.getElementById('fhint');fh.hidden=!F;if(F)fh.innerHTML='<b>'+esc(F.name)+':</b> '+esc(F.desc)+'.'+' About '+y(F.lo)+'–'+y(F.hi)+' per adult per day (children about half); '+esc(D.foodNote)+'.';
+ var fh=document.getElementById('fhint');fh.hidden=!F;if(F)fh.innerHTML='<b>'+esc(F.name)+':</b> '+esc(F.desc)+'.'+' About '+y(F.lo)+'–'+y(F.hi)+' per adult per day for three meals, breakfast included, since many hotels charge extra for it (children about half); '+esc(D.foodNote)+'.';
  document.getElementById('fown').hidden=fs!=='own';calc();}
 var FARE=null,fareKey='';
 function dt(iso){try{return new Date(iso+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}catch(e){return iso;}}
@@ -185,7 +185,7 @@ function calc(){
  if(hot){own+=line('Hotel: '+nights+' nights × '+y(hot),y(hot*nights));sum+=hot*nights;}
  if(H&&H.by&&nights){var hl=0,hh2=0,hw=[];['nt','nk','no','nh'].forEach(function(k){if(S[k]){hl+=H.by[k][0]*S.rm*S[k];hh2+=H.by[k][1]*S.rm*S[k];hw.push(S[k]+' in '+D.areaNames[k]);}});lo+=hl;hi+=hh2;hotDone=true;own+=line('Hotel, '+esc(H.name.toLowerCase())+': '+S.rm+' room'+(S.rm>1?'s':'')+', '+nights+' night'+(nights>1?'s':''),y(hl)+'–'+y(hh2),'<small>'+esc(hw.join(', '))+'; '+esc(D.styleNote)+'</small>');}
  if(food){own+=line('Food: '+(ad+ch+inf)+' people × '+days+' days × '+y(food),y(food*ppl*days));sum+=food*ppl*days;}
- if(F&&F.lo){var fw=ad+(ch+inf)/2,fl=Math.round(F.lo*fw*days),fh2=Math.round(F.hi*fw*days);lo+=fl;hi+=fh2;foodDone=true;own+=line('Food, '+esc(F.name.toLowerCase())+': '+ppl+' '+(ppl>1?'people':'person')+' × '+days+' days',y(fl)+'–'+y(fh2),'<small>'+y(F.lo)+'–'+y(F.hi)+' per adult per day'+(ch+inf?', children about half':'')+'; '+esc(D.foodNote)+'</small>');}
+ if(F&&F.lo){var fw=ad+(ch+inf)/2,fl=Math.round(F.lo*fw*days),fh2=Math.round(F.hi*fw*days);lo+=fl;hi+=fh2;foodDone=true;own+=line('Food, '+esc(F.name.toLowerCase())+': '+ppl+' '+(ppl>1?'people':'person')+' × '+days+' days',y(fl)+'–'+y(fh2),'<small>'+y(F.lo)+'–'+y(F.hi)+' per adult per day, three meals including breakfast'+(ch+inf?'; children about half':'')+'; '+esc(D.foodNote)+'</small>');}
  if(fly){own+=line('Flights',y(fly));sum+=fly;}
  if(FARE&&fr&&fr!=='own'){var fp=ppl,fl2=FARE.lo*fp,fh3=FARE.hi*fp;lo+=fl2;hi+=fh3;flyDone=true;own+=line('Flights, economy return: '+fp+' × '+y(FARE.lo)+'–'+y(FARE.hi),y(fl2)+'–'+y(fh3),'<small>Recent fares found in flight searches, checked '+esc(dt(FARE.checked))+'. Babies under 2 usually pay much less; fares change daily.</small>');}
  if(own)h+='<div class="grp">Hotel, food and flights</div>'+own;
