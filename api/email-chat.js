@@ -283,7 +283,7 @@ async function sendBudget(req, res, b, email, country, origin) {
   const want = [].concat(n('nt') && kan && !jr ? ['shinkansen'] : [], n('nt') ? ['subway'] : [], n('dn') ? ['parks'] : [], P.sa === '1' ? ['sanrio'] : [], ['esim', 'insurance', 'transfer']);
   const rows = BUDGET_LINKS.filter(l => want.includes(l[0])).map(l =>
     '<tr><td style="padding:12px 14px;border-top:1px solid #e3e8ec;"><div style="font-weight:bold;color:#0f0f23;">&#9744; ' + esc(l[1]) + '</div>' +
-    '<a href="' + esc(l[3]) + '" style="color:#0a8f78;font-weight:bold;font-size:14px;">' + esc(l[2]) + '</a> <span style="color:#8a93a6;font-size:12px;">(partner link)</span></td></tr>').join('');
+    '<a href="' + esc(l[3]) + '" style="color:#0a8f78;font-weight:bold;font-size:14px;">' + esc(l[2]) + '</a></td></tr>').join('');
   const plain = ['Flights: book first, months ahead if you can', 'Hotels: book early, with your usual booking site'].concat(jr ? ['Japan Rail Pass: buy it before you fly, at japanrailpass.net (the official site)'] : []);
   const tips = false;
   const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>' +
@@ -302,7 +302,7 @@ async function sendBudget(req, res, b, email, country, origin) {
     '<p style="font-size:12px;color:#8a93a6;line-height:1.5;margin-top:20px;">Partner links are marked; we may earn a commission at no cost to you. You received this because you asked for your budget on packsmartapp.com. We will not email you again unless you ask. ' +
     '<a href="' + SITE + '/privacy-policy" style="color:#8a93a6;">Privacy</a></p></div></body></html>';
   const text = 'Your Japan trip budget\n' + trip + '\n\nYour estimated budget: ' + total + '\n\nOpen your budget: ' + open + '\n\nTo book:\n' +
-    plain.map(t => '- ' + t).join('\n') + '\n' + BUDGET_LINKS.filter(l => want.includes(l[0])).map(l => '- ' + l[1] + ': ' + l[3] + ' (partner link)').join('\n');
+    plain.map(t => '- ' + t).join('\n') + '\n' + BUDGET_LINKS.filter(l => want.includes(l[0])).map(l => '- ' + l[1] + ': ' + l[3]).join('\n');
   let step = 'connect';
   try {
     const t = nodemailer.createTransport({ host: 'smtp.hostinger.com', port: 465, secure: true, auth: { user: process.env.EMAIL_USER, pass: process.env.EMAIL_PASSWORD } });
