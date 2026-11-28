@@ -280,15 +280,16 @@ button,input,select{font-family:inherit}
 .rpanel[hidden],.filters[hidden]{display:none}.rpanel{margin-top:6px}.rpanel .rlist{padding:0;max-width:none}.rpanel .rsum{margin-top:14px}.rpanel .rgo{margin-top:12px}.rpanel .rmore{padding:0;max-width:none}
 .cgrp{grid-column:1/-1;margin:10px 0 -2px;font-family:'Fredoka',sans-serif;font-size:1.1rem;color:#1e2433}.cgrp small{font-family:'Nunito',sans-serif;font-weight:700;font-size:.8rem;color:#8a93a6;margin-left:4px}
 .msub{display:none}
-@media(max-width:700px){.items{gap:10px}
- .it{display:grid;grid-template-columns:56px 1fr;grid-template-areas:"art tags" "art h" "art p" "foot foot";column-gap:12px;padding:12px 14px 0;border-radius:18px}
- .it .tags{grid-area:tags;gap:4px;min-height:0}.it .tags span{font-size:.58rem;padding:2px 7px}
- .it .art{grid-area:art;width:56px;height:56px;padding:10px;margin:2px 0 0;align-self:start}
- .it h3{grid-area:h;font-size:1rem;margin:3px 0 0}.it p{grid-area:p;font-size:.78rem;margin:2px 0 10px;line-height:1.35}
- .it .foot{grid-area:foot;margin:0 -14px;padding:9px 14px 11px}
- .it .pr{font-size:1.08rem}.it .pr small{font-size:.56rem}
- .it .add{padding:8px 14px;font-size:.84rem}.it .qty{padding:3px;gap:4px}.it .qty button{width:30px;height:30px}.it .qty b{font-size:.84rem;min-width:46px}
- .cgrp{margin:6px 0 -4px;font-size:1rem}}
+.items{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:10px}
+@media(min-width:620px){.items{grid-template-columns:repeat(3,minmax(0,1fr))!important}}@media(min-width:980px){.items{grid-template-columns:repeat(4,minmax(0,1fr))!important;gap:14px}}
+.it{display:flex;flex-direction:column;padding:12px 12px 0;text-align:center;border-radius:18px}
+#styles[hidden]{display:none!important}.it .tags{justify-content:center}.it .art{width:58px;height:58px;padding:11px;margin:6px auto 6px}
+.it h3{font-size:.98rem;line-height:1.2}.it p{font-size:.76rem;margin:3px 0 8px}
+.it .foot{flex-direction:column;align-items:stretch;gap:8px;margin:auto -12px 0;padding:10px 12px 12px;text-align:center}
+.it .pr{font-size:1rem;line-height:1.2}.it .pr small{font-size:.56rem}
+.it .add{width:100%;padding:9px 6px;font-size:.84rem}
+.it .qty{width:100%;box-sizing:border-box;justify-content:space-between;gap:2px;padding:3px}.it .qty button{width:30px;height:30px;flex:0 0 auto}.it .qty b{min-width:0;flex:1;font-size:.8rem}
+@media(max-width:700px){.it .tags,.it p{display:none}.it h3{margin-top:2px}.cgrp{margin:6px 0 -4px;font-size:1rem}}
 @media(max-width:700px){.planner>.mhead{display:none}.planner{margin-top:10px}
  .extra .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -14px;padding:0 14px 2px}.extra .chips::-webkit-scrollbar{display:none}.extra .chips button{flex:0 0 auto;white-space:nowrap}
  .prow{flex-wrap:nowrap;padding:4px 0}.prow .lab{display:none}.prow .seg{flex:1}.prow .chips{margin:0;padding:0}}
@@ -342,7 +343,7 @@ button,input,select{font-family:inherit}
   <section class="planner">
     <div class="mhead"><span class="memo" id="memo" aria-hidden="true"></span><h2 id="mtitle"></h2><span class="mcount" id="mcount"></span></div><p class="msub" id="msub"></p>
     <div class="filters"><div class="fchips" id="fchips"></div></div>
-    <div class="extra" data-tab="trav"><div class="prow"><p class="lab">Quick group preset</p><div class="chips" data-g="who"></div></div><div class="prow"><p class="lab">Travel style</p><div class="seg" id="styles" role="radiogroup" aria-label="Travel style"></div></div></div>
+    <div class="extra" data-tab="trav"><div class="prow"><p class="lab">Quick group preset</p><div class="chips" data-g="who"></div></div><div class="seg" id="styles" hidden></div></div>
     <div class="extra" data-tab="stays">
     <details class="info" id="hinfo"><summary>ⓘ How we price this</summary><p class="hint" id="hhint"></p></details>
     <div class="row" id="hrooms" hidden><label>Rooms<small>most Japanese rooms sleep 2</small></label><div class="step" data-k="rm"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
@@ -534,7 +535,7 @@ function calc(){
   function grp(t,x){return x?'<div class="grp">'+t+'</div>'+x:'';}
   var all=G.exp+G.fly+G.stay+G.rail+G.move+G.pre,npn=(all.match(/class="np"/g)||[]).length;
   var tlo=sum+lo,thi=sum+hi,tv=y(tlo)+(thi>tlo?'–'+y(thi).replace(/^[¥$₹]/,''):'');TOT={lo:Math.round(tlo),hi:Math.round(thi),ppl:ppl,nights:nights};
-  h='<div class="rhead ihead"><span class="rico" aria-hidden="true">'+(window.__ICON||{}).bag+'</span><div><h2>Your trip, itemised</h2><p>Check each price, then book. Booking links are partner links: we may earn a commission, at no cost to you.</p></div></div>'+grp('Things to do',G.exp)+grp('Flights, hotel and food',G.fly+G.stay)+grp('Getting around',G.rail+G.move)+grp('Before you go',G.pre)+'<div class="rsum total" id="total"><p class="printsum">'+esc(summary())+'</p><div><span>🧭 Travel style</span><span class="pill">'+esc(STYLE?STY[STYLE][0]:'Custom')+'</span></div><div><span>👨‍👩‍👧‍👦 Who and how long</span><span>'+ppl+' '+(ppl>1?'people':'person')+' · '+nights+' night'+(nights>1?'s':'')+'</span></div>'+
+  h='<div class="rhead ihead"><span class="rico" aria-hidden="true">'+(window.__ICON||{}).bag+'</span><div><h2>Your trip, itemised</h2><p>Check each price, then book. Booking links are partner links: we may earn a commission, at no cost to you.</p></div></div>'+grp('Things to do',G.exp)+grp('Flights, hotel and food',G.fly+G.stay)+grp('Getting around',G.rail+G.move)+grp('Before you go',G.pre)+'<div class="rsum total" id="total"><p class="printsum">'+esc(summary())+'</p><div><span>👨‍👩‍👧‍👦 Who and how long</span><span>'+ppl+' '+(ppl>1?'people':'person')+' · '+nights+' night'+(nights>1?'s':'')+'</span></div>'+
     '<div><span>🙋 Per person</span><span>'+y(tlo/Math.max(1,ppl))+(thi>tlo?'–'+y(thi/Math.max(1,ppl)).replace(/^[¥$₹]/,''):'')+'</span></div>'+(npn?'<div class="soft"><span>Not priced yet</span><span>'+npn+' item'+(npn>1?'s':'')+'</span></div>':'')+
     '<div class="gt"><span>Estimated total</span><span>'+tv+'</span></div>'+(CUR!=='JPY'?'<div class="soft"><span>Rates</span><span>about ¥'+D.usdJpy+' = US$1, ¥'+D.inrJpy+' = ₹1</span></div>':'')+'</div>';
   if(true)h+='<div class="grp">Prefer one booking?</div><div class="two"><div><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate. Compare its price with your budget above.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
@@ -722,7 +723,7 @@ function items(){var cur=TABS.filter(function(t){return t[0]===TAB;})[0]||TABS[0
    :st.city?(on?'<button type="button" class="add rm" data-act="crm" data-k="'+k+'">✓ Added</button>':'<button type="button" class="add" data-act="cadd" data-k="'+k+'">+ Add</button>')
    :on?'<button type="button" class="add rm" data-act="rm" data-k="'+k+'">✓ Added</button>':'<button type="button" class="add" data-act="add" data-k="'+k+'">+ Add to Trip</button>';
   return gh+'<div class="it'+(on&&!st.fixed&&(!st.ppl||st.n>0)?' on':'')+(st.off?' off':'')+'"><div class="tags">'+c[6].map(function(x,i){return '<span class="t'+(x==='Kid fav'?'f':Math.min(i,2))+'">'+esc(x)+'</span>';}).join('')+'</div>'+
-   '<div class="art" style="background:'+c[3]+'" aria-hidden="true">'+ICON[c[2]]+'</div><h3>'+esc(c[4])+'</h3><p>'+esc(c[5])+'</p><div class="foot"><div class="pr"><small>'+esc(st.label||'')+'</small>'+price+'</div>'+act+'</div></div>';}).join('')
+   '<div class="art" style="background:'+c[3]+'" aria-hidden="true">'+ICON[c[2]]+'</div><h3>'+esc(c[4])+'</h3><p>'+esc(c[5])+'</p><div class="foot">'+(st.ppl?'':'<div class="pr"><small>'+esc(st.label||'')+'</small>'+price+'</div>')+act+'</div></div>';}).join('')
   :(TAB==='review'||TAB==='book')?'':'<p class="none">Nothing here matches that filter. <button type="button" data-fil="'+FIL+'">Show all</button></p>';
  // the tray
  var cities=['nt','nk','no','nh'].filter(function(k){return S[k];}).map(function(k){return NIGHTS[k]+' ('+S[k]+'n)';}),pp=g.ad+g.ch+g.inf,nn=S.nt+S.nk+S.no+S.nh,cnt=0;
@@ -755,7 +756,7 @@ function rrows(){var g=ppl0(),out=[];CARDS.forEach(function(c){var st=state(c);i
   out.push('<div class="rrow"><span class="ri" style="background:'+c[3]+'" aria-hidden="true">'+ICON[c[2]]+'</span><div class="rt"><h3>'+esc(c[4])+'</h3><div class="rp">'+(st.pr?rng(st.pr[0],st.pr[1]):'<small style="margin:0">'+esc(st.note||'not priced yet')+'</small>')+(per?'<small>'+per+'</small>':'')+'</div><div class="rs">'+esc(st.label||'')+'</div></div>'+right+'</div>');});
  $('rlist').innerHTML=out.join('');
  var pp=g.ad+g.ch+g.inf,nn=S.nt+S.nk+S.no+S.nh;
- $('rsum').innerHTML='<div><span>🧭 Travel style</span><span class="pill">'+esc(STYLE?STY[STYLE][0]:'Custom')+'</span></div><div><span>👨‍👩‍👧‍👦 Who and how long</span><span>'+pp+' people · '+nn+' nights</span></div>'+
+ $('rsum').innerHTML='<div><span>👨‍👩‍👧‍👦 Who and how long</span><span>'+pp+' people · '+nn+' nights</span></div>'+
   '<div><span>🧳 In your trip</span><span>'+out.length+' items</span></div><div class="gt"><span>Estimated total</span><span>'+esc($('barv').getAttribute('data-full')||$('barv').textContent)+'</span></div>';}
 function openReview(){TAB='review';FIL='';items();scrollTo(0,0);var sel=document.querySelector('#mtabs [aria-selected=true]');if(sel&&sel.scrollIntoView)sel.scrollIntoView({inline:'center',block:'nearest'});track('review','open');}
 function closeReview(){$('rsheet').hidden=true;document.body.style.overflow='';}
