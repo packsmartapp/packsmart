@@ -80,15 +80,17 @@ DATA = {
     "shinkansen": {"a": 13970, "c": 6980, "src": "Smart EX Service, Nozomi, reserved seat, normal season (off-peak 200 yen less, busiest 400 yen more; children half that)", "url": "https://smart-ex.jp/en/", "checked": "27 Nov 2026"},
     "shinkansenOsaka": {"a": 14520, "c": 7250},
     "hotelStyles": {
-        "budget": {"name": "Budget", "desc": "hostels, capsule hotels and simple business hotels", "lo": None, "hi": None},
-        "mid": {"name": "Mid-range", "desc": "3-star and good business hotels", "lo": None, "hi": None},
-        "upscale": {"name": "Upscale", "desc": "4-star hotels", "lo": None, "hi": None},
-        "luxury": {"name": "Luxury", "desc": "5-star hotels and high-end ryokan", "lo": None, "hi": None}},
+        "budget": {"name": "Budget", "desc": "business hotels and simple twin rooms", "by": {"nt": [10000, 18000], "nk": [9000, 16000], "no": [8000, 14000], "nh": [7000, 12000]}},
+        "mid": {"name": "Mid-range", "desc": "3-star and good business hotels", "by": {"nt": [18000, 35000], "nk": [16000, 30000], "no": [14000, 25000], "nh": [12000, 22000]}},
+        "upscale": {"name": "Upscale", "desc": "4-star hotels, including the Disney partner hotels", "by": {"nt": [35000, 70000], "nk": [30000, 60000], "no": [25000, 50000], "nh": [22000, 45000]}},
+        "luxury": {"name": "Luxury", "desc": "5-star hotels and top ryokan", "by": {"nt": [80000, 150000], "nk": [70000, 130000], "no": [60000, 110000], "nh": [50000, 100000]}}},
     "foodStyles": {
-        "budget": {"name": "Budget", "desc": "convenience stores, bakeries and casual chains (ramen, curry, gyudon)", "lo": None, "hi": None},
-        "mid": {"name": "Mid-range", "desc": "a cafe lunch and an izakaya or family restaurant dinner", "lo": None, "hi": None},
-        "treat": {"name": "Treat yourself", "desc": "sit-down sushi, wagyu or kaiseki dinners", "lo": None, "hi": None}},
-    "styleNote": "a rough guide from our own trips (October 2025); prices vary by city, season and dates",
+        "budget": {"name": "Budget", "desc": "convenience stores, bakeries and casual chains (ramen, curry, gyudon)", "lo": 3000, "hi": 5000},
+        "mid": {"name": "Mid-range", "desc": "a cafe lunch and an izakaya or family restaurant dinner", "lo": 5000, "hi": 9000},
+        "treat": {"name": "Treat yourself", "desc": "sit-down sushi, wagyu or kaiseki dinners", "lo": 12000, "hi": 20000}},
+    "styleNote": "a rough guide (November 2026); prices rise in cherry blossom season, Golden Week, New Year and ski season",
+    "foodNote": "a rough guide (November 2026)",
+    "areaNames": {"nt": "Tokyo", "nk": "Kyoto", "no": "Osaka", "nh": "Hokkaido"},
     "tax": {"each": 3000, "src": "JNTO: International Tourist Tax", "url": "https://www.japan.travel/en/plan/international-tourist-tax/"},
 }
 # Ways to find what we do not price. Partner links reuse Packy's tracked links until the page has its own Sub IDs.
@@ -234,9 +236,9 @@ dep.addEventListener('change',function(){dep.dataset.set='1';calc();});
 [way,document.getElementById('jr'),document.getElementById('zoo'),document.getElementById('sanrio')].forEach(function(x){x.addEventListener('change',calc);});
 ['hotel','food','fly'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
 function styleUI(){var hs=document.getElementById('hstyle').value,fs=document.getElementById('fstyle').value,H=D.hotelStyles[hs],F=D.foodStyles[fs];
- var hh=document.getElementById('hhint');hh.hidden=!H;if(H)hh.innerHTML='<b>'+esc(H.name)+':</b> '+esc(H.desc)+'.'+(H.lo?' About '+y(H.lo)+'–'+y(H.hi)+' per room per night, '+esc(D.styleNote)+'.':'')+'';
+ var hh=document.getElementById('hhint');hh.hidden=!H;if(H)hh.innerHTML='<b>'+esc(H.name)+':</b> '+esc(H.desc)+'. Per room per night: '+['nt','nk','no','nh'].map(function(k){return esc(D.areaNames[k])+' '+y(H.by[k][0])+'–'+y(H.by[k][1]);}).join(', ')+'; '+esc(D.styleNote)+'.';
  document.getElementById('hrooms').hidden=!H;document.getElementById('hown').hidden=hs!=='own';
- var fh=document.getElementById('fhint');fh.hidden=!F;if(F)fh.innerHTML='<b>'+esc(F.name)+':</b> '+esc(F.desc)+'.'+(F.lo?' About '+y(F.lo)+'–'+y(F.hi)+' per person per day, '+esc(D.styleNote)+'.':'');
+ var fh=document.getElementById('fhint');fh.hidden=!F;if(F)fh.innerHTML='<b>'+esc(F.name)+':</b> '+esc(F.desc)+'.'+' About '+y(F.lo)+'–'+y(F.hi)+' per adult per day (children about half); '+esc(D.foodNote)+'.';
  document.getElementById('fown').hidden=fs!=='own';calc();}
 var FARE=null,fareKey='';
 function dt(iso){try{return new Date(iso+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}catch(e){return iso;}}
@@ -289,9 +291,9 @@ function calc(){
  var hs=document.getElementById('hstyle').value,fs=document.getElementById('fstyle').value,H=D.hotelStyles[hs],F=D.foodStyles[fs];
  var fr=document.getElementById('from').value,hot=hs==='own'?num('hotel'):0,food=fs==='own'?num('food'):0,fly=fr==='own'?num('fly'):0,own='',hotDone=!!hot,foodDone=!!food,flyDone=!!fly;
  if(hot){own+=line('Hotel: '+nights+' nights × '+y(hot),y(hot*nights));sum+=hot*nights;}
- if(H&&H.lo&&nights){var hl=H.lo*S.rm*nights,hh2=H.hi*S.rm*nights;lo+=hl;hi+=hh2;hotDone=true;own+=line('Hotel, '+esc(H.name.toLowerCase())+': '+S.rm+' room'+(S.rm>1?'s':'')+' × '+nights+' nights',y(hl)+'–'+y(hh2),'<small>'+esc(D.styleNote)+'</small>');}
+ if(H&&H.by&&nights){var hl=0,hh2=0,hw=[];['nt','nk','no','nh'].forEach(function(k){if(S[k]){hl+=H.by[k][0]*S.rm*S[k];hh2+=H.by[k][1]*S.rm*S[k];hw.push(S[k]+' in '+D.areaNames[k]);}});lo+=hl;hi+=hh2;hotDone=true;own+=line('Hotel, '+esc(H.name.toLowerCase())+': '+S.rm+' room'+(S.rm>1?'s':'')+', '+nights+' night'+(nights>1?'s':''),y(hl)+'–'+y(hh2),'<small>'+esc(hw.join(', '))+'; '+esc(D.styleNote)+'</small>');}
  if(food){own+=line('Food: '+(ad+ch+inf)+' people × '+days+' days × '+y(food),y(food*ppl*days));sum+=food*ppl*days;}
- if(F&&F.lo){var fl=F.lo*ppl*days,fh2=F.hi*ppl*days;lo+=fl;hi+=fh2;foodDone=true;own+=line('Food, '+esc(F.name.toLowerCase())+': '+ppl+' people × '+days+' days',y(fl)+'–'+y(fh2),'<small>'+esc(D.styleNote)+'</small>');}
+ if(F&&F.lo){var fw=ad+(ch+inf)/2,fl=Math.round(F.lo*fw*days),fh2=Math.round(F.hi*fw*days);lo+=fl;hi+=fh2;foodDone=true;own+=line('Food, '+esc(F.name.toLowerCase())+': '+ppl+' '+(ppl>1?'people':'person')+' × '+days+' days',y(fl)+'–'+y(fh2),'<small>'+y(F.lo)+'–'+y(F.hi)+' per adult per day'+(ch+inf?', children about half':'')+'; '+esc(D.foodNote)+'</small>');}
  if(fly){own+=line('Flights',y(fly));sum+=fly;}
  if(FARE&&fr&&fr!=='own'){var fp=ppl,fl2=FARE.lo*fp,fh3=FARE.hi*fp;lo+=fl2;hi+=fh3;flyDone=true;own+=line('Flights, economy return: '+fp+' × '+y(FARE.lo)+'–'+y(FARE.hi),y(fl2)+'–'+y(fh3),'<small>Recent fares found in flight searches, checked '+esc(dt(FARE.checked))+'. Babies under 2 usually pay much less; fares change daily.</small>');}
  if(own)h+='<div class="grp">Hotel, food and flights</div>'+own;
