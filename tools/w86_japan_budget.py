@@ -424,6 +424,7 @@ button,input,select{font-family:inherit}
 .hokcar{grid-column:1/-1;display:flex;align-items:center;gap:10px;background:#fff1f2;border:2px solid #fecdd3;border-radius:16px;padding:10px 12px}.hokcar>span{font-size:1.6rem}.hokcar div{flex:1;min-width:0}.hokcar b{display:block;font-size:.92rem}.hokcar small{display:block;font-size:.76rem;color:#5a6378;line-height:1.3}
 .hokcar button{flex:0 0 auto;font:inherit;font-weight:800;font-size:.82rem;border:0;border-radius:999px;padding:9px 12px;background:#E94560;color:#fff;cursor:pointer}
 .carbox{background:#fffbeb;border:2px solid #fde68a}.carbox[hidden]{display:none}.carmount{min-height:120px}
+.it.tapc .tags{padding:0 30px}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
@@ -755,7 +756,8 @@ var TABS=[['trav','👨‍👩‍👧‍👦','Travelers','Who is going, and you
  ['flight','✈️','Flight','Where you fly from. Economy return fares from recent searches.'],
  ['food','🍜','Food','How you like to eat, per day for the group.'],
  ['fun','🎢','Attractions','Big parks, indoor worlds and easy days out. Tap + for more days at Disney or USJ.'],
- ['move','🚆','Transit','Airport trips, the rail pass, taxis and a car.'],
+ ['move','🚆','Transit','Airport trains, buses and taxis, the rail pass and city travel.'],
+ ['car','🚗','Personal car','A driver who meets you at the airport, or a car you drive yourself.'],
  ['pre','🧳','Essentials','eSIM, insurance and the departure tax.'],
  ['review','🧾','Review','Your whole trip. Change anything here or in the tabs above.'],
  ['book','🛒','Book','Check today\'s price and book each piece, or share and keep your budget.']],TAB='trav',FIL='';
@@ -795,15 +797,15 @@ var CARDS=[
  ['food','f:mid','coffee','#fff3c4','Cafés & family izakaya','A café lunch and an izakaya or family restaurant dinner',['Kid fav'],['kid']],
  ['food','f:treat','sushi','#ffe3e3','Treat yourself','Sit-down sushi, wagyu or kaiseki dinners',['Splurge'],[]],
  ['food','f:own','pen','#f4faf8','My own amount','Type what you expect to spend per person a day',['Your figure'],[]],
- ['move','cr','car','#ffe3e3','Rental car','Lakes, ski towns and open country. Compare live prices in Book; most visitors need an International Driving Permit (check current rules)',['Popular in Hokkaido','Road trips'],[]],
  ['move','lg','bag','#e6faf5','Luggage delivery','Send big bags between the airport and your hotel; travel light on the train',['Hands-free','Airport'],[]],
  ['move','ic','ticket','#e6efff','ICOCA card','Tap-in card for trains, buses and shops in Kansai; pick it up at Kansai Airport',['Kansai','Trains'],[]],
  ['move','a:train','train','#e6efff','Airport by train','Both ways; the fastest way into town',['Rail','Both ways'],['rail','nocar','budget']],
  ['move','a:bus','bus','#e6faf5','Airport by bus','Both ways; door to the big hotels and stations',['Both ways'],['nocar','kid']],
- ['move','a:taxi','taxi','#fff3c4','Airport taxi','Both ways; the airport\'s fixed fare',['Both ways'],['nocar','kid']],
- ['move','a:private','van','#ffe3e3','Private car','Both ways; a pre-booked car meets you at arrivals',['Both ways'],['nocar','kid']],
+ ['move','a:taxi','taxi','#fff3c4','Airport taxi','Fixed fare at the airport taxi rank, both ways',['Both ways'],['nocar','kid']],
  ['move','jr','ticket','#e6efff','Japan Rail Pass','7 days of JR trains, for long trips',['Rail','7 days'],['rail','nocar']],
  ['move','tx','taxi','#fff3c4','Taxi rides in town','About 7 km each',['City'],['nocar','kid']],
+ ['car','a:private','van','#ffe3e3','Airport pickup (with driver)','Pre-booked; a driver meets you at arrivals and takes you to your hotel, both ways',['Both ways'],['nocar','kid']],
+ ['car','cr','car','#ffe3e3','Rental car (you drive)','Lakes, ski towns and open country. Compare live prices in Book; most visitors need an International Driving Permit (check current rules)',['Popular in Hokkaido','Road trips'],[]],
  ['pre','es','phone','#e6efff','eSIM data','Maps and messages from landing; one per adult and teen',['Before you fly','Per phone'],['kid','budget']],
  ['pre','ins','health','#e6faf5','Travel medical insurance','From about US$2 a day under 40; rises with age',['Before you fly','Per person'],['kid']],
  ['pre','tax','receipt','#f4faf8','Departure tax','Japan\'s international tourist tax, usually added to your flight ticket',['Always included'],['budget']]];
@@ -852,7 +854,7 @@ function items(){var cur=TABS.filter(function(t){return t[0]===TAB;})[0]||TABS[0
  var ncity=['nt','nk','no','nh'].filter(function(x){return S[x];}).length,hsn0={budget:'Budget',mid:'Mid-range',upscale:'Upscale',luxury:'Luxury',own:'Your rate'}[$('hstyle').value]||'';
  $('mcount').textContent={trav:pp0+' travellers · '+(STYLE?STY[STYLE][0]:'Custom'),cities:ncity+' cit'+(ncity===1?'y':'ies')+' · '+nn0+' nights',stays:hsn0+' · '+S.rm+' room'+(S.rm>1?'s':'')+' · '+nn0+' nights',
   flight:fr0&&fr0!=='own'?cityName(fr0)+' · economy return':'Choose your city',food:(FSN[$('fstyle').value]||'')+' · '+(nn0+1)+' days',fun:'Kid-friendly parks',
-  move:'Arrival: '+(D.airport[arr.value]||{name:''}).name.replace(/ \(.*\)/,'')+' · '+({train:'Train',bus:'Bus',taxi:'Taxi',private:'Private car'}[KIND]||''),pre:'Before you fly',review:'Estimate '+($('barv').getAttribute('data-full')||$('barv').textContent),book:'Estimate '+($('barv').getAttribute('data-full')||$('barv').textContent)}[TAB]||'';
+  car:(S.cr?S.cr+' rental day'+(S.cr>1?'s':''):'No rental car')+(KIND==='private'?' · airport pickup':''),move:'Arrival: '+(D.airport[arr.value]||{name:''}).name.replace(/ \(.*\)/,'')+' · '+({train:'Train',bus:'Bus',taxi:'Taxi',private:'Private car'}[KIND]||''),pre:'Before you fly',review:'Estimate '+($('barv').getAttribute('data-full')||$('barv').textContent),book:'Estimate '+($('barv').getAttribute('data-full')||$('barv').textContent)}[TAB]||'';
  if($('psel'))$('psel').textContent=fr0&&fr0!=='own'?'Selected: '+cityName(fr0):'';
  var GRPN={big:['🎢','Big theme parks','the full-day splurge'],indoor:['✨','Indoor worlds & views','half a day, good in rain'],easy:['🌸','Easy days out','cheap or free']},lastG='';
  var hok=TAB==='cities'&&S.nh&&!S.cr?'<div class="hokcar"><span aria-hidden="true">🚗</span><div><b>Exploring Hokkaido?</b><small>Lakes, ski towns and open country are far from the train lines; most visitors drive.</small></div><button type="button" data-hokcar="1">+ Add a rental car</button></div>':'';
