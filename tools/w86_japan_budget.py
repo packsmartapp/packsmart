@@ -537,7 +537,7 @@ button,input,select{font-family:inherit}
 <script>
 (function(){
 var D=%%DATA%%,LK=%%LINKS%%,CH='%%CHECKED%%';
-var S={rm:2,ad:2,tn:0,ch:2,in:0,nt:9,nk:0,no:0,nh:0,tx:0,dn:0,cr:0,es:1,ins:1,tl:0,us:0,sk:0,tr:0,gh:0,np:0,fi:0};var MAX={rm:10,ad:12,tn:10,ch:10,in:6,nt:30,nk:30,no:30,nh:30,tx:40,dn:10,cr:30,es:1,ins:1,tl:1,us:5,sk:1,tr:1,gh:1,np:1,fi:1};
+var S={rm:2,ad:2,tn:0,ch:2,in:0,nt:9,nk:0,no:0,nh:0,tx:0,dn:0,cr:0,es:1,ins:1,tl:0,lg:0,ic:0,us:0,sk:0,tr:0,gh:0,np:0,fi:0};var MAX={rm:10,ad:12,tn:10,ch:10,in:6,nt:30,nk:30,no:30,nh:30,tx:40,dn:10,cr:30,es:1,ins:1,tl:1,lg:1,ic:1,us:5,sk:1,tr:1,gh:1,np:1,fi:1};
 var CUR='JPY',CURS={JPY:['¥',1,1],USD:['$',D.usdJpy,1],INR:['₹',D.inrJpy,10]};
 function y(n){var c=CURS[CUR],v=n/c[1];v=Math.round(v/c[2])*c[2];return c[0]+Math.round(v).toLocaleString('en-US');}
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
@@ -593,7 +593,7 @@ arr.addEventListener('change',function(){if(FARE||fareKey)fareUI();});
 function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)||v<0?0:v;}
 var SRC=[];function reg(o){if(o&&o.url&&!SRC.some(function(x){return x[1]===o.url;}))SRC.push([o.src||'',o.url]);return '';}
 function src(name,url){reg({src:name,url:url});return '<small>'+esc(name)+', checked '+CH+'</small>';}
-var LICON=[[/teamLab/,'dots','#efe9ff'],[/Universal/,'globe','#e6efff'],[/Shibuya Sky/,'sky','#efe9ff'],[/Skytree/,'tower','#e6efff'],[/Ghibli/,'leaf','#e6faf5'],[/Nara/,'deer','#fff3c4'],[/Fushimi/,'torii','#ffe3e3'],[/Disney|theme park|Theme park/,'castle','#fff3c4'],[/Sanrio/,'bow','#ffe3ea'],[/Zoo/,'panda','#e6f6ea'],[/^Flights/,'plane','#e6efff'],[/^Hotel/,'bag','#fff3c4'],[/^Food/,'coffee','#fff3c4'],
+var LICON=[[/Luggage/,'bag','#e6faf5'],[/ICOCA/,'ticket','#e6efff'],[/teamLab/,'dots','#efe9ff'],[/Universal/,'globe','#e6efff'],[/Shibuya Sky/,'sky','#efe9ff'],[/Skytree/,'tower','#e6efff'],[/Ghibli/,'leaf','#e6faf5'],[/Nara/,'deer','#fff3c4'],[/Fushimi/,'torii','#ffe3e3'],[/Disney|theme park|Theme park/,'castle','#fff3c4'],[/Sanrio/,'bow','#ffe3ea'],[/Zoo/,'panda','#e6f6ea'],[/^Flights/,'plane','#e6efff'],[/^Hotel/,'bag','#fff3c4'],[/^Food/,'coffee','#fff3c4'],
  [/Shinkansen|Rail Pass/,'train','#e6efff'],[/Private car/,'van','#ffe3e3'],[/taxi × 2|Fixed-fare/,'taxi','#fff3c4'],[/Limousine|bus/i,'bus','#e6faf5'],[/Airport|subway|Keikyu|Children/,'train','#e6efff'],
  [/Taxi/,'taxi','#fff3c4'],[/Rental car/,'car','#ffe3e3'],[/Departure tax/,'receipt','#f4faf8'],[/eSIM/,'phone','#e6efff'],[/insurance/,'health','#e6faf5'],[/Hokkaido/,'mount','#e6efff']];
 function line(label,v,note){var links='',m=note&&note.match(/<a class="bkl"[\s\S]*?<\/a>/g);if(m)m.forEach(function(a){note=note.replace(a,'');links+=a;});
@@ -617,6 +617,9 @@ function calc(){
   return line('Airport transfers, both ways: '+esc(what)+(wi.car&&cars>1?' ('+cars+' cars)':''),l===h?y(l):y(l)+'–'+y(h),src(wi.src,wi.url)+(both?'':src(wo.src,wo.url))+(wi.id==='nex'&&!both?'<small>the Narita Express visitor ticket is a round trip</small>':'')+(wi.kl?kl(wi.kl,'air-'+wi.id.split('-')[0]):wi.q?gyg(wi.q,'air-'+wi.id.split('-')[0]):'')+bkCar);}
  var G={exp:'',fly:'',stay:'',rail:'',move:'',pre:''};
  G.move+=airLine();
+var LGL2={narita:'https://klook.tpo.lu/dc2ejBgY',haneda:'https://klook.tpo.lu/jmWXAbkc',kansai:'https://klook.tpo.lu/YhvjP926'};
+ if(S.lg&&LGL2[arr.value])G.move+=line('Luggage delivery, airport ⇄ hotel','<span class="np">not priced yet</span>','<small>priced per bag on the booking page</small>'+kl(LGL2[arr.value],'luggage'));
+ if(S.ic&&arr.value==='kansai')G.move+=line('ICOCA card, picked up at Kansai Airport','<span class="np">not priced yet</span>','<small>a tap-in card for trains and buses; you top it up as you go</small>'+kl('https://klook.tpo.lu/bwJN4mpw','icoca'));
  if(S.cr)G.move+=line('Rental car: '+S.cr+' day'+(S.cr>1?'s':''),'<span class="np">not priced yet</span>','<small>plus fuel, tolls and parking; most visitors need an International Driving Permit (check current rules)</small><a class="bkl" href="#carbox" data-go="car">Compare live prices ↓</a>');
  if(S.nt){var t=D.tokyoTicket,n=Math.ceil((S.nt+1)/t.days),v=n*(t.a*ad+t.c*ch);sum+=v;G.move+=line('Tokyo subway: '+n+' × 72-hour ticket'+(n>1?'s':''),y(v),src(t.src,t.url)+bk('subway'));}
  if(S.nk){var kd=D.kyotoDay,kv=S.nk*(kd.a*ad+kd.c*ch);sum+=kv;G.move+=line('Kyoto buses and subway: '+S.nk+' one-day pass'+(S.nk>1?'es':''),y(kv),'<small>'+esc(kd.src)+', checked 27 Nov 2026'+reg(kd)+'</small>');}
@@ -793,6 +796,8 @@ var CARDS=[
  ['food','f:treat','sushi','#ffe3e3','Treat yourself','Sit-down sushi, wagyu or kaiseki dinners',['Splurge'],[]],
  ['food','f:own','pen','#f4faf8','My own amount','Type what you expect to spend per person a day',['Your figure'],[]],
  ['move','cr','car','#ffe3e3','Rental car','Lakes, ski towns and open country. Compare live prices in Book; most visitors need an International Driving Permit (check current rules)',['Popular in Hokkaido','Road trips'],[]],
+ ['move','lg','bag','#e6faf5','Luggage delivery','Send big bags between the airport and your hotel; travel light on the train',['Hands-free','Airport'],[]],
+ ['move','ic','ticket','#e6efff','ICOCA card','Tap-in card for trains, buses and shops in Kansai; pick it up at Kansai Airport',['Kansai','Trains'],[]],
  ['move','a:train','train','#e6efff','Airport by train','Both ways; the fastest way into town',['Rail','Both ways'],['rail','nocar','budget']],
  ['move','a:bus','bus','#e6faf5','Airport by bus','Both ways; door to the big hotels and stations',['Both ways'],['nocar','kid']],
  ['move','a:taxi','taxi','#fff3c4','Airport taxi','Both ways; the airport\'s fixed fare',['Both ways'],['nocar','kid']],
@@ -815,6 +820,9 @@ function state(c){var k=c[1],g=ppl0();
  if(k==='dn'){var d=D.disney,dc=D.disneyChild,kid=dc.c*g.ch+dc.j*g.tn,n2=S.dn||1;return {n:S.dn,q:1,unit:'day',label:S.dn?S.dn+' day'+(S.dn>1?'s':'')+', group':'1 day, group',pr:[(d.lo*S.ad+kid)*n2,(d.hi*S.ad+kid)*n2]};}
  if(k==='sanrio'){var r2=D.sanrio,m=g.ad+g.ch;return {n:$('sanrio').value==='1'?1:0,label:'Group tickets',pr:[r2.lo*m,r2.hi*m]};}
  if(k==='us'){var un=S.us||1,uv=D.usj.a*g.ad*un;return {n:S.us,q:1,unit:'day',label:(S.us?S.us+' day'+(S.us>1?'s':''):'1 day')+', adults, from',pr:[uv,uv],note:''};}
+ var LGL={narita:'https://klook.tpo.lu/dc2ejBgY',haneda:'https://klook.tpo.lu/jmWXAbkc',kansai:'https://klook.tpo.lu/YhvjP926'};
+ if(k==='lg')return {n:S.lg,label:'Airport ⇄ hotel',pr:null,note:'price on the booking site',hide:!LGL[arr.value]};
+ if(k==='ic')return {n:S.ic,label:'Per person',pr:null,note:'price on the booking site',hide:arr.value!=='kansai'};
  if(k==='tl'){var tn2=g.ad+g.ch;return {n:S.tl,label:'Group, rough guide',pr:[D.teamlab.lo*tn2,D.teamlab.hi*tn2]};}
  if(k==='sk')return {n:S.sk,label:'Group, web tickets',pr:[D.shibuyasky.lo*g.ad+D.shibuyasky.c*g.ch,D.shibuyasky.hi*g.ad+D.shibuyasky.c*g.ch]};
  if(k==='tr')return {n:S.tr,label:'Group, one deck or both',pr:[D.skytree.alo*g.ad+D.skytree.clo*g.ch,D.skytree.ahi*g.ad+D.skytree.chi*g.ch]};
@@ -840,7 +848,7 @@ function items(){var cur=TABS.filter(function(t){return t[0]===TAB;})[0]||TABS[0
  $('memo').textContent=cur[1];$('mtitle').textContent=cur[2];$('msub').textContent=cur[3]+' Prices are for your group.';
  $('fchips').innerHTML='<button type="button" data-fil="" aria-pressed="'+(!FIL)+'" class="all">All options</button>'+FILS.map(function(f){return '<button type="button" data-fil="'+f[0]+'" aria-pressed="'+(FIL===f[0])+'"><span aria-hidden="true">'+f[1]+'</span> '+f[2]+'</button>';}).join('');
  [].forEach.call(document.querySelectorAll('.extra'),function(x){x.hidden=x.getAttribute('data-tab')!==TAB;});var isR=TAB==='review',isB=TAB==='book';if(isB)carBox();$('rpanel').hidden=!isR;$('bpanel').hidden=!isB;document.querySelector('.filters').hidden=true;FIL='';if(isR)rrows();
- var list=(TAB==='review'||TAB==='book')?[]:CARDS.filter(function(c){return c[0]===TAB&&(!FIL||c[7].indexOf(FIL)>=0);});var pp0=g.ad+g.ch+g.inf,nn0=S.nt+S.nk+S.no+S.nh,fr0=$('from').value,FSN={budget:'Konbini & casual',mid:'Cafés & izakaya',treat:'Treat yourself',own:'Your food figure'};
+ var list=(TAB==='review'||TAB==='book')?[]:CARDS.filter(function(c){return c[0]===TAB&&!state(c).hide&&(!FIL||c[7].indexOf(FIL)>=0);});var pp0=g.ad+g.ch+g.inf,nn0=S.nt+S.nk+S.no+S.nh,fr0=$('from').value,FSN={budget:'Konbini & casual',mid:'Cafés & izakaya',treat:'Treat yourself',own:'Your food figure'};
  var ncity=['nt','nk','no','nh'].filter(function(x){return S[x];}).length,hsn0={budget:'Budget',mid:'Mid-range',upscale:'Upscale',luxury:'Luxury',own:'Your rate'}[$('hstyle').value]||'';
  $('mcount').textContent={trav:pp0+' travellers · '+(STYLE?STY[STYLE][0]:'Custom'),cities:ncity+' cit'+(ncity===1?'y':'ies')+' · '+nn0+' nights',stays:hsn0+' · '+S.rm+' room'+(S.rm>1?'s':'')+' · '+nn0+' nights',
   flight:fr0&&fr0!=='own'?cityName(fr0)+' · economy return':'Choose your city',food:(FSN[$('fstyle').value]||'')+' · '+(nn0+1)+' days',fun:'Kid-friendly parks',
@@ -899,7 +907,7 @@ document.querySelector('.planner').addEventListener('click',function(e){var hb=e
 function rrows(){var g=ppl0(),out=[];CARDS.forEach(function(c){var st=state(c);if(!st.n||st.off||st.ppl||st.city)return;var k=c[1],per='';
   if(st.q&&st.pr&&st.n>1)per='('+rng(st.pr[0]/st.n,st.pr[1]/st.n)+' a '+st.unit+')';
   var right=st.q?'<div class="rq"><button type="button" data-act="'+(st.n>1?'dec':'rm')+'" data-k="'+k+'" aria-label="'+(st.n>1?'Fewer':'Remove')+'">'+(st.n>1?'−':'🗑')+'</button><b>'+st.n+'</b><button type="button" class="p" data-act="inc" data-k="'+k+'" aria-label="More">+</button></div>'
-   :(['sanrio','zoo','jr','es','ins','tl','sk','tr','gh','np','fi'].indexOf(k)>=0)?'<div class="rq"><button type="button" data-act="rm" data-k="'+k+'" aria-label="Remove">🗑</button><b>1</b></div>'
+   :(['sanrio','zoo','jr','es','ins','tl','lg','ic','sk','tr','gh','np','fi'].indexOf(k)>=0)?'<div class="rq"><button type="button" data-act="rm" data-k="'+k+'" aria-label="Remove">🗑</button><b>1</b></div>'
    :st.fixed?'':'<button type="button" class="rch" data-tabgo="'+c[0]+'">Change</button>';
   out.push('<div class="rrow"><span class="ri" style="background:'+c[3]+'" aria-hidden="true">'+ICON[c[2]]+'</span><div class="rt"><h3>'+esc(c[4])+'</h3><div class="rp">'+(st.pr?rng(st.pr[0],st.pr[1]):'<small style="margin:0">'+esc(st.note||'not priced yet')+'</small>')+(per?'<small>'+per+'</small>':'')+'</div><div class="rs">'+esc(st.label||'')+'</div></div>'+right+'</div>');});
  $('rlist').innerHTML=out.join('');
