@@ -229,12 +229,12 @@ input[type=number]{width:130px}
     <div class="row"><label for="zoo">Ueno Zoo</label><select id="zoo"><option value="0">No</option><option value="1">Yes</option></select></div>
     <div class="row"><label for="jr">Japan Rail Pass<small>7 days, for long train trips</small></label><select id="jr"><option value="0">No</option><option value="1">Yes</option></select></div>
   </section>
-  <section class="card"><h2>Hotel, food and flights</h2><p class="h">Pick a style, or type your own figure if you already know it. In yen.</p>
-    <div class="row stack"><label for="hstyle">Hotel style</label><select id="hstyle"><option value="">Choose a style</option><option value="budget">Budget</option><option value="mid">Mid-range</option><option value="upscale">Upscale</option><option value="luxury">Luxury</option><option value="own">I'll type my own price</option></select></div>
+  <section class="card"><h2>Hotel, food and flights</h2><p class="h">We start with mid-range. Pick another style, or type your own figure if you already know it. In yen.</p>
+    <div class="row stack"><label for="hstyle">Hotel style</label><select id="hstyle"><option value="budget">Budget</option><option value="mid" selected>Mid-range</option><option value="upscale">Upscale</option><option value="luxury">Luxury</option><option value="own">I'll type my own price</option></select></div>
     <p class="hint" id="hhint" hidden></p>
     <div class="row" id="hrooms" hidden><label>Rooms<small>most Japanese rooms sleep 2</small></label><div class="step" data-k="rm"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
     <div class="row" id="hown" hidden><label for="hotel">Your hotel per night<small>all rooms together</small></label><input type="number" id="hotel" inputmode="numeric" min="0" step="1000" placeholder="e.g. 25000"></div>
-    <div class="row stack"><label for="fstyle">Food style</label><select id="fstyle"><option value="">Choose a style</option><option value="budget">Budget</option><option value="mid">Mid-range</option><option value="treat">Treat yourself</option><option value="own">I'll type my own amount</option></select></div>
+    <div class="row stack"><label for="fstyle">Food style</label><select id="fstyle"><option value="budget">Budget</option><option value="mid" selected>Mid-range</option><option value="treat">Treat yourself</option><option value="own">I'll type my own amount</option></select></div>
     <p class="hint" id="fhint" hidden></p>
     <div class="row" id="fown" hidden><label for="food">Food per person per day</label><input type="number" id="food" inputmode="numeric" min="0" step="500" placeholder="e.g. 5000"></div>
     <div class="row stack"><label for="from">Flying from</label><select id="from"><option value="">Choose a city</option>%%FROM%%<option value="own">Somewhere else: I'll type my fare</option></select></div>
