@@ -209,19 +209,26 @@ details.info[hidden]{display:none}
 .bd .cost{margin:0;border-top:0}
 .bar.tick b{animation:tick .45s}@keyframes tick{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}.bar b{display:inline-block}
 .hrow{display:flex;justify-content:space-between;align-items:center}.reset{font:inherit;font-size:.78rem;font-weight:700;color:#c0293f;background:#fff0f3;border:1.5px solid #ffd1da;border-radius:999px;padding:6px 10px;cursor:pointer}
-.items{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.it{position:relative;display:flex;flex-direction:column;border:1.5px solid var(--line);border-radius:18px;padding:12px 12px 12px;background:#fff;transition:border-color .15s,box-shadow .15s}
-.it.on{border-color:var(--primary);box-shadow:0 4px 14px rgba(0,201,167,.18)}
-.it .tags{display:flex;flex-wrap:wrap;gap:4px;min-height:20px}.it .tags span{font-size:.66rem;font-weight:700;padding:2px 7px;border-radius:999px;background:#fff6dc;color:#8a5a00}.it .tags span.b{background:#eaf2ff;color:#2457a6}
-.it .art{width:64px;height:64px;margin:8px auto 6px;border-radius:50%;background:#f0faf7;display:flex;align-items:center;justify-content:center;font-size:2rem}
-.it h3{margin:0;font-size:.95rem;line-height:1.2;color:var(--dark)}.it p{margin:3px 0 8px;font-size:.76rem;color:var(--muted);line-height:1.35;flex:1}
-.it .pr{font-weight:800;font-size:1rem;color:var(--dark)}.it .pr small{display:block;font-weight:500;font-size:.7rem;color:var(--muted)}
-.it .act{margin-top:8px}
-.it .add{width:100%;font:inherit;font-weight:800;font-size:.9rem;border:0;border-radius:12px;padding:9px;background:#ffd166;color:#3a2a00;cursor:pointer;box-shadow:0 3px 0 #e0a800}
+.menu{padding-top:12px}
+.mtabs{display:flex;gap:8px;overflow-x:auto;margin:0 -16px 12px;padding:2px 16px 6px;scrollbar-width:none}.mtabs::-webkit-scrollbar{display:none}
+.mtabs button{flex:0 0 auto;font:inherit;font-weight:800;font-size:.86rem;padding:9px 14px;border-radius:14px;border:1.5px solid var(--line);background:#fff;color:var(--dark);cursor:pointer}
+.mtabs button[aria-selected=true]{background:#ffd166;border-color:#ffd166;box-shadow:0 3px 0 #e0a800}
+.mhead{display:flex;align-items:center;gap:8px;flex-wrap:wrap}.mhead h2{margin:0;font-size:1.25rem;font-weight:800}
+.mcount{font-size:.74rem;font-weight:800;background:#fff3c4;color:#6b4e00;border-radius:999px;padding:3px 9px}
+.items{display:grid;grid-template-columns:1fr;gap:12px;margin-top:10px}@media(min-width:620px){.items{grid-template-columns:1fr 1fr}}
+.it{display:flex;flex-direction:column;border:1.5px solid #eef2f1;border-radius:20px;padding:14px 14px 0;background:#fff;box-shadow:0 4px 16px rgba(15,15,35,.05);transition:border-color .15s,box-shadow .15s}
+.it.on{border-color:var(--primary);box-shadow:0 6px 18px rgba(0,201,167,.18)}
+.it .tags{display:flex;flex-wrap:wrap;gap:5px;align-items:flex-start}.it .tags span{font-size:.7rem;font-weight:800;padding:3px 8px;border-radius:999px;border:1px solid #e3ecea;background:#fff;color:var(--muted)}
+.it .tags .fav{margin-left:auto;background:#fff3c4;border-color:#fff3c4;color:#6b4e00}
+.it .art{width:96px;height:96px;margin:10px auto 8px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:3rem}
+.it h3{margin:0;font-size:1.12rem;font-weight:800;line-height:1.2;color:var(--dark)}.it p{margin:4px 0 12px;font-size:.86rem;color:var(--muted);line-height:1.4;flex:1}
+.it .foot{display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid #f0f3f2;margin:0 -14px;padding:12px 14px 14px}
+.it .pr{font-weight:800;font-size:1.2rem;color:var(--dark);line-height:1.15}.it .pr small{display:block;font-size:.66rem;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#8a93a6;margin-bottom:2px}.it .pr i{display:block;font-style:normal;font-weight:600;font-size:.72rem;color:var(--muted)}
+.it .add{flex:0 0 auto;font:inherit;font-weight:800;font-size:.92rem;border:0;border-radius:14px;padding:11px 14px;background:#ffd166;color:#3a2a00;cursor:pointer;box-shadow:0 3px 0 #e0a800;white-space:nowrap}
 .it .add.rm{background:#e6faf5;color:#07624f;box-shadow:none;border:1.5px solid var(--primary)}
-.it .qty{display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--primary);border-radius:12px;background:#e6faf5;padding:3px}
-.it .qty button{width:34px;height:32px;border:0;border-radius:9px;font:inherit;font-size:1.15rem;font-weight:800;cursor:pointer;background:#fff;color:#c0293f}.it .qty button+b+button{background:var(--primary);color:#fff}
-.it .qty b{font-size:.95rem}
+.it .qty{flex:0 0 auto;display:flex;align-items:center;gap:6px;border:1.5px solid #ffd166;border-radius:14px;background:#fff8e1;padding:4px}
+.it .qty button{width:34px;height:34px;border:0;border-radius:10px;font:inherit;font-size:1.15rem;font-weight:800;cursor:pointer;background:#fff;color:#c0293f}.it .qty button+b+button{background:var(--primary);color:#fff}
+.it .qty b{font-size:.88rem;min-width:52px;text-align:center}
 .bar.tray{left:0;right:0;bottom:0;transform:none;max-width:none;border-radius:18px 18px 0 0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:10px;white-space:normal}
 .tbadge{position:relative;font-size:1.6rem;line-height:1;margin-right:6px}.tbadge i{position:absolute;top:-6px;right:-8px;font-style:normal;font-size:.68rem;font-weight:800;background:var(--accent);color:#fff;border-radius:999px;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;padding:0 4px}
 .tmid{flex:1;min-width:0}.tt{display:block;color:#ffd166;font-size:.9rem}.tchips{display:flex;gap:4px;overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,#000 80%,transparent)}.tchips span{font-size:.68rem;background:rgba(255,255,255,.1);border-radius:999px;padding:2px 7px}
@@ -305,7 +312,8 @@ main{padding-bottom:110px}
     <p class="lab">To and from the airport</p><div class="kinds" id="kinds" role="radiogroup" aria-label="To and from the airport"></div>
     <div class="chips sm" data-g="way"></div>
   </section>
-  <section class="card"><h2>🧳 Add to your trip</h2><p class="h">Tap Add. Prices are for your group.</p>
+  <section class="card menu"><div class="mtabs" id="mtabs" role="tablist" aria-label="Add to your trip"></div>
+    <div class="mhead"><h2 id="mtitle"></h2><span class="mcount" id="mcount"></span></div><p class="h" id="msub"></p>
     <div class="items" id="items"></div>
   </section>
   <div id="raw" hidden>
@@ -538,22 +546,27 @@ document.addEventListener('click',function(e){var b=e.target.closest('[data-g] b
 function ppl0(){return {ad:S.ad+S.tn,ch:S.ch,inf:S.in,tn:S.tn,cars:Math.ceil((S.ad+S.tn+S.ch+S.in)/4),days:S.nt+S.nk+S.no+S.nh+1};}
 function rng(a,b){return y(a)+(b>a?'–'+y(b).replace('¥',''):'');}
 var ITEMS=[
- {k:'dn',s:'Disney',e:'🏰',n:'Tokyo Disney',d:'Disneyland or DisneySea, one park a day',t:['Kid fav','Tokyo'],q:1,add:1,unit:'day',pr:function(g){var d=D.disney,c=D.disneyChild,kid=c.c*g.ch+c.j*g.tn;return [d.lo*S.ad+kid,d.hi*S.ad+kid,'a day'];}},
- {k:'sanrio',s:'Sanrio',e:'🎀',n:'Sanrio Puroland',d:"Hello Kitty's indoor theme park",t:['Kid fav','Tokyo'],sel:1,pr:function(g){var r=D.sanrio,n=g.ad+g.ch;return [r.lo*n,r.hi*n,''];}},
- {k:'zoo',s:'Zoo',e:'🐼',n:'Ueno Zoo',d:'A city zoo in Ueno Park; up to 6th grade free',t:['Kid fav','Tokyo'],sel:1,pr:function(g){return [D.uenozoo.a*g.ad,D.uenozoo.a*g.ad,''];}},
- {k:'jr',s:'Rail Pass',e:'🎫',n:'Japan Rail Pass',d:'7 days of JR trains, for long trips',t:['Trains'],sel:1,pr:function(g){var j=D.jrpass,v=j.a*g.ad+j.c*g.ch;return [v,v,''];}},
- {k:'tx',s:'Taxis',e:'🚕',n:'Taxi rides in town',d:'About 7 km each',t:['City'],q:1,add:4,unit:'ride',pr:function(g){return [D.taxi.lo*g.cars,D.taxi.hi*g.cars,'a ride'];}},
- {k:'cr',s:'Car',e:'🚗',n:'Rental car',d:'For Hokkaido and the countryside; most visitors need an International Driving Permit',t:['Hokkaido'],q:1,add:2,unit:'day',pr:function(){return null;}},
- {k:'es',s:'eSIM',e:'📱',n:'eSIM data',d:'Maps and messages from landing; one per adult and teen',t:['Before you fly'],flag:1,pr:function(g){var ep=D.esim.plans.filter(function(x){return x[0]>=g.days;})[0]||D.esim.plans[D.esim.plans.length-1],en=Math.max(1,Math.ceil(g.days/ep[0])),v=Math.round(ep[2]*en*g.ad*D.usdJpy/10)*10;return [v,v,''];}},
- {k:'ins',s:'Insurance',e:'🩺',n:'Travel medical insurance',d:'From about US$2 a day under 40',t:['Before you fly'],flag:1,pr:function(g){return [Math.round(D.insurance.lo*g.days*g.ad*D.usdJpy/100)*100,Math.round(D.insurance.hi*g.days*g.ad*D.usdJpy/100)*100,''];}}];
+ {k:'dn',c:'fun',bg:'#fff3c4',s:'Disney',e:'🏰',n:'Tokyo Disney',d:'Disneyland or DisneySea, one park a day',t:['Tokyo','1 park a day'],fav:1,q:1,add:1,unit:'day',pr:function(g){var d=D.disney,c=D.disneyChild,kid=c.c*g.ch+c.j*g.tn;return [d.lo*S.ad+kid,d.hi*S.ad+kid,'a day'];}},
+ {k:'sanrio',c:'fun',bg:'#ffe3ea',s:'Sanrio',e:'🎀',n:'Sanrio Puroland',d:"Hello Kitty's indoor theme park",t:['Tokyo','Indoors'],fav:1,sel:1,pr:function(g){var r=D.sanrio,n=g.ad+g.ch;return [r.lo*n,r.hi*n,''];}},
+ {k:'zoo',c:'fun',bg:'#e6f6ea',s:'Zoo',e:'🐼',n:'Ueno Zoo',d:'A city zoo in Ueno Park; up to 6th grade free',t:['Tokyo','Outdoors'],fav:1,sel:1,pr:function(g){return [D.uenozoo.a*g.ad,D.uenozoo.a*g.ad,''];}},
+ {k:'jr',c:'move',bg:'#e6efff',s:'Rail Pass',e:'🎫',n:'Japan Rail Pass',d:'7 days of JR trains, for long trips',t:['JR trains','7 days'],sel:1,pr:function(g){var j=D.jrpass,v=j.a*g.ad+j.c*g.ch;return [v,v,''];}},
+ {k:'tx',c:'move',bg:'#fff3c4',s:'Taxis',e:'🚕',n:'Taxi rides in town',d:'About 7 km each',t:['Tokyo','Kyoto','Osaka'],q:1,add:4,unit:'ride',pr:function(g){return [D.taxi.lo*g.cars,D.taxi.hi*g.cars,'a ride'];}},
+ {k:'cr',c:'move',bg:'#ffe3e3',s:'Car',e:'🚗',n:'Rental car',d:'Most visitors need an International Driving Permit (check current rules)',t:['Hokkaido','Countryside'],q:1,add:2,unit:'day',pr:function(){return null;}},
+ {k:'es',c:'pre',bg:'#e6efff',s:'eSIM',e:'📱',n:'eSIM data',d:'Maps and messages from landing; one per adult and teen',t:['Before you fly','Per phone'],flag:1,pr:function(g){var ep=D.esim.plans.filter(function(x){return x[0]>=g.days;})[0]||D.esim.plans[D.esim.plans.length-1],en=Math.max(1,Math.ceil(g.days/ep[0])),v=Math.round(ep[2]*en*g.ad*D.usdJpy/10)*10;return [v,v,''];}},
+ {k:'ins',c:'pre',bg:'#e6faf5',s:'Insurance',e:'🩺',n:'Travel medical insurance',d:'From about US$2 a day under 40',t:['Before you fly','Per person'],flag:1,pr:function(g){return [Math.round(D.insurance.lo*g.days*g.ad*D.usdJpy/100)*100,Math.round(D.insurance.hi*g.days*g.ad*D.usdJpy/100)*100,''];}}];
 function qtyOf(it){return it.sel?($(it.k).value==='1'?1:0):S[it.k];}
-function items(){var g=ppl0();$('items').innerHTML=ITEMS.map(function(it){var n=qtyOf(it),p=it.pr(g);
-  var price=p?(rng(p[0],p[1])+(p[2]?'<small>'+p[2]+'</small>':'<small>for your group</small>')):'<small>price on the booking site</small>';
+var CATS=[['fun','🎢','Things to do','The big days out. More are coming.'],['move','🚆','Getting around','Passes, taxis and a car.'],['pre','🧳','Before you fly','Sort these out at home.']],CAT='fun';
+function items(){var g=ppl0(),cat=CATS.filter(function(c){return c[0]===CAT;})[0];
+ $('mtabs').innerHTML=CATS.map(function(c){var n=ITEMS.filter(function(it){return it.c===c[0]&&qtyOf(it);}).length;return '<button type="button" role="tab" data-cat="'+c[0]+'" aria-selected="'+(c[0]===CAT)+'">'+c[1]+' '+c[2]+(n?' · '+n:'')+'</button>';}).join('');
+ var list=ITEMS.filter(function(it){return it.c===CAT;});$('mtitle').textContent=cat[1]+' '+cat[2];$('mcount').textContent=list.length+' to pick from';$('msub').textContent=cat[3]+' Prices are for your group.';
+ $('items').innerHTML=list.map(function(it){var n=qtyOf(it),p=it.pr(g);
+  var price=p?'<small>Price</small>'+rng(p[0],p[1])+(p[2]?'<i>'+p[2]+'</i>':''):'<small>Price</small><i>on the booking site</i>';
   var act=it.q&&n?'<div class="qty"><button type="button" data-act="dec" data-k="'+it.k+'" aria-label="Fewer">−</button><b>'+n+' '+it.unit+(n>1?'s':'')+'</b><button type="button" data-act="inc" data-k="'+it.k+'" aria-label="More">+</button></div>'
-   :n?'<button type="button" class="add rm" data-act="rm" data-k="'+it.k+'">✓ Added</button>':'<button type="button" class="add" data-act="add" data-k="'+it.k+'">+ Add</button>';
-  return '<div class="it'+(n?' on':'')+'"><div class="tags">'+it.t.map(function(x,i){return '<span'+(i?' class="b"':'')+'>'+esc(x)+'</span>';}).join('')+'</div><div class="art" aria-hidden="true">'+it.e+'</div><h3>'+esc(it.n)+'</h3><p>'+esc(it.d)+'</p><div class="pr">'+price+'</div><div class="act">'+act+'</div></div>';}).join('');
+   :n?'<button type="button" class="add rm" data-act="rm" data-k="'+it.k+'">✓ Added</button>':'<button type="button" class="add" data-act="add" data-k="'+it.k+'">+ Add to trip</button>';
+  return '<div class="it'+(n?' on':'')+'"><div class="tags">'+it.t.map(function(x){return '<span>'+esc(x)+'</span>';}).join('')+(it.fav?'<span class="fav">⭐ Kid fav</span>':'')+'</div><div class="art" style="background:'+it.bg+'" aria-hidden="true">'+it.e+'</div><h3>'+esc(it.n)+'</h3><p>'+esc(it.d)+'</p><div class="foot"><div class="pr">'+price+'</div>'+act+'</div></div>';}).join('');
  var ch=['✈️ Flights','🏨 Hotel','🍜 Food','🛬 Airport'];ITEMS.forEach(function(it){var n=qtyOf(it);if(n)ch.push(it.e+' '+it.s+(it.q&&n>1?' ×'+n:''));});
  $('tcount').textContent=ch.length;$('tchips').innerHTML=ch.map(function(x){return '<span>'+esc(x)+'</span>';}).join('');}
+$('mtabs').addEventListener('click',function(e){var b=e.target.closest('[data-cat]');if(!b)return;CAT=b.getAttribute('data-cat');items();track('tab',CAT);});
 $('items').addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var k=b.getAttribute('data-k'),a=b.getAttribute('data-act'),it=ITEMS.filter(function(x){return x.k===k;})[0];
  if(it.sel){$(k).value=a==='add'?'1':'0';fire($(k));}
  else{var n=S[k];n=a==='add'?(it.add||1):a==='rm'?0:a==='inc'?Math.min(MAX[k],n+1):Math.max(0,n-1);setS(k,n);calc();}
