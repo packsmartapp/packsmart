@@ -103,6 +103,7 @@ LINKS = {
     "tours": ["Compare guided multi-day Japan tours", "https://www.tourradar.com/d/japan?utm_source=partner-traveller-1471305&utm_medium=ambassador&utm_campaign=budget-tours", True],
     "tours_family": ["Compare family-friendly multi-day Japan tours", "https://www.tourradar.com/srp/d-japan?age_range=13-17%2C7-12&adults=2&children=2&utm_source=partner-traveller-1471305&utm_medium=ambassador&utm_campaign=family-tours", True],
     "esim": ["See eSIM data plans for Japan", "https://airalo.tpo.lu/u2N5qgJl", True],
+    "flights": ["Search flights", "https://aviasales.tpo.lu/E6VxsbuE", True],   # Aviasales, Sub ID budget-flights (28 Nov 2026)
     "jrpass": ["Buy it on the official Japan Rail Pass site", "https://japanrailpass.net/en/", "official"],
     "insurance": ["Get a travel medical insurance quote", "https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador", True],
 }
@@ -353,11 +354,11 @@ function calc(){
  if(H&&H.by&&nights){var hl=0,hh2=0,hw=[];['nt','nk','no','nh'].forEach(function(k){if(S[k]){hl+=H.by[k][0]*S.rm*S[k];hh2+=H.by[k][1]*S.rm*S[k];hw.push(S[k]+' in '+D.areaNames[k]);}});lo+=hl;hi+=hh2;hotDone=true;G.stay+=line('Hotel, '+esc(H.name.toLowerCase())+': '+S.rm+' room'+(S.rm>1?'s':'')+', '+nights+' night'+(nights>1?'s':''),y(hl)+'–'+y(hh2),'<small>'+esc(hw.join(', '))+'; '+esc(D.styleNote)+'</small>');}
  if(food){G.stay+=line('Food: '+(ad+ch+inf)+' people × '+days+' days × '+y(food),y(food*ppl*days));sum+=food*ppl*days;}
  if(F&&F.lo){var fw=ad+(ch+inf)/2,fl=Math.round(F.lo*fw*days),fh2=Math.round(F.hi*fw*days);lo+=fl;hi+=fh2;foodDone=true;G.stay+=line('Food, '+esc(F.name.toLowerCase())+': '+ppl+' '+(ppl>1?'people':'person')+' × '+days+' days',y(fl)+'–'+y(fh2),'<small>'+y(F.lo)+'–'+y(F.hi)+' per adult per day, three meals including breakfast'+(ch+inf?'; children about half':'')+'; '+esc(D.foodNote)+'</small>');}
- if(fly){G.fly+=line('Flights',y(fly));sum+=fly;}
+ if(fly){G.fly+=line('Flights',y(fly),bk('flights'));sum+=fly;}
  if(FARE&&fr&&fr!=='own'){var fp=ppl,fl2=FARE.lo*fp,fh3=FARE.hi*fp;lo+=fl2;hi+=fh3;flyDone=true;G.fly+=line('Flights, economy return: '+fp+' × '+y(FARE.lo)+'–'+y(FARE.hi),y(fl2)+'–'+y(fh3),'<small>Recent fares found in flight searches, checked '+esc(dt(FARE.checked))+'. Babies under 2 usually pay much less; fares change daily.</small>'+bk('flights'));}
  // what is not priced
  var np='';
- if(!flyDone)G.fly+=line('Flights','<span class="np">not priced</span>','<small>choose "Flying from" above, or type your fare</small>');
+ if(!flyDone)G.fly+=line('Flights','<span class="np">not priced</span>','<small>choose "Flying from" above, or type your fare</small>'+bk('flights','Search flights'));
  if(!hotDone)G.stay+=line('Hotels','<span class="np">not priced</span>','<small>choose a hotel style above</small>');
  if(!foodDone)G.stay+=line('Food and drinks','<span class="np">not priced</span>','<small>choose a food style above</small>');
  G.exp+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>',bk('parks','See tickets'));
@@ -422,7 +423,7 @@ _api = open(os.path.join(os.getcwd(), "api", "flight-price.js"), encoding="utf-8
 _codes = [c for _, cs in FROM for c, _ in cs]
 assert len(_codes) == len(set(_codes)), "duplicate city code"
 assert set(re.findall(r"'([A-Z]{3})'", re.search(r"ORIGINS = new Set\(\[(.*?)\]\)", _api, re.S).group(1))) == set(_codes), "api/flight-price.js ORIGINS differ from FROM"
-for _k in ("transfer", "shinkansen", "parks", "sanrio", "subway", "esim", "insurance"):   # the budget email (api/email-chat.js) uses the same links
+for _k in ("flights", "transfer", "shinkansen", "parks", "sanrio", "subway", "esim", "insurance"):   # the budget email (api/email-chat.js) uses the same links
     assert "'" + LINKS[_k][1] + "'" in open(os.path.join(os.getcwd(), "api", "email-chat.js"), encoding="utf-8").read(), "email-chat.js link differs: " + _k
 FROM_HTML = "".join('<optgroup label="' + g + '">' + "".join('<option value="' + c + '">' + n + "</option>" for c, n in cs) + "</optgroup>" for g, cs in FROM)
 LINKS_OUT = {k: v for k, v in LINKS.items() if TOURS_ON or not k.startswith("tours")}
