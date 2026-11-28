@@ -44,6 +44,7 @@ PARTNERS = [
     ("12Go", "trains, buses and ferries in Asia; our booking page book.packsmartapp.com is run by 12Go"),
     ("Trip.com", "hotels and flights"),
     ("Kiwi.com", "flights"),
+    ("TourRadar", "guided multi-day tours"),
     ("Aviasales", "flight search"),
 ]
 FOOT = "Plus flight and hotel price search powered by Travelpayouts"
@@ -54,12 +55,14 @@ DOMAIN_TO_PARTNER = {
     "tiqets.tpx.li": "Tiqets", "airalo.tpx.li": "Airalo", "yesim.tpx.li": "Yesim", "saily.tpx.li": "Saily",
     "p.sakuramobile.jp": "Sakura Mobile", "radicalstorage.tpx.li": "Radical Storage", "economybookings.tpx.li": "EconomyBookings",
     "japan-bullettrain.com": "Japan Bullet Train", "trip.com": "Trip.com", "book.packsmartapp.com": "12Go",
+    "airalo.tpo.lu": "Airalo", "gigsky.tpo.lu": "GigSky", "yesim.tpo.lu": "Yesim", "saily.tpo.lu": "Saily", "radicalstorage.tpo.lu": "Radical Storage", "tpo.lu": "Welcome Pickups",   # newer Travelpayouts short links (27 Nov: Packy's own, with Sub IDs)
+    "tpx.li": "Welcome Pickups", "welcomepickups.com": "Welcome Pickups", "tourradar.com": "TourRadar",   # https://tpx.li/qYFLwgZ8 (Welcome Pickups); widgets load from tp.media/tpwdg.com (scripts, not links)
     "aviasales.tpo.lu": "Aviasales", "airalo.tpo.lu": "Airalo", "gigsky.tpo.lu": "GigSky", "yesim.tpo.lu": "Yesim", "saily.tpo.lu": "Saily", "radicalstorage.tpo.lu": "Radical Storage", "tpo.lu": "Welcome Pickups",   # newer Travelpayouts short links (27 Nov: Packy's own, with Sub IDs)
     "tpx.li": "Welcome Pickups", "welcomepickups.com": "Welcome Pickups",   # https://tpx.li/qYFLwgZ8 (Welcome Pickups); widgets load from tp.media/tpwdg.com (scripts, not links)
 }
 PARTNER_HOSTS = re.compile(r"tpx\.li|tpo\.lu|tp\.media|safetywing|getyourguide|klook|welcomepickups|discovercars|airalo|yesim|"
                            r"tiqets|gigsky|radicalstorage|sakuramobile|bullettrain|trip\.com|12go|book\.packsmartapp|economybookings|"
-                           r"kiwitaxi|saily|aviasales|kiwi\.com|tripadvisor")
+                           r"kiwitaxi|saily|aviasales|kiwi\.com|tripadvisor|tourradar")
 
 
 def die(msg):
