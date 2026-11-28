@@ -100,8 +100,9 @@ input[type=number]{width:130px}
     <div class="row stack"><label for="fstyle">Food style</label><select id="fstyle"><option value="">Choose a style</option><option value="budget">Budget</option><option value="mid">Mid-range</option><option value="treat">Treat yourself</option><option value="own">I'll type my own amount</option></select></div>
     <p class="hint" id="fhint" hidden></p>
     <div class="row" id="fown" hidden><label for="food">Food per person per day</label><input type="number" id="food" inputmode="numeric" min="0" step="500" placeholder="e.g. 5000"></div>
-    <div class="row"><label for="fly">Flights, total<small>depends on where you fly from</small></label><input type="number" id="fly" inputmode="numeric" min="0" step="1000" placeholder="optional"></div>
-    <p class="hint"><a href="/flights?src=budget_flights" data-go="flights">Compare flights to Japan →</a> then type the total here, or leave it out.</p>
+    <div class="row stack"><label for="from">Flying from</label><select id="from"><option value="">Choose a city</option><option value="SIN">Singapore</option><option value="KUL">Kuala Lumpur</option><option value="BKK">Bangkok</option><option value="HKG">Hong Kong</option><option value="BOM">Mumbai</option><option value="DEL">Delhi</option><option value="BLR">Bangalore</option><option value="SYD">Sydney</option><option value="LON">London</option><option value="LAX">Los Angeles</option><option value="NYC">New York</option><option value="own">Somewhere else: I'll type my fare</option></select></div>
+    <p class="hint" id="flyhint" hidden></p>
+    <div class="row" id="flyown" hidden><label for="fly">Flights, total<small>all travellers, return</small></label><input type="number" id="fly" inputmode="numeric" min="0" step="1000" placeholder="e.g. 280000"></div>
   </section>
   <section class="card res" id="res" aria-live="polite"></section>
   <p class="note">Prices are from the operators' and JNTO's official pages, checked 24 Nov 2026, and are rounded: they change, so check the linked page before you buy. Amounts are in Japanese yen. Partner links are marked; we may earn a commission at no cost to you.</p>
@@ -127,10 +128,22 @@ dep.addEventListener('change',function(){dep.dataset.set='1';calc();});
 [way,document.getElementById('jr'),document.getElementById('zoo'),document.getElementById('sanrio')].forEach(function(x){x.addEventListener('change',calc);});
 ['hotel','food','fly'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
 function styleUI(){var hs=document.getElementById('hstyle').value,fs=document.getElementById('fstyle').value,H=D.hotelStyles[hs],F=D.foodStyles[fs];
- var hh=document.getElementById('hhint');hh.hidden=!H;if(H)hh.innerHTML='<b>'+esc(H.name)+':</b> '+esc(H.desc)+'.'+(H.lo?' About '+y(H.lo)+'–'+y(H.hi)+' per room per night, '+esc(D.styleNote)+'.':'')+' <a href="/flights?src=budget_hotels" data-go="hotels">See hotel prices for your dates →</a>';
+ var hh=document.getElementById('hhint');hh.hidden=!H;if(H)hh.innerHTML='<b>'+esc(H.name)+':</b> '+esc(H.desc)+'.'+(H.lo?' About '+y(H.lo)+'–'+y(H.hi)+' per room per night, '+esc(D.styleNote)+'.':'')+'';
  document.getElementById('hrooms').hidden=!H;document.getElementById('hown').hidden=hs!=='own';
  var fh=document.getElementById('fhint');fh.hidden=!F;if(F)fh.innerHTML='<b>'+esc(F.name)+':</b> '+esc(F.desc)+'.'+(F.lo?' About '+y(F.lo)+'–'+y(F.hi)+' per person per day, '+esc(D.styleNote)+'.':'');
  document.getElementById('fown').hidden=fs!=='own';calc();}
+var FARE=null,fareKey='';
+function dt(iso){try{return new Date(iso+'T00:00:00').toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'});}catch(e){return iso;}}
+function cityTo(){return {narita:'TYO',haneda:'TYO',kansai:'OSA',chitose:'SPK'}[arr.value]||'TYO';}
+function fareUI(){var f=document.getElementById('from').value,fh=document.getElementById('flyhint');
+ document.getElementById('flyown').hidden=f!=='own';fh.hidden=!f||f==='own';if(!f||f==='own'){FARE=null;calc();return;}
+ var key=f+'-'+cityTo();if(key===fareKey&&FARE){calc();return;}fareKey=key;FARE=null;fh.textContent='Looking up recent fares…';calc();
+ fetch('/api/flight-price?from='+f+'&to='+cityTo()).then(function(r){return r.json();}).then(function(j){if(key!==fareKey)return;
+  if(j&&j.ok){FARE=j;fh.innerHTML='<b>Economy, return:</b> about '+y(j.lo)+'–'+y(j.hi)+' per person, from recent fares found in flight searches (checked '+esc(dt(j.checked))+'). Fares change daily.';}
+  else{fh.textContent='No recent fare found for this route yet. Choose "Somewhere else" to type your own.';}calc();})
+ .catch(function(){if(key===fareKey){fh.textContent='Fares could not be loaded right now. Choose "Somewhere else" to type your own.';calc();}});}
+document.getElementById('from').addEventListener('change',function(){track('from',this.value);fareUI();});
+arr.addEventListener('change',function(){if(FARE||fareKey)fareUI();});
 ['hstyle','fstyle'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){track(id,this.value);styleUI();});});
 function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)||v<0?0:v;}
 function src(name,url){return '<small>'+esc(name)+', checked '+CH+' · <a href="'+url+'" target="_blank" rel="noopener">official price</a></small>';}
@@ -168,16 +181,17 @@ function calc(){
  var tx=D.tax.each*ppl;sum+=tx;h+=line('Departure tax: '+ppl+' × '+y(D.tax.each),y(tx),'<small>JNTO, checked '+CH+'; check JNTO for who is exempt · <a href="'+D.tax.url+'" target="_blank" rel="noopener">official page</a></small>');
  // the reader's own numbers
  var hs=document.getElementById('hstyle').value,fs=document.getElementById('fstyle').value,H=D.hotelStyles[hs],F=D.foodStyles[fs];
- var hot=hs==='own'?num('hotel'):0,food=fs==='own'?num('food'):0,fly=num('fly'),own='',hotDone=!!hot,foodDone=!!food;
+ var fr=document.getElementById('from').value,hot=hs==='own'?num('hotel'):0,food=fs==='own'?num('food'):0,fly=fr==='own'?num('fly'):0,own='',hotDone=!!hot,foodDone=!!food,flyDone=!!fly;
  if(hot){own+=line('Hotel: '+nights+' nights × '+y(hot),y(hot*nights));sum+=hot*nights;}
  if(H&&H.lo&&nights){var hl=H.lo*S.rm*nights,hh2=H.hi*S.rm*nights;lo+=hl;hi+=hh2;hotDone=true;own+=line('Hotel, '+esc(H.name.toLowerCase())+': '+S.rm+' room'+(S.rm>1?'s':'')+' × '+nights+' nights',y(hl)+'–'+y(hh2),'<small>'+esc(D.styleNote)+'</small>');}
  if(food){own+=line('Food: '+(ad+ch+inf)+' people × '+days+' days × '+y(food),y(food*ppl*days));sum+=food*ppl*days;}
  if(F&&F.lo){var fl=F.lo*ppl*days,fh2=F.hi*ppl*days;lo+=fl;hi+=fh2;foodDone=true;own+=line('Food, '+esc(F.name.toLowerCase())+': '+ppl+' people × '+days+' days',y(fl)+'–'+y(fh2),'<small>'+esc(D.styleNote)+'</small>');}
  if(fly){own+=line('Flights',y(fly));sum+=fly;}
+ if(FARE&&fr&&fr!=='own'){var fp=ppl,fl2=FARE.lo*fp,fh3=FARE.hi*fp;lo+=fl2;hi+=fh3;flyDone=true;own+=line('Flights, economy return: '+fp+' × '+y(FARE.lo)+'–'+y(FARE.hi),y(fl2)+'–'+y(fh3),'<small>Recent fares found in flight searches, checked '+esc(dt(FARE.checked))+'. Babies under 2 usually pay much less; fares change daily.</small>');}
  if(own)h+='<div class="grp">Hotel, food and flights</div>'+own;
  // what is not priced
  var np='';
- if(!fly)np+=line('Flights','<span class="np">not priced</span>')+go('flights');
+ if(!flyDone)np+=line('Flights','<span class="np">not priced</span>')+go('flights');
  if(!hotDone)np+=line('Hotels','<span class="np">not priced</span>')+go('hotels');
  if(!foodDone)np+=line('Food and drinks','<span class="np">not priced</span>');
  np+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>')+go('parks');
