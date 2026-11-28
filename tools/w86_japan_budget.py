@@ -421,6 +421,9 @@ button,input,select{font-family:inherit}
 .it.tapc:not(.on) .tb:empty{background:#fff;border:2px solid #e5e7eb;box-shadow:none}
 .it .tb.on{background:#22c55e;color:#fff;box-shadow:0 2px 0 #15803d}
 .it .foot:empty,.it .foot:not(:has(*)){display:none}
+.hokcar{grid-column:1/-1;display:flex;align-items:center;gap:10px;background:#fff1f2;border:2px solid #fecdd3;border-radius:16px;padding:10px 12px}.hokcar>span{font-size:1.6rem}.hokcar div{flex:1;min-width:0}.hokcar b{display:block;font-size:.92rem}.hokcar small{display:block;font-size:.76rem;color:#5a6378;line-height:1.3}
+.hokcar button{flex:0 0 auto;font:inherit;font-weight:800;font-size:.82rem;border:0;border-radius:999px;padding:9px 12px;background:#E94560;color:#fff;cursor:pointer}
+.carbox{background:#fffbeb;border:2px solid #fde68a}.carbox[hidden]{display:none}.carmount{min-height:120px}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
@@ -488,7 +491,7 @@ button,input,select{font-family:inherit}
     <div class="extra" data-tab="move"><p class="lab">🛬 Land at</p><div class="chips" data-g="arr"></div><p class="lab">🛫 Fly home from</p><div class="chips" data-g="dep"></div><div class="kinds" id="kinds" hidden></div><p class="lab" id="waylab">Which one</p><div class="chips sm" data-g="way"></div></div>
     <div class="items" id="items"></div>
     <div class="rpanel" id="rpanel" hidden></div>
-    <div class="rpanel" id="bpanel" hidden></div>
+    <div class="rpanel" id="bpanel" hidden><section class="card carbox" id="carbox" data-ps-placement="discovercars-budget" hidden><h2>🚗 Rental car: compare live prices</h2><p class="h" id="carwhere"></p><div class="carmount" id="carmount"></div><p class="h" style="margin-top:8px">Partner search: we may earn a commission, at no cost to you. Most visitors need an International Driving Permit; get it before you fly.</p></section></div>
   </section>
   <div id="raw" hidden>
     <div class="row"><label>Adults<small>18 and older</small></label><div class="step" data-k="ad"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
@@ -613,7 +616,7 @@ function calc(){
   return line('Airport transfers, both ways: '+esc(what)+(wi.car&&cars>1?' ('+cars+' cars)':''),l===h?y(l):y(l)+'–'+y(h),src(wi.src,wi.url)+(both?'':src(wo.src,wo.url))+(wi.id==='nex'&&!both?'<small>the Narita Express visitor ticket is a round trip</small>':'')+(wi.q?gyg(wi.q,'air-'+wi.id.split('-')[0]):'')+bkCar);}
  var G={exp:'',fly:'',stay:'',rail:'',move:'',pre:''};
  G.move+=airLine();
- if(S.cr)G.move+=line('Rental car: '+S.cr+' day'+(S.cr>1?'s':''),'<span class="np">not priced yet</span>','<small>plus fuel, tolls and parking; most visitors need an International Driving Permit (check current rules)</small>'+bk('car'));
+ if(S.cr)G.move+=line('Rental car: '+S.cr+' day'+(S.cr>1?'s':''),'<span class="np">not priced yet</span>','<small>plus fuel, tolls and parking; most visitors need an International Driving Permit (check current rules)</small><a class="bkl" href="#carbox" data-go="car">Compare live prices ↓</a>');
  if(S.nt){var t=D.tokyoTicket,n=Math.ceil((S.nt+1)/t.days),v=n*(t.a*ad+t.c*ch);sum+=v;G.move+=line('Tokyo subway: '+n+' × 72-hour ticket'+(n>1?'s':''),y(v),src(t.src,t.url)+bk('subway'));}
  if(S.nk){var kd=D.kyotoDay,kv=S.nk*(kd.a*ad+kd.c*ch);sum+=kv;G.move+=line('Kyoto buses and subway: '+S.nk+' one-day pass'+(S.nk>1?'es':''),y(kv),'<small>'+esc(kd.src)+', checked 27 Nov 2026'+reg(kd)+'</small>');}
  if(S.no){var od=D.osakaDay,ol=S.no*(od.lo*ad+od.c*ch),oh=S.no*(od.hi*ad+od.c*ch);lo+=ol;hi+=oh;G.move+=line('Osaka subway and buses: '+S.no+' one-day pass'+(S.no>1?'es':''),y(ol)+'–'+y(oh),'<small>'+esc(od.src)+', checked 27 Nov 2026'+reg(od)+'</small>');}
@@ -788,13 +791,13 @@ var CARDS=[
  ['food','f:mid','coffee','#fff3c4','Cafés & family izakaya','A café lunch and an izakaya or family restaurant dinner',['Kid fav'],['kid']],
  ['food','f:treat','sushi','#ffe3e3','Treat yourself','Sit-down sushi, wagyu or kaiseki dinners',['Splurge'],[]],
  ['food','f:own','pen','#f4faf8','My own amount','Type what you expect to spend per person a day',['Your figure'],[]],
+ ['move','cr','car','#ffe3e3','Rental car','Lakes, ski towns and open country. Compare live prices in Book; most visitors need an International Driving Permit (check current rules)',['Popular in Hokkaido','Road trips'],[]],
  ['move','a:train','train','#e6efff','Airport by train','Both ways; the fastest way into town',['Rail','Both ways'],['rail','nocar','budget']],
  ['move','a:bus','bus','#e6faf5','Airport by bus','Both ways; door to the big hotels and stations',['Both ways'],['nocar','kid']],
  ['move','a:taxi','taxi','#fff3c4','Airport taxi','Both ways; the airport\'s fixed fare',['Both ways'],['nocar','kid']],
  ['move','a:private','van','#ffe3e3','Private car','Both ways; a pre-booked car meets you at arrivals',['Both ways'],['nocar','kid']],
  ['move','jr','ticket','#e6efff','Japan Rail Pass','7 days of JR trains, for long trips',['Rail','7 days'],['rail','nocar']],
  ['move','tx','taxi','#fff3c4','Taxi rides in town','About 7 km each',['City'],['nocar','kid']],
- ['move','cr','car','#ffe3e3','Rental car','Most visitors need an International Driving Permit (check current rules)',['Hokkaido','Countryside'],[]],
  ['pre','es','phone','#e6efff','eSIM data','Maps and messages from landing; one per adult and teen',['Before you fly','Per phone'],['kid','budget']],
  ['pre','ins','health','#e6faf5','Travel medical insurance','From about US$2 a day under 40; rises with age',['Before you fly','Per person'],['kid']],
  ['pre','tax','receipt','#f4faf8','Departure tax','Japan\'s international tourist tax, usually added to your flight ticket',['Always included'],['budget']]];
@@ -819,7 +822,7 @@ function state(c){var k=c[1],g=ppl0();
  if(k==='zoo')return {n:$('zoo').value==='1'?1:0,label:'Group entry',pr:[D.uenozoo.a*g.ad,D.uenozoo.a*g.ad]};
  if(k==='jr'){var j=D.jrpass,v=j.a*g.ad+j.c*g.ch;return {n:$('jr').value==='1'?1:0,label:'7 days, group',pr:[v,v]};}
  if(k==='tx'){var t=Math.max(1,S.tx);return {n:S.tx,q:1,unit:'ride',label:S.tx?S.tx+' ride'+(S.tx>1?'s':''):'Per ride',pr:[D.taxi.lo*g.cars*t,D.taxi.hi*g.cars*t]};}
- if(k==='cr')return {n:S.cr,q:1,unit:'day',label:S.cr?S.cr+' day'+(S.cr>1?'s':''):'Per day',pr:null,note:'price on the booking site'};
+ if(k==='cr')return {n:S.cr,q:1,unit:'day',label:S.cr?S.cr+' day'+(S.cr>1?'s':''):'Per day',pr:null,note:'live prices in Book',hot:1};
  if(k==='es'){var ep=D.esim.plans.filter(function(x){return x[0]>=g.days;})[0]||D.esim.plans[D.esim.plans.length-1],en=Math.max(1,Math.ceil(g.days/ep[0])),ev=Math.round(ep[2]*en*g.ad*D.usdJpy/10)*10;return {n:S.es,label:g.ad+' phone'+(g.ad>1?'s':'')+', '+g.days+' days',pr:[ev,ev]};}
  if(k==='ins')return {n:S.ins,label:g.ad+' adult'+(g.ad>1?'s':'')+', '+g.days+' days',pr:[Math.round(D.insurance.lo*g.days*g.ad*D.usdJpy/100)*100,Math.round(D.insurance.hi*g.days*g.ad*D.usdJpy/100)*100]};
  if(k==='tax'){var pp=g.ad+g.ch+g.inf;return {n:1,fixed:1,label:pp+' × ¥'+D.tax.each.toLocaleString('en-US'),pr:[D.tax.each*pp,D.tax.each*pp]};}
@@ -835,7 +838,7 @@ function items(){var cur=TABS.filter(function(t){return t[0]===TAB;})[0]||TABS[0
  $('mtabs').innerHTML=TABS.map(function(t){var n=CARDS.filter(function(c){var st=state(c);return c[0]===t[0]&&st.n&&!st.fixed&&!st.radio&&!st.ppl;}).length;return '<button type="button" role="tab" data-tab="'+t[0]+'" aria-selected="'+(t[0]===TAB)+'"><span aria-hidden="true">'+t[1]+'</span> '+t[2]+(n?' <i>'+n+'</i>':'')+'</button>';}).join('');
  $('memo').textContent=cur[1];$('mtitle').textContent=cur[2];$('msub').textContent=cur[3]+' Prices are for your group.';
  $('fchips').innerHTML='<button type="button" data-fil="" aria-pressed="'+(!FIL)+'" class="all">All options</button>'+FILS.map(function(f){return '<button type="button" data-fil="'+f[0]+'" aria-pressed="'+(FIL===f[0])+'"><span aria-hidden="true">'+f[1]+'</span> '+f[2]+'</button>';}).join('');
- [].forEach.call(document.querySelectorAll('.extra'),function(x){x.hidden=x.getAttribute('data-tab')!==TAB;});var isR=TAB==='review',isB=TAB==='book';$('rpanel').hidden=!isR;$('bpanel').hidden=!isB;document.querySelector('.filters').hidden=true;FIL='';if(isR)rrows();
+ [].forEach.call(document.querySelectorAll('.extra'),function(x){x.hidden=x.getAttribute('data-tab')!==TAB;});var isR=TAB==='review',isB=TAB==='book';if(isB)carBox();$('rpanel').hidden=!isR;$('bpanel').hidden=!isB;document.querySelector('.filters').hidden=true;FIL='';if(isR)rrows();
  var list=(TAB==='review'||TAB==='book')?[]:CARDS.filter(function(c){return c[0]===TAB&&(!FIL||c[7].indexOf(FIL)>=0);});var pp0=g.ad+g.ch+g.inf,nn0=S.nt+S.nk+S.no+S.nh,fr0=$('from').value,FSN={budget:'Konbini & casual',mid:'Cafés & izakaya',treat:'Treat yourself',own:'Your food figure'};
  var ncity=['nt','nk','no','nh'].filter(function(x){return S[x];}).length,hsn0={budget:'Budget',mid:'Mid-range',upscale:'Upscale',luxury:'Luxury',own:'Your rate'}[$('hstyle').value]||'';
  $('mcount').textContent={trav:pp0+' travellers · '+(STYLE?STY[STYLE][0]:'Custom'),cities:ncity+' cit'+(ncity===1?'y':'ies')+' · '+nn0+' nights',stays:hsn0+' · '+S.rm+' room'+(S.rm>1?'s':'')+' · '+nn0+' nights',
@@ -843,7 +846,8 @@ function items(){var cur=TABS.filter(function(t){return t[0]===TAB;})[0]||TABS[0
   move:'Arrival: '+(D.airport[arr.value]||{name:''}).name.replace(/ \(.*\)/,'')+' · '+({train:'Train',bus:'Bus',taxi:'Taxi',private:'Private car'}[KIND]||''),pre:'Before you fly',review:'Estimate '+($('barv').getAttribute('data-full')||$('barv').textContent),book:'Estimate '+($('barv').getAttribute('data-full')||$('barv').textContent)}[TAB]||'';
  if($('psel'))$('psel').textContent=fr0&&fr0!=='own'?'Selected: '+cityName(fr0):'';
  var GRPN={big:['🎢','Big theme parks','the full-day splurge'],indoor:['✨','Indoor worlds & views','half a day, good in rain'],easy:['🌸','Easy days out','cheap or free']},lastG='';
- $('items').innerHTML=list.length?list.map(function(c){var st=state(c),k=c[1],on=st.n>0,gh='';if(c[8]&&c[8]!==lastG){lastG=c[8];var gn=GRPN[c[8]];gh='<h3 class="cgrp"><span aria-hidden="true">'+gn[0]+'</span> '+gn[1]+' <small>'+gn[2]+'</small></h3>';}
+ var hok=TAB==='cities'&&S.nh&&!S.cr?'<div class="hokcar"><span aria-hidden="true">🚗</span><div><b>Exploring Hokkaido?</b><small>Lakes, ski towns and open country are far from the train lines; most visitors drive.</small></div><button type="button" data-hokcar="1">+ Add a rental car</button></div>':'';
+ $('items').innerHTML=hok+(list.length?list.map(function(c){var st=state(c),k=c[1],on=st.n>0,gh='';if(c[8]&&c[8]!==lastG){lastG=c[8];var gn=GRPN[c[8]];gh='<h3 class="cgrp"><span aria-hidden="true">'+gn[0]+'</span> '+gn[1]+' <small>'+gn[2]+'</small></h3>';}
   var price=st.big?esc(st.big):st.pr?rng(st.pr[0],st.pr[1]):'<em>'+esc(st.note||'')+'</em>';
   var act=st.fixed?'<button type="button" class="add rm" disabled>✓ Included</button>'
    :st.flight?'<button type="button" class="add'+(on?' rm':'')+'" data-act="from">'+(on?'✎ Change city':'Choose city')+'</button>'
@@ -859,7 +863,7 @@ function items(){var cur=TABS.filter(function(t){return t[0]===TAB;})[0]||TABS[0
   else if(!st.ppl&&!st.flight&&!st.off&&!(st.q&&on)){tap=on?'rm':'add';badge='<span class="tb'+(on?' on':'')+'" aria-hidden="true">'+(on?'✓':'+')+'</span>';act='';}
   return gh+'<div class="it'+(on&&!st.fixed&&(!st.ppl||st.n>0)?' on':'')+(st.off?' off':'')+(tap||st.radio?' tapc':'')+'"'+(tap?' data-tap="'+tap+'" data-k="'+k+'" role="button" tabindex="0" aria-pressed="'+on+'"':'')+'>'+badge+'<div class="tags">'+c[6].map(function(x,i){return '<span class="t'+(x==='Kid fav'?'f':Math.min(i,2))+'">'+esc(x)+'</span>';}).join('')+'</div>'+
    '<div class="art" style="background:'+c[3]+'" aria-hidden="true">'+ICON[c[2]]+'</div><h3>'+esc(c[4])+'</h3><p>'+esc(c[5])+'</p><div class="foot">'+(st.ppl?'':'<div class="pr"><small>'+esc(st.label||'')+'</small>'+price+'</div>')+act+'</div></div>';}).join('')
-  :(TAB==='review'||TAB==='book')?'':'<p class="none">Nothing here matches that filter. <button type="button" data-fil="'+FIL+'">Show all</button></p>';
+  :(TAB==='review'||TAB==='book')?'':'<p class="none">Nothing here matches that filter. <button type="button" data-fil="'+FIL+'">Show all</button></p>');
  // the tray
  var cities=['nt','nk','no','nh'].filter(function(k){return S[k];}).map(function(k){return NIGHTS[k]+' ('+S[k]+'n)';}),pp=g.ad+g.ch+g.inf,nn=S.nt+S.nk+S.no+S.nh,cnt=0;
  CARDS.forEach(function(c){var st=state(c);if(st.n&&!st.ppl&&!st.city)cnt++;});
@@ -870,13 +874,20 @@ function items(){var cur=TABS.filter(function(t){return t[0]===TAB;})[0]||TABS[0
  if($('whol'))$('whol').textContent=S.ad+S.tn+' adult'+(S.ad+S.tn>1?'s':'')+(S.ch+S.in?', '+(S.ch+S.in)+' kid'+(S.ch+S.in>1?'s':''):'');
  var fr=$('from').value;if($('froml'))$('froml').textContent=fr&&fr!=='own'?cityName(fr):fr==='own'?'Your own fare':'Flying from';
  var wl=document.querySelector('[data-g="way"]');$('waylab').hidden=!wl||wl.hidden;}
+var CARW='';
+function carBox(){var box=$('carbox');box.hidden=!S.cr;if(!S.cr)return;
+ var pl=S.nh?['chitose','cts','New Chitose Airport (Sapporo)']:arr.value==='haneda'?['tokyo','hnd','Tokyo Haneda']:arr.value==='kansai'?['osaka','kix','Osaka Kansai']:arr.value==='chitose'?['chitose','cts','New Chitose Airport (Sapporo)']:['tokyo','nrt','Tokyo Narita'];
+ $('carwhere').textContent='Pick up at '+pl[2]+' for '+S.cr+' day'+(S.cr>1?'s':'')+'. Change the dates and place in the search.';
+ if(CARW===pl[1])return;CARW=pl[1];var m=$('carmount');m.innerHTML='';var sc=document.createElement('script');sc.async=true;sc.charset='utf-8';
+ sc.src='https://tpwdg.com/content?trs=508747&shmarker=711400&country=japan&city='+pl[0]+'&place='+pl[1]+'&locale=en&powered_by=false&bg_color=%23fffbeb&font_color=%23333333&button_color=%2300C9A7&button_font_color=%23ffffff&button_text=Search&rounded_corners=true&benefits=false&dc_powered_by=false&supplier_logos=false&top_logo=false&logo_style=dark&top_color=%23007ac2&campaign_id=117&promo_id=3873';
+ m.appendChild(sc);try{if(window.gtag)gtag('event','affiliate_view',{event_category:'monetization',placement:'discovercars-budget',page_path:location.pathname});}catch(e){}}
 function openSheet(id){['whosheet','fromsheet'].forEach(function(x){var o=x===id&&$(x).hidden;$(x).hidden=!o;$(x==='whosheet'?'whob':'fromb').setAttribute('aria-expanded',o);});}
 
 
 [].forEach.call(document.querySelectorAll('[data-close]'),function(b){b.addEventListener('click',function(){openSheet('');});});
 document.querySelector('.planner').addEventListener('keydown',function(e){var c=e.target.closest&&e.target.closest('.it[data-tap]');if(c&&e.target===c&&(e.key==='Enter'||e.key===' ')){e.preventDefault();c.click();}});
 $('mtabs').addEventListener('click',function(e){var b=e.target.closest('[data-tab]');if(!b)return;TAB=b.getAttribute('data-tab');FIL='';items();track('tab',TAB);scrollTo(0,0);var sel=document.querySelector('#mtabs [aria-selected=true]');if(sel&&sel.scrollIntoView)sel.scrollIntoView({inline:'center',block:'nearest'});});
-document.querySelector('.planner').addEventListener('click',function(e){if(e.target.closest('#rpanel,#bpanel'))return;var f=e.target.closest('[data-fil]');if(f){var v=f.getAttribute('data-fil');FIL=(!v||FIL===v)?'':v;items();track('filter',FIL);return;}
+document.querySelector('.planner').addEventListener('click',function(e){var hb=e.target.closest('[data-hokcar]');if(hb){setS('cr',ADD.cr||2);calc();track('add','cr-hokkaido');return;}if(e.target.closest('#rpanel,#bpanel'))return;var f=e.target.closest('[data-fil]');if(f){var v=f.getAttribute('data-fil');FIL=(!v||FIL===v)?'':v;items();track('filter',FIL);return;}
  var b=e.target.closest('[data-act]')||e.target.closest('.it[data-tap]');if(!b||b.disabled)return;var k=b.getAttribute('data-k'),a=b.getAttribute('data-act')||b.getAttribute('data-tap');if(!a)return;
  if(a==='from'){var pl=document.querySelector('.panel');if(pl)pl.scrollIntoView({behavior:'smooth',block:'center'});return;}
  if(a==='cadd'||a==='crm'){var ck2=k.slice(2);setS(ck2,a==='cadd'?(ADD[ck2]||2):0);calc();track(a==='cadd'?'add':'remove',k);return;}
