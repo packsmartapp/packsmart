@@ -101,7 +101,7 @@ Card for `public/blog.html` (`&amp;` and `&mdash;` as entities):
 ```
 
 ## Affiliate rules (details: `AFFILIATE_CURRENT_STATE_15NOV2026.md` in the Project)
-- Every partner link is a Travelpayouts tracked link with a Sub ID, labelled "(partner link)" with `rel="nofollow noopener sponsored"`, never `noreferrer` (partners must see the click came from packsmartapp.com; `w72` enforces it). Blocks carry `data-ps-placement="<slug>"` and need the GA4 placement script before `</body>`.
+- Every partner link is a Travelpayouts tracked link with a Sub ID, labelled "(partner link)" (exception, owner 28 Nov: the budget calculator `/japan-budget` and its email say it once, "Booking links are partner links", instead of on every line) with `rel="nofollow noopener sponsored"`, never `noreferrer` (partners must see the click came from packsmartapp.com; `w72` enforces it). Blocks carry `data-ps-placement="<slug>"` and need the GA4 placement script before `</body>`.
 - Placement order: GetYourGuide, Airalo, SafetyWing, Welcome Pickups, car rental, Radical Storage, Klook. Prefer DiscoverCars and Welcome Pickups; **avoid adding Klook placements; skip Booking.com.**
 - Car rental: DiscoverCars (campaign 117, promo 3873) where it serves the country, EconomyBookings (campaign 10, promo 4480) where it does not. One per page. Always `powered_by=false`.
 - eSIM: Airalo plan tiles (`esim-<country>-<size>`). Yesim only as the promo link `yesim.tpx.li/Bc6pLC09` (20% first order, ends 28 Feb 2027; remove the copy after).
