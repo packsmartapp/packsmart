@@ -414,6 +414,11 @@ button,input,select{font-family:inherit}
 @media(max-width:700px){.planner>.mhead{display:none}.planner{margin-top:10px}
  .extra .chips{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:none;margin:0 -14px;padding:0 14px 2px}.extra .chips::-webkit-scrollbar{display:none}.extra .chips button{flex:0 0 auto;white-space:nowrap}
  .prow{flex-wrap:nowrap;padding:4px 0}.prow .lab{display:none}.prow .seg{flex:1}.prow .chips{margin:0;padding:0}}
+.it{position:relative}.it.tapc{cursor:pointer;-webkit-tap-highlight-color:transparent;transition:transform .12s,border-color .15s,background .15s}.it.tapc:active{transform:scale(.97)}
+.it .tb{position:absolute;top:10px;right:10px;width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;font-size:1rem;background:#facc15;color:#1e2433;box-shadow:0 2px 0 #d6a50c}
+.it.tapc:not(.on) .tb:empty{background:#fff;border:2px solid #e5e7eb;box-shadow:none}
+.it .tb.on{background:#22c55e;color:#fff;box-shadow:0 2px 0 #15803d}
+.it .foot:empty,.it .foot:not(:has(*)){display:none}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
@@ -843,7 +848,11 @@ function items(){var cur=TABS.filter(function(t){return t[0]===TAB;})[0]||TABS[0
    :st.q&&on?'<div class="qty"><button type="button" data-act="dec" data-k="'+k+'" aria-label="Fewer">−</button><b>'+st.n+' '+st.unit+(st.n>1?'s':'')+'</b><button type="button" data-act="inc" data-k="'+k+'" aria-label="More">+</button></div>'
    :st.city?(on?'<button type="button" class="add rm" data-act="crm" data-k="'+k+'">✓ Added</button>':'<button type="button" class="add" data-act="cadd" data-k="'+k+'">+ Add</button>')
    :on?'<button type="button" class="add rm" data-act="rm" data-k="'+k+'">✓ Added</button>':'<button type="button" class="add" data-act="add" data-k="'+k+'">+ Add to Trip</button>';
-  return gh+'<div class="it'+(on&&!st.fixed&&(!st.ppl||st.n>0)?' on':'')+(st.off?' off':'')+'"><div class="tags">'+c[6].map(function(x,i){return '<span class="t'+(x==='Kid fav'?'f':Math.min(i,2))+'">'+esc(x)+'</span>';}).join('')+'</div>'+
+  var tap='',badge='';
+  if(st.fixed){badge='<span class="tb on" aria-hidden="true">✓</span>';act='';}
+  else if(st.radio&&!st.off){tap=on?'':'pick';badge='<span class="tb'+(on?' on':'')+'" aria-hidden="true">'+(on?'✓':'')+'</span>';act='';}
+  else if(!st.ppl&&!st.flight&&!st.off&&!(st.q&&on)){tap=on?'rm':'add';badge='<span class="tb'+(on?' on':'')+'" aria-hidden="true">'+(on?'✓':'+')+'</span>';act='';}
+  return gh+'<div class="it'+(on&&!st.fixed&&(!st.ppl||st.n>0)?' on':'')+(st.off?' off':'')+(tap||st.radio?' tapc':'')+'"'+(tap?' data-tap="'+tap+'" data-k="'+k+'" role="button" tabindex="0" aria-pressed="'+on+'"':'')+'>'+badge+'<div class="tags">'+c[6].map(function(x,i){return '<span class="t'+(x==='Kid fav'?'f':Math.min(i,2))+'">'+esc(x)+'</span>';}).join('')+'</div>'+
    '<div class="art" style="background:'+c[3]+'" aria-hidden="true">'+ICON[c[2]]+'</div><h3>'+esc(c[4])+'</h3><p>'+esc(c[5])+'</p><div class="foot">'+(st.ppl?'':'<div class="pr"><small>'+esc(st.label||'')+'</small>'+price+'</div>')+act+'</div></div>';}).join('')
   :(TAB==='review'||TAB==='book')?'':'<p class="none">Nothing here matches that filter. <button type="button" data-fil="'+FIL+'">Show all</button></p>';
  // the tray
@@ -860,9 +869,10 @@ function openSheet(id){['whosheet','fromsheet'].forEach(function(x){var o=x===id
 
 
 [].forEach.call(document.querySelectorAll('[data-close]'),function(b){b.addEventListener('click',function(){openSheet('');});});
+document.querySelector('.planner').addEventListener('keydown',function(e){var c=e.target.closest&&e.target.closest('.it[data-tap]');if(c&&e.target===c&&(e.key==='Enter'||e.key===' ')){e.preventDefault();c.click();}});
 $('mtabs').addEventListener('click',function(e){var b=e.target.closest('[data-tab]');if(!b)return;TAB=b.getAttribute('data-tab');FIL='';items();track('tab',TAB);scrollTo(0,0);var sel=document.querySelector('#mtabs [aria-selected=true]');if(sel&&sel.scrollIntoView)sel.scrollIntoView({inline:'center',block:'nearest'});});
 document.querySelector('.planner').addEventListener('click',function(e){if(e.target.closest('#rpanel,#bpanel'))return;var f=e.target.closest('[data-fil]');if(f){var v=f.getAttribute('data-fil');FIL=(!v||FIL===v)?'':v;items();track('filter',FIL);return;}
- var b=e.target.closest('[data-act]');if(!b)return;var k=b.getAttribute('data-k'),a=b.getAttribute('data-act');
+ var b=e.target.closest('[data-act]')||e.target.closest('.it[data-tap]');if(!b||b.disabled)return;var k=b.getAttribute('data-k'),a=b.getAttribute('data-act')||b.getAttribute('data-tap');if(!a)return;
  if(a==='from'){var pl=document.querySelector('.panel');if(pl)pl.scrollIntoView({behavior:'smooth',block:'center'});return;}
  if(a==='cadd'||a==='crm'){var ck2=k.slice(2);setS(ck2,a==='cadd'?(ADD[ck2]||2):0);calc();track(a==='cadd'?'add':'remove',k);return;}
  if(a==='pick'){if(k.indexOf('h:')===0){$('hstyle').value=k.slice(2);fire($('hstyle'));}else if(k.indexOf('f:')===0){$('fstyle').value=k.slice(2);fire($('fstyle'));}else{KIND=k.slice(2);ways();calc();}track('pick',k);return;}
