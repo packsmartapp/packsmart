@@ -91,6 +91,12 @@ DATA = {
     "styleNote": "a rough guide (November 2026); prices rise in cherry blossom season, Golden Week, New Year and ski season",
     "foodNote": "a rough guide (November 2026)",
     "areaNames": {"nt": "Tokyo", "nk": "Kyoto", "no": "Osaka", "nh": "Hokkaido"},
+    # Partner prices in US dollars, as the site already shows them (28 Nov 2026): the Japan eSIM plan tiles on the
+    # Japan guides, and SafetyWing's own "from around $2 a day for travelers under 40 (roughly $56-63 per 4 weeks)".
+    # Converted at a round rate so the total stays in yen; the line says so. Update usdJpy if the yen moves a lot.
+    "usdJpy": 155,
+    "esim": {"plans": [[3, 1, 4.0], [7, 3, 8.0], [15, 5, 10.5]], "src": "our Japan eSIM partner's plans as listed on our Japan guides"},
+    "insurance": {"lo": 2.0, "hi": 2.25, "src": "SafetyWing: from around US$2 a day for travellers under 40 (about US$56 to 63 per 4 weeks); it rises with age"},
     "tax": {"each": 3000, "src": "JNTO: International Tourist Tax", "url": "https://www.japan.travel/en/plan/international-tourist-tax/"},
 }
 # Ways to find what we do not price. Partner links carry the page's own Sub IDs (budget-esim, budget-transfer).
@@ -362,8 +368,10 @@ function calc(){
  if(!hotDone)G.stay+=line('Hotels','<span class="np">not priced</span>','<small>choose a hotel style above</small>');
  if(!foodDone)G.stay+=line('Food and drinks','<span class="np">not priced</span>','<small>choose a food style above</small>');
  G.exp+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>',bk('parks','See tickets'));
- G.pre+=line('eSIM data for your phones','<span class="np">not priced yet</span>',bk('esim','See plans'));
- G.pre+=line('Travel medical insurance','<span class="np">not priced yet</span>',bk('insurance','Get a quote'));
+ var ep=D.esim.plans.filter(function(x){return x[0]>=days;})[0]||D.esim.plans[D.esim.plans.length-1],en=Math.max(1,Math.ceil(days/ep[0])),ev=Math.round(ep[2]*en*ad*D.usdJpy/10)*10;sum+=ev;
+ G.pre+=line('eSIM data: '+ad+' phone'+(ad>1?'s':'')+' × '+(en>1?en+' × ':'')+ep[1]+' GB, '+ep[0]+' days',y(ev),'<small>US$'+(ep[2]%1?ep[2].toFixed(2):ep[2])+' each, '+esc(D.esim.src)+'; one per adult and teen; at about ¥'+D.usdJpy+' to US$1</small>'+bk('esim'));
+ var il=Math.round(D.insurance.lo*days*ad*D.usdJpy/100)*100,ih=Math.round(D.insurance.hi*days*ad*D.usdJpy/100)*100;lo+=il;hi+=ih;
+ G.pre+=line('Travel medical insurance: '+ad+' × '+days+' days',y(il)+'–'+y(ih),'<small>'+esc(D.insurance.src)+(ch+inf?'; ask the quote about children':'')+'; at about ¥'+D.usdJpy+' to US$1</small>'+bk('insurance','Get a quote'));
  if(S.nh&&(S.nt||S.nk))G.move+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
  miss.forEach(function(m){G.move+=line(esc(m),'<span class="np">not priced yet</span>');});
  function grp(t,x){return x?'<div class="grp">'+t+'</div>'+x:'';}
