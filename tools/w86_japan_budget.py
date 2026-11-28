@@ -208,6 +208,26 @@ details.info[hidden]{display:none}
 .bd summary::-webkit-details-marker{display:none}.bd summary::after{content:' ▾'}.bd[open] summary::after{content:' ▴'}.bd[open] summary{border-radius:0}
 .bd .cost{margin:0;border-top:0}
 .bar.tick b{animation:tick .45s}@keyframes tick{0%{transform:scale(1)}40%{transform:scale(1.12)}100%{transform:scale(1)}}.bar b{display:inline-block}
+.hrow{display:flex;justify-content:space-between;align-items:center}.reset{font:inherit;font-size:.78rem;font-weight:700;color:#c0293f;background:#fff0f3;border:1.5px solid #ffd1da;border-radius:999px;padding:6px 10px;cursor:pointer}
+.items{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.it{position:relative;display:flex;flex-direction:column;border:1.5px solid var(--line);border-radius:18px;padding:12px 12px 12px;background:#fff;transition:border-color .15s,box-shadow .15s}
+.it.on{border-color:var(--primary);box-shadow:0 4px 14px rgba(0,201,167,.18)}
+.it .tags{display:flex;flex-wrap:wrap;gap:4px;min-height:20px}.it .tags span{font-size:.66rem;font-weight:700;padding:2px 7px;border-radius:999px;background:#fff6dc;color:#8a5a00}.it .tags span.b{background:#eaf2ff;color:#2457a6}
+.it .art{width:64px;height:64px;margin:8px auto 6px;border-radius:50%;background:#f0faf7;display:flex;align-items:center;justify-content:center;font-size:2rem}
+.it h3{margin:0;font-size:.95rem;line-height:1.2;color:var(--dark)}.it p{margin:3px 0 8px;font-size:.76rem;color:var(--muted);line-height:1.35;flex:1}
+.it .pr{font-weight:800;font-size:1rem;color:var(--dark)}.it .pr small{display:block;font-weight:500;font-size:.7rem;color:var(--muted)}
+.it .act{margin-top:8px}
+.it .add{width:100%;font:inherit;font-weight:800;font-size:.9rem;border:0;border-radius:12px;padding:9px;background:#ffd166;color:#3a2a00;cursor:pointer;box-shadow:0 3px 0 #e0a800}
+.it .add.rm{background:#e6faf5;color:#07624f;box-shadow:none;border:1.5px solid var(--primary)}
+.it .qty{display:flex;align-items:center;justify-content:space-between;border:1.5px solid var(--primary);border-radius:12px;background:#e6faf5;padding:3px}
+.it .qty button{width:34px;height:32px;border:0;border-radius:9px;font:inherit;font-size:1.15rem;font-weight:800;cursor:pointer;background:#fff;color:#c0293f}.it .qty button+b+button{background:var(--primary);color:#fff}
+.it .qty b{font-size:.95rem}
+.bar.tray{left:0;right:0;bottom:0;transform:none;max-width:none;border-radius:18px 18px 0 0;padding:10px 12px calc(10px + env(safe-area-inset-bottom));gap:10px;white-space:normal}
+.tbadge{position:relative;font-size:1.6rem;line-height:1;margin-right:6px}.tbadge i{position:absolute;top:-6px;right:-8px;font-style:normal;font-size:.68rem;font-weight:800;background:var(--accent);color:#fff;border-radius:999px;min-width:18px;height:18px;display:flex;align-items:center;justify-content:center;padding:0 4px}
+.tmid{flex:1;min-width:0}.tt{display:block;color:#ffd166;font-size:.9rem}.tchips{display:flex;gap:4px;overflow:hidden;white-space:nowrap;mask-image:linear-gradient(90deg,#000 80%,transparent)}.tchips span{font-size:.68rem;background:rgba(255,255,255,.1);border-radius:999px;padding:2px 7px}
+.ttot{text-align:right}.ttot small{display:block;font-size:.62rem;color:#bfc6d6;text-transform:uppercase;letter-spacing:.5px}.ttot b{font-size:1rem}
+.tgo{background:var(--primary);color:#0f0f23;font-weight:800;text-decoration:none;border-radius:12px;padding:10px 11px;font-size:.84rem;white-space:nowrap}
+main{padding-bottom:110px}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
@@ -236,7 +256,7 @@ details.info[hidden]{display:none}
 .srcs ul{margin:0 0 12px;padding-left:1.1rem;font-size:.84rem;line-height:1.6}
 .bar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);max-width:calc(100% - 24px);display:flex;gap:10px;align-items:center;background:var(--dark);color:#fff;border-radius:999px;padding:9px 16px;font-size:.86rem;box-shadow:0 6px 20px rgba(15,15,35,.3);text-decoration:none;white-space:nowrap;z-index:20}
 .bar b{color:var(--primary)}@media(max-width:380px){#barp{display:none}}.bar[hidden]{display:none}
-@media print{.bd summary,.chips,.tiles,details.info summary,details.more{display:none!important}.bd{margin:0;border:0}.top a,.bar,.keep,.plan,.sh,.go,.bkl,.row,.kinds,.hint,.q,.card .h,#way{display:none!important}.card{border:0;padding:0;margin:8px 0}.cost{margin:0;background:#fff;border:0}
+@media print{.items,.reset,#items{display:none!important}.bd summary,.chips,.tiles,details.info summary,details.more{display:none!important}.bd{margin:0;border:0}.top a,.bar,.keep,.plan,.sh,.go,.bkl,.row,.kinds,.hint,.q,.card .h,#way{display:none!important}.card{border:0;padding:0;margin:8px 0}.cost{margin:0;background:#fff;border:0}
  body{background:#fff}.res{background:#fff;color:#0f0f23;border:1px solid #ccc}.res h2,.total h3,.ck .t{color:#0f0f23}.ln .l small,.ck .t small,.peek{color:#555}
  .srcs{border:0;padding:0}.srcs[open] summary,.srcs summary{list-style:none}.printsum{display:block!important}}
 .printsum{display:none;font-size:.9rem;margin:0 0 8px}
@@ -249,7 +269,7 @@ details.info[hidden]{display:none}
   <p>Three questions give you a number. Every choice below shows what it costs, from official prices where we have them.</p>
 </header>
 <main>
-  <section class="card"><h2>Your trip</h2><p class="h">Tap around: the total at the bottom moves as you go.</p>
+  <section class="card"><h2 class="hrow">Your trip <button type="button" class="reset" id="reset">↺ Start over</button></h2><p class="h">Tap around: your total at the bottom moves as you go.</p>
     <p class="q">1. Who is going?</p>
     <div class="chips" data-g="who"></div>
     <div class="row"><label>Adults<small>18 and older</small></label><div class="step" data-k="ad"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
@@ -268,11 +288,7 @@ details.info[hidden]{display:none}
     <p class="q">3. Your travel style</p>
     <div class="kinds styles" id="styles" role="radiogroup" aria-label="Travel style"></div>
   </section>
-  <section class="card sec"><h2>🎢 Things to do <span class="sub" id="s-exp"></span></h2><p class="h">Tap to add. Tap Disney again for more days. More are coming.</p>
-    <div class="tiles" data-g="todo"></div>
-    <details class="bd"><summary>See the breakdown</summary><div class="cost" id="c-exp"></div></details>
-  </section>
-  <section class="card sec"><h2>✈️ Flights, hotel and food <span class="sub" id="s-stay"></span></h2>
+  <section class="card"><h2>✈️ The basics</h2><p class="h">Always in your trip, set by your travel style. Change any of them.</p>
     <p class="lab">Flying from</p><div class="chips" data-g="from"></div>
     <div class="row stack" id="fromrow" hidden><label for="from">Other city</label><select id="from"><option value="">Choose a city</option>%%FROM%%<option value="own">Somewhere else: I'll type my fare</option></select></div>
     <p class="hint" id="flyhint" hidden></p>
@@ -284,20 +300,13 @@ details.info[hidden]{display:none}
     <p class="lab">🍜 Food</p><div class="chips" data-g="fstyle"></div>
     <details class="info" id="finfo"><summary>ⓘ How we price this</summary><p class="hint" id="fhint"></p></details>
     <div class="row" id="fown" hidden><label for="food">Food per person per day</label><input type="number" id="food" inputmode="numeric" min="0" step="500" placeholder="e.g. 5000"></div>
-    <details class="bd"><summary>See the breakdown</summary><div class="cost" id="c-stay"></div></details>
-  </section>
-  <section class="card sec"><h2>🚆 Getting around <span class="sub" id="s-move"></span></h2>
-    <p class="lab">Land at</p><div class="chips" data-g="arr"></div>
-    <p class="lab">Fly home from</p><div class="chips" data-g="dep"></div>
+    <p class="lab">🛬 Land at</p><div class="chips" data-g="arr"></div>
+    <p class="lab">🛫 Fly home from</p><div class="chips" data-g="dep"></div>
     <p class="lab">To and from the airport</p><div class="kinds" id="kinds" role="radiogroup" aria-label="To and from the airport"></div>
     <div class="chips sm" data-g="way"></div>
-    <p class="lab">Taxi rides in town <small>about 7 km each</small></p><div class="chips" data-g="tx"></div>
-    <p class="lab">🚗 Rental car <small>for Hokkaido and the countryside</small></p><div class="chips" data-g="cr"></div>
-    <div class="tiles" data-g="extras"></div>
-    <details class="bd"><summary>See the breakdown</summary><div class="cost" id="c-move"></div></details>
   </section>
-  <section class="card sec"><h2>🧳 Before you go <span class="sub" id="s-pre"></span></h2><p class="h">eSIM, insurance and the departure tax.</p>
-    <details class="bd"><summary>See the breakdown</summary><div class="cost" id="c-pre"></div></details>
+  <section class="card"><h2>🧳 Add to your trip</h2><p class="h">Tap Add. Prices are for your group.</p>
+    <div class="items" id="items"></div>
   </section>
   <div id="raw" hidden>
     <div class="row"><label>Tokyo Disney days<small>Disneyland or DisneySea, 1 park a day</small></label><div class="step" data-k="dn"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>0</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
@@ -330,11 +339,11 @@ details.info[hidden]{display:none}
   <details class="srcs" id="srcs"><summary>Where these prices come from</summary><ul id="srclist"></ul></details>
   <p class="note">Prices are from the operators' and JNTO's official pages (listed under "Where these prices come from"), checked %%CHECKED%%, and are rounded: they change, so check the official page before you buy. Amounts are in Japanese yen. Partner links are marked; we may earn a commission at no cost to you.</p>
 </main>
-<a class="bar" id="bar" href="#total">Estimated budget <b id="barv"></b> <span id="barp"></span> ↓</a>
+<div class="bar tray" id="bar"><span class="tbadge" aria-hidden="true">🧳<i id="tcount">0</i></span><div class="tmid"><b class="tt">My trip</b><div class="tchips" id="tchips"></div></div><div class="ttot"><small>Estimate</small><b id="barv"></b></div><a class="tgo" href="#res">Review →</a></div>
 <script>
 (function(){
 var D=%%DATA%%,LK=%%LINKS%%,CH='%%CHECKED%%';
-var S={rm:2,ad:2,tn:0,ch:2,in:0,nt:9,nk:0,no:0,nh:0,tx:6,dn:0,cr:0};var MAX={rm:10,ad:12,tn:10,ch:10,in:6,nt:30,nk:30,no:30,nh:30,tx:40,dn:10,cr:30};
+var S={rm:2,ad:2,tn:0,ch:2,in:0,nt:9,nk:0,no:0,nh:0,tx:0,dn:0,cr:0,es:1,ins:1};var MAX={rm:10,ad:12,tn:10,ch:10,in:6,nt:30,nk:30,no:30,nh:30,tx:40,dn:10,cr:30,es:1,ins:1};
 function y(n){return '¥'+Math.round(n).toLocaleString('en-US');}
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function track(s,x){try{if(window.gtag)gtag('event','budget_calc',{event_category:'engagement',status:s,item:x||'',page_path:location.pathname});}catch(e){}}
@@ -441,25 +450,24 @@ function calc(){
  if(!hotDone)G.stay+=line('Hotels','<span class="np">not priced</span>','<small>choose a hotel style above</small>');
  if(!foodDone)G.stay+=line('Food and drinks','<span class="np">not priced</span>','<small>choose a food style above</small>');
  G.exp+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>',bk('parks','See tickets'));
- var ep=D.esim.plans.filter(function(x){return x[0]>=days;})[0]||D.esim.plans[D.esim.plans.length-1],en=Math.max(1,Math.ceil(days/ep[0])),ev=Math.round(ep[2]*en*ad*D.usdJpy/10)*10;sum+=ev;
- G.pre+=line('eSIM data: '+ad+' phone'+(ad>1?'s':'')+' × '+(en>1?en+' × ':'')+ep[1]+' GB, '+ep[0]+' days',y(ev),'<small>US$'+(ep[2]%1?ep[2].toFixed(2):ep[2])+' each, '+esc(D.esim.src)+'; one per adult and teen; at about ¥'+D.usdJpy+' to US$1</small>'+bk('esim'));
- var il=Math.round(D.insurance.lo*days*ad*D.usdJpy/100)*100,ih=Math.round(D.insurance.hi*days*ad*D.usdJpy/100)*100;lo+=il;hi+=ih;
- G.pre+=line('Travel medical insurance: '+ad+' × '+days+' days',y(il)+'–'+y(ih),'<small>'+esc(D.insurance.src)+(ch+inf?'; ask the quote about children':'')+'; at about ¥'+D.usdJpy+' to US$1</small>'+bk('insurance','Get a quote'));
+ if(S.es){var ep=D.esim.plans.filter(function(x){return x[0]>=days;})[0]||D.esim.plans[D.esim.plans.length-1],en=Math.max(1,Math.ceil(days/ep[0])),ev=Math.round(ep[2]*en*ad*D.usdJpy/10)*10;sum+=ev;
+ G.pre+=line('eSIM data: '+ad+' phone'+(ad>1?'s':'')+' × '+(en>1?en+' × ':'')+ep[1]+' GB, '+ep[0]+' days',y(ev),'<small>US$'+(ep[2]%1?ep[2].toFixed(2):ep[2])+' each, '+esc(D.esim.src)+'; one per adult and teen; at about ¥'+D.usdJpy+' to US$1</small>'+bk('esim'));}
+ if(S.ins){var il=Math.round(D.insurance.lo*days*ad*D.usdJpy/100)*100,ih=Math.round(D.insurance.hi*days*ad*D.usdJpy/100)*100;lo+=il;hi+=ih;
+ G.pre+=line('Travel medical insurance: '+ad+' × '+days+' days',y(il)+'–'+y(ih),'<small>'+esc(D.insurance.src)+(ch+inf?'; ask the quote about children':'')+'; at about ¥'+D.usdJpy+' to US$1</small>'+bk('insurance','Get a quote'));}
  if(S.nh&&(S.nt||S.nk))G.move+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
  miss.forEach(function(m){G.move+=line(esc(m),'<span class="np">not priced yet</span>');});
   // each section shows its own lines and subtotal (from the line amounts); the summary card adds them up
-  function subOf(x){var l=0,u=0;(x.match(/<div class="v">¥[\d,]+(?:–¥[\d,]+)?/g)||[]).forEach(function(m){var n=m.match(/¥([\d,]+)(?:–¥([\d,]+))?/);var a=+n[1].replace(/,/g,''),b=n[2]?+n[2].replace(/,/g,''):a;l+=a;u+=b;});return l?y(l)+(u>l?'–'+y(u).replace('¥',''):''):'';}
-  [['exp',G.exp],['stay',G.fly+G.stay],['move',G.rail+G.move],['pre',G.pre]].forEach(function(x){document.getElementById('c-'+x[0]).innerHTML=x[1];document.getElementById('s-'+x[0]).textContent=subOf(x[1]);});
+  function grp(t,x){return x?'<div class="grp">'+t+'</div>'+x:'';}
   var all=G.exp+G.fly+G.stay+G.rail+G.move+G.pre,npn=(all.match(/class="np"/g)||[]).length;
   var tlo=sum+lo,thi=sum+hi,tv=y(tlo)+(thi>tlo?'–'+y(thi).replace('¥',''):'');TOT={lo:Math.round(tlo),hi:Math.round(thi),ppl:ppl,nights:nights};
-  h='<div id="total"><h2>Your estimated budget</h2><p class="printsum">'+esc(summary())+'</p><div class="tot"><b>'+tv+'</b><span>'+ppl+' '+(ppl>1?'people':'person')+' · '+nights+' night'+(nights>1?'s':'')+'</span></div>'+
+  h='<h2>Your trip, itemised</h2><p class="pp" style="margin:0 0 4px">Booking links are partner links: we may earn a commission, at no cost to you.</p>'+grp('Things to do',G.exp)+grp('Flights, hotel and food',G.fly+G.stay)+grp('Getting around',G.rail+G.move)+grp('Before you go',G.pre)+'<div class="total" id="total"><h3>Your estimated budget</h3><p class="printsum">'+esc(summary())+'</p><div class="tot"><b>'+tv+'</b><span>'+ppl+' '+(ppl>1?'people':'person')+' · '+nights+' night'+(nights>1?'s':'')+'</span></div>'+
    '<p class="pp" style="margin:0">About '+y(tlo/Math.max(1,ppl))+(thi>tlo?'–'+y(thi/Math.max(1,ppl)).replace('¥',''):'')+' per person.'+(npn?' Not priced yet: '+npn+' item'+(npn>1?'s':'')+'.':'')+'</p>'+
-   '<p class="pp" style="margin:8px 0 0">Booking links are partner links: we may earn a commission, at no cost to you.</p></div>';
+   '</div>';
   if(%%TOURS%%)h+='<div class="grp">Prefer one booking?</div><div class="two"><div><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate. Compare its price with your budget above.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
   document.getElementById('res').innerHTML=h;
-  function k(n){return n>=1e6?(n/1e6).toFixed(2).replace(/0$/,'')+'M':Math.round(n/1000)+'K';}document.getElementById('barv').textContent='¥'+k(tlo)+(thi>tlo?'–'+k(thi):'');document.getElementById('barp').textContent='· '+ppl+' '+(ppl>1?'people':'person');
+  function k(n){return n>=1e6?(n/1e6).toFixed(2).replace(/0$/,'')+'M':Math.round(n/1000)+'K';}document.getElementById('barv').textContent='¥'+k(tlo)+(thi>tlo?'–'+k(thi):'');
   document.getElementById('srclist').innerHTML=SRC.map(function(x){return '<li><a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0]||x[1])+'</a></li>';}).join('');
-  sync();var bb=document.getElementById('bar');if(bb.getAttribute('data-v')!==tv){bb.setAttribute('data-v',tv);bb.classList.remove('tick');void bb.offsetWidth;bb.classList.add('tick');}
+  sync();items();var bb=document.getElementById('bar');if(bb.getAttribute('data-v')!==tv){bb.setAttribute('data-v',tv);bb.classList.remove('tick');void bb.offsetWidth;bb.classList.add('tick');}
  document.getElementById('planlink').href='/?dest=Japan&adults='+ad+'&kids='+(ch+inf)+'&src=budget_plan#plan';
  saveUrl();
 }
@@ -526,6 +534,31 @@ function sync(){var G=GROUPS();[].forEach.call(document.querySelectorAll('[data-
    :g.o.map(function(x){return '<button type="button" data-v="'+esc(x[0])+'" aria-pressed="'+(String(x[0])===String(g.v))+'">'+esc(x[1])+'</button>';}).join('');});
  var fv=$('from').value;$('fromrow').hidden=!(OTHER||(fv&&POP.indexOf(fv)<0));}
 document.addEventListener('click',function(e){var b=e.target.closest('[data-g] button');if(!b||b.disabled)return;var g=b.closest('[data-g]').getAttribute('data-g');GROUPS()[g].set(b.getAttribute('data-v'));track('tap',g);});
+// ---- "Add to your trip" cards and the tray (28 Nov, after the owner's tray example)
+function ppl0(){return {ad:S.ad+S.tn,ch:S.ch,inf:S.in,tn:S.tn,cars:Math.ceil((S.ad+S.tn+S.ch+S.in)/4),days:S.nt+S.nk+S.no+S.nh+1};}
+function rng(a,b){return y(a)+(b>a?'–'+y(b).replace('¥',''):'');}
+var ITEMS=[
+ {k:'dn',s:'Disney',e:'🏰',n:'Tokyo Disney',d:'Disneyland or DisneySea, one park a day',t:['Kid fav','Tokyo'],q:1,add:1,unit:'day',pr:function(g){var d=D.disney,c=D.disneyChild,kid=c.c*g.ch+c.j*g.tn;return [d.lo*S.ad+kid,d.hi*S.ad+kid,'a day'];}},
+ {k:'sanrio',s:'Sanrio',e:'🎀',n:'Sanrio Puroland',d:"Hello Kitty's indoor theme park",t:['Kid fav','Tokyo'],sel:1,pr:function(g){var r=D.sanrio,n=g.ad+g.ch;return [r.lo*n,r.hi*n,''];}},
+ {k:'zoo',s:'Zoo',e:'🐼',n:'Ueno Zoo',d:'A city zoo in Ueno Park; up to 6th grade free',t:['Kid fav','Tokyo'],sel:1,pr:function(g){return [D.uenozoo.a*g.ad,D.uenozoo.a*g.ad,''];}},
+ {k:'jr',s:'Rail Pass',e:'🎫',n:'Japan Rail Pass',d:'7 days of JR trains, for long trips',t:['Trains'],sel:1,pr:function(g){var j=D.jrpass,v=j.a*g.ad+j.c*g.ch;return [v,v,''];}},
+ {k:'tx',s:'Taxis',e:'🚕',n:'Taxi rides in town',d:'About 7 km each',t:['City'],q:1,add:4,unit:'ride',pr:function(g){return [D.taxi.lo*g.cars,D.taxi.hi*g.cars,'a ride'];}},
+ {k:'cr',s:'Car',e:'🚗',n:'Rental car',d:'For Hokkaido and the countryside; most visitors need an International Driving Permit',t:['Hokkaido'],q:1,add:2,unit:'day',pr:function(){return null;}},
+ {k:'es',s:'eSIM',e:'📱',n:'eSIM data',d:'Maps and messages from landing; one per adult and teen',t:['Before you fly'],flag:1,pr:function(g){var ep=D.esim.plans.filter(function(x){return x[0]>=g.days;})[0]||D.esim.plans[D.esim.plans.length-1],en=Math.max(1,Math.ceil(g.days/ep[0])),v=Math.round(ep[2]*en*g.ad*D.usdJpy/10)*10;return [v,v,''];}},
+ {k:'ins',s:'Insurance',e:'🩺',n:'Travel medical insurance',d:'From about US$2 a day under 40',t:['Before you fly'],flag:1,pr:function(g){return [Math.round(D.insurance.lo*g.days*g.ad*D.usdJpy/100)*100,Math.round(D.insurance.hi*g.days*g.ad*D.usdJpy/100)*100,''];}}];
+function qtyOf(it){return it.sel?($(it.k).value==='1'?1:0):S[it.k];}
+function items(){var g=ppl0();$('items').innerHTML=ITEMS.map(function(it){var n=qtyOf(it),p=it.pr(g);
+  var price=p?(rng(p[0],p[1])+(p[2]?'<small>'+p[2]+'</small>':'<small>for your group</small>')):'<small>price on the booking site</small>';
+  var act=it.q&&n?'<div class="qty"><button type="button" data-act="dec" data-k="'+it.k+'" aria-label="Fewer">−</button><b>'+n+' '+it.unit+(n>1?'s':'')+'</b><button type="button" data-act="inc" data-k="'+it.k+'" aria-label="More">+</button></div>'
+   :n?'<button type="button" class="add rm" data-act="rm" data-k="'+it.k+'">✓ Added</button>':'<button type="button" class="add" data-act="add" data-k="'+it.k+'">+ Add</button>';
+  return '<div class="it'+(n?' on':'')+'"><div class="tags">'+it.t.map(function(x,i){return '<span'+(i?' class="b"':'')+'>'+esc(x)+'</span>';}).join('')+'</div><div class="art" aria-hidden="true">'+it.e+'</div><h3>'+esc(it.n)+'</h3><p>'+esc(it.d)+'</p><div class="pr">'+price+'</div><div class="act">'+act+'</div></div>';}).join('');
+ var ch=['✈️ Flights','🏨 Hotel','🍜 Food','🛬 Airport'];ITEMS.forEach(function(it){var n=qtyOf(it);if(n)ch.push(it.e+' '+it.s+(it.q&&n>1?' ×'+n:''));});
+ $('tcount').textContent=ch.length;$('tchips').innerHTML=ch.map(function(x){return '<span>'+esc(x)+'</span>';}).join('');}
+$('items').addEventListener('click',function(e){var b=e.target.closest('[data-act]');if(!b)return;var k=b.getAttribute('data-k'),a=b.getAttribute('data-act'),it=ITEMS.filter(function(x){return x.k===k;})[0];
+ if(it.sel){$(k).value=a==='add'?'1':'0';fire($(k));}
+ else{var n=S[k];n=a==='add'?(it.add||1):a==='rm'?0:a==='inc'?Math.min(MAX[k],n+1):Math.max(0,n-1);setS(k,n);calc();}
+ track(a==='add'||a==='inc'?'add':'remove',k);});
+$('reset').addEventListener('click',function(){track('reset');location.href=location.pathname;});
 var tt=null;document.addEventListener('click',function(e){if(e.target.closest('.step,select')){clearTimeout(tt);tt=setTimeout(function(){track('change');},1500);}});
 if(Q0.st&&(STY[Q0.st]||Q0.st==='x'))STYLE=Q0.st==='x'?'':Q0.st;styleBtns();styleUI();if(document.getElementById('from').value)fareUI();calc();track('open',Q0.src||'');
 })();
