@@ -16,7 +16,7 @@ figures. The result lists:
     Shinkansen fares), each with a way to find the price (internal page or partner link).
 The total says what it covers. No made-up numbers: anything without an official figure says "not priced yet".
 
-Partner links reuse Packy's tracked links until the page has its own Sub IDs (budget-esim, budget-transfer).
+Partner links use the page's own Travelpayouts Sub IDs: budget-esim (eSIM) and budget-transfer (airport transfer), 28 Nov 2026.
 Writes public/japan-budget.html. Run after w85 and before w72:  python3 tools/w86_japan_budget.py
 """
 import json, os, re
@@ -93,16 +93,16 @@ DATA = {
     "areaNames": {"nt": "Tokyo", "nk": "Kyoto", "no": "Osaka", "nh": "Hokkaido"},
     "tax": {"each": 3000, "src": "JNTO: International Tourist Tax", "url": "https://www.japan.travel/en/plan/international-tourist-tax/"},
 }
-# Ways to find what we do not price. Partner links reuse Packy's tracked links until the page has its own Sub IDs.
+# Ways to find what we do not price. Partner links carry the page's own Sub IDs (budget-esim, budget-transfer).
 LINKS = {
     "flights": ["Compare flights to Japan", "/flights?src=budget", False],
     "hotels": ["Search hotels in Japan", "/flights?src=budget_hotels", False],
     "parks": ["Compare Tokyo Disney and theme park tickets", "https://www.getyourguide.com/s/?q=tokyo%20theme%20park%20tickets&partner_id=D7IXONS&cmp=ps-budget", True],
     "shinkansen": ["Book Shinkansen tickets online", "https://www.japan-bullettrain.com/?via=packsmart", True],
-    "transfer": ["Book a private airport transfer", "https://tpo.lu/5TSGg9Tf", True],
+    "transfer": ["Book a private airport transfer", "https://tpo.lu/hPV4u7AE", True],
     "tours": ["Compare guided multi-day Japan tours", "https://www.tourradar.com/d/japan?utm_source=partner-traveller-1471305&utm_medium=ambassador&utm_campaign=budget-tours", True],
     "tours_family": ["Compare family-friendly multi-day Japan tours", "https://www.tourradar.com/srp/d-japan?age_range=13-17%2C7-12&adults=2&children=2&utm_source=partner-traveller-1471305&utm_medium=ambassador&utm_campaign=family-tours", True],
-    "esim": ["See eSIM data plans for Japan", "https://airalo.tpo.lu/ndZAMVI0", True],
+    "esim": ["See eSIM data plans for Japan", "https://airalo.tpo.lu/u2N5qgJl", True],
     "insurance": ["Get a travel medical insurance quote", "https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador", True],
 }
 
