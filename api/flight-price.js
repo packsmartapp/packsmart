@@ -3,7 +3,16 @@
 // data service), not live booking prices. Key: Vercel env var TRAVELPAYOUTS_TOKEN (never in the repo).
 // GET /api/flight-price?from=SIN&to=TYO  ->  { ok, lo, hi, n, checked }  (yen, return, per person)
 // Only the listed cities are accepted, so the function cannot be used as an open proxy.
-const ORIGINS = new Set(['SIN', 'KUL', 'BKK', 'HKG', 'BOM', 'DEL', 'BLR', 'SYD', 'LON', 'LAX', 'NYC']);
+// The "Flying from" cities on /japan-budget (FROM in tools/w86_japan_budget.py, which checks the two match).
+const ORIGINS = new Set([
+  'SIN', 'KUL', 'BKK', 'JKT', 'DPS', 'MNL', 'SGN', 'HAN',
+  'HKG', 'TPE', 'SEL', 'PUS', 'SHA', 'BJS',
+  'BOM', 'DEL', 'BLR', 'MAA', 'HYD', 'CCU', 'CMB', 'KTM', 'DAC',
+  'SYD', 'MEL', 'BNE', 'PER', 'AKL',
+  'DXB', 'AUH', 'DOH', 'RUH', 'IST',
+  'LON', 'PAR', 'FRA', 'MUC', 'BER', 'AMS', 'ZRH', 'VIE', 'MAD', 'BCN', 'ROM', 'MIL', 'HEL', 'WAW',
+  'LAX', 'SFO', 'SEA', 'NYC', 'CHI', 'HNL', 'YVR', 'YTO',
+]);
 const DESTS = new Set(['TYO', 'OSA', 'SPK']);   // Tokyo (Narita and Haneda), Osaka (Kansai), Sapporo (New Chitose)
 const API = 'https://api.travelpayouts.com';
 
