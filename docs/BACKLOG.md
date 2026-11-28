@@ -100,3 +100,4 @@ The repo is public, so earnings, partner conversations and outreach are tracked 
 - Packy: official ticket prices for Tokyo Disney Resort, Ueno Zoo and other family sights are not in `docs/research` yet (a family budget question asked for theme parks and zoos). Fetch from the attractions' own sites if reachable.
 - Japan budget calculator (owner's idea, 27 Nov): inputs (adults, children's ages, nights, cities, hotel level) and an itemised result from the official price notes, to discuss before building.
 - Budget calculator: show the total in the reader's own currency as well as yen (owner, 27 Nov: later). Needs a rate source and a 'rate as of' date.
+- Budget calculator: hotel and food style ranges from the Japan Tourism Agency's international visitor spending survey (official averages; mlit.go.jp is blocked from the cloud session, so screenshots of the latest results table), replacing the owner's rough trip ranges.

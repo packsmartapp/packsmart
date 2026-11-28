@@ -62,6 +62,16 @@ DATA = {
     "uenozoo": {"a": 600, "src": "Ueno Zoo: general 600 yen, junior high 200 yen, free up to 6th grade", "url": "https://www.tokyo-zoo.net/english/ueno/", "checked": "27 Nov 2026"},
     "shinkansen": {"a": 13970, "c": 6980, "src": "Smart EX Service, Nozomi, reserved seat, normal season (off-peak 200 yen less, busiest 400 yen more; children half that)", "url": "https://smart-ex.jp/en/", "checked": "27 Nov 2026"},
     "shinkansenOsaka": {"a": 14520, "c": 7250},
+    "hotelStyles": {
+        "budget": {"name": "Budget", "desc": "hostels, capsule hotels and simple business hotels", "lo": None, "hi": None},
+        "mid": {"name": "Mid-range", "desc": "3-star and good business hotels", "lo": None, "hi": None},
+        "upscale": {"name": "Upscale", "desc": "4-star hotels", "lo": None, "hi": None},
+        "luxury": {"name": "Luxury", "desc": "5-star hotels and high-end ryokan", "lo": None, "hi": None}},
+    "foodStyles": {
+        "budget": {"name": "Budget", "desc": "convenience stores, bakeries and casual chains (ramen, curry, gyudon)", "lo": None, "hi": None},
+        "mid": {"name": "Mid-range", "desc": "a cafe lunch and an izakaya or family restaurant dinner", "lo": None, "hi": None},
+        "treat": {"name": "Treat yourself", "desc": "sit-down sushi, wagyu or kaiseki dinners", "lo": None, "hi": None}},
+    "styleNote": "a rough guide from our own trips (October 2025); prices vary by city, season and dates",
     "tax": {"each": 3000, "src": "JNTO: International Tourist Tax", "url": "https://www.japan.travel/en/plan/international-tourist-tax/"},
 }
 # Ways to find what we do not price. Partner links reuse Packy's tracked links until the page has its own Sub IDs.
@@ -139,6 +149,8 @@ input[type=number]{width:130px}
 .go small{flex:0 0 auto;font-weight:500;font-size:.72rem;color:#8a93a6}
 .next{display:flex;align-items:center;justify-content:space-between;gap:10px;margin:18px 0 2px;padding:14px 16px;border-radius:16px;background:linear-gradient(135deg,#E94560,#ff6b85);color:#fff;text-decoration:none;font-weight:700;font-size:.98rem}.next i{font-style:normal;font-size:1.3rem}
 .two{display:grid;gap:8px;margin:6px 0 2px}.two>div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 13px}
+.row[hidden],.hint[hidden]{display:none}
+.hint{margin:2px 0 8px;font-size:.84rem;line-height:1.45;color:var(--muted)}.hint a{font-weight:700}.hint b{color:var(--dark)}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 </style>
 </head>
@@ -169,10 +181,16 @@ input[type=number]{width:130px}
     <div class="row"><label for="zoo">Ueno Zoo</label><select id="zoo"><option value="0">No</option><option value="1">Yes</option></select></div>
     <div class="row"><label for="jr">Japan Rail Pass<small>7 days, for long train trips</small></label><select id="jr"><option value="0">No</option><option value="1">Yes</option></select></div>
   </section>
-  <section class="card"><h2>Your own numbers <span style="font-weight:500;font-size:.8rem;color:var(--muted)">(optional, in yen)</span></h2><p class="h">We can't price these for you. Add them if you know them.</p>
-    <div class="row"><label for="hotel">Hotel per night<small>for the whole group</small></label><input type="number" id="hotel" inputmode="numeric" min="0" step="1000" placeholder="e.g. 25000"></div>
-    <div class="row"><label for="food">Food per person per day</label><input type="number" id="food" inputmode="numeric" min="0" step="500" placeholder="e.g. 5000"></div>
-    <div class="row"><label for="fly">Flights, total</label><input type="number" id="fly" inputmode="numeric" min="0" step="1000" placeholder="after comparing"></div>
+  <section class="card"><h2>Hotel, food and flights</h2><p class="h">Pick a style, or type your own figure if you already know it. In yen.</p>
+    <div class="row stack"><label for="hstyle">Hotel style</label><select id="hstyle"><option value="">Choose a style</option><option value="budget">Budget</option><option value="mid">Mid-range</option><option value="upscale">Upscale</option><option value="luxury">Luxury</option><option value="own">I'll type my own price</option></select></div>
+    <p class="hint" id="hhint" hidden></p>
+    <div class="row" id="hrooms" hidden><label>Rooms<small>most Japanese rooms sleep 2</small></label><div class="step" data-k="rm"><button type="button" data-d="-1" aria-label="Fewer">−</button><output>2</output><button type="button" data-d="1" aria-label="More">+</button></div></div>
+    <div class="row" id="hown" hidden><label for="hotel">Your hotel per night<small>all rooms together</small></label><input type="number" id="hotel" inputmode="numeric" min="0" step="1000" placeholder="e.g. 25000"></div>
+    <div class="row stack"><label for="fstyle">Food style</label><select id="fstyle"><option value="">Choose a style</option><option value="budget">Budget</option><option value="mid">Mid-range</option><option value="treat">Treat yourself</option><option value="own">I'll type my own amount</option></select></div>
+    <p class="hint" id="fhint" hidden></p>
+    <div class="row" id="fown" hidden><label for="food">Food per person per day</label><input type="number" id="food" inputmode="numeric" min="0" step="500" placeholder="e.g. 5000"></div>
+    <div class="row"><label for="fly">Flights, total<small>depends on where you fly from</small></label><input type="number" id="fly" inputmode="numeric" min="0" step="1000" placeholder="optional"></div>
+    <p class="hint"><a href="/flights?src=budget_flights" data-go="flights">Compare flights to Japan →</a> then type the total here, or leave it out.</p>
   </section>
   <section class="card res" id="res" aria-live="polite"></section>
   <p class="note">Prices are from the operators' and JNTO's official pages, checked %%CHECKED%%, and are rounded: they change, so check the linked page before you buy. Amounts are in Japanese yen. Partner links are marked; we may earn a commission at no cost to you.</p>
@@ -180,7 +198,7 @@ input[type=number]{width:130px}
 <script>
 (function(){
 var D=%%DATA%%,LK=%%LINKS%%,CH='%%CHECKED%%';
-var S={ad:2,tn:0,ch:2,in:0,nt:9,nk:0,no:0,nh:0,tx:6,dn:0};var MAX={ad:12,tn:10,ch:10,in:6,nt:30,nk:30,no:30,nh:30,tx:40,dn:10};
+var S={rm:2,ad:2,tn:0,ch:2,in:0,nt:9,nk:0,no:0,nh:0,tx:6,dn:0};var MAX={rm:10,ad:12,tn:10,ch:10,in:6,nt:30,nk:30,no:30,nh:30,tx:40,dn:10};
 function y(n){return '¥'+Math.round(n).toLocaleString('en-US');}
 function esc(t){return String(t).replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
 function track(s,x){try{if(window.gtag)gtag('event','budget_calc',{event_category:'engagement',status:s,item:x||'',page_path:location.pathname});}catch(e){}}
@@ -188,7 +206,7 @@ var arr=document.getElementById('arr'),dep=document.getElementById('dep'),way=do
 Object.keys(D.airport).forEach(function(k){arr.add(new Option(D.airport[k].name,k));dep.add(new Option(D.airport[k].name,k));});
 function ways(){var a=D.airport[arr.value];way.innerHTML='';a.ways.forEach(function(w){way.add(new Option(w.name,w.id));});}
 // a link from Packy can fill the form: ?ad=2&ch=2&nt=9
-try{var q=new URLSearchParams(location.search);/* also dn= Disney days */Object.keys(S).forEach(function(k){var v=parseInt(q.get(k),10);if(!isNaN(v))S[k]=Math.max(0,Math.min(MAX[k],v));});}catch(e){}
+S.rm=Math.max(1,Math.ceil((S.ad+S.ch)/2));try{var q=new URLSearchParams(location.search);/* also dn= Disney days */Object.keys(S).forEach(function(k){var v=parseInt(q.get(k),10);if(!isNaN(v))S[k]=Math.max(0,Math.min(MAX[k],v));});}catch(e){}
 [].forEach.call(document.querySelectorAll('.step'),function(st){var k=st.getAttribute('data-k');st.querySelector('output').textContent=S[k];
  st.addEventListener('click',function(e){var b=e.target.closest('[data-d]');if(!b)return;S[k]=Math.max(k==='ad'?1:0,Math.min(MAX[k],S[k]+(+b.getAttribute('data-d'))));st.querySelector('output').textContent=S[k];calc();});});
 // the likely airport for the trip: Kansai for a Kyoto and Osaka trip, New Chitose for Hokkaido only
@@ -197,6 +215,12 @@ arr.addEventListener('change',function(){ways();if(dep.value!==arr.value&&!dep.d
 dep.addEventListener('change',function(){dep.dataset.set='1';calc();});
 [way,document.getElementById('jr'),document.getElementById('zoo'),document.getElementById('sanrio')].forEach(function(x){x.addEventListener('change',calc);});
 ['hotel','food','fly'].forEach(function(id){document.getElementById(id).addEventListener('input',calc);});
+function styleUI(){var hs=document.getElementById('hstyle').value,fs=document.getElementById('fstyle').value,H=D.hotelStyles[hs],F=D.foodStyles[fs];
+ var hh=document.getElementById('hhint');hh.hidden=!H;if(H)hh.innerHTML='<b>'+esc(H.name)+':</b> '+esc(H.desc)+'.'+(H.lo?' About '+y(H.lo)+'–'+y(H.hi)+' per room per night, '+esc(D.styleNote)+'.':'')+' <a href="/flights?src=budget_hotels" data-go="hotels">See hotel prices for your dates →</a>';
+ document.getElementById('hrooms').hidden=!H;document.getElementById('hown').hidden=hs!=='own';
+ var fh=document.getElementById('fhint');fh.hidden=!F;if(F)fh.innerHTML='<b>'+esc(F.name)+':</b> '+esc(F.desc)+'.'+(F.lo?' About '+y(F.lo)+'–'+y(F.hi)+' per person per day, '+esc(D.styleNote)+'.':'');
+ document.getElementById('fown').hidden=fs!=='own';calc();}
+['hstyle','fstyle'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){track(id,this.value);styleUI();});});
 function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)||v<0?0:v;}
 function src(name,url){return '<small>'+esc(name)+', checked '+CH+' · <a href="'+url+'" target="_blank" rel="noopener">official price</a></small>';}
 function line(label,v,note){return '<div class="ln"><div class="l">'+label+(note||'')+'</div><div class="v">'+v+'</div></div>';}
@@ -232,16 +256,19 @@ function calc(){
  if(S.nt&&kan&&jrp)h+=line('Shinkansen Tokyo ⇄ Kyoto','with the pass','<small>The Japan Rail Pass covers Hikari and Kodama trains; Nozomi needs an extra ticket (4,960 yen per ride between Tokyo and Kyoto, japanrailpass.net, checked 24 Nov 2026).</small>');
  var tx=D.tax.each*ppl;sum+=tx;h+=line('Departure tax: '+ppl+' × '+y(D.tax.each),y(tx),'<small>JNTO, checked '+CH+'; check JNTO for who is exempt · <a href="'+D.tax.url+'" target="_blank" rel="noopener">official page</a></small>');
  // the reader's own numbers
- var hot=num('hotel'),food=num('food'),fly=num('fly'),own='';
+ var hs=document.getElementById('hstyle').value,fs=document.getElementById('fstyle').value,H=D.hotelStyles[hs],F=D.foodStyles[fs];
+ var hot=hs==='own'?num('hotel'):0,food=fs==='own'?num('food'):0,fly=num('fly'),own='',hotDone=!!hot,foodDone=!!food;
  if(hot){own+=line('Hotel: '+nights+' nights × '+y(hot),y(hot*nights));sum+=hot*nights;}
+ if(H&&H.lo&&nights){var hl=H.lo*S.rm*nights,hh2=H.hi*S.rm*nights;lo+=hl;hi+=hh2;hotDone=true;own+=line('Hotel, '+esc(H.name.toLowerCase())+': '+S.rm+' room'+(S.rm>1?'s':'')+' × '+nights+' nights',y(hl)+'–'+y(hh2),'<small>'+esc(D.styleNote)+'</small>');}
  if(food){own+=line('Food: '+(ad+ch+inf)+' people × '+days+' days × '+y(food),y(food*ppl*days));sum+=food*ppl*days;}
+ if(F&&F.lo){var fl=F.lo*ppl*days,fh2=F.hi*ppl*days;lo+=fl;hi+=fh2;foodDone=true;own+=line('Food, '+esc(F.name.toLowerCase())+': '+ppl+' people × '+days+' days',y(fl)+'–'+y(fh2),'<small>'+esc(D.styleNote)+'</small>');}
  if(fly){own+=line('Flights',y(fly));sum+=fly;}
- if(own)h+='<div class="grp">Your numbers</div>'+own;
+ if(own)h+='<div class="grp">Hotel, food and flights</div>'+own;
  // what is not priced
  var np='';
  if(!fly)np+=line('Flights','<span class="np">not priced</span>')+go('flights');
- if(!hot)np+=line('Hotels','<span class="np">not priced</span>')+go('hotels');
- if(!food)np+=line('Food and drinks','<span class="np">not priced</span>');
+ if(!hotDone)np+=line('Hotels','<span class="np">not priced</span>')+go('hotels');
+ if(!foodDone)np+=line('Food and drinks','<span class="np">not priced</span>');
  np+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>')+go('parks');
  if(S.nh&&(S.nt||S.nk))np+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
  miss.forEach(function(m){np+=line(esc(m),'<span class="np">not priced yet</span>');});
