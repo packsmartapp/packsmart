@@ -95,7 +95,9 @@ DATA = {
 }
 # Ways to find what we do not price. Partner links carry the page's own Sub IDs (budget-esim, budget-transfer).
 LINKS = {
-    "parks": ["Compare Tokyo Disney and theme park tickets", "https://www.getyourguide.com/s/?q=tokyo%20theme%20park%20tickets&partner_id=D7IXONS&cmp=ps-budget", True],
+    "parks": ["Compare Tokyo Disney and theme park tickets", "https://www.getyourguide.com/s/?q=tokyo%20disney%20tickets&partner_id=D7IXONS&cmp=ps-budget-disney", True],
+    "sanrio": ["Sanrio Puroland tickets", "https://www.getyourguide.com/s/?q=sanrio%20puroland&partner_id=D7IXONS&cmp=ps-budget-sanrio", True],
+    "subway": ["Tokyo Subway Ticket", "https://www.getyourguide.com/s/?q=tokyo%20subway%20ticket&partner_id=D7IXONS&cmp=ps-budget-subway", True],
     "shinkansen": ["Book Shinkansen tickets online", "https://www.japan-bullettrain.com/?via=packsmart", True],
     "transfer": ["Book a private airport transfer", "https://tpo.lu/hPV4u7AE", True],
     "tours": ["Compare guided multi-day Japan tours", "https://www.tourradar.com/d/japan?utm_source=partner-traveller-1471305&utm_medium=ambassador&utm_campaign=budget-tours", True],
@@ -169,6 +171,7 @@ input[type=number]{width:130px}
 .two{display:grid;gap:8px;margin:6px 0 2px}.two>div{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:14px;padding:12px 13px}
 .row[hidden],.hint[hidden]{display:none}
 .hint{margin:2px 0 8px;font-size:.84rem;line-height:1.45;color:var(--muted)}.hint a{font-weight:700}.hint b{color:var(--dark)}
+.bkl{display:inline-block;margin-top:6px;font-size:.8rem;font-weight:700;color:#7fe6d3;text-decoration:underline;text-underline-offset:2px}.ln .l .bkl small,.bkl small{font-weight:500;color:#9aa5b5;text-decoration:none;display:inline;margin:0 0 0 4px;font-size:.72rem}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
@@ -197,7 +200,7 @@ input[type=number]{width:130px}
 .srcs ul{margin:0 0 12px;padding-left:1.1rem;font-size:.84rem;line-height:1.6}
 .bar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:10px;align-items:center;background:var(--dark);color:#fff;border-radius:999px;padding:9px 16px;font-size:.86rem;box-shadow:0 6px 20px rgba(15,15,35,.3);text-decoration:none;white-space:nowrap;z-index:20}
 .bar b{color:var(--primary)}.bar[hidden]{display:none}
-@media print{.top a,.bar,.keep,.plan,.sh,.go,.bk,.card:not(.res){display:none!important}
+@media print{.top a,.bar,.keep,.plan,.sh,.go,.bkl,.card:not(.res){display:none!important}
  body{background:#fff}.res{background:#fff;color:#0f0f23;border:1px solid #ccc}.res h2,.total h3,.ck .t{color:#0f0f23}.ln .l small,.ck .t small,.peek{color:#555}
  .srcs{border:0;padding:0}.srcs[open] summary,.srcs summary{list-style:none}.printsum{display:block!important}}
 .printsum{display:none;font-size:.9rem;margin:0 0 8px}
@@ -243,7 +246,7 @@ input[type=number]{width:130px}
     <div class="row" id="flyown" hidden><label for="fly">Flights, total<small>all travellers, return</small></label><input type="number" id="fly" inputmode="numeric" min="0" step="1000" placeholder="e.g. 280000"></div>
   </section>
   <section class="card res" id="res" aria-live="polite"></section>
-  <section class="card keep" id="keep"><h2>Keep it, share it</h2><p class="h">Send this budget to the people you travel with, or keep a copy. The link opens this exact budget.</p>
+  <section class="card keep" id="keep"><h2>Keep it, share it</h2><p class="h">Send this budget to the people you travel with, or keep a copy with its booking links. The link opens this exact budget.</p>
     <div class="sh">
       <button type="button" data-sh="wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M8.6 7.3c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.5.7c-.1.2-.2.3 0 .6.5.9 1.2 1.6 2.1 2.1.3.2.4.1.6-.1l.7-.8c.2-.2.3-.2.6-.1l1.8.9c.3.1.4.2.4.4 0 .5-.2 1.2-.7 1.6-.5.4-1.4.7-2.5.4a9 9 0 0 1-5.4-5c-.5-1.3-.2-2.4.3-3.3z"/></svg>WhatsApp</button>
       <button type="button" data-sh="copy"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#0a8f78" stroke-width="2" stroke-linecap="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg><span>Copy link</span></button>
@@ -252,7 +255,7 @@ input[type=number]{width:130px}
     </div>
     <div class="em" id="em" hidden>
       <form id="emf"><input type="email" id="emaddr" required autocomplete="email" placeholder="you@example.com" aria-label="Your email"><button class="send" type="submit">Send</button></form>
-      <span class="f">Just this budget, with the link to open it and your booking checklist. <a href="/privacy-policy#packy-email-privacy">Privacy</a></span>
+      <span class="f">Just this budget, with the link to open it and the booking links. <a href="/privacy-policy#packy-email-privacy">Privacy</a></span>
       <p class="err" id="emerr" hidden></p>
     </div>
   </section>
@@ -307,6 +310,7 @@ function num(id){var v=parseFloat(document.getElementById(id).value);return isNa
 var SRC=[];function reg(o){if(o&&o.url&&!SRC.some(function(x){return x[1]===o.url;}))SRC.push([o.src||'',o.url]);return '';}
 function src(name,url){reg({src:name,url:url});return '<small>'+esc(name)+', checked '+CH+'</small>';}
 function line(label,v,note){return '<div class="ln"><div class="l">'+label+(note||'')+'</div><div class="v">'+v+'</div></div>';}
+function bk(k,t){var l=LK[k];if(!l)return '';var off=l[2]==='official';return '<a class="bkl" href="'+esc(l[1])+'" target="_blank" rel="'+(off?'noopener':'nofollow noopener sponsored')+'"'+(off?'':' data-ps-placement="budget-'+k+'"')+' data-go="'+k+'">'+esc(t||'Check today\'s price and book')+' ↗ <small>'+(off?'official site':'partner link')+'</small></a>';}
 function go(k){var l=LK[k],off=l[2]==='official';return '<a class="go" href="'+esc(l[1])+'"'+(off?' target="_blank" rel="noopener"':l[2]?' target="_blank" rel="nofollow noopener sponsored" data-ps-placement="budget-'+k+'"':'')+' data-go="'+k+'">'+esc(l[0])+'<small>'+(off?'official site ↗':l[2]?'partner link ↗':'→')+'</small></a>';}
 function calc(){
  SRC=[];var tn=S.tn,ad=S.ad+tn,ch=S.ch,inf=S.in,ppl=ad+ch+inf,nights=S.nt+S.nk+S.no+S.nh,kan=S.nk+S.no,days=nights+1,cars=Math.ceil(ppl/4),h='',sum=0,lo=0,hi=0,miss=[];
@@ -314,28 +318,28 @@ function calc(){
  function leg(k,wid,label){var w=D.airport[k].ways.filter(function(x){return x.id===wid;})[0]||D.airport[k].ways[0];
   if(w.car){lo+=w.car[0]*cars;hi+=w.car[1]*cars;return line(label+': '+esc(w.name)+(cars>1?' ('+cars+' cars)':''),y(w.car[0]*cars)+'–'+y(w.car[1]*cars),src(w.src,w.url));}
   if(w.c===null&&ch){var v=w.a*ad;sum+=v;miss.push('Children\'s fare on '+w.name);return line(label+': '+esc(w.name),y(v)+' <small style="color:#9aa5b5">+ children</small>',src(w.src,w.url));}
-  var v=w.a*ad+(w.c||0)*ch;sum+=v;return line(label+': '+esc(w.name),y(v),src(w.src,w.url));}
+  var v=w.a*ad+(w.c||0)*ch;sum+=v;return line(label+': '+esc(w.name),y(v),src(w.src,w.url)+(label==='Airport to town'?bk('transfer','Prefer a private car? Book a transfer'):''));}
  h+='<div class="grp">Checked prices</div>';
  h+=leg(arr.value,way.value,'Airport to town');
  var depWay=dep.value===arr.value?way.value:D.airport[dep.value].ways[0].id;
  if(!(dep.value==='narita'&&depWay==='nex'&&arr.value==='narita'))h+=leg(dep.value,depWay,'Town to airport');
  else h+=line('Town to airport: Narita Express','included',' <small>the round-trip ticket covers both rides</small>');
- if(S.nt){var t=D.tokyoTicket,n=Math.ceil((S.nt+1)/t.days),v=n*(t.a*ad+t.c*ch);sum+=v;h+=line('Tokyo subway: '+n+' × 72-hour ticket'+(n>1?'s':''),y(v),src(t.src,t.url));}
+ if(S.nt){var t=D.tokyoTicket,n=Math.ceil((S.nt+1)/t.days),v=n*(t.a*ad+t.c*ch);sum+=v;h+=line('Tokyo subway: '+n+' × 72-hour ticket'+(n>1?'s':''),y(v),src(t.src,t.url)+bk('subway'));}
  if(S.nk){var kd=D.kyotoDay,kv=S.nk*(kd.a*ad+kd.c*ch);sum+=kv;h+=line('Kyoto buses and subway: '+S.nk+' one-day pass'+(S.nk>1?'es':''),y(kv),'<small>'+esc(kd.src)+', checked 27 Nov 2026'+reg(kd)+'</small>');}
  if(S.no){var od=D.osakaDay,ol=S.no*(od.lo*ad+od.c*ch),oh=S.no*(od.hi*ad+od.c*ch);lo+=ol;hi+=oh;h+=line('Osaka subway and buses: '+S.no+' one-day pass'+(S.no>1?'es':''),y(ol)+'–'+y(oh),'<small>'+esc(od.src)+', checked 27 Nov 2026'+reg(od)+'</small>');}
  if(S.nh){var s=D.sapporoDay,v=S.nh*(s.a*ad+s.c*ch);sum+=v;h+=line('Sapporo subway: '+S.nh+' one-day ticket'+(S.nh>1?'s':''),y(v),src(s.src,s.url));}
  if(S.tx){var tl=S.tx*cars*D.taxi.lo,th=S.tx*cars*D.taxi.hi;lo+=tl;hi+=th;h+=line('Taxis: '+S.tx+' ride'+(S.tx>1?'s':'')+(cars>1?' × '+cars+' cars':''),y(tl)+'–'+y(th),src(D.taxi.src,D.taxi.url));}
- if(document.getElementById('jr').value==='1'){var j=D.jrpass,v=j.a*ad+j.c*ch;sum+=v;h+=line('Japan Rail Pass, 7 days',y(v),src(j.src,j.url));}
+ if(document.getElementById('jr').value==='1'){var j=D.jrpass,v=j.a*ad+j.c*ch;sum+=v;h+=line('Japan Rail Pass, 7 days',y(v),src(j.src,j.url)+bk('jrpass','Buy it on the official site'));}
  if(S.dn){var d=D.disney,dc=D.disneyChild,ga=S.ad,kid=(dc.c*ch+dc.j*tn)*S.dn,dl=d.lo*ga*S.dn+kid,dh=d.hi*ga*S.dn+kid;lo+=dl;hi+=dh;
   var who=[ga+' adult'+(ga>1?'s':''),tn?tn+' teen'+(tn>1?'s':''):'',ch?ch+' child'+(ch>1?'ren':''):''].filter(Boolean).join(' + ');
-  h+=line('Tokyo Disney: '+who+' × '+S.dn+' day'+(S.dn>1?'s':''),y(dl)+'–'+y(dh),'<small>Adults: '+esc(d.src)+', checked '+d.checked+''+reg(d)+''+(tn||ch?'. '+esc(dc.src).charAt(0).toUpperCase()+esc(dc.src).slice(1)+'.':'')+(inf?' Under 4: free; ages 4 and 5 pay the child price.':'')+'</small>');}
+  h+=line('Tokyo Disney: '+who+' × '+S.dn+' day'+(S.dn>1?'s':''),y(dl)+'–'+y(dh),'<small>Adults: '+esc(d.src)+', checked '+d.checked+''+reg(d)+''+(tn||ch?'. '+esc(dc.src).charAt(0).toUpperCase()+esc(dc.src).slice(1)+'.':'')+(inf?' Under 4: free; ages 4 and 5 pay the child price.':'')+'</small>'+bk('parks'));}
  if(document.getElementById('sanrio').value==='1'){var r=D.sanrio,sn=ad+ch,sl=r.lo*sn,sh=r.hi*sn;lo+=sl;hi+=sh;
-  h+=line('Sanrio Puroland: '+sn+' × '+y(r.lo)+'–'+y(r.hi),y(sl)+'–'+y(sh),'<small>'+esc(r.src)+', checked '+r.checked+(inf?'. Little ones aged 3 to 5 also need a ticket.':'')+'</small>');}
+  h+=line('Sanrio Puroland: '+sn+' × '+y(r.lo)+'–'+y(r.hi),y(sl)+'–'+y(sh),'<small>'+esc(r.src)+', checked '+r.checked+(inf?'. Little ones aged 3 to 5 also need a ticket.':'')+'</small>'+bk('sanrio'));}
  if(document.getElementById('zoo').value==='1'){var z=D.uenozoo,v=z.a*ad;sum+=v;h+=line('Ueno Zoo: '+ad+' × '+y(z.a)+(ch||inf?' (children up to 6th grade free)':''),y(v),'<small>'+esc(z.src)+', checked '+z.checked+''+reg(z)+'</small>');}
  // Shinkansen between Tokyo and Kyoto: one ride if the trip flies into one and out of the other, else there and back
  var REG={narita:'t',haneda:'t',kansai:'k',chitose:'h'},jrp=document.getElementById('jr').value==='1';
  if(S.nt&&kan&&!jrp){var sk=S.nk?D.shinkansen:{a:D.shinkansenOsaka.a,c:D.shinkansenOsaka.c,src:D.shinkansen.src,url:D.shinkansen.url,checked:D.shinkansen.checked},rides=REG[arr.value]!==REG[dep.value]?1:2,bl=((sk.a-200)*ad+(sk.c-100)*ch)*rides,bh=((sk.a+400)*ad+(sk.c+200)*ch)*rides;lo+=bl;hi+=bh;
-  h+=line('Shinkansen Tokyo ⇄ '+(S.nk?'Kyoto':'Shin-Osaka')+': '+rides+' ride'+(rides>1?'s':'')+' each',y(bl)+'–'+y(bh),'<small>'+esc(sk.src)+', checked '+sk.checked+(inf?'; under 6 free on a lap':'')+''+reg(sk)+'</small>');}
+  h+=line('Shinkansen Tokyo ⇄ '+(S.nk?'Kyoto':'Shin-Osaka')+': '+rides+' ride'+(rides>1?'s':'')+' each',y(bl)+'–'+y(bh),'<small>'+esc(sk.src)+', checked '+sk.checked+(inf?'; under 6 free on a lap':'')+''+reg(sk)+'</small>'+bk('shinkansen'));}
  if(S.nt&&kan&&jrp)h+=line('Shinkansen Tokyo ⇄ Kyoto','with the pass','<small>The Japan Rail Pass covers Hikari and Kodama trains; Nozomi needs an extra ticket (4,960 yen per ride between Tokyo and Kyoto, japanrailpass.net, checked 24 Nov 2026).</small>');
  var tx=D.tax.each*ppl;sum+=tx;h+=line('Departure tax: '+ppl+' × '+y(D.tax.each),y(tx),'<small>JNTO, checked '+CH+'; check JNTO for who is exempt'+reg(D.tax)+'</small>');
  // the reader's own numbers
@@ -346,36 +350,23 @@ function calc(){
  if(food){own+=line('Food: '+(ad+ch+inf)+' people × '+days+' days × '+y(food),y(food*ppl*days));sum+=food*ppl*days;}
  if(F&&F.lo){var fw=ad+(ch+inf)/2,fl=Math.round(F.lo*fw*days),fh2=Math.round(F.hi*fw*days);lo+=fl;hi+=fh2;foodDone=true;own+=line('Food, '+esc(F.name.toLowerCase())+': '+ppl+' '+(ppl>1?'people':'person')+' × '+days+' days',y(fl)+'–'+y(fh2),'<small>'+y(F.lo)+'–'+y(F.hi)+' per adult per day, three meals including breakfast'+(ch+inf?'; children about half':'')+'; '+esc(D.foodNote)+'</small>');}
  if(fly){own+=line('Flights',y(fly));sum+=fly;}
- if(FARE&&fr&&fr!=='own'){var fp=ppl,fl2=FARE.lo*fp,fh3=FARE.hi*fp;lo+=fl2;hi+=fh3;flyDone=true;own+=line('Flights, economy return: '+fp+' × '+y(FARE.lo)+'–'+y(FARE.hi),y(fl2)+'–'+y(fh3),'<small>Recent fares found in flight searches, checked '+esc(dt(FARE.checked))+'. Babies under 2 usually pay much less; fares change daily.</small>');}
+ if(FARE&&fr&&fr!=='own'){var fp=ppl,fl2=FARE.lo*fp,fh3=FARE.hi*fp;lo+=fl2;hi+=fh3;flyDone=true;own+=line('Flights, economy return: '+fp+' × '+y(FARE.lo)+'–'+y(FARE.hi),y(fl2)+'–'+y(fh3),'<small>Recent fares found in flight searches, checked '+esc(dt(FARE.checked))+'. Babies under 2 usually pay much less; fares change daily.</small>'+bk('flights'));}
  if(own)h+='<div class="grp">Hotel, food and flights</div>'+own;
  // what is not priced
  var np='';
  if(!flyDone)np+=line('Flights','<span class="np">not priced</span>','<small>choose "Flying from" above, or type your fare</small>');
  if(!hotDone)np+=line('Hotels','<span class="np">not priced</span>','<small>choose a hotel style above</small>');
  if(!foodDone)np+=line('Food and drinks','<span class="np">not priced</span>','<small>choose a food style above</small>');
- np+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>');
- np+=line('eSIM data for your phones','<span class="np">not priced yet</span>');
- np+=line('Travel medical insurance','<span class="np">not priced yet</span>');
+ np+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>',bk('parks','See tickets and prices'));
+ np+=line('eSIM data for your phones','<span class="np">not priced yet</span>',bk('esim','See plans and prices'));
+ np+=line('Travel medical insurance','<span class="np">not priced yet</span>',bk('insurance','Get a quote'));
  if(S.nh&&(S.nt||S.nk))np+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
  miss.forEach(function(m){np+=line(esc(m),'<span class="np">not priced yet</span>');});
  h+='<div class="grp">Still to price</div>'+np;
  var tlo=sum+lo,thi=sum+hi,tv=y(tlo)+(thi>tlo?'–'+y(thi).replace('¥',''):'');TOT={lo:Math.round(tlo),hi:Math.round(thi),ppl:ppl,nights:nights};
  h+='<div class="total" id="total"><h3>Your estimated budget</h3><div class="tot"><b>'+tv+'</b><span>'+ppl+' '+(ppl>1?'people':'person')+' · '+nights+' night'+(nights>1?'s':'')+'</span></div>'+
   '<p class="pp" style="margin:0">About '+y(tlo/Math.max(1,ppl))+(thi>tlo?'–'+y(thi/Math.max(1,ppl)).replace('¥',''):'')+' per person, for the costs above. Not priced yet: '+(np.match(/class="np"/g)||[]).length+' item'+((np.match(/class="np"/g)||[]).length>1?'s':'')+'.</p></div>';
- // ready to book: piece by piece (a checklist the page remembers), or one booking
- var ck=[['flights','Flights','book first, months ahead if you can; your budget above uses recent fares',LK.flights?'flights':''],
-  ['hotels','Hotels','book early, especially for cherry blossom season, Golden Week and New Year; use your usual booking site','']];
- if(jrp)ck.push(['jrpass','Japan Rail Pass','buy it before you fly; it is sold online on the official site','jrpass']);
- if(S.nt&&kan&&!jrp)ck.push(['shinkansen','Shinkansen tickets','Tokyo ⇄ '+(S.nk?'Kyoto':'Osaka')+'; seats open about a month ahead','shinkansen']);
- if(S.dn||document.getElementById('sanrio').value==='1')ck.push(['parks','Theme park tickets','Disney and Sanrio Puroland tickets are for a set date; book a few weeks ahead','parks']);
- ck.push(['esim','eSIM data','buy and set it up at home, the week before you fly','esim']);
- ck.push(['insurance','Travel medical insurance','before you leave home','insurance']);
- ck.push(['transfer','Airport to town','train tickets are sold at the airport when you land; book ahead only for a private car','transfer']);
- var dn=done(),how='Book each piece below, in this order. Mark it booked to keep track; this page remembers on this device.';
- h+='<div class="grp">Ready to book?'+(%%TOURS%%?' Two ways':'')+'</div>'+(%%TOURS%%?'<div class="two"><div><b>1. Book each piece yourself</b><span>'+how+'</span></div></div>':'<p class="pp" style="margin:6px 0 0">'+how+'</p>');
- h+='<div class="cks">'+ck.map(function(c,i){return '<div class="ck'+(dn[c[0]]?' done':'')+'"><span class="n">'+(i+1)+'</span><div class="t"><b>'+esc(c[1])+'</b><small>'+esc(c[2])+'</small>'+(c[3]?go(c[3]):'')+
-  '<label class="bk"><input type="checkbox" data-ck="'+c[0]+'"'+(dn[c[0]]?' checked':'')+'> Booked</label></div></div>';}).join('')+'</div>';
- if(%%TOURS%%)h+='<div class="two" style="margin-top:12px"><div><b>2. Or one booking</b><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate. Compare its price with your budget above.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
+ if(%%TOURS%%)h+='<div class="grp">Prefer one booking?</div><div class="two"><div><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate. Compare its price with your budget above.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
  var top='<h2>Your trip, costed</h2><p class="printsum">'+esc(summary())+'</p><div class="peek"><span>Estimated budget <b>'+tv+'</b></span><a href="#total">Total ↓</a></div>';
  document.getElementById('res').innerHTML=top+h;
  document.getElementById('barv').textContent=tv;
@@ -427,7 +418,7 @@ _api = open(os.path.join(os.getcwd(), "api", "flight-price.js"), encoding="utf-8
 _codes = [c for _, cs in FROM for c, _ in cs]
 assert len(_codes) == len(set(_codes)), "duplicate city code"
 assert set(re.findall(r"'([A-Z]{3})'", re.search(r"ORIGINS = new Set\(\[(.*?)\]\)", _api, re.S).group(1))) == set(_codes), "api/flight-price.js ORIGINS differ from FROM"
-for _k in ("transfer", "shinkansen", "parks", "esim", "insurance"):   # the budget email (api/email-chat.js) uses the same links
+for _k in ("transfer", "shinkansen", "parks", "sanrio", "subway", "esim", "insurance"):   # the budget email (api/email-chat.js) uses the same links
     assert "'" + LINKS[_k][1] + "'" in open(os.path.join(os.getcwd(), "api", "email-chat.js"), encoding="utf-8").read(), "email-chat.js link differs: " + _k
 FROM_HTML = "".join('<optgroup label="' + g + '">' + "".join('<option value="' + c + '">' + n + "</option>" for c, n in cs) + "</optgroup>" for g, cs in FROM)
 LINKS_OUT = {k: v for k, v in LINKS.items() if TOURS_ON or not k.startswith("tours")}
