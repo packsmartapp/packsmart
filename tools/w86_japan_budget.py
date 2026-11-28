@@ -171,6 +171,35 @@ input[type=number]{width:130px}
 .row[hidden],.hint[hidden]{display:none}
 .hint{margin:2px 0 8px;font-size:.84rem;line-height:1.45;color:var(--muted)}.hint a{font-weight:700}.hint b{color:var(--dark)}
 .note{font-size:.78rem;color:var(--muted);line-height:1.5;margin:14px 2px 0}
+.peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
+.total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
+.total h3{margin:0;font-size:1rem;color:#fff}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)}
+.ck input{width:20px;height:20px;margin:2px 0 0;accent-color:#00C9A7;flex:0 0 auto}
+.ck .t{flex:1;min-width:0;font-size:.9rem}.ck .t small{display:block;color:#9aa5b5;font-size:.76rem;margin-top:2px}
+.ck .t .go{margin-top:8px}
+.ck.done .t>b{text-decoration:line-through;color:#9aa5b5}
+.two b{display:block;margin-bottom:2px}.two span{display:block;font-size:.84rem;color:#cfd6e6;line-height:1.4}
+.keep h2{margin:0 0 4px}
+.sh{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 0}
+.sh button{display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 8px;border-radius:14px;border:1.5px solid var(--line);background:#f4faf8;font:inherit;font-size:.9rem;font-weight:700;color:var(--dark);cursor:pointer}
+.sh button svg{width:18px;height:18px;flex:0 0 auto}
+.em{margin:12px 0 0}.em[hidden]{display:none}
+.em form{display:flex;gap:8px}.em input[type=email]{flex:1;min-width:0;font:inherit;font-size:.95rem;border:1.5px solid var(--line);border-radius:12px;padding:10px 12px}
+.em button.send{border:0;border-radius:12px;background:var(--accent);color:#fff;font:inherit;font-weight:700;padding:10px 16px;cursor:pointer}
+.em .f{display:block;font-size:.76rem;color:var(--muted);margin-top:6px;line-height:1.4}
+.em .ok{font-size:.9rem;color:var(--dark);margin:0}.em .tips{margin-top:8px;border:1.5px solid var(--primary);background:#fff;color:#0a8f78;border-radius:12px;font:inherit;font-weight:700;padding:9px 14px;cursor:pointer}
+.em .err{color:#c0293f;font-size:.84rem;margin:6px 0 0}
+.plan{margin:14px 2px 0;font-size:.9rem;color:var(--muted)}
+.srcs{margin:14px 0 0;background:#fff;border:1.5px solid var(--line);border-radius:14px;padding:4px 14px}
+.srcs summary{cursor:pointer;font-weight:700;color:var(--dark);font-size:.9rem;padding:10px 0}
+.srcs ul{margin:0 0 12px;padding-left:1.1rem;font-size:.84rem;line-height:1.6}
+.bar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:10px;align-items:center;background:var(--dark);color:#fff;border-radius:999px;padding:9px 16px;font-size:.86rem;box-shadow:0 6px 20px rgba(15,15,35,.3);text-decoration:none;white-space:nowrap;z-index:20}
+.bar b{color:var(--primary)}.bar[hidden]{display:none}
+@media print{.top a,.bar,.keep,.plan,.sh,.go,.ck input,.card:not(.res){display:none!important}
+ body{background:#fff}.res{background:#fff;color:#0f0f23;border:1px solid #ccc}.res h2,.total h3,.ck .t{color:#0f0f23}.ln .l small,.ck .t small,.peek{color:#555}
+ .srcs{border:0;padding:0}.srcs[open] summary,.srcs summary{list-style:none}.printsum{display:block!important}}
+.printsum{display:none;font-size:.9rem;margin:0 0 8px}
 </style>
 </head>
 <body>
@@ -213,8 +242,24 @@ input[type=number]{width:130px}
     <div class="row" id="flyown" hidden><label for="fly">Flights, total<small>all travellers, return</small></label><input type="number" id="fly" inputmode="numeric" min="0" step="1000" placeholder="e.g. 280000"></div>
   </section>
   <section class="card res" id="res" aria-live="polite"></section>
-  <p class="note">Prices are from the operators' and JNTO's official pages, checked %%CHECKED%%, and are rounded: they change, so check the linked page before you buy. Amounts are in Japanese yen. Partner links are marked; we may earn a commission at no cost to you.</p>
+  <section class="card keep" id="keep"><h2>Keep it, share it</h2><p class="h">Send this budget to the people you travel with, or keep a copy. The link opens this exact budget.</p>
+    <div class="sh">
+      <button type="button" data-sh="wa"><svg viewBox="0 0 24 24" aria-hidden="true"><path fill="#25D366" d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2z"/><path fill="#fff" d="M8.6 7.3c.2-.4.4-.4.7-.4h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2.1.4 0 .6l-.5.7c-.1.2-.2.3 0 .6.5.9 1.2 1.6 2.1 2.1.3.2.4.1.6-.1l.7-.8c.2-.2.3-.2.6-.1l1.8.9c.3.1.4.2.4.4 0 .5-.2 1.2-.7 1.6-.5.4-1.4.7-2.5.4a9 9 0 0 1-5.4-5c-.5-1.3-.2-2.4.3-3.3z"/></svg>WhatsApp</button>
+      <button type="button" data-sh="copy"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#0a8f78" stroke-width="2" stroke-linecap="round"><path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/></svg><span>Copy link</span></button>
+      <button type="button" data-sh="pdf"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#E94560" stroke-width="2" stroke-linejoin="round"><path d="M6 2h9l5 5v15H6z"/><path d="M14 2v6h6"/></svg>Save as PDF</button>
+      <button type="button" data-sh="email"><svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="#0f0f23" stroke-width="2" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>Email it to me</button>
+    </div>
+    <div class="em" id="em" hidden>
+      <form id="emf"><input type="email" id="emaddr" required autocomplete="email" placeholder="you@example.com" aria-label="Your email"><button class="send" type="submit">Send</button></form>
+      <span class="f">Just this budget, with the link to open it and your booking checklist. <a href="/privacy-policy#packy-email-privacy">Privacy</a></span>
+      <p class="err" id="emerr" hidden></p>
+    </div>
+  </section>
+  <p class="plan">Want a day-by-day plan too? <a id="planlink" href="/?dest=Japan&amp;src=budget_plan#plan" data-go="plan">Try Plan My Trip</a>.</p>
+  <details class="srcs" id="srcs"><summary>Where these prices come from</summary><ul id="srclist"></ul></details>
+  <p class="note">Prices are from the operators' and JNTO's official pages (listed under "Where these prices come from"), checked %%CHECKED%%, and are rounded: they change, so check the official page before you buy. Amounts are in Japanese yen. Partner links are marked; we may earn a commission at no cost to you.</p>
 </main>
+<a class="bar" id="bar" href="#total" hidden>Estimated budget <b id="barv"></b> ↓</a>
 <script>
 (function(){
 var D=%%DATA%%,LK=%%LINKS%%,CH='%%CHECKED%%';
@@ -231,6 +276,10 @@ S.rm=Math.max(1,Math.ceil((S.ad+S.ch)/2));try{var q=new URLSearchParams(location
  st.addEventListener('click',function(e){var b=e.target.closest('[data-d]');if(!b)return;S[k]=Math.max(k==='ad'?1:0,Math.min(MAX[k],S[k]+(+b.getAttribute('data-d'))));st.querySelector('output').textContent=S[k];calc();});});
 // the likely airport for the trip: Kansai for a Kyoto and Osaka trip, New Chitose for Hokkaido only
 var ap=S.nt?'narita':(S.nk||S.no?'kansai':(S.nh?'chitose':'narita'));arr.value=ap;dep.value=ap;ways();if(ap==='kansai'&&S.no&&!S.nk)way.value='haruka-o';
+var Q0={};try{new URLSearchParams(location.search).forEach(function(v,k){Q0[k]=v;});}catch(e){}
+function setSel(id,v){var el=document.getElementById(id);if(v&&[].some.call(el.options,function(o){return o.value===v;}))el.value=v;}
+if(Q0.a){setSel('arr',Q0.a);ways();}if(Q0.d){setSel('dep',Q0.d);if(Q0.d!==arr.value)dep.dataset.set='1';}setSel('way',Q0.w);setSel('jr',Q0.jr);setSel('zoo',Q0.zo);setSel('sanrio',Q0.sa);setSel('hstyle',Q0.hs);setSel('fstyle',Q0.fs);setSel('from',Q0.fr);
+[['ho','hotel'],['fo','food'],['fl','fly']].forEach(function(x){var v=parseInt(Q0[x[0]],10);if(v>0&&v<1e8)document.getElementById(x[1]).value=v;});
 arr.addEventListener('change',function(){ways();if(dep.value!==arr.value&&!dep.dataset.set)dep.value=arr.value;calc();});
 dep.addEventListener('change',function(){dep.dataset.set='1';calc();});
 [way,document.getElementById('jr'),document.getElementById('zoo'),document.getElementById('sanrio')].forEach(function(x){x.addEventListener('change',calc);});
@@ -254,11 +303,12 @@ document.getElementById('from').addEventListener('change',function(){track('from
 arr.addEventListener('change',function(){if(FARE||fareKey)fareUI();});
 ['hstyle','fstyle'].forEach(function(id){document.getElementById(id).addEventListener('change',function(){track(id,this.value);styleUI();});});
 function num(id){var v=parseFloat(document.getElementById(id).value);return isNaN(v)||v<0?0:v;}
-function src(name,url){return '<small>'+esc(name)+', checked '+CH+' · <a href="'+url+'" target="_blank" rel="noopener">official price</a></small>';}
+var SRC=[];function reg(o){if(o&&o.url&&!SRC.some(function(x){return x[1]===o.url;}))SRC.push([o.src||'',o.url]);return '';}
+function src(name,url){reg({src:name,url:url});return '<small>'+esc(name)+', checked '+CH+'</small>';}
 function line(label,v,note){return '<div class="ln"><div class="l">'+label+(note||'')+'</div><div class="v">'+v+'</div></div>';}
 function go(k){var l=LK[k];return '<a class="go" href="'+esc(l[1])+'"'+(l[2]?' target="_blank" rel="nofollow noopener sponsored" data-ps-placement="budget-'+k+'"':'')+' data-go="'+k+'">'+esc(l[0])+'<small>'+(l[2]?'partner link ↗':'→')+'</small></a>';}
 function calc(){
- var tn=S.tn,ad=S.ad+tn,ch=S.ch,inf=S.in,ppl=ad+ch+inf,nights=S.nt+S.nk+S.no+S.nh,kan=S.nk+S.no,days=nights+1,cars=Math.ceil(ppl/4),h='',sum=0,lo=0,hi=0,miss=[];
+ SRC=[];var tn=S.tn,ad=S.ad+tn,ch=S.ch,inf=S.in,ppl=ad+ch+inf,nights=S.nt+S.nk+S.no+S.nh,kan=S.nk+S.no,days=nights+1,cars=Math.ceil(ppl/4),h='',sum=0,lo=0,hi=0,miss=[];
  // airport to town, both ends
  function leg(k,wid,label){var w=D.airport[k].ways.filter(function(x){return x.id===wid;})[0]||D.airport[k].ways[0];
   if(w.car){lo+=w.car[0]*cars;hi+=w.car[1]*cars;return line(label+': '+esc(w.name)+(cars>1?' ('+cars+' cars)':''),y(w.car[0]*cars)+'–'+y(w.car[1]*cars),src(w.src,w.url));}
@@ -270,23 +320,23 @@ function calc(){
  if(!(dep.value==='narita'&&depWay==='nex'&&arr.value==='narita'))h+=leg(dep.value,depWay,'Town to airport');
  else h+=line('Town to airport: Narita Express','included',' <small>the round-trip ticket covers both rides</small>');
  if(S.nt){var t=D.tokyoTicket,n=Math.ceil((S.nt+1)/t.days),v=n*(t.a*ad+t.c*ch);sum+=v;h+=line('Tokyo subway: '+n+' × 72-hour ticket'+(n>1?'s':''),y(v),src(t.src,t.url));}
- if(S.nk){var kd=D.kyotoDay,kv=S.nk*(kd.a*ad+kd.c*ch);sum+=kv;h+=line('Kyoto buses and subway: '+S.nk+' one-day pass'+(S.nk>1?'es':''),y(kv),'<small>'+esc(kd.src)+', checked 27 Nov 2026 · <a href="'+kd.url+'" target="_blank" rel="noopener">official page</a></small>');}
- if(S.no){var od=D.osakaDay,ol=S.no*(od.lo*ad+od.c*ch),oh=S.no*(od.hi*ad+od.c*ch);lo+=ol;hi+=oh;h+=line('Osaka subway and buses: '+S.no+' one-day pass'+(S.no>1?'es':''),y(ol)+'–'+y(oh),'<small>'+esc(od.src)+', checked 27 Nov 2026 · <a href="'+od.url+'" target="_blank" rel="noopener">official page</a></small>');}
+ if(S.nk){var kd=D.kyotoDay,kv=S.nk*(kd.a*ad+kd.c*ch);sum+=kv;h+=line('Kyoto buses and subway: '+S.nk+' one-day pass'+(S.nk>1?'es':''),y(kv),'<small>'+esc(kd.src)+', checked 27 Nov 2026'+reg(kd)+'</small>');}
+ if(S.no){var od=D.osakaDay,ol=S.no*(od.lo*ad+od.c*ch),oh=S.no*(od.hi*ad+od.c*ch);lo+=ol;hi+=oh;h+=line('Osaka subway and buses: '+S.no+' one-day pass'+(S.no>1?'es':''),y(ol)+'–'+y(oh),'<small>'+esc(od.src)+', checked 27 Nov 2026'+reg(od)+'</small>');}
  if(S.nh){var s=D.sapporoDay,v=S.nh*(s.a*ad+s.c*ch);sum+=v;h+=line('Sapporo subway: '+S.nh+' one-day ticket'+(S.nh>1?'s':''),y(v),src(s.src,s.url));}
  if(S.tx){var tl=S.tx*cars*D.taxi.lo,th=S.tx*cars*D.taxi.hi;lo+=tl;hi+=th;h+=line('Taxis: '+S.tx+' ride'+(S.tx>1?'s':'')+(cars>1?' × '+cars+' cars':''),y(tl)+'–'+y(th),src(D.taxi.src,D.taxi.url));}
  if(document.getElementById('jr').value==='1'){var j=D.jrpass,v=j.a*ad+j.c*ch;sum+=v;h+=line('Japan Rail Pass, 7 days',y(v),src(j.src,j.url));}
  if(S.dn){var d=D.disney,dc=D.disneyChild,ga=S.ad,kid=(dc.c*ch+dc.j*tn)*S.dn,dl=d.lo*ga*S.dn+kid,dh=d.hi*ga*S.dn+kid;lo+=dl;hi+=dh;
   var who=[ga+' adult'+(ga>1?'s':''),tn?tn+' teen'+(tn>1?'s':''):'',ch?ch+' child'+(ch>1?'ren':''):''].filter(Boolean).join(' + ');
-  h+=line('Tokyo Disney: '+who+' × '+S.dn+' day'+(S.dn>1?'s':''),y(dl)+'–'+y(dh),'<small>Adults: '+esc(d.src)+', checked '+d.checked+' · <a href="'+d.url+'" target="_blank" rel="noopener">price calendar</a>'+(tn||ch?'. '+esc(dc.src).charAt(0).toUpperCase()+esc(dc.src).slice(1)+'.':'')+(inf?' Under 4: free; ages 4 and 5 pay the child price.':'')+'</small>');}
+  h+=line('Tokyo Disney: '+who+' × '+S.dn+' day'+(S.dn>1?'s':''),y(dl)+'–'+y(dh),'<small>Adults: '+esc(d.src)+', checked '+d.checked+''+reg(d)+''+(tn||ch?'. '+esc(dc.src).charAt(0).toUpperCase()+esc(dc.src).slice(1)+'.':'')+(inf?' Under 4: free; ages 4 and 5 pay the child price.':'')+'</small>');}
  if(document.getElementById('sanrio').value==='1'){var r=D.sanrio,sn=ad+ch,sl=r.lo*sn,sh=r.hi*sn;lo+=sl;hi+=sh;
   h+=line('Sanrio Puroland: '+sn+' × '+y(r.lo)+'–'+y(r.hi),y(sl)+'–'+y(sh),'<small>'+esc(r.src)+', checked '+r.checked+(inf?'. Little ones aged 3 to 5 also need a ticket.':'')+'</small>');}
- if(document.getElementById('zoo').value==='1'){var z=D.uenozoo,v=z.a*ad;sum+=v;h+=line('Ueno Zoo: '+ad+' × '+y(z.a)+(ch||inf?' (children up to 6th grade free)':''),y(v),'<small>'+esc(z.src)+', checked '+z.checked+' · <a href="'+z.url+'" target="_blank" rel="noopener">official page</a></small>');}
+ if(document.getElementById('zoo').value==='1'){var z=D.uenozoo,v=z.a*ad;sum+=v;h+=line('Ueno Zoo: '+ad+' × '+y(z.a)+(ch||inf?' (children up to 6th grade free)':''),y(v),'<small>'+esc(z.src)+', checked '+z.checked+''+reg(z)+'</small>');}
  // Shinkansen between Tokyo and Kyoto: one ride if the trip flies into one and out of the other, else there and back
  var REG={narita:'t',haneda:'t',kansai:'k',chitose:'h'},jrp=document.getElementById('jr').value==='1';
  if(S.nt&&kan&&!jrp){var sk=S.nk?D.shinkansen:{a:D.shinkansenOsaka.a,c:D.shinkansenOsaka.c,src:D.shinkansen.src,url:D.shinkansen.url,checked:D.shinkansen.checked},rides=REG[arr.value]!==REG[dep.value]?1:2,bl=((sk.a-200)*ad+(sk.c-100)*ch)*rides,bh=((sk.a+400)*ad+(sk.c+200)*ch)*rides;lo+=bl;hi+=bh;
-  h+=line('Shinkansen Tokyo ⇄ '+(S.nk?'Kyoto':'Shin-Osaka')+': '+rides+' ride'+(rides>1?'s':'')+' each',y(bl)+'–'+y(bh),'<small>'+esc(sk.src)+', checked '+sk.checked+(inf?'; under 6 free on a lap':'')+' · <a href="'+sk.url+'" target="_blank" rel="noopener">official site</a></small>')+go('shinkansen');}
+  h+=line('Shinkansen Tokyo ⇄ '+(S.nk?'Kyoto':'Shin-Osaka')+': '+rides+' ride'+(rides>1?'s':'')+' each',y(bl)+'–'+y(bh),'<small>'+esc(sk.src)+', checked '+sk.checked+(inf?'; under 6 free on a lap':'')+''+reg(sk)+'</small>');}
  if(S.nt&&kan&&jrp)h+=line('Shinkansen Tokyo ⇄ Kyoto','with the pass','<small>The Japan Rail Pass covers Hikari and Kodama trains; Nozomi needs an extra ticket (4,960 yen per ride between Tokyo and Kyoto, japanrailpass.net, checked 24 Nov 2026).</small>');
- var tx=D.tax.each*ppl;sum+=tx;h+=line('Departure tax: '+ppl+' × '+y(D.tax.each),y(tx),'<small>JNTO, checked '+CH+'; check JNTO for who is exempt · <a href="'+D.tax.url+'" target="_blank" rel="noopener">official page</a></small>');
+ var tx=D.tax.each*ppl;sum+=tx;h+=line('Departure tax: '+ppl+' × '+y(D.tax.each),y(tx),'<small>JNTO, checked '+CH+'; check JNTO for who is exempt'+reg(D.tax)+'</small>');
  // the reader's own numbers
  var hs=document.getElementById('hstyle').value,fs=document.getElementById('fstyle').value,H=D.hotelStyles[hs],F=D.foodStyles[fs];
  var fr=document.getElementById('from').value,hot=hs==='own'?num('hotel'):0,food=fs==='own'?num('food'):0,fly=fr==='own'?num('fly'):0,own='',hotDone=!!hot,foodDone=!!food,flyDone=!!fly;
@@ -299,26 +349,70 @@ function calc(){
  if(own)h+='<div class="grp">Hotel, food and flights</div>'+own;
  // what is not priced
  var np='';
- if(!flyDone)np+=line('Flights','<span class="np">not priced</span>')+go('flights');
- if(!hotDone)np+=line('Hotels','<span class="np">not priced</span>')+go('hotels');
- if(!foodDone)np+=line('Food and drinks','<span class="np">not priced</span>');
- np+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>')+go('parks');
+ if(!flyDone)np+=line('Flights','<span class="np">not priced</span>','<small>choose "Flying from" above, or type your fare</small>');
+ if(!hotDone)np+=line('Hotels','<span class="np">not priced</span>','<small>choose a hotel style above</small>');
+ if(!foodDone)np+=line('Food and drinks','<span class="np">not priced</span>','<small>choose a food style above</small>');
+ np+=line(S.dn||document.getElementById('sanrio').value==='1'?'Other theme parks and tickets':'Theme parks and tickets','<span class="np">not priced yet</span>');
+ np+=line('eSIM data for your phones','<span class="np">not priced yet</span>');
+ np+=line('Travel medical insurance','<span class="np">not priced yet</span>');
  if(S.nh&&(S.nt||S.nk))np+=line('Getting to Hokkaido (usually a domestic flight)','<span class="np">not priced</span>');
  miss.forEach(function(m){np+=line(esc(m),'<span class="np">not priced yet</span>');});
  h+='<div class="grp">Still to price</div>'+np;
- if(%%TOURS%%){
- h+='<div class="grp">Two ways to book</div><div class="two"><div><b>Book it yourself</b><span>Use the buttons above for each piece: trains, tickets, transfers.</span></div>'+
-  '<div><b>Prefer one booking?</b><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
- }
- h+='<div class="grp">Also worth having</div>'+go('esim')+go('transfer')+go('insurance');
- var top='<h2>Your estimate</h2><div class="tot"><b>'+y(sum+lo)+(hi>lo?'–'+y(sum+hi).replace('¥',''):'')+'</b><span>'+ppl+' people · '+nights+' nights</span></div>'+
-  '<p class="pp">For the costs listed below only. About '+y((sum+lo)/Math.max(1,ppl))+' per person.</p>';
- h+='<a class="next" href="/?dest=Japan&adults='+ad+'&kids='+(ch+inf)+'&src=budget_plan#plan" data-go="plan"><span>Next: turn this into a day-by-day plan</span><i aria-hidden="true">→</i></a>';
+ var tlo=sum+lo,thi=sum+hi,tv=y(tlo)+(thi>tlo?'–'+y(thi).replace('¥',''):'');TOT={lo:Math.round(tlo),hi:Math.round(thi),ppl:ppl,nights:nights};
+ h+='<div class="total" id="total"><h3>Your estimated budget</h3><div class="tot"><b>'+tv+'</b><span>'+ppl+' '+(ppl>1?'people':'person')+' · '+nights+' night'+(nights>1?'s':'')+'</span></div>'+
+  '<p class="pp" style="margin:0">About '+y(tlo/Math.max(1,ppl))+(thi>tlo?'–'+y(thi/Math.max(1,ppl)).replace('¥',''):'')+' per person, for the costs above. Not priced yet: '+(np.match(/class="np"/g)||[]).length+' item'+((np.match(/class="np"/g)||[]).length>1?'s':'')+'.</p></div>';
+ // ready to book: piece by piece (a checklist the page remembers), or one booking
+ var ck=[['flights','Flights','with your usual airline or booking site',''],['hotels','Hotels','with your usual booking site; book early for cherry blossom season and Golden Week','']];
+ ck.push(['transfer','Airport to town','train tickets are sold at the airport; or book a private car for the family and the bags','transfer']);
+ if(S.nt&&kan&&!jrp)ck.push(['shinkansen','Shinkansen tickets','between Tokyo and '+(S.nk?'Kyoto':'Osaka'),'shinkansen']);
+ if(jrp)ck.push(['jrpass','Japan Rail Pass','buy it before you fly, from the official Japan Rail Pass site','']);
+ if(S.dn||document.getElementById('sanrio').value==='1')ck.push(['parks','Theme park tickets','Disney and Sanrio Puroland tickets are dated; book ahead','parks']);
+ ck.push(['esim','eSIM data','set it up at home before you fly','esim']);ck.push(['insurance','Travel medical insurance','before you leave home','insurance']);
+ var dn=done();h+='<div class="grp">Ready to book?'+(%%TOURS%%?' Two ways':'')+'</div>'+(%%TOURS%%?'<div class="two"><div><b>1. Piece by piece</b><span>Tick each one off as you book it. This page remembers your ticks.</span></div></div>':'<p class="pp" style="margin:6px 0 0">Tick each one off as you book it. This page remembers your ticks.</p>');
+ h+='<div class="cks">'+ck.map(function(c){return '<label class="ck'+(dn[c[0]]?' done':'')+'"><input type="checkbox" data-ck="'+c[0]+'"'+(dn[c[0]]?' checked':'')+'><span class="t"><b>'+esc(c[1])+'</b><small>'+esc(c[2])+'</small>'+(c[3]?go(c[3]):'')+'</span></label>';}).join('')+'</div>';
+ if(%%TOURS%%)h+='<div class="two" style="margin-top:12px"><div><b>2. One booking</b><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate. Compare its price with your budget above.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
+ var top='<h2>Your trip, costed</h2><p class="printsum">'+esc(summary())+'</p><div class="peek"><span>Estimated budget <b>'+tv+'</b></span><a href="#total">Total ↓</a></div>';
  document.getElementById('res').innerHTML=top+h;
+ document.getElementById('barv').textContent=tv;
+ document.getElementById('srclist').innerHTML=SRC.map(function(x){return '<li><a href="'+esc(x[1])+'" target="_blank" rel="noopener">'+esc(x[0]||x[1])+'</a></li>';}).join('');
+ document.getElementById('planlink').href='/?dest=Japan&adults='+ad+'&kids='+(ch+inf)+'&src=budget_plan#plan';
+ saveUrl();
 }
 document.getElementById('res').addEventListener('click',function(e){var a=e.target.closest('[data-go]');if(!a)return;track('link',a.getAttribute('data-go'));var pl=a.getAttribute('data-ps-placement');if(pl)try{if(window.gtag)gtag('event','affiliate_interact',{event_category:'monetization',placement:pl,page_path:location.pathname});}catch(x){}});
+// ---- the trip in the address: Copy link, WhatsApp and the email all open this exact budget
+var TOT=null,SEL={a:'arr',d:'dep',w:'way',jr:'jr',zo:'zoo',sa:'sanrio',hs:'hstyle',fs:'fstyle',fr:'from'},OWN={ho:'hotel',fo:'food',fl:'fly'};
+function qs(){var q=[];Object.keys(S).forEach(function(k){q.push(k+'='+S[k]);});Object.keys(SEL).forEach(function(k){var v=document.getElementById(SEL[k]).value;if(v&&v!=='0')q.push(k+'='+encodeURIComponent(v));});
+ Object.keys(OWN).forEach(function(k){var v=num(OWN[k]);if(v)q.push(k+'='+Math.round(v));});return q.join('&');}
+function saveUrl(){try{history.replaceState(null,'',location.pathname+'?'+qs());}catch(e){}}
+function link(src){return 'https://www.packsmartapp.com/japan-budget?'+qs()+'&src='+src;}
+function summary(){var w=[S.ad+S.tn+' adult'+(S.ad+S.tn>1?'s':'')];if(S.ch)w.push(S.ch+' child'+(S.ch>1?'ren':''));if(S.in)w.push(S.in+' under 6');
+ var n=['nt','nk','no','nh'].filter(function(k){return S[k];}).map(function(k){return S[k]+' in '+D.areaNames[k];});return 'Japan: '+w.join(', ')+'; '+(n.join(', ')||'no nights yet')+'.';}
+function done(){try{return JSON.parse(localStorage.getItem('budgetDone')||'{}')||{};}catch(e){return {};}}
+document.getElementById('res').addEventListener('change',function(e){var c=e.target.closest('[data-ck]');if(!c)return;var d=done();if(c.checked)d[c.getAttribute('data-ck')]=1;else delete d[c.getAttribute('data-ck')];
+ try{localStorage.setItem('budgetDone',JSON.stringify(d));}catch(x){}c.closest('.ck').classList.toggle('done',c.checked);if(c.checked)track('booked',c.getAttribute('data-ck'));});
+var em=document.getElementById('em'),emf=document.getElementById('emf'),emerr=document.getElementById('emerr'),SENT='';
+document.getElementById('keep').addEventListener('click',function(e){var b=e.target.closest('[data-sh]');if(!b)return;var k=b.getAttribute('data-sh');track('share',k);
+ var msg='Our Japan trip budget: about '+(TOT?y(TOT.lo)+(TOT.hi>TOT.lo?'–'+y(TOT.hi).replace('¥',''):''):'')+'. '+summary()+' See the breakdown: ';
+ if(k==='wa')window.open('https://wa.me/?text='+encodeURIComponent(msg+link('budget_wa')),'_blank','noopener');
+ if(k==='copy'){var u=link('budget_link'),sp=b.querySelector('span');function ok(){sp.textContent='Copied ✓';setTimeout(function(){sp.textContent='Copy link';},2000);}
+  if(navigator.clipboard)navigator.clipboard.writeText(u).then(ok,function(){prompt('Copy this link:',u);});else prompt('Copy this link:',u);}
+ if(k==='pdf'){var s2=document.getElementById('srcs');s2.open=true;window.print();}
+ if(k==='email'){em.hidden=!em.hidden;if(!em.hidden){try{var m=localStorage.getItem('packyEmail');if(m)document.getElementById('emaddr').value=m;}catch(x){}document.getElementById('emaddr').focus();}}});
+function post(body){return fetch('/api/email-chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(body)}).then(function(r){return r.json();});}
+function topics(){var t=[];if(S.nt)t.push('tokyo');if(S.nk)t.push('kyoto');if(S.no)t.push('osaka');if(S.nh)t.push('hokkaido');if(S.ch||S.in||S.dn)t.push('kids');if(document.getElementById('jr').value==='1')t.push('rail_pass');
+ if(S.nt&&(S.nk||S.no))t.push('shinkansen');t.push(document.getElementById('arr').value);return t;}
+emf.addEventListener('submit',function(e){e.preventDefault();var addr=document.getElementById('emaddr').value.trim(),btn=emf.querySelector('.send');emerr.hidden=true;btn.disabled=true;btn.textContent='Sending…';
+ post({kind:'budget',country:'japan',email:addr,q:qs(),lo:TOT&&TOT.lo,hi:TOT&&TOT.hi}).then(function(j){btn.disabled=false;btn.textContent='Send';
+  if(!j||!j.ok){emerr.textContent=(j&&j.error)||'Sorry, that did not work. Please try again.';emerr.hidden=false;track('email','failed');return;}
+  try{localStorage.setItem('packyEmail',addr);}catch(x){}SENT=addr;track('email','sent');
+  em.innerHTML='<p class="ok">Sent to <b>'+esc(addr)+'</b> ✓ Check your inbox (and the spam folder, just in case).</p><p class="ok" style="margin-top:10px">Would you like a few Japan trip tips before you go? Only for your trip, stop any time.</p><button type="button" class="tips" id="tipsyes">Yes please</button>';
+  document.getElementById('tipsyes').addEventListener('click',function(){var t=this;t.disabled=true;post({update:true,tips:true,from:'budget',country:'japan',email:SENT,topics:topics()}).then(function(r){
+   t.outerHTML=r&&r.ok?'<p class="ok" style="margin-top:8px">Done. Your first trip tip is on its way ✓</p>':'<p class="err">Sorry, that did not work. Please try again later.</p>';track('tips',r&&r.ok?'yes':'failed');},function(){t.disabled=false;});});
+ },function(){btn.disabled=false;btn.textContent='Send';emerr.textContent='Sorry, that did not work. Please try again.';emerr.hidden=false;});});
+// the floating total while the reader fills in the form; hidden once the full total is on screen
+var bar=document.getElementById('bar');if('IntersectionObserver' in window){var seen=false;new IntersectionObserver(function(es){es.forEach(function(x){seen=x.isIntersecting;});bar.hidden=seen;}).observe(document.getElementById('res'));}
 var tt=null;document.addEventListener('click',function(e){if(e.target.closest('.step,select')){clearTimeout(tt);tt=setTimeout(function(){track('change');},1500);}});
-calc();track('open');
+styleUI();if(document.getElementById('from').value)fareUI();calc();track('open',Q0.src||'');
 })();
 </script>
 </body>
@@ -328,10 +422,28 @@ _api = open(os.path.join(os.getcwd(), "api", "flight-price.js"), encoding="utf-8
 _codes = [c for _, cs in FROM for c, _ in cs]
 assert len(_codes) == len(set(_codes)), "duplicate city code"
 assert set(re.findall(r"'([A-Z]{3})'", re.search(r"ORIGINS = new Set\(\[(.*?)\]\)", _api, re.S).group(1))) == set(_codes), "api/flight-price.js ORIGINS differ from FROM"
+for _k in ("transfer", "shinkansen", "parks", "esim", "insurance"):   # the budget email (api/email-chat.js) uses the same links
+    assert "'" + LINKS[_k][1] + "'" in open(os.path.join(os.getcwd(), "api", "email-chat.js"), encoding="utf-8").read(), "email-chat.js link differs: " + _k
 FROM_HTML = "".join('<optgroup label="' + g + '">' + "".join('<option value="' + c + '">' + n + "</option>" for c, n in cs) + "</optgroup>" for g, cs in FROM)
 LINKS_OUT = {k: v for k, v in LINKS.items() if TOURS_ON or not k.startswith("tours")}
 html = (PAGE.replace("%%TOURS%%", "true" if TOURS_ON else "false").replace("%%DATA%%", json.dumps(DATA, ensure_ascii=False))
         .replace("%%LINKS%%", json.dumps(LINKS_OUT, ensure_ascii=False)).replace("%%CHECKED%%", CHECKED).replace("%%FROM%%", FROM_HTML))
 assert "%%" not in html
 open(os.path.join(PUB, "japan-budget.html"), "w", encoding="utf-8").write(html)
+# ---- privacy policy: "Email it to me" on the calculator uses the same email and consent (marker: budget-email-privacy, 28 Nov)
+PRIV = os.path.join(PUB, "privacy-policy.html")
+pv = open(PRIV, encoding="utf-8").read()
+if "budget-email-privacy" not in pv:
+    for a, b in [
+        ("or ask for the Japanese words from the lucky cat on our Japan page, we use your email address",
+         "ask for the Japanese words from the lucky cat on our Japan page, or ask our <span id=\"budget-email-privacy\"></span>Japan budget calculator to email you your budget, we use your email address"),
+        ("never your questions themselves) to MailerLite",
+         "never your questions themselves; from the budget calculator, tags based on the trip you entered, such as the cities and whether children travel) to MailerLite"),
+        ("So you can send an updated chat with one tap, Packy remembers the email address you used in your own browser on that device (not on our servers)",
+         "So you can send an updated chat with one tap, Packy (and the budget calculator) remembers the email address you used in your own browser on that device (not on our servers)")]:
+        assert pv.count(a) == 1, "privacy policy changed: " + a[:50]
+        pv = pv.replace(a, b, 1)
+    pv = re.sub(r"<p>Last updated: [A-Za-z]+ \d+, 2026</p>", "<p>Last updated: November 28, 2026</p>", pv, count=1)
+    open(PRIV, "w", encoding="utf-8").write(pv)
+    print("w86: privacy policy: the budget email")
 print("w86 done. public/japan-budget.html written.")
