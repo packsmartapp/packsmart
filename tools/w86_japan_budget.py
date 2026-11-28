@@ -920,7 +920,7 @@ function openReview(){TAB='review';FIL='';items();scrollTo(0,0);var sel=document
 function closeReview(){$('rsheet').hidden=true;document.body.style.overflow='';}
 $('review').addEventListener('click',openReview);$('rclose').addEventListener('click',closeReview);
 $('rgo').addEventListener('click',function(){track('review','book');TAB='book';FIL='';items();scrollTo(0,0);var sel=document.querySelector('#mtabs [aria-selected=true]');if(sel&&sel.scrollIntoView)sel.scrollIntoView({inline:'center',block:'nearest'});});
-(function(){var rp=$('rpanel');rp.appendChild($('rlist'));rp.appendChild($('rsum'));rp.appendChild($('rgo'));$('bpanel').appendChild($('rmore'));var m=$('rmore');[$('res'),$('keep'),document.querySelector('.plan'),$('srcs'),document.querySelector('main > .note')].forEach(function(x){if(x)m.appendChild(x);});})();
+(function(){var rp=$('rpanel');rp.appendChild($('rlist'));rp.appendChild($('rsum'));rp.appendChild($('rgo'));$('bpanel').appendChild($('rmore'));var m=$('rmore');[$('res'),$('keep'),document.querySelector('.plan'),$('srcs'),document.querySelector('main > .note')].forEach(function(x){if(x)m.appendChild(x);});var rs=$('res');rs.parentNode.insertBefore($('carbox'),rs.nextSibling);})();
 $('rpanel').addEventListener('click',function(e){var t=e.target.closest('[data-tabgo]');if(t){TAB=t.getAttribute('data-tabgo');FIL='';closeReview();items();document.querySelector('.planner').scrollIntoView({behavior:'smooth'});return;}
  var b=e.target.closest('[data-act]');if(!b)return;var k=b.getAttribute('data-k'),a=b.getAttribute('data-act');
  if(['sanrio','zoo','jr'].indexOf(k)>=0){$(k).value='0';fire($(k));}else{var n=S[k];n=a==='rm'?0:a==='inc'?Math.min(MAX[k],n+1):Math.max(0,n-1);setS(k,n);calc();}
