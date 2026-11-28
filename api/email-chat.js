@@ -1,7 +1,7 @@
 // Packy: "Email me this chat" (24 Nov 2026, D58), and "Email me these words" from the lucky cat's word card on the Japan
 // hub (kind: 'words', 26 Nov 2026): the same form, consent and guards; the words come from api/_japan_words.js, never
 // from the request. And (28 Nov 2026) "Email it to me" on the Japan budget calculator (kind: 'budget'): the total, the
-// trip, a link that reopens the exact budget and the booking checklist; only numbers and the calculator's own settings are
+// trip, a link that reopens the exact budget and the booking links; only numbers and the calculator's own settings are
 // accepted, and the partner links come from this file, never from the request.
 // Sends the traveller their Packy conversation from hello@packsmartapp.com (the site's Hostinger mailbox, already used by
 // subscribe.js; EMAIL_USER / EMAIL_PASSWORD in Vercel), and sends hello@packsmartapp.com a copy of the signup: the email,
@@ -249,12 +249,14 @@ async function sendWords(req, res, b, email, country, origin) {
   }
 }
 
-// "Email it to me" on the budget calculator: the estimate, the trip, a link back to the exact budget, the booking checklist.
+// "Email it to me" on the budget calculator: the estimate, the trip, a link back to the exact budget, the booking links.
 // The calculator's settings come in as its own short query string (letters, numbers, = and &) and are checked here; the
 // partner links are fixed below (the same Sub IDs as the page; w86 checks they match).
 const BUDGET_LINKS = [
   ['shinkansen', 'Shinkansen tickets', 'Book Shinkansen tickets online', 'https://www.japan-bullettrain.com/?via=packsmart'],
-  ['parks', 'Theme park tickets', 'Compare Tokyo Disney and theme park tickets', 'https://www.getyourguide.com/s/?q=tokyo%20theme%20park%20tickets&partner_id=D7IXONS&cmp=ps-budget'],
+  ['subway', 'Tokyo Subway Ticket', 'Check today\'s price and book', 'https://www.getyourguide.com/s/?q=tokyo%20subway%20ticket&partner_id=D7IXONS&cmp=ps-budget-subway'],
+  ['parks', 'Tokyo Disney tickets', 'Compare Tokyo Disney and theme park tickets', 'https://www.getyourguide.com/s/?q=tokyo%20disney%20tickets&partner_id=D7IXONS&cmp=ps-budget-disney'],
+  ['sanrio', 'Sanrio Puroland tickets', 'Check today\'s price and book', 'https://www.getyourguide.com/s/?q=sanrio%20puroland&partner_id=D7IXONS&cmp=ps-budget-sanrio'],
   ['esim', 'eSIM data', 'See eSIM data plans for Japan', 'https://airalo.tpo.lu/u2N5qgJl'],
   ['insurance', 'Travel medical insurance', 'Get a travel medical insurance quote', 'https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador'],
   ['transfer', 'Airport to town (a private car; trains are sold at the airport)', 'Book a private airport transfer', 'https://tpo.lu/hPV4u7AE']];
@@ -278,7 +280,7 @@ async function sendBudget(req, res, b, email, country, origin) {
   const who = [ad + ' adult' + (ad > 1 ? 's' : ''), ch ? ch + ' child' + (ch > 1 ? 'ren' : '') : '', inf ? inf + ' under 6' : ''].filter(Boolean).join(', ');
   const trip = who + ' · ' + nights + ' night' + (nights > 1 ? 's' : '') + (areas.length ? ' (' + areas.join(', ') + ')' : '');
   const kan = n('nk') + n('no'), jr = P.jr === '1';
-  const want = [].concat(n('nt') && kan && !jr ? ['shinkansen'] : [], n('dn') || P.sa === '1' ? ['parks'] : [], ['esim', 'insurance', 'transfer']);
+  const want = [].concat(n('nt') && kan && !jr ? ['shinkansen'] : [], n('nt') ? ['subway'] : [], n('dn') ? ['parks'] : [], P.sa === '1' ? ['sanrio'] : [], ['esim', 'insurance', 'transfer']);
   const rows = BUDGET_LINKS.filter(l => want.includes(l[0])).map(l =>
     '<tr><td style="padding:12px 14px;border-top:1px solid #e3e8ec;"><div style="font-weight:bold;color:#0f0f23;">&#9744; ' + esc(l[1]) + '</div>' +
     '<a href="' + esc(l[3]) + '" style="color:#0a8f78;font-weight:bold;font-size:14px;">' + esc(l[2]) + '</a> <span style="color:#8a93a6;font-size:12px;">(partner link)</span></td></tr>').join('');
@@ -294,12 +296,12 @@ async function sendBudget(req, res, b, email, country, origin) {
     '<div style="font-size:13px;color:#bfc6d6;">About ' + yen(Math.round(lo / Math.max(1, ppl))) + ' per person, for the costs priced on the page. Prices from official pages where we have them, rounded.</div></div>' +
     '<p style="text-align:center;margin:22px 0 10px;"><a href="' + esc(open) + '" style="display:inline-block;background:#E94560;color:#ffffff;text-decoration:none;font-weight:bold;font-size:16px;padding:13px 22px;border-radius:24px;">Open your budget</a></p>' +
     '<p style="text-align:center;color:#5a6378;font-size:13px;margin:0 0 22px;">The full breakdown, and you can change anything. Fares and prices may have moved since.</p>' +
-    '<h2 style="font-size:16px;color:#0f0f23;margin:0 0 8px;">Your booking checklist</h2>' +
+    '<h2 style="font-size:16px;color:#0f0f23;margin:0 0 8px;">To book</h2>' +
     '<table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#ffffff;border:1px solid #d9f0ea;border-radius:14px;">' +
     plain.map(t => '<tr><td style="padding:12px 14px;border-top:1px solid #e3e8ec;color:#0f0f23;">&#9744; <b>' + esc(t.split(':')[0]) + '</b>:' + esc(t.slice(t.indexOf(':') + 1)) + '</td></tr>').join('') + rows + '</table>' +
     '<p style="font-size:12px;color:#8a93a6;line-height:1.5;margin-top:20px;">Partner links are marked; we may earn a commission at no cost to you. You received this because you asked for your budget on packsmartapp.com. We will not email you again unless you ask. ' +
     '<a href="' + SITE + '/privacy-policy" style="color:#8a93a6;">Privacy</a></p></div></body></html>';
-  const text = 'Your Japan trip budget\n' + trip + '\n\nYour estimated budget: ' + total + '\n\nOpen your budget: ' + open + '\n\nYour booking checklist:\n' +
+  const text = 'Your Japan trip budget\n' + trip + '\n\nYour estimated budget: ' + total + '\n\nOpen your budget: ' + open + '\n\nTo book:\n' +
     plain.map(t => '- ' + t).join('\n') + '\n' + BUDGET_LINKS.filter(l => want.includes(l[0])).map(l => '- ' + l[1] + ': ' + l[3] + ' (partner link)').join('\n');
   let step = 'connect';
   try {
