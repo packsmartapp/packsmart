@@ -95,14 +95,13 @@ DATA = {
 }
 # Ways to find what we do not price. Partner links carry the page's own Sub IDs (budget-esim, budget-transfer).
 LINKS = {
-    "flights": ["Compare flights to Japan", "/flights?src=budget", False],
-    "hotels": ["Search hotels in Japan", "/flights?src=budget_hotels", False],
     "parks": ["Compare Tokyo Disney and theme park tickets", "https://www.getyourguide.com/s/?q=tokyo%20theme%20park%20tickets&partner_id=D7IXONS&cmp=ps-budget", True],
     "shinkansen": ["Book Shinkansen tickets online", "https://www.japan-bullettrain.com/?via=packsmart", True],
     "transfer": ["Book a private airport transfer", "https://tpo.lu/hPV4u7AE", True],
     "tours": ["Compare guided multi-day Japan tours", "https://www.tourradar.com/d/japan?utm_source=partner-traveller-1471305&utm_medium=ambassador&utm_campaign=budget-tours", True],
     "tours_family": ["Compare family-friendly multi-day Japan tours", "https://www.tourradar.com/srp/d-japan?age_range=13-17%2C7-12&adults=2&children=2&utm_source=partner-traveller-1471305&utm_medium=ambassador&utm_campaign=family-tours", True],
     "esim": ["See eSIM data plans for Japan", "https://airalo.tpo.lu/u2N5qgJl", True],
+    "jrpass": ["Buy it on the official Japan Rail Pass site", "https://japanrailpass.net/en/", "official"],
     "insurance": ["Get a travel medical insurance quote", "https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador", True],
 }
 
@@ -174,11 +173,13 @@ input[type=number]{width:130px}
 .peek{display:flex;justify-content:space-between;align-items:baseline;gap:10px;margin:0 0 4px;font-size:.9rem;color:#bfc6d6}.peek b{color:var(--primary);font-size:1.05rem}.peek a{color:#7fe6d3;font-weight:700;text-decoration:none;font-size:.82rem}
 .total{margin:16px -16px 0;padding:16px;background:rgba(0,201,167,.1);border-top:1px solid rgba(0,201,167,.35);border-bottom:1px solid rgba(0,201,167,.35)}
 .total h3{margin:0;font-size:1rem;color:#fff}
-.ck{display:flex;gap:10px;align-items:flex-start;padding:10px 0;border-top:1px solid rgba(255,255,255,.1)}
-.ck input{width:20px;height:20px;margin:2px 0 0;accent-color:#00C9A7;flex:0 0 auto}
+.ck{display:flex;gap:10px;align-items:flex-start;padding:12px 0;border-top:1px solid rgba(255,255,255,.1)}
+.ck .n{flex:0 0 24px;height:24px;border-radius:50%;background:rgba(0,201,167,.18);color:#7fe6d3;font-size:.8rem;font-weight:700;display:flex;align-items:center;justify-content:center;margin-top:1px}
+.ck.done .n{background:#00C9A7;color:#0f0f23}
+.bk{display:inline-flex;align-items:center;gap:7px;margin-top:9px;font-size:.8rem;color:#bfc6d6;cursor:pointer}.bk input{width:17px;height:17px;margin:0;accent-color:#00C9A7}
 .ck .t{flex:1;min-width:0;font-size:.9rem}.ck .t small{display:block;color:#9aa5b5;font-size:.76rem;margin-top:2px}
 .ck .t .go{margin-top:8px}
-.ck.done .t>b{text-decoration:line-through;color:#9aa5b5}
+.ck.done .t>b{color:#9aa5b5}.ck.done .t>b::after{content:' · booked ✓';color:#7fe6d3;font-size:.8rem}
 .two b{display:block;margin-bottom:2px}.two span{display:block;font-size:.84rem;color:#cfd6e6;line-height:1.4}
 .keep h2{margin:0 0 4px}
 .sh{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:10px 0 0}
@@ -196,7 +197,7 @@ input[type=number]{width:130px}
 .srcs ul{margin:0 0 12px;padding-left:1.1rem;font-size:.84rem;line-height:1.6}
 .bar{position:fixed;left:50%;bottom:12px;transform:translateX(-50%);display:flex;gap:10px;align-items:center;background:var(--dark);color:#fff;border-radius:999px;padding:9px 16px;font-size:.86rem;box-shadow:0 6px 20px rgba(15,15,35,.3);text-decoration:none;white-space:nowrap;z-index:20}
 .bar b{color:var(--primary)}.bar[hidden]{display:none}
-@media print{.top a,.bar,.keep,.plan,.sh,.go,.ck input,.card:not(.res){display:none!important}
+@media print{.top a,.bar,.keep,.plan,.sh,.go,.bk,.card:not(.res){display:none!important}
  body{background:#fff}.res{background:#fff;color:#0f0f23;border:1px solid #ccc}.res h2,.total h3,.ck .t{color:#0f0f23}.ln .l small,.ck .t small,.peek{color:#555}
  .srcs{border:0;padding:0}.srcs[open] summary,.srcs summary{list-style:none}.printsum{display:block!important}}
 .printsum{display:none;font-size:.9rem;margin:0 0 8px}
@@ -306,7 +307,7 @@ function num(id){var v=parseFloat(document.getElementById(id).value);return isNa
 var SRC=[];function reg(o){if(o&&o.url&&!SRC.some(function(x){return x[1]===o.url;}))SRC.push([o.src||'',o.url]);return '';}
 function src(name,url){reg({src:name,url:url});return '<small>'+esc(name)+', checked '+CH+'</small>';}
 function line(label,v,note){return '<div class="ln"><div class="l">'+label+(note||'')+'</div><div class="v">'+v+'</div></div>';}
-function go(k){var l=LK[k];return '<a class="go" href="'+esc(l[1])+'"'+(l[2]?' target="_blank" rel="nofollow noopener sponsored" data-ps-placement="budget-'+k+'"':'')+' data-go="'+k+'">'+esc(l[0])+'<small>'+(l[2]?'partner link ↗':'→')+'</small></a>';}
+function go(k){var l=LK[k],off=l[2]==='official';return '<a class="go" href="'+esc(l[1])+'"'+(off?' target="_blank" rel="noopener"':l[2]?' target="_blank" rel="nofollow noopener sponsored" data-ps-placement="budget-'+k+'"':'')+' data-go="'+k+'">'+esc(l[0])+'<small>'+(off?'official site ↗':l[2]?'partner link ↗':'→')+'</small></a>';}
 function calc(){
  SRC=[];var tn=S.tn,ad=S.ad+tn,ch=S.ch,inf=S.in,ppl=ad+ch+inf,nights=S.nt+S.nk+S.no+S.nh,kan=S.nk+S.no,days=nights+1,cars=Math.ceil(ppl/4),h='',sum=0,lo=0,hi=0,miss=[];
  // airport to town, both ends
@@ -362,15 +363,19 @@ function calc(){
  h+='<div class="total" id="total"><h3>Your estimated budget</h3><div class="tot"><b>'+tv+'</b><span>'+ppl+' '+(ppl>1?'people':'person')+' · '+nights+' night'+(nights>1?'s':'')+'</span></div>'+
   '<p class="pp" style="margin:0">About '+y(tlo/Math.max(1,ppl))+(thi>tlo?'–'+y(thi/Math.max(1,ppl)).replace('¥',''):'')+' per person, for the costs above. Not priced yet: '+(np.match(/class="np"/g)||[]).length+' item'+((np.match(/class="np"/g)||[]).length>1?'s':'')+'.</p></div>';
  // ready to book: piece by piece (a checklist the page remembers), or one booking
- var ck=[['flights','Flights','with your usual airline or booking site',''],['hotels','Hotels','with your usual booking site; book early for cherry blossom season and Golden Week','']];
- ck.push(['transfer','Airport to town','train tickets are sold at the airport; or book a private car for the family and the bags','transfer']);
- if(S.nt&&kan&&!jrp)ck.push(['shinkansen','Shinkansen tickets','between Tokyo and '+(S.nk?'Kyoto':'Osaka'),'shinkansen']);
- if(jrp)ck.push(['jrpass','Japan Rail Pass','buy it before you fly, from the official Japan Rail Pass site','']);
- if(S.dn||document.getElementById('sanrio').value==='1')ck.push(['parks','Theme park tickets','Disney and Sanrio Puroland tickets are dated; book ahead','parks']);
- ck.push(['esim','eSIM data','set it up at home before you fly','esim']);ck.push(['insurance','Travel medical insurance','before you leave home','insurance']);
- var dn=done();h+='<div class="grp">Ready to book?'+(%%TOURS%%?' Two ways':'')+'</div>'+(%%TOURS%%?'<div class="two"><div><b>1. Piece by piece</b><span>Tick each one off as you book it. This page remembers your ticks.</span></div></div>':'<p class="pp" style="margin:6px 0 0">Tick each one off as you book it. This page remembers your ticks.</p>');
- h+='<div class="cks">'+ck.map(function(c){return '<label class="ck'+(dn[c[0]]?' done':'')+'"><input type="checkbox" data-ck="'+c[0]+'"'+(dn[c[0]]?' checked':'')+'><span class="t"><b>'+esc(c[1])+'</b><small>'+esc(c[2])+'</small>'+(c[3]?go(c[3]):'')+'</span></label>';}).join('')+'</div>';
- if(%%TOURS%%)h+='<div class="two" style="margin-top:12px"><div><b>2. One booking</b><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate. Compare its price with your budget above.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
+ var ck=[['flights','Flights','book first, months ahead if you can; your budget above uses recent fares',LK.flights?'flights':''],
+  ['hotels','Hotels','book early, especially for cherry blossom season, Golden Week and New Year; use your usual booking site','']];
+ if(jrp)ck.push(['jrpass','Japan Rail Pass','buy it before you fly; it is sold online on the official site','jrpass']);
+ if(S.nt&&kan&&!jrp)ck.push(['shinkansen','Shinkansen tickets','Tokyo ⇄ '+(S.nk?'Kyoto':'Osaka')+'; seats open about a month ahead','shinkansen']);
+ if(S.dn||document.getElementById('sanrio').value==='1')ck.push(['parks','Theme park tickets','Disney and Sanrio Puroland tickets are for a set date; book a few weeks ahead','parks']);
+ ck.push(['esim','eSIM data','buy and set it up at home, the week before you fly','esim']);
+ ck.push(['insurance','Travel medical insurance','before you leave home','insurance']);
+ ck.push(['transfer','Airport to town','train tickets are sold at the airport when you land; book ahead only for a private car','transfer']);
+ var dn=done(),how='Book each piece below, in this order. Mark it booked to keep track; this page remembers on this device.';
+ h+='<div class="grp">Ready to book?'+(%%TOURS%%?' Two ways':'')+'</div>'+(%%TOURS%%?'<div class="two"><div><b>1. Book each piece yourself</b><span>'+how+'</span></div></div>':'<p class="pp" style="margin:6px 0 0">'+how+'</p>');
+ h+='<div class="cks">'+ck.map(function(c,i){return '<div class="ck'+(dn[c[0]]?' done':'')+'"><span class="n">'+(i+1)+'</span><div class="t"><b>'+esc(c[1])+'</b><small>'+esc(c[2])+'</small>'+(c[3]?go(c[3]):'')+
+  '<label class="bk"><input type="checkbox" data-ck="'+c[0]+'"'+(dn[c[0]]?' checked':'')+'> Booked</label></div></div>';}).join('')+'</div>';
+ if(%%TOURS%%)h+='<div class="two" style="margin-top:12px"><div><b>2. Or one booking</b><span>A guided multi-day tour: hotels, trains and a guide arranged by the tour company. Flights are usually separate. Compare its price with your budget above.</span>'+go(ch||inf?'tours_family':'tours')+'</div></div>';
  var top='<h2>Your trip, costed</h2><p class="printsum">'+esc(summary())+'</p><div class="peek"><span>Estimated budget <b>'+tv+'</b></span><a href="#total">Total ↓</a></div>';
  document.getElementById('res').innerHTML=top+h;
  document.getElementById('barv').textContent=tv;

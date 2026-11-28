@@ -253,11 +253,11 @@ async function sendWords(req, res, b, email, country, origin) {
 // The calculator's settings come in as its own short query string (letters, numbers, = and &) and are checked here; the
 // partner links are fixed below (the same Sub IDs as the page; w86 checks they match).
 const BUDGET_LINKS = [
-  ['transfer', 'Airport to town', 'Book a private airport transfer', 'https://tpo.lu/hPV4u7AE'],
   ['shinkansen', 'Shinkansen tickets', 'Book Shinkansen tickets online', 'https://www.japan-bullettrain.com/?via=packsmart'],
   ['parks', 'Theme park tickets', 'Compare Tokyo Disney and theme park tickets', 'https://www.getyourguide.com/s/?q=tokyo%20theme%20park%20tickets&partner_id=D7IXONS&cmp=ps-budget'],
   ['esim', 'eSIM data', 'See eSIM data plans for Japan', 'https://airalo.tpo.lu/u2N5qgJl'],
-  ['insurance', 'Travel medical insurance', 'Get a travel medical insurance quote', 'https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador']];
+  ['insurance', 'Travel medical insurance', 'Get a travel medical insurance quote', 'https://www.safetywing.com/nomad-insurance?referenceID=26492686&utm_source=26492686&utm_medium=Ambassador'],
+  ['transfer', 'Airport to town (a private car; trains are sold at the airport)', 'Book a private airport transfer', 'https://tpo.lu/hPV4u7AE']];
 async function sendBudget(req, res, b, email, country, origin) {
   const q = String(b.q || '');
   if (!/^[a-z]{1,3}=[A-Za-z0-9_-]{1,12}(&[a-z]{1,3}=[A-Za-z0-9_-]{1,12}){0,30}$/.test(q)) return res.status(400).json({ ok: false, error: 'Please work out your budget first.' });
@@ -278,11 +278,11 @@ async function sendBudget(req, res, b, email, country, origin) {
   const who = [ad + ' adult' + (ad > 1 ? 's' : ''), ch ? ch + ' child' + (ch > 1 ? 'ren' : '') : '', inf ? inf + ' under 6' : ''].filter(Boolean).join(', ');
   const trip = who + ' · ' + nights + ' night' + (nights > 1 ? 's' : '') + (areas.length ? ' (' + areas.join(', ') + ')' : '');
   const kan = n('nk') + n('no'), jr = P.jr === '1';
-  const want = ['transfer'].concat(n('nt') && kan && !jr ? ['shinkansen'] : [], n('dn') || P.sa === '1' ? ['parks'] : [], ['esim', 'insurance']);
+  const want = [].concat(n('nt') && kan && !jr ? ['shinkansen'] : [], n('dn') || P.sa === '1' ? ['parks'] : [], ['esim', 'insurance', 'transfer']);
   const rows = BUDGET_LINKS.filter(l => want.includes(l[0])).map(l =>
     '<tr><td style="padding:12px 14px;border-top:1px solid #e3e8ec;"><div style="font-weight:bold;color:#0f0f23;">&#9744; ' + esc(l[1]) + '</div>' +
     '<a href="' + esc(l[3]) + '" style="color:#0a8f78;font-weight:bold;font-size:14px;">' + esc(l[2]) + '</a> <span style="color:#8a93a6;font-size:12px;">(partner link)</span></td></tr>').join('');
-  const plain = ['Flights: with your usual airline or booking site', 'Hotels: with your usual booking site'].concat(jr ? ['Japan Rail Pass: from the official site, before you fly'] : []);
+  const plain = ['Flights: book first, months ahead if you can', 'Hotels: book early, with your usual booking site'].concat(jr ? ['Japan Rail Pass: buy it before you fly, at japanrailpass.net (the official site)'] : []);
   const tips = false;
   const html = '<!DOCTYPE html><html><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"></head>' +
     '<body style="margin:0;padding:0;background:#f4faf8;font-family:Arial,Helvetica,sans-serif;"><div style="max-width:600px;margin:0 auto;padding:28px 16px;">' +
